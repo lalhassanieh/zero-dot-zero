@@ -20,3 +20,7 @@ body{
 h1, h2, h3, h4, h5, .h0, .h1, .h2, .h3, .h4, .h5{
     font-family: 'Gilroy Light' !important 
 }
+
+.menu-lv-item a{
+    font-family: 'Gilroy Extra Bold' !important 
+}
