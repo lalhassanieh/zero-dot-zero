@@ -323,6 +323,7 @@
         "01014ccc-ffe5-4c78-b814-da3ff7d8b45c",
         "ec0f7e9f-1012-463e-a1fd-f9225f7f1cc3"
       ],
+      "disabled": true,
       "settings": {
         "container": "1170",
         "padding_full_width": 0,
@@ -413,10 +414,10 @@
             "menu_bottom_spacing": 17,
             "grid_gap_menu_item": 12,
             "alignment": "left",
-            "bg_mega_menu": "#ffffff",
+            "bg_mega_menu": "#fff7e5",
             "bg_mega_menu_gradient": "",
-            "lv_1_color": "#26292d",
-            "lv_1_color_hover": "#26292d",
+            "lv_1_color": "#005339",
+            "lv_1_color_hover": "#ef6431",
             "lv_2_color": "#232323",
             "lv_2_color_hover": "#232323",
             "lv_3_color": "#3c3c3c",
@@ -485,32 +486,17 @@
             "wishlist_color_item": "#ffffff",
             "wishlist_bg_item": "#232323"
           }
-        },
-        "megamenu_style_1_KDWMMQ": {
-          "type": "megamenu_style_1",
-          "settings": {
-            "layout_block": "full",
-            "header_custom_width_size": 1200,
-            "item": "Shop",
-            "column": 3,
-            "show_banner_1": false,
-            "banner_url_1": "shopify://collections/non-alcoholic-wines",
-            "show_product": false,
-            "product_title": "Featured Products",
-            "product_collection": ""
-          }
         }
       },
       "block_order": [
         "main_menu_PDD3kW",
         "logo_UcJFcw",
-        "header_icons_f98xwX",
-        "megamenu_style_1_KDWMMQ"
+        "header_icons_f98xwX"
       ],
       "settings": {
-        "container": "1170",
-        "padding_full_width": 0,
-        "header_navigation_bg": "#ffffff",
+        "container": "full",
+        "padding_full_width": 100,
+        "header_navigation_bg": "#fff7e5",
         "header_navigation_bg_gradient": "",
         "sticky_header_type": "on_scroll",
         "sticky_header_width": "default"
