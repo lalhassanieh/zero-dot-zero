@@ -450,6 +450,7 @@
         },
         "megamenu_style_1_6WFRYd": {
           "type": "megamenu_style_1",
+          "disabled": true,
           "settings": {
             "layout_block": "custom_width",
             "header_custom_width_size": 1200,
@@ -501,13 +502,35 @@
             "wishlist_color_item": "#ffffff",
             "wishlist_bg_item": "#232323"
           }
+        },
+        "megamenu_style_4_aKJMHH": {
+          "type": "megamenu_style_4",
+          "settings": {
+            "layout_block": "custom_width",
+            "header_custom_width_size": 1200,
+            "item": "Shop",
+            "column": 5,
+            "menu_text_left": "footer",
+            "menu_text_left_sale": "",
+            "show_banner_1": false,
+            "banner_url_1": "",
+            "show_banner_2": false,
+            "banner_url_2": "",
+            "show_az_brand": false,
+            "az_brand_title": "All Brands A-Z",
+            "az_brand_link_text": "See All Brands",
+            "az_brand_url": "",
+            "bg_mega_menu_bottom": "#f8f8f8",
+            "az_brand_link_text_color": "#000"
+          }
         }
       },
       "block_order": [
         "main_menu_PDD3kW",
         "megamenu_style_1_6WFRYd",
         "logo_UcJFcw",
-        "header_icons_f98xwX"
+        "header_icons_f98xwX",
+        "megamenu_style_4_aKJMHH"
       ],
       "settings": {
         "container": "full",
