@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'Gilroy Extra Bold';
-    src: url('{{ "Gilroy-ExtraBold.woff2" | asset_url }}') format('woff2'),
-    url('{{ "Gilroy-ExtraBold.woff" | asset_url }}') format('woff');
+    src: url("Gilroy-ExtraBold.woff2") format('woff2'),
+    url("Gilroy-ExtraBold.woff") format('woff');
     font-weight: bold;
     font-style: normal;
     font-display: swap;
@@ -9,25 +9,17 @@
 
 @font-face {
     font-family: 'Gilroy Light';
-    src: url('{{ "Gilroy-Light.woff2" | asset_url }}') format('woff2'),
-    url('{{ "Gilroy-Light.woff" | asset_url }}') format('woff');
+    src: url("Gilroy-Light.woff2") format('woff2'),
+    url("Gilroy-Light.woff") format('woff');
     font-weight: 300;
     font-style: normal;
     font-display: swap;
 }
 
-@font-face {
-    font-family: 'ChongModernPro-Light';
-    src: url('{{ "ChongModernPro-Light.woff2" | asset_url }}') format('woff2'),
-    url('{{ "ChongModernPro-Light.woff" | asset_url }}') format('woff');
-    font-weight: 300;
-    font-style: normal;
-    font-display: swap;
-}
 
 
 body {
-    font-family: 'ChongModernPro-Light' !important
+    font-family: 'Gilroy Light' !important;
 }
 
 h1,
