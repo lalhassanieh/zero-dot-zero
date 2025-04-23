@@ -92,15 +92,24 @@
                         {% else %}
                             {% assign is_contained = false %}
                         {% endif %}
-                        <a href="{{ routes.account_login_url }}" class="header__icon header__icon--account link link--text link-effect h-100{% if block.settings.show_customer_sticky%}{% if block.settings.show_customer %}{% else %} hide-main-menu{% endif %}{% else %}{% if block.settings.show_customer %} show-main-menu{% endif %}{% endif %} text-center"{% if is_contained %} data-open-auth-sidebar{% endif %}>
-                            {%- if customer and customer.has_avatar? -%}
-                                <account-icon>
-                                    {{ customer | avatar }}
-                                </account-icon>
-                            {%- else -%}
-                                <span class="text">{{ 'customer.account.my_account' | t }}</span>
-                            {%- endif -%}
-                        </a> 
+                       <a href="{{ routes.account_login_url }}" class="header__icon header__icon--account link link--text"{% if is_contained %} data-open-auth-sidebar{% endif %}>
+                                                    {%- if customer and customer.has_avatar? -%}
+                                                        <account-icon>
+                                                            {{ customer | avatar }}
+                                                        </account-icon>
+                                                    {%- else -%}
+                                                        {% render 'icon-account-2' %}
+                                                    {%- endif -%}
+                                                    <span class="visually-hidden">
+                                                        {%- liquid
+                                                        if customer
+                                                        echo 'customer.account_fallback' | t
+                                                        else
+                                                        echo 'customer.log_in' | t
+                                                        endif
+                                                        -%}
+                                                    </span>
+                                                </a>
                     {%- endif -%}                              
                 {%- endif -%}
                 {%- if block.settings.show_search or block.settings.show_search_sticky -%}
