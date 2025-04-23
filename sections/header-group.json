@@ -492,7 +492,7 @@
           "settings": {
             "layout_block": "custom_width",
             "header_custom_width_size": 1200,
-            "item": "Shop",
+            "item": "shop",
             "column": 3,
             "show_banner_1": false,
             "banner_1": "shopify://shop_images/Tanqueray---RTD-0.jpg",
