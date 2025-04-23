@@ -495,7 +495,7 @@
       "settings": {
         "container": "full",
         "padding_full_width": 100,
-        "header_navigation_bg": "#ffffff",
+        "header_navigation_bg": "#fff7e5",
         "header_navigation_bg_gradient": "",
         "sticky_header_type": "on_scroll",
         "sticky_header_width": "default"
