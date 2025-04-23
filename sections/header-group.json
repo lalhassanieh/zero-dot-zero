@@ -495,6 +495,7 @@
             "item": "Shop",
             "column": 3,
             "show_banner_1": false,
+            "banner_1": "shopify://shop_images/Tanqueray---RTD-0.jpg",
             "banner_url_1": "shopify://collections/non-alcoholic-wines",
             "show_product": false,
             "product_title": "Featured Products",
