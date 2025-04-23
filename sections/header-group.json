@@ -500,6 +500,67 @@
         "sticky_header_type": "on_scroll",
         "sticky_header_width": "default"
       }
+    },
+    "header_basic_DCzHyV": {
+      "type": "header-basic",
+      "blocks": {
+        "conversion_group_ckpmWG": {
+          "type": "conversion_group",
+          "settings": {
+            "show_language_currency": true,
+            "language_currency_color": "#3c3c3c",
+            "customer_service_text": "<p>Customer Service 091 234-ELLA</p>",
+            "text_color": "#3c3c3c"
+          }
+        },
+        "logo_nEBEYH": {
+          "type": "logo",
+          "settings": {
+            "logo_width": 80,
+            "logo_text": "",
+            "logo_font_size": 30,
+            "logo_font_weight": "900",
+            "logo_text_transform": "uppercase",
+            "logo_color": "#232323"
+          }
+        },
+        "function_group_w7zAUL": {
+          "type": "function_group",
+          "settings": {
+            "show_search": true,
+            "show_search_left_to_right": false,
+            "search_color": "#3c3c3c",
+            "bg_search_color": "",
+            "search_border_color": "#7b7b7b",
+            "search_icon_color": "#232323",
+            "show_customer": true,
+            "customer_color": "#232323",
+            "show_wishlist": true,
+            "wishlist_color": "#232323",
+            "show_wishlist_number": false,
+            "wishlist_color_item": "#ffffff",
+            "wishlist_bg_item": "#232323",
+            "show_cart": true,
+            "cart_color": "#232323",
+            "cart_color_item": "#ffffff",
+            "cart_bg_item": "#232323"
+          }
+        }
+      },
+      "block_order": [
+        "conversion_group_ckpmWG",
+        "logo_nEBEYH",
+        "function_group_w7zAUL"
+      ],
+      "settings": {
+        "container": "1770",
+        "padding_full_width": 0,
+        "background": "#ffffff",
+        "gradient": "",
+        "enable_transparent": false,
+        "padding_top": 20,
+        "padding_bottom": 0
+      }
     }
   },
   "order": [
@@ -507,6 +568,7 @@
     "header-classic",
     "9c03747e-b054-4db8-8194-5a35c71f82ca",
     "header-mobile",
-    "header_navigation_basic_hUw3cB"
+    "header_navigation_basic_hUw3cB",
+    "header_basic_DCzHyV"
   ]
 }
