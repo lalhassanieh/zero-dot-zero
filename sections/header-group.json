@@ -494,7 +494,7 @@
             "header_custom_width_size": 1200,
             "item": "shop",
             "column": 3,
-            "show_banner_1": false,
+            "show_banner_1": true,
             "banner_1": "shopify://shop_images/Tanqueray---RTD-0.jpg",
             "banner_url_1": "shopify://collections/non-alcoholic-spirits",
             "show_product": false,
