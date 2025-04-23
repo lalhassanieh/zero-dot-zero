@@ -1,0 +1,16 @@
+@font-face {
+    font-family: 'Gilroy Bold';
+    src: url('{{'Gilroy-ExtraBold.woff2' | asset_url}}');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Gilroy Light';
+    src: url('{{'Gilroy-Light.woff2' | asset_url}}');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
