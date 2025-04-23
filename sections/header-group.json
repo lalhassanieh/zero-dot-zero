@@ -448,6 +448,21 @@
             "hot_label_bg_gradient": ""
           }
         },
+        "megamenu_style_1_6WFRYd": {
+          "type": "megamenu_style_1",
+          "settings": {
+            "layout_block": "custom_width",
+            "header_custom_width_size": 1200,
+            "item": "shop",
+            "column": 3,
+            "show_banner_1": true,
+            "banner_1": "shopify://shop_images/Tanqueray---RTD-0.jpg",
+            "banner_url_1": "shopify://collections/shop-cocktail-kits",
+            "show_product": false,
+            "product_title": "Featured Products",
+            "product_collection": ""
+          }
+        },
         "logo_UcJFcw": {
           "type": "logo",
           "settings": {
@@ -486,28 +501,13 @@
             "wishlist_color_item": "#ffffff",
             "wishlist_bg_item": "#232323"
           }
-        },
-        "megamenu_style_1_6WFRYd": {
-          "type": "megamenu_style_1",
-          "settings": {
-            "layout_block": "custom_width",
-            "header_custom_width_size": 1200,
-            "item": "shop",
-            "column": 3,
-            "show_banner_1": true,
-            "banner_1": "shopify://shop_images/Tanqueray---RTD-0.jpg",
-            "banner_url_1": "shopify://pages/contact",
-            "show_product": false,
-            "product_title": "Featured Products",
-            "product_collection": ""
-          }
         }
       },
       "block_order": [
         "main_menu_PDD3kW",
+        "megamenu_style_1_6WFRYd",
         "logo_UcJFcw",
-        "header_icons_f98xwX",
-        "megamenu_style_1_6WFRYd"
+        "header_icons_f98xwX"
       ],
       "settings": {
         "container": "full",
