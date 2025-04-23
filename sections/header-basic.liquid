@@ -1,4 +1,5 @@
 {{ 'component-header-basic.css' | asset_url | stylesheet_tag }}
+
 <header class="header header-basic{% if section.settings.enable_transparent %} header-basic--transparent{% endif %}" style="--spacing-l-r: {{ section.settings.padding_full_width }}px; --bg-color: {% if section.settings.gradient != blank %}{{ section.settings.gradient }}{% else %}{{ section.settings.background }}{% endif %}; --p-top: {{ section.settings.padding_top }}px; --p-bottom: {{ section.settings.padding_bottom }}px">
     <div class="container container-{{ section.settings.container }}">
         <div class="header-basic__content">
