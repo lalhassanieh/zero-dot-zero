@@ -77,11 +77,12 @@
                 {% endif %}
                 {%- if settings.show_wishlist -%}
                     {%- if block.settings.show_wishlist or block.settings.show_wishlist_sticky -%}
-                        <a href="{% if settings.link_wishlist != blank %}{{ settings.link_wishlist }}{% else %}{{ pages['wish-list'].url }}{% endif %}" class="header__icon header__icon--wishlist link link--text focus-inset link-effect h-100{% if block.settings.show_wishlist_sticky %}{% if block.settings.show_wishlist %}{% else %} hide-main-menu{% endif %}{% else %}{% if block.settings.show_wishlist %} show-main-menu{% endif %}{% endif %} text-center" style="--wishlist-bg-item: {{ block.settings.wishlist_bg_item }}; --wishlist-color-item: {{ block.settings.wishlist_color_item }}"><span class="text">{{ 'wishlist.general.wishlist' | t }}</span>
-                            {%- if block.settings.show_wishlist_number -%}
-                                <div class="wishlist-count-bubble"><span class="text" aria-hidden="true" data-wishlist-count></span><span class="visually-hidden">{{ 'wishlist.general.wishlist' | t }}</span></div>
-                            {%- endif -%}
-                        </a>
+                        <a href="{% if settings.link_wishlist != blank %}{{ settings.link_wishlist }}{% else %}{{ pages['wish-list'].url }}{% endif %}" class="header__icon header__icon--wishlist link link--text focus-inset" style="--text-color: {{ block.settings.wishlist_color }}; --wishlist-bg-item: {{ block.settings.wishlist_bg_item }}; --wishlist-color-item: {{ block.settings.wishlist_color_item }}">
+                                                {% render 'icon-heart-2' %}
+                                                {%- if block.settings.show_wishlist_number -%}
+                                                    <div class="wishlist-count-bubble"><span class="text" aria-hidden="true" data-wishlist-count></span><span class="visually-hidden">{{ 'wishlist.general.wishlist' | t }}</span></div>
+                                                {%- endif -%}
+                                            </a>
                     {%- endif -%}
                 {%- endif -%}
                 {%- if shop.customer_accounts_enabled -%}
