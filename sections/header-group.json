@@ -486,12 +486,27 @@
             "wishlist_color_item": "#ffffff",
             "wishlist_bg_item": "#232323"
           }
+        },
+        "megamenu_style_1_6WFRYd": {
+          "type": "megamenu_style_1",
+          "settings": {
+            "layout_block": "custom_width",
+            "header_custom_width_size": 1200,
+            "item": "Shop",
+            "column": 3,
+            "show_banner_1": false,
+            "banner_url_1": "shopify://collections/non-alcoholic-wines",
+            "show_product": false,
+            "product_title": "Featured Products",
+            "product_collection": ""
+          }
         }
       },
       "block_order": [
         "main_menu_PDD3kW",
         "logo_UcJFcw",
-        "header_icons_f98xwX"
+        "header_icons_f98xwX",
+        "megamenu_style_1_6WFRYd"
       ],
       "settings": {
         "container": "full",
