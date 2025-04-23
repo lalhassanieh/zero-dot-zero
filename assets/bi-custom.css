@@ -16,8 +16,18 @@
     font-display: swap;
 }
 
+@font-face {
+    font-family: 'ChongModernPro-Light';
+    src: url('{{ "ChongModernPro-Light.woff2" | asset_url }}') format('woff2'),
+    url('{{ "ChongModernPro-Light.woff" | asset_url }}') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+
 body {
-    font-family: 'Gilroy Light' !important
+    font-family: 'ChongModernPro-Light' !important
 }
 
 h1,
