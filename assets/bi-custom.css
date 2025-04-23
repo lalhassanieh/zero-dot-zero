@@ -1,6 +1,7 @@
 @font-face {
     font-family: 'Gilroy Extra Bold';
-    src: url('{{ "Gilroy-ExtraBold.woff2" | asset_url }}') format('woff2');
+    src: url('{{ "Gilroy-ExtraBold.woff2" | asset_url }}') format('woff2'),
+    url('{{ "Gilroy-ExtraBold.woff" | asset_url }}') format('woff');
     font-weight: bold;
     font-style: normal;
     font-display: swap;
@@ -8,19 +9,31 @@
 
 @font-face {
     font-family: 'Gilroy Light';
-    src: url('{{ "Gilroy-Light.woff2" | asset_url }}') format('woff2');
+    src: url('{{ "Gilroy-Light.woff2" | asset_url }}') format('woff2'),
+    url('{{ "Gilroy-Light.woff" | asset_url }}') format('woff');
     font-weight: 300;
     font-style: normal;
     font-display: swap;
 }
 
-body{
-    font-family: 'Gilroy Light' !important 
-}
-h1, h2, h3, h4, h5, .h0, .h1, .h2, .h3, .h4, .h5{
-    font-family: 'Gilroy Light' !important 
+body {
+    font-family: 'Gilroy Light' !important
 }
 
-.menu-lv-item a{
-    font-family: 'Gilroy Extra Bold' !important 
+h1,
+h2,
+h3,
+h4,
+h5,
+.h0,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5 {
+    font-family: 'Gilroy Light' !important
+}
+
+.menu-lv-item a {
+    font-family: 'Gilroy Extra Bold' !important
 }
