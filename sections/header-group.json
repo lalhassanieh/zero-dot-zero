@@ -28,6 +28,7 @@
       "block_order": [
         "60fe30b1-fa66-4bd9-9d3f-21fc97aa738c"
       ],
+      "disabled": true,
       "settings": {
         "layout": "slider",
         "enable_close": false,
