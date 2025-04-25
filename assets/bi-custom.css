@@ -48,6 +48,6 @@ h5,
     line-height: initial !important;
 }
 
-.brand__custom--tab ul li.active a {
+.brand__custom--tab ul li.active  {
     border-color: transparent !important;
 }
