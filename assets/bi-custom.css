@@ -46,6 +46,11 @@ h5,
     background: #FFF7E5;
     padding: 9px 30px !important;
     line-height: initial !important;
+    margin-right: 20px;
+}
+
+.brand__custom--tab ul li:last-child {
+    margin-right: 0;
 }
 
 .brand__custom--tab ul li.active a {
@@ -53,10 +58,10 @@ h5,
 }
 
 .brand__custom--tab ul li.active [tab-title-action] {
-
     border-color:
         transparent !important;
 }
+
 .brand__custom--tab ul li.active {
     border: 1px solid #005339;
 
