@@ -53,9 +53,13 @@ h5,
 }
 
 .brand__custom--tab ul li.active [tab-title-action] {
-    border: 1px solid #005339;
+
     border-color:
         transparent !important;
+}
+.brand__custom--tab ul li.active {
+    border: 1px solid #005339;
+
 }
 
 .brand__custom--tab ul li a {
