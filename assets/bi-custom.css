@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'Gilroy Extra Bold';
     src: url("Gilroy-ExtraBold.woff2") format('woff2'),
-    url("Gilroy-ExtraBold.woff") format('woff');
+        url("Gilroy-ExtraBold.woff") format('woff');
     font-weight: bold;
     font-style: normal;
     font-display: swap;
@@ -10,7 +10,7 @@
 @font-face {
     font-family: 'Gilroy Light';
     src: url("Gilroy-Light.woff2") format('woff2'),
-    url("Gilroy-Light.woff") format('woff');
+        url("Gilroy-Light.woff") format('woff');
     font-weight: 300;
     font-style: normal;
     font-display: swap;
@@ -38,4 +38,16 @@ h5,
 
 .menu-lv-item a {
     font-family: 'Gilroy Extra Bold' !important
+}
+
+.brand__custom--tab ul li {
+    border-radius: 100px;
+    border: 1px solid #005339;
+    background: #FFF7E5;
+    padding: 9px 30px;
+    line-height: initial
+}
+
+.brand__custom--tab ul li.active a {
+    border-color: transparent;
 }
