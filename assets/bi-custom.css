@@ -45,7 +45,7 @@ h5,
     border: 1px solid #005339;
     background: #FFF7E5;
     padding: 9px 30px !important;
-    line-height: initial
+    line-height: initial !important;
 }
 
 .brand__custom--tab ul li.active a {
