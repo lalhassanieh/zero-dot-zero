@@ -44,10 +44,10 @@ h5,
     border-radius: 100px;
     border: 1px solid #005339;
     background: #FFF7E5;
-    padding: 9px 30px;
+    padding: 9px 30px !important;
     line-height: initial
 }
 
 .brand__custom--tab ul li.active a {
-    border-color: transparent;
+    border-color: transparent !important;
 }
