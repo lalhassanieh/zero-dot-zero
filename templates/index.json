@@ -15,7 +15,7 @@
         "tab_wCkDYq": {
           "type": "tab",
           "settings": {
-            "title": "Shop by Popular Car Brands",
+            "title": "Spirits",
             "menu": "spirits",
             "items_grid_gap": 7.5,
             "items_spacing_tb": 30,
@@ -37,7 +37,7 @@
         "tab_feetyx": {
           "type": "tab",
           "settings": {
-            "title": "test",
+            "title": "Beers",
             "menu": "",
             "items_grid_gap": 7.5,
             "items_spacing_tb": 30,
@@ -59,7 +59,73 @@
         "tab_mxLKbP": {
           "type": "tab",
           "settings": {
-            "title": "Shop by Popular Car Models",
+            "title": "Sparkling Wine",
+            "menu": "main-menu",
+            "items_grid_gap": 7.5,
+            "items_spacing_tb": 30,
+            "items_spacing_lr": 10,
+            "items_border_radius": 5,
+            "image_width": 145,
+            "image_height": 15,
+            "image_border_radius": 0,
+            "items_bg_color": "",
+            "items_border_color": "#d0d0d0",
+            "enable_title": false,
+            "fontsize_title": 18,
+            "fontweight_title": "500",
+            "title_color": "#202020",
+            "title_color_hover": "#202020",
+            "show_tab_image": false
+          }
+        },
+        "tab_CMH6PH": {
+          "type": "tab",
+          "settings": {
+            "title": "Still Wine",
+            "menu": "main-menu",
+            "items_grid_gap": 7.5,
+            "items_spacing_tb": 30,
+            "items_spacing_lr": 10,
+            "items_border_radius": 5,
+            "image_width": 145,
+            "image_height": 15,
+            "image_border_radius": 0,
+            "items_bg_color": "",
+            "items_border_color": "#d0d0d0",
+            "enable_title": false,
+            "fontsize_title": 18,
+            "fontweight_title": "500",
+            "title_color": "#202020",
+            "title_color_hover": "#202020",
+            "show_tab_image": false
+          }
+        },
+        "tab_3bftmi": {
+          "type": "tab",
+          "settings": {
+            "title": "Tonic and Mixers",
+            "menu": "main-menu",
+            "items_grid_gap": 7.5,
+            "items_spacing_tb": 30,
+            "items_spacing_lr": 10,
+            "items_border_radius": 5,
+            "image_width": 145,
+            "image_height": 15,
+            "image_border_radius": 0,
+            "items_bg_color": "",
+            "items_border_color": "#d0d0d0",
+            "enable_title": false,
+            "fontsize_title": 18,
+            "fontweight_title": "500",
+            "title_color": "#202020",
+            "title_color_hover": "#202020",
+            "show_tab_image": false
+          }
+        },
+        "tab_cpgT6q": {
+          "type": "tab",
+          "settings": {
+            "title": "Tonic and Mixers",
             "menu": "main-menu",
             "items_grid_gap": 7.5,
             "items_spacing_tb": 30,
@@ -82,7 +148,10 @@
       "block_order": [
         "tab_wCkDYq",
         "tab_feetyx",
-        "tab_mxLKbP"
+        "tab_mxLKbP",
+        "tab_CMH6PH",
+        "tab_3bftmi",
+        "tab_cpgT6q"
       ],
       "name": "t:sections.brand_tab.presets.name",
       "settings": {
