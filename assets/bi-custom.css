@@ -42,8 +42,6 @@ h5,
 
 .brand__custom--tab ul li {
     border-radius: 100px;
-    border: 1px solid #005339;
-    background: #FFF7E5;
     padding: 9px 30px !important;
     line-height: initial !important;
 }
@@ -56,4 +54,8 @@ h5,
 
     border-color:
         transparent !important;
+}
+
+.brand__custom--tab ul li a {
+    font-family: 'Gilroy Extra Bold';
 }
