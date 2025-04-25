@@ -49,5 +49,5 @@ h5,
 }
 
 .brand__custom--tab ul li.active  {
-    border-color: transparent !important;
+    border-bottom: 2px solid transparent !important;
 }
