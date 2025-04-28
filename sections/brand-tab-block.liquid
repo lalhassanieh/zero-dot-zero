@@ -77,9 +77,12 @@
                             <div class="halo-row column-{{ section.settings.brand_rows }} sm-column-2 md-column-3" style="--items-grid-gap-style: {{ block.settings.items_grid_gap | prepend: '-' | append: 'px' }}">
                             {% assign results_count = 0 %}
                    
-
                             {% for link in block.settings.menu.links %}
                                 {%- liquid
+                                    # Get collection handle from URL
+                                    assign collection_handle = link.url | split: '/collections/' | last
+                                    assign collection = collections[collection_handle]
+                                    
                                     assign class_hidden = ''
                                     if forloop.index > 6
                                         assign class_hidden = class_hidden | append: 'hidden-sm'
@@ -92,47 +95,51 @@
                                     endif
                                     assign results_count = results_count | plus: 1
                                 -%}
-                                <pre>{{link.title }}</pre>
-                                   <pre>{{link.url }}</pre>
-                                <div class="halo-item {{ class_hidden }}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="{% if settings.banner_animation == 'effect_fade_up' %}--animation-order: {{ forloop.index }};{% endif %}--items-grid-gap-style: {{ block.settings.items_grid_gap | append: 'px' }}">
-                                    <div class="wrapper-item{% if block.settings.enable_title %} has-content{% endif %}"
-                                        style="
-                                            --items-spacing-tb-style: {{ block.settings.items_spacing_tb | append: 'px' }};
-                                            --items-spacing-lr-style: {{ block.settings.items_spacing_lr | append: 'px' }};
-                                            --items-bg-color-style: {{ block.settings.items_bg_color }};
-                                            --items-border-color-style: {{ block.settings.items_border_color }};
-                                            --items-border-radius-style: {{ block.settings.items_border_radius | append: 'px' }};
-                                            --image-border-radius-style: {{ block.settings.image_border_radius | append: '%' }};
-                                            --image-max-width-style: {{ block.settings.image_width | append: 'px' }};
-                                            --image-min-height-style: {{ block.settings.image_height | append: 'px' }}
-                                        "
-                                    >
-                                            <div class="wrapper-image">
-                                                <a title="{{ link.title }}" href="{{ link.url }}" class="image-zoom">
-                                                    {% if block.settings.show_tab_image %}
-                                                        <img data-srcset="{{ link.title | handle | append: '.png' | file_url }}" alt="{{ link.title }}" class="lazyload" />
-                                                        {% if settings.enable_lazyload %}<span class="data-lazy-loading"></span>{% endif %}
-                                                    {% else %}
-                                                        <h3 class="title">{{ link.title }}</h3>
-                                                    {% endif %}
-                                                </a>
-                                            </div>
-                                            {% if block.settings.enable_title %}
-                                                <div class="wrapper-content">
-                                                    <a class="btb-title" href="{{ link.url }}" title="{{ link.title }}"
-                                                        style="
-                                                            --fontsize-title-style: {{ block.settings.fontsize_title | append: 'px' }};
-                                                            --fontweight-title-style: {{ block.settings.fontweight_title }};
-                                                            --title-color-style: {{ block.settings.title_color }};
-                                                            --title-color-hover-style: {{ block.settings.title_color_hover }}
-                                                        "
-                                                    >
-                                                        <span>{{ link.title }}</span>
+                
+                                {% if collection != blank %}
+                                    {% for product in collection.products %}
+                                        <div class="halo-item {{ class_hidden }}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="{% if settings.banner_animation == 'effect_fade_up' %}--animation-order: {{ forloop.index }};{% endif %}--items-grid-gap-style: {{ block.settings.items_grid_gap | append: 'px' }}">
+                                            <div class="wrapper-item{% if block.settings.enable_title %} has-content{% endif %}"
+                                                style="
+                                                    --items-spacing-tb-style: {{ block.settings.items_spacing_tb | append: 'px' }};
+                                                    --items-spacing-lr-style: {{ block.settings.items_spacing_lr | append: 'px' }};
+                                                    --items-bg-color-style: {{ block.settings.items_bg_color }};
+                                                    --items-border-color-style: {{ block.settings.items_border_color }};
+                                                    --items-border-radius-style: {{ block.settings.items_border_radius | append: 'px' }};
+                                                    --image-border-radius-style: {{ block.settings.image_border_radius | append: '%' }};
+                                                    --image-max-width-style: {{ block.settings.image_width | append: 'px' }};
+                                                    --image-min-height-style: {{ block.settings.image_height | append: 'px' }}
+                                                "
+                                            >
+                                                <div class="wrapper-image">
+                                                    <a href="{{ product.url }}" class="image-zoom">
+                                                        {% if product.featured_image %}
+                                                            <img data-srcset="{{ product.featured_image | img_url: 'master' }}" 
+                                                                 alt="{{ product.title }}" 
+                                                                 class="lazyload" />
+                                                            {% if settings.enable_lazyload %}
+                                                                <span class="data-lazy-loading"></span>
+                                                            {% endif %}
+                                                        {% endif %}
                                                     </a>
                                                 </div>
-                                            {% endif %}
-                                    </div>
-                                </div>
+                                                {% if block.settings.enable_title %}
+                                                    <div class="wrapper-content">
+                                                        <a class="btb-title" href="{{ product.url }}" title="{{ product.title }}"
+                                                            style="
+                                                                --fontsize-title-style: {{ block.settings.fontsize_title | append: 'px' }};
+                                                                --fontweight-title-style: {{ block.settings.fontweight_title }};
+                                                                --title-color-style: {{ block.settings.title_color }};
+                                                                --title-color-hover-style: {{ block.settings.title_color_hover }}
+                                                            ">
+                                                            <span>{{ product.title }}</span>
+                                                        </a>
+                                                    </div>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
                             {% endfor %}
                             </div>
                             {%- if section.settings.brand_button_text != blank or brand_button_text_less != blank or section.settings.brand_button_icon != blank -%}
@@ -144,6 +151,9 @@
                         </div>
                     {% endfor %}
                 </div>
+
+
+
             </brand-tab>
         </div>
     </div>
