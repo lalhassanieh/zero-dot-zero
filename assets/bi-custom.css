@@ -126,6 +126,20 @@ h5,
     height: 30px;
 }
 
+.slide-content {
+    width: 35%;
+}
+
+.slide-content .slide-sub {
+    font-family: 'Gilroy Extra Bold';
+    text-transform: uppercase;
+}
+
+.slide-content .slide-heading {
+    font-family: 'Gilroy Extra Bold';
+    text-transform: capitalize;
+}
+
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
         border-color:
