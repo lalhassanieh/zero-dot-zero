@@ -139,16 +139,18 @@
                             <div class="product-item">
                               <div class="card">
                                 <div class="card-product">
-                                  {% render 'product-card',
-                                    product_card_product: product,
-                                    media_size: section.settings.image_ratio,
-                                    show_secondary_image: section.settings.show_secondary_image,
-                                    add_image_padding: section.settings.add_image_padding,
-                                    show_vendor: section.settings.show_vendor,
-                                    show_title: section.settings.show_title,
-                                    show_price: section.settings.show_price,
-                                    show_rating: section.settings.show_rating
-                                  %}
+                                    {% render 'product-grid-layout',
+                                        product_card_product: product,
+                                        media_size: section.settings.image_ratio,
+                                        portrait_aspect_ratio: section.settings.portrait_aspect_ratio,
+                                        complementary_product_button_atc: true,
+                                        serial: forloop.index,
+                                        sectionId: section.id,
+                                        show_list: true,
+                                        loading: true
+                                    %}
+                              
+                                  
                                 </div>
                               </div>
                             </div>
