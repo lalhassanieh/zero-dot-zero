@@ -72,6 +72,16 @@ h5,
     line-height: normal;
 }
 
+.tab-panel-content .products-grid-section{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.tab-panel-content .product.slider__slide.grid__item {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
         border-color:
