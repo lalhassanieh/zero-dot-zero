@@ -88,6 +88,10 @@ h5,
     border-right: 1px solid transparent;
 }
 
+.brand-tab-block {
+    border-top: 1px solid transparent;
+}
+
 .card-title {
     font-family: 'Gilroy Extra Bold';
     text-align: center;
@@ -104,7 +108,7 @@ h5,
     padding-top: 5px;
 }
 
- 
+
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
         border-color:
