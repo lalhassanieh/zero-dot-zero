@@ -78,28 +78,6 @@
             "show_tab_image": true
           }
         },
-        "tab_mxLKbP": {
-          "type": "tab",
-          "settings": {
-            "title": "Sparkling Wine",
-            "menu": "spirits",
-            "items_grid_gap": 7.5,
-            "items_spacing_tb": 30,
-            "items_spacing_lr": 10,
-            "items_border_radius": 5,
-            "image_width": 145,
-            "image_height": 15,
-            "image_border_radius": 0,
-            "items_bg_color": "",
-            "items_border_color": "#d0d0d0",
-            "enable_title": false,
-            "fontsize_title": 18,
-            "fontweight_title": "500",
-            "title_color": "#202020",
-            "title_color_hover": "#202020",
-            "show_tab_image": false
-          }
-        },
         "tab_CMH6PH": {
           "type": "tab",
           "settings": {
@@ -171,7 +149,6 @@
         "tab_wCkDYq",
         "tab_feetyx",
         "tab_M8tHqC",
-        "tab_mxLKbP",
         "tab_CMH6PH",
         "tab_3bftmi",
         "tab_cpgT6q"
@@ -204,7 +181,7 @@
         "icon_view_all": "",
         "color_view_all_icon": "#eb492f",
         "brand_item_limit": 18,
-        "brand_rows": "5",
+        "brand_rows": "4",
         "title_tab_style": "style_01",
         "fontsize_tab": 16,
         "fontsize_tab_mb": 16,
