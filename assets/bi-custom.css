@@ -108,6 +108,10 @@ h5,
     padding-top: 5px;
 }
 
+.add-sparkles h2{
+    display: inline-block;
+    font-family: 'Gilroy Extra Bold' !important;
+}
 
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {

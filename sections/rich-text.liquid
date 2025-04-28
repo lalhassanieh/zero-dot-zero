@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="{{ 'component-rich-text.css' | asset_url }}" media="print" onload="this.media='all'">
 <noscript>{{ 'component-rte.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'component-rich-text.css' | asset_url | stylesheet_tag }}</noscript>
-<div class="test3 rich-text section-block-{{section.id}}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}{% if section.settings.custom_class != blank %} {{ section.settings.custom_class }}{% endif %}">
+<div class="rich-text section-block-{{section.id}}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}{% if section.settings.custom_class != blank %} {{ section.settings.custom_class }}{% endif %}">
   <div class="{% if section.settings.container == 'fullwidth' %}container-full{% elsif section.settings.container == '1770' %}container-1770{% elsif section.settings.container == '1170' %}container-1170{% else %}container{% endif %}">
     <div class="rich-text__blocks{% if section.settings.enable_column %} enable_column{% endif %} text-{{section.settings.content_align}}{% if section.settings.padding_full_width == 65 %} pad-65{% endif %}">
       {%- for block in section.blocks -%}
