@@ -96,6 +96,7 @@ h5,
 .price {
     text-align: center;
     color: #7C7C7C;
+    font-family: 'Gilroy Extra Bold';
 }
 
 .card-information__wrapper.text-left .card-price {
