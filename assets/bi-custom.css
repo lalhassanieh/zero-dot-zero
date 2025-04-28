@@ -108,9 +108,20 @@ h5,
     padding-top: 5px;
 }
 
-.add-sparkles h2{
+.add-sparkles h2 {
     display: inline-block;
     font-family: 'Gilroy Extra Bold' !important;
+    position: relative;
+    padding-right: 30px;
+}
+
+.add-sparkles h2::after {
+    content: "";
+    background-image: url("https://cdn.shopify.com/s/files/1/0742/2669/6436/files/sparkle-shape.svg?v=1745848335");
+    background-repeat: no-repeat;
+    position: absolute;
+    right: 0;
+    top: 0;
 }
 
 @media (min-width: 1025px) {
