@@ -58,7 +58,7 @@
                             {% endfor %}
                         </ul>
                 {% endcase %}
-                <div class="tab-panel-content">
+                <div class="tab-panel-content test">
                     {% for block in section.blocks %}
                         {%- liquid
                             assign link_size = block.settings.menu.links | size
@@ -76,6 +76,7 @@
                         <div class="tab-content--block {% if forloop.first %}active{% endif %} text-center" id="block-{{block.id}}">
                             <div class="halo-row column-{{ section.settings.brand_rows }} sm-column-2 md-column-3" style="--items-grid-gap-style: {{ block.settings.items_grid_gap | prepend: '-' | append: 'px' }}">
                             {% assign results_count = 0 %}
+                            {{block.settings.menu.links }}
                             {% for link in block.settings.menu.links %}
                                 {%- liquid
                                     assign class_hidden = ''
