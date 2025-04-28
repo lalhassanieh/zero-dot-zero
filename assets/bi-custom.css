@@ -84,9 +84,13 @@ h5,
 
 .card-title {
     font-family: 'Gilroy Extra Bold';
-    color: #000;
+    /* font-style: initial;
     text-align: center;
-    font-size: 18px;
+    font-size: 18px; */
+}
+
+.price{
+
 }
 
 @media (min-width: 1025px) {
