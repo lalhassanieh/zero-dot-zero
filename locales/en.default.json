@@ -564,7 +564,7 @@
             "max_error": "This item has a maximum of {{ max }}",
             "step_error": "You can only add this item in increments of {{ step }}"
         },
-        "rich-text": {
+        "rich_text": {
             "custom_class": "Custom CSS class"
         }
     },
