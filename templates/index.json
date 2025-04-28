@@ -9,6 +9,44 @@
  */
 {
   "sections": {
+    "rich_text_Ar6Fqp": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_f9XMe3": {
+          "type": "heading",
+          "settings": {
+            "heading": "Hot Deals",
+            "heading_size": 30,
+            "heading_size_mb": 30,
+            "heading_line_height": 1,
+            "heading_color": "#005339"
+          }
+        }
+      },
+      "block_order": [
+        "heading_f9XMe3"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "container": "container",
+        "padding_full_width": 0,
+        "enable_border_top": false,
+        "enable_border_bottom": false,
+        "color_border_bottom": "rgba(0,0,0,0)",
+        "enable_minus_mg_top": false,
+        "minus_spacing_top": -100,
+        "rich_text_bg": "#fff",
+        "rich_text_bg_gradient": "",
+        "enable_column": false,
+        "content_align": "center",
+        "mg_top_desktop": 50,
+        "mg_top_tablet": 50,
+        "mg_top_mobile": 50,
+        "mg_bottom_desktop": 50,
+        "mg_bottom_tablet": 50,
+        "mg_bottom_mobile": 50
+      }
+    },
     "brand_tab_block_az6GWe": {
       "type": "brand-tab-block",
       "blocks": {
@@ -158,7 +196,7 @@
         "container": "container",
         "padding_full_width": 0,
         "display_brand_border": true,
-        "brand_bg": "#FFFFFF",
+        "brand_bg": "#ffffff",
         "brand_bg_gradient": "",
         "layout_style": "style_01",
         "brand_title": "",
@@ -2406,6 +2444,7 @@
     }
   },
   "order": [
+    "rich_text_Ar6Fqp",
     "brand_tab_block_az6GWe",
     "slide_show_6CHbXC",
     "marquee_7WwWVX",
