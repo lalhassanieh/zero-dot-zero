@@ -130,11 +130,11 @@
                     -%}
 
                     {% if collection != blank %}
-                      {% for product in collection.products %}
-                        <div
-                          class="products-grid column-4 slider slider--tablet grid grid--peek"
-                          data-products-to-show="8"
-                        >
+                      <div
+                        class="products-grid column-4 slider slider--tablet grid grid--peek"
+                        data-products-to-show="8"
+                      >
+                        {% for product in collection.products %}
                           <div class="product slider__slide grid__item">
                             <div class="product-item">
                               <div class="card">
@@ -153,8 +153,8 @@
                               </div>
                             </div>
                           </div>
-                        </div>
-                      {% endfor %}
+                        {% endfor %}
+                      </div>
                     {% endif %}
                   {% endfor %}
                 </div>
