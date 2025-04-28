@@ -87,9 +87,13 @@ h5,
     text-align: center;
 }
 
-.price{
-    text-align: center; 
+.price {
+    text-align: center;
     color: #7C7C7C;
+}
+
+.card-information__wrapper.text-left .card-price {
+    justify-content: center;
 }
 
 @media (min-width: 1025px) {
