@@ -58,7 +58,7 @@
                             {% endfor %}
                         </ul>
                 {% endcase %}
-                <div class="tab-panel-content test">
+                <div class="tab-panel-content test 2">
                     {% for block in section.blocks %}
                         {%- liquid
                             assign link_size = block.settings.menu.links | size
@@ -98,48 +98,26 @@
                 
                                 {% if collection != blank %}
                                     {% for product in collection.products %}
-                                        <div class="halo-item {{ class_hidden }}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="{% if settings.banner_animation == 'effect_fade_up' %}--animation-order: {{ forloop.index }};{% endif %}--items-grid-gap-style: {{ block.settings.items_grid_gap | append: 'px' }}">
-                                            <div class="wrapper-item{% if block.settings.enable_title %} has-content{% endif %}"
-                                                style="
-                                                    --items-spacing-tb-style: {{ block.settings.items_spacing_tb | append: 'px' }};
-                                                    --items-spacing-lr-style: {{ block.settings.items_spacing_lr | append: 'px' }};
-                                                    --items-bg-color-style: {{ block.settings.items_bg_color }};
-                                                    --items-border-color-style: {{ block.settings.items_border_color }};
-                                                    --items-border-radius-style: {{ block.settings.items_border_radius | append: 'px' }};
-                                                    --image-border-radius-style: {{ block.settings.image_border_radius | append: '%' }};
-                                                    --image-max-width-style: {{ block.settings.image_width | append: 'px' }};
-                                                    --image-min-height-style: {{ block.settings.image_height | append: 'px' }}
-                                                "
-                                            >
-                                                <div class="wrapper-image">
-                                                    <a href="{{ product.url }}" class="image-zoom">
-                                                        {% if product.featured_image %}
-                                                            <img data-srcset="{{ product.featured_image | img_url: 'master' }}" 
-                                                                 alt="{{ product.title }}" 
-                                                                 class="lazyload" />
-                                                            {% if settings.enable_lazyload %}
-                                                                <span class="data-lazy-loading"></span>
-                                                            {% endif %}
-                                                        {% endif %}
-                                                    </a>
-                                                </div>
-                                                {% if block.settings.enable_title %}
-                                                    <div class="wrapper-content">
-                                                        <a class="btb-title" href="{{ product.url }}" title="{{ product.title }}"
-                                                            style="
-                                                                --fontsize-title-style: {{ block.settings.fontsize_title | append: 'px' }};
-                                                                --fontweight-title-style: {{ block.settings.fontweight_title }};
-                                                                --title-color-style: {{ block.settings.title_color }};
-                                                                --title-color-hover-style: {{ block.settings.title_color_hover }}
-                                                            ">
-                                                            <span>{{ product.title }}</span>
-                                                        </a>
-                                                    </div>
-                                                {% endif %}
+                                      <div class="product{% if swipe %} slider__slide grid__item{% endif %}">
+                                        <div class="product-item{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
+                                          <div class="card">
+                                            <div class="card-product">
+                                              {% render 'product-card', 
+                                                product_card_product: product,
+                                                media_size: section.settings.image_ratio,
+                                                show_secondary_image: section.settings.show_secondary_image,
+                                                add_image_padding: section.settings.add_image_padding,
+                                                show_vendor: section.settings.show_vendor,
+                                                show_title: section.settings.show_title,
+                                                show_price: section.settings.show_price,
+                                                show_rating: section.settings.show_rating
+                                              %}
                                             </div>
+                                          </div>
                                         </div>
+                                      </div>
                                     {% endfor %}
-                                {% endif %}
+                                  {% endif %}
                             {% endfor %}
                             </div>
                             {%- if section.settings.brand_button_text != blank or brand_button_text_less != blank or section.settings.brand_button_icon != blank -%}
