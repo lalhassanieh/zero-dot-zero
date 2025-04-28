@@ -76,7 +76,7 @@
                         <div class="tab-content--block {% if forloop.first %}active{% endif %} text-center" id="block-{{block.id}}">
                             <div class="halo-row column-{{ section.settings.brand_rows }} sm-column-2 md-column-3" style="--items-grid-gap-style: {{ block.settings.items_grid_gap | prepend: '-' | append: 'px' }}">
                             {% assign results_count = 0 %}
-                         <pre>{{ block.settings.menu.links}}</pre>
+                   
 
                             {% for link in block.settings.menu.links %}
                                 {%- liquid
@@ -92,6 +92,7 @@
                                     endif
                                     assign results_count = results_count | plus: 1
                                 -%}
+                                <pre>{{link.title }}</pre>
                                 <div class="halo-item {{ class_hidden }}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="{% if settings.banner_animation == 'effect_fade_up' %}--animation-order: {{ forloop.index }};{% endif %}--items-grid-gap-style: {{ block.settings.items_grid_gap | append: 'px' }}">
                                     <div class="wrapper-item{% if block.settings.enable_title %} has-content{% endif %}"
                                         style="
