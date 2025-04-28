@@ -85,7 +85,7 @@
                 {% endfor %}
               </ul>
           {% endcase %}
-          <div class="tab-panel-content test 2">
+          <div class="tab-panel-content test">
             {% for block in section.blocks %}
               {%- liquid
                 assign link_size = block.settings.menu.links | size
@@ -111,6 +111,7 @@
                   {% assign results_count = 0 %}
 
                   {% for link in block.settings.menu.links %}
+                    <pre>   {{ link }} </pre>
                     {%- liquid
                       # Get collection handle from URL
                       assign collection_handle = link.url | split: '/collections/' | last
@@ -131,8 +132,7 @@
 
                     {% if collection != blank %}
                       <div
-                        class="products-grid column-4 slider slider--tablet grid grid--peek"
-                        data-products-to-show="8"
+                        class="products-grid-section"
                       >
                         {% for product in collection.products %}
                           <div class="product slider__slide grid__item">
