@@ -565,7 +565,11 @@
             "step_error": "You can only add this item in increments of {{ step }}"
         },
         "rich-text": {
-            "custom_class": "Custom CSS class"
+            "title": "Rich text",
+            "settings": {
+                "heading": "Heading",
+                "text": "Text"
+            }
         }
     },
     "localization": {
