@@ -144,7 +144,7 @@
     "type_arrow_size_icon": 41,
     "pagination_style": "1",
     "show_effect_close": true,
-    "product_card_layout": "01",
+    "product_card_layout": "08",
     "disable_product_card_border": true,
     "enable_custom_layout_card": false,
     "enable_infor_on_image": true,
