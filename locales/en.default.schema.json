@@ -4315,7 +4315,8 @@
       },
       "presets": {
         "name": "Rich text"
-      }
+      },
+      "custom_class": "Custom CSS Class"
     },
     "custom_image_banner_block": {
       "name": "Custom image banner block",
