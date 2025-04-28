@@ -93,6 +93,7 @@
                                     assign results_count = results_count | plus: 1
                                 -%}
                                 <pre>{{link.title }}</pre>
+                                   <pre>{{link.url }}</pre>
                                 <div class="halo-item {{ class_hidden }}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="{% if settings.banner_animation == 'effect_fade_up' %}--animation-order: {{ forloop.index }};{% endif %}--items-grid-gap-style: {{ block.settings.items_grid_gap | append: 'px' }}">
                                     <div class="wrapper-item{% if block.settings.enable_title %} has-content{% endif %}"
                                         style="
