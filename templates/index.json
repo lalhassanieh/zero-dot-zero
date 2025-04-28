@@ -34,7 +34,7 @@
         "enable_border_bottom": false,
         "color_border_bottom": "rgba(0,0,0,0)",
         "enable_minus_mg_top": false,
-        "minus_spacing_top": -100,
+        "minus_spacing_top": 0,
         "rich_text_bg": "#fff",
         "rich_text_bg_gradient": "",
         "enable_column": false,
