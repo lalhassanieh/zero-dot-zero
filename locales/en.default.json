@@ -568,9 +568,10 @@
             "title": "Rich text",
             "settings": {
                 "heading": "Heading",
-                "text": "Text"
+                "text": "Text",
+                "custom_class": "Custom CSS class"
             },
-            "custom_class": "Custom CSS class" 
+            "custom_class": "Custom CSS class"
         }
     },
     "localization": {
