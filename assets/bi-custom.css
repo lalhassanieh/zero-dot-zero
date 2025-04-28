@@ -89,7 +89,7 @@ h5,
 }
 
 .brand-tab-block {
-    border-top: 1px solid transparent;
+    border-top: 1px solid transparent !important;
 }
 
 .card-title {
