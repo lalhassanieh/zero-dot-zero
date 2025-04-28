@@ -111,7 +111,7 @@
                   {% assign results_count = 0 %}
 
                   {% for link in block.settings.menu.links %}
-                    <pre>   {{ link.url  }} </pre>
+        
                     {%- liquid
                       # Get collection handle from URL
                       assign collection_handle = link.url | split: '/collections/' | last
