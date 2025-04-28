@@ -101,8 +101,10 @@ h5,
 
 .card-information__wrapper.text-left .card-price {
     justify-content: center;
+    padding-top: 5px;
 }
 
+ 
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
         border-color:
