@@ -126,17 +126,13 @@ h5,
     height: 30px;
 }
 
-.slide-content {
-    width: 35%;
-}
-
 .slide-content .slide-sub {
-    font-family: 'Gilroy Extra Bold';
+    font-family: 'Gilroy Extra Bold' !important;   
     text-transform: uppercase;
 }
 
 .slide-content .slide-heading {
-    font-family: 'Gilroy Extra Bold';
+    font-family: 'Gilroy Extra Bold' !important;  
     text-transform: capitalize;
 }
 
