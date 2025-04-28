@@ -34,10 +34,54 @@
             "show_tab_image": false
           }
         },
+        "tab_Xtgmwm": {
+          "type": "tab",
+          "settings": {
+            "title": "",
+            "menu": "",
+            "items_grid_gap": 7.5,
+            "items_spacing_tb": 30,
+            "items_spacing_lr": 10,
+            "items_border_radius": 5,
+            "image_width": 145,
+            "image_height": 15,
+            "image_border_radius": 0,
+            "items_bg_color": "",
+            "items_border_color": "#d0d0d0",
+            "enable_title": false,
+            "fontsize_title": 18,
+            "fontweight_title": "500",
+            "title_color": "#202020",
+            "title_color_hover": "#202020",
+            "show_tab_image": true
+          }
+        },
         "tab_feetyx": {
           "type": "tab",
           "settings": {
             "title": "Beers",
+            "menu": "beers",
+            "items_grid_gap": 7.5,
+            "items_spacing_tb": 30,
+            "items_spacing_lr": 10,
+            "items_border_radius": 5,
+            "image_width": 145,
+            "image_height": 15,
+            "image_border_radius": 0,
+            "items_bg_color": "",
+            "items_border_color": "#d0d0d0",
+            "enable_title": false,
+            "fontsize_title": 18,
+            "fontweight_title": "500",
+            "title_color": "#202020",
+            "title_color_hover": "#202020",
+            "show_tab_image": true
+          }
+        },
+        "tab_rfpPR3": {
+          "type": "tab",
+          "settings": {
+            "title": "",
             "menu": "",
             "items_grid_gap": 7.5,
             "items_spacing_tb": 30,
@@ -147,7 +191,9 @@
       },
       "block_order": [
         "tab_wCkDYq",
+        "tab_Xtgmwm",
         "tab_feetyx",
+        "tab_rfpPR3",
         "tab_mxLKbP",
         "tab_CMH6PH",
         "tab_3bftmi",
