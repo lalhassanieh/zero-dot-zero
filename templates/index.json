@@ -388,7 +388,7 @@
             "color_des": "#232323",
             "color_des_mb": "#ffffff",
             "button_slide": "find out our recipes",
-            "link": "",
+            "link": "shopify://collections/beers",
             "enable_button_link": false,
             "enable_underline": true,
             "font_size_link": 36,
