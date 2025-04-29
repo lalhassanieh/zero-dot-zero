@@ -142,7 +142,9 @@ h5,
             transparent !important;
     }
 
-    .has-megamenu .menu-dropdown__banner .background-bottom {
+    .has-megamenu .menu-dropdown__banner .background-bottom,
+    .has-megamenu .menu-dropdown__banner .background-bottom::before,
+    .has-megamenu .menu-dropdown__banner .background-bottom::after {
         background-color: #FBF9F3 !important;
     }
 }
