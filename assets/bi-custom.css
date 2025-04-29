@@ -136,6 +136,12 @@ h5,
     text-transform: capitalize;
 }
 
+.menu-dropdown {
+    box-shadow: unset !important;
+    border-top:
+        1px solid #DDD !important;
+}
+
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
         border-color:
