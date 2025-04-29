@@ -136,11 +136,8 @@ h5,
     text-transform: capitalize;
 }
 
-.menu-dropdown {
-    box-shadow: unset !important;
-    border-top:
-        1px solid #DDD !important;
-}
+
+
 
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
@@ -153,4 +150,15 @@ h5,
     .has-megamenu .menu-dropdown__banner .background-bottom::after {
         background-color: #FBF9F3 !important;
     }
+
+    .menu-lv-item.has-megamenu:hover>.menu-dropdown {
+        transform: translateY(11px) !important
+    }
+
+    .menu-dropdown {
+        box-shadow: unset !important;
+        border-top:
+            1px solid #DDD !important;
+    }
+
 }
