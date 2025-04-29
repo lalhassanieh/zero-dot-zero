@@ -127,12 +127,12 @@ h5,
 }
 
 .slide-content .slide-sub {
-    font-family: 'Gilroy Extra Bold' !important;   
+    font-family: 'Gilroy Extra Bold' !important;
     text-transform: uppercase;
 }
 
 .slide-content .slide-heading {
-    font-family: 'Gilroy Extra Bold' !important;  
+    font-family: 'Gilroy Extra Bold' !important;
     text-transform: capitalize;
 }
 
@@ -140,5 +140,9 @@ h5,
     .brand__custom--tab ul li [tab-title-action]:hover {
         border-color:
             transparent !important;
+    }
+
+    .has-megamenu .menu-dropdown__banner .background-bottom {
+        background-color: #FBF9F3 !important;
     }
 }
