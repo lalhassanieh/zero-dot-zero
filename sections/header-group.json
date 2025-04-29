@@ -452,10 +452,10 @@
           "type": "megamenu_style_1",
           "disabled": true,
           "settings": {
-            "layout_block": "custom_width",
+            "layout_block": "full",
             "header_custom_width_size": 1200,
             "item": "Shop",
-            "column": 3,
+            "column": 4,
             "show_banner_1": true,
             "banner_1": "shopify://shop_images/Tanqueray---RTD-0.jpg",
             "banner_url_1": "shopify://collections/bestsellers",
@@ -506,22 +506,24 @@
         "megamenu_style_4_aKJMHH": {
           "type": "megamenu_style_4",
           "settings": {
-            "layout_block": "custom_width",
+            "layout_block": "full",
             "header_custom_width_size": 1200,
             "item": "Shop",
-            "column": 5,
-            "menu_text_left": "footer",
+            "column": 4,
+            "menu_text_left": "",
             "menu_text_left_sale": "",
-            "show_banner_1": false,
+            "show_banner_1": true,
+            "banner_1": "shopify://shop_images/image_10.png",
             "banner_url_1": "",
             "show_banner_2": false,
+            "banner_2": "shopify://shop_images/image8.png",
             "banner_url_2": "",
             "show_az_brand": false,
             "az_brand_title": "All Brands A-Z",
             "az_brand_link_text": "See All Brands",
             "az_brand_url": "",
             "bg_mega_menu_bottom": "#f8f8f8",
-            "az_brand_link_text_color": "#000"
+            "az_brand_link_text_color": "#000000"
           }
         }
       },
