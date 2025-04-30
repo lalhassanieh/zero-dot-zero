@@ -158,6 +158,10 @@ h5,
     max-width: 50% !important;
 }
 
+.custom-featured-products .card-title{
+    font-size: 9.673px !important;
+}
+
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
         border-color:
