@@ -562,20 +562,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    {%- if show_banner_1 -%}
-                                        <div class="banner d-block">
-                                            <a {% if banner_url_1 == blank %}role="link" aria-disabled="true"{% else %}href="{{ banner_url_1 }}"{% endif %} class="image adaptive_height image-zoom w-100 text-center"{% if banner_1 != blank %} style="padding-top: {{ 1 | divided_by: banner_1.aspect_ratio | times: 100 }}%"{% endif %} title="{{ banner_1.alt | default: shop.name | escape }}">
-                                                {%- if banner_1 != blank -%}
-                                                    <img {% if settings.enable_lazyload %}data-{% endif %}srcset="{{ banner_1 | img_url: 'master' }}"{% unless settings.enable_lazyload %} src="{{ banner_1 | img_url: 'master' }}"{% endunless %} loading="lazy" alt="{{ banner_1.alt | default: shop.name | escape }}"{% if settings.enable_lazyload %} class="lazyload"{% endif %}>
-                                                    {% if settings.enable_lazyload %}<span class="data-lazy-loading"></span>{% endif %}
-                                                {%- else -%}
-                                                    <div class="placeholder" style="--height_placeholder: 255px;">
-                                                        {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
-                                                    </div>
-                                                {%- endif -%}
-                                            </a>
-                                        </div>
-                                    {%- endif -%}
+                           
                                 </div>
                                 <div class="site-nav-banner--item site-nav-banner-item--center d-inline-block ver-alg-top w-100">
                                     {%- if show_banner_2 -%}
@@ -594,7 +581,20 @@
                                 </div>
                              
                                 <div class="site-nav-banner--item site-nav-banner-item--right d-inline-block ver-alg-top w-100">
-                                
+                                    {%- if show_banner_1 -%}
+                                        <div class="banner d-block">
+                                            <a {% if banner_url_1 == blank %}role="link" aria-disabled="true"{% else %}href="{{ banner_url_1 }}"{% endif %} class="image adaptive_height image-zoom w-100 text-center"{% if banner_1 != blank %} style="padding-top: {{ 1 | divided_by: banner_1.aspect_ratio | times: 100 }}%"{% endif %} title="{{ banner_1.alt | default: shop.name | escape }}">
+                                                {%- if banner_1 != blank -%}
+                                                    <img {% if settings.enable_lazyload %}data-{% endif %}srcset="{{ banner_1 | img_url: 'master' }}"{% unless settings.enable_lazyload %} src="{{ banner_1 | img_url: 'master' }}"{% endunless %} loading="lazy" alt="{{ banner_1.alt | default: shop.name | escape }}"{% if settings.enable_lazyload %} class="lazyload"{% endif %}>
+                                                    {% if settings.enable_lazyload %}<span class="data-lazy-loading"></span>{% endif %}
+                                                {%- else -%}
+                                                    <div class="placeholder" style="--height_placeholder: 255px;">
+                                                        {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                                                    </div>
+                                                {%- endif -%}
+                                            </a>
+                                        </div>
+                                    {%- endif -%}
                             
                              
                                    
