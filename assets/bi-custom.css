@@ -148,6 +148,10 @@ h5,
     max-height: 76vh;
 }
 
+.menu-dropdown__wrapper {
+    padding: 30px 0 12px;
+}
+
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
         border-color:
