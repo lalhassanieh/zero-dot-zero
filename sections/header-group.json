@@ -489,7 +489,6 @@
         },
         "megamenu_style_4_aKJMHH": {
           "type": "megamenu_style_4",
-          "disabled": true,
           "settings": {
             "layout_block": "full",
             "header_custom_width_size": 1200,
@@ -512,6 +511,7 @@
         },
         "megamenu_style_5_G98fQE": {
           "type": "megamenu_style_5",
+          "disabled": true,
           "settings": {
             "layout_block": "full",
             "header_custom_width_size": 1200,
