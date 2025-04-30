@@ -158,7 +158,8 @@ h5,
     max-width: 50% !important;
 }
 
-.custom-featured-products .card-title {
+.custom-featured-products .card-title,
+.custom-featured-products .price-item {
     font-size: 12px !important;
 }
 
@@ -179,6 +180,22 @@ h5,
     bottom: 0;
     right: 0;
     height: 100%;
+    z-index: 1;
+}
+
+.button {
+    font-family: 'Gilroy Extra Bold';
+}
+
+.button::after {
+    content: "";
+    background-image: url("https://cdn.shopify.com/s/files/1/0742/2669/6436/files/button-icon.svg?v=1746020835");
+    background-repeat: no-repeat;
+    position: absolute;
+    right: 0;
+    top: -10px;
+    width: 12px;
+    height: 15px;
 }
 
 @media (min-width: 1025px) {
