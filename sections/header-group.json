@@ -526,7 +526,7 @@
             "product_limit": 4,
             "show_product": true,
             "product_title": "Featured Products",
-            "product_collection": "",
+            "product_collection": "sparkling-wines",
             "bg_mega_menu_bottom": "#f8f8f8"
           }
         }
