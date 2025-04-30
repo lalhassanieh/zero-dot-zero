@@ -195,7 +195,7 @@ h5,
 
     .custom-featured-products .card .card-action .button:hover .icon,
     .custom-featured-products .card .card-quickview:hover .icon
-    , .custom-featured-products .card .card-wishlist:hover
+    , .custom-featured-products .card .card-wishlist:hover .icon
     {
         animation: unset !important;
     }
