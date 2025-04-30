@@ -489,6 +489,7 @@
         },
         "megamenu_style_4_aKJMHH": {
           "type": "megamenu_style_4",
+          "disabled": true,
           "settings": {
             "layout_block": "full",
             "header_custom_width_size": 1200,
@@ -514,11 +515,12 @@
           "settings": {
             "layout_block": "custom_width",
             "header_custom_width_size": 1200,
-            "item": "About Us",
-            "column": 3,
-            "show_banner_1": false,
+            "item": "Shop",
+            "column": 4,
+            "show_banner_1": true,
+            "banner_1": "shopify://shop_images/image_10.png",
             "banner_url_1": "",
-            "show_product": false,
+            "show_product": true,
             "product_title": "Featured Products",
             "product_collection": ""
           }
