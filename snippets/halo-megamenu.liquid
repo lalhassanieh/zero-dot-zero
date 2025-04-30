@@ -564,11 +564,13 @@
                                         </div>
                                     {%- endif -%}
                                 </div>
+                                {{collection_product }}
                                 <div class="site-nav-banner--item site-nav-banner-item--right d-inline-block ver-alg-top w-100">
+                                    test
                                     <div class="menu-dropdown__product col-left">
                                         {% if product_title != blank %}<h3 class="menu-dropdown__block--title text-center p-relative"><span class="text d-inline-block ver-alg-top w-auto p-zero p-relative zi-2">{{ product_title | escape }}</span></h3>{% endif %}
                                         <div class="menu-dropdown__block--content">
-                                            <div class="products-grid column-{{ product_limit }} products-carousel megamenu_5" data-collection="{{ collection_product }}" data-row="{{ product_limit }}">
+                                            <div class="products-grid column-4 products-carousel megamenu_5" data-collection="{{ collection_product }}" data-row="4">
                                                 {% for product in collections[collection_product].products limit: product_limit %}
                                                     <div class="product">
                                                         {% render 'product-card-loading',
