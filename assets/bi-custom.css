@@ -196,4 +196,7 @@ h5,
     .custom-featured-product {
         display: none;
     }
+    .product-card-layout-08 .custom-featured-product  .card .card-action .button:hover .icon{
+        animation: unset !important;
+    }
 }
