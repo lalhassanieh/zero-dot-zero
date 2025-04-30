@@ -183,12 +183,12 @@ h5,
     z-index: 1;
 }
 
-.button {
+.slide-button {
     position: relative;
     font-family: 'Gilroy Extra Bold';
 }
 
-.button::after {
+.slide-button::after {
     content: "";
     background-image: url("https://cdn.shopify.com/s/files/1/0742/2669/6436/files/button-icon.svg?v=1746020835");
     background-repeat: no-repeat;
