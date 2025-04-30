@@ -448,22 +448,6 @@
             "hot_label_bg_gradient": ""
           }
         },
-        "megamenu_style_1_6WFRYd": {
-          "type": "megamenu_style_1",
-          "disabled": true,
-          "settings": {
-            "layout_block": "full",
-            "header_custom_width_size": 1200,
-            "item": "Shop",
-            "column": 4,
-            "show_banner_1": true,
-            "banner_1": "shopify://shop_images/Tanqueray---RTD-0.jpg",
-            "banner_url_1": "shopify://collections/bestsellers",
-            "show_product": true,
-            "product_title": "Featured Products",
-            "product_collection": "captain-morgan-white-rum"
-          }
-        },
         "logo_UcJFcw": {
           "type": "logo",
           "settings": {
@@ -529,7 +513,6 @@
       },
       "block_order": [
         "main_menu_PDD3kW",
-        "megamenu_style_1_6WFRYd",
         "logo_UcJFcw",
         "header_icons_f98xwX",
         "megamenu_style_4_aKJMHH"
