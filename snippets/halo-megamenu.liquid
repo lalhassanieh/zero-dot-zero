@@ -537,7 +537,33 @@
                                     <div class="menu-dropdown__product col-left">
                                       
                                         <div class="menu-dropdown__block--content">
-                                            <div class="products-grid column-4 products-carousel megamenu_5" data-collection="sparkling-wines" data-row="4">
+                                            <div
+                                                class="products-grid-section"
+                                              >
+                                                {% for product in collections['sparkling-wines'].products limit: product_limit %}
+                                                  <div class="product slider__slide grid__item">
+                                                    <div class="product-item">
+                                                      <div class="card">
+                                                        <div class="card-product">
+                                                            {% render 'product-grid-layout',
+                                                                product_card_product: product,
+                                                                media_size: section.settings.image_ratio,
+                                                                portrait_aspect_ratio: section.settings.portrait_aspect_ratio,
+                                                                complementary_product_button_atc: true,
+                                                                serial: forloop.index,
+                                                                sectionId: section.id,
+                                                                show_list: true,
+                                                                loading: true
+                                                            %}
+                                                      
+                                                          
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                {% endfor %}
+                                              </div>
+                                            {% comment %} <div class="products-grid column-4 products-carousel megamenu_5" data-collection="sparkling-wines" data-row="4">
                                                 {% for product in collections['sparkling-wines'].products limit: product_limit %}
                                                     <div class="product">
                                                         {% render 'product-card-loading',
@@ -559,7 +585,7 @@
                                                         </div>
                                                     {%- endfor -%}
                                                 {%- endfor -%}
-                                            </div>
+                                            </div> {% endcomment %}
                                         </div>
                                     </div>
                            
