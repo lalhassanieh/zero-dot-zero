@@ -508,13 +508,28 @@
             "bg_mega_menu_bottom": "#f8f8f8",
             "az_brand_link_text_color": "#000000"
           }
+        },
+        "megamenu_style_1_h6HTre": {
+          "type": "megamenu_style_1",
+          "settings": {
+            "layout_block": "custom_width",
+            "header_custom_width_size": 1200,
+            "item": "About Us",
+            "column": 3,
+            "show_banner_1": false,
+            "banner_url_1": "",
+            "show_product": false,
+            "product_title": "Featured Products",
+            "product_collection": ""
+          }
         }
       },
       "block_order": [
         "main_menu_PDD3kW",
         "logo_UcJFcw",
         "header_icons_f98xwX",
-        "megamenu_style_4_aKJMHH"
+        "megamenu_style_4_aKJMHH",
+        "megamenu_style_1_h6HTre"
       ],
       "settings": {
         "container": "full",
