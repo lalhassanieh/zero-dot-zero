@@ -534,6 +534,34 @@
                        
                                
                                 <div class="site-nav-banner--item site-nav-banner-item--left d-inline-block ver-alg-top w-100">
+                                    <div class="menu-dropdown__product col-left">
+                                      
+                                        <div class="menu-dropdown__block--content">
+                                            <div class="products-grid column-4 products-carousel megamenu_5" data-collection="sparkling-wine" data-row="4">
+                                                {% for product in collections['sparkling-wine'].products limit: product_limit %}
+                                                    <div class="product">
+                                                        {% render 'product-card-loading',
+                                                            product_card_product: product,
+                                                            media_size: 'adapt',
+                                                            portrait_aspect_ratio: '125',
+                                                            serial: forloop.index,
+                                                            sectionId: sectionId
+                                                        %}
+                                                    </div>
+                                                {%- else -%}
+                                                    {%- for product in (1..product_limit) -%}
+                                                        <div class="product">
+                                                            {% capture current %}{% cycle 1, 2, 3, 4 %}{% endcapture %}
+                                                            {% render 'product-card-placeholder',
+                                                                index: current,
+                                                                card-mega-menu: true
+                                                            %}
+                                                        </div>
+                                                    {%- endfor -%}
+                                                {%- endfor -%}
+                                            </div>
+                                        </div>
+                                    </div>
                                     {%- if show_banner_1 -%}
                                         <div class="banner d-block">
                                             <a {% if banner_url_1 == blank %}role="link" aria-disabled="true"{% else %}href="{{ banner_url_1 }}"{% endif %} class="image adaptive_height image-zoom w-100 text-center"{% if banner_1 != blank %} style="padding-top: {{ 1 | divided_by: banner_1.aspect_ratio | times: 100 }}%"{% endif %} title="{{ banner_1.alt | default: shop.name | escape }}">
@@ -566,45 +594,9 @@
                                 </div>
                              
                                 <div class="site-nav-banner--item site-nav-banner-item--right d-inline-block ver-alg-top w-100">
-                                  test6
-                                    <!-- Add debug output -->
-                                    <div style="background: #f0f0f0; padding: 10px; margin: 10px 0;">
-                                        Collection Product: {{ collection_product | inspect }}
-                                        Collection Handle: {{ collections[collection_product].handle | inspect }}
-                                        Collection Size: {{ collections[collection_product].products_count | inspect }}
-                                        Block Style: {{ block_style | inspect }}
-                                        All Collections: {{ collections | map: 'handle' | join: ', ' | inspect }}
-                                    </div>
-                                    <!-- End debug output -->
-                                    {{settings }}
-                                    <div class="menu-dropdown__product col-left">
-                                      
-                                        <div class="menu-dropdown__block--content">
-                                            <div class="products-grid column-4 products-carousel megamenu_5" data-collection="{{ collection_product }}" data-row="4">
-                                                {% for product in collections[collection_product].products limit: product_limit %}
-                                                    <div class="product">
-                                                        {% render 'product-card-loading',
-                                                            product_card_product: product,
-                                                            media_size: 'adapt',
-                                                            portrait_aspect_ratio: '125',
-                                                            serial: forloop.index,
-                                                            sectionId: sectionId
-                                                        %}
-                                                    </div>
-                                                {%- else -%}
-                                                    {%- for product in (1..product_limit) -%}
-                                                        <div class="product">
-                                                            {% capture current %}{% cycle 1, 2, 3, 4 %}{% endcapture %}
-                                                            {% render 'product-card-placeholder',
-                                                                index: current,
-                                                                card-mega-menu: true
-                                                            %}
-                                                        </div>
-                                                    {%- endfor -%}
-                                                {%- endfor -%}
-                                            </div>
-                                        </div>
-                                    </div>
+                                
+                            
+                             
                                    
                                     {%- if show_az_brand -%}
                                         <div class="menu-dropdown__block menu-dropdown__brand">
