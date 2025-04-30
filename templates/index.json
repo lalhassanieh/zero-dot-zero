@@ -397,8 +397,8 @@
             "border_button": "#005339",
             "bg_button": "#ffffff",
             "color_button_hover": "#ffffff",
-            "border_button_hover": "#232323",
-            "bg_button_hover": "#232323"
+            "border_button_hover": "#ef6431",
+            "bg_button_hover": "#ef6431"
           }
         }
       },
