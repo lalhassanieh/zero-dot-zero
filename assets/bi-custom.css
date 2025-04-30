@@ -166,6 +166,21 @@ h5,
     background: #4dac8b;
 }
 
+.fluid-width-video-wrapper {
+    position: relative;
+}
+
+.fluid-width-video-wrapper::before {
+    content: "";
+    position: absolute;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.50) 0%, rgba(0, 0, 0, 0.50) 100%);
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 100%;
+}
+
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
         border-color:
@@ -194,9 +209,8 @@ h5,
     }
 
     .custom-featured-products .card .card-action .button:hover .icon,
-    .custom-featured-products .card .card-quickview:hover .icon
-    , .custom-featured-products .card .card-wishlist:hover .icon
-    {
+    .custom-featured-products .card .card-quickview:hover .icon,
+    .custom-featured-products .card .card-wishlist:hover .icon {
         animation: unset !important;
     }
 }
