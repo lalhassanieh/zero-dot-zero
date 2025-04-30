@@ -193,11 +193,11 @@ h5,
             0 15px 40px 15px !important;
     }
 
-    .custom-featured-product {
+    .custom-featured-products {
         display: none;
     }
 
-    .custom-featured-product .card .card-action .button:hover .icon {
+    .custom-featured-products .card .card-action .button:hover .icon {
         animation: unset !important;
     }
 }
