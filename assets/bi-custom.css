@@ -193,11 +193,13 @@ h5,
             0 15px 40px 15px !important;
     }
 
-    .custom-featured-products {
-        display: none;
-    }
-
     .custom-featured-products .card .card-action .button:hover .icon {
         animation: unset !important;
+    }
+}
+
+@media (max-width: 1025px) {
+    .custom-featured-products {
+        display: none;
     }
 }
