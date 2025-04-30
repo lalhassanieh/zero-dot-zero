@@ -162,6 +162,10 @@ h5,
     font-size: 12px !important;
 }
 
+.custom-featured-products .brand__custom--tab .button {
+    background: #4dac8b;
+}
+
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
         border-color:
