@@ -379,11 +379,11 @@
             "letter_spacing_heading": "",
             "font_size_heading": 45,
             "line_height_heading": 45,
-            "heading_spacing_bottom": 8,
+            "heading_spacing_bottom": 35,
             "color_heading": "#ffffff",
             "color_heading_mb": "#ffffff",
             "slide-des": "",
-            "des_spacing_bottom": 35,
+            "des_spacing_bottom": 40,
             "font_size_des": 12,
             "color_des": "#232323",
             "color_des_mb": "#ffffff",
@@ -397,8 +397,8 @@
             "border_button": "#005339",
             "bg_button": "#ffffff",
             "color_button_hover": "#ffffff",
-            "border_button_hover": "#232323",
-            "bg_button_hover": "#232323"
+            "border_button_hover": "#ef6431",
+            "bg_button_hover": "#ef6431"
           }
         }
       },
