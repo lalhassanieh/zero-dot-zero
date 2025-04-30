@@ -158,7 +158,7 @@ h5,
     }
 
     .menu-lv-item.has-megamenu:hover>.menu-dropdown {
-        transform: translateY(10px) !important
+        transform: translateY(7px) !important
     }
 
     .menu-dropdown {
