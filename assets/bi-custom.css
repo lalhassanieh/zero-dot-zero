@@ -158,8 +158,8 @@ h5,
     max-width: 50% !important;
 }
 
-.custom-featured-products .card-title{
-    font-size: 9.673px !important;
+.custom-featured-products .card-title {
+    font-size: 12px !important;
 }
 
 @media (min-width: 1025px) {
@@ -189,4 +189,7 @@ h5,
             0 15px 40px 15px !important;
     }
 
+    .custom-featured-product {
+        display: none;
+    }
 }
