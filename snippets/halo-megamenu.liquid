@@ -566,10 +566,14 @@
                                 </div>
                              
                                 <div class="site-nav-banner--item site-nav-banner-item--right d-inline-block ver-alg-top w-100">
-                                  test5
+                                  test6
                                     <!-- Add debug output -->
                                     <div style="background: #f0f0f0; padding: 10px; margin: 10px 0;">
-                                        test5
+                                        Collection Product: {{ collection_product | inspect }}
+                                        Collection Handle: {{ collections[collection_product].handle | inspect }}
+                                        Collection Size: {{ collections[collection_product].products_count | inspect }}
+                                        Block Style: {{ block_style | inspect }}
+                                        All Collections: {{ collections | map: 'handle' | join: ', ' | inspect }}
                                     </div>
                                     <!-- End debug output -->
                                     {{settings }}
