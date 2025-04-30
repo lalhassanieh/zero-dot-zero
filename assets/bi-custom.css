@@ -152,6 +152,12 @@ h5,
     padding: 30px 0 12px;
 }
 
+.custom-featured-products {
+    flex:
+        0 0 50% !important;
+    max-width: 50% !important;
+}
+
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
         border-color:
