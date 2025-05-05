@@ -2725,7 +2725,7 @@
         "brand_layout": "slider",
         "scroll_from": "ltr",
         "brand_scroll_time": "20",
-        "display_brand_border": true,
+        "display_brand_border": false,
         "brand_bg": "#fdf7eb",
         "brand_bg_gradient": "",
         "title_align": "center",
