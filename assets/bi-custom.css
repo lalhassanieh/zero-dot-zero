@@ -281,10 +281,24 @@ h5,
     width: 14px !important;
     height: 14px !important;
 }
+
 .spotlight-products__wrapper {
 
     align-items: initial !important;
-  }
+}
+
+.spotlight-products__product .card-action .button {
+    background: #4dac8b;
+}
+
+.brands-slider {
+    border-top: 1px solid #005339;
+    border-bottom: 1px solid #005339;
+}
+
+.brand-layout--slider .adaptive_height {
+    padding-top: 59px !important;
+}
 
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
