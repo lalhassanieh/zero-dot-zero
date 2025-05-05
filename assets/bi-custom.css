@@ -230,6 +230,12 @@ h5,
     width: calc(1025/1835 * 100%) !important;
 }
 
+.spotlight-products__item h3.title {}
+
+.spotlight-products__item--product .view-details {
+    display: none !important;
+}
+
 
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
@@ -268,6 +274,12 @@ h5,
 @media only screen and (max-width: 1025px) {
     .custom-featured-products {
         display: none;
+    }
+}
+
+@media only screen and (max-width:991px) {
+    .spotlight-products__item--lookbook_banner {
+        width: 100% !important;
     }
 }
 
