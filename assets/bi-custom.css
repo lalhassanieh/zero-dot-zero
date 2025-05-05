@@ -262,10 +262,13 @@ h5,
     margin-right: 50px;
 }
 
-/* 
-.spotlight-products__products--slider .card-media--portrait img {
-    width: 165px;
-} */
+.spotlight-products__products--slider .subtitle {
+    color: #EF6532;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.1px;
+}
+
 .spotlight-products__products--slider .card-title {
     text-align: left;
 }
