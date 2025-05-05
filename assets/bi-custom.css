@@ -274,7 +274,7 @@ h5,
 }
 
 .spotlight-products__products--slider .card-price {
-    justify-content: initial;
+    justify-content: initial !important;
 }
 
 .spotlight-products__item--product .slick-dots li.slick-active button {
