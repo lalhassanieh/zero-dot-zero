@@ -2719,7 +2719,7 @@
       ],
       "name": "t:sections.brand.presets.name",
       "settings": {
-        "container": "container",
+        "container": "1770",
         "padding_full_width": 0,
         "brands_block_style": "style_1",
         "brand_layout": "slider",
