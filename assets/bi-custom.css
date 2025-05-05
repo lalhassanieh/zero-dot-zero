@@ -252,6 +252,15 @@ h5,
     border-color: #005339;
 }
 
+.spotlight-products__products--slider .card {
+    display: flex;
+    align-items: center;
+}
+
+.spotlight-products__products--slider .card-product {
+    width: 50%;
+}
+
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
         border-color:
