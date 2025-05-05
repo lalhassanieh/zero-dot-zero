@@ -170,7 +170,7 @@
                 {%- endif -%}
             </div>
         {%- endif -%}
-        <div class="{% if section.settings.blog_posts != blank %}halo-row{% else %}halo-row-placeholder{% endif %} column-{{ section.settings.blog_results_per_row }}{% if section.settings.post_limit == 2 %} disable_dots_tablet{% endif %}" data-rows="{{ section.settings.blog_results_per_row }}" data-blogs-slider style="--row-distance-style: {{ section.settings.item_distance | prepend: '-' | append: 'px' }};">
+        <div class="recipes-blog-section {% if section.settings.blog_posts != blank %}halo-row{% else %}halo-row-placeholder{% endif %} column-{{ section.settings.blog_results_per_row }}{% if section.settings.post_limit == 2 %} disable_dots_tablet{% endif %}" data-rows="{{ section.settings.blog_results_per_row }}" data-blogs-slider style="--row-distance-style: {{ section.settings.item_distance | prepend: '-' | append: 'px' }};">
             {%- assign blog = blogs[section.settings.blog_posts] -%}
             {%- if section.settings.blog_posts != blank and section.settings.blog_posts.articles_count > 0 -%}
                 {%- for article in blog.articles limit: section.settings.post_limit -%}
