@@ -194,7 +194,7 @@
       ],
       "name": "t:sections.brand_tab.presets.name",
       "settings": {
-        "container": "1170",
+        "container": "1770",
         "padding_full_width": 0,
         "display_brand_border": true,
         "brand_bg": "#ffffff",
