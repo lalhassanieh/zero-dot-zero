@@ -1870,7 +1870,8 @@
               "text_blocks": "Text blocks",
               "info__bg_style": "Not applicable when the background image setting is selected.",
               "id_section": "Section ID",
-              "id_section_note": "Note: Enter the section ID to match the menu link and enable the scroll-to-section feature."
+              "id_section_note": "Note: Enter the section ID to match the menu link and enable the scroll-to-section feature.",
+              "label__subtitle": "Subtitle"
             },
             "style": {
               "enable_border_title": "Show title border",
