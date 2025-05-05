@@ -258,11 +258,15 @@ h5,
 }
 
 .spotlight-products__products--slider .card-product {
-    width: 50%;
+    width: 165px;
+    margin-right: 50px;
 }
-
+/* 
 .spotlight-products__products--slider .card-media--portrait img {
     width: 165px;
+} */
+.spotlight-products__products--slider .card-title{
+    text-align: left;
 }
 
 @media (min-width: 1025px) {
