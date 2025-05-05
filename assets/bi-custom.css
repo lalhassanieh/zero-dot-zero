@@ -221,7 +221,7 @@ h5,
 
 @media (min-width: 1800px) {
     .spotlight-products__item--product {
-        width: calc(801/1835 * 100%) !important;
+        width: calc(801/1835 * 100%);
     }
 
     .spotlight-products__item {
