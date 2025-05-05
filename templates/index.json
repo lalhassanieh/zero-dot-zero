@@ -2499,7 +2499,7 @@
       "type": "featured-blog",
       "name": "t:sections.featured_blog.presets.name",
       "settings": {
-        "container": "container",
+        "container": "fullwidth",
         "padding_full_width": 0,
         "mg_minus_desktop": 0,
         "blog_bg": "#fdf7eb",
