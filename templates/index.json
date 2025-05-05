@@ -2128,7 +2128,7 @@
         "margin_bottom_des": 30,
         "fontsize_des": 16,
         "title_align": "center",
-        "view_all_style": "style_1",
+        "view_all_style": "style_2",
         "view_all": "",
         "view_all_fs": 12,
         "view_all_align": "center",
@@ -2140,7 +2140,7 @@
         "display_spotlight_button": true,
         "button_position": "top",
         "spotlight_button_text": "Shop All Collections",
-        "spotlight_button_link": "shopify://collections",
+        "spotlight_button_link": "shopify://collections/sparkling-wines",
         "color_button": "#ffffff",
         "border_color_button": "#00312d",
         "bg_color_button": "#00312d",
@@ -2572,6 +2572,70 @@
         "mg_bottom_tablet": 50,
         "mg_bottom_mobile": 50
       }
+    },
+    "spotlight_products_3KCc4x": {
+      "type": "spotlight-products",
+      "blocks": {
+        "product_zRAadJ": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "icon_color": "#ffffff",
+            "horizontal_pos": 0,
+            "vertical_pos": 0
+          }
+        },
+        "product_TeDhzy": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "icon_color": "#ffffff",
+            "horizontal_pos": 0,
+            "vertical_pos": 0
+          }
+        }
+      },
+      "block_order": [
+        "product_zRAadJ",
+        "product_TeDhzy"
+      ],
+      "name": "t:sections.spotlight-products.name",
+      "settings": {
+        "container": "1920",
+        "padding_full_width": 0,
+        "product_bg": "#fff",
+        "product_bg_gradient": "",
+        "enable_heading_sticky": false,
+        "product_block_title": "Trending Now",
+        "fontsize_title": 16,
+        "fontsize_title_tablet": 16,
+        "fontsize_title_mb": 16,
+        "mg_bottom_title": 12,
+        "mg_bottom_title_mb": 12,
+        "color_title": "#232323",
+        "view_all": "",
+        "view_all_align": "center",
+        "font_weight_view_all": "400",
+        "mg_bottom_view": 30,
+        "mg_bottom_view_mb": 0,
+        "enable_border_view_all": true,
+        "link_view_all": "",
+        "color_view_all": "#3c3c3c",
+        "icon_view_all": "",
+        "color_view_all_icon": "#eb492f",
+        "title_align": "center",
+        "product_block_dots": false,
+        "product_block_dots_mb": true,
+        "product_block_arrows": true,
+        "product_block_arrows_mb": false,
+        "image_behavior": "none",
+        "mg_top_desktop": 50,
+        "mg_top_tablet": 50,
+        "mg_top_mobile": 50,
+        "mg_bottom_desktop": 50,
+        "mg_bottom_tablet": 50,
+        "mg_bottom_mobile": 50
+      }
     }
   },
   "order": [
@@ -2589,6 +2653,7 @@
     "1632364695b0f88b4f",
     "policies_block_QPqQW3",
     "rich_text_iGaE6w",
-    "featured_blog_ctfYjJ"
+    "featured_blog_ctfYjJ",
+    "spotlight_products_3KCc4x"
   ]
 }
