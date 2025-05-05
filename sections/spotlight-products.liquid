@@ -192,7 +192,7 @@
                       assign product = block.settings.product
                     -%}
                     {%- if product != null -%}
-                      <div class="product-item">
+                      <div class="product-item TEST">
                         {% render 'product-grid-layout',
                           product_card_product: product,
                           complementary_product_button_atc: true,
@@ -203,7 +203,7 @@
                         %}
                       </div>
                     {%- else -%}
-                      <div class="product-item product-item--placeholder">
+                      <div class="product-item TEST product-item--placeholder">
                         {% capture current %}{% cycle 1, 2, 3, 4 %}{% endcapture %}
                         {% render 'product-card-placeholder', index: current %}
                       </div>
