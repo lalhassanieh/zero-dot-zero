@@ -185,6 +185,10 @@ h5,
     font-family: 'Gilroy Extra Bold';
 }
 
+.slide-button.green {
+    color: #005339;
+}
+
 .slide-button::after {
     content: "";
     background-image: url("https://cdn.shopify.com/s/files/1/0742/2669/6436/files/button-icon.svg?v=1746020835");
