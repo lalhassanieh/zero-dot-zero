@@ -223,14 +223,13 @@ h5,
 .spotlight-products__item--product {
     /* width: calc(801/1835 * 100%) !important; */
     padding-left: 4% !important;
+    padding-top: 50px !important
 }
 
 
 .spotlight-products__item--lookbook_banner {
     width: calc(1025/1835 * 100%) !important;
 }
-
-.spotlight-products__item h3.title {}
 
 .spotlight-products__item--product .view-details {
     display: none !important;
@@ -267,6 +266,7 @@ h5,
     font-size: 15px;
     text-transform: uppercase;
     letter-spacing: 0.1px;
+    margin-top: 0 !important;
 }
 
 .spotlight-products__products--slider .card-title {
@@ -281,6 +281,10 @@ h5,
     width: 14px !important;
     height: 14px !important;
 }
+.spotlight-products__wrapper {
+
+    align-items: initial !important;
+  }
 
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
