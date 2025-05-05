@@ -141,9 +141,11 @@
   <div class="{% if container == 'container' %}container{% else %}container-{{ container }}{% endif %}">
     {%- if block_title != blank -%}
       <div class="halo-block-header text-{{ block_title_align }}{% if section.settings.view_all != blank %} viewAll--{{ section.settings.view_all_align }} has-viewAll{% endif %}{% if enable_heading_sticky %} enable_heading_sticky{% endif %}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
-        {% comment %} <h3 class="title">
-          <span class="text">{{ block_title | escape }}</span>
-        </h3> {% endcomment %}
+        {% comment %}
+          <h3 class="title">
+            <span class="text">{{ block_title | escape }}</span>
+          </h3>
+        {% endcomment %}
 
         {%- if section.settings.view_all != blank -%}
           <a
@@ -182,11 +184,15 @@
             data-item-arrows-mb="{{ section.settings.product_block_arrows_mb }}"
           >
             {%- for block in section.blocks -%}
-              {%- liquid
-                assign product = block.settings.product
-              -%}
-              {%- if product != null -%}
-                <div class="product">
+              {%- assign product = block.settings.product -%}
+
+              {% comment %} Open a new slide every 2 items {% endcomment %}
+              {% if forloop.index0 modulo 2 == 0 %}
+                <div class="slide">
+              {% endif %}
+
+              <div class="product">
+                {% if product %}
                   {% render 'product-grid-layout',
                     product_card_product: product,
                     complementary_product_button_atc: true,
@@ -195,14 +201,42 @@
                     show_list: true,
                     loading: true
                   %}
-                </div>
-              {%- else -%}
-                <div class="product">
+                {% else %}
                   {% capture current %}{% cycle 1, 2, 3, 4 %}{% endcapture %}
                   {% render 'product-card-placeholder', index: current %}
+                {% endif %}
+              </div>
+
+              {% comment %} Close the slide after every 2 items or on last item {% endcomment %}
+              {% if forloop.index0 modulo 2 == 1 or forloop.last %}
                 </div>
-              {%- endif -%}
+              {% endif %}
             {%- endfor -%}
+
+            {% comment %}
+              {%- for block in section.blocks -%}
+                {%- liquid
+                  assign product = block.settings.product
+                -%}
+                {%- if product != null -%}
+                  <div class="product">
+                    {% render 'product-grid-layout',
+                      product_card_product: product,
+                      complementary_product_button_atc: true,
+                      serial: forloop.index,
+                      sectionId: section.id,
+                      show_list: true,
+                      loading: true
+                    %}
+                  </div>
+                {%- else -%}
+                  <div class="product">
+                    {% capture current %}{% cycle 1, 2, 3, 4 %}{% endcapture %}
+                    {% render 'product-card-placeholder', index: current %}
+                  </div>
+                {%- endif -%}
+              {%- endfor -%}
+            {% endcomment %}
           </div>
         </div>
       </div>
