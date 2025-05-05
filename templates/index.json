@@ -376,7 +376,7 @@
             "color_sub_heading": "#ef6532",
             "color_sub_heading_mb": "#ffffff",
             "heading": "Craft your unique blend of flavours with Zero Zero!",
-            "letter_spacing_heading": "",
+            "letter_spacing_heading": "0.4px",
             "font_size_heading": 45,
             "line_height_heading": 45,
             "heading_spacing_bottom": 35,
@@ -538,6 +538,7 @@
         "marquee_QppwfA",
         "marquee_ppmXqd"
       ],
+      "disabled": true,
       "settings": {
         "minus_spacing_top": 0,
         "mq_background": "",
@@ -610,6 +611,7 @@
         "featured_collection_9jwHnz",
         "featured_collection_rid4Fq"
       ],
+      "disabled": true,
       "settings": {
         "container": "1770",
         "padding_full_width": 0,
@@ -968,6 +970,7 @@
         "image_nYktTD",
         "image_7jMLtD"
       ],
+      "disabled": true,
       "settings": {
         "container": "fullwidth",
         "padding_full_width": 0,
@@ -1039,6 +1042,7 @@
     },
     "product_block_KfUbR7": {
       "type": "product-block",
+      "disabled": true,
       "settings": {
         "container": "1770",
         "padding_full_width": 0,
@@ -1461,6 +1465,7 @@
         "image_4DLPaW",
         "image_PkqibQ"
       ],
+      "disabled": true,
       "settings": {
         "container": "fullwidth",
         "padding_full_width": 0,
@@ -1647,6 +1652,7 @@
         "buy_buttons_q3JktD",
         "view_detail_MgRqLM"
       ],
+      "disabled": true,
       "settings": {
         "id_section": "",
         "container": "1770",
@@ -1797,6 +1803,7 @@
       "block_order": [
         "image_C6EHah"
       ],
+      "disabled": true,
       "settings": {
         "container": "fullwidth",
         "padding_full_width": 0,
@@ -2088,6 +2095,7 @@
         "702bd0c5-dea1-41a7-bfa1-ae68809d92ad",
         "image_cJNGKg"
       ],
+      "disabled": true,
       "settings": {
         "container": "fullwidth",
         "padding_full_width": 0,
@@ -2234,6 +2242,7 @@
         "typing_text_HCGtKU",
         "10cdc233-191c-45f5-ac5a-a229cee6856b"
       ],
+      "disabled": true,
       "settings": {
         "container": "1470",
         "padding_full_width": 0,
@@ -2415,6 +2424,7 @@
         "text_jFPWkm",
         "text_rqJzEn"
       ],
+      "disabled": true,
       "settings": {
         "container": "1770",
         "padding_full_width": 0,
@@ -2445,6 +2455,125 @@
         "mg_bottom_tablet": 0,
         "mg_bottom_mobile": 0
       }
+    },
+    "rich_text_iGaE6w": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_6YXPV9": {
+          "type": "heading",
+          "settings": {
+            "heading": "Our Recipes",
+            "heading_size": 30,
+            "heading_size_mb": 30,
+            "heading_line_height": 1,
+            "heading_color": "#000000"
+          }
+        }
+      },
+      "block_order": [
+        "heading_6YXPV9"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "container": "container",
+        "padding_full_width": 0,
+        "enable_border_top": false,
+        "enable_border_bottom": false,
+        "color_border_bottom": "#e8e8e8",
+        "enable_minus_mg_top": false,
+        "minus_spacing_top": -100,
+        "rich_text_bg": "#fdf7eb",
+        "rich_text_bg_gradient": "",
+        "enable_column": false,
+        "custom_class": "add-sparkles",
+        "content_align": "center",
+        "mg_top_desktop": 50,
+        "mg_top_tablet": 50,
+        "mg_top_mobile": 50,
+        "mg_bottom_desktop": 50,
+        "mg_bottom_tablet": 50,
+        "mg_bottom_mobile": 50
+      }
+    },
+    "featured_blog_ctfYjJ": {
+      "type": "featured-blog",
+      "name": "t:sections.featured_blog.presets.name",
+      "settings": {
+        "container": "container",
+        "padding_full_width": 0,
+        "mg_minus_desktop": 0,
+        "blog_bg": "#fdf7eb",
+        "blog_bg_gradient": "",
+        "featured_blog_title": "",
+        "margin_bottom_heading": 5,
+        "enable_border_title": false,
+        "custom_width_title": 420,
+        "border_color_title": "#232323",
+        "color_title": "#005339",
+        "fontsize_title": 35,
+        "fontsize_title_mb": 20,
+        "featured_blog_des": "",
+        "margin_bottom_desheading": 0,
+        "color_des": "#3c3c3c",
+        "fontsize_des": 14,
+        "fontsize_des_mb": 16,
+        "title_align": "center",
+        "view_all": "",
+        "view_all_align": "center",
+        "font_weight_view_all": "400",
+        "mg_top_view": 0,
+        "mg_bottom_view": 30,
+        "enable_border_view_all": true,
+        "link_view_all": "",
+        "color_view_all": "#3c3c3c",
+        "icon_view_all": "",
+        "color_view_all_icon": "#eb492f",
+        "view_all_pos": "under_title",
+        "blog_posts": "recipes",
+        "blog_results_per_row": "3",
+        "item_distance": 15,
+        "post_limit": 3,
+        "limit_content_des": 22,
+        "text_by": "",
+        "text_on": "",
+        "blog_show_author": false,
+        "blog_show_date": false,
+        "blog_show_des": false,
+        "show_more_pos": "under_content",
+        "blog_show_more_icon": "none",
+        "blog_date_format": "short_month",
+        "blog_item_bg": "rgba(0,0,0,0)",
+        "border_radius_item": 0,
+        "margin_bottom_image": 0,
+        "margin_bottom_title": 0,
+        "margin_bottom_info": 13,
+        "margin_bottom_des": 6,
+        "block_item_style": "style_1",
+        "block_item_align": "left",
+        "block_button_text_transform": "none",
+        "block_button_fw": "400",
+        "enable_border_box": true,
+        "color_border_box": "#dbdbdb",
+        "color_title_item": "#000000",
+        "color_date_item": "#999999",
+        "color_des_item": "#3c3c3c",
+        "enable_blog_button": false,
+        "color_button_item": "#005339",
+        "color_button_item_border": "#1e1e1e",
+        "color_button_item_bg": "#1e1e1e",
+        "color_button_item_hover": "#000000",
+        "color_button_item_border_hover": "#ffffff",
+        "color_button_item_bg_hover": "#ffffff",
+        "content_on_image": false,
+        "content_bg": "",
+        "content_gradient": "",
+        "mg_top_desktop": 50,
+        "mg_top_tablet": 50,
+        "mg_top_mobile": 50,
+        "mg_bottom_desktop": 50,
+        "mg_bottom_tablet": 50,
+        "mg_bottom_mobile": 50
+      }
     }
   },
   "order": [
@@ -2460,6 +2589,8 @@
     "slide_show_nQUaXT",
     "163221535239da03ba",
     "1632364695b0f88b4f",
-    "policies_block_QPqQW3"
+    "policies_block_QPqQW3",
+    "rich_text_iGaE6w",
+    "featured_blog_ctfYjJ"
   ]
 }
