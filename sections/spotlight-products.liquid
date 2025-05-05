@@ -183,8 +183,8 @@
             data-item-arrows="{{ section.settings.product_block_arrows }}"
             data-item-arrows-mb="{{ section.settings.product_block_arrows_mb }}"
           >
-            {%- for i in (0..section.blocks.size / 2 - 1) -%}
-              <div class="product-slide TEST1">
+            {%- for i in (0..section.blocks.size | divided_by: 2 | minus: 1) -%}
+              <div class="product-slide">
                 {%- for j in (i * 2..(i * 2 + 1)) -%}
                   {%- if section.blocks[j] != null -%}
                     {%- liquid
@@ -192,7 +192,7 @@
                       assign product = block.settings.product
                     -%}
                     {%- if product != null -%}
-                      <div class="product-item TEST">
+                      <div class="product-item">
                         {% render 'product-grid-layout',
                           product_card_product: product,
                           complementary_product_button_atc: true,
@@ -203,7 +203,7 @@
                         %}
                       </div>
                     {%- else -%}
-                      <div class="product-item TEST product-item--placeholder">
+                      <div class="product-item product-item--placeholder">
                         {% capture current %}{% cycle 1, 2, 3, 4 %}{% endcapture %}
                         {% render 'product-card-placeholder', index: current %}
                       </div>
