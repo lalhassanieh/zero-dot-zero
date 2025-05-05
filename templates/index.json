@@ -406,11 +406,9 @@
         "image_4AeCDm",
         "video_4GrCnE"
       ],
-      "custom_css": [
-        ".slideshow {padding-right: 50px; padding-left: 50px;}"
-      ],
+      "custom_css": [],
       "settings": {
-        "container": "fullwidth",
+        "container": "1770",
         "padding_full_width": 0,
         "slideshow_background": "#fdf7eb",
         "slideshow_background_gradient": "",
@@ -2499,7 +2497,7 @@
       "type": "featured-blog",
       "name": "t:sections.featured_blog.presets.name",
       "settings": {
-        "container": "fullwidth",
+        "container": "1770",
         "padding_full_width": 0,
         "mg_minus_desktop": 0,
         "blog_bg": "#fdf7eb",
