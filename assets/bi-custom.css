@@ -261,12 +261,17 @@ h5,
     width: 165px;
     margin-right: 50px;
 }
+
 /* 
 .spotlight-products__products--slider .card-media--portrait img {
     width: 165px;
 } */
-.spotlight-products__products--slider .card-title{
+.spotlight-products__products--slider .card-title {
     text-align: left;
+}
+
+.spotlight-products__products--slider.card-price {
+    justify-content: initial;
 }
 
 @media (min-width: 1025px) {
@@ -300,6 +305,10 @@ h5,
     .custom-featured-products .card .card-quickview:hover .icon,
     .custom-featured-products .card .card-wishlist:hover .icon {
         animation: unset !important;
+    }
+
+    .spotlight-products__item .halo-block-header .title .text {
+        min-width: 213px !important;
     }
 }
 
