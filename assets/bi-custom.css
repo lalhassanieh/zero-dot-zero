@@ -300,7 +300,7 @@ h5,
 
 @media (min-width: 768px) {
     .spotlight-products__product {
-        background: #FDF7EB;
+        background: #FDF7EB !important;
     }
 }
 
