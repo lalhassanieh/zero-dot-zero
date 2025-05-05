@@ -2602,12 +2602,22 @@
             "horizontal_pos": 0,
             "vertical_pos": 0
           }
+        },
+        "product_iPntCr": {
+          "type": "product",
+          "settings": {
+            "product": "captain-morgan-black-spiced",
+            "icon_color": "#ffffff",
+            "horizontal_pos": 31,
+            "vertical_pos": 36
+          }
         }
       },
       "block_order": [
         "product_zRAadJ",
         "product_TeDhzy",
-        "product_tgCErc"
+        "product_tgCErc",
+        "product_iPntCr"
       ],
       "name": "t:sections.spotlight-products.name",
       "settings": {
