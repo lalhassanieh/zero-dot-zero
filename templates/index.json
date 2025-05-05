@@ -376,7 +376,7 @@
             "color_sub_heading": "#ef6532",
             "color_sub_heading_mb": "#ffffff",
             "heading": "Craft your unique blend of flavours with Zero Zero!",
-            "letter_spacing_heading": "",
+            "letter_spacing_heading": "0.4px",
             "font_size_heading": 45,
             "line_height_heading": 45,
             "heading_spacing_bottom": 35,
