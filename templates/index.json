@@ -2599,8 +2599,8 @@
           "settings": {
             "product": "apero-spritz",
             "icon_color": "#ffffff",
-            "horizontal_pos": 0,
-            "vertical_pos": 0
+            "horizontal_pos": 31,
+            "vertical_pos": 65
           }
         },
         "product_iPntCr": {
