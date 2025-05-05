@@ -2528,7 +2528,7 @@
         "color_view_all_icon": "#eb492f",
         "view_all_pos": "under_title",
         "blog_posts": "recipes",
-        "blog_results_per_row": "3",
+        "blog_results_per_row": "4",
         "item_distance": 15,
         "post_limit": 3,
         "limit_content_des": 22,
