@@ -265,7 +265,7 @@ h5,
 .spotlight-products__products--slider .subtitle {
     color: #EF6532;
     font-size: 15px;
-    text-transform: uppercase;
+    text-transform: uppercase !important;
     letter-spacing: 0.1px;
 }
 
