@@ -283,12 +283,15 @@ h5,
 }
 
 .spotlight-products__wrapper {
-
     align-items: initial !important;
 }
 
 .spotlight-products__product .card-action .button {
     background: #4dac8b;
+}
+
+.spotlight-products__product-button{
+    
 }
 
 .brand-layout--slider {
