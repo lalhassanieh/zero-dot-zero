@@ -238,7 +238,7 @@ h5,
 
 .spotlight-products__item--product .slick-dots {
     position: absolute;
-    top: -72px;
+    top: -67px;
     left: 0;
     width: auto;
 }
@@ -275,6 +275,11 @@ h5,
 
 .spotlight-products__products--slider .card-price {
     justify-content: initial;
+}
+
+.spotlight-products__item--product .slick-dots li.slick-active button {
+    width: 14px !important;
+    height: 14px !important;
 }
 
 @media (min-width: 1025px) {
