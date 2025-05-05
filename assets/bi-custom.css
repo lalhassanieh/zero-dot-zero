@@ -308,7 +308,7 @@ h5,
     }
 
     .spotlight-products__item .halo-block-header .title .text {
-        min-width: 213px !important;
+        max-width: 213px !important;
     }
 }
 
