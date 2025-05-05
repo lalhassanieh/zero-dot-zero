@@ -297,7 +297,7 @@ h5,
 }
 
 .brand-layout--slider .adaptive_height {
-    padding-top: 59px !important;
+    padding-top: 59% !important;
 }
 
 @media (min-width: 1025px) {
