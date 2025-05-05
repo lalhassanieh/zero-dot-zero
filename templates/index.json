@@ -2549,7 +2549,7 @@
         "margin_bottom_info": 13,
         "margin_bottom_des": 6,
         "block_item_style": "style_1",
-        "block_item_align": "left",
+        "block_item_align": "center",
         "block_button_text_transform": "none",
         "block_button_fw": "400",
         "enable_border_box": true,
