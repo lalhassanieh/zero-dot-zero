@@ -188,7 +188,7 @@
               <div class="product-slide">
                 {%- for j in (i * 2..(i * 2 + 1)) -%}
                   {%- if section.blocks[j] != null -%}
-                    {%- liquid
+                    {%- liquid{
                       assign block = section.blocks[j]
                       assign product = block.settings.product
                     -%}
