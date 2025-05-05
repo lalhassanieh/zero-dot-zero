@@ -195,6 +195,12 @@ h5,
     height: 15px;
 }
 
+.recipes-blog-section .article-card__image-wrapper a{
+    max-width: 245px !important;
+    margin: auto;
+    text-align: center;
+}
+
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
         border-color:
