@@ -223,7 +223,7 @@ h5,
 .spotlight-products__item--product {
     /* width: calc(801/1835 * 100%) !important; */
     padding-left: 4% !important;
-    padding-top: 50px !important
+    padding-top: 0 !important
 }
 
 
