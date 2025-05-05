@@ -2837,7 +2837,7 @@
       "type": "product-block",
       "name": "t:sections.product_block.presets.name",
       "settings": {
-        "container": "1170",
+        "container": "1770",
         "padding_full_width": 0,
         "disable_padding_content": false,
         "enable_border_top": false,
