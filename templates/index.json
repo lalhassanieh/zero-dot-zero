@@ -2579,7 +2579,7 @@
         "product_zRAadJ": {
           "type": "product",
           "settings": {
-            "product": "",
+            "product": "apero-spritz",
             "icon_color": "#ffffff",
             "horizontal_pos": 0,
             "vertical_pos": 0
@@ -2588,7 +2588,7 @@
         "product_TeDhzy": {
           "type": "product",
           "settings": {
-            "product": "",
+            "product": "grapefruit-margarita",
             "icon_color": "#ffffff",
             "horizontal_pos": 0,
             "vertical_pos": 0
@@ -2603,10 +2603,10 @@
       "settings": {
         "container": "1920",
         "padding_full_width": 0,
-        "product_bg": "#fff",
+        "product_bg": "#ffffff",
         "product_bg_gradient": "",
         "enable_heading_sticky": false,
-        "product_block_title": "Trending Now",
+        "product_block_title": "No Alcohol. All the flavour.",
         "fontsize_title": 16,
         "fontsize_title_tablet": 16,
         "fontsize_title_mb": 16,
@@ -2624,6 +2624,7 @@
         "icon_view_all": "",
         "color_view_all_icon": "#eb492f",
         "title_align": "center",
+        "image_1": "shopify://shop_images/image9.png",
         "product_block_dots": false,
         "product_block_dots_mb": true,
         "product_block_arrows": true,
