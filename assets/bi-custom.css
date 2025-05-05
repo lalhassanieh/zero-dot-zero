@@ -261,6 +261,10 @@ h5,
     width: 50%;
 }
 
+.spotlight-products__products--slider .card-media--portrait img {
+    width: 165px;
+}
+
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
         border-color:
