@@ -30,7 +30,8 @@ h5,
 .h2,
 .h3,
 .h4,
-.h5,.menu-lv-item a {
+.h5,
+.menu-lv-item a {
     font-family: 'Gilroy Extra Bold' !important;
 }
 
@@ -199,13 +200,23 @@ h5,
     height: 410px;
 } */
 
-.recipes-blog-section .article-card__image-wrapper a{
+.recipes-blog-section .article-card__image-wrapper a {
     max-width: 245px !important;
     margin: auto;
     text-align: center;
     height: 416px;
 }
 
+.article-card__footer {
+    margin-top: 12px !important;
+}
+
+.recipes-blog-section .halo-item {
+    border-right: 1px solid #A1A1A1;
+}
+.recipes-blog-section .halo-item:last-child {
+    border-right: 1px solid transparent;
+}
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
         border-color:
