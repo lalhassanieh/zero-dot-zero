@@ -175,44 +175,54 @@
             <span class="text">{{ block_title | escape }}</span>
           </h3>
         </div>
-        {%- assign num_pairs = section.blocks.size | divided_by: 2 -%}
         <div class="spotlight-products__product" data-spotlight-product>
           <div
-            class="TEST1 spotlight-products__products--slider"
+            class="test spotlight-products__products--slider"
             data-item-dots="{{ section.settings.product_block_dots }}"
             data-item-dots-mb="{{ section.settings.product_block_dots_mb }}"
             data-item-arrows="{{ section.settings.product_block_arrows }}"
             data-item-arrows-mb="{{ section.settings.product_block_arrows_mb }}"
           >
-            {%- for i in (0..num_pairs) -%}
-              <div class="product-slide">
-                {%- for j in (i * 2..(i * 2 + 1)) -%}
-                  {%- if section.blocks[j] != null -%}
-                    {%- liquid{
-                      assign block = section.blocks[j]
-                      assign product = block.settings.product
-                    -%}
-                    {%- if product != null -%}
-                      <div class="product-item">
-                        {% render 'product-grid-layout',
-                          product_card_product: product,
-                          complementary_product_button_atc: true,
-                          serial: forloop.index,
-                          sectionId: section.id,
-                          show_list: true,
-                          loading: true
-                        %}
-                      </div>
-                    {%- else -%}
-                      <div class="product-item product-item--placeholder">
-                        {% capture current %}{% cycle 1, 2, 3, 4 %}{% endcapture %}
-                        {% render 'product-card-placeholder', index: current %}
-                      </div>
-                    {%- endif -%}
-                  {%- endif -%}
-                {%- endfor -%}
-              </div>
+            {%- assign products_per_row = 2 -%}
+            {%- assign product_count = 0 -%}
+
+            {%- for block in section.blocks -%}
+              {%- liquid
+                assign product = block.settings.product
+              -%}
+
+              {%- if product != null -%}
+                {%- if product_count == 0 -%}
+                  <div class="product-row">
+                {%- endif -%}
+
+                <div class="product">
+                  {% render 'product-grid-layout',
+                    product_card_product: product,
+                    complementary_product_button_atc: true,
+                    serial: forloop.index,
+                    sectionId: section.id,
+                    show_list: true,
+                    loading: true
+                  %}
+                </div>
+
+                {%- assign product_count = product_count | plus: 1 -%}
+
+                {%- if product_count == products_per_row or forloop.last -%}
+                  </div>
+                  <!-- Close the product-row div -->
+                  {%- assign product_count = 0 -%}
+                  <!-- Reset the product count for the next row -->
+                {%- endif -%}
+              {%- else -%}
+                <div class="product">
+                  {% capture current %}{% cycle 1, 2, 3, 4 %}{% endcapture %}
+                  {% render 'product-card-placeholder', index: current %}
+                </div>
+              {%- endif -%}
             {%- endfor -%}
+
             {% comment %}
               {%- for block in section.blocks -%}
                 {%- liquid
