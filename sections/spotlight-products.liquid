@@ -141,11 +141,10 @@
   <div class="{% if container == 'container' %}container{% else %}container-{{ container }}{% endif %}">
     {%- if block_title != blank -%}
       <div class="halo-block-header text-{{ block_title_align }}{% if section.settings.view_all != blank %} viewAll--{{ section.settings.view_all_align }} has-viewAll{% endif %}{% if enable_heading_sticky %} enable_heading_sticky{% endif %}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
-        {% comment %}
           <h3 class="title">
             <span class="text">{{ block_title | escape }}</span>
           </h3>
-        {% endcomment %}
+
         {%- if section.settings.view_all != blank -%}
           <a
             class="view_all"
