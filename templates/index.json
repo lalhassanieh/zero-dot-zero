@@ -2455,6 +2455,45 @@
         "mg_bottom_tablet": 0,
         "mg_bottom_mobile": 0
       }
+    },
+    "rich_text_iGaE6w": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_6YXPV9": {
+          "type": "heading",
+          "settings": {
+            "heading": "Our Recipes",
+            "heading_size": 30,
+            "heading_size_mb": 30,
+            "heading_line_height": 1,
+            "heading_color": "#000"
+          }
+        }
+      },
+      "block_order": [
+        "heading_6YXPV9"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "container": "container",
+        "padding_full_width": 0,
+        "enable_border_top": false,
+        "enable_border_bottom": false,
+        "color_border_bottom": "#e8e8e8",
+        "enable_minus_mg_top": false,
+        "minus_spacing_top": -100,
+        "rich_text_bg": "#fff",
+        "rich_text_bg_gradient": "",
+        "enable_column": false,
+        "custom_class": "add-sparkles",
+        "content_align": "center",
+        "mg_top_desktop": 50,
+        "mg_top_tablet": 50,
+        "mg_top_mobile": 50,
+        "mg_bottom_desktop": 50,
+        "mg_bottom_tablet": 50,
+        "mg_bottom_mobile": 50
+      }
     }
   },
   "order": [
@@ -2470,6 +2509,7 @@
     "slide_show_nQUaXT",
     "163221535239da03ba",
     "1632364695b0f88b4f",
-    "policies_block_QPqQW3"
+    "policies_block_QPqQW3",
+    "rich_text_iGaE6w"
   ]
 }
