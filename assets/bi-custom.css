@@ -262,10 +262,10 @@ h5,
     margin-right: 50px;
 }
 
-.spotlight-products__products--slider .subtitle {
+.spotlight-products__item .subtitle {
     color: #EF6532;
     font-size: 15px;
-    text-transform: uppercase !important;
+    text-transform: uppercase;
     letter-spacing: 0.1px;
 }
 
