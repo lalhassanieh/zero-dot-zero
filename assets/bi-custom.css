@@ -219,17 +219,17 @@ h5,
     border-right: 1px solid transparent;
 }
 
-@media (min-width: 1800px) {
-    .spotlight-products__item--product{
-        /* width: calc(801/1835 * 100%) !important; */
-        padding-left: 4% !important;
-    }
-    
 
-    .spotlight-products__item--lookbook_banner {
-        width: calc(1025/1835 * 100%) !important;
-    }
+.spotlight-products__item--product {
+    /* width: calc(801/1835 * 100%) !important; */
+    padding-left: 4% !important;
 }
+
+
+.spotlight-products__item--lookbook_banner {
+    width: calc(1025/1835 * 100%) !important;
+}
+
 
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
