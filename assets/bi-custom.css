@@ -238,13 +238,13 @@ h5,
 
 .spotlight-products__item--product .slick-dots {
     position: absolute;
-    top: -23px;
+    top: -72px;
     left: 0;
     width: auto;
 }
 
 .spotlight-products__item--product .slick-list {
-    margin-top: 21px;
+    margin-top: 75px;
 }
 
 .spotlight-products__item--product .slick-dots li.slick-active button {
@@ -270,7 +270,7 @@ h5,
     text-align: left;
 }
 
-.spotlight-products__products--slider.card-price {
+.spotlight-products__products--slider .card-price {
     justify-content: initial;
 }
 
