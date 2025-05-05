@@ -219,6 +219,16 @@ h5,
     border-right: 1px solid transparent;
 }
 
+@media (min-width: 1800px) {
+    .spotlight-products__item--product {
+        width: calc(801/1835 * 100%);
+    }
+
+    .spotlight-products__item {
+        width: calc(1186/1835 * 100%);
+    }
+}
+
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
         border-color:
