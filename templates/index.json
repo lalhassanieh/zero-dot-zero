@@ -408,7 +408,7 @@
       ],
       "custom_css": [],
       "settings": {
-        "container": "1170",
+        "container": "1770",
         "padding_full_width": 0,
         "slideshow_background": "#fdf7eb",
         "slideshow_background_gradient": "",
@@ -2601,7 +2601,7 @@
       ],
       "name": "t:sections.spotlight-products.name",
       "settings": {
-        "container": "1170",
+        "container": "1770",
         "padding_full_width": 0,
         "product_bg": "#ffffff",
         "product_bg_gradient": "",
