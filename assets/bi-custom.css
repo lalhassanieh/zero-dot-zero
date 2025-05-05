@@ -220,11 +220,11 @@ h5,
 }
 
 @media (min-width: 1800px) {
-    .spotlight-products__item--product {
+    .spotlight-products__item--product{
         width: calc(801/1835 * 100%);
     }
 
-    .spotlight-products__item {
+    .spotlight-products__item--lookbook_banner {
         width: calc(1186/1835 * 100%) !important;
     }
 }
