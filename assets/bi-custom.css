@@ -195,10 +195,15 @@ h5,
     height: 15px;
 }
 
+/* .recipes-blog-section .article-card__image-wrapper{
+    height: 410px;
+} */
+
 .recipes-blog-section .article-card__image-wrapper a{
     max-width: 245px !important;
     margin: auto;
     text-align: center;
+    height: 425px;
 }
 
 @media (min-width: 1025px) {
