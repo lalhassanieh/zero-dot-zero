@@ -2593,11 +2593,21 @@
             "horizontal_pos": 21,
             "vertical_pos": 59
           }
+        },
+        "product_tgCErc": {
+          "type": "product",
+          "settings": {
+            "product": "apero-spritz",
+            "icon_color": "#ffffff",
+            "horizontal_pos": 0,
+            "vertical_pos": 0
+          }
         }
       },
       "block_order": [
         "product_zRAadJ",
-        "product_TeDhzy"
+        "product_TeDhzy",
+        "product_tgCErc"
       ],
       "name": "t:sections.spotlight-products.name",
       "settings": {
