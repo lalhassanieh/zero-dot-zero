@@ -2482,7 +2482,7 @@
         "color_border_bottom": "#e8e8e8",
         "enable_minus_mg_top": false,
         "minus_spacing_top": -100,
-        "rich_text_bg": "#fff",
+        "rich_text_bg": "#fdf7eb",
         "rich_text_bg_gradient": "",
         "enable_column": false,
         "custom_class": "add-sparkles",
