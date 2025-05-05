@@ -3,7 +3,7 @@
     {{- article.published_at | date: "%a, %b %d, %y" -}}
 {%- endcomment -%}
 <div class="article-card{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}"{% if settings.banner_animation == 'effect_fade_up' %} data-cascade style="--animation-order: {{ forloop.index }};"{% endif %}>
-    <div class="article-card__image-wrapper" style="--margin-bottom: {{ margin_bottom_image | append: 'px' }}">
+    <div class="test3 article-card__image-wrapper" style="--margin-bottom: {{ margin_bottom_image | append: 'px' }}">
     {%- if article.image -%}
         {%- assign image_alt = article.title | escape -%}
         {%- assign preview_img = article.image -%}
