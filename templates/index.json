@@ -2530,7 +2530,7 @@
         "blog_posts": "recipes",
         "blog_results_per_row": "4",
         "item_distance": 15,
-        "post_limit": 3,
+        "post_limit": 4,
         "limit_content_des": 22,
         "text_by": "",
         "text_on": "",
