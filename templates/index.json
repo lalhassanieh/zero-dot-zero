@@ -2601,7 +2601,7 @@
       ],
       "name": "t:sections.spotlight-products.name",
       "settings": {
-        "container": "1770",
+        "container": "full",
         "padding_full_width": 0,
         "product_bg": "#ffffff",
         "product_bg_gradient": "",
