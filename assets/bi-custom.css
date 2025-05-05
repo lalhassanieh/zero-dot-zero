@@ -236,6 +236,21 @@ h5,
     display: none !important;
 }
 
+.spotlight-products__item--product .slick-dots {
+    position: absolute;
+    top: -23px;
+    left: 0;
+    width: auto;
+}
+
+.spotlight-products__item--product .slick-list {
+    margin-top: 21px;
+}
+
+.spotlight-products__item--product .slick-dots li.slick-active button {
+    background: #005339;
+    border-color: #005339;
+}
 
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
