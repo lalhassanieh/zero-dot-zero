@@ -2461,10 +2461,10 @@
           "type": "heading",
           "settings": {
             "heading": "Our Recipes",
-            "heading_size": 30,
-            "heading_size_mb": 30,
+            "heading_size": 35,
+            "heading_size_mb": 20,
             "heading_line_height": 1,
-            "heading_color": "#000000"
+            "heading_color": "#005339"
           }
         }
       },
@@ -2485,12 +2485,12 @@
         "enable_column": false,
         "custom_class": "add-sparkles",
         "content_align": "center",
-        "mg_top_desktop": 50,
+        "mg_top_desktop": 100,
         "mg_top_tablet": 50,
         "mg_top_mobile": 50,
         "mg_bottom_desktop": 50,
         "mg_bottom_tablet": 50,
-        "mg_bottom_mobile": 50
+        "mg_bottom_mobile": 0
       }
     },
     "featured_blog_ctfYjJ": {
@@ -2567,7 +2567,7 @@
         "content_gradient": "",
         "mg_top_desktop": 50,
         "mg_top_tablet": 50,
-        "mg_top_mobile": 50,
+        "mg_top_mobile": 0,
         "mg_bottom_desktop": 50,
         "mg_bottom_tablet": 50,
         "mg_bottom_mobile": 50
