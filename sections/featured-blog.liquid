@@ -202,7 +202,7 @@
                     {%- assign placeholder_image = 'blog-apparel-' | append: placeholder_image_index -%}
                     <div class="halo-item" id="block-{{article.id}}" style="--item-distance-style: {{ section.settings.item_distance | append: 'px' }};">
                         <div class="article-card">
-                            <div class="test article-card__image-wrapper" style="--margin-bottom: {{ margin_bottom_image | append: 'px' }}">
+                            <div class="article-card__image-wrapper" style="--margin-bottom: {{ margin_bottom_image | append: 'px' }}">
                                 {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
                             </div>
                             <div class="article-card__info text-{{ text_align }}">
