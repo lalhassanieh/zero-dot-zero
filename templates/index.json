@@ -2581,8 +2581,8 @@
           "settings": {
             "product": "apero-spritz",
             "icon_color": "#ffffff",
-            "horizontal_pos": 0,
-            "vertical_pos": 0
+            "horizontal_pos": 72,
+            "vertical_pos": 29
           }
         },
         "product_TeDhzy": {
@@ -2590,8 +2590,8 @@
           "settings": {
             "product": "grapefruit-margarita",
             "icon_color": "#ffffff",
-            "horizontal_pos": 0,
-            "vertical_pos": 0
+            "horizontal_pos": 21,
+            "vertical_pos": 59
           }
         }
       },
@@ -2625,10 +2625,10 @@
         "color_view_all_icon": "#eb492f",
         "title_align": "center",
         "image_1": "shopify://shop_images/image9.png",
-        "product_block_dots": false,
+        "product_block_dots": true,
         "product_block_dots_mb": true,
-        "product_block_arrows": true,
-        "product_block_arrows_mb": false,
+        "product_block_arrows": false,
+        "product_block_arrows_mb": true,
         "image_behavior": "none",
         "mg_top_desktop": 50,
         "mg_top_tablet": 50,
