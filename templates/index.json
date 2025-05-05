@@ -2623,7 +2623,7 @@
       "settings": {
         "container": "full",
         "padding_full_width": 0,
-        "product_bg": "#ffffff",
+        "product_bg": "#fdf7eb",
         "product_bg_gradient": "",
         "enable_heading_sticky": false,
         "product_block_title": "No Alcohol. All the flavour.",
