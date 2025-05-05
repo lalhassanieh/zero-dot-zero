@@ -190,6 +190,7 @@
             "blog": "Blog",
             "read_more_title": "Read more: {{ title }}",
             "read_more": "View details",
+            "read_more_recipe": "Read Recipe",
             "author": "{{ author }}",
             "comments": {
                 "one": "{{ count }} comment",
