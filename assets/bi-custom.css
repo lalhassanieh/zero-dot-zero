@@ -321,6 +321,26 @@ h5,
     padding-top: 59% !important;
 }
 
+.halo-banner.image-banner {
+    background: #FDF7EB !important;
+}
+.banner-content {
+    position: relative;
+}
+
+.banner-content::after {
+    content: "";
+    background-image: url("https://cdn.shopify.com/s/files/1/0742/2669/6436/files/Frame_104.svg?v=1746538274");
+    background-repeat: no-repeat;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 942px;
+    height: 778px;
+}
+
+
+
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
         border-color:
