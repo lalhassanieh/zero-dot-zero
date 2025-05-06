@@ -3219,7 +3219,7 @@
         "title_align": "left",
         "title_align_mb": "center",
         "featured_product": "bundle-guiness-0-0",
-        "main_image_arrows_desktop": true,
+        "main_image_arrows_desktop": false,
         "main_image_counter_mobile": true,
         "main_image_layout": "2",
         "main_image_position": "left",
