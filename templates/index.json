@@ -3063,7 +3063,7 @@
         "fontsize_des": 16,
         "title_align": "left",
         "style_bg": "none",
-        "bg_color": "",
+        "bg_color": "#fdf7eb",
         "bg_color_gradient": "",
         "mg_top_desktop": 0,
         "mg_top_tablet": 50,
