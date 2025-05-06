@@ -2965,7 +2965,7 @@
             "image_width": "50",
             "image": "shopify://shop_images/Rectangle_1.png",
             "flying_effect": false,
-            "small_img_block_style": "style_4",
+            "small_img_block_style": "style_1",
             "enable_divider": true,
             "divider_bg_color": "",
             "content_spacing_right": 50,
