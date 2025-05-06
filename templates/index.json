@@ -2968,7 +2968,7 @@
             "small_img_block_style": "style_1",
             "enable_divider": true,
             "divider_bg_color": "",
-            "content_spacing_right": 50,
+            "content_spacing_right": 10,
             "button_spacing_left": 50,
             "button_pos_from_center": 0,
             "content_pos_from_center": 0,
