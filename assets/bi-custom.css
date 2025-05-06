@@ -205,12 +205,12 @@ h5,
     position: absolute;
     right: 28px;
     top: 13px;
-    width: 12px;
+    width: 14px;
     height: 17px;
 }
 
 .banner-button:hover::after {
-    border: 1px solid transparent !important;
+    border: unset !important;
 }
 
 .recipes-blog-section .article-card__image-wrapper a {
