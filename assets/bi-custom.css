@@ -210,7 +210,7 @@ h5,
 }
 
 .banner-button:hover::after {
-    border: 1px solid transparent;
+    border: 1px solid transparent !important;
 }
 
 .recipes-blog-section .article-card__image-wrapper a {
