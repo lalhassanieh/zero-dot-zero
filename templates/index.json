@@ -3043,7 +3043,7 @@
       ],
       "name": "t:sections.image-banner.presets.name",
       "settings": {
-        "id_section": "about-banner",
+        "id_section": "about-us-banner",
         "container": "1770",
         "padding_full_width": 0,
         "display_type": "slide",
