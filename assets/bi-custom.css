@@ -31,7 +31,7 @@ h5,
 .h3,
 .h4,
 .h5,
-.menu-lv-item a {
+.menu-lv-item a,.banner-sub-title,.banner-text {
     font-family: 'Gilroy Extra Bold' !important;
 }
 
@@ -180,7 +180,7 @@ h5,
     z-index: 1;
 }
 
-.slide-button {
+.slide-button,.banner-button {
     position: relative;
     font-family: 'Gilroy Extra Bold';
 }
@@ -189,7 +189,7 @@ h5,
     color: #005339;
 }
 
-.slide-button::after {
+.slide-button::after,.banner-button::after {
     content: "";
     background-image: url("https://cdn.shopify.com/s/files/1/0742/2669/6436/files/button-icon.svg?v=1746020835");
     background-repeat: no-repeat;
@@ -199,10 +199,6 @@ h5,
     width: 12px;
     height: 15px;
 }
-
-/* .recipes-blog-section .article-card__image-wrapper{
-    height: 410px;
-} */
 
 .recipes-blog-section .article-card__image-wrapper a {
     max-width: 245px !important;
