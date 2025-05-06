@@ -209,6 +209,10 @@ h5,
     height: 15px;
 }
 
+.banner-button:hover::after {
+    border: 1px solid transparent;
+}
+
 .recipes-blog-section .article-card__image-wrapper a {
     max-width: 245px !important;
     margin: auto;
