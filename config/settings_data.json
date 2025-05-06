@@ -240,7 +240,7 @@
     "show_countdown": true,
     "countdown_type": "all_product",
     "countdown_time": "Dec 31, 2024 18:00:00",
-    "countdown_collection": "",
+    "countdown_collection": "aperitif-digestif",
     "countdown_style": "3",
     "calculator_free_shipping_message_height": 10,
     "calculator_free_shipping_message_border_radius": 20,
