@@ -3233,7 +3233,7 @@
         "media_fit": "unset",
         "product_image_ratio": "adapt",
         "portrait_aspect_ratio": 100,
-        "product_image_popup": "fancybox",
+        "product_image_popup": "none",
         "video_layout": "thumbnail",
         "show_badge": true,
         "mg_top_desktop": 80,
