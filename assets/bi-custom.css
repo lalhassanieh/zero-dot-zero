@@ -325,9 +325,10 @@ h5,
     background: #FDF7EB !important;
     position: relative;
 }
-/* .banner-content {
-    position: relative;
-} */
+
+.banner-content {
+    z-index: 2;
+}
 
 .halo-banner.image-banner::after {
     content: "";
@@ -336,10 +337,9 @@ h5,
     position: absolute;
     right: 0;
     top: 0;
-    width: 942px;
+    width: 715px;
     height: 778px;
 }
-
 
 
 @media (min-width: 1025px) {
