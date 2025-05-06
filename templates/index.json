@@ -3088,9 +3088,9 @@
         "title_LBHctE": {
           "type": "title",
           "settings": {
-            "fontsize_text": 40,
+            "fontsize_text": 42,
             "fontsize_text_mb": 30,
-            "color_title": "#1e1e1e",
+            "color_title": "#005339",
             "spacing_top": 0,
             "spacing_bottom": 30
           }
@@ -3105,7 +3105,7 @@
         "price_VmmXAx": {
           "type": "price",
           "settings": {
-            "fontsize_text": 30,
+            "fontsize_text": 17,
             "price_style": "1",
             "sale_color": "#f12d1c",
             "spacing_top": 0,
@@ -3116,7 +3116,7 @@
           "type": "variant_picker",
           "settings": {
             "picker_type": "dropdown",
-            "show_variant_image_group": true,
+            "show_variant_image_group": false,
             "variant_picker_style": "1",
             "fontsize_text": 16,
             "color_label": "#1e1e1e",
@@ -3133,7 +3133,7 @@
             "qty_style": "1",
             "qty_layout": "1",
             "fontsize_text": 16,
-            "color_qty_label": "#1e1e1e",
+            "color_qty_label": "#005339",
             "color_qty_icon": "#1e1e1e",
             "color_qty_input": "#1e1e1e",
             "bg_color_qty_input": "rgba(0,0,0,0)",
