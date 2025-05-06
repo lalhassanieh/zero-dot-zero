@@ -3106,7 +3106,7 @@
           "type": "price",
           "settings": {
             "fontsize_text": 30,
-            "price_style": "2",
+            "price_style": "1",
             "sale_color": "#f12d1c",
             "spacing_top": 0,
             "spacing_bottom": 38
@@ -3115,9 +3115,9 @@
         "variant_picker_BKqCXz": {
           "type": "variant_picker",
           "settings": {
-            "picker_type": "button",
+            "picker_type": "dropdown",
             "show_variant_image_group": false,
-            "variant_picker_style": "2",
+            "variant_picker_style": "1",
             "fontsize_text": 16,
             "color_label": "#1e1e1e",
             "enable_border_top": true,
