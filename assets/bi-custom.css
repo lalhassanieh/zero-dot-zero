@@ -323,12 +323,13 @@ h5,
 
 .halo-banner.image-banner {
     background: #FDF7EB !important;
-}
-.banner-content {
     position: relative;
 }
+/* .banner-content {
+    position: relative;
+} */
 
-.banner-content::after {
+.halo-banner.image-banner::after {
     content: "";
     background-image: url("https://cdn.shopify.com/s/files/1/0742/2669/6436/files/Frame_104.svg?v=1746538274");
     background-repeat: no-repeat;
