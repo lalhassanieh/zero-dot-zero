@@ -1533,169 +1533,6 @@
         "mg_bottom_mobile": 0
       }
     },
-    "featured_product_abfpM6": {
-      "type": "featured-product",
-      "blocks": {
-        "title_LBHctE": {
-          "type": "title",
-          "settings": {
-            "fontsize_text": 40,
-            "fontsize_text_mb": 30,
-            "color_title": "#1e1e1e",
-            "spacing_top": 0,
-            "spacing_bottom": 30
-          }
-        },
-        "countdown_HWHBc4": {
-          "type": "countdown",
-          "settings": {
-            "spacing_top": 0,
-            "spacing_bottom": 40
-          }
-        },
-        "price_VmmXAx": {
-          "type": "price",
-          "settings": {
-            "fontsize_text": 30,
-            "price_style": "2",
-            "sale_color": "#f12d1c",
-            "spacing_top": 0,
-            "spacing_bottom": 38
-          }
-        },
-        "variant_picker_BKqCXz": {
-          "type": "variant_picker",
-          "settings": {
-            "picker_type": "button",
-            "show_variant_image_group": false,
-            "variant_picker_style": "2",
-            "fontsize_text": 16,
-            "color_label": "#1e1e1e",
-            "enable_border_top": true,
-            "enable_border_bottom": true,
-            "color_border": "#e6e6e6",
-            "spacing_top": 18,
-            "spacing_bottom": 30
-          }
-        },
-        "quantity_selector_6Unp6z": {
-          "type": "quantity_selector",
-          "settings": {
-            "qty_style": "1",
-            "qty_layout": "1",
-            "fontsize_text": 16,
-            "color_qty_label": "#1e1e1e",
-            "color_qty_icon": "#1e1e1e",
-            "color_qty_input": "#1e1e1e",
-            "bg_color_qty_input": "rgba(0,0,0,0)",
-            "spacing_top": 15,
-            "spacing_bottom": 29
-          }
-        },
-        "buy_buttons_q3JktD": {
-          "type": "buy_buttons",
-          "settings": {
-            "show_dynamic_checkout": false,
-            "fontsize_text": 14,
-            "checkbox_color": "#1e1e1e",
-            "checkbox_border_color": "#494a4d",
-            "color_qty_label": "#ffffff",
-            "color_qty_icon": "#5a5a5a",
-            "color_qty_input": "#f2f5ff",
-            "bg_color_qty_input": "rgba(0,0,0,0)",
-            "wishlist_color": "#1e1e1e",
-            "wishlist_border_color": "rgba(0,0,0,0)",
-            "wishlist_bg_color": "rgba(0,0,0,0)",
-            "wishlist_color_hover": "#ffffff",
-            "wishlist_border_color_hover": "#1e1e1e",
-            "wishlist_bg_color_hover": "#1e1e1e",
-            "atc_animation": "horizontal-shaking",
-            "atc_color": "#ffffff",
-            "atc_border_color": "#00312d",
-            "atc_bg_color": "#00312d",
-            "atc_bg_color_gradient": "",
-            "atc_color_hover": "#00312d",
-            "atc_border_color_hover": "#00312d",
-            "atc_bg_color_hover": "rgba(0,0,0,0)",
-            "atc_bg_color_gradient_hover": "",
-            "bin_color": "#ffffff",
-            "bin_border_color": "rgba(0,0,0,0)",
-            "bin_bg_color": "rgba(0,0,0,0)",
-            "bin_bg_color_gradient": "linear-gradient(#000, #000) padding-box,        linear-gradient(90deg, rgba(48, 188, 237, 1), rgba(127, 72, 176, 1) 50%, rgba(229, 26, 203, 1) 100%) border-box",
-            "bin_color_hover": "#ffffff",
-            "bin_border_color_hover": "rgba(0,0,0,0)",
-            "bin_bg_color_hover": "rgba(0,0,0,0)",
-            "bin_bg_color_hover_gradient": "linear-gradient(90deg, rgba(48, 188, 237, 1), rgba(127, 72, 176, 1) 50%, rgba(229, 26, 203, 1) 100%)",
-            "spacing_top": 0,
-            "spacing_bottom": 30
-          }
-        },
-        "view_detail_MgRqLM": {
-          "type": "view_detail",
-          "settings": {
-            "text": "View Detail",
-            "fontsize_text": 16,
-            "tect_color": "#232323",
-            "spacing_top": 0,
-            "spacing_bottom": 0
-          }
-        }
-      },
-      "block_order": [
-        "title_LBHctE",
-        "countdown_HWHBc4",
-        "price_VmmXAx",
-        "variant_picker_BKqCXz",
-        "quantity_selector_6Unp6z",
-        "buy_buttons_q3JktD",
-        "view_detail_MgRqLM"
-      ],
-      "disabled": true,
-      "settings": {
-        "id_section": "",
-        "container": "1770",
-        "padding_full_width": 0,
-        "show_sticky_info": false,
-        "bg_color_product": "#ffffff",
-        "title": "Special Offer",
-        "color_title": "#1e1e1e",
-        "fontsize_title": 50,
-        "fontsize_title_mb": 40,
-        "margin_bottom_title": 5,
-        "margin_bottom_title_mb": 10,
-        "des": "",
-        "color_des": "#ffffff",
-        "fontsize_des": 16,
-        "margin_bottom_des": 0,
-        "margin_bottom_des_mb": 30,
-        "title_align": "left",
-        "title_align_mb": "center",
-        "featured_product": "espresso-roast-blend-whole-bean-dark-roast-1",
-        "main_image_arrows_desktop": false,
-        "main_image_counter_mobile": false,
-        "main_image_layout": "2",
-        "main_image_position": "left",
-        "main_image_bg_color": "#121212",
-        "thumnail_layout": "4",
-        "show_thumbnail_mobile": true,
-        "thumbnail_to_show": 5,
-        "thumbnail_active_color": "#e11ecb",
-        "thumbnail_arrow_color_mb": "#ffffff",
-        "thumbnail_image_bg_color": "#121212",
-        "media_fit": "unset",
-        "product_image_ratio": "adapt",
-        "portrait_aspect_ratio": 100,
-        "product_image_popup": "fancybox",
-        "video_layout": "thumbnail",
-        "show_badge": true,
-        "mg_top_desktop": 80,
-        "mg_top_tablet": 65,
-        "mg_top_mobile": 45,
-        "mg_bottom_desktop": 80,
-        "mg_bottom_tablet": 30,
-        "mg_bottom_mobile": 80
-      }
-    },
     "slide_show_nQUaXT": {
       "type": "slide-show",
       "blocks": {
@@ -3110,7 +2947,7 @@
         "color_border_bottom": "rgba(0,0,0,0)",
         "enable_minus_mg_top": false,
         "minus_spacing_top": 0,
-        "rich_text_bg": "#FFFFFF",
+        "rich_text_bg": "#ffffff",
         "rich_text_bg_gradient": "",
         "enable_column": false,
         "custom_class": "",
@@ -3137,7 +2974,7 @@
         "enable_minus_mg_top": false,
         "minus_spacing_top": -100,
         "product_block_layout": "grid",
-        "product_bg": "#FFFFFF",
+        "product_bg": "#ffffff",
         "product_bg_gradient": "",
         "product_block_collection": "sparkling-wines",
         "product_block_limit": 8,
@@ -3244,6 +3081,168 @@
         "mg_bottom_tablet": 50,
         "mg_bottom_mobile": 50
       }
+    },
+    "featured_product_abfpM6": {
+      "type": "featured-product",
+      "blocks": {
+        "title_LBHctE": {
+          "type": "title",
+          "settings": {
+            "fontsize_text": 40,
+            "fontsize_text_mb": 30,
+            "color_title": "#1e1e1e",
+            "spacing_top": 0,
+            "spacing_bottom": 30
+          }
+        },
+        "countdown_HWHBc4": {
+          "type": "countdown",
+          "settings": {
+            "spacing_top": 0,
+            "spacing_bottom": 40
+          }
+        },
+        "price_VmmXAx": {
+          "type": "price",
+          "settings": {
+            "fontsize_text": 30,
+            "price_style": "2",
+            "sale_color": "#f12d1c",
+            "spacing_top": 0,
+            "spacing_bottom": 38
+          }
+        },
+        "variant_picker_BKqCXz": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "show_variant_image_group": false,
+            "variant_picker_style": "2",
+            "fontsize_text": 16,
+            "color_label": "#1e1e1e",
+            "enable_border_top": true,
+            "enable_border_bottom": true,
+            "color_border": "#e6e6e6",
+            "spacing_top": 18,
+            "spacing_bottom": 30
+          }
+        },
+        "quantity_selector_6Unp6z": {
+          "type": "quantity_selector",
+          "settings": {
+            "qty_style": "1",
+            "qty_layout": "1",
+            "fontsize_text": 16,
+            "color_qty_label": "#1e1e1e",
+            "color_qty_icon": "#1e1e1e",
+            "color_qty_input": "#1e1e1e",
+            "bg_color_qty_input": "rgba(0,0,0,0)",
+            "spacing_top": 15,
+            "spacing_bottom": 29
+          }
+        },
+        "buy_buttons_q3JktD": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "fontsize_text": 14,
+            "checkbox_color": "#1e1e1e",
+            "checkbox_border_color": "#494a4d",
+            "color_qty_label": "#ffffff",
+            "color_qty_icon": "#5a5a5a",
+            "color_qty_input": "#f2f5ff",
+            "bg_color_qty_input": "rgba(0,0,0,0)",
+            "wishlist_color": "#1e1e1e",
+            "wishlist_border_color": "rgba(0,0,0,0)",
+            "wishlist_bg_color": "rgba(0,0,0,0)",
+            "wishlist_color_hover": "#ffffff",
+            "wishlist_border_color_hover": "#1e1e1e",
+            "wishlist_bg_color_hover": "#1e1e1e",
+            "atc_animation": "horizontal-shaking",
+            "atc_color": "#ffffff",
+            "atc_border_color": "#00312d",
+            "atc_bg_color": "#00312d",
+            "atc_bg_color_gradient": "",
+            "atc_color_hover": "#00312d",
+            "atc_border_color_hover": "#00312d",
+            "atc_bg_color_hover": "rgba(0,0,0,0)",
+            "atc_bg_color_gradient_hover": "",
+            "bin_color": "#ffffff",
+            "bin_border_color": "rgba(0,0,0,0)",
+            "bin_bg_color": "rgba(0,0,0,0)",
+            "bin_bg_color_gradient": "linear-gradient(#000, #000) padding-box,        linear-gradient(90deg, rgba(48, 188, 237, 1), rgba(127, 72, 176, 1) 50%, rgba(229, 26, 203, 1) 100%) border-box",
+            "bin_color_hover": "#ffffff",
+            "bin_border_color_hover": "rgba(0,0,0,0)",
+            "bin_bg_color_hover": "rgba(0,0,0,0)",
+            "bin_bg_color_hover_gradient": "linear-gradient(90deg, rgba(48, 188, 237, 1), rgba(127, 72, 176, 1) 50%, rgba(229, 26, 203, 1) 100%)",
+            "spacing_top": 0,
+            "spacing_bottom": 30
+          }
+        },
+        "view_detail_MgRqLM": {
+          "type": "view_detail",
+          "settings": {
+            "text": "View Detail",
+            "fontsize_text": 16,
+            "tect_color": "#232323",
+            "spacing_top": 0,
+            "spacing_bottom": 0
+          }
+        }
+      },
+      "block_order": [
+        "title_LBHctE",
+        "countdown_HWHBc4",
+        "price_VmmXAx",
+        "variant_picker_BKqCXz",
+        "quantity_selector_6Unp6z",
+        "buy_buttons_q3JktD",
+        "view_detail_MgRqLM"
+      ],
+      "settings": {
+        "id_section": "",
+        "container": "1770",
+        "padding_full_width": 0,
+        "show_sticky_info": false,
+        "bg_color_product": "#ffffff",
+        "title": "Special Offer",
+        "color_title": "#1e1e1e",
+        "fontsize_title": 50,
+        "fontsize_title_mb": 40,
+        "margin_bottom_title": 5,
+        "margin_bottom_title_mb": 10,
+        "des": "",
+        "color_des": "#ffffff",
+        "fontsize_des": 16,
+        "margin_bottom_des": 0,
+        "margin_bottom_des_mb": 30,
+        "title_align": "left",
+        "title_align_mb": "center",
+        "featured_product": "bundle-guiness-0-0",
+        "main_image_arrows_desktop": false,
+        "main_image_counter_mobile": false,
+        "main_image_layout": "2",
+        "main_image_position": "left",
+        "main_image_bg_color": "#121212",
+        "thumnail_layout": "4",
+        "show_thumbnail_mobile": true,
+        "thumbnail_to_show": 5,
+        "thumbnail_active_color": "#e11ecb",
+        "thumbnail_arrow_color_mb": "#ffffff",
+        "thumbnail_image_bg_color": "#121212",
+        "media_fit": "unset",
+        "product_image_ratio": "adapt",
+        "portrait_aspect_ratio": 100,
+        "product_image_popup": "fancybox",
+        "video_layout": "thumbnail",
+        "show_badge": true,
+        "mg_top_desktop": 80,
+        "mg_top_tablet": 65,
+        "mg_top_mobile": 45,
+        "mg_bottom_desktop": 80,
+        "mg_bottom_tablet": 30,
+        "mg_bottom_mobile": 80
+      }
     }
   },
   "order": [
@@ -3255,7 +3254,6 @@
     "16321237356a896dad",
     "product_block_KfUbR7",
     "slide_show_Aa3qE4",
-    "featured_product_abfpM6",
     "slide_show_nQUaXT",
     "163221535239da03ba",
     "1632364695b0f88b4f",
@@ -3268,6 +3266,7 @@
     "product_block_nEDnQ8",
     "image_banner_cwnjQq",
     "rich_text_Ppzntx",
-    "product_block_MzwjbK"
+    "product_block_MzwjbK",
+    "featured_product_abfpM6"
   ]
 }
