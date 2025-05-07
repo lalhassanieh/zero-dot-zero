@@ -11,6 +11,42 @@
   "type": "header",
   "name": "Header Group",
   "sections": {
+    "header_minimal_FWXU8P": {
+      "type": "header-minimal",
+      "blocks": {
+        "group_1_i9jEd6": {
+          "type": "group_1",
+          "settings": {
+            "color": "#fff"
+          }
+        },
+        "group_2_Aw4RU8": {
+          "type": "group_2",
+          "settings": {
+            "show_language_currency": true,
+            "language_currency_color": "#323232",
+            "language_currency_bg": "#DDBDB0",
+            "show_cart": false,
+            "cart_color_item": "#323232",
+            "cart_bg_item": "#DDBDB0",
+            "cart_item_font_size": 14
+          }
+        }
+      },
+      "block_order": [
+        "group_1_i9jEd6",
+        "group_2_Aw4RU8"
+      ],
+      "name": "Header - Minimal",
+      "settings": {
+        "container": "1170",
+        "padding_full_width": 0,
+        "header_bg": "#005339",
+        "header_bg_gradient": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
     "header_simple_nrjUCp": {
       "type": "header-simple",
       "blocks": {
@@ -35,6 +71,7 @@
       "block_order": [
         "group_1_QUzq7c"
       ],
+      "disabled": true,
       "custom_css": [
         ".header-simple .header-simple__item {padding-left: 100px; padding-right: 100px;}"
       ],
@@ -583,6 +620,7 @@
     }
   },
   "order": [
+    "header_minimal_FWXU8P",
     "header_simple_nrjUCp",
     "announcement-bar",
     "header-classic",
