@@ -18,7 +18,7 @@
             "image_slide": "shopify://shop_images/Frame_780_1.png",
             "alignment": "left",
             "enable_custom_position": false,
-            "custom_horizontal": "",
+            "custom_horizontal": "20%",
             "custom_vertical": "",
             "enable_position_outside_image": false,
             "enable_border_line": false,
