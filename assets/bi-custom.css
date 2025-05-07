@@ -415,6 +415,12 @@ h5,
     font-size: 20px;
 }
 
+.faqs .faqs-item .card-header .title {
+    background-color: #fafafa;
+    /* padding: 0 !important; */
+    border-top: 1px solid rgba(0, 83, 57, 0.50);
+}
+
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
         border-color:
