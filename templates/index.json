@@ -219,7 +219,8 @@
       ],
       "custom_css": [
         ".slide-content .slide-button {justify-content: inherit; padding-left: 25px;}",
-        ".slideshow .slick-dots {left: 13%; bottom: 79px;}"
+        ".slideshow .slick-dots {left: 13%; bottom: 79px;}",
+        ".slideshow-wrapper{border-top:1px solid #DDDDDD}"
       ],
       "name": "t:sections.slide-show.presets.name",
       "settings": {
