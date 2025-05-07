@@ -193,13 +193,22 @@
               {%- for block in section.blocks -%}
                 {% if block.type == 'image' and block.settings.image != blank %}
                   <div class="faqs-image-block" {{ block.shopify_attributes }}>
-                    {%
-                      render 'image',
-                      class: 'faqs-image',
-                      mobileSrc: block.settings.image,
-                      desktopSrc: block.settings.image,
-                      alt: block.settings.image.alt | default: shop.name
-                    %}
+                    <!-- Replace the existing img tag with this -->
+                    <img
+                      {% render 'lazyload', preview_img: block.settings.image %}
+                      width="{{ block.settings.image.width }}"
+                      height="{{ block.settings.image.height }}"
+                      style="
+                        {% if section.settings.image_ratio == 'adapt' %}
+                          width: {{ block.settings.image.width }}px;
+                        {% else %}
+                          max-width: {{ block.settings.image.width }}px;
+                        {% endif %}
+                        margin: 0 auto;
+                        height: auto
+                      "
+                      alt="{{ block.settings.image.alt | default: shop.name | escape }}"
+                    >
                   </div>
                 {% endif %}
               {%- endfor -%}
