@@ -35,9 +35,12 @@
       "block_order": [
         "group_1_QUzq7c"
       ],
+      "custom_css": [
+        ".header-simple{padding-left:100px; padding-right:100px;}"
+      ],
       "name": "Header - Simple",
       "settings": {
-        "container": "1770",
+        "container": "full",
         "padding_full_width": 0
       }
     },
