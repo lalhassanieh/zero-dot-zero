@@ -37,9 +37,10 @@
         "group_1_i9jEd6",
         "group_2_Aw4RU8"
       ],
+      "custom_css": [],
       "name": "Header - Minimal",
       "settings": {
-        "container": "1170",
+        "container": "full",
         "padding_full_width": 0,
         "header_bg": "#005339",
         "header_bg_gradient": "",
