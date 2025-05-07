@@ -218,7 +218,7 @@
       "name": "t:sections.slide-show.presets.name",
       "settings": {
         "container": "fullwidth",
-        "padding_full_width": 0,
+        "padding_full_width": 20,
         "slideshow_background": "",
         "slideshow_background_gradient": "",
         "border_radius": 0,
