@@ -24,8 +24,8 @@
           "type": "group_2",
           "settings": {
             "show_language_currency": true,
-            "language_currency_color": "#323232",
-            "language_currency_bg": "#DDBDB0",
+            "language_currency_color": "#ffffff",
+            "language_currency_bg": "rgba(0,0,0,0)",
             "show_cart": false,
             "cart_color_item": "#323232",
             "cart_bg_item": "#DDBDB0",
