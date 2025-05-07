@@ -470,9 +470,19 @@ h5,
 }
 
 .announcement-text {
-    color: var(--color);
     font-family: 'Gilroy Light';
     font-size: 14px;
+    position: relative;
+    padding-left: 20px;
+}
+
+.announcement-text::before {
+    content: "";
+    background-image: url("https://cdn.shopify.com/s/files/1/0742/2669/6436/files/local_shipping.svg?v=1746625715");
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 0;
+    top: 0;
 }
 
 @media (min-width: 1025px) {
