@@ -3181,6 +3181,7 @@
         },
         "view_detail_MgRqLM": {
           "type": "view_detail",
+          "disabled": true,
           "settings": {
             "text": "View Detail",
             "fontsize_text": 16,
