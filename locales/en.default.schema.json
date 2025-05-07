@@ -3744,6 +3744,10 @@
               "label__2": "Answer"
             }
           }
+        },
+        "image": {
+          "name": "Image",
+         
         }
       }
     },
