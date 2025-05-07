@@ -341,6 +341,14 @@ h5,
     height: 778px;
 }
 
+.productView-details .product-form__input {
+    display: flex;
+    align-items: center;
+}
+
+.productView-details .product-form__input .form__label span {
+    display: none;
+}
 
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
