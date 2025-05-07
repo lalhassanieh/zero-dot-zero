@@ -554,6 +554,7 @@
                                                 color_title: color_title,
                                                 text_transform: text_transform
                                             %}
+                                            <h2>{{ product.metafields.custom.short_description }}</h2>
                                         </div>
                                     {%- when 'title' -%}
                                         <div class="productView-moreItem{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}"
@@ -564,6 +565,8 @@
                                                 block: block,
                                                 product: product
                                             %}
+
+
                                         </div>
                                     {%- when 'meta' -%}
                                         {%- liquid 
