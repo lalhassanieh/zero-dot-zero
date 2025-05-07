@@ -121,7 +121,7 @@
                             </div>
                         </div>
                     {%- endif -%}
-                    <div class="faqs-message-and-questions">
+                    <div class="faqs-message-and-questions test">
                         <div class="faqs-questions-and-answers{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
                         {%- for block in section.blocks -%}
                             <div class="faqs-paragraph" id="paragraph-{{ block.settings.title | handleize }}">
