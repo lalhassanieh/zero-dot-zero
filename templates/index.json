@@ -2623,7 +2623,7 @@
         "fontsize_text_mb": 13,
         "font_weight_title": "400",
         "margin_bottom_title": 0,
-        "mg_top_desktop": 0,
+        "mg_top_desktop": 5,
         "mg_top_tablet": 50,
         "mg_top_mobile": 50,
         "mg_bottom_desktop": 50,
@@ -3117,7 +3117,7 @@
           "settings": {
             "picker_type": "dropdown",
             "show_variant_image_group": false,
-            "variant_picker_style": "1",
+            "variant_picker_style": "2",
             "fontsize_text": 16,
             "color_label": "#005339",
             "enable_border_top": true,
