@@ -316,6 +316,7 @@ h5,
     border-top: 1px solid #005339;
     border-bottom: 1px solid #005339;
     padding-top: 1px;
+    padding-bottom: 1px;
 }
 
 .brand-layout--slider .adaptive_height {
@@ -342,7 +343,8 @@ h5,
     height: 778px;
 }
 
-.productView-details .product-form__input {
+.productView-details .product-form__input,
+.productView-quantity {
     display: flex;
     align-items: center;
 }
@@ -351,8 +353,25 @@ h5,
     display: none;
 }
 
+.productView-details .product-form__input .form__label {
+    margin-right: 20px;
+}
+
 .productView-details .product-form__input .select__select {
     border-radius: 1px !important;
+    background-color: transparent !important;
+    border: 1px solid #005339;
+    font-family: 'Gilroy Extra Bold';
+}
+
+.productView-quantity label {
+    margin-right: 20px;
+}
+
+.productView-quantity input {
+    border-radius: 1px !important;
+    border: 1px solid #005339;
+    color: #005339;
 }
 
 @media (min-width: 1025px) {
