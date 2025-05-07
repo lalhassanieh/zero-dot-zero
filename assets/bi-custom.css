@@ -435,6 +435,15 @@ h5,
     padding-left: 0 !important;
     font-family: 'Gilroy Light';
     font-size: 16px !important;
+    margin-top: 0 !important
+}
+
+.faqs .faqs-item .card-body p {
+    margin: 0 !important;
+}
+
+.faqs-row {
+    padding-top: 12px;
 }
 
 @media (min-width: 1025px) {
