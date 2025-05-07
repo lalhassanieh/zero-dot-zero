@@ -402,8 +402,13 @@ h5,
 }
 
 .featured-product .productView-quantity .btn-quantity.plus::after {
-    top: 22px !important;
     background: #005339;
+}
+
+.featured-product .productView-quantity .btn-quantity.minus::before,
+.featured-product .productView-quantity .btn-quantity.plus::before,
+.featured-product .productView-quantity .btn-quantity.plus::after {
+    top: 22px !important;
 }
 
 @media (min-width: 1025px) {
