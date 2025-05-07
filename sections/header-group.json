@@ -17,7 +17,13 @@
         "group_1_i9jEd6": {
           "type": "group_1",
           "settings": {
-            "color": "#fff"
+            "color": "#ffffff"
+          }
+        },
+        "group_3_68GmHA": {
+          "type": "group_3",
+          "settings": {
+            "announcement_text": "Free Delivery All Around KSA"
           }
         },
         "group_2_Aw4RU8": {
@@ -28,13 +34,14 @@
             "language_currency_bg": "rgba(0,0,0,0)",
             "show_cart": false,
             "cart_color_item": "#323232",
-            "cart_bg_item": "#DDBDB0",
+            "cart_bg_item": "#ddbdb0",
             "cart_item_font_size": 14
           }
         }
       },
       "block_order": [
         "group_1_i9jEd6",
+        "group_3_68GmHA",
         "group_2_Aw4RU8"
       ],
       "custom_css": [],
@@ -58,11 +65,11 @@
             "bg_color": "#005339",
             "bg_gradient": "",
             "show_language_currency": true,
-            "language_currency_color": "#fff",
+            "language_currency_color": "#ffffff",
             "customer_text_01": "",
-            "customer_text_01_color": "#fff",
+            "customer_text_01_color": "#ffffff",
             "customer_text_02": "<p>Free Delivery All Around KSA </p>",
-            "customer_text_02_color_1": "#fff",
+            "customer_text_02_color_1": "#ffffff",
             "customer_text_02_color_2": "#ffffff",
             "padding_top": 8,
             "padding_bottom": 8
