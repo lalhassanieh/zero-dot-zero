@@ -41,6 +41,19 @@ h5,
     font-family: 'Gilroy Light' !important;
 }
 
+.header-minimal__content {
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+.header-minimal__item .header-language_currency {
+    background: transparent !important;
+}
+
+.header-minimal .halo-top-language .text-language {
+    color: #FFF !important;
+}
+
 .brand__custom--tab ul li {
     border-radius: 100px;
     border: 1px solid #A7CFBE;
