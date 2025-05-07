@@ -139,6 +139,11 @@ h5,
     text-transform: capitalize;
 }
 
+.slide-content .slide-heading span {
+    color: #fff !important;
+    text-transform: uppercase !important;
+}
+
 .site-nav.dropdown {
     padding-left: 0 !important;
 }
@@ -445,6 +450,14 @@ h5,
 .faqs-row {
     padding-top: 12px !important;
     width: 80% !important;
+}
+
+.faqs-item .card-header .icon-plus {
+    right: 0 !important
+}
+
+.faqs-images-wrapper {
+    margin-top: -4%;
 }
 
 @media (min-width: 1025px) {
