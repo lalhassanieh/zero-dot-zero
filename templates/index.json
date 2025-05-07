@@ -50,19 +50,19 @@
             "border_sub_heading": "none",
             "sub_title_position": "sub_title_above",
             "color_sub_heading": "#ffffff",
-            "heading": "Try 2025's<br>  Top-Rated<br>   <span>Non - Alcoholic </span> Drinks",
+            "heading": "Try 2025's<br>  Top-Rated<br>   <span>Non - Alcoholic </span>",
             "letter_spacing_heading": "",
             "enable_border_heading": false,
             "font_style_heading": "normal",
             "font_size_heading": 40,
-            "line_height_heading": 40,
-            "heading_spacing_bottom": 8,
-            "color_heading": "#232323",
-            "slide-des": "",
-            "font_size_des": 12,
-            "line_height_des": 22,
+            "line_height_heading": 20,
+            "heading_spacing_bottom": 20,
+            "color_heading": "#005339",
+            "slide-des": "Drinks",
+            "font_size_des": 40,
+            "line_height_des": 20,
             "des_spacing_bottom": 35,
-            "color_des": "#232323",
+            "color_des": "#005339",
             "sub_heading_mb": "Try 2025's  Top-Rated ",
             "font_size_sub_heading_mb": 20,
             "sub_heading_spacing_bottom_mb": 20,
