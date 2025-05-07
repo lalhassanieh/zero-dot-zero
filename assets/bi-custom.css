@@ -144,6 +144,10 @@ h5,
     text-transform: uppercase !important;
 }
 
+.slideshow .slick-dots {
+    flex-direction: row !important;
+}
+
 .site-nav.dropdown {
     padding-left: 0 !important;
 }
