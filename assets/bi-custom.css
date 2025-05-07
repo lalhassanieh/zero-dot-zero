@@ -417,12 +417,16 @@ h5,
 
 .faqs .faqs-item .card-header .title {
     background-color: transparent !important;
-    /* padding: 0 !important; */
+    padding: 30px 0 !important;
     border-top: 1px solid rgba(0, 83, 57, 0.50);
 }
 
 .faqs-item {
     background-color: transparent !important;
+    margin-top: 0 !important
+}
+.faqs .faqs-item .card-header .title::after{
+    display: none !important;
 }
 
 @media (min-width: 1025px) {
