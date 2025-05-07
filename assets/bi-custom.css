@@ -471,6 +471,8 @@ h5,
 
 .announcement-text {
     color: var(--color);
+    font-family: 'Gilroy Light';
+    font-size: 14px;
 }
 
 @media (min-width: 1025px) {
