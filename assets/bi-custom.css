@@ -198,7 +198,7 @@ h5,
 }
 
 .slide-button::after,
-.banner-button::after {
+.banner-button::after,.productView-groupTop .product-form__submit::after {
     content: "";
     background-image: url("https://cdn.shopify.com/s/files/1/0742/2669/6436/files/button-icon.svg?v=1746020835");
     background-repeat: no-repeat;
@@ -354,7 +354,8 @@ h5,
 }
 
 .productView-details .product-form__input .form__label {
-    margin-right: 20px;
+    margin-right: 20px !important;
+    width: auto;
 }
 
 .productView-details .product-form__input .select__select {
@@ -371,11 +372,23 @@ h5,
 .productView-quantity input {
     border-radius: 1px !important;
     border: 1px solid #005339;
-    color: #005339;
+    color: #005339 !important;
+    font-family: 'Gilroy Extra Bold';
 }
-.productView-groupTop{
-    width: auto;
+
+.productView-groupTop {
+    width: auto !important;
+
 }
+
+.productView-groupTop .product-form__submit {
+    padding-left: 30px;
+    padding-right: 40px;
+    position: relative;
+}
+
+
+
 
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
