@@ -114,7 +114,7 @@
         "image_mixYxb": {
           "type": "image",
           "settings": {
-            "image_slide": "shopify://shop_images/Rectangle_1_1.png",
+            "image_slide": "shopify://shop_images/image9.png",
             "alignment": "left",
             "enable_custom_position": false,
             "custom_horizontal": "",
