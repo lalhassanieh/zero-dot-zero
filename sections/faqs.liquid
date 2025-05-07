@@ -188,6 +188,22 @@
                 </div>
               {%- endfor -%}
             </div>
+            <!-- FAQ Images Column -->
+            <div class="faqs-images-wrapper">
+              {%- for block in section.blocks -%}
+                {% if block.type == 'image' and block.settings.image != blank %}
+                  <div class="faqs-image-block" {{ block.shopify_attributes }}>
+                    {%
+                      render 'image',
+                      class: 'faqs-image',
+                      mobileSrc: block.settings.image,
+                      desktopSrc: block.settings.image,
+                      alt: block.settings.image.alt | default: shop.name
+                    %}
+                  </div>
+                {% endif %}
+              {%- endfor -%}
+            </div>
           </div>
         </div>
       {%- endif -%}
@@ -681,7 +697,7 @@
         {
           "type": "image_picker",
           "id": "image",
-          "label": "t:sections.main_faqs.blocks.image.settings.content.label",
+          "label": "t:sections.main_faqs.blocks.image.settings.content.label"
         }
       ]
     }
