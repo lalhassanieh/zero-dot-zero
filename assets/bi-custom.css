@@ -395,10 +395,16 @@ h5,
 
 .featured-product .productView-quantity .quantity__input {
     min-height: 44px !important;
-  }
-  .product-form__input + .product-form__input {
+}
+
+.product-form__input+.product-form__input {
     margin-top: 20px !important;
-  }
+}
+
+.featured-product .productView-quantity .btn-quantity.plus::after {
+    top: 22px;
+    background: #005339;
+}
 
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
