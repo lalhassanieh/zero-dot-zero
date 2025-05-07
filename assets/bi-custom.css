@@ -366,7 +366,8 @@ h5,
 }
 
 .productView-quantity label {
-    margin-right: 20px;
+    margin-right: 20px !important;
+    width: auto !important;
 }
 
 .productView-quantity input {
@@ -378,17 +379,13 @@ h5,
 
 .productView-groupTop {
     width: auto !important;
-
 }
 
 .productView-groupTop .product-form__submit {
     padding-left: 30px;
-    padding-right: 40px;
+    padding-right: 50px;
     position: relative;
 }
-
-
-
 
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
