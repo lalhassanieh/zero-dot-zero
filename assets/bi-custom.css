@@ -315,6 +315,7 @@ h5,
 .brand-layout--slider {
     border-top: 1px solid #005339;
     border-bottom: 1px solid #005339;
+    padding-top: 1px;
 }
 
 .brand-layout--slider .adaptive_height {
@@ -348,6 +349,10 @@ h5,
 
 .productView-details .product-form__input .form__label span {
     display: none;
+}
+
+.productView-details .product-form__input .select__select {
+    border-radius: 1px !important;
 }
 
 @media (min-width: 1025px) {
