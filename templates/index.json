@@ -3276,7 +3276,9 @@
         },
         "image_GtaWTr": {
           "type": "image",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/image_25.png"
+          }
         }
       },
       "block_order": [
