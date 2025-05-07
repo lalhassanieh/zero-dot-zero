@@ -469,9 +469,9 @@ h5,
     margin-top: -4%;
 }
 
-/* .announcement-text{
-    color:#fff;
-} */
+.announcement-text {
+    color: var(--color);
+}
 
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
