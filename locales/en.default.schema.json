@@ -3748,7 +3748,9 @@
         "image": {
           "name": "Image",
           "settings": {
-            "label": "Title",
+            "content": {
+              "label": "Content"
+            }
           }
         }
       }
