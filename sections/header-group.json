@@ -24,8 +24,8 @@
           "type": "group_2",
           "settings": {
             "show_language_currency": true,
-            "language_currency_color": "#323232",
-            "language_currency_bg": "#DDBDB0",
+            "language_currency_color": "#ffffff",
+            "language_currency_bg": "rgba(0,0,0,0)",
             "show_cart": false,
             "cart_color_item": "#323232",
             "cart_bg_item": "#DDBDB0",
@@ -37,9 +37,10 @@
         "group_1_i9jEd6",
         "group_2_Aw4RU8"
       ],
+      "custom_css": [],
       "name": "Header - Minimal",
       "settings": {
-        "container": "1170",
+        "container": "full",
         "padding_full_width": 0,
         "header_bg": "#005339",
         "header_bg_gradient": "",
