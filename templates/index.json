@@ -3273,10 +3273,15 @@
             "question_10": "Question",
             "answer_10": "<p>Use overlay text to give your customers insight into your brand. Select image and text that relates to your style and story.</p>"
           }
+        },
+        "image_GtaWTr": {
+          "type": "image",
+          "settings": {}
         }
       },
       "block_order": [
-        "paragraph_CxVCEp"
+        "paragraph_CxVCEp",
+        "image_GtaWTr"
       ],
       "name": "t:sections.faqs.presets.name",
       "settings": {
