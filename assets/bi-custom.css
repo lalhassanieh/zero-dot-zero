@@ -291,7 +291,7 @@ h5,
     justify-content: initial !important;
 }
 
-.spotlight-products__item--product .slick-dots li.slick-active button {
+.slick-dots li.slick-active button {
     width: 14px !important;
     height: 14px !important;
 }
