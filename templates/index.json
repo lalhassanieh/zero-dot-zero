@@ -216,6 +216,9 @@
         "image_M9rGXy",
         "image_mixYxb"
       ],
+      "custom_css": [
+        ".slide-content .slide-button {justify-content: inherit !important; padding-left: 25px !important; }"
+      ],
       "name": "t:sections.slide-show.presets.name",
       "settings": {
         "container": "fullwidth",
