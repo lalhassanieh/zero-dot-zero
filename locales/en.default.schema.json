@@ -3020,7 +3020,6 @@
           "first_text_color": "First text color",
           "second_text_color": "Second text color",
           "announcement_text":" Announcement text",
-          "announcement_text_color":" Text Color",
         },
         "header_bottom": {
           "bg_bottom": "Bottom background",
