@@ -11,6 +11,36 @@
   "type": "header",
   "name": "Header Group",
   "sections": {
+    "header_simple_nrjUCp": {
+      "type": "header-simple",
+      "blocks": {
+        "group_1_QUzq7c": {
+          "type": "group_1",
+          "settings": {
+            "layout": "row-reverse",
+            "bg_color": "#005339",
+            "bg_gradient": "",
+            "show_language_currency": true,
+            "language_currency_color": "#fff",
+            "customer_text_01": "",
+            "customer_text_01_color": "#fff",
+            "customer_text_02": "<p>Free Delivery All Around KSA </p>",
+            "customer_text_02_color_1": "#fff",
+            "customer_text_02_color_2": "#ffffff",
+            "padding_top": 8,
+            "padding_bottom": 8
+          }
+        }
+      },
+      "block_order": [
+        "group_1_QUzq7c"
+      ],
+      "name": "Header - Simple",
+      "settings": {
+        "container": "1170",
+        "padding_full_width": 0
+      }
+    },
     "announcement-bar": {
       "type": "announcement-bar",
       "blocks": {
@@ -550,6 +580,7 @@
     }
   },
   "order": [
+    "header_simple_nrjUCp",
     "announcement-bar",
     "header-classic",
     "9c03747e-b054-4db8-8194-5a35c71f82ca",
