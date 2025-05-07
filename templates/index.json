@@ -15,7 +15,7 @@
         "image_M9rGXy": {
           "type": "image",
           "settings": {
-            "image_slide": "shopify://shop_images/Frame_780_1.png",
+            "image_slide": "shopify://shop_images/Frame-780-_1.jpg",
             "image_slide_mb": "shopify://shop_images/iPhone_14_15_Pro_Max_-_1_7d83be4d-40ae-4592-831a-734eff703deb.jpg",
             "alignment": "left",
             "enable_custom_position": true,
@@ -220,7 +220,7 @@
       "custom_css": [
         ".slide-content .slide-button {justify-content: inherit; padding-left: 25px;}",
         ".slideshow .slick-dots {left: 13%; bottom: 79px;}",
-        ".slideshow-wrapper{border-top:1px solid #DDDDDD}"
+        ".slideshow-wrapper {border-top: 1px solid #dddddd;}"
       ],
       "name": "t:sections.slide-show.presets.name",
       "settings": {
