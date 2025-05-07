@@ -227,7 +227,7 @@
         "slideshow_speed": "5000",
         "slideshow_transition": "true",
         "dots": "shape",
-        "dots_color": "#fff7e5",
+        "dots_color": "rgba(0,0,0,0)",
         "dots_border_color": "#005339",
         "dots_active_color": "#005339",
         "dots_active_border_color": "#505656",
