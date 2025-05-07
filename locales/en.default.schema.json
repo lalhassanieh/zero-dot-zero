@@ -3018,7 +3018,8 @@
           },
           "show_left_button": "Make the search button display on the left",
           "first_text_color": "First text color",
-          "second_text_color": "Second text color"
+          "second_text_color": "Second text color",
+          "announcement_text":" Announcement text",
         },
         "header_bottom": {
           "bg_bottom": "Bottom background",
