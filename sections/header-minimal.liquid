@@ -13,7 +13,7 @@
                 {% render 'halo-social-media-icons' %}
               </div>
             {%- when 'group_3' -%}
-              <div class="announcement-text" style="--color:: {{ block.settings.color  }}">
+              <div class="announcement-text" style="--color:: {{ block.settings.announcement_text_color  }}">
                 {{ block.settings.announcement_text }}
               </div>
             {%- when 'group_2' -%}
@@ -241,6 +241,12 @@
           "id": "announcement_text",
           "label": "t:sections.header.settings.header_top.announcement_text",
           "default": "Free Delivery All Around KSA"
+        },
+        {
+          "type": "color",
+          "id": "color",
+          "label": "t:sections.header.settings.header_top.announcement_text_color",
+          "default": "#fff"
         }
        
       ]
