@@ -3750,7 +3750,8 @@
           "settings": {
             "content": {
               "label": "Content"
-            }
+            },
+              "info": "Recommended image size: 458px x 575px"
           }
         }
       }
