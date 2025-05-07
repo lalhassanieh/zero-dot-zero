@@ -16,9 +16,10 @@
           "type": "image",
           "settings": {
             "image_slide": "shopify://shop_images/Frame_780_1.png",
+            "image_slide_mb": "shopify://shop_images/iPhone_14_15_Pro_Max_-_1.jpg",
             "alignment": "left",
             "enable_custom_position": true,
-            "custom_horizontal": "2",
+            "custom_horizontal": "5",
             "custom_vertical": "50",
             "enable_position_outside_image": false,
             "enable_border_line": false,
