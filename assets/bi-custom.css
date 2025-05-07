@@ -402,7 +402,7 @@ h5,
 }
 
 .featured-product .productView-quantity .btn-quantity.plus::after {
-    top: 22px;
+    top: 22px !important;
     background: #005339;
 }
 
