@@ -778,7 +778,7 @@
                       </div>
                     {%- endif -%}
                   </div>
-                  <h2 class="featured-product-short-desc">{{ product.metafields.custom.short_description }}</h2>
+                  <div class="featured-product-short-desc">{{ product.metafields.custom.short_description }}</div>
                 {%- when 'variant_picker' -%}
                   <div
                     class="productView-moreItem{% if block.settings.variant_picker_style == '2' %} style-2{% if block.settings.enable_border_top %} has-border-top{% endif %}{% if block.settings.enable_border_bottom %} has-border-bottom{% endif %}{% endif %}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}"

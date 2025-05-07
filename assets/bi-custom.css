@@ -411,6 +411,10 @@ h5,
     top: 22px !important;
 }
 
+.featured-product-short-desc {
+    font-size: 20px;
+}
+
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
         border-color:
