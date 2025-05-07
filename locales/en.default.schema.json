@@ -3747,7 +3747,9 @@
         },
         "image": {
           "name": "Image",
-         
+          "settings": {
+            "label": "Title",
+          }
         }
       }
     },
