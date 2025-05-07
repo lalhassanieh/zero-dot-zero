@@ -3137,7 +3137,7 @@
             "color_qty_icon": "#1e1e1e",
             "color_qty_input": "#1e1e1e",
             "bg_color_qty_input": "rgba(0,0,0,0)",
-            "spacing_top": 15,
+            "spacing_top": 0,
             "spacing_bottom": 29
           }
         },
