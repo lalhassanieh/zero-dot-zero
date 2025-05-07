@@ -198,7 +198,8 @@ h5,
 }
 
 .slide-button::after,
-.banner-button::after,.productView-groupTop .product-form__submit::after {
+.banner-button::after,
+.productView-groupTop .product-form__submit::after {
     content: "";
     background-image: url("https://cdn.shopify.com/s/files/1/0742/2669/6436/files/button-icon.svg?v=1746020835");
     background-repeat: no-repeat;
@@ -385,6 +386,11 @@ h5,
     padding-left: 30px;
     padding-right: 50px;
     position: relative;
+}
+
+.featured-product .productView-wishlist,
+.featured-product .share-button {
+    display: none;
 }
 
 @media (min-width: 1025px) {
