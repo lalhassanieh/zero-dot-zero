@@ -112,18 +112,19 @@
             "lookbook_pos_3": "right"
           }
         },
-        "image_mixYxb": {
+        "image_LBA3bB": {
           "type": "image",
           "settings": {
-            "image_slide": "shopify://shop_images/image9.png",
+            "image_slide": "shopify://shop_images/Frame_780_1.png",
+            "image_slide_mb": "shopify://shop_images/iPhone_14_15_Pro_Max_-_1_7d83be4d-40ae-4592-831a-734eff703deb.jpg",
             "alignment": "left",
-            "enable_custom_position": false,
-            "custom_horizontal": "",
-            "custom_vertical": "",
+            "enable_custom_position": true,
+            "custom_horizontal": "5",
+            "custom_vertical": "50",
             "enable_position_outside_image": false,
             "enable_border_line": false,
             "padding_vertical": 30,
-            "content_width": 475,
+            "content_width": 385,
             "text_alignment": "center",
             "text_alignment_mb": "center",
             "enable_content_fullwidth": false,
@@ -149,32 +150,32 @@
             "border_sub_heading": "none",
             "sub_title_position": "sub_title_above",
             "color_sub_heading": "#ffffff",
-            "heading": "Try 2025's Top-Rated Non - Alcoholic Drinks",
+            "heading": "Try 2025's<br>  Top-Rated<br>   <span>Non - Alcoholic </span>",
             "letter_spacing_heading": "",
             "enable_border_heading": false,
             "font_style_heading": "normal",
             "font_size_heading": 40,
-            "line_height_heading": 40,
-            "heading_spacing_bottom": 8,
-            "color_heading": "#232323",
-            "slide-des": "Quisquemos sodales suscipit tortor ditaemcos condimentum de cosmo lacus meleifend menean diverra loremous.",
-            "font_size_des": 12,
-            "line_height_des": 22,
+            "line_height_heading": 27,
+            "heading_spacing_bottom": 25,
+            "color_heading": "#005339",
+            "slide-des": "Drinks",
+            "font_size_des": 40,
+            "line_height_des": 20,
             "des_spacing_bottom": 35,
-            "color_des": "#232323",
-            "sub_heading_mb": "",
+            "color_des": "#005339",
+            "sub_heading_mb": "Try 2025's  Top-Rated ",
             "font_size_sub_heading_mb": 20,
             "sub_heading_spacing_bottom_mb": 20,
             "font_weight_sub_heading_mb": "400",
             "border_sub_heading_mb": "none",
             "color_sub_heading_mb": "#ffffff",
-            "heading_mb": "Cosmopolis",
+            "heading_mb": "<span>Non - Alcoholic</span> Drinks",
             "font_style_heading_mb": "normal",
             "font_size_heading_mb": 24,
             "line_height_heading_mb": 24,
             "heading_spacing_bottom_mb": 8,
             "color_heading_mb": "#ffffff",
-            "slide-des-mb": "Quisquemos sodales suscipit tortor ditaemcos condimentum de cosmo lacus meleifend menean diverra loremous.",
+            "slide-des-mb": "",
             "font_size_des_mb": 12,
             "des_spacing_bottom_mb": 35,
             "color_des_mb": "#ffffff",
@@ -187,14 +188,14 @@
             "button_style": "button_1",
             "button_slide_2": "",
             "link_2": "",
-            "min_width_banner_button": 270,
+            "min_width_banner_button": 160,
             "color_button": "#005339",
             "border_button": "#232323",
-            "bg_button": "#ffffff",
+            "bg_button": "#fff7e5",
             "bg_button_gradient": "",
             "color_button_hover": "#ffffff",
-            "border_button_hover": "#232323",
-            "bg_button_hover": "#232323",
+            "border_button_hover": "#ff8b21",
+            "bg_button_hover": "#ff8b21",
             "bg_button_gradient_hover": "",
             "use_contrasting_colors": false,
             "lb_product_1": "",
@@ -214,7 +215,7 @@
       },
       "block_order": [
         "image_M9rGXy",
-        "image_mixYxb"
+        "image_LBA3bB"
       ],
       "custom_css": [
         ".slide-content .slide-button {justify-content: inherit; padding-left: 25px;}",
