@@ -36,7 +36,7 @@
         "group_1_QUzq7c"
       ],
       "custom_css": [
-        ".header-simple{padding-left:100px; padding-right:100px;}"
+        ".header-simple .header-simple__item {padding-left: 100px; padding-right: 100px;}"
       ],
       "name": "Header - Simple",
       "settings": {
