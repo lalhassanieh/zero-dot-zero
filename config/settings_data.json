@@ -162,6 +162,7 @@
     "show_compare": true,
     "hide_compare_homepage": true,
     "product_compare_type": "icon",
+    "show_wishlist_card": true,
     "show_wishlist_full_icon": false,
     "show_quick_view": true,
     "show_quick_view_mb": true,
