@@ -50,7 +50,7 @@
             "border_sub_heading": "none",
             "sub_title_position": "sub_title_above",
             "color_sub_heading": "#ffffff",
-            "heading": "Try 2025's  Top-Rated  Non - Alcoholic Drinks",
+            "heading": "Try 2025's  Top-Rated  <span>Non - Alcoholic </span> Drinks",
             "letter_spacing_heading": "",
             "enable_border_heading": false,
             "font_style_heading": "normal",
@@ -58,7 +58,7 @@
             "line_height_heading": 40,
             "heading_spacing_bottom": 8,
             "color_heading": "#232323",
-            "slide-des": "Quisquemos sodales suscipit tortor ditaemcos condimentum de cosmo lacus meleifend menean diverra loremous.",
+            "slide-des": "",
             "font_size_des": 12,
             "line_height_des": 22,
             "des_spacing_bottom": 35,
