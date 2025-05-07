@@ -217,8 +217,8 @@
         "image_mixYxb"
       ],
       "custom_css": [
-        ".slide-content .slide-button {justify-content: inherit !important; padding-left: 25px !important;}",
-        ".slideshow .slick-dots {left: 13% !important;}"
+        ".slide-content .slide-button {justify-content: inherit; padding-left: 25px;}",
+        ".slideshow .slick-dots {left: 13%t; bottom: 79px;}"
       ],
       "name": "t:sections.slide-show.presets.name",
       "settings": {
