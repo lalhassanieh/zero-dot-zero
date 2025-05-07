@@ -3092,14 +3092,14 @@
             "fontsize_text_mb": 30,
             "color_title": "#005339",
             "spacing_top": 0,
-            "spacing_bottom": 30
+            "spacing_bottom": 15
           }
         },
         "countdown_HWHBc4": {
           "type": "countdown",
           "settings": {
             "spacing_top": 0,
-            "spacing_bottom": 40
+            "spacing_bottom": 0
           }
         },
         "price_VmmXAx": {
