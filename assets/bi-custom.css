@@ -419,14 +419,22 @@ h5,
     background-color: transparent !important;
     padding: 30px 0 !important;
     border-top: 1px solid rgba(0, 83, 57, 0.50);
+    font-size: 20px !important
 }
 
 .faqs-item {
     background-color: transparent !important;
     margin-top: 0 !important
 }
-.faqs .faqs-item .card-header .title::after{
+
+.faqs .faqs-item .card-header .title::after {
     display: none !important;
+}
+
+.faqs .faqs-item .card-body {
+    padding-left: 0 !important;
+    font-family: 'Gilroy Light';
+    font-size: 16px !important;
 }
 
 @media (min-width: 1025px) {
