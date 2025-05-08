@@ -178,7 +178,7 @@
             -{{ compare | append: '%' }}
           {%- endif -%}
         {%- elsif sale_badge_type == 'text_discount' -%}
-          {{ 'products.product.on_sale' | t }}
+         <p> {{ 'products.product.on_sale' | t }}</p>
           {%- if badge_detail -%}
             {{
               current_variant.compare_at_price
@@ -205,7 +205,7 @@
             {{ compare | append: '%' }}
           {%- endif -%}
         {%- else -%}
-          {{ 'products.product.on_sale' | t }}
+         <p> {{ 'products.product.on_sale' | t }}</p> 
         {%- endif -%}
       </span>
     {%- else -%}
