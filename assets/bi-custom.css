@@ -501,8 +501,12 @@ h5,
     position: absolute;
 }
 
+.halo-productBadges .sale-badge p {
+    margin: 15px 7px 0 0 !important;
+}
+
 .halo-productBadges .badge.new-badge p {
-    margin: 13px 7px 0 0 !important;
+    margin: 20px 3px 0 0;
 }
 
 .custom-featured-products .halo-productBadges .badge.new-badge {
@@ -544,7 +548,7 @@ h5,
 }
 
 .custom-featured-products .sale-badge p {
-    margin: 13px 4px 0 0;
+    margin: 15px 4px 0 0;
 }
 
 @media (min-width: 1025px) {
