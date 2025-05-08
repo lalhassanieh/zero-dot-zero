@@ -487,12 +487,14 @@ h5,
     height: 16px;
 }
 
+.halo-productBadges {
+    right: 0 !important;
+}
+
 .halo-productBadges .badge.new-badge {
     background-color: transparent !important;
     background-image: url("https://cdn.shopify.com/s/files/1/0742/2669/6436/files/new-drop-badge.svg?v=1746707085");
-
     background-repeat: no-repeat;
- 
     background-position: right;
 }
 
