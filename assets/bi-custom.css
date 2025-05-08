@@ -490,9 +490,9 @@ h5,
 .halo-productBadges .badge.new-badge {
     background-color: transparent !important;
     background-image: url("https://cdn.shopify.com/s/files/1/0742/2669/6436/files/new-drop-badge.svg?v=1746707085");
-    width: 780px;
+
     background-repeat: no-repeat;
-    height: 77px;
+ 
     background-position: right;
 }
 
