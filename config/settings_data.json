@@ -72,6 +72,7 @@
     "product_price_font_size": 17,
     "product_price_margin_bottom": 0,
     "badge_font_size": 16,
+    "badge_text_transform": "uppercase",
     "badge_padding_top": 2,
     "badge_padding_bottom": 2,
     "badge_padding_left_right": 11,
