@@ -505,6 +505,10 @@ h5,
     margin: 11px 0 0 5px !important;
 }
 
+.custom-featured-products .halo-productBadges .badge.new-badge {
+    background-size: 57px 60px;
+}
+
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
         border-color:
