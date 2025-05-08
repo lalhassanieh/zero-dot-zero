@@ -528,11 +528,19 @@ h5,
     background-image: url(https://cdn.shopify.com/s/files/1/0742/2669/6436/files/sale-badge.svg?v=1746707085);
     background-repeat: no-repeat;
     background-size: 59px 60px;
-    height: 80px;
-    font-family: 'Gilroy Extra Bold';
+    height: 65px !important;
+    font-family: 'Gilroy Extra Bold' !important;
     right: 0;
     position: absolute;
     width: 65px;
+    color: #fff !important;
+}
+
+.custom-featured-products .sale-badge {
+    background-size: 45px 51px;
+    width: 52px;
+    font-size: 12px !important;
+    max-width: 53px;
 }
 
 @media (min-width: 1025px) {
