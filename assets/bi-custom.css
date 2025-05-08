@@ -492,7 +492,6 @@ h5,
 }
 
 .halo-productBadges .badge.new-badge {
-
     background-image: url(/cdn/shop/files/new-drop-badge.svg?v=1746707085);
     background-repeat: no-repeat;
     background-size: 85px 81px;
@@ -500,6 +499,10 @@ h5,
     font-family: 'Gilroy Extra Bold';
     right: 0;
     position: absolute;
+}
+
+.halo-productBadges .badge.new-badge {
+    margin: 11px 0 0 5px !important;
 }
 
 @media (min-width: 1025px) {
