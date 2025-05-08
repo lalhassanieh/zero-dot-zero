@@ -520,6 +520,21 @@ h5,
     display: none;
 }
 
+.halo-productBadges .badge.sale-badge {
+    border: 1px solid transparent !important;
+}
+
+.sale-badge {
+    background-image: url(https://cdn.shopify.com/s/files/1/0742/2669/6436/files/sale-badge.svg?v=1746707085);
+    background-repeat: no-repeat;
+    background-size: 59px 60px;
+    height: 80px;
+    font-family: 'Gilroy Extra Bold';
+    right: 0;
+    position: absolute;
+    width: 65px
+}
+
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
         border-color:
