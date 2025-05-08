@@ -492,10 +492,14 @@ h5,
 }
 
 .halo-productBadges .badge.new-badge {
-    background-color: transparent !important;
-    background-image: url("https://cdn.shopify.com/s/files/1/0742/2669/6436/files/new-drop-badge.svg?v=1746707085");
+
+    background-image: url(/cdn/shop/files/new-drop-badge.svg?v=1746707085);
     background-repeat: no-repeat;
-    background-position: right;
+    background-size: 85px 81px;
+    height: 80px;
+    font-family: 'Gilroy Extra Bold';
+    right: 0;
+    position: absolute;
 }
 
 @media (min-width: 1025px) {
