@@ -532,7 +532,7 @@ h5,
     font-family: 'Gilroy Extra Bold';
     right: 0;
     position: absolute;
-    width: 65px
+    width: 65px;
 }
 
 @media (min-width: 1025px) {
