@@ -516,6 +516,10 @@ h5,
     line-height: 10px;
 }
 
+.spotlight-products .badge {
+    display: none;
+}
+
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
         border-color:
