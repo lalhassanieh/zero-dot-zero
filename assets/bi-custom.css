@@ -548,7 +548,7 @@ h5,
 }
 
 .custom-featured-products .sale-badge p {
-    margin: 15px 4px 0 0;
+    margin: 15px 4px 0 0 !important;
 }
 
 @media (min-width: 1025px) {
