@@ -494,11 +494,12 @@ h5,
 .halo-productBadges .badge.new-badge {
     background-image: url(/cdn/shop/files/new-drop-badge.svg?v=1746707085);
     background-repeat: no-repeat;
-    background-size: 85px 81px;
-    height: 80px;
-    font-family: 'Gilroy Extra Bold';
+    background-size: 67px 71px;
+    height: 76px;
+    font-family:  'Gilroy Extra Bold';
     right: 0;
     position: absolute;
+    width: 84px;
 }
 
 .halo-productBadges .sale-badge p {
@@ -506,7 +507,7 @@ h5,
 }
 
 .halo-productBadges .badge.new-badge p {
-    margin: 16px 3px 0 0;
+    margin: 13px 6px 0 0 !important;
 }
 
 .custom-featured-products .halo-productBadges .badge.new-badge {
