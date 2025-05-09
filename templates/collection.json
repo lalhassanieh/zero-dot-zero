@@ -61,18 +61,19 @@
           "settings": {
             "heading": "Categories",
             "type": "3_level",
-            "link_list": ""
+            "link_list": "collections"
           }
         },
         "ce351101-2c54-4627-b740-b2c592067b4a": {
           "type": "filter",
           "settings": {
-            "heading": "Color",
-            "list_tags": "White,Black,Blue,Invory,Beige,Brown,Silver,Olive,Gainsboro,DimGray,Burlywood,Lightblue,Salmon,LightPink,LightCoral"
+            "heading": "Flavor",
+            "list_tags": "chocolate and coffee"
           }
         },
         "6684d566-6940-4457-9cf9-f1a8a6e80573": {
           "type": "filter",
+          "disabled": true,
           "settings": {
             "heading": "Size",
             "list_tags": "S,XS,M,L,XL"
@@ -80,6 +81,7 @@
         },
         "3978fd59-b580-49e1-9893-38d762f48f10": {
           "type": "product_block",
+          "disabled": true,
           "settings": {
             "heading": "Featured Products",
             "product_block_collection": "lunch-set",
@@ -91,6 +93,7 @@
         },
         "2f7f02ac-4072-40ea-844f-59943e256971": {
           "type": "text",
+          "disabled": true,
           "settings": {
             "heading": "Custom Block",
             "text": "<p>Custom CMS block displayed at the left sidebar on the Catalog Page. Put your own content here: text, html, images, media... or whatever you like.</p>\n\n<p>There are many similar sample content placeholders across the store. All editable from admin panel.</p>"
