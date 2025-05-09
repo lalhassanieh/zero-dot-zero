@@ -691,10 +691,12 @@
         "video_4GrCnE"
       ],
       "custom_css": [
-        ".slide-content {background-image: unset;}"
+        ".slide-content {background-image: unset;}",
+        ".item-video {padding-left: 60px; padding-right: 60px;}",
+        "@media only screen and (max-width: 1025px) {.item-video {padding-left: 15px; padding-right: 15px; }}"
       ],
       "settings": {
-        "container": "1470",
+        "container": "fullwidth",
         "padding_full_width": 0,
         "slideshow_background": "#fdf7eb",
         "slideshow_background_gradient": "",
