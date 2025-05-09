@@ -101,7 +101,7 @@
             "border_top_color": "#dddddd",
             "footer_bottom_bg": "#fdf7ec",
             "footer_bottom_bg_gradient": "",
-            "show_copyright": false,
+            "show_copyright": true,
             "show_shop_name": true,
             "enable_layout_grid": true,
             "text_fontsize": 12,
