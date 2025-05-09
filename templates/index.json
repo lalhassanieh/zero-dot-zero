@@ -65,7 +65,7 @@
             "color_des": "#005339",
             "sub_heading_mb": "Try 2025's  Top-Rated   Non - Alcoholic ",
             "font_size_sub_heading_mb": 20,
-            "sub_heading_spacing_bottom_mb": 20,
+            "sub_heading_spacing_bottom_mb": 0,
             "font_weight_sub_heading_mb": "400",
             "border_sub_heading_mb": "none",
             "color_sub_heading_mb": "#005339",
@@ -112,7 +112,7 @@
             "lookbook_pos_3": "right"
           }
         },
-        "image_ihxqRa": {
+        "image_EeMtWd": {
           "type": "image",
           "settings": {
             "image_slide": "shopify://shop_images/Frame-780-_1.jpg",
@@ -123,7 +123,7 @@
             "custom_vertical": "50",
             "enable_position_outside_image": false,
             "enable_border_line": false,
-            "padding_vertical": 30,
+            "padding_vertical": 100,
             "content_width": 385,
             "text_alignment": "center",
             "text_alignment_mb": "center",
@@ -165,7 +165,7 @@
             "color_des": "#005339",
             "sub_heading_mb": "Try 2025's  Top-Rated   Non - Alcoholic ",
             "font_size_sub_heading_mb": 20,
-            "sub_heading_spacing_bottom_mb": 20,
+            "sub_heading_spacing_bottom_mb": 0,
             "font_weight_sub_heading_mb": "400",
             "border_sub_heading_mb": "none",
             "color_sub_heading_mb": "#005339",
@@ -215,13 +215,13 @@
       },
       "block_order": [
         "image_M9rGXy",
-        "image_ihxqRa"
+        "image_EeMtWd"
       ],
       "custom_css": [
         ".slide-content .slide-button {justify-content: inherit; padding-left: 25px;}",
         ".slideshow .slick-dots {left: 13%; bottom: 79px; position: absolute;}",
         ".slideshow-wrapper {border-top: 1px solid #dddddd;}",
-        "@media only screen and (max-width: 1025px) {.content-box--absolute {top: unset; bottom: 0; left: 50%; transform: translateX(-50%); position: absolute; } .slideshow .slick-dots {left: 50%; transform: translateX(-50%); } .slide-content {padding-top: 25px; background-image: unset; }}"
+        "@media only screen and (max-width: 1025px) {.content-box--absolute {top: unset; bottom: 10px; left: 50%; transform: translateX(-50%); position: absolute; } .slideshow .slick-dots {left: 50%; transform: translateX(-50%); } .slide-content {padding-top: 25px; background-image: unset; }}"
       ],
       "name": "t:sections.slide-show.presets.name",
       "settings": {
