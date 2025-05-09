@@ -576,8 +576,6 @@ h5,
     background-position: top center;
     background-image: url("https://cdn.shopify.com/s/files/1/0742/2669/6436/files/logo-icon.svg?v=1746783115");
     background-repeat: no-repeat;
-
-
 }
 
 @media (min-width: 1025px) {
@@ -617,6 +615,16 @@ h5,
         max-width: 213px !important;
         min-width: 213px !important;
     }
+
+    .slideshow .item.item-video+.slide-content .slide-heading,
+    .slideshow .item.item-video+.slide-content .slide-text {
+
+        line-height: 30px !important;
+    }
+
+    .slide-video.item-video .content-box--absolute {
+        overflow-y: unset !important;
+    }
 }
 
 @media only screen and (max-width: 1025px) {
@@ -634,6 +642,12 @@ h5,
 @media (min-width: 768px) {
     .spotlight-products__product {
         background: #FDF7EB !important;
+    }
+}
+
+@media (max-width: 767px) {
+    .productView-nav .slick-dots {
+        background-color: transparent !important;
     }
 }
 
