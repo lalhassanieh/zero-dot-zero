@@ -705,7 +705,7 @@ h5,
 
     }
 
-    .tab-panel-content .product.slider__slide.grid__item:nth-child(2n + 2) {
+    .tab-panel-content .product.slider__slide.grid__item {
         border-right: 1px solid transparent !important;
     }
 }
