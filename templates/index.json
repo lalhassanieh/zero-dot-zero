@@ -23,7 +23,7 @@
             "custom_vertical": "50",
             "enable_position_outside_image": false,
             "enable_border_line": false,
-            "padding_vertical": 30,
+            "padding_vertical": 100,
             "content_width": 385,
             "text_alignment": "center",
             "text_alignment_mb": "center",
