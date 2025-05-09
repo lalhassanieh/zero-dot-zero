@@ -23,7 +23,7 @@
             "custom_vertical": "50",
             "enable_position_outside_image": false,
             "enable_border_line": false,
-            "padding_vertical": 30,
+            "padding_vertical": 100,
             "content_width": 385,
             "text_alignment": "center",
             "text_alignment_mb": "center",
@@ -211,119 +211,17 @@
             "vertical_pos_3": 0,
             "lookbook_pos_3": "right"
           }
-        },
-        "image_LBA3bB": {
-          "type": "image",
-          "disabled": true,
-          "settings": {
-            "image_slide": "shopify://shop_images/Frame_780_1.png",
-            "image_slide_mb": "shopify://shop_images/iPhone_14_15_Pro_Max_-_1_7d83be4d-40ae-4592-831a-734eff703deb.jpg",
-            "alignment": "left",
-            "enable_custom_position": true,
-            "custom_horizontal": "5",
-            "custom_vertical": "50",
-            "enable_position_outside_image": false,
-            "enable_border_line": false,
-            "padding_vertical": 30,
-            "content_width": 385,
-            "text_alignment": "center",
-            "text_alignment_mb": "center",
-            "enable_content_fullwidth": false,
-            "border_color_content": "",
-            "bg_color_content": "",
-            "profile_spacing_bottom": 50,
-            "profile_name": "",
-            "profile_name_color": "",
-            "profile_name_fs": 20,
-            "profile_name_fs_mb": 20,
-            "profile_name_fw": "normal",
-            "profile_title": "",
-            "profile_title_color": "",
-            "profile_title_fs": 20,
-            "profile_title_fs_mb": 20,
-            "profile_title_fw": "normal",
-            "sub_heading": "",
-            "letter_spacing_sub_title": "",
-            "font_size_sub_heading": 30,
-            "sub_heading_spacing_bottom": 20,
-            "sub_heading_font": "font_2",
-            "font_weight_sub_heading": "400",
-            "border_sub_heading": "none",
-            "sub_title_position": "sub_title_above",
-            "color_sub_heading": "#ffffff",
-            "heading": "Try 2025's<br>  Top-Rated<br>   <span>Non - Alcoholic </span>",
-            "letter_spacing_heading": "",
-            "enable_border_heading": false,
-            "font_style_heading": "normal",
-            "font_size_heading": 40,
-            "line_height_heading": 27,
-            "heading_spacing_bottom": 25,
-            "color_heading": "#005339",
-            "slide-des": "Drinks",
-            "font_size_des": 40,
-            "line_height_des": 20,
-            "des_spacing_bottom": 35,
-            "color_des": "#005339",
-            "sub_heading_mb": "Try 2025's  Top-Rated ",
-            "font_size_sub_heading_mb": 20,
-            "sub_heading_spacing_bottom_mb": 20,
-            "font_weight_sub_heading_mb": "400",
-            "border_sub_heading_mb": "none",
-            "color_sub_heading_mb": "#ffffff",
-            "heading_mb": "<span>Non - Alcoholic</span> Drinks",
-            "font_style_heading_mb": "normal",
-            "font_size_heading_mb": 24,
-            "line_height_heading_mb": 24,
-            "heading_spacing_bottom_mb": 8,
-            "color_heading_mb": "#ffffff",
-            "slide-des-mb": "",
-            "font_size_des_mb": 12,
-            "des_spacing_bottom_mb": 35,
-            "color_des_mb": "#ffffff",
-            "enable_icon_button": false,
-            "enable_button_link": false,
-            "enable_underline": true,
-            "font_size_link": 36,
-            "button_slide": "Discover",
-            "link": "shopify://collections",
-            "button_style": "button_1",
-            "button_slide_2": "",
-            "link_2": "",
-            "min_width_banner_button": 160,
-            "color_button": "#005339",
-            "border_button": "#232323",
-            "bg_button": "#fff7e5",
-            "bg_button_gradient": "",
-            "color_button_hover": "#ffffff",
-            "border_button_hover": "#ff8b21",
-            "bg_button_hover": "#ff8b21",
-            "bg_button_gradient_hover": "",
-            "use_contrasting_colors": false,
-            "lb_product_1": "",
-            "horizontal_pos_1": 0,
-            "vertical_pos_1": 0,
-            "lookbook_pos_1": "right",
-            "lb_product_2": "",
-            "horizontal_pos_2": 0,
-            "vertical_pos_2": 0,
-            "lookbook_pos_2": "right",
-            "lb_product_3": "",
-            "horizontal_pos_3": 0,
-            "vertical_pos_3": 0,
-            "lookbook_pos_3": "right"
-          }
         }
       },
       "block_order": [
         "image_M9rGXy",
-        "image_ihxqRa",
-        "image_LBA3bB"
+        "image_ihxqRa"
       ],
       "custom_css": [
         ".slide-content .slide-button {justify-content: inherit; padding-left: 25px;}",
         ".slideshow .slick-dots {left: 13%; bottom: 79px; position: absolute;}",
         ".slideshow-wrapper {border-top: 1px solid #dddddd;}",
-        "@media only screen and (max-width: 1025px) {.content-box--absolute {top: unset; bottom: 0; left: 50%; transform: translateX(-50%); position: absolute; } .slideshow .slick-dots {left: 50%; transform: translateX(-50%); }}"
+        "@media only screen and (max-width: 1025px) {.content-box--absolute {top: unset; bottom: 0; left: 50%; transform: translateX(-50%); position: absolute; } .slideshow .slick-dots {left: 50%; transform: translateX(-50%); } .slide-content {padding-top: 25px; background-image: unset; }}"
       ],
       "name": "t:sections.slide-show.presets.name",
       "settings": {
@@ -388,11 +286,11 @@
         "number_mobile_size": 16,
         "lookbook_truncate": "1",
         "mg_top_desktop": 20,
-        "mg_top_tablet": 50,
+        "mg_top_tablet": 20,
         "mg_top_mobile": 0,
         "mg_bottom_desktop": 20,
-        "mg_bottom_tablet": 50,
-        "mg_bottom_mobile": 50
+        "mg_bottom_tablet": 20,
+        "mg_bottom_mobile": 20
       }
     },
     "rich_text_Ar6Fqp": {
@@ -430,8 +328,8 @@
         "mg_top_tablet": 50,
         "mg_top_mobile": 50,
         "mg_bottom_desktop": 0,
-        "mg_bottom_tablet": 50,
-        "mg_bottom_mobile": 50
+        "mg_bottom_tablet": 0,
+        "mg_bottom_mobile": 0
       }
     },
     "brand_tab_block_az6GWe": {
@@ -792,7 +690,9 @@
         "image_4AeCDm",
         "video_4GrCnE"
       ],
-      "custom_css": [],
+      "custom_css": [
+        ".slide-content {background-image: unset;}"
+      ],
       "settings": {
         "container": "1470",
         "padding_full_width": 0,
@@ -855,8 +755,8 @@
         "number_mobile_size": 16,
         "lookbook_truncate": "1",
         "mg_top_desktop": 100,
-        "mg_top_tablet": 0,
-        "mg_top_mobile": 0,
+        "mg_top_tablet": 50,
+        "mg_top_mobile": 30,
         "mg_bottom_desktop": 0,
         "mg_bottom_tablet": 0,
         "mg_bottom_mobile": 0
@@ -2872,7 +2772,7 @@
         "product_block_dots": true,
         "product_block_dots_mb": true,
         "product_block_arrows": false,
-        "product_block_arrows_mb": true,
+        "product_block_arrows_mb": false,
         "image_behavior": "none",
         "mg_top_desktop": 50,
         "mg_top_tablet": 50,
@@ -2982,7 +2882,7 @@
         "enable_autoplay": false,
         "brand_speed": "3000",
         "brand_rows": "4",
-        "enable_arrows": true,
+        "enable_arrows": false,
         "enable_dots": false,
         "enable_center_mode": false,
         "style_position_arrows": "none",
@@ -2996,7 +2896,7 @@
         "arrow_background_gradient_hover": "",
         "arrow_border_hover": "",
         "brand_rows_mb": "1",
-        "brand_image_ratio": "square",
+        "brand_image_ratio": "adapt",
         "item_distance": 15,
         "margin_bottom_image": 0,
         "brand_item_border": "none",
@@ -3011,10 +2911,10 @@
         "margin_bottom_title": 0,
         "mg_top_desktop": 5,
         "mg_top_tablet": 50,
-        "mg_top_mobile": 50,
-        "mg_bottom_desktop": 50,
+        "mg_top_mobile": 0,
+        "mg_bottom_desktop": 0,
         "mg_bottom_tablet": 50,
-        "mg_bottom_mobile": 50
+        "mg_bottom_mobile": 0
       }
     },
     "rich_text_MLt7pA": {
@@ -3053,7 +2953,7 @@
         "mg_top_mobile": 50,
         "mg_bottom_desktop": 0,
         "mg_bottom_tablet": 50,
-        "mg_bottom_mobile": 50
+        "mg_bottom_mobile": 0
       }
     },
     "product_block_nEDnQ8": {
@@ -3343,7 +3243,7 @@
         "mg_top_mobile": 50,
         "mg_bottom_desktop": 0,
         "mg_bottom_tablet": 50,
-        "mg_bottom_mobile": 50
+        "mg_bottom_mobile": 0
       }
     },
     "product_block_MzwjbK": {
@@ -3612,10 +3512,10 @@
         "main_image_position": "left",
         "main_image_bg_color": "rgba(0,0,0,0)",
         "thumnail_layout": "4",
-        "show_thumbnail_mobile": true,
+        "show_thumbnail_mobile": false,
         "thumbnail_to_show": 5,
         "thumbnail_active_color": "#e11ecb",
-        "thumbnail_arrow_color_mb": "#ffffff",
+        "thumbnail_arrow_color_mb": "#fff",
         "thumbnail_image_bg_color": "#121212",
         "media_fit": "cover",
         "product_image_ratio": "adapt",
@@ -3625,10 +3525,10 @@
         "show_badge": true,
         "mg_top_desktop": 80,
         "mg_top_tablet": 65,
-        "mg_top_mobile": 45,
+        "mg_top_mobile": 30,
         "mg_bottom_desktop": 80,
         "mg_bottom_tablet": 30,
-        "mg_bottom_mobile": 80
+        "mg_bottom_mobile": 30
       }
     },
     "faqs_RfB3pw": {
