@@ -3164,10 +3164,14 @@
       "block_order": [
         "small_img_yaYiqy"
       ],
+      "custom_css": [
+        ".halo-banner-wrapper {padding-left: 60px; padding-right: 60px;}",
+        "@media only screen and (max-width: 1025px) {.halo-banner-wrapper {padding-left: 15px; padding-right: 15px; }}"
+      ],
       "name": "t:sections.image-banner.presets.name",
       "settings": {
         "id_section": "",
-        "container": "1770",
+        "container": "fullwidth",
         "padding_full_width": 0,
         "display_type": "slide",
         "enable_arrows": false,
@@ -3488,7 +3492,7 @@
       ],
       "custom_css": [
         ".productView-container {padding-left: 60px; padding-right: 60px;}",
-        "@media only screen and (max-width: 1025px) {.productView-container {padding-left: 15px; padding-right: 15px;}}"
+        "@media only screen and (max-width: 1025px) {.productView-container {padding-left: 15px; padding-right: 15px; }}"
       ],
       "settings": {
         "id_section": "",
