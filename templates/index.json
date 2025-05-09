@@ -3507,7 +3507,7 @@
         "main_image_counter_mobile": true,
         "main_image_layout": "2",
         "main_image_position": "left",
-        "main_image_bg_color": "#121212",
+        "main_image_bg_color": "rgba(0,0,0,0)",
         "thumnail_layout": "4",
         "show_thumbnail_mobile": true,
         "thumbnail_to_show": 5,
