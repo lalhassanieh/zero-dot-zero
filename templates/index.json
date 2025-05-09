@@ -690,7 +690,9 @@
         "image_4AeCDm",
         "video_4GrCnE"
       ],
-      "custom_css": [],
+      "custom_css": [
+        ".slide-content{background-image: unset;}"
+      ],
       "settings": {
         "container": "1470",
         "padding_full_width": 0,
