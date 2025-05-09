@@ -684,7 +684,8 @@ h5,
     .tab-panel-content .product.slider__slide.grid__item:nth-child(3n + 3) {
         border-right: 1px solid transparent !important;
     }
-    .spotlight-products__item .subtitle{
+
+    .spotlight-products__item .subtitle {
         margin-bottom: 0 !important;
     }
 }
@@ -702,10 +703,13 @@ h5,
 
     .tab-panel-content .product.slider__slide.grid__item {
         width: 50%;
-
     }
 
     .tab-panel-content .product.slider__slide.grid__item {
         border-right: 1px solid transparent !important;
+    }
+
+    .megamenu_style_4 .site-nav-banner .site-nav-banner--item {
+        max-width: 100% !important;
     }
 }
