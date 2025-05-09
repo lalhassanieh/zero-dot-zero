@@ -69,7 +69,7 @@
             "font_weight_sub_heading_mb": "400",
             "border_sub_heading_mb": "none",
             "color_sub_heading_mb": "#005339",
-            "heading_mb": "<span>Non - Alcoholic</span> Drinks",
+            "heading_mb": "<span>Non - Alcoholic</span> <br>Drinks",
             "font_style_heading_mb": "normal",
             "font_size_heading_mb": 24,
             "line_height_heading_mb": 24,
@@ -221,7 +221,7 @@
         ".slide-content .slide-button {justify-content: inherit; padding-left: 25px;}",
         ".slideshow .slick-dots {left: 13%; bottom: 79px;}",
         ".slideshow-wrapper {border-top: 1px solid #dddddd;}",
-        "@media only screen and (max-width: 1025px) {.content-box--absolute {top: unset; left: 50%; transform: translate(-50%, -50%); bottom: 0; } .slideshow .slick-dots {left: 50%;}}"
+        "@media only screen and (max-width: 1025px) {.content-box--absolute {top: unset; left: 50%; transform: translate(-50%, -50%); bottom: 0; } .slideshow .slick-dots {left: 50%; }}"
       ],
       "name": "t:sections.slide-show.presets.name",
       "settings": {
