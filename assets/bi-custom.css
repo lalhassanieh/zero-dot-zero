@@ -675,8 +675,8 @@ h5,
 
     .slideshow .item.item-video+.slide-content .slide-heading,
     .slideshow .item.item-video+.slide-content .slide-text {
-
-        line-height: 30px !important;
+        line-height: 19px !important;
+        font-size: 17px !important;
     }
 }
 
