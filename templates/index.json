@@ -3571,9 +3571,13 @@
         "paragraph_CxVCEp",
         "image_GtaWTr"
       ],
+      "custom_css": [
+        ".faq-container {padding-left: 60px; padding-right: 60px;}",
+        "@media only screen and (max-width: 1025px) {.faq-container {padding-left: 15px; padding-right: 15px; }}"
+      ],
       "name": "t:sections.faqs.presets.name",
       "settings": {
-        "container": "1770",
+        "container": "fullwidth",
         "padding_full_width": 0,
         "title": "FAQ’s",
         "color_title": "#ef6532",
@@ -3603,7 +3607,7 @@
         "mg_top_mobile": 50,
         "mg_bottom_desktop": 50,
         "mg_bottom_tablet": 50,
-        "mg_bottom_mobile": 0
+        "mg_bottom_mobile": 30
       }
     }
   },
