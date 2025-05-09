@@ -3485,7 +3485,7 @@
       ],
       "settings": {
         "id_section": "",
-        "container": "1170",
+        "container": "1770",
         "padding_full_width": 0,
         "show_sticky_info": false,
         "bg_color_product": "#fdf7ec",
@@ -3570,7 +3570,7 @@
       ],
       "name": "t:sections.faqs.presets.name",
       "settings": {
-        "container": "1770",
+        "container": "1170",
         "padding_full_width": 0,
         "title": "FAQ’s",
         "color_title": "#ef6532",
