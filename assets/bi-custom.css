@@ -578,6 +578,11 @@ h5,
     background-repeat: no-repeat;
 }
 
+.halo-collection-content .bundle-badge {
+    margin-right: 0;
+    margin-top: 0;
+}
+
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
         border-color:
@@ -708,4 +713,6 @@ h5,
     .tab-panel-content .product.slider__slide.grid__item {
         border-right: 1px solid transparent !important;
     }
+
+
 }
