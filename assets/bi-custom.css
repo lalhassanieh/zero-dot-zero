@@ -684,6 +684,9 @@ h5,
     .tab-panel-content .product.slider__slide.grid__item:nth-child(3n + 3) {
         border-right: 1px solid transparent !important;
     }
+    .spotlight-products__item .subtitle{
+        margin-bottom: 0 !important;
+    }
 }
 
 @media (max-width: 550px) {
