@@ -153,10 +153,10 @@
         "product_space_between_vert_mb": 16,
         "product_space_between_horiz_desk": 60,
         "product_space_between_horiz_mb": 30,
-        "mg_top_desktop": 0,
+        "mg_top_desktop": 100,
         "mg_top_tablet": 0,
         "mg_top_mobile": 0,
-        "mg_bottom_desktop": 0,
+        "mg_bottom_desktop": 40,
         "mg_bottom_tablet": 0,
         "mg_bottom_mobile": 0
       }
