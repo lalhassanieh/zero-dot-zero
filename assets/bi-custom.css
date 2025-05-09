@@ -649,6 +649,23 @@ h5,
     .productView-nav .slick-dots {
         background-color: transparent !important;
     }
+
+    .rich-text__blocks {
+        margin-top: 5px !important;
+    }
+
+    .faqs-desc {
+        font-size: 25px !important;
+        line-height: 30px !important;
+    }
+
+    .faqs-row {
+        width: 100% !important;
+    }
+
+    .faqs .faqs-item .card-body p {
+        padding-bottom: 30px !important;
+    }
 }
 
 @media only screen and (max-width: 479px) {
