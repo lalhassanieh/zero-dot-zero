@@ -33,7 +33,7 @@ h5,
 .h5,
 .menu-lv-item a,
 .banner-sub-title,
-.banner-text {
+.banner-text ,.copyright__content p{
     font-family: 'Gilroy Extra Bold' !important;
 }
 
