@@ -616,11 +616,7 @@ h5,
         min-width: 213px !important;
     }
 
-    .slideshow .item.item-video+.slide-content .slide-heading,
-    .slideshow .item.item-video+.slide-content .slide-text {
 
-        line-height: 30px !important;
-    }
 
     .slide-video.item-video .content-box--absolute {
         overflow-y: unset !important;
@@ -642,6 +638,23 @@ h5,
 @media (min-width: 768px) {
     .spotlight-products__product {
         background: #FDF7EB !important;
+    }
+
+    .slideshow .item.item-video+.slide-content .slide-heading,
+    .slideshow .item.item-video+.slide-content .slide-text {
+
+        line-height: 30px !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .tab-panel-content .product.slider__slide.grid__item {
+        width: 33.3333333%;
+
+    }
+
+    .tab-panel-content .product.slider__slide.grid__item:nth-child(3n + 3) {
+        border-right: 1px solid transparent !important;
     }
 }
 
@@ -668,8 +681,24 @@ h5,
     }
 }
 
+@media (max-width: 550px) {
+    .faqs .faqs-paragraph+.faqs-paragraph {
+        margin-top: 0 !important;
+    }
+}
+
 @media only screen and (max-width: 479px) {
     .recipes-blog-section .halo-item {
         border-right: 1px solid transparent;
     }
 }
+@media (min-width: 321px) {
+    .tab-panel-content .product.slider__slide.grid__item {
+        width: 50%;
+
+    }
+
+    .tab-panel-content .product.slider__slide.grid__item:nth-child(2n + 2) {
+        border-right: 1px solid transparent !important;
+    }
+  }
