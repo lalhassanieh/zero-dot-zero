@@ -496,7 +496,7 @@ h5,
     background-repeat: no-repeat;
     background-size: 67px 71px;
     height: 76px;
-    font-family:  'Gilroy Extra Bold';
+    font-family: 'Gilroy Extra Bold';
     right: 0;
     position: absolute;
     width: 84px;
@@ -562,6 +562,12 @@ h5,
     position: absolute;
     width: 82px;
     color: #fff !important;
+    margin-right: 15px;
+    margin-top: 29px;
+}
+
+.bundle-badge p {
+    margin: 22px 0 0 0;
 }
 
 @media (min-width: 1025px) {
