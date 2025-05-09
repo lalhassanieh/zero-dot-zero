@@ -321,11 +321,9 @@
       ],
       "custom_css": [
         ".slide-content .slide-button {justify-content: inherit; padding-left: 25px;}",
-        ".slideshow .slick-dots {left: 13%; bottom: 79px;}",
+        ".slideshow .slick-dots {left: 13%; bottom: 79px; position: absolute;}",
         ".slideshow-wrapper {border-top: 1px solid #dddddd;}",
-        " .slide-pc{position:relat}",
-        ".slide-content::before {background-image: url(\"https://cdn.shopify.com/s/files/1/0742/2669/6436/files/logo-icon.svg?v=1746783115\"); background-repeat: no-repeat;}",
-        "@media only screen and (max-width: 1025px) {.content-box--absolute {top: unset; left: 50%; transform: translate(-50%, -50%); bottom: 0; } .slideshow .slick-dots {left: 50%; }}"
+        "@media only screen and (max-width: 1025px) {.content-box--absolute {top: unset; bottom: 0; left: 50%; transform: translateX(-50%); position: absolute; } .slideshow .slick-dots {left: 50%; transform: translateX(-50%); }}"
       ],
       "name": "t:sections.slide-show.presets.name",
       "settings": {
