@@ -551,6 +551,18 @@ h5,
     margin: 15px 4px 0 0 !important;
 }
 
+.bundle-badge {
+    background-image: url(https://cdn.shopify.com/s/files/1/0742/2669/6436/files/bundle-badge.svg?v=1746707085);
+    background-repeat: no-repeat;
+    background-size: 81px 65px;
+    height: 88px !important;
+    font-family: 'Gilroy Extra Bold' !important;
+    right: 0;
+    position: absolute;
+    width: 82px;
+    color: #fff !important;
+}
+
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
         border-color:
