@@ -24,7 +24,7 @@
           "type": "group_3",
           "settings": {
             "announcement_text": "Free Delivery All Around KSA",
-            "color": "#fff"
+            "announcement_text_color": "#ffffff"
           }
         },
         "group_2_Aw4RU8": {
@@ -559,8 +559,8 @@
             "show_cart_sticky": false,
             "header_icons_color": "#26292d",
             "header_icons_color_hover": "#26292d",
-            "cart_count_bubble_color": "#232323",
-            "cart_count_bubble_bg": "#ddbdb0",
+            "cart_count_bubble_color": "#FFFFFF",
+            "cart_count_bubble_bg": "#005339",
             "cart_count_bubble_bg_gradient": "",
             "wishlist_color_item": "#ffffff",
             "wishlist_bg_item": "#232323"
