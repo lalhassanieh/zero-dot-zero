@@ -365,7 +365,7 @@
     "btn_3_color_hover": "#ffffff",
     "btn_3_border_hover": "#e9514b",
     "btn_3_bg_hover": "#e9514b",
-    "banner_animation": "none",
+    "banner_animation": "effect_fade_up",
     "animations_hover_elements": "none",
     "use_custom_js": false,
     "enable_sticky_notification": false,
