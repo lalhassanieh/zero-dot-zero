@@ -3525,10 +3525,10 @@
         "show_badge": true,
         "mg_top_desktop": 80,
         "mg_top_tablet": 65,
-        "mg_top_mobile": 45,
+        "mg_top_mobile": 30,
         "mg_bottom_desktop": 80,
         "mg_bottom_tablet": 30,
-        "mg_bottom_mobile": 80
+        "mg_bottom_mobile": 30
       }
     },
     "faqs_RfB3pw": {
