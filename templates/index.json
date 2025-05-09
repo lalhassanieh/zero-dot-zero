@@ -2953,7 +2953,7 @@
         "mg_top_mobile": 50,
         "mg_bottom_desktop": 0,
         "mg_bottom_tablet": 50,
-        "mg_bottom_mobile": 50
+        "mg_bottom_mobile": 0
       }
     },
     "product_block_nEDnQ8": {
@@ -3243,7 +3243,7 @@
         "mg_top_mobile": 50,
         "mg_bottom_desktop": 0,
         "mg_bottom_tablet": 50,
-        "mg_bottom_mobile": 50
+        "mg_bottom_mobile": 0
       }
     },
     "product_block_MzwjbK": {
@@ -3512,10 +3512,10 @@
         "main_image_position": "left",
         "main_image_bg_color": "rgba(0,0,0,0)",
         "thumnail_layout": "4",
-        "show_thumbnail_mobile": true,
+        "show_thumbnail_mobile": false,
         "thumbnail_to_show": 5,
         "thumbnail_active_color": "#e11ecb",
-        "thumbnail_arrow_color_mb": "#ffffff",
+        "thumbnail_arrow_color_mb": "#fff",
         "thumbnail_image_bg_color": "#121212",
         "media_fit": "cover",
         "product_image_ratio": "adapt",
