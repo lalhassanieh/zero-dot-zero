@@ -640,14 +640,7 @@ h5,
         background: #FDF7EB !important;
     }
 
-    .tab-panel-content .product.slider__slide.grid__item {
-        width: 33.3333333%;
 
-    }
-
-    .tab-panel-content .product.slider__slide.grid__item:nth-child(3n + 3) {
-        border-right: 1px solid transparent !important;
-    }
 }
 
 
@@ -682,6 +675,15 @@ h5,
     .faqs-images-wrapper img {
         width: 100%;
     }
+
+    .tab-panel-content .product.slider__slide.grid__item {
+        width: 33.3333333%;
+
+    }
+
+    .tab-panel-content .product.slider__slide.grid__item:nth-child(3n + 3) {
+        border-right: 1px solid transparent !important;
+    }
 }
 
 @media (max-width: 550px) {
@@ -694,9 +696,7 @@ h5,
     .recipes-blog-section .halo-item {
         border-right: 1px solid transparent;
     }
-}
 
-@media (min-width: 321px) {
     .tab-panel-content .product.slider__slide.grid__item {
         width: 50%;
 
