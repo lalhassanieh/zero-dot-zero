@@ -570,6 +570,10 @@ h5,
     margin: 22px 0 0 0;
 }
 
+.footer-block__item{
+    width: 20% !important;
+}
+
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
         border-color:

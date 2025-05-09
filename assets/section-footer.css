@@ -653,6 +653,7 @@ footer details[open] summary~* {
     height: 24px;
 }
 
+
 @keyframes animateLocalization {
     0% {
         opacity: 0;
