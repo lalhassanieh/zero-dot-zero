@@ -656,7 +656,7 @@ h5,
         background-color: transparent !important;
     }
 
-    .rich-text__blocks {
+    .rich-text__blocks h2 {
         margin-top: 5px !important;
     }
 
@@ -677,6 +677,10 @@ h5,
     .slideshow .item.item-video+.slide-content .slide-text {
         line-height: 19px !important;
         font-size: 17px !important;
+    }
+
+    .faqs-images-wrapper img {
+        width: 100%;
     }
 }
 
