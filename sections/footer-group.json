@@ -59,7 +59,7 @@
           "type": "link_list",
           "settings": {
             "custom_width": "20",
-            "heading": "About Us",
+            "heading": "Explore",
             "menu": "footer",
             "mg_bottom": 11
           }
@@ -86,8 +86,8 @@
           "type": "link_list",
           "settings": {
             "custom_width": "20",
-            "heading": "Our Brands",
-            "menu": "footer-menu-4",
+            "heading": "Loyalty Program",
+            "menu": "footer-menu-6",
             "mg_bottom": 10
           }
         },
