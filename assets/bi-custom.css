@@ -51,9 +51,18 @@ h5,
 .site-nav-sub .site-nav-link {
     font-family: 'Gilroy Light' !important;
 }
-
 .riyal-font {
-    font-family: 'MHE-Riyal-Sign' !important;
+  position: relative;
+
+}
+.riyal-font::after {
+    position: absolute;
+    top: 50%;
+    content: "\0041";
+    inset-inline-end: 0;
+    font-family: "MHE Riyal Sign" !important;
+    font-weight: 700;
+    transform: translateY(-50%);
 }
 
 .header-minimal__content {
