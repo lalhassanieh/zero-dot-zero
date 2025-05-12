@@ -58,6 +58,7 @@
         },
         "80b0a11c-fb01-4b89-8a29-1dbb2a1db16a": {
           "type": "category",
+          "disabled": true,
           "settings": {
             "heading": "Categories",
             "type": "3_level",
@@ -109,7 +110,7 @@
       ],
       "custom_css": [
         ".collection-default {padding-left: 100px; padding-right: 100px;}",
-        "@media only screen and (max-width: 1025px) {.collection-default {padding-left: 15px; padding-right: 15px;}}"
+        "@media only screen and (max-width: 1025px) {.collection-default {padding-left: 15px; padding-right: 15px; }}"
       ],
       "settings": {
         "container": "fullwidth",
