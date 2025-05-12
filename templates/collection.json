@@ -108,7 +108,8 @@
         "2f7f02ac-4072-40ea-844f-59943e256971"
       ],
       "custom_css": [
-        ".collection-default{padding-left:100px; padding-right:100px;}"
+        ".collection-default {padding-left: 100px; padding-right: 100px;}",
+        "@media only screen and (max-width: 1025px) {.collection-default {padding-left: 15px; padding-right: 15px;}}"
       ],
       "settings": {
         "container": "fullwidth",
