@@ -53,12 +53,12 @@ h5,
 }
 
 .riyal-font,
-.field__currency .format-currency {
+.field__currency.format-currency {
     position: relative;
 }
 
 .riyal-font::after,
-.field__currency .format-currency:after {
+.field__currency.format-currency:after {
     position: absolute;
     top: 50%;
     content: "\0041";
