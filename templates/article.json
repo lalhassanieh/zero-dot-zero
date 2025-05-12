@@ -69,6 +69,7 @@
         },
         "9ffcbc70-f507-4049-874d-4e9915e05726": {
           "type": "image_gallery",
+          "disabled": true,
           "settings": {
             "image_gallery_swipe_on_mobile": "slider",
             "column": "3",
@@ -178,6 +179,7 @@
         },
         "ce82dddb-aa2f-428e-bd37-3e033250c238": {
           "type": "lookbook_banner",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/41004a990b4d257faa761a00af6b591e3dc0a86a_1.png",
             "margin_bottom": 40,
