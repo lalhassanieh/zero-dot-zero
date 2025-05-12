@@ -56,11 +56,11 @@
         </dt>
       {%- endcomment -%}
       {% comment %} <dd class="price__last"><span class="price-item price-item--regular">{{ money_price }}</span></dd> {% endcomment %}
-      <dd class="price__last test2">
+      <dd class="price__last test4">
         <span class="price-item price-item--regular">
-            {%- assign parts = money_price | split: settings.currency_code -%}
-            {{ parts.first -}}
-            <span class="currency-font">{{ settings.currency_code }}</span>{{ parts.last }}
+          {%- assign parts = money_price | split: settings.currency_code -%}
+          {{ money_price }}
+          <span class="currency-font">{{ settings.currency_code }}</span>{{ parts.last }}
         </span>
       </dd>
     </div>
