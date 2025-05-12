@@ -71,6 +71,9 @@ h5,
     font-size: 20px;
 }
 
+.field__currency.format-currency:after {
+    right: -23px;
+}
 
 .header-minimal__content {
     padding-left: 100px;
