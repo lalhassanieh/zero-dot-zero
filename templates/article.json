@@ -69,6 +69,7 @@
         },
         "9ffcbc70-f507-4049-874d-4e9915e05726": {
           "type": "image_gallery",
+          "disabled": true,
           "settings": {
             "image_gallery_swipe_on_mobile": "slider",
             "column": "3",
@@ -178,6 +179,7 @@
         },
         "ce82dddb-aa2f-428e-bd37-3e033250c238": {
           "type": "lookbook_banner",
+          "disabled": true,
           "settings": {
             "margin_bottom": 40,
             "content_max_width": 400,
@@ -219,6 +221,7 @@
         },
         "73becaeb-c487-4f3b-93aa-39f4bef40c07": {
           "type": "block_quote",
+          "disabled": true,
           "settings": {
             "enable_bg_color": true,
             "bg_color_content": "#fafafa",
@@ -234,6 +237,7 @@
         },
         "df6f199c-e8b4-46e7-8d3f-12e6302e295c": {
           "type": "block_quote",
+          "disabled": true,
           "settings": {
             "enable_bg_color": false,
             "bg_color_content": "#fafafa",
@@ -281,11 +285,11 @@
         "sidebar_heading_font_weight": "700",
         "sidebar_heading_text_transform": "uppercase",
         "show_main_img": false,
-        "show_author": true,
-        "show_date": true,
-        "show_tags": true,
-        "show_share": true,
-        "show_next_prev": true,
+        "show_author": false,
+        "show_date": false,
+        "show_tags": false,
+        "show_share": false,
+        "show_next_prev": false,
         "background_color": "",
         "title_font": "font_2",
         "title_font_size": 18,
