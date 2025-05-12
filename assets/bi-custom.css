@@ -585,8 +585,9 @@ h5,
 
 .sidebarBlock-heading {
     background: #FDF7EC;
-    border-bottom: 1px solid transparent;
+    border-bottom: 1px solid transparent !important;
     padding: 15px !important;
+    color: #000 !important
 }
 
 .sidebarBlock-headingWrapper .sidebarBlock-heading::after {
