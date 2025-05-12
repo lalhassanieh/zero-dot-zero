@@ -64,6 +64,7 @@ h5,
     font-family: 'MHE-Riyal-Sign' !important;
     font-weight: 700;
     transform: translateY(-50%);
+    font-size: 20px;
 }
 
 .header-minimal__content {
