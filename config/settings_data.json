@@ -11,6 +11,7 @@
   "current": {
     "layout_body": "default",
     "mobile_menu": "default",
+    "list_collections_layout": "collections_full",
     "product_page_layout": "default",
     "type_font_1": "shopify_fonts",
     "type_font_1_name": "DM Sans",
