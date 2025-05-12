@@ -31,22 +31,11 @@
         "b0ea69b7-8a54-4a3c-9abd-0fcceeabaaa0": {
           "type": "title",
           "settings": {
-            "fontsize_text": 20,
+            "fontsize_text": 32,
             "fontsize_text_mb": 18,
-            "color_title": "#232323",
+            "color_title": "#000000",
             "spacing_top": 0,
             "spacing_bottom": 10
-          }
-        },
-        "0e4ea696-4820-4c98-aaa6-806d41782a3d": {
-          "type": "meta",
-          "settings": {
-            "show_sold_in": true,
-            "sold_in_number": "3,5,6,7,8,10,12,15",
-            "sold_in_hours": "10,15,16,17,18,20,25,35",
-            "color_text_sold_in": "#e95144",
-            "spacing_top": 0,
-            "spacing_bottom": 14
           }
         },
         "4036f89b-c2c5-49a4-9d6b-2fd29ce7c46c": {
@@ -58,6 +47,25 @@
             "color_text": "#3c3c3c",
             "spacing_top": 0,
             "spacing_bottom": 12
+          }
+        },
+        "4f95b592-8369-4ab0-b30d-24e463fb6890": {
+          "type": "price",
+          "settings": {
+            "fontsize_text": 18,
+            "spacing_top": 0,
+            "spacing_bottom": 17
+          }
+        },
+        "0e4ea696-4820-4c98-aaa6-806d41782a3d": {
+          "type": "meta",
+          "settings": {
+            "show_sold_in": true,
+            "sold_in_number": "3,5,6,7,8,10,12,15",
+            "sold_in_hours": "10,15,16,17,18,20,25,35",
+            "color_text_sold_in": "#e95144",
+            "spacing_top": 0,
+            "spacing_bottom": 14
           }
         },
         "4e59f24a-8859-4579-a80a-d70e6f1bf66b": {
@@ -74,14 +82,6 @@
             "color_border": "#e6e6e6",
             "spacing_top": 0,
             "spacing_bottom": 18
-          }
-        },
-        "4f95b592-8369-4ab0-b30d-24e463fb6890": {
-          "type": "price",
-          "settings": {
-            "fontsize_text": 18,
-            "spacing_top": 0,
-            "spacing_bottom": 17
           }
         },
         "5d8b9ff9-6a1c-4850-a6c2-e6cdbb8b7f7c": {
@@ -313,10 +313,10 @@
       "block_order": [
         "2e8c7c14-a0ad-4930-a1d8-3def05310426",
         "b0ea69b7-8a54-4a3c-9abd-0fcceeabaaa0",
-        "0e4ea696-4820-4c98-aaa6-806d41782a3d",
         "4036f89b-c2c5-49a4-9d6b-2fd29ce7c46c",
-        "4e59f24a-8859-4579-a80a-d70e6f1bf66b",
         "4f95b592-8369-4ab0-b30d-24e463fb6890",
+        "0e4ea696-4820-4c98-aaa6-806d41782a3d",
+        "4e59f24a-8859-4579-a80a-d70e6f1bf66b",
         "5d8b9ff9-6a1c-4850-a6c2-e6cdbb8b7f7c",
         "bd3a641e-98d0-4da1-ab57-d5e4b0391995",
         "d98e243b-3682-495a-965a-1c7f7d460880",
