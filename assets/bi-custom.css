@@ -583,6 +583,16 @@ h5,
     margin-top: 0;
 }
 
+.sidebarBlock-heading {
+    background: #FDF7EC;
+    border-bottom: 1px solid transparent;
+    padding: 15px !important;
+}
+
+.sidebarBlock-headingWrapper .sidebarBlock-heading::after {
+    right: 12px !important
+}
+
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
         border-color:
@@ -644,8 +654,6 @@ h5,
     .spotlight-products__product {
         background: #FDF7EB !important;
     }
-
-
 }
 
 
@@ -683,7 +691,6 @@ h5,
 
     .tab-panel-content .product.slider__slide.grid__item {
         width: 33.3333333%;
-
     }
 
     .tab-panel-content .product.slider__slide.grid__item:nth-child(3n + 3) {
@@ -713,6 +720,4 @@ h5,
     .tab-panel-content .product.slider__slide.grid__item {
         border-right: 1px solid transparent !important;
     }
-
-
 }
