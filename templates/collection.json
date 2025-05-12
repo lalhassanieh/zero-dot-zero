@@ -107,8 +107,11 @@
         "3978fd59-b580-49e1-9893-38d762f48f10",
         "2f7f02ac-4072-40ea-844f-59943e256971"
       ],
+      "custom_css": [
+        ".collection-default{padding-left:100px; padding-right:100px;}"
+      ],
       "settings": {
-        "container": "1770",
+        "container": "fullwidth",
         "padding_full_width": 0,
         "colors_bg": "rgba(0,0,0,0)",
         "colors_bg_gradient": "",
