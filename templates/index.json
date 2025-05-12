@@ -112,7 +112,7 @@
             "lookbook_pos_3": "right"
           }
         },
-        "image_EeMtWd": {
+        "image_6NLgiM": {
           "type": "image",
           "settings": {
             "image_slide": "shopify://shop_images/Frame-780-_1.jpg",
@@ -124,7 +124,7 @@
             "enable_position_outside_image": false,
             "enable_border_line": false,
             "padding_vertical": 100,
-            "content_width": 385,
+            "content_width": 415,
             "text_alignment": "center",
             "text_alignment_mb": "center",
             "enable_content_fullwidth": false,
@@ -155,8 +155,8 @@
             "enable_border_heading": false,
             "font_style_heading": "normal",
             "font_size_heading": 40,
-            "line_height_heading": 27,
-            "heading_spacing_bottom": 25,
+            "line_height_heading": 45,
+            "heading_spacing_bottom": 20,
             "color_heading": "#005339",
             "slide-des": "Drinks",
             "font_size_des": 40,
@@ -184,7 +184,7 @@
             "enable_underline": true,
             "font_size_link": 36,
             "button_slide": "Discover",
-            "link": "shopify://collections",
+            "link": "shopify://collections/all",
             "button_style": "button_1",
             "button_slide_2": "",
             "link_2": "",
@@ -215,7 +215,7 @@
       },
       "block_order": [
         "image_M9rGXy",
-        "image_EeMtWd"
+        "image_6NLgiM"
       ],
       "custom_css": [
         ".slide-content .slide-button {justify-content: inherit; padding-left: 25px;}",
