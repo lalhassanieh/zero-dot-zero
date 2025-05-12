@@ -126,6 +126,7 @@
         },
         "d97e417a-941b-4a5d-bef3-a651adb918d8": {
           "type": "variant_description",
+          "disabled": true,
           "settings": {
             "spacing_top": 0,
             "spacing_bottom": 12
@@ -133,6 +134,7 @@
         },
         "04ea8843-f461-4f1d-8ea4-43f62fdfb21e": {
           "type": "perks",
+          "disabled": true,
           "settings": {
             "show_size_chart": true,
             "size_chart_type": "custom_image",
@@ -373,7 +375,7 @@
         "sidebar_heading_font_weight": "700",
         "sidebar_heading_text_transform": "uppercase",
         "show_badge": true,
-        "show_subtotal": true,
+        "show_subtotal": false,
         "subtotal_style": "1",
         "show_sticky_add_to_cart": true,
         "sticky_atc_layout": "1",
@@ -401,7 +403,7 @@
         "block_image_ratio": "adapt",
         "bundle_discount": true,
         "bundle_discount_text": "Get a [discount]% discount buying these products together",
-        "bundle_discount_text_color": "#232323",
+        "bundle_discount_text_color": "#000000",
         "total_btn_color": "#ffffff",
         "total_btn_border": "#232323",
         "total_btn_bg": "#232323",
