@@ -659,13 +659,7 @@ dd.price__compare {
     font-family: 'Gilroy Light' !important;
 }
 
-.recentlyViewed-row.products-carousel .product {
-    border-right: 1px solid #A1A1A1 !important;
-}
 
-.recentlyViewed-row.products-carousel .product:nth-child(3n + 3) {
-    border-right: 1px solid transparent !important;
-}
 
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
