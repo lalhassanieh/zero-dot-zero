@@ -623,6 +623,10 @@ h5,
     color: #000 !important;
 }
 
+dd.price__compare {
+    margin: 0 26px 0 0 !important
+}
+
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
         border-color:
