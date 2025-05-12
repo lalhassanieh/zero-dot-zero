@@ -681,15 +681,6 @@ dd.price__compare {
         display: none;
     }
 
-    .page-sidebar {
-        width: 265px;
-    }
-
-    .page-sidebar+.page-content {
-        width: calc(100% - 265px);
-        padding-left: 30px;
-        float: left;
-    }
 }
 
 @media only screen and (max-width:991px) {

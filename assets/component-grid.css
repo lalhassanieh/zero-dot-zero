@@ -166,7 +166,7 @@ body.open-mobile-sidebar .halo-grid-content {
 	    background-color: transparent;
 	    display: inline-block;
 	    vertical-align: top;
-	    width: 210px;
+	    width: 265px;
 	    opacity: 1;
 	    visibility: visible;
 	    float: left;
@@ -195,7 +195,7 @@ body.open-mobile-sidebar .halo-grid-content {
 	}
 
 	.page-sidebar + .page-content{
-		width: calc(100% - 210px);
+		width: calc(100% - 265px);
 	    padding-left: 30px;
 	    float: left;
 	}
