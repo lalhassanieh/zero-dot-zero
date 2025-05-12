@@ -488,7 +488,7 @@
       "type": "product-recently-viewed",
       "settings": {
         "display_product_recently_viewed": true,
-        "product_recently_viewed_container": "container",
+        "product_recently_viewed_container": "1770",
         "padding_full_width": 0,
         "enable_border_top": true,
         "enable_border_bottom": false,
