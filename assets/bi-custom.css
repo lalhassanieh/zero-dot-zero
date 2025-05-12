@@ -16,6 +16,15 @@
     font-display: swap;
 }
 
+@font-face {
+  font-family: 'MHE-Riyal-Sign';
+  src: url('MHERiyalSign-Regular.woff2') format('woff2'),
+      url('MHERiyalSign-Regular.woff') format('woff'),
+      url('MHERiyalSign-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 body {
     font-family: 'Gilroy Extra Bold' !important;
 }
@@ -592,6 +601,9 @@ h5,
 
 .sidebarBlock-headingWrapper .sidebarBlock-heading::after {
     right: 12px !important
+}
+.facet-checkbox.form-label--checkbox {
+  color: #000 !important;
 }
 
 @media (min-width: 1025px) {
