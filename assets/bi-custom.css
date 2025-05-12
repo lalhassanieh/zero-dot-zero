@@ -654,6 +654,12 @@ dd.price__compare {
     display: block !important;
 }
 
+.productView-details.halo-productView-right .productView-desc.halo-text-format {
+
+  line-height: 1 !important;
+  font-family: 'Gilroy Light' !important;
+}
+
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
         border-color:
