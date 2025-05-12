@@ -631,6 +631,11 @@ dd.price__compare {
     margin: 0 26px 0 0 !important
 }
 
+.facets__price--box .field__input {
+    border-radius: 10px !important;
+    border: 1px solid #000 !important;
+}
+
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
         border-color:
@@ -740,7 +745,7 @@ dd.price__compare {
         margin-bottom: 0 !important;
     }
 
-    .footer__content-top{
+    .footer__content-top {
         padding-right: 10px !important;
         padding-left: 10px !important;
     }
