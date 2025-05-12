@@ -659,13 +659,15 @@ dd.price__compare {
     font-family: 'Gilroy Light' !important;
 }
 
-.article-body p {
+.article-body p,
+.article-content li {
     font-size: 15px !important;
     font-family: 'Gilroy Light' !important
 }
 
 .article-body p strong {
-    font-family: 'Gilroy Extra Bold';
+    font-family: 'Gilroy Extra Bold' !important;
+    color: #005339 !important
 }
 
 @media (min-width: 1025px) {
