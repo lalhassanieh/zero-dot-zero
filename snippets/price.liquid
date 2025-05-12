@@ -56,7 +56,7 @@
         </dt>
       {%- endcomment -%}
       {% comment %} <dd class="price__last"><span class="price-item price-item--regular">{{ money_price }}</span></dd> {% endcomment %}
-      <dd class="price__last">
+      <dd class="price__last test">
         <span class="price-item price-item--regular">
           {%- if settings.currency_format_enable -%}
             {%- assign parts = money_price | split: settings.currency_code -%}
@@ -127,7 +127,7 @@
     </div>
     <small class="unit-price caption{% if available == false or product.selected_or_first_available_variant.unit_price_measurement == nil %} hidden{% endif %}">
       <dt class="visually-hidden">{{ 'products.product.price.unit_price' | t }}</dt>
-      <dd class="price__last">
+      <dd class="price__last test2">
         <span>{{- product.selected_or_first_available_variant.unit_price | money -}}</span
         ><span aria-hidden="true">/</span
         ><span class="visually-hidden">&nbsp;{{ 'accessibility.unit_price_separator' | t }}&nbsp;</span
