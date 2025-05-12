@@ -659,7 +659,14 @@ dd.price__compare {
     font-family: 'Gilroy Light' !important;
 }
 
+.article-body p {
+    font-size: 15px !important;
+    font-family: 'Gilroy Light' !important
+}
 
+.article-body p strong {
+    font-family: 'Gilroy Extra Bold';
+}
 
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
