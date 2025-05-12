@@ -451,6 +451,10 @@ h5,
     top: 22px !important;
 }
 
+.productView .price__regular {
+    padding-left: 22px !important;
+}
+
 .featured-product-short-desc {
     font-size: 20px;
 }
@@ -675,6 +679,16 @@ dd.price__compare {
 @media only screen and (max-width: 1025px) {
     .custom-featured-products {
         display: none;
+    }
+
+    .page-sidebar {
+        width: 265px;
+    }
+
+    .page-sidebar+.page-content {
+        width: calc(100% - 265px);
+        padding-left: 30px;
+        float: left;
     }
 }
 
