@@ -1116,12 +1116,12 @@
                           <div
                             class="products-grid-section"
                           >
-                            {% for product in collections['sparkling-wines'].products limit: 4 %}
+                            {% for product in collections['sparkling-wines'].products limit:2 %}
                               <div class="product slider__slide grid__item">
                                 <div class="product-item">
                                   <div class="card">
                                     <div class="card-product">
-                                      {% render 'product-grid-layout',
+                                    {% render 'product-grid-layout',
                                         product_card_product: product,
                                         media_size: section.settings.image_ratio,
                                         portrait_aspect_ratio: section.settings.portrait_aspect_ratio,
