@@ -94,8 +94,8 @@
             "bg_button": "#fff7e5",
             "bg_button_gradient": "",
             "color_button_hover": "#ffffff",
-            "border_button_hover": "#ff8b21",
-            "bg_button_hover": "#ff8b21",
+            "border_button_hover": "#005339",
+            "bg_button_hover": "#005339",
             "bg_button_gradient_hover": "",
             "use_contrasting_colors": false,
             "lb_product_1": "",
@@ -320,7 +320,7 @@
       ],
       "custom_css": [
         ".slide-content .slide-button {justify-content: inherit; padding-left: 25px;}",
-        ".slideshow .slick-dots {}",
+        ".slideshow .slick-dots {bottom: 80px;}",
         ".slideshow-wrapper {border-top: 1px solid #dddddd;}",
         "@media only screen and (max-width: 1025px) {.content-box--absolute {top: unset; bottom: 10px; left: 50%; transform: translateX(-50%); position: absolute; } .slideshow .slick-dots {left: 50%; transform: translateX(-50%); } .slide-content {padding-top: 25px; background-image: unset; }}"
       ],
