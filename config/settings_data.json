@@ -168,7 +168,7 @@
     "product_block_image_fit": "cover",
     "show_image_loading": true,
     "show_vendor": false,
-    "show_compare": true,
+    "show_compare": false,
     "hide_compare_homepage": true,
     "product_compare_type": "icon",
     "show_wishlist_card": true,
