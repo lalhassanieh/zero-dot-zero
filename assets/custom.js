@@ -1,5 +1,5 @@
 function updateSlickDots() {
-  console.log('Updating slick dots:');
+  console.log('Updating slick dots::');
   const leftSideMargin = document.querySelector('.slide-heading .top');
   const leftOffset = leftSideMargin
     ? leftSideMargin.getBoundingClientRect().left + window.scrollX
@@ -30,11 +30,18 @@ function updateSlickDots() {
   }
 }
 
+function checkAndUpdate() {
+    const slickDots = document.querySelectorAll('.slideshow-wrapper .slick-dots');
+    if (slickDots.length > 0) {
+        updateSlickDots();
+    } else {
+        setTimeout(checkAndUpdate, 50); // Check again after a short delay
+    }
+}
+
 // Call updateSlickDots after the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', function() {
-  updateSlickDots();
-  //check again on load
-  setTimeout(updateSlickDots, 100);
+  checkAndUpdate(); // Start checking for .slick-dots
   // Recalculate on resize
   window.addEventListener('resize', updateSlickDots);
 });
