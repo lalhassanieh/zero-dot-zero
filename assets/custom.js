@@ -1,6 +1,7 @@
 function updateSlickDots() {
-    console.log('Updating slick dotss');
+    console.log('Updating slick dotss:');
     const leftSideMargin = document.querySelector('.slide-heading .top');
+        console.log('leftSideMargin:', leftSideMargin);
     const leftOffset = leftSideMargin
         ? leftSideMargin.getBoundingClientRect().left + window.scrollX
         : 0;
@@ -25,7 +26,7 @@ function updateSlickDots() {
         }
     }
 }
-updateSlickDots();
+
 // Call updateSlickDots after the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', function () {
     updateSlickDots();
