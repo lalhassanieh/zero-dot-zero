@@ -679,6 +679,10 @@ dd.price__compare {
     padding-right: 24px;
 }
 
+.previewCartItem-change .before-discount-price {
+    padding-right: 20px;
+}
+
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
         border-color:
