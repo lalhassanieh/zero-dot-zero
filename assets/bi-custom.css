@@ -263,6 +263,12 @@ h5,
     height: 17px;
 }
 
+.slide-button:hover::after,
+.banner-button:hover::after,
+.productView-groupTop .product-form__submit:hover::after {
+    filter: brightness(0) invert(1);
+}
+
 .banner-button:hover::after {
     border: unset !important;
 }
