@@ -773,7 +773,7 @@
             "color_des": "#232323",
             "color_des_mb": "#ffffff",
             "button_slide": "find out our recipes",
-            "link": "shopify://collections/beers",
+            "link": "shopify://blogs/recipes",
             "enable_button_link": false,
             "enable_underline": true,
             "font_size_link": 36,
@@ -782,8 +782,8 @@
             "border_button": "#005339",
             "bg_button": "#ffffff",
             "color_button_hover": "#ffffff",
-            "border_button_hover": "#ef6431",
-            "bg_button_hover": "#ef6431"
+            "border_button_hover": "#005339",
+            "bg_button_hover": "#005339"
           }
         }
       },
