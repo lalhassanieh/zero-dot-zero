@@ -76,7 +76,7 @@
       "settings": {
         "container": "1170",
         "padding_full_width": 0,
-        "show_breadcrumb": true,
+        "show_breadcrumb": false,
         "breadcrumb_alignment": "left",
         "breadcrumb_bg": "",
         "breadcrumb_gradient": "",
