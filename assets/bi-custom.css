@@ -675,6 +675,10 @@ dd.price__compare {
     color: #005339 !important
 }
 
+.haloCalculatorShipping .message .riyal-font {
+    padding-right: 24px;
+}
+
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
         border-color:
