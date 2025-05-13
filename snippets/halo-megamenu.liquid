@@ -1110,35 +1110,36 @@
                 <div class="custom-featured-products site-nav-banner--item site-nav-banner-item--left d-inline-block ver-alg-top w-100">
                   <div class="menu-dropdown__product col-left">
                     <div class="menu-dropdown__block--content ">
-                        <div class="brand__custom--tab">
-                      <div class="tab-panel-content">
-                        <div class="halo-row column-4 sm-column-2 md-column-3" style="--items-grid-gap-style: -7.5px">
-                          <div
-                            class="products-grid-section"
-                          >
-                            {% for product in collections['sparkling-wines'].products limit:2 %}
-                              <div class="product slider__slide grid__item">
-                                <div class="product-item">
-                                  <div class="card">
-                                    <div class="card-product">
-                                    {% render 'product-grid-layout',
-                                        product_card_product: product,
-                                        media_size: section.settings.image_ratio,
-                                        portrait_aspect_ratio: section.settings.portrait_aspect_ratio,
-                                        complementary_product_button_atc: true,
-                                        serial: forloop.index,
-                                        sectionId: section.id,
-                                        show_list: true,
-                                        loading: true
-                                      %}
+                      <div class="brand__custom--tab">
+                        <div class="tab-panel-content">
+                          <div class="halo-row column-4 sm-column-2 md-column-3" style="--items-grid-gap-style: -7.5px">
+                            <div
+                              class="products-grid-section"
+                            >
+                              {% for product in collections['sparkling-wines'].products limit: 4 %}
+                                <div class="product slider__slide grid__item">
+                                  <div class="product-item">
+                                    <div class="card">
+                                      <div class="card-product">
+                                        {% render 'product-grid-layout',
+                                          product_card_product: product,
+                                          media_size: section.settings.image_ratio,
+                                          portrait_aspect_ratio: section.settings.portrait_aspect_ratio,
+                                          complementary_product_button_atc: true,
+                                          serial: forloop.index,
+                                          sectionId: section.id,
+                                          show_list: true,
+                                          loading: true
+                                        %}
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
-                              </div>
-                            {% endfor %}
+                              {% endfor %}
+                            </div>
                           </div>
                         </div>
-                      </div>     </div>
+                      </div>
                       {% comment %}
                         <div class="products-grid column-4 products-carousel megamenu_5" data-collection="sparkling-wines" data-row="4">
                             {% for product in collections['sparkling-wines'].products limit: product_limit %}
