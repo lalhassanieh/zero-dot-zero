@@ -604,7 +604,7 @@
         "color_view_all": "#3c3c3c",
         "icon_view_all": "",
         "color_view_all_icon": "#eb492f",
-        "brand_item_limit": 6,
+        "brand_item_limit": 8,
         "brand_rows": "4",
         "title_tab_style": "style_01",
         "fontsize_tab": 16,
