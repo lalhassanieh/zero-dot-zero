@@ -14,7 +14,6 @@
       "blocks": {
         "2e8c7c14-a0ad-4930-a1d8-3def05310426": {
           "type": "breadcrumb",
-          "disabled": true,
           "settings": {
             "breadcrumb_layout": "full",
             "breadcrumb_alignment": "left",
