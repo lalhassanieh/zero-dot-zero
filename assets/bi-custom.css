@@ -269,7 +269,8 @@ h5,
     filter: brightness(0) invert(1);
 }
 
-.spotlight-products .slide-button:hover,.product-form__submit:hover {
+.spotlight-products .slide-button:hover,
+.product-form__submit:hover {
     background: #005339 !important;
     border-color: #005339 !important;
     color: #ffffff !important;
@@ -552,7 +553,7 @@ h5,
     background-size: 67px 71px;
     height: 76px;
     font-family: 'Gilroy Extra Bold';
-    right: 0;
+    right: -12px;
     position: absolute;
     width: 84px;
 }
@@ -578,6 +579,10 @@ h5,
 
 .spotlight-products .badge {
     display: none;
+}
+
+.spotlight-products .card-price {
+    padding-left: 20px;
 }
 
 .halo-productBadges .badge.sale-badge {
