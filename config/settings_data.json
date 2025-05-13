@@ -372,7 +372,7 @@
     "btn_3_bg_hover": "#e9514b",
     "banner_animation": "effect_fade_up",
     "animations_hover_elements": "none",
-    "use_custom_js": true,
+    "use_custom_js": false,
     "enable_sticky_notification": false,
     "enable_sticky_notification_mb": false,
     "show_notification_again_when": "time",
