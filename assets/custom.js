@@ -5,7 +5,7 @@ function updateSlickDots() {
         ? leftSideMargin.getBoundingClientRect().left + window.scrollX
         : 0;
     if (window.innerWidth > 600) {
-        const leftSides = document.querySelectorAll('.slideshow-wrapper slick-dots');
+        const leftSides = document.querySelectorAll('.slideshow-wrapper .slick-dots');
         leftSides.forEach(el => {
             el.style.marginLeft = `${leftOffset}px`;
         });
@@ -14,4 +14,3 @@ function updateSlickDots() {
 updateSlickDots();
 // Recalculate on resize
 window.addEventListener('resize', updateSlickDots);
-console.log('Updating slick dots');
