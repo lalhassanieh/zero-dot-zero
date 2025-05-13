@@ -183,6 +183,11 @@ h5,
     text-transform: uppercase !important;
 }
 
+.slide-heading .top {
+    max-width: 200px;
+    margin: auto;
+}
+
 .slideshow .slick-dots {
     flex-direction: row !important;
 }
