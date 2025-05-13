@@ -320,7 +320,7 @@
       ],
       "custom_css": [
         ".slide-content .slide-button {justify-content: inherit; padding-left: 25px;}",
-        ".slideshow .slick-dots {position: absolute !imprtant; bottom: 79px; position: absolute;}",
+        ".slideshow .slick-dots {position: absolute !important; bottom: 79px; position: absolute;}",
         ".slideshow-wrapper {border-top: 1px solid #dddddd;}",
         "@media only screen and (max-width: 1025px) {.content-box--absolute {top: unset; bottom: 10px; left: 50%; transform: translateX(-50%); position: absolute; } .slideshow .slick-dots {left: 50%; transform: translateX(-50%); } .slide-content {padding-top: 25px; background-image: unset; }}"
       ],
