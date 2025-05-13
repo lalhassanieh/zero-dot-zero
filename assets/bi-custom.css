@@ -269,7 +269,7 @@ h5,
     filter: brightness(0) invert(1);
 }
 
-.spotlight-products .slide-button:hover {
+.spotlight-products .slide-button:hover,.product-form__submit:hover {
     background: #005339 !important;
     border-color: #005339 !important;
     color: #ffffff !important;
