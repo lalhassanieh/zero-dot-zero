@@ -4,7 +4,7 @@ function updateSlickDots() {
     const leftOffset = leftSideMargin
         ? leftSideMargin.getBoundingClientRect().left + window.scrollX
         : 0;
-    console.log('Left offset:', window.innerWidth);
+    console.log('1Left offset:', window.innerWidth);
     if (window.innerWidth > 600) {
         const leftSides = document.querySelectorAll('.slick-dots');
         console.log("leftSides", leftSides)
