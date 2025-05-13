@@ -567,11 +567,12 @@ h5,
 }
 
 .custom-featured-products .halo-productBadges .badge.new-badge {
-    background-size: 57px 60px;
+   background-size: 45px 55px;
+   right: -35px !important;
 }
 
 .custom-featured-products .halo-productBadges .badge.new-badge p {
-    margin: 14px 2px 0 4px !important;
+ margin: 13px 0px 0 0 !important;
     font-size: 10px;
     max-width: 33px;
     line-height: 10px;
