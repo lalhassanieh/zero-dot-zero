@@ -462,7 +462,7 @@
           "type": "tab",
           "settings": {
             "title": "Spirits",
-            "menu": "spirits",
+            "menu": "sparkling-wines",
             "items_grid_gap": 7.5,
             "items_spacing_tb": 30,
             "items_spacing_lr": 10,
@@ -484,7 +484,7 @@
           "type": "tab",
           "settings": {
             "title": "Beers",
-            "menu": "beers",
+            "menu": "sparkling-wines",
             "items_grid_gap": 7.5,
             "items_spacing_tb": 30,
             "items_spacing_lr": 10,
@@ -604,7 +604,7 @@
         "color_view_all": "#3c3c3c",
         "icon_view_all": "",
         "color_view_all_icon": "#eb492f",
-        "brand_item_limit": 18,
+        "brand_item_limit": 8,
         "brand_rows": "4",
         "title_tab_style": "style_01",
         "fontsize_tab": 16,
