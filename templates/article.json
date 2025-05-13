@@ -268,7 +268,7 @@
       "settings": {
         "container": "1170",
         "padding_full_width": 0,
-        "show_breadcrumb": false,
+        "show_breadcrumb": true,
         "breadcrumb_alignment": "left",
         "breadcrumb_bg": "rgba(0,0,0,0)",
         "breadcrumb_gradient": "",
