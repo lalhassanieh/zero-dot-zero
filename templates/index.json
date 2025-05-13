@@ -50,7 +50,7 @@
             "border_sub_heading": "none",
             "sub_title_position": "sub_title_above",
             "color_sub_heading": "#ffffff",
-            "heading": "Try 2025's Top-Rated  <span>Non - Alcoholic </span>",
+            "heading": "<div class=\"top\">Try 2025's Top-Rated<div>  <span>Non - Alcoholic </span>\n</div>\n</div>",
             "letter_spacing_heading": "",
             "enable_border_heading": false,
             "font_style_heading": "normal",
