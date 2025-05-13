@@ -683,6 +683,15 @@ dd.price__compare {
     padding-right: 20px;
 }
 
+.previewCart-wrapper .price {
+    padding-left: 24px;
+    text-align: left;
+}
+
+.previewCartItem-name.link-underline.card-title {
+    font-family: 'Gilroy Extra Bold';
+}
+
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
         border-color:
