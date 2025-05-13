@@ -4,7 +4,7 @@ function updateSlickDots() {
     const leftOffset = leftSideMargin
         ? leftSideMargin.getBoundingClientRect().left + window.scrollX
         : 0;
-    console.log('1Left offset:', window.innerWidth);
+    console.log('2Left offset:', window.innerWidth);
     if (window.innerWidth > 600) {
         const leftSides = document.querySelectorAll('.slick-dots');
         console.log("leftSides", leftSides)
@@ -26,6 +26,9 @@ function updateSlickDots() {
     }
 }
 
-updateSlickDots();
-// Recalculate on resize
-window.addEventListener('resize', updateSlickDots);
+// Call updateSlickDots after the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', function () {
+    updateSlickDots();
+    // Recalculate on resize
+    window.addEventListener('resize', updateSlickDots);
+});
