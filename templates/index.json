@@ -112,7 +112,7 @@
             "lookbook_pos_3": "right"
           }
         },
-        "image_6NLgiM": {
+        "image_MXhwJj": {
           "type": "image",
           "settings": {
             "image_slide": "shopify://shop_images/Frame-780-_1.jpg",
@@ -150,7 +150,7 @@
             "border_sub_heading": "none",
             "sub_title_position": "sub_title_above",
             "color_sub_heading": "#ffffff",
-            "heading": "Try 2025's<br>  Top-Rated<br>   <span>Non - Alcoholic </span>",
+            "heading": "<div class=\"top\">Try 2025's Top-Rated</div>  <span>Non - Alcoholic </span>",
             "letter_spacing_heading": "",
             "enable_border_heading": false,
             "font_style_heading": "normal",
@@ -215,7 +215,7 @@
       },
       "block_order": [
         "image_M9rGXy",
-        "image_6NLgiM"
+        "image_MXhwJj"
       ],
       "custom_css": [
         ".slide-content .slide-button {justify-content: inherit; padding-left: 25px;}",
