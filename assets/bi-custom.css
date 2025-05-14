@@ -717,6 +717,7 @@ dd.price__compare {
     padding-left: 20px;
 }
 
+
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
         border-color:
@@ -770,6 +771,11 @@ dd.price__compare {
     .slider-buttons {
         z-index: 1000;
         position: relative;
+    }
+
+    .slider-button--prev .icon,
+    .slider-button--next .icon {
+        height: 10px !important;
     }
 }
 
