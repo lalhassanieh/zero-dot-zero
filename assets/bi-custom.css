@@ -650,7 +650,8 @@ h5,
     background: #FDF7EC;
     border-bottom: 1px solid transparent !important;
     padding: 15px !important;
-    color: #000 !important
+    color: #000 !important;
+    margin-bottom: 15px !important;
 }
 
 .sidebarBlock-headingWrapper .sidebarBlock-heading::after {
