@@ -864,11 +864,11 @@ dd.price__compare {
     }
 
     .spotlight-products__product .card-product__group {
-        bottom: 175px !important;
+        bottom: 60px !important;
     }
 
     .spotlight-products__products--slider .card-action {
-        bottom: 120px !important;
+        bottom: 3px !important;
     }
 }
 
