@@ -871,6 +871,15 @@ dd.price__compare {
     .spotlight-products__products--slider .card-action {
         bottom: 3px !important;
     }
+    .halo-productBadges .badge.new-badge{
+        background-size: 49px 57px !important;
+
+    }
+    .halo-productBadges .badge.new-badge p {
+  margin: 13px 6px 0 0 !important;
+  font-size: 9px !important;
+  line-height: 1 !important;
+}
 }
 
 @media only screen and (max-width: 479px) {
