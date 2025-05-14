@@ -206,8 +206,8 @@ h5,
 
 .megamenu_style_4 .site-nav-banner .site-nav-banner--item {
     flex:
-        0 0 50% !important;
-    max-width: 50% !important;
+        0 0 100% !important;
+    max-width: 100% !important;
 }
 
 .custom-featured-products .card-title,
