@@ -567,14 +567,14 @@ h5,
 }
 
 .custom-featured-products .halo-productBadges .badge.new-badge {
-   background-size: 45px 55px;
-   right: -35px !important;
+    background-size: 45px 55px;
+    right: -35px !important;
 }
 
 .custom-featured-products .halo-productBadges .badge.new-badge p {
- margin: 13px 0px 0 0 !important;
+    margin: 13px 1px 0 !important;
     font-size: 10px;
-    max-width: 33px;
+    max-width: 28px;
     line-height: 10px;
 }
 
@@ -603,14 +603,17 @@ h5,
 }
 
 .custom-featured-products .sale-badge {
-    background-size: 45px 51px;
+    background-size: 44px 38px;
     width: 52px;
     font-size: 10px !important;
     max-width: 53px;
+    padding: 0 !important;
+    right: -10px !important;
+    position: absolute !important;
 }
 
 .custom-featured-products .sale-badge p {
-    margin: 15px 4px 0 0 !important;
+    margin: 11px 4px 0 0 !important;
 }
 
 .bundle-badge {
