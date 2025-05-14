@@ -273,8 +273,8 @@
                   {{ article.metafields.custom.short_description_recipe }}
                 </div>
                 <div class="details">
-                  <span>Yields:</span>{{ article.metafields.custom.yields }}
-                  <span>Preparation Time:</span>{{ article.metafields.custom.preparation_time }}
+                  <div><span>Yields:</span>{{ article.metafields.custom.yields }}</div>
+                  <div><span>Preparation Time:</span>{{ article.metafields.custom.preparation_time }}</div>
                 </div>
                 {%- if show_author or show_date or blog.comments_enabled? -%}
                   <div class="info">
@@ -340,7 +340,7 @@
                     <div
                       class="halo-block-header text-left"
                       style="
-                                                                                                                                                --margin-bottom-title: {{ margin_bottom_title | append: 'px' }}
+                                                                                                                                                                        --margin-bottom-title: {{ margin_bottom_title | append: 'px' }}
                       "
                     >
                       <h3
