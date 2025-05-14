@@ -736,6 +736,10 @@ dd.price__compare {
     max-width: 50% !important;
 }
 
+.spotlight-products__product .product-row {
+    width: 100% !important;
+}
+
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
         border-color:
