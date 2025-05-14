@@ -714,8 +714,8 @@ dd.price__compare {
     padding-left: 20px;
 }
 
-.spotlight-products .product-card-layout-08 .product-item .card-product__group {
-    bottom: 14px !important;
+.spotlight-products .card-product__group {
+    bottom: 7px !important;
 }
 
 .spotlight-products .card-action {
