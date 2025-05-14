@@ -790,6 +790,10 @@ dd.price__compare {
     .slide-video.item-video .content-box--absolute {
         overflow-y: unset !important;
     }
+
+    .spotlight-products .container-full {
+        overflow-y: unset !important;
+    }
 }
 
 @media only screen and (max-width: 1025px) {
@@ -823,6 +827,10 @@ dd.price__compare {
 @media (min-width: 768px) {
     .spotlight-products__product {
         background: #FDF7EB !important;
+    }
+
+    .spotlight-products .container-full {
+        overflow: unset !important;
     }
 }
 
