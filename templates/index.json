@@ -338,7 +338,7 @@
         "dots_color": "rgba(0,0,0,0)",
         "dots_border_color": "#005339",
         "dots_active_color": "#005339",
-        "dots_active_border_color": "#505656",
+        "dots_active_border_color": "#005339",
         "dots_direction": "left",
         "dots_shape": "line",
         "position_slick_dots": "34px",
