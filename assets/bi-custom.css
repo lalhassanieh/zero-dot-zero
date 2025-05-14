@@ -359,9 +359,9 @@ h5,
     height: 14px !important;
 }
 
-.spotlight-products__wrapper {
+/* .spotlight-products__wrapper {
     align-items: initial !important;
-}
+} */
 
 .spotlight-products__product .card-action .button {
     background: #4dac8b;
