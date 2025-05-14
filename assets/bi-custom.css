@@ -883,6 +883,15 @@ dd.price__compare {
         font-size: 9px !important;
         line-height: 1 !important;
     }
+
+    .bundle-badge p {
+        margin: 11px 4px 0 0;
+        font-size: 10px;
+    }
+    .bundle-badge{
+        background-size: 76px 52px;width: 81px;
+        right: -20px;
+    }
 }
 
 @media only screen and (max-width: 479px) {
