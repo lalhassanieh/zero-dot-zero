@@ -754,7 +754,20 @@ dd.price__compare {
     font-size: 15px !important;
     font-family: 'Gilroy Light';
     padding-bottom: 20px;
-  padding-top: 20px;
+    padding-top: 20px;
+}
+
+.article-header__holder .details {
+    color: #3c3c3c;
+    font-size: 15px !important;
+    font-family: 'Gilroy Light';
+    padding-bottom: 20px;
+}
+
+.article-header__holder .details strong {
+    font-family: 'Gilroy Bold';
+    color: #005339 !important;
+    padding-right: 4px;
 }
 
 @media (min-width: 1025px) {
