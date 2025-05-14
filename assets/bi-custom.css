@@ -204,11 +204,7 @@ h5,
     padding: 30px 0 12px;
 }
 
-.megamenu_style_4 .site-nav-banner .site-nav-banner--item {
-    flex:
-        0 0 100% !important;
-    max-width: 100% !important;
-}
+
 
 .custom-featured-products .card-title,
 .custom-featured-products .price-item {
@@ -792,6 +788,12 @@ dd.price__compare {
     .slider-button--prev .icon,
     .slider-button--next .icon {
         height: 10px !important;
+    }
+
+    .megamenu_style_4 .site-nav-banner .site-nav-banner--item {
+        flex:
+            0 0 100% !important;
+        max-width: 100% !important;
     }
 }
 
