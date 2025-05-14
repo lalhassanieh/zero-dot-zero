@@ -730,6 +730,12 @@ dd.price__compare {
     padding-left: 26px;
 }
 
+.megamenu_style_4 .site-nav-banner .site-nav-banner--item {
+    flex:
+        0 0 50% !important;
+    max-width: 50% !important;
+}
+
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
         border-color:
