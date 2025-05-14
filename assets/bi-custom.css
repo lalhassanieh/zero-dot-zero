@@ -26,7 +26,7 @@
     font-display: swap;
 }
 
-/* ========================== */
+/* =========================== */
 
 body {
     font-family: 'Gilroy Extra Bold' !important;
@@ -764,8 +764,8 @@ dd.price__compare {
     padding-bottom: 20px;
 }
 
-.article-header__holder .details span {
-    font-family: 'Gilroy Bold';
+.article-header__holder .details strong {
+    font-family: 'Gilroy Extra Bold';
     color: #005339 !important;
     padding-right: 4px;
 }
@@ -855,6 +855,12 @@ dd.price__compare {
     .spotlight-products__item--lookbook_banner {
         width: 100% !important;
     }
+    .article-header__holder{
+        display: block;
+    }
+    .article-image-holder {
+  width: 100%;
+}
 }
 
 @media (min-width: 768px) {
