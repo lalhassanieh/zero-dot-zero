@@ -861,6 +861,7 @@ dd.price__compare {
     .spotlight-products__products--slider .card-product {
         width: 95%;
         margin-right: 0;
+        height: 325px !important;
     }
 
     .spotlight-products__product .card-product__group {
