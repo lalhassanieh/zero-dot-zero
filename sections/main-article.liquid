@@ -239,9 +239,7 @@
         <div class="test1 halo-article-content{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
           <div class="article-header">
             <div class="article-header__holder">
-              <div class="article-header__image">
-                {%- if show_breadcrumb -%}
-                  <div class="breadcrumb
+              <div class="article-image-holder">
                 {%- if article.image and show_main_img -%}
                   <div class="article-image">
                     <a href="{{ article.url }}" class="image">
@@ -267,11 +265,11 @@
                   </div>
                 {%- endif -%}
               </div>
-              <div class="article-heading text-left ">
+              <div class="article-heading text-left test34">
                 <h3 class="title">
                   {{ article.title }}
                 </h3>
-                <div class="short-description ">
+                <div class="short-description test34">
                   {{ article.metafields.custom.short_description_recipe }}
                 </div>
                 <div class="details">
