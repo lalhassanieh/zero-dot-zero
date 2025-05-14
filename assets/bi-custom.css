@@ -327,6 +327,10 @@ h5,
     border-color: #005339;
 }
 
+.spotlight-products__product {
+    width: 32vw !important;
+}
+
 .spotlight-products__products--slider .card {
     display: flex;
     align-items: center;
@@ -735,8 +739,6 @@ dd.price__compare {
         0 0 50% !important;
     max-width: 50% !important;
 }
-
-
 
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
