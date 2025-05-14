@@ -737,7 +737,7 @@ dd.price__compare {
     max-width: 50% !important;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 992px) {
     .spotlight-products__item--product {
         width: 45% !important;
     }
