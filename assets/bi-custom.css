@@ -764,7 +764,7 @@ dd.price__compare {
     padding-bottom: 20px;
 }
 
-.article-header__holder .details strong {
+.article-header__holder .details span {
     font-family: 'Gilroy Bold';
     color: #005339 !important;
     padding-right: 4px;
