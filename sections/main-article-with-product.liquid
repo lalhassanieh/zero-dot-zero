@@ -236,20 +236,13 @@
         </div>
       {%- endif -%}
       <div class="page-content">
-        <div class="test2 halo-article-content{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
+        <div class="halo-article-content{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
           <div class="article-header">
             <div class="article-header__holder">
               <div class="article-heading text-left">
                 <h3 class="title">
                   {{ article.title }}
                 </h3>
-                <div class="short-description">
-                  {{ article.metafields.custom.short_description }}
-                </div>
-                <div class="details">
-                  <span>Yields:</span>{{ article.metafields.custom.yields }}
-                  <span>Preparation Time:</span>{{ article.metafields.custom.preparation_time }}
-                </div>
                 {%- if show_author or show_date or blog.comments_enabled? -%}
                   <div class="info">
                     {%- if show_author -%}
@@ -272,30 +265,6 @@
                 {%- endif -%}
               </div>
               <div>
-                {%- if article.image and show_main_img -%}
-                  <div class="article-image">
-                    <a href="{{ article.url }}" class="image">
-                      <img
-                        srcset="
-                          {% if article.image.width >= 350 %}{{ article.image | img_url: '350x' }} 350w,{% endif %}
-                          {% if article.image.width >= 700 %}{{ article.image | img_url: '700x' }} 700w,{% endif %}
-                          {% if article.image.width >= 749 %}{{ article.image | img_url: '749x' }} 749w,{% endif %}
-                          {% if article.image.width >= 1498 %}{{ article.image | img_url: '1498x' }} 1498w,{% endif %}
-                          {% if article.image.width >= 1100 %}{{ article.image | img_url: '1100x' }} 1100w,{% endif %}
-                          {% if article.image.width >= 2200 %}{{ article.image | img_url: '2200x' }} 2200w,{% endif %}
-                        "
-                        sizes="(min-width: 1200px) 1100px, (min-width: 750px) calc(100vw - 10rem), 100vw"
-                        src="{{ article.image | img_url: '1100x' }}"
-                        {% unless settings.enable_layout_rtl %}
-                          loading="lazy"
-                        {% endunless %}
-                        width="{{ article.image.width }}"
-                        height="{{ article.image.height }}"
-                        alt="{{ article.image.alt | escape }}"
-                      >
-                    </a>
-                  </div>
-                {%- endif -%}
                 <a href="{{ article.url }}" class="image">
                   <img
                     srcset="
@@ -318,6 +287,31 @@
                 </a>
               </div>
             </div>
+
+            {%- if article.image and show_main_img -%}
+              <div class="article-image">
+                <a href="{{ article.url }}" class="image">
+                  <img
+                    srcset="
+                      {% if article.image.width >= 350 %}{{ article.image | img_url: '350x' }} 350w,{% endif %}
+                      {% if article.image.width >= 700 %}{{ article.image | img_url: '700x' }} 700w,{% endif %}
+                      {% if article.image.width >= 749 %}{{ article.image | img_url: '749x' }} 749w,{% endif %}
+                      {% if article.image.width >= 1498 %}{{ article.image | img_url: '1498x' }} 1498w,{% endif %}
+                      {% if article.image.width >= 1100 %}{{ article.image | img_url: '1100x' }} 1100w,{% endif %}
+                      {% if article.image.width >= 2200 %}{{ article.image | img_url: '2200x' }} 2200w,{% endif %}
+                    "
+                    sizes="(min-width: 1200px) 1100px, (min-width: 750px) calc(100vw - 10rem), 100vw"
+                    src="{{ article.image | img_url: '1100x' }}"
+                    {% unless settings.enable_layout_rtl %}
+                      loading="lazy"
+                    {% endunless %}
+                    width="{{ article.image.width }}"
+                    height="{{ article.image.height }}"
+                    alt="{{ article.image.alt | escape }}"
+                  >
+                </a>
+              </div>
+            {%- endif -%}
           </div>
           <div class="article-body">
             <div class="article-content halo-text-format{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
@@ -362,7 +356,7 @@
                     <div
                       class="halo-block-header text-left"
                       style="
-                                                                                                                                                                                                                    --margin-bottom-title: {{ margin_bottom_title | append: 'px' }}
+                                                                                            --margin-bottom-title: {{ margin_bottom_title | append: 'px' }}
                       "
                     >
                       <h3
