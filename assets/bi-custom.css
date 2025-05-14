@@ -737,14 +737,24 @@ dd.price__compare {
     max-width: 50% !important;
 }
 
-@media (min-width: 992px) {
-    .spotlight-products__item--product {
-        width: 45% !important;
-    }
+.article-header__holder {
+    display: flex;
+}
 
-    .spotlight-products__item {
-        width: 50% !important;
-    }
+.article-image-holder {
+    width: 50%;
+}
+
+.article-heading {
+    padding-top: 45px;
+}
+
+.article-header__holder .short-description {
+    color: #3c3c3c;
+    font-size: 15px !important;
+    font-family: 'Gilroy Light';
+    padding-bottom: 20px;
+  padding-top: 20px;
 }
 
 @media (min-width: 1025px) {
@@ -818,6 +828,16 @@ dd.price__compare {
     }
 }
 
+@media (min-width: 992px) {
+    .spotlight-products__item--product {
+        width: 45% !important;
+    }
+
+    .spotlight-products__item {
+        width: 50% !important;
+    }
+}
+
 @media only screen and (max-width:991px) {
     .spotlight-products__item--lookbook_banner {
         width: 100% !important;
@@ -828,10 +848,7 @@ dd.price__compare {
     .spotlight-products__product {
         background: #FDF7EB !important;
     }
-
-
 }
-
 
 @media (max-width: 767px) {
     .productView-nav .slick-dots {
