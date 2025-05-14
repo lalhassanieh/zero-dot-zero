@@ -68,7 +68,7 @@
         "filter_display_type": "show-more",
         "max_item_per_filter": 10,
         "filter_hidden_tag_list": "",
-        "show_toolbar": true,
+        "show_toolbar": false,
         "show_sorting": false,
         "show_view_as": false,
         "products_per_page": "15",
