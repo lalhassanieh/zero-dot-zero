@@ -792,7 +792,7 @@ dd.price__compare {
     }
 
     .spotlight-products .container-full {
-        overflow-y: unset !important;
+        overflow: unset !important;
     }
 }
 
@@ -829,9 +829,7 @@ dd.price__compare {
         background: #FDF7EB !important;
     }
 
-    .spotlight-products .container-full {
-        overflow: unset !important;
-    }
+
 }
 
 
