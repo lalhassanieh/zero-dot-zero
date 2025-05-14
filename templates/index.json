@@ -2820,6 +2820,15 @@
             "vertical_pos": 59
           }
         },
+        "product_TqgqQp": {
+          "type": "product",
+          "settings": {
+            "product": "grapefruit-margarita",
+            "icon_color": "#ffffff",
+            "horizontal_pos": 21,
+            "vertical_pos": 59
+          }
+        },
         "product_tgCErc": {
           "type": "product",
           "settings": {
@@ -2831,6 +2840,7 @@
         },
         "product_iPntCr": {
           "type": "product",
+          "disabled": true,
           "settings": {
             "product": "captain-morgan-black-spiced",
             "icon_color": "#ffffff",
@@ -2842,6 +2852,7 @@
       "block_order": [
         "product_zRAadJ",
         "product_TeDhzy",
+        "product_TqgqQp",
         "product_tgCErc",
         "product_iPntCr"
       ],
@@ -3116,7 +3127,7 @@
         "border_color_button": "#005339",
         "bg_color_button": "rgba(0,0,0,0)",
         "bg_color_gradient_button": "",
-        "color_button_hover": "#FFFFFF",
+        "color_button_hover": "#ffffff",
         "border_color_button_hover": "#005339",
         "bg_color_button_hover": "#005339",
         "bg_color_gradient_button_hover": "",
@@ -3410,7 +3421,7 @@
         "border_color_button": "#005339",
         "bg_color_button": "rgba(0,0,0,0)",
         "bg_color_gradient_button": "",
-        "color_button_hover": "#FFFFFF",
+        "color_button_hover": "#ffffff",
         "border_color_button_hover": "#005339",
         "bg_color_button_hover": "#005339",
         "bg_color_gradient_button_hover": "",
