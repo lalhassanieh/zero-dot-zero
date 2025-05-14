@@ -725,6 +725,14 @@ dd.price__compare {
     bottom: 40px !important;
 }
 
+.active-facets__button .riyal-font {
+    padding-left: 17px;
+}
+
+.sidebarBlock-content .facets__list--refined .riyal-font {
+    padding-left: 26px;
+}
+
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
         border-color:
