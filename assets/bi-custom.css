@@ -713,6 +713,10 @@ dd.price__compare {
     font-family: 'Gilroy Extra Bold';
 }
 
+.halo-productView-right.productView-details .price--medium.price--on-sale {
+    padding-left: 20px;
+}
+
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
         border-color:
