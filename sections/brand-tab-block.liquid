@@ -111,7 +111,6 @@
                   {% assign results_count = 0 %}
 
                   {% for link in block.settings.menu.links %}
-        
                     {%- liquid
                       # Get collection handle from URL
                       assign collection_handle = link.url | split: '/collections/' | last
@@ -134,21 +133,21 @@
                       <div
                         class="products-grid-section"
                       >
-                        {% for product in collection.products %}
+                        {% for product in collection.products limit: 8 %}
                           <div class="product slider__slide grid__item">
                             <div class="product-item">
                               <div class="card">
                                 <div class="card-product">
-                                    {% render 'product-grid-layout',
-                                        product_card_product: product,
-                                        media_size: section.settings.image_ratio,
-                                        portrait_aspect_ratio: section.settings.portrait_aspect_ratio,
-                                        complementary_product_button_atc: true,
-                                        serial: forloop.index,
-                                        sectionId: section.id,
-                                        show_list: true,
-                                        loading: true
-                                    %}
+                                  {% render 'product-grid-layout',
+                                    product_card_product: product,
+                                    media_size: section.settings.image_ratio,
+                                    portrait_aspect_ratio: section.settings.portrait_aspect_ratio,
+                                    complementary_product_button_atc: true,
+                                    serial: forloop.index,
+                                    sectionId: section.id,
+                                    show_list: true,
+                                    loading: true
+                                  %}
                                 </div>
                               </div>
                             </div>
