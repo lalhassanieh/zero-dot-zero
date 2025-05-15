@@ -406,6 +406,10 @@ h5,
     width: 715px;
     height: 778px;
 }
+.productView-image-wrapper .bundle-badge{
+margin-right: 15px;
+  margin-top: 29px;
+}
 
 .productView-details .product-form__input,
 .productView-quantity.quantity__group.quantity__group--2.quantity__style--1.clearfix {
@@ -619,12 +623,12 @@ h5,
     background-size: 81px 65px;
     height: 88px !important;
     font-family: 'Gilroy Extra Bold' !important;
-    right: 0;
+  right: -8px;
     position: absolute;
     width: 82px;
     color: #fff !important;
-    margin-right: 15px;
-    margin-top: 29px;
+margin-right: 0;
+  margin-top: 0;
 }
 
 .bundle-badge p {
