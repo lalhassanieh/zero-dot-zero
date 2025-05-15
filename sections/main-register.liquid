@@ -4,7 +4,7 @@
 
   The 'layout settings.customer_layout' line is inserted at the top of every customer account template.
   Your theme's settings determine to use the 'default' or 'theme' customer templates.
-  More info::
+  More info:
   - http://www.tetchi.ca/shopify-theme-from-scratch-part-11/
 {% endcomment %}
 
@@ -140,7 +140,7 @@
               <input type="hidden" name="customer[accepts_pdpl]" value="false">
               <input type="checkbox" name="customer[accepts_pdpl]" id="accepts-pdpl" required>
               <label class="form-label--checkbox" for="accepts-pdpl">
-                {{ 'customer.register.accept_pdpl' |t: privacy_link: privacy_url, terms_link: terms_url | strip_html}}
+                {{ 'customer.register.accept_pdpl' | t: privacy_link: privacy_url, terms_link: terms_url | strip_html }}
               </label>
             </div>
             <div class="form-actions">
