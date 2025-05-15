@@ -140,13 +140,21 @@
   <div class="{{ class }} badge-{{ position }} halo-productBadges halo-productBadges--{{ position }}">
     {%- if bundle_badge -%}
       <span class="badge bundle-badge" aria-hidden="true">
-       <p> {{ 'products.product.bundle' | t }}</p>
+        <p>{{ 'products.product.bundle' | t }}</p>
       </span>
     {%- elsif sale_badge -%}
       <span class="badge sale-badge" aria-hidden="true">
         {%- if sale_badge_type == 'discount' -%}
           {%- if badge_detail -%}
-            -{{ current_variant.compare_at_price | minus: current_variant.price | times: 100.0 | divided_by: current_variant.compare_at_price | round }}%
+            -
+            {{-
+              current_variant.compare_at_price
+              | minus: current_variant.price
+              | times: 100.0
+              | divided_by: current_variant.compare_at_price
+              | round
+            -}}
+            %
           {%- else -%}
             {% liquid
               assign list_compare = product.variants | where: 'compare_at_price'
@@ -164,9 +172,16 @@
             -{{ compare | append: '%' }}
           {%- endif -%}
         {%- elsif sale_badge_type == 'text_discount' -%}
-          <p>  {{ 'products.product.on_sale' | t }}  </p>
+          <p>{{ 'products.product.on_sale' | t }}</p>
           {%- if badge_detail -%}
-            {{ current_variant.compare_at_price | minus: current_variant.price | times: 100.0 | divided_by: current_variant.compare_at_price | round }}%
+            {{
+              current_variant.compare_at_price
+              | minus: current_variant.price
+              | times: 100.0
+              | divided_by: current_variant.compare_at_price
+              | round
+            -}}
+            %
           {%- else -%}
             {% liquid
               assign list_compare = product.variants | where: 'compare_at_price'
@@ -184,7 +199,7 @@
             {{ compare | append: '%' }}
           {%- endif -%}
         {%- else -%}
-          <p>  {{ 'products.product.on_sale' | t }}  </p>
+          <p>{{ 'products.product.on_sale' | t }}</p>
         {%- endif -%}
       </span>
     {%- else -%}
@@ -193,20 +208,20 @@
           {%- if date_difference < new_badge_time -%}
             {%- if serial <= new_badge_limit -%}
               <span class="badge new-badge" aria-hidden="true">
-                <p> {{ 'products.product.new' | t }}  </p>
+                <p>{{ 'products.product.new' | t }}</p>
               </span>
             {%- endif -%}
           {%- endif -%}
         {%- else -%}
           <span class="badge new-badge" aria-hidden="true">
-            <p>   {{ 'products.product.new' | t }}  </p>
+            <p>{{ 'products.product.new' | t }}</p>
           </span>
         {%- endif -%}
       {%- endif -%}
 
       {%- if sold_out_badge -%}
         <span class="badge sold-out-badge" aria-hidden="true">
-          <p>  {{ 'products.product.sold_out' | t }}  </p>
+          <p>{{ 'products.product.sold_out' | t }}</p>
         </span>
       {%- endif -%}
 
@@ -215,7 +230,7 @@
           {%- if custom_badge_text -%}
             {{ custom_badge_text }}
           {%- else -%}
-            <p>  {{ 'products.product.custom' | t }}  </p>
+            <p>{{ 'products.product.custom' | t }}</p>
           {%- endif -%}
         </span>
       {%- endif -%}
