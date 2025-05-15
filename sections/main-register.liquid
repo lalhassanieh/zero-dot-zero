@@ -140,7 +140,7 @@
               <input type="hidden" name="customer[accepts_pdpl]" value="false">
               <input type="checkbox" name="customer[accepts_pdpl]" id="accepts-pdpl" required>
               <label class="form-label--checkbox" for="accepts-pdpl">
-                {{ 'customer.register.accept_pdpl' | t: privacy_link: privacy_url, terms_link: terms_url }}
+                {{ 'customer.register.accept_pdpl' |t: privacy_link: privacy_url, terms_link: terms_url | strip_html}}
               </label>
             </div>
             <div class="form-actions">
