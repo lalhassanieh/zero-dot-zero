@@ -11,7 +11,9 @@
   "sections": {
     "main": {
       "type": "main-page",
-      "custom_css": [],
+      "custom_css": [
+        "p {color: #000 !important; font-family: \"Gilroy Light\";}"
+      ],
       "settings": {}
     }
   },
