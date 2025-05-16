@@ -788,6 +788,12 @@ dd.price__compare {
 .accepts-marketing a {
     padding-right: 5px;
     padding-left: 5px;
+    font-family: 'Gilroy Extra Bold';
+}
+
+.accepts-marketing .form-label--checkbox {
+    color: #000;
+    font-family: 'Gilroy Light';
 }
 
 @media (min-width: 1025px) {
