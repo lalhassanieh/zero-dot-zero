@@ -13,7 +13,7 @@
       "type": "main-page",
       "custom_css": [
         "p,li {color: #000 !important; font-family: \"Gilroy Light\";}",
-        "b,span {font-family: 'Gilroy Extra Bold';}"
+        "b,span {font-family: \"Gilroy Extra Bold\"; color: #005339 !important;}"
       ],
       "settings": {}
     }
