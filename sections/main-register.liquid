@@ -16,7 +16,6 @@
 {% assign privacy_url = pages['privacy-policy'].url %}
 {% assign terms_url = pages['terms-of-service'].url %}
 
-
 <div class="account-page register-page section-block-{{section.id}}">
   <div class="{% if container == '1170' %}container-1170{% elsif container == '1770' %}container-1770{% elsif container == 'fullwidth'%}container-full{% else %}container{% endif %}">
     <div class="halo-page-header">
@@ -141,10 +140,7 @@
               <input type="hidden" name="customer[accepts_pdpl]" value="false">
               <input type="checkbox" name="customer[accepts_pdpl]" id="accepts-pdpl" required>
               <label class="test3 form-label--checkbox" for="accepts-pdpl">
-                {% capture accept_text %}
-      {{ 'customer.register.accept_pdpl' | t: privacy_link: privacy_url, terms_link: terms_url }}
-    {% endcapture %}
-                {{ accept_text }}
+                {{ 'customer.register.accept_pdpl' | t: privacy_link: privacy_url, terms_link: terms_url }}
               </label>
             </div>
             <div class="form-actions">
