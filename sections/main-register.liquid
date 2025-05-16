@@ -136,13 +136,13 @@
                 {{- 'customer.register.subscribe' | t -}}
               </label>
             </div>
-            {% comment %} <div class="accepts-marketing">
+            <div class="accepts-marketing">
               <input type="hidden" name="customer[accepts_pdpl]" value="false">
               <input type="checkbox" name="customer[accepts_pdpl]" id="accepts-pdpl" required>
               <label class="test3 form-label--checkbox" for="accepts-pdpl">
-                 {{ 'customer.register.accept_pdpl' | t: privacy_link: privacy_url, terms_link: terms_url }}
+                {{ 'customer.register.accept_pdpl' | t: link: privacy_url, terms_link: terms_url }}
               </label>
-            </div> {% endcomment %}
+            </div>
             <div class="form-actions">
               {% if settings.enable_button_1_border_outside %}
                 <button class="button button--primary">
