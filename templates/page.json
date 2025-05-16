@@ -11,9 +11,7 @@
   "sections": {
     "main": {
       "type": "main-page",
-      "custom_css": [
-        "p {color: #000 !important;}"
-      ],
+      "custom_css": [],
       "settings": {}
     }
   },
