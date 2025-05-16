@@ -139,8 +139,11 @@
             <div class="accepts-marketing">
               <input type="hidden" name="customer[accepts_pdpl]" value="false">
               <input type="checkbox" name="customer[accepts_pdpl]" id="accepts-pdpl" required>
-              <label class="test3 form-label--checkbox" for="accepts-pdpl">
-                {{ 'customer.register.accept_pdpl' | t: privacy_link: privacy_url, terms_link: terms_url }}
+              <label class="form-label--checkbox" for="accepts-pdpl">
+                I accept the
+                <a href="{{ privacy_url }}" target="_blank">Privacy Policy</a>
+                and
+                <a href="{{ terms_url }}" target="_blank">Terms of Service</a>
               </label>
             </div>
             <div class="form-actions">
