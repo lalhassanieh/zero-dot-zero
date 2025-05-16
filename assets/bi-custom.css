@@ -785,6 +785,11 @@ dd.price__compare {
     padding-right: 4px;
 }
 
+.accepts-marketing a {
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
         border-color:
