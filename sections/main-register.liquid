@@ -140,10 +140,14 @@
               <input type="hidden" name="customer[accepts_pdpl]" value="false">
               <input type="checkbox" name="customer[accepts_pdpl]" id="accepts-pdpl" required>
               <label class="form-label--checkbox" for="accepts-pdpl">
-                I accept the
-                <a href="{{ privacy_url }}" target="_blank">Privacy Policy</a>
-                and
-                <a href="{{ terms_url }}" target="_blank">Terms of Service</a>
+                {{- 'customer.register.accept_pdpl_1' | t -}}
+                <a href="{{ privacy_url }}" target="_blank">{{- 'customer.register.accept_pdpl_3' | t -}}</a>
+                {{- 'customer.register.accept_pdpl_2' | t -}}
+                <a href="{{ terms_url }}" target="_blank">{{- 'customer.register.accept_pdpl_4' | t -}}</a>
+                {{- 'customer.register.accept_pdpl_2' | t -}}
+                <a href="{{ 'customer.register.pdpl_pdf' | t }}" target="_blank" download>
+                  {{- 'customer.register.pdf_document' | t -}}
+                </a>
               </label>
             </div>
             <div class="form-actions">
