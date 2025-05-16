@@ -12,7 +12,8 @@
     "main": {
       "type": "main-page",
       "custom_css": [
-        "p ,li{color: #000 !important; font-family: \"Gilroy Light\";}"
+        "p,li {color: #000 !important; font-family: \"Gilroy Light\";}",
+        "b,span {font-family: 'Gilroy Extra Bold';}"
       ],
       "settings": {}
     }
