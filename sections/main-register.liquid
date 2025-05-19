@@ -13,8 +13,8 @@
   assign container = section.settings.container
   assign padding_full_width = section.settings.padding_full_width
 -%}
-{% assign privacy_url = pages['privacy-policy'].url %}
-{% assign terms_url = pages['terms-of-service'].url %}
+{% assign pdpl_url = pages['data-collection-and-processing'].url %}
+
 
 <div class="account-page register-page section-block-{{section.id}}">
   <div class="{% if container == '1170' %}container-1170{% elsif container == '1770' %}container-1770{% elsif container == 'fullwidth'%}container-full{% else %}container{% endif %}">
@@ -141,13 +141,7 @@
               <input type="checkbox" name="customer[accepts_pdpl]" id="accepts-pdpl" required>
               <label class="form-label--checkbox" for="accepts-pdpl">
                 {{- 'customer.register.accept_pdpl_1' | t -}}
-                <a href="{{ privacy_url }}" target="_blank">{{- 'customer.register.accept_pdpl_3' | t -}}</a>
-                {{- 'customer.register.accept_pdpl_2' | t -}}
-                <a href="{{ terms_url }}" target="_blank">{{- 'customer.register.accept_pdpl_4' | t -}}</a>
-                {{- 'customer.register.accept_pdpl_2' | t -}}
-                <a href="{{ 'customer.register.pdpl_pdf' | t }}" target="_blank" download>
-                  {{- 'customer.register.pdf_document' | t -}}
-                </a>
+                <a href="{{ pdpl_url }}" target="_blank">{{- 'customer.register.accept_pdpl_2' | t -}}</a>
               </label>
             </div>
             <div class="form-actions">
