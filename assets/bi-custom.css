@@ -424,7 +424,7 @@ h5,
 
 .productView-details .product-form__input .form__label {
     margin-right: 20px !important;
-    width: auto;
+    width: 65px;
 }
 
 .productView-details .product-form__input .select__select {
@@ -795,6 +795,7 @@ dd.price__compare {
     color: #000;
     font-family: 'Gilroy Light';
 }
+
 
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
