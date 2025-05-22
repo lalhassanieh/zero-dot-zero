@@ -506,7 +506,7 @@
           "type": "tab",
           "settings": {
             "title": "Still Wine",
-            "menu": "main-menu",
+            "menu": "sparkling-wines",
             "items_grid_gap": 7.5,
             "items_spacing_tb": 30,
             "items_spacing_lr": 10,
@@ -528,7 +528,7 @@
           "type": "tab",
           "settings": {
             "title": "Tonic and Mixers",
-            "menu": "main-menu",
+            "menu": "spirits",
             "items_grid_gap": 7.5,
             "items_spacing_tb": 30,
             "items_spacing_lr": 10,
@@ -550,7 +550,7 @@
           "type": "tab",
           "settings": {
             "title": "Tonic and Mixers",
-            "menu": "main-menu",
+            "menu": "beers",
             "items_grid_gap": 7.5,
             "items_spacing_tb": 30,
             "items_spacing_lr": 10,
