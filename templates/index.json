@@ -607,7 +607,7 @@
             "heading": "Shop by Category",
             "heading_size": 35,
             "heading_size_mb": 20,
-            "heading_line_height": 1,
+            "heading_line_height": 0,
             "heading_color": "#005339"
           }
         }
