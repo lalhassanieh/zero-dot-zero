@@ -827,7 +827,7 @@
         "button_border_color": "#4dac8b",
         "button_bg_color": "#4dac8b",
         "button_bg_gradient": "",
-        "mg_top_desktop": 15,
+        "mg_top_desktop": 20,
         "mg_top_tablet": 50,
         "mg_top_mobile": 20,
         "mg_bottom_desktop": 50,
