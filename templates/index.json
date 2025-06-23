@@ -15,7 +15,7 @@
         "image_M9rGXy": {
           "type": "image",
           "settings": {
-            "image_slide": "shopify://shop_images/2ddUntitled-1.jpg",
+            "image_slide": "shopify://shop_images/Frame_790.png",
             "image_slide_mb": "shopify://shop_images/iPhone_14_15_Pro_Max_-_1_7d83be4d-40ae-4592-831a-734eff703deb.jpg",
             "alignment": "left",
             "enable_custom_position": true,
@@ -1298,7 +1298,7 @@
         "color_border_bottom": "rgba(0,0,0,0)",
         "enable_minus_mg_top": false,
         "minus_spacing_top": 0,
-        "rich_text_bg": "#FFFFFF",
+        "rich_text_bg": "#ffffff",
         "rich_text_bg_gradient": "",
         "enable_column": false,
         "custom_class": "",
@@ -1325,7 +1325,7 @@
         "enable_minus_mg_top": false,
         "minus_spacing_top": -100,
         "product_block_layout": "grid",
-        "product_bg": "#FFFFFF",
+        "product_bg": "#ffffff",
         "product_bg_gradient": "",
         "product_block_collection": "sparkling-wines",
         "product_block_limit": 4,
