@@ -1890,7 +1890,7 @@
             "bg_color_icon": "#000000",
             "button_style": "style_1",
             "btn_text": "Read More",
-            "link": "shopify://pages/contact",
+            "link": "shopify://collections",
             "button_1_width": 170,
             "enable_button_custom_border": false,
             "button_color": "#005339",
