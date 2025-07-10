@@ -487,6 +487,10 @@ h5,
     font-size: 20px;
 }
 
+.productView-options .productView-subtotal .text {
+    padding-right: 25px;
+}
+
 .faqs .faqs-item .card-header .title {
     background-color: transparent !important;
     padding: 30px 0 !important;
