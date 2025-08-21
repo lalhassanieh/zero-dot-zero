@@ -50,7 +50,7 @@
             "border_sub_heading": "none",
             "sub_title_position": "sub_title_above",
             "color_sub_heading": "#ffffff",
-            "heading": "<div class=\"top\">Try 2025's Top-Rated</div>  <span>Non - Alcoholic </span>",
+            "heading": "<div class=\"top\">\nGather \n</div>  <span>Differently </span>",
             "letter_spacing_heading": "",
             "enable_border_heading": false,
             "font_style_heading": "normal",
@@ -58,24 +58,24 @@
             "line_height_heading": 45,
             "heading_spacing_bottom": 20,
             "color_heading": "#005339",
-            "slide-des": "Drinks",
-            "font_size_des": 40,
+            "slide-des": "where flavor meets craftsmanship, every sip becomes part of the moment. At Zero.Zero Drystore, we bring together bold blends, global favorites, and alcohol-free sophistication, perfect for elevating every gathering. Explore, sip, and celebrate the finer side of refreshment.",
+            "font_size_des": 17,
             "line_height_des": 20,
             "des_spacing_bottom": 35,
             "color_des": "#005339",
-            "sub_heading_mb": "Try 2025's  Top-Rated   Non - Alcoholic ",
+            "sub_heading_mb": "Gather",
             "font_size_sub_heading_mb": 20,
             "sub_heading_spacing_bottom_mb": 0,
             "font_weight_sub_heading_mb": "400",
             "border_sub_heading_mb": "none",
             "color_sub_heading_mb": "#005339",
-            "heading_mb": "<span>Non - Alcoholic</span> Drinks",
+            "heading_mb": "<span>Differently</span>",
             "font_style_heading_mb": "normal",
             "font_size_heading_mb": 20,
             "line_height_heading_mb": 24,
             "heading_spacing_bottom_mb": 8,
             "color_heading_mb": "#005339",
-            "slide-des-mb": "",
+            "slide-des-mb": "where flavor meets craftsmanship, every sip becomes part of the moment. At Zero.Zero Drystore, we bring together bold blends, global favorites, and alcohol-free sophistication, perfect for elevating every gathering. Explore, sip, and celebrate the finer side of refreshment.",
             "font_size_des_mb": 12,
             "des_spacing_bottom_mb": 35,
             "color_des_mb": "#ffffff",
@@ -83,7 +83,7 @@
             "enable_button_link": false,
             "enable_underline": true,
             "font_size_link": 36,
-            "button_slide": "Discover",
+            "button_slide": "Start Your Experience",
             "link": "shopify://collections/all",
             "button_style": "button_1",
             "button_slide_2": "",
@@ -114,6 +114,7 @@
         },
         "image_db3xma": {
           "type": "image",
+          "disabled": true,
           "settings": {
             "image_slide": "shopify://shop_images/2ddUntitled-1.jpg",
             "image_slide_mb": "shopify://shop_images/iPhone_14_15_Pro_Max_-_1_7d83be4d-40ae-4592-831a-734eff703deb.jpg",
@@ -214,6 +215,7 @@
         },
         "image_fXMHVw": {
           "type": "image",
+          "disabled": true,
           "settings": {
             "image_slide": "shopify://shop_images/2ddUntitled-1.jpg",
             "image_slide_mb": "shopify://shop_images/iPhone_14_15_Pro_Max_-_1_7d83be4d-40ae-4592-831a-734eff703deb.jpg",
