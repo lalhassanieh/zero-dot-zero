@@ -58,7 +58,8 @@
         "description_U8YxzD"
       ],
       "custom_css": [
-        "#HeaderCollectionSection-template--19396942495988__banner .collection-description {max-width: 100%;}"
+        ": 60px;#HeaderCollectionSection-template--19396942495988__banner .collection-description {max-width: 100%;}",
+        ".collection-header {margin-top: 60px;}"
       ],
       "settings": {
         "container": "fullwidth",
