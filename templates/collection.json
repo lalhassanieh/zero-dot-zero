@@ -57,6 +57,9 @@
       "block_order": [
         "description_U8YxzD"
       ],
+      "custom_css": [
+        "#HeaderCollectionSection-template--19396942495988__banner .collection-description {max-width: 100%;}"
+      ],
       "settings": {
         "container": "1770",
         "padding_full_width": 20,
