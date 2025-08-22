@@ -62,7 +62,7 @@
       ],
       "settings": {
         "container": "fullwidth",
-        "padding_full_width": 0,
+        "padding_full_width": 85,
         "layout": "1",
         "show_breadcrumb": false,
         "breadcrumb_alignment": "center",
