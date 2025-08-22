@@ -58,11 +58,11 @@
         "description_U8YxzD"
       ],
       "settings": {
-        "container": "1170",
+        "container": "fullwidth",
         "padding_full_width": 0,
         "layout": "1",
         "show_breadcrumb": false,
-        "breadcrumb_alignment": "left",
+        "breadcrumb_alignment": "center",
         "breadcrumb_color": "#000000",
         "breadcrumb_bg": "rgba(0,0,0,0)",
         "breadcrumb_gradient": "",
