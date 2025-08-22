@@ -61,7 +61,7 @@
         "#HeaderCollectionSection-template--19396942495988__banner .collection-description {max-width: 100%;}"
       ],
       "settings": {
-        "container": "1170",
+        "container": "fullwidth",
         "padding_full_width": 0,
         "layout": "1",
         "show_breadcrumb": false,
