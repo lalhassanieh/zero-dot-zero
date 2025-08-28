@@ -808,7 +808,8 @@ padding: 50px 0;
 .contact-form .form-actions .button, #ContactSection-template--19396941873396__main .contact-item.contact-itemRight .contact-btn {
     border-radius: 75px!important;
 }
-#ContactSection-template--19396941873396__main .contact-item.contact-itemRight .contact-btn:after {
+#custom-map-template--19396941873396__google-map .map-btn:after,
+.contact-form .form-actions .button:after, #ContactSection-template--19396941873396__main .contact-item.contact-itemRight .contact-btn:after {
     content: "";
     background-image: url(/cdn/shop/files/button-icon.svg?v=1746020835);
     background-repeat: no-repeat;
