@@ -804,7 +804,9 @@ dd.price__compare {
 background: #A7CFBE;
 padding: 50px 0;
 }
-
+#custom-map-template--19396941873396__google-map .map-btn {
+    border-radius: 75px;
+}
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
         border-color:
