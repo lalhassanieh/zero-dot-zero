@@ -800,6 +800,10 @@ dd.price__compare {
     font-family: 'Gilroy Light';
 }
 
+.custom-map .block-header{
+background: #A7CFBE;
+padding: 50px 0;
+}
 
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
