@@ -9,40 +9,6 @@
  */
 {
   "sections": {
-    "1756379514df3b385d": {
-      "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_324eef5_QY6Udr": {
-          "type": "ai_gen_block_324eef5",
-          "settings": {
-            "icon_1": "shopify://shop_images/no_alcohol.svg",
-            "title_1": "0.0% Alcohol",
-            "icon_2": "shopify://shop_images/award-quality-svgrepo-com_1.svg",
-            "title_2": "Crafted Excellence",
-            "icon_3": "shopify://shop_images/flavor-svgrepo-com_1.svg",
-            "title_3": "Flavor-First Philosophy",
-            "icon_4": "shopify://shop_images/premium-svgrepo-com_1.svg",
-            "title_4": "Premium Experience",
-            "icon_size": 80,
-            "icon_color": "#ffffff",
-            "icon_background_color": "rgba(0,0,0,0)",
-            "icon_border_radius": 40,
-            "title_color": "#000000",
-            "title_font_size": 16,
-            "title_font_weight": "700",
-            "column_gap": 30,
-            "icon_title_gap": 15,
-            "section_padding": 40,
-            "columns_mobile": "2"
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_324eef5_QY6Udr"
-      ],
-      "settings": {}
-    },
     "slide_show_FadCMd": {
       "type": "slide-show",
       "blocks": {
@@ -2243,10 +2209,43 @@
         "mg_bottom_tablet": 50,
         "mg_bottom_mobile": 30
       }
+    },
+    "1756379514df3b385d": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_324eef5_QY6Udr": {
+          "type": "ai_gen_block_324eef5",
+          "settings": {
+            "icon_1": "shopify://shop_images/no_alcohol.svg",
+            "title_1": "0.0% Alcohol",
+            "icon_2": "shopify://shop_images/award-quality-svgrepo-com_1.svg",
+            "title_2": "Crafted Excellence",
+            "icon_3": "shopify://shop_images/flavor-svgrepo-com_1.svg",
+            "title_3": "Flavor-First Philosophy",
+            "icon_4": "shopify://shop_images/premium-svgrepo-com_1.svg",
+            "title_4": "Premium Experience",
+            "icon_size": 80,
+            "icon_color": "#ffffff",
+            "icon_background_color": "rgba(0,0,0,0)",
+            "icon_border_radius": 40,
+            "title_color": "#000000",
+            "title_font_size": 16,
+            "title_font_weight": "700",
+            "column_gap": 30,
+            "icon_title_gap": 15,
+            "section_padding": 40,
+            "columns_mobile": "2"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_324eef5_QY6Udr"
+      ],
+      "settings": {}
     }
   },
   "order": [
-    "1756379514df3b385d",
     "slide_show_FadCMd",
     "rich_text_Ar6Fqp",
     "brand_tab_block_az6GWe",
@@ -2263,6 +2262,7 @@
     "image_banner_cwnjQq",
     "rich_text_Ppzntx",
     "product_block_MzwjbK",
-    "faqs_RfB3pw"
+    "faqs_RfB3pw",
+    "1756379514df3b385d"
   ]
 }
