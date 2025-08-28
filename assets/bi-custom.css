@@ -828,6 +828,10 @@ padding: 50px 0;
     .contact.contact-2 .contact-item.contact-itemRight {
         background-color: #fff7e5!important;
     }
+.contact-address svg{
+    width: 24px;
+    height: 24px;
+}
 
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
