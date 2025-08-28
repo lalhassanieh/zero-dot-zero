@@ -804,7 +804,8 @@ dd.price__compare {
 background: #A7CFBE;
 padding: 50px 0;
 }
-#custom-map-template--19396941873396__google-map .map-btn {
+#custom-map-template--19396941873396__google-map .map-btn,
+.contact-form .form-actions .button {
     border-radius: 75px;
 }
 @media (min-width: 1025px) {
