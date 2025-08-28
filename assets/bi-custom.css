@@ -825,6 +825,9 @@ padding: 50px 0;
 #ContactSection-template--19396941873396__main .contact-item.contact-itemRight .contact-btn:hover:after {
     filter: brightness(0) invert(1);
 }
+    .contact.contact-2 .contact-item.contact-itemRight {
+        background-color: #fff7e5;
+    }
 
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
