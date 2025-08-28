@@ -826,7 +826,7 @@ padding: 50px 0;
     filter: brightness(0) invert(1);
 }
     .contact.contact-2 .contact-item.contact-itemRight {
-        background-color: #fff7e5;
+        background-color: #fff7e5!important;
     }
 
 @media (min-width: 1025px) {
