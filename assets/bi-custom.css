@@ -819,6 +819,12 @@ padding: 50px 0;
     width: 14px;
     height: 17px;
 }
+#custom-map-template--19396941873396__google-map .map-btn:hover:after ,
+.contact-form .form-actions .button:hover:after , 
+#ContactSection-template--19396941873396__main .contact-item.contact-itemRight .contact-btn:hover:after {
+    filter: brightness(0) invert(1);
+}
+
 @media (min-width: 1025px) {
     .brand__custom--tab ul li [tab-title-action]:hover {
         border-color:
