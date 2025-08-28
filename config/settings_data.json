@@ -127,7 +127,7 @@
     "type_page_title_font_size": 20,
     "type_page_title_font_weight": "700",
     "type_page_title_letter_spacing": ".05em",
-    "favicon": "shopify://shop_images/favicon.png",
+    "favicon": "shopify://shop_images/favicon.jpg",
     "after_add_to_cart": "quick_cart",
     "show_customer_login": true,
     "customer_login_btn_2": "2",
