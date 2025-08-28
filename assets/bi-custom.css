@@ -808,8 +808,10 @@ padding: 50px 0;
 .contact-form .form-actions .button, #ContactSection-template--19396941873396__main .contact-item.contact-itemRight .contact-btn {
     border-radius: 75px!important;
 }
-.contact-form .form-actions .button{
-    background: transparent url(/cdn/shop/files/button-icon.svg?v=1746020835) no-repeat top 90%;
+.contact-form .form-actions .button {
+    background-image: url(/cdn/shop/files/button-icon.svg?v=1746020835);
+    background-repeat: no-repeat;
+    background-position: 90% 50%;
 }
 #custom-map-template--19396941873396__google-map .map-btn:after,
  #ContactSection-template--19396941873396__main .contact-item.contact-itemRight .contact-btn:after {
