@@ -68,7 +68,7 @@
       "type": "google-map",
       "settings": {
         "show_custom_map": true,
-        "container": "fullwidth",
+        "container": "1170",
         "block_title": "Find Store Location Near you",
         "block_text": "We have 06 stores throughout “Country” and more in works. Complete the search details below to find a Ella store near you.",
         "block_align": "center",
