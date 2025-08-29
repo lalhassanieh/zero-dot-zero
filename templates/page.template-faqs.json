@@ -115,13 +115,40 @@
             "question_10": "",
             "answer_10": ""
           }
+        },
+        "paragraph_nWEBac": {
+          "type": "paragraph",
+          "settings": {
+            "title": "Customer Support",
+            "question_1": "1.How can I reach Zero.Zero’s support team?",
+            "answer_1": "Call us at 800-301-2030or email info@zerodotzerodrystore.com.",
+            "question_2": "2.What are your customer service hours?",
+            "answer_2": "We’re available Sunday to Thursday, 8 AM ، 5 PM.",
+            "question_3": "",
+            "answer_3": "",
+            "question_4": "",
+            "answer_4": "",
+            "question_5": "",
+            "answer_5": "",
+            "question_6": "Question",
+            "answer_6": "<p>Use overlay text to give your customers insight into your brand. Select image and text that relates to your style and story.</p>",
+            "question_7": "Question",
+            "answer_7": "<p>Use overlay text to give your customers insight into your brand. Select image and text that relates to your style and story.</p>",
+            "question_8": "Question",
+            "answer_8": "<p>Use overlay text to give your customers insight into your brand. Select image and text that relates to your style and story.</p>",
+            "question_9": "Question",
+            "answer_9": "<p>Use overlay text to give your customers insight into your brand. Select image and text that relates to your style and story.</p>",
+            "question_10": "Question",
+            "answer_10": "<p>Use overlay text to give your customers insight into your brand. Select image and text that relates to your style and story.</p>"
+          }
         }
       },
       "block_order": [
         "15d9d2f4-1bdd-49c8-9a99-58246020f05c",
         "f4d12560-a07c-4bd4-a934-2a8eddeaccc9",
         "paragraph_GyX8rz",
-        "paragraph_piBfrc"
+        "paragraph_piBfrc",
+        "paragraph_nWEBac"
       ],
       "settings": {
         "container": "1170",
