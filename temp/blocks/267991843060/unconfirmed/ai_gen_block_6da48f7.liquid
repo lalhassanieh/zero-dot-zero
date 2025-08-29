@@ -1,6 +1,641 @@
+{% doc %}
+  @prompt
+    Create a brands showcase section that displays multiple brand logos with accompanying text descriptions. Each brand should have an image upload field and a text area for brand information. The layout should be responsive and visually appealing, with proper spacing between brand items. but this brands still read from the vendors dynamically
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-brands-showcase-{{ ai_gen_id }} {
+    padding: {{ block.settings.section_padding_top }}px 0 {{ block.settings.section_padding_bottom }}px;
+    background-color: {{ block.settings.background_color }};
+  }
+
+  .ai-brands-showcase__container-{{ ai_gen_id }} {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .ai-brands-showcase__header-{{ ai_gen_id }} {
+    text-align: center;
+    margin-bottom: {{ block.settings.header_margin_bottom }}px;
+  }
+
+  .ai-brands-showcase__title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.title_font_size }}px;
+    color: {{ block.settings.title_color }};
+    margin: 0 0 16px;
+    font-weight: 600;
+  }
+
+  .ai-brands-showcase__subtitle-{{ ai_gen_id }} {
+    font-size: {{ block.settings.subtitle_font_size }}px;
+    color: {{ block.settings.subtitle_color }};
+    margin: 0;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .ai-brands-showcase__grid-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat({{ block.settings.columns_desktop }}, 1fr);
+    gap: {{ block.settings.grid_gap }}px;
+    margin-top: {{ block.settings.grid_margin_top }}px;
+  }
+
+  .ai-brands-showcase__item-{{ ai_gen_id }} {
+    background-color: {{ block.settings.item_background_color }};
+    border-radius: {{ block.settings.item_border_radius }}px;
+    padding: {{ block.settings.item_padding }}px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid {{ block.settings.item_border_color }};
+  }
+
+  .ai-brands-showcase__item-{{ ai_gen_id }}:hover {
+    transform: translateY(-{{ block.settings.hover_lift }}px);
+    box-shadow: 0 {{ block.settings.hover_shadow_blur }}px {{ block.settings.hover_shadow_spread }}px rgba(0, 0, 0, {{ block.settings.hover_shadow_opacity }});
+  }
+
+  .ai-brands-showcase__logo-container-{{ ai_gen_id }} {
+    width: 100%;
+    height: {{ block.settings.logo_height }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: {{ block.settings.logo_margin_bottom }}px;
+    background-color: {{ block.settings.logo_background_color }};
+    border-radius: {{ block.settings.logo_border_radius }}px;
+    overflow: hidden;
+  }
+
+  .ai-brands-showcase__logo-{{ ai_gen_id }} {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: {{ block.settings.logo_filter }};
+  }
+
+  .ai-brands-showcase__logo-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f8f8;
+  }
+
+  .ai-brands-showcase__logo-placeholder-{{ ai_gen_id }} svg {
+    width: 60px;
+    height: 60px;
+    opacity: 0.3;
+  }
+
+  .ai-brands-showcase__brand-name-{{ ai_gen_id }} {
+    font-size: {{ block.settings.brand_name_font_size }}px;
+    font-weight: 600;
+    color: {{ block.settings.brand_name_color }};
+    margin: 0 0 {{ block.settings.brand_name_margin_bottom }}px;
+  }
+
+  .ai-brands-showcase__description-{{ ai_gen_id }} {
+    font-size: {{ block.settings.description_font_size }}px;
+    color: {{ block.settings.description_color }};
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .ai-brands-showcase__empty-state-{{ ai_gen_id }} {
+    text-align: center;
+    padding: 60px 20px;
+    color: #666;
+  }
+
+  .ai-brands-showcase__empty-state-title-{{ ai_gen_id }} {
+    font-size: 18px;
+    margin: 0 0 8px;
+    font-weight: 600;
+  }
+
+  .ai-brands-showcase__empty-state-text-{{ ai_gen_id }} {
+    font-size: 14px;
+    margin: 0;
+  }
+
+  @media screen and (max-width: 990px) {
+    .ai-brands-showcase__grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat({{ block.settings.columns_tablet }}, 1fr);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-brands-showcase__grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat({{ block.settings.columns_mobile }}, 1fr);
+      gap: {{ block.settings.grid_gap | times: 0.75 }}px;
+    }
+
+    .ai-brands-showcase__item-{{ ai_gen_id }} {
+      padding: {{ block.settings.item_padding | times: 0.75 }}px;
+    }
+
+    .ai-brands-showcase__logo-container-{{ ai_gen_id }} {
+      height: {{ block.settings.logo_height | times: 0.8 }}px;
+    }
+
+    .ai-brands-showcase__title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.title_font_size | times: 0.85 }}px;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-brands-showcase-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-brands-showcase__container-{{ ai_gen_id }}">
+    {% if block.settings.title != blank or block.settings.subtitle != blank %}
+      <div class="ai-brands-showcase__header-{{ ai_gen_id }}">
+        {% if block.settings.title != blank %}
+          <h2 class="ai-brands-showcase__title-{{ ai_gen_id }}">{{ block.settings.title }}</h2>
+        {% endif %}
+        {% if block.settings.subtitle != blank %}
+          <div class="ai-brands-showcase__subtitle-{{ ai_gen_id }}">{{ block.settings.subtitle }}</div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% assign all_vendors = collections.all.products | map: 'vendor' | uniq | sort %}
+    {% assign filtered_vendors = all_vendors | where: 'size', '>' | slice: 0, block.settings.max_brands %}
+
+    {% if filtered_vendors.size > 0 %}
+      <div class="ai-brands-showcase__grid-{{ ai_gen_id }}">
+        {% for vendor in filtered_vendors limit: block.settings.max_brands %}
+          {% assign vendor_handle = vendor | handle %}
+          {% assign custom_logo_key = 'brand_logo_' | append: forloop.index %}
+          {% assign custom_description_key = 'brand_description_' | append: forloop.index %}
+          {% assign custom_logo = block.settings[custom_logo_key] %}
+          {% assign custom_description = block.settings[custom_description_key] %}
+
+          <div class="ai-brands-showcase__item-{{ ai_gen_id }}">
+            <div class="ai-brands-showcase__logo-container-{{ ai_gen_id }}">
+              {% if custom_logo %}
+                <img
+                  src="{{ custom_logo | image_url: width: 400 }}"
+                  alt="{{ vendor | escape }} logo"
+                  class="ai-brands-showcase__logo-{{ ai_gen_id }}"loading="lazy"
+                  width="400"
+                  height="200"
+                >
+              {% else %}
+                <div class="ai-brands-showcase__logo-placeholder-{{ ai_gen_id }}">
+                  {{ 'image' | placeholder_svg_tag }}
+                </div>
+              {% endif %}
+            </div>
+
+            <h3 class="ai-brands-showcase__brand-name-{{ ai_gen_id }}">{{ vendor }}</h3>
+
+            {% if custom_description != blank %}
+              <div class="ai-brands-showcase__description-{{ ai_gen_id }}">
+                {{ custom_description }}
+              </div>
+            {% else %}
+              <div class="ai-brands-showcase__description-{{ ai_gen_id }}">Discover products from {{ vendor }}
+              </div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="ai-brands-showcase__empty-state-{{ ai_gen_id }}">
+        <h3 class="ai-brands-showcase__empty-state-title-{{ ai_gen_id }}">No brands found</h3>
+        <p class="ai-brands-showcase__empty-state-text-{{ ai_gen_id }}">
+          Add products with different vendors to see brands displayed here
+        </p>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Brands showcase",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section content"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Our Brands"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Discover the trusted brands we partner with to bring you quality products"
+    },
+    {
+      "type": "range",
+      "id": "max_brands",
+      "label": "Maximum brands to show",
+      "min": 4,
+      "max": 20,
+      "step": 2,
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "columns_desktop",
+      "label": "Columns on desktop",
+      "options": [
+        { "value": "2", "label": "2" },
+        { "value": "3", "label": "3" },
+        { "value": "4", "label": "4" },
+        { "value": "5", "label": "5" }
+      ],
+      "default": "4"
+    },
+    {
+      "type": "select",
+      "id": "columns_tablet",
+      "label": "Columns on tablet",
+      "options": [
+        { "value": "2", "label": "2" },
+        { "value": "3", "label": "3" }
+      ],
+      "default": "3"
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Columns on mobile",
+      "options": [
+        { "value": "1", "label": "1" },
+        { "value": "2", "label": "2" }
+      ],
+      "default": "2"
+    },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "label": "Grid gap",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Brand customization"
+    },
+    {
+      "type": "image_picker",
+      "id": "brand_logo_1",
+      "label": "Brand 1 logo"
+    },
+    {
+      "type": "textarea",
+      "id": "brand_description_1",
+      "label": "Brand 1 description"
+    },
+    {
+      "type": "image_picker",
+      "id": "brand_logo_2",
+      "label": "Brand 2 logo"
+    },
+    {
+      "type": "textarea",
+      "id": "brand_description_2",
+      "label": "Brand 2 description"
+    },
+    {
+      "type": "image_picker",
+      "id": "brand_logo_3",
+      "label": "Brand 3 logo"
+    },
+    {
+      "type": "textarea",
+      "id": "brand_description_3",
+      "label": "Brand 3 description"
+    },
+    {
+      "type": "image_picker",
+      "id": "brand_logo_4",
+      "label": "Brand 4 logo"
+    },
+    {
+      "type": "textarea",
+      "id": "brand_description_4",
+      "label": "Brand 4 description"
+    },
+    {
+      "type": "image_picker",
+      "id": "brand_logo_5",
+      "label": "Brand 5 logo"
+    },
+    {
+      "type": "textarea",
+      "id": "brand_description_5",
+      "label": "Brand 5 description"
+    },
+    {
+      "type": "image_picker",
+      "id": "brand_logo_6",
+      "label": "Brand 6 logo"
+    },
+    {
+      "type": "textarea",
+      "id": "brand_description_6",
+      "label": "Brand 6 description"
+    },
+    {
+      "type": "image_picker",
+      "id": "brand_logo_7",
+      "label": "Brand 7 logo"
+    },
+    {
+      "type": "textarea",
+      "id": "brand_description_7",
+      "label": "Brand 7 description"
+    },
+    {
+      "type": "image_picker",
+      "id": "brand_logo_8",
+      "label": "Brand 8 logo"
+    },
+    {
+      "type": "textarea",
+      "id": "brand_description_8",
+      "label": "Brand 8 description"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle color",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "item_background_color",
+      "label": "Item background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "item_border_color",
+      "label": "Item border color",
+      "default": "#e5e5e5"
+    },
+    {
+      "type": "color",
+      "id": "brand_name_color",
+      "label": "Brand name color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description color",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "logo_background_color",
+      "label": "Logo background color",
+      "default": "#f8f8f8"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "label": "Title font size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "subtitle_font_size",
+      "label": "Subtitle font size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "brand_name_font_size",
+      "label": "Brand name font size",
+      "min": 14,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "description_font_size",
+      "label": "Description font size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "label": "Section padding top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "label": "Section padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "header_margin_bottom",
+      "label": "Header margin bottom",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "grid_margin_top",
+      "label": "Grid margin top",
+      "min": 0,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "item_padding",
+      "label": "Item padding",
+      "min": 15,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "logo_margin_bottom",
+      "label": "Logo margin bottom",
+      "min": 10,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "brand_name_margin_bottom",
+      "label": "Brand name margin bottom",
+      "min": 5,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "range",
+      "id": "item_border_radius",
+      "label": "Item border radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "logo_border_radius",
+      "label": "Logo border radius",
+      "min": 0,
+      "max": 15,
+      "step": 1,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "logo_height",
+      "label": "Logo height",
+      "min": 60,
+      "max": 150,
+      "step": 10,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "select",
+      "id": "logo_filter",
+      "label": "Logo filter",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "grayscale(100%)", "label": "Grayscale" },
+        { "value": "opacity(0.7)", "label": "Opacity 70%" },
+        { "value": "grayscale(100%) opacity(0.7)", "label": "Grayscale + Opacity" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "header",
+      "content": "Hover effects"
+    },
+    {
+      "type": "range",
+      "id": "hover_lift",
+      "label": "Hover lift",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "hover_shadow_blur",
+      "label": "Hover shadow blur",
+      "min": 5,
+      "max": 30,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "hover_shadow_spread",
+      "label": "Hover shadow spread",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "text",
+      "id": "hover_shadow_opacity",
+      "label": "Hover shadow opacity",
+      "default": "0.1"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brands showcase"
+    }
+  ]
+}
 {% endschema %}
