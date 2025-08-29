@@ -1055,3 +1055,14 @@ padding: 50px 0;
         border-right: 1px solid transparent !important;
     }
 }
+
+.custom-service-block.service_block_style_3 .halo-item a {
+    position: relative;
+}
+.custom-service-block.service_block_style_3 .policies-content {
+    text-align: left;
+    position: absolute;
+    bottom: 70px;
+    left: 20px;
+    width: 90%;
+}
