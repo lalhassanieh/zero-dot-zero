@@ -63,11 +63,38 @@
             "question_10": "",
             "answer_10": ""
           }
+        },
+        "paragraph_GyX8rz": {
+          "type": "paragraph",
+          "settings": {
+            "title": "Payments & Pricing",
+            "question_1": "1.What payment methods do you accept?",
+            "answer_1": "We accept Mada, credit and debit cards, Apple Pay, andSTC Pay.",
+            "question_2": "2.Are prices the same across all cities?",
+            "answer_2": "Yes, prices remain consistent throughout Saudi Arabia.",
+            "question_3": "",
+            "answer_3": "",
+            "question_4": "",
+            "answer_4": "",
+            "question_5": "",
+            "answer_5": "",
+            "question_6": "",
+            "answer_6": "",
+            "question_7": "",
+            "answer_7": "",
+            "question_8": "",
+            "answer_8": "",
+            "question_9": "",
+            "answer_9": "",
+            "question_10": "",
+            "answer_10": ""
+          }
         }
       },
       "block_order": [
         "15d9d2f4-1bdd-49c8-9a99-58246020f05c",
-        "f4d12560-a07c-4bd4-a934-2a8eddeaccc9"
+        "f4d12560-a07c-4bd4-a934-2a8eddeaccc9",
+        "paragraph_GyX8rz"
       ],
       "settings": {
         "container": "1170",
