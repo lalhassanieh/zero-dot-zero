@@ -196,7 +196,7 @@
             "button_pos_from_center": 0,
             "content_pos_from_center": 0,
             "divider_position_from_center": 0,
-            "small_banner_bg_color": "#fafafa",
+            "small_banner_bg_color": "rgba(0,0,0,0)",
             "mg_bottom_icon": 25,
             "image_behavior": "none",
             "sub_title": "",
