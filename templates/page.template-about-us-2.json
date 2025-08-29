@@ -28,7 +28,8 @@
       ],
       "custom_css": [
         ".about-content-wrapper {height: 100%; display: flex; align-items: end;}",
-        ".about-content-wrapper h1 {height: 100%; display: flex; align-items: end;}"
+        ".about-content-wrapper h1 {height: 100%; display: flex; align-items: end;}",
+        ".halo-banner.image-banner {background: transparent !important;}"
       ],
       "settings": {
         "container": "1770",
@@ -143,6 +144,7 @@
       "block_order": [
         "ea48fb40-c5bc-4536-a283-4b32a72b4649"
       ],
+      "custom_css": [],
       "settings": {
         "id_section": "",
         "container": "1170",
