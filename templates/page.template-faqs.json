@@ -89,12 +89,39 @@
             "question_10": "",
             "answer_10": ""
           }
+        },
+        "paragraph_piBfrc": {
+          "type": "paragraph",
+          "settings": {
+            "title": "Returns & Refunds",
+            "question_1": "1.What’s your return policy?",
+            "answer_1": "Due to the nature of our products, returns aren’taccepted. However, if you encounter an issue with your order, please reach outto our Customer Care team; we’re here to help.",
+            "question_2": "2.How long do refunds take?",
+            "answer_2": "If approved, refunds are processed within 10 businessdays. Just make sure to request a refund within 72 hours for damaged items andreturn the product in its original packaging.",
+            "question_3": "3.Do I need to return the item in its original packaging?",
+            "answer_3": "Yes, all returns must be in their original packaging.",
+            "question_4": "4.Where can I share feedback or suggestions?",
+            "answer_4": "We’d love to hear from you. Email us anytime at info@zerodotzerodrystore.com.",
+            "question_5": "",
+            "answer_5": "",
+            "question_6": "",
+            "answer_6": "",
+            "question_7": "",
+            "answer_7": "",
+            "question_8": "",
+            "answer_8": "",
+            "question_9": "",
+            "answer_9": "",
+            "question_10": "",
+            "answer_10": ""
+          }
         }
       },
       "block_order": [
         "15d9d2f4-1bdd-49c8-9a99-58246020f05c",
         "f4d12560-a07c-4bd4-a934-2a8eddeaccc9",
-        "paragraph_GyX8rz"
+        "paragraph_GyX8rz",
+        "paragraph_piBfrc"
       ],
       "settings": {
         "container": "1170",
