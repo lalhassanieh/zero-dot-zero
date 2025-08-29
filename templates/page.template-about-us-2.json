@@ -36,7 +36,7 @@
         "page_title_color": "#ffffff",
         "page_title_alignment": "left",
         "about_bg_image": "shopify://shop_images/aboutUs.jpg",
-        "about_bg_image_height": 600,
+        "about_bg_image_height": 500,
         "enable_parallax": true,
         "menu": "",
         "menu_bar_background": "#fafafa",
