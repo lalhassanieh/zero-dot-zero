@@ -424,7 +424,7 @@
         "4fa051b7-7efe-4fea-ba27-4589826d875a": {
           "type": "Text",
           "settings": {
-            "bg_color_block": "#ffffff",
+            "bg_color_block": "rgba(0,0,0,0)",
             "border_block": "#ffffff",
             "icon_type": "image",
             "image": "shopify://shop_images/nonAlcoholic.png",
@@ -435,10 +435,10 @@
             "color_icon": "#3c3c3c",
             "text": "non alcoholic wines",
             "type_tab_font": "font_1",
-            "fontsize_title_block": 18,
+            "fontsize_title_block": 15,
             "fontsize_title_block_mb": 18,
             "title_block_font_weight": "700",
-            "mg_bottom_title": 9,
+            "mg_bottom_title": 15,
             "mg_bottom_title_mb": 0,
             "color_block": "#ef6532",
             "description": "The Notes, the Nose, the Finish, Only Made Different",
@@ -463,53 +463,10 @@
             "button_background_hover": "",
             "button_background_gradient_hover": ""
           }
-        },
-        "a9a9a3e7-2abf-42fc-ae34-4fa2b26e0e49": {
-          "type": "Text",
-          "settings": {
-            "bg_color_block": "#ffffff",
-            "border_block": "#ffffff",
-            "icon_type": "image",
-            "icon": "",
-            "width_icon": 64,
-            "height_icon": 64,
-            "mg_bottom_icon": 30,
-            "color_icon": "#3c3c3c",
-            "text": "Monica.B",
-            "type_tab_font": "font_1",
-            "fontsize_title_block": 18,
-            "fontsize_title_block_mb": 18,
-            "title_block_font_weight": "700",
-            "mg_bottom_title": 9,
-            "mg_bottom_title_mb": 0,
-            "color_block": "#232323",
-            "description": "ART DIRECTOR",
-            "fontsize_des_block": 12,
-            "fontsize_des_block_mb": 12,
-            "lineheight_des_block": 22,
-            "mg_bottom_des": 0,
-            "color_des_block": "#3c3c3c",
-            "button": "",
-            "link": "",
-            "button_style": "style1",
-            "fontsize_button": 14,
-            "button_width": 235,
-            "fontweight_button": "500",
-            "enable_underline_button": false,
-            "color_button": "#ba7a2d",
-            "button_border": "",
-            "button_background": "",
-            "button_background_gradient": "",
-            "button_color_hover": "#ba7a2d",
-            "button_border_hover": "",
-            "button_background_hover": "",
-            "button_background_gradient_hover": ""
-          }
         }
       },
       "block_order": [
-        "4fa051b7-7efe-4fea-ba27-4589826d875a",
-        "a9a9a3e7-2abf-42fc-ae34-4fa2b26e0e49"
+        "4fa051b7-7efe-4fea-ba27-4589826d875a"
       ],
       "settings": {
         "id_section": "",
