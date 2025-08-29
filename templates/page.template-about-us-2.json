@@ -145,7 +145,7 @@
         "ea48fb40-c5bc-4536-a283-4b32a72b4649"
       ],
       "custom_css": [
-        ".halo-banner.image-banner {background: transparent !important; position: relative;}"
+        ".halo-banner.image-banner , .halo-banner-wrapper .flex-box__banner.row-reverse{background: transparent !important; position: relative;}"
       ],
       "settings": {
         "id_section": "",
