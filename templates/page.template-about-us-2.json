@@ -598,12 +598,12 @@
           "type": "paragraph",
           "settings": {
             "title": "",
-            "question_1": "Question",
-            "answer_1": "<p>Use overlay text to give your customers insight into your brand. Select image and text that relates to your style and story.</p>",
-            "question_2": "Question",
-            "answer_2": "<p>Use overlay text to give your customers insight into your brand. Select image and text that relates to your style and story.</p>",
-            "question_3": "Question",
-            "answer_3": "<p>Use overlay text to give your customers insight into your brand. Select image and text that relates to your style and story.</p>",
+            "question_1": "Can these be sold openlyin retail and hospitality venues?",
+            "answer_1": "<p>Yes, they are approved for distribution and sale in KSA through both on-trade (restaurants, hotels) and off-trade (retail) channels. \n \n</p>",
+            "question_2": "Do these products tastethe same as the alcoholic versions?",
+            "answer_2": "<p>Yes, they are designed to replicate the flavor and experience of the originals without any alcohol. </p>",
+            "question_3": "Why are they pricedhigher than juices or sodas?",
+            "answer_3": "These are premium lifestyle products crafted with complex ingredients and techniques. The pricing reflects quality, brand heritage, and production processes.",
             "question_4": "Question",
             "answer_4": "<p>Use overlay text to give your customers insight into your brand. Select image and text that relates to your style and story.</p>",
             "question_5": "Question",
@@ -619,10 +619,17 @@
             "question_10": "Question",
             "answer_10": "<p>Use overlay text to give your customers insight into your brand. Select image and text that relates to your style and story.</p>"
           }
+        },
+        "image_xpdmjM": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/image_25.png"
+          }
         }
       },
       "block_order": [
-        "paragraph_EUE6kw"
+        "paragraph_EUE6kw",
+        "image_xpdmjM"
       ],
       "name": "t:sections.faqs.presets.name",
       "settings": {
@@ -639,7 +646,7 @@
         "description": "Everything You Want To Know",
         "color_des": "#005339",
         "fontsize_des": 35,
-        "contact_text": "Contact Support",
+        "contact_text": "",
         "contact_link": "",
         "contact_color": "#ffffff",
         "contact_color_border": "#ef6454",
