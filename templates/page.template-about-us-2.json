@@ -425,7 +425,7 @@
           "type": "Text",
           "settings": {
             "bg_color_block": "rgba(0,0,0,0)",
-            "border_block": "#ffffff",
+            "border_block": "rgba(0,0,0,0)",
             "icon_type": "image",
             "image": "shopify://shop_images/nonAlcoholic.png",
             "icon": "",
@@ -468,7 +468,7 @@
           "type": "Text",
           "settings": {
             "bg_color_block": "rgba(0,0,0,0)",
-            "border_block": "#ffffff",
+            "border_block": "rgba(0,0,0,0)",
             "icon_type": "image",
             "image": "shopify://shop_images/spirits.png",
             "icon": "",
