@@ -463,10 +463,54 @@
             "button_background_hover": "",
             "button_background_gradient_hover": ""
           }
+        },
+        "text_74kVQc": {
+          "type": "Text",
+          "settings": {
+            "bg_color_block": "rgba(0,0,0,0)",
+            "border_block": "#ffffff",
+            "icon_type": "image",
+            "image": "shopify://shop_images/spirits.png",
+            "icon": "",
+            "width_icon": 64,
+            "height_icon": 64,
+            "mg_bottom_icon": 30,
+            "color_icon": "#3c3c3c",
+            "text": "spirits",
+            "type_tab_font": "font_1",
+            "fontsize_title_block": 15,
+            "fontsize_title_block_mb": 18,
+            "title_block_font_weight": "700",
+            "mg_bottom_title": 15,
+            "mg_bottom_title_mb": 0,
+            "color_block": "#ef6532",
+            "description": "Bold Flavor, 0.0% Distractions",
+            "fontsize_des_block": 32,
+            "fontsize_des_block_mb": 22,
+            "lineheight_des_block": 32,
+            "mg_bottom_des": 0,
+            "color_des_block": "#fff7e5",
+            "button": "",
+            "link": "",
+            "button_style": "style1",
+            "fontsize_button": 14,
+            "button_width": 235,
+            "fontweight_button": "500",
+            "enable_underline_button": false,
+            "color_button": "#ba7a2d",
+            "button_border": "",
+            "button_background": "",
+            "button_background_gradient": "",
+            "button_color_hover": "#ba7a2d",
+            "button_border_hover": "",
+            "button_background_hover": "",
+            "button_background_gradient_hover": ""
+          }
         }
       },
       "block_order": [
-        "4fa051b7-7efe-4fea-ba27-4589826d875a"
+        "4fa051b7-7efe-4fea-ba27-4589826d875a",
+        "text_74kVQc"
       ],
       "settings": {
         "id_section": "",
