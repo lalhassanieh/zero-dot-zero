@@ -26,6 +26,10 @@
       "block_order": [
         "d4bab6c1-ab4b-442b-8884-47890038f054"
       ],
+      "custom_css": [
+        ".about-content-wrapper {height: 100%; display: flex; align-items: end;}",
+        ".about-content-wrapper h1 {height: 100%; display: flex; align-items: end;}"
+      ],
       "settings": {
         "container": "1770",
         "padding_full_width": 0,
