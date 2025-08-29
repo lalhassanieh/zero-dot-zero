@@ -677,7 +677,7 @@
         "contact_color_bg_hover": "#ef6454",
         "contact_color_bg_gradient_hover": "",
         "title_alignment": "left",
-        "show_faqs_filter": true,
+        "show_faqs_filter": false,
         "mg_top_desktop": 50,
         "mg_top_tablet": 50,
         "mg_top_mobile": 50,
