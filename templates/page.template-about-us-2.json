@@ -57,44 +57,6 @@
         "mg_bottom_mobile": 0
       }
     },
-    "1647318656cd128338": {
-      "type": "rich-text",
-      "blocks": {
-        "164731865614d84454-0": {
-          "type": "heading",
-          "settings": {
-            "heading": "BEHIND THE SCENE",
-            "heading_size": 30,
-            "heading_size_mb": 24,
-            "heading_line_height": 1,
-            "heading_color": "#232323"
-          }
-        }
-      },
-      "block_order": [
-        "164731865614d84454-0"
-      ],
-      "settings": {
-        "container": "container",
-        "padding_full_width": 0,
-        "enable_border_top": false,
-        "enable_border_bottom": false,
-        "color_border_bottom": "#e8e8e8",
-        "enable_minus_mg_top": false,
-        "minus_spacing_top": -100,
-        "rich_text_bg": "#ffffff",
-        "rich_text_bg_gradient": "",
-        "enable_column": false,
-        "custom_class": "custom-rich-text",
-        "content_align": "center",
-        "mg_top_desktop": 60,
-        "mg_top_tablet": 50,
-        "mg_top_mobile": 35,
-        "mg_bottom_desktop": 60,
-        "mg_bottom_tablet": 40,
-        "mg_bottom_mobile": 35
-      }
-    },
     "16473179044a870c08": {
       "type": "image-banner",
       "blocks": {
@@ -660,7 +622,6 @@
   },
   "order": [
     "main",
-    "1647318656cd128338",
     "16473179044a870c08",
     "16474839872eb210cf",
     "1647339296880bf6ed",
