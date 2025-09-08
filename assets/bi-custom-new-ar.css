@@ -18,5 +18,5 @@
 }
 .slide-button:after, .banner-button:after, .productView-groupTop .product-form__submit:after {
     left: 28px;
-    right: auto;
+    right: auto !important;
 }
