@@ -3,9 +3,7 @@
 {%- if settings.use_custom_css -%}
 	{{ 'custom.css' | asset_url | stylesheet_tag }}
 {%- endif -%}
-{% if request.locale.iso_code == 'ar' %}
- { 'bi-custom-new-ar.css' | asset_url | stylesheet_tag }}
-{% endif %}
+
 {%- if settings.banner_animation == 'effect_fade_up' or settings.animations_hover_elements == '3d-lift' or settings.animations_hover_elements == 'vertical-lift' -%}
 	{{ 'fade-up-animation.css' | asset_url | stylesheet_tag }}
 {%- endif -%}
@@ -52,7 +50,9 @@
 <link rel="stylesheet" href="{{ 'component-slider.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-list-social.css' | asset_url }}" media="print" onload="this.media='all'">
 
-
+{% if request.locale.iso_code == 'ar' %}
+	  <link rel="stylesheet" href="{{ 'bi-custom-new-ar.css' | asset_url }}">
+{% endif %}
 {%- unless request.page_type == 'product' -%}
 	<noscript>{{ 'component-product-form.css' | asset_url | stylesheet_tag }}</noscript>
 	<noscript>{{ 'component-price.css' | asset_url | stylesheet_tag }}</noscript>
