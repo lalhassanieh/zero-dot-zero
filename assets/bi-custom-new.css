@@ -59,3 +59,8 @@ html[lang="ar"] body {
     border-left: 1px solid #A1A1A1;
   border-right: none;
 }
+.product-card-layout-08 .card-product .card-action .button.button-ATC, 
+.product-card-layout-08 .card-product .card-action .button.product-form__submit {
+    margin-right: 0;
+    margin-left: 20px;
+}
