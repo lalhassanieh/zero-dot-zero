@@ -3,9 +3,9 @@
     height: 40px;
 } 
 .contact-support-btn{
-    position: relative;
+position: relative;
     border-radius: 30px;
-    padding-inline-start: 25px;
+    padding-left: 25px !important;
 }
 .contact-support-btn:after {
     content: "";
