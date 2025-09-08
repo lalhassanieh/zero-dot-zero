@@ -5,7 +5,7 @@
 .contact-support-btn{
         background: #fff7e5;
     border-color: #232323;
-    color: #005339;
+    color: #005339;    padding-left: 25px;
 }
 .contact-support-btn:after {
     content: "";
