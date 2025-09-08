@@ -35,10 +35,12 @@ position: relative;
     margin-bottom: 30px;
     text-align: left;
 }
- #ContactSection-template--19396941873396__main .contact-item.contact-itemRight .contact-btn:after{
+ #ContactSection-template--19396941873396__main .contact-item.contact-itemRight .contact-btn:after,
+ .banner-button.button:after{
     filter: brightness(0) invert(1);
  }
-  #ContactSection-template--19396941873396__main .contact-item.contact-itemRight .contact-btn:hover:after{
+  #ContactSection-template--19396941873396__main .contact-item.contact-itemRight .contact-btn:hover:after,
+  .banner-button.button:hover:after{
     filter: none;
  }
  .contact-store+.contact-store {
