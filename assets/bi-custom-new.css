@@ -47,6 +47,11 @@ position: relative;
     margin-top: 0!important;
 }
 .halo-banner.image-banner{
-    margin-top: 80px;
+    margin-top: 50px;
     background-color: transparent!important;
+}
+html[lang="ar"] body {
+  font-family: 'Tajawal', sans-serif;
+  direction: rtl;
+  text-align: right;
 }
