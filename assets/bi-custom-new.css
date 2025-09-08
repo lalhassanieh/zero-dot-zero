@@ -17,3 +17,6 @@ position: relative;
     width: 14px;
     height: 17px;
 }
+.contact-support-btn:hover:after {
+    filter: brightness(0) invert(1);
+}
