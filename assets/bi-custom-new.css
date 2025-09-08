@@ -7,3 +7,13 @@
     border-color: #232323;
     color: #005339;
 }
+.contact-support-btn:after {
+    content: "";
+    background-image: url(/cdn/shop/files/button-icon.svg?v=1746020835);
+    background-repeat: no-repeat;
+    position: absolute;
+    right: 28px;
+    top: 13px;
+    width: 14px;
+    height: 17px;
+}
