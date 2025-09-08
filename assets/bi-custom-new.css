@@ -24,7 +24,7 @@ position: relative;
     padding-right: 20px !important;
 }
 .faqs-message-and-questions {
-    gap: 0;
+    gap: 0!important;
     width: 100%;
 }
 #FaqsSection-template--19396941971700__main .faqs-row{
