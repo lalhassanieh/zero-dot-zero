@@ -47,5 +47,6 @@ position: relative;
     margin-top: 0!important;
 }
 .halo-banner.image-banner{
+    margin-top: 80px;
     background-color: transparent!important;
 }
