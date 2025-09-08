@@ -23,3 +23,10 @@ position: relative;
 .faqs .faqs-item .card-header .title {
     padding-right: 20px !important;
 }
+.faqs-message-and-questions {
+    gap: 0;
+    width: 100%;
+}
+.faqs-row{
+    width: 100%!important;
+}
