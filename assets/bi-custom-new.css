@@ -55,3 +55,7 @@ html[lang="ar"] body {
   direction: rtl;
   text-align: right;
 }
+.tab-panel-content .product.slider__slide.grid__item {
+    border-left: 1px solid #A1A1A1;
+  border-right: none;
+}
