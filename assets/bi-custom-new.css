@@ -41,3 +41,6 @@ position: relative;
   #ContactSection-template--19396941873396__main .contact-item.contact-itemRight .contact-btn:hover:after{
     filter: none;
  }
+ .contact-store+.contact-store {
+    margin-top: 0;
+}
