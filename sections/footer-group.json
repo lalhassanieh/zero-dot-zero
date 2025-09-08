@@ -160,7 +160,7 @@
         "type_footer_link_text_transform": "capitalize",
         "type_footer_link_line_height": 28,
         "type_footer_link_letter_spacing": ".02em",
-        "enable_border_footer_top": true,
+        "enable_border_footer_top": false,
         "border_footer_top_color": "#005339",
         "pdtop_footer_top": 35,
         "pdbottom_footer_top": 40,
