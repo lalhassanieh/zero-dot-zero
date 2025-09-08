@@ -4,6 +4,7 @@
 } 
 .contact-support-btn{
     position: relative;
+    border-radius: 30px;
 }
 .contact-support-btn:after {
     content: "";
