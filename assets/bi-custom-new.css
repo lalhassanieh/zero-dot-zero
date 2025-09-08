@@ -46,3 +46,6 @@ position: relative;
  .contact-store+.contact-store {
     margin-top: 0!important;
 }
+.halo-banner.image-banner{
+    background-color: transparent!important;
+}
