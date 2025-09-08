@@ -187,6 +187,28 @@
                   </div>
                 </div>
               {%- endfor -%}
+                  {% if section.settings.contact_text != blank %}
+      <div class="contact-support-button-wrapper{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
+        <a
+          {% if section.settings.contact_link == blank %}
+            role="link" aria-disabled="true"
+          {% else %}
+            href="{{ section.settings.contact_link }}"
+          {% endif %}
+          class="contact-support-btn"
+          style="
+            --button-color-style: {{ contact_color }};
+            --button-border-color-style: {{ contact_color_border }};
+            --button-bg-color-style: {% if contact_color_bg_gradient != blank %}{{ contact_color_bg_gradient }}{% else %}{{ contact_color_bg }}{% endif %};
+            --button-color-hover-style: {{ contact_color_hover }};
+            --button-border-color-hover-style: {{ contact_color_border_hover }};
+            --button-bg-color-hover-style: {% if contact_color_bg_gradient_hover != blank %}{{ contact_color_bg_gradient_hover }}{% else %}{{ contact_color_bg_hover }}{% endif %}
+          "
+        >
+          {{ section.settings.contact_text }}
+        </a>
+      </div>
+    {% endif %}
             </div>
             <!-- FAQ Images Column -->
             <div class="faqs-images-wrapper">
@@ -217,28 +239,7 @@
         </div>
       {%- endif -%}
     </div>
-    {% if section.settings.contact_text != blank %}
-      <div class="contact-support-button-wrapper{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
-        <a
-          {% if section.settings.contact_link == blank %}
-            role="link" aria-disabled="true"
-          {% else %}
-            href="{{ section.settings.contact_link }}"
-          {% endif %}
-          class="contact-support-btn"
-          style="
-            --button-color-style: {{ contact_color }};
-            --button-border-color-style: {{ contact_color_border }};
-            --button-bg-color-style: {% if contact_color_bg_gradient != blank %}{{ contact_color_bg_gradient }}{% else %}{{ contact_color_bg }}{% endif %};
-            --button-color-hover-style: {{ contact_color_hover }};
-            --button-border-color-hover-style: {{ contact_color_border_hover }};
-            --button-bg-color-hover-style: {% if contact_color_bg_gradient_hover != blank %}{{ contact_color_bg_gradient_hover }}{% else %}{{ contact_color_bg_hover }}{% endif %}
-          "
-        >
-          {{ section.settings.contact_text }}
-        </a>
-      </div>
-    {% endif %}
+
   </div>
 </faqs-item>
 
