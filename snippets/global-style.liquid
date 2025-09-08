@@ -3,7 +3,9 @@
 {%- if settings.use_custom_css -%}
 	{{ 'custom.css' | asset_url | stylesheet_tag }}
 {%- endif -%}
-
+{% if request.locale.iso_code == 'ar' %}
+ { 'bi-custom-new-ar.css' | asset_url | stylesheet_tag }}
+{% endif %}
 {%- if settings.banner_animation == 'effect_fade_up' or settings.animations_hover_elements == '3d-lift' or settings.animations_hover_elements == 'vertical-lift' -%}
 	{{ 'fade-up-animation.css' | asset_url | stylesheet_tag }}
 {%- endif -%}
