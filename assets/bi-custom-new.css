@@ -64,3 +64,7 @@ html[lang="ar"] body {
     margin-right: 0;
     margin-left: 20px;
 }
+.product-card-layout-08 .product-item .card-product__group.group-right {
+    left: 20px;
+    right: auto;
+}
