@@ -20,3 +20,6 @@ position: relative;
 .contact-support-btn:hover:after {
     filter: brightness(0) invert(1);
 }
+.faqs .faqs-item .card-header .title {
+    padding-right: 20px !important;
+}
