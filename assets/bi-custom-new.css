@@ -11,7 +11,8 @@
     background-color: #FFF7E5!important;
 }
 .flex-box__banner.row-reverse .content-box.text-left{
-    padding-left: 0;
+    margin-left: 0;
+    padding-left: 40px;
 }
 .slide-content .slide-button{
     padding-inline-end: 50px;    
