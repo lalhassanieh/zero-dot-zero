@@ -83,3 +83,7 @@ position: relative;
     display: flex!important;
     align-item: center!important;
 }
+.form-label.quantity__label{
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
