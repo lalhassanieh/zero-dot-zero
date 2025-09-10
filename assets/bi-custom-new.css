@@ -18,12 +18,14 @@
     padding-inline-end: 50px;    
     height: 40px;
 } 
-.contact-support-btn{
+.contact-support-btn, 
+ .button--secondary{
 position: relative;
     border-radius: 30px;
     padding-left: 25px !important;
 }
-.contact-support-btn:after {
+.contact-support-btn:after,
+ .button--secondary:after {
     content: "";
     background-image: url(/cdn/shop/files/button-icon.svg?v=1746020835);
     background-repeat: no-repeat;
@@ -72,7 +74,9 @@ position: relative;
     .halo-top-language .text {
     margin-right: 0;
 }
+ .button--secondary {
 
+ }
  .button--secondary:after {
     content: "";
     background-image: url(/cdn/shop/files/button-icon.svg?v=1746020835);
