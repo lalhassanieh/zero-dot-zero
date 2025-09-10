@@ -10,7 +10,9 @@
     background-repeat: no-repeat!important;
     background-color: #FFF7E5!important;
 }
-
+.flex-box__banner.row-reverse .content-box.text-left{
+    padding-left: 0;
+}
 .slide-content .slide-button{
     padding-inline-end: 50px;    
     height: 40px;
