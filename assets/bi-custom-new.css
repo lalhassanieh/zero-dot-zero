@@ -50,3 +50,7 @@ position: relative;
     margin-top: 50px;
     background-color: transparent!important;
 }
+    .header-minimal .header-language_currency {
+        padding: 10px 0 10px 12px;
+        margin-right: 0;
+    }
