@@ -94,3 +94,7 @@ position: relative;
     .section-block-template--19396943118580__slide_show_6CHbXC {
         padding-top: 50px!important;
     }
+    .productView-quantity label {
+    margin-right: 10px !important;
+    width: auto !important;
+}
