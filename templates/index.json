@@ -1049,7 +1049,7 @@
       ],
       "settings": {
         "container": "fullwidth",
-        "padding_full_width": 50,
+        "padding_full_width": 100,
         "slideshow_background": "#fdf7eb",
         "slideshow_background_gradient": "",
         "border_radius": 0,
