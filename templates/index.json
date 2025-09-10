@@ -711,7 +711,7 @@
         "color_des": "#202020",
         "fontsize_des": 16,
         "title_align": "left",
-        "style_bg": "none",
+        "style_bg": "for_img",
         "bg_color": "#fdf7eb",
         "bg_color_gradient": "linear-gradient(57deg, rgba(249, 119, 255, 1), rgba(54, 212, 255, 1) 47%, rgba(43, 252, 135, 1) 83%)",
         "bg_image": "shopify://shop_images/emblem.png",
