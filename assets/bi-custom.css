@@ -434,10 +434,7 @@ h5,
     font-family: 'Gilroy Extra Bold';
 }
 
-.productView-quantity label {
-    margin-right: 10px !important;
-    width: auto !important;
-}
+
 
 .productView-quantity input {
     border-radius: 1px !important;
