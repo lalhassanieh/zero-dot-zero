@@ -84,6 +84,6 @@ position: relative;
     align-item: center!important;
 }
 .form-label.quantity__label{
-    margin-bottom: 0;
-    padding-bottom: 0;
+    margin-bottom: 0!important;
+    padding-bottom: 0!important;
 }
