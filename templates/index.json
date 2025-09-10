@@ -714,6 +714,7 @@
         "style_bg": "none",
         "bg_color": "#fdf7eb",
         "bg_color_gradient": "",
+        "bg_image": "shopify://shop_images/emblem.png",
         "mg_top_desktop": 0,
         "mg_top_tablet": 50,
         "mg_top_mobile": 50,
