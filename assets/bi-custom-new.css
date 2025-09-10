@@ -1,3 +1,7 @@
+    .halo-banner-wrapper .item--smallImg .flex-box__banner .banner-content {
+        width: calc(100% - var(--image_width));
+        margin-left: 30px;
+    }
 #halo-image-banner-template--19396943118580__image_banner_cwnjQq .banner-button {
  width: auto !important;
     max-width: max-content !important;
