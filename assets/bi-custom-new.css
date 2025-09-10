@@ -98,3 +98,6 @@ position: relative;
     margin-right: 10px !important;
     width: auto !important;
 }
+.productView-details.halo-productView-right .quantity__label {
+    color: #005339 !important;
+}
