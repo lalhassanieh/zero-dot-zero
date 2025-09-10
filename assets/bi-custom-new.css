@@ -36,7 +36,8 @@ position: relative;
     height: 17px;
 }
 .contact-support-btn:hover:after,
-#halo-image-banner-template--19396943118580__image_banner_cwnjQq .banner-button:hover:after {
+#halo-image-banner-template--19396943118580__image_banner_cwnjQq .banner-button:hover:after,
+ .button--secondary:hover:after {
     filter: brightness(0) invert(1);
 }
 .faqs .faqs-item .card-header .title {
@@ -73,17 +74,4 @@ position: relative;
     }
     .halo-top-language .text {
     margin-right: 0;
-}
- .button--secondary {
-
- }
- .button--secondary:after {
-    content: "";
-    background-image: url(/cdn/shop/files/button-icon.svg?v=1746020835);
-    background-repeat: no-repeat;
-    position: absolute;
-    right: 28px;
-    top: 13px;
-    width: 14px;
-    height: 17px;
 }
