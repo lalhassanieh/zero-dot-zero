@@ -687,8 +687,7 @@ dd.price__compare {
     border: 1px solid #000 !important;
 }
 
-.productView-details.halo-productView-right .quantity__label {
-    color: #7C7C7C !important;
+.productView-details.halo-productView-right .quantity__label 
     font-size: 16px !important;
     padding-bottom: 10px !important;
 }
