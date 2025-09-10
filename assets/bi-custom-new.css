@@ -3,6 +3,7 @@
     max-width: max-content !important;
     padding-right: 55px;
 }
+
 #halo-image-banner-template--19396943118580__image_banner_cwnjQq{
     margin-top: 0;
     background: #fff7e5 !important;
@@ -27,7 +28,8 @@ position: relative;
     width: 14px;
     height: 17px;
 }
-.contact-support-btn:hover:after {
+.contact-support-btn:hover:after,
+#halo-image-banner-template--19396943118580__image_banner_cwnjQq .slide-button:hover:after  {
     filter: brightness(0) invert(1);
 }
 .faqs .faqs-item .card-header .title {
