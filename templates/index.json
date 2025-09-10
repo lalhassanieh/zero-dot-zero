@@ -715,7 +715,7 @@
         "bg_color": "#fdf7eb",
         "bg_color_gradient": "linear-gradient(57deg, rgba(249, 119, 255, 1), rgba(54, 212, 255, 1) 47%, rgba(43, 252, 135, 1) 83%)",
         "bg_image": "shopify://shop_images/emblem.png",
-        "mg_top_desktop": 0,
+        "mg_top_desktop": 50,
         "mg_top_tablet": 50,
         "mg_top_mobile": 50,
         "mg_bottom_desktop": 50,
