@@ -72,3 +72,14 @@ position: relative;
     .halo-top-language .text {
     margin-right: 0;
 }
+
+ .button--secondary:after {
+    content: "";
+    background-image: url(/cdn/shop/files/button-icon.svg?v=1746020835);
+    background-repeat: no-repeat;
+    position: absolute;
+    right: 28px;
+    top: 13px;
+    width: 14px;
+    height: 17px;
+}
