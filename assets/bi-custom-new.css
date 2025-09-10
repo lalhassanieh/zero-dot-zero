@@ -1,6 +1,6 @@
 #halo-image-banner-template--19396943118580__image_banner_cwnjQq .banner-button {
-    width: auto;
-    max-width: max-content;
+ width: auto !important;
+    max-width: max-content !important;
     padding-right: 55px;
 }
 #halo-image-banner-template--19396943118580__image_banner_cwnjQq{
