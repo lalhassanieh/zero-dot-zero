@@ -79,3 +79,7 @@ position: relative;
     padding-right: 55px;
     max-width: max-content!important;
 }
+.productView-details.halo-productView-right .productView-quantity.quantity__group.quantity__group--2.quantity__style--1.clearfix{
+    display: flex!important;
+    align-item: center!important;
+}
