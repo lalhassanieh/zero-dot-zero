@@ -29,7 +29,7 @@ position: relative;
     height: 17px;
 }
 .contact-support-btn:hover:after,
-#halo-image-banner-template--19396943118580__image_banner_cwnjQq .slide-button:hover:after  {
+#halo-image-banner-template--19396943118580__image_banner_cwnjQq .banner-button:hover:after {
     filter: brightness(0) invert(1);
 }
 .faqs .faqs-item .card-header .title {
