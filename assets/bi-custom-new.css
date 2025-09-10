@@ -75,3 +75,6 @@ position: relative;
     .halo-top-language .text {
     margin-right: 0;
 }
+.product-infinite-scroll .button {
+    padding-right: 55px;
+}
