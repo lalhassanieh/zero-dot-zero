@@ -54,3 +54,6 @@ position: relative;
         padding: 10px 0 10px 12px;
         margin-right: 0;
     }
+    .halo-top-language .text {
+    margin-right: 0;
+}
