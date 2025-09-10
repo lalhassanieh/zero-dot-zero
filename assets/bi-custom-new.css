@@ -101,3 +101,6 @@ position: relative;
 .featured-product:has(.productView-nav.productView-horizontal-tabs) .productView-quantity .quantity__label {
     color: #005339 !important;
 }
+.template-index {
+    background-color: #FFF7E5;
+}
