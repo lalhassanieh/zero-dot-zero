@@ -29,7 +29,8 @@ position: relative;
     padding-left: 25px !important;
 }
 .contact-support-btn:after,
- .button--secondary:after, .ai-banner-button-aajazafvwcu5wbnr2daigenblockdfb8083urbx48:after {
+ .button--secondary:after, 
+ .ai-banner-button-aajazafvwcu5wbnr2daigenblockdfb8083urbx48:after {
     content: "";
     background-image: url(/cdn/shop/files/button-icon.svg?v=1746020835);
     background-repeat: no-repeat;
@@ -39,11 +40,13 @@ position: relative;
     width: 14px;
     height: 17px;
 }
+ .ai-banner-button-aajazafvwcu5wbnr2daigenblockdfb8083urbx48:hover:after{
+        filter: brightness(0) invert(1);
+ }
 .contact-support-btn:hover:after,
 #halo-image-banner-template--19396943118580__image_banner_cwnjQq .banner-button:hover:after,
  .button--secondary:hover:after,
- #halo-image-banner-template--19396943118580__image_banner_N4xP8B .banner-button:hover:after,
- .ai-banner-button-aajazafvwcu5wbnr2daigenblockdfb8083urbx48:hover:after {
+ #halo-image-banner-template--19396943118580__image_banner_N4xP8B .banner-button:hover:afterr {
     filter: brightness(0) invert(1);
 }
 .faqs .faqs-item .card-header .title {
@@ -170,11 +173,18 @@ position: relative;
     width: 80%;
 }
 .ai-banner-content-aajazafvwcu5wbnr2daigenblockdfb8083urbx48 {
-display: flex;
+    display: flex;
     height: 100%;
     align-items: start;
     flex-direction: column;
     justify-content: end;
+}
+.ai-banner-button-aajazafvwcu5wbnr2daigenblockdfb8083urbx48 {
+    background-color: #005339;
+    border-radius: 30px!important;
+    border: 0px solid #005339;
+    text-transform: none;
+    padding-right: 50px!important;
 }
 @media all and (max-width: 767px){
         .halo-banner-wrapper .item--smallImg .flex-box__banner .banner-content {
