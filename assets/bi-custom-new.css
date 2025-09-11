@@ -42,7 +42,8 @@ position: relative;
 .contact-support-btn:hover:after,
 #halo-image-banner-template--19396943118580__image_banner_cwnjQq .banner-button:hover:after,
  .button--secondary:hover:after,
- #halo-image-banner-template--19396943118580__image_banner_N4xP8B .banner-button:hover:after {
+ #halo-image-banner-template--19396943118580__image_banner_N4xP8B .banner-button:hover:after,
+ .ai-banner-button-aajazafvwcu5wbnr2daigenblockdfb8083urbx48:hover:after {
     filter: brightness(0) invert(1);
 }
 .faqs .faqs-item .card-header .title {
