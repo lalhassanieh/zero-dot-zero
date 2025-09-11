@@ -187,6 +187,6 @@ position: relative;
             display: none;
         }
         .adaptive_height.image.slide-mobile {
-            padding-top: 75%!important;
-        }
+            padding-top: 100%!important;
+                }
 }
