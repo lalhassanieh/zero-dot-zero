@@ -133,7 +133,8 @@ position: relative;
 .halo-quick-view-popup .product-form__input .form__select {
     margin: 0;
 }
-.halo-quick-view-popup .halo-quickView .quantity_selector {
+.halo-quick-view-popup .halo-quickView .quantity_selector,
+.productView-options {
     margin-bottom: 20px;
 }
 .halo-quick-view-popup .halo-quickView .product-form__input .form__label {
@@ -143,4 +144,5 @@ position: relative;
 }
 .productView-details.halo-productView-right .quantity__label {
     padding-bottom: 0px !important;
+
 }
