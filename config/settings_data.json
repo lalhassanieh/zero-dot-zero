@@ -182,6 +182,7 @@
     "badge_postion": "right",
     "sale_badge_type": "text",
     "show_sold_out_badge": false,
+    "show_custom_badge": false,
     "show_swatch": false,
     "point_product_swatch_custom": "30px",
     "show_action": true,
