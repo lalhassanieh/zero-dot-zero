@@ -174,7 +174,7 @@
     "show_wishlist_card": true,
     "show_wishlist_full_icon": false,
     "show_quick_view": true,
-    "show_quick_view_mb": true,
+    "show_quick_view_mb": false,
     "product_quick_view_type": "icon",
     "group_quickview_wishlist": "right",
     "product_content_text_align": "left",
