@@ -160,7 +160,7 @@ position: relative;
 .style-arrows-9.product-card-layout-08 .wrapper-body {
     padding-bottom: 0;
 }
-.template-cart  .wrapper-body {
+.template-cart  .cart-content-wrapper {
     padding-bottom: 50px;
 }
 @media all and (max-width: 767px){
