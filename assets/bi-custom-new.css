@@ -111,3 +111,8 @@ position: relative;
 .section-block-template--19396943118580__faqs_RfB3pw{
     background-color: #FFF;
 }
+#shopify-section-template--19396941644020__main .about-content-wrapper h1 {
+    font-size: 60px;
+    margin-bottom: 30px;
+    text-transform: capitalize;
+}
