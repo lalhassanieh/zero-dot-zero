@@ -250,6 +250,7 @@
     "quick_edit_cart_picker_type": "button",
     "quick_view_layout": "3",
     "quick_view_product_image_ratio": "adapt",
+    "show_quick_view_sold_in": false,
     "show_quick_view_short_description": false,
     "show_quick_view_vendor": false,
     "quick_view_picker_type": "dropdown",
