@@ -157,7 +157,9 @@ position: relative;
 #shopify-section-template--19396941644020__1647339296880bf6ed .halo-banner.image-banner {
     margin-top: 0;
 }
-
+.wrapper-body {
+    padding-bottom: 0;
+}
 @media all and (max-width: 767px){
         .halo-banner-wrapper .item--smallImg .flex-box__banner .banner-content {
             width: 100%;
