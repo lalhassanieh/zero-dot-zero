@@ -181,7 +181,7 @@ display: flex;
     border-radius: 30px!important;
     border: 0px solid #005339;
     text-transform: none;
-    padding-right: 40px;
+    padding-right: 50px!important;
 }
 @media all and (max-width: 767px){
         .halo-banner-wrapper .item--smallImg .flex-box__banner .banner-content {
