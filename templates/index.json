@@ -2001,6 +2001,9 @@
       "block_order": [
         "small_img_DaJk6x"
       ],
+      "custom_css": [
+        ".halo-banner-wrapper {padding-left: 60px; padding-right: 60px;}"
+      ],
       "name": "t:sections.image-banner.presets.name",
       "settings": {
         "id_section": "",
