@@ -183,9 +183,9 @@ position: relative;
     justify-content: end;
 }
 .ai-banner-button-aajazafvwcu5wbnr2daigenblockdfb8083urbx48 {
-    background-color: #005339;
+    background-color: #005339!important;
     border-radius: 30px!important;
-    border: 0px solid #005339;
+    border: 0px solid #005339!important;
     text-transform: none;
     padding-right: 50px!important;
 }
