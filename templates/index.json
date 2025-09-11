@@ -1394,10 +1394,10 @@
         "product_image_popup": "none",
         "video_layout": "thumbnail",
         "show_badge": true,
-        "mg_top_desktop": 80,
+        "mg_top_desktop": 50,
         "mg_top_tablet": 65,
         "mg_top_mobile": 30,
-        "mg_bottom_desktop": 50,
+        "mg_bottom_desktop": 0,
         "mg_bottom_tablet": 30,
         "mg_bottom_mobile": 30
       }
@@ -1529,7 +1529,7 @@
         "fontsize_text_mb": 13,
         "font_weight_title": "400",
         "margin_bottom_title": 0,
-        "mg_top_desktop": 5,
+        "mg_top_desktop": 0,
         "mg_top_tablet": 50,
         "mg_top_mobile": 0,
         "mg_bottom_desktop": 50,
