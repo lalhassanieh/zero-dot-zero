@@ -228,11 +228,63 @@
         "mg_bottom_tablet": 0,
         "mg_bottom_mobile": 0
       }
+    },
+    "17576013924878af96": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_dfb8083_URbx48": {
+          "type": "ai_gen_block_dfb8083",
+          "settings": {
+            "banner_height": 400,
+            "mobile_banner_height": 250,
+            "gap": 35,
+            "mobile_gap": 15,
+            "mobile_layout": "column",
+            "border_radius": 8,
+            "banner_1_image": "shopify://shop_images/Rectangle_4.jpg",
+            "banner_1_title": "Your Go-To Bottles. Now Worth the Click.",
+            "banner_1_button_text": "Shop Now",
+            "banner_1_button_link": "",
+            "banner_2_image": "shopify://shop_images/Rectangle_5.jpg",
+            "banner_2_title": "Let’s Stay Connected",
+            "banner_2_button_text": "Learn More",
+            "banner_2_button_link": "",
+            "show_overlay": true,
+            "overlay_opacity": 30,
+            "text_alignment": "center",
+            "text_color": "#ffffff",
+            "title_size": 32,
+            "mobile_title_size": 24,
+            "title_weight": "700",
+            "title_margin_bottom": 20,
+            "button_bg_color": "#000000",
+            "button_hover_bg_color": "#333333",
+            "button_text_color": "#ffffff",
+            "button_hover_text_color": "#ffffff",
+            "button_border_color": "#000000",
+            "button_hover_border_color": "#333333",
+            "button_border_width": 0,
+            "button_border_radius": 6,
+            "button_font_size": 16,
+            "mobile_button_font_size": 14,
+            "button_font_weight": "600",
+            "button_text_transform": "uppercase",
+            "button_padding_vertical": 12,
+            "button_padding_horizontal": 24
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_dfb8083_URbx48"
+      ],
+      "settings": {}
     }
   },
   "order": [
     "main",
     "google-map",
-    "image_banner_cMaaRw"
+    "image_banner_cMaaRw",
+    "17576013924878af96"
   ]
 }
