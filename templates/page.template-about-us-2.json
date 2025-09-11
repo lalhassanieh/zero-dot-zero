@@ -635,6 +635,9 @@
         "paragraph_EUE6kw",
         "image_xpdmjM"
       ],
+      "custom_css": [
+        ".wrapper-body {padding-bottom: 0 !important;}"
+      ],
       "name": "t:sections.faqs.presets.name",
       "settings": {
         "container": "container",
