@@ -153,3 +153,10 @@ position: relative;
    
     font-size: 16px;
 }
+
+
+@media all and (max-width: 767px){
+    .halo-banner-wrapper .item--smallImg .flex-box__banner .banner-content {
+    width: 100%;
+}
+}
