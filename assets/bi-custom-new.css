@@ -169,4 +169,8 @@ position: relative;
 .faqs-images-wrapper {
     margin-top: 40px;
 }
+.halo-banner-wrapper {
+  padding-left: 30px;
+  padding-right: 30px;
+}
 }
