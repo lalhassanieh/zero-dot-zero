@@ -11,6 +11,9 @@
   "sections": {
     "main": {
       "type": "main-contact-us-2",
+      "custom_css": [
+        ".contact-text-content {height: 100%; display: flex; align-items: end;}"
+      ],
       "settings": {
         "container": "fullwidth",
         "padding_full_width": 0,
