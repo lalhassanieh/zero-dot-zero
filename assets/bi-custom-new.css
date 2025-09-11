@@ -186,7 +186,7 @@ position: relative;
         .footer-block__mobile {
             display: none;
         }
-        .slide-mobile {
+        .adaptive_height.image.slide-mobile {
             padding-top: 75%!important;
         }
 }
