@@ -201,7 +201,8 @@ position: relative;
     
         bottom: 40px!important;
     }
-    .quantity_selector{
+    .quantity_selector,
+    .section-block-template--19396940988660__product-recently-viewed{
         margin-bottom: 30px;
     }
         #CollectionSection-template--19396942495988__product-grid {
