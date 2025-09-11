@@ -29,7 +29,7 @@ position: relative;
     padding-left: 25px !important;
 }
 .contact-support-btn:after,
- .button--secondary:after {
+ .button--secondary:after, .ai-banner-button-aajazafvwcu5wbnr2daigenblockdfb8083urbx48:after {
     content: "";
     background-image: url(/cdn/shop/files/button-icon.svg?v=1746020835);
     background-repeat: no-repeat;
@@ -169,10 +169,11 @@ position: relative;
     width: 80%;
 }
 .ai-banner-content-aajazafvwcu5wbnr2daigenblockdfb8083urbx48 {
-    display: flex;
+display: flex;
     height: 100%;
-    align-items: end;
+    align-items: start;
     flex-direction: column;
+    justify-content: end;
 }
 @media all and (max-width: 767px){
         .halo-banner-wrapper .item--smallImg .flex-box__banner .banner-content {
