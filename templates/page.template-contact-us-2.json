@@ -240,7 +240,7 @@
             "gap": 35,
             "mobile_gap": 15,
             "mobile_layout": "column",
-            "border_radius": 8,
+            "border_radius": 0,
             "banner_1_image": "shopify://shop_images/Rectangle_4.jpg",
             "banner_1_title": "Your Go-To Bottles. Now Worth the Click.",
             "banner_1_button_text": "Shop Now",
