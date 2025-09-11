@@ -210,7 +210,8 @@ position: relative;
     .breadcrumb-bg .breadcrumb-container {
         display: none;
     }
-    .productView-container {
+    .productView-container,
+    .productView-bottom {
         padding-left: 20px;
         padding-right: 20px;
     }
