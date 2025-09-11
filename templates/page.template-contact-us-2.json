@@ -13,7 +13,7 @@
       "type": "main-contact-us-2",
       "custom_css": [
         ".contact-text-content {height: 100%; display: flex; align-items: end;}",
-        ".contact-text-content h1 {height: 100%; display: flex; align-items: end; padding-left: 100px;}"
+        ".contact-text-content h1 {height: 100%; display: flex; align-items: end; padding-left: 70px;}"
       ],
       "settings": {
         "container": "fullwidth",
@@ -47,7 +47,7 @@
         "show_contact_info": true,
         "contact_info_title": "LIVE HELP",
         "contact_info_text": "If you have an issue or question that requires immediate assistance, you can click the button below to chat live with a Customer Service representative. If we aren’t available, drop us an email to the left and we will get back to you within 20-36 hours!",
-        "btn_text": "",
+        "btn_text": "Message us",
         "btn_text_color": "#ffffff",
         "btn_border_color": "#005339",
         "btn_bg_color": "#005339",
