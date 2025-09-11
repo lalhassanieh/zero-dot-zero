@@ -258,6 +258,7 @@
     "show_size_chart": false,
     "show_compare_color": false,
     "show_compare_color_drop_drap": false,
+    "show_quick_view_customer_viewing": false,
     "show_countdown": true,
     "countdown_type": "all_product",
     "countdown_time": "Dec 31, 2024 18:00:00",
