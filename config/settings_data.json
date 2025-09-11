@@ -251,6 +251,7 @@
     "quick_view_layout": "3",
     "quick_view_product_image_ratio": "adapt",
     "show_quick_view_short_description": false,
+    "show_quick_view_vendor": false,
     "quick_view_picker_type": "dropdown",
     "show_customization_option": true,
     "show_quick_view_subtotal": false,
