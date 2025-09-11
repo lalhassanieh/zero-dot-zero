@@ -1908,7 +1908,7 @@
         "bg_color_gradient": "",
         "bg_image": "shopify://shop_images/bannerEmblem.jpg",
         "mg_top_desktop": 0,
-        "mg_top_tablet": 50,
+        "mg_top_tablet": 20,
         "mg_top_mobile": 50,
         "mg_bottom_desktop": 50,
         "mg_bottom_tablet": 50,
