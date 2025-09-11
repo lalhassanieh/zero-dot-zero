@@ -160,6 +160,9 @@ position: relative;
 .style-arrows-9.product-card-layout-08 .wrapper-body {
     padding-bottom: 0;
 }
+.template-cart  .wrapper-body {
+    padding-bottom: 50px;
+}
 @media all and (max-width: 767px){
         .halo-banner-wrapper .item--smallImg .flex-box__banner .banner-content {
             width: 100%;
