@@ -127,3 +127,7 @@ position: relative;
 .halo-banner-wrapper .item--smallImg .flex-box__banner .banner-content {
     margin-left: 0;
 }
+
+.halo-quick-view-popup .product-form__input .form__select {
+    margin: 0;
+}
