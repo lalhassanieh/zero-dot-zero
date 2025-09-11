@@ -193,4 +193,7 @@ position: relative;
     
         bottom: 40px!important;
     }
+    .quantity_selector{
+        margin-bottom: 30px;
+    }
 }
