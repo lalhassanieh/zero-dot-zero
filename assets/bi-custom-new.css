@@ -211,7 +211,8 @@ position: relative;
         display: none;
     }
     .productView-container,
-    .productView-bottom {
+    .productView-bottom,
+    .halo-recently-viewed-block {
         padding-left: 20px;
         padding-right: 20px;
     }
