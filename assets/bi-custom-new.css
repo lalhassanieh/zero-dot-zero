@@ -183,4 +183,7 @@ position: relative;
         .footer__content-top {
             padding: 30px 0 30px;
         }
+        .footer-block__mobile {
+            display: none;
+        }
 }
