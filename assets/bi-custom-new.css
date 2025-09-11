@@ -176,6 +176,13 @@ display: flex;
     flex-direction: column;
     justify-content: end;
 }
+.ai-banner-button-aajazafvwcu5wbnr2daigenblockdfb8083urbx48 {
+    background-color: #005339;
+    border-radius: 30px!important;
+    border: 0px solid #005339;
+    text-transform: none;
+    padding-right: 40px;
+}
 @media all and (max-width: 767px){
         .halo-banner-wrapper .item--smallImg .flex-box__banner .banner-content {
             width: 100%;
