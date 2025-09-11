@@ -167,6 +167,11 @@ position: relative;
     color: #FFF;
     text-align: left;
 }
+.ai-banner-content-aajazafvwcu5wbnr2daigenblockdfb8083urbx48 {
+    display: flex;
+    height: 100%;
+    align-items: end;
+}
 @media all and (max-width: 767px){
         .halo-banner-wrapper .item--smallImg .flex-box__banner .banner-content {
             width: 100%;
