@@ -121,3 +121,6 @@ position: relative;
      margin-top: 0; 
     padding-left: 0;
 }
+.flex-box__banner.row-reverse .content-box.text-left {
+    padding-left: 0;
+}
