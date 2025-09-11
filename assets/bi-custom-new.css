@@ -189,6 +189,10 @@ position: relative;
     text-transform: none;
     padding-right: 50px!important;
 }
+.ai-banner-button-aajazafvwcu5wbnr2daigenblockdfb8083urbx48:hover{
+    color: #005339;
+     background-color: #fff;
+}
 @media all and (max-width: 767px){
         .halo-banner-wrapper .item--smallImg .flex-box__banner .banner-content {
             width: 100%;
