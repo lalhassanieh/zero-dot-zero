@@ -53,7 +53,7 @@
         "mg_top_desktop": 0,
         "mg_top_tablet": 0,
         "mg_top_mobile": 0,
-        "mg_bottom_desktop": 50,
+        "mg_bottom_desktop": 0,
         "mg_bottom_tablet": 0,
         "mg_bottom_mobile": 0
       }
@@ -149,8 +149,8 @@
       ],
       "settings": {
         "id_section": "",
-        "container": "1770",
-        "padding_full_width": 0,
+        "container": "fullwidth",
+        "padding_full_width": 100,
         "display_type": "slide",
         "enable_arrows": false,
         "arrows_position": "",
@@ -269,8 +269,8 @@
       ],
       "settings": {
         "id_section": "",
-        "container": "1770",
-        "padding_full_width": 0,
+        "container": "fullwidth",
+        "padding_full_width": 100,
         "display_type": "slide",
         "enable_arrows": false,
         "arrows_position": "",
@@ -389,8 +389,8 @@
       ],
       "settings": {
         "id_section": "",
-        "container": "1770",
-        "padding_full_width": 0,
+        "container": "fullwidth",
+        "padding_full_width": 100,
         "display_type": "slide",
         "enable_arrows": false,
         "arrows_position": "",
@@ -514,8 +514,8 @@
       ],
       "settings": {
         "id_section": "",
-        "container": "1770",
-        "padding_full_width": 15,
+        "container": "fullwidth",
+        "padding_full_width": 100,
         "display_border_top": false,
         "display_border_bottom": false,
         "border_color": "#d0d0d0",
