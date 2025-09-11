@@ -177,7 +177,7 @@ position: relative;
             display: none;
         }
         #shopify-section-template--19396943118580__image_banner_N4xP8B .halo-banner-wrapper {
-            padding-left: 30px;
-            padding-right: 30px;
+            padding-left: 30px!important;
+            padding-right: 30px!important;
         }
 }
