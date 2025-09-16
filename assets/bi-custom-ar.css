@@ -46,3 +46,6 @@
 body *{
          font-family: "Avenir Arabic" !important;
 }
+.slide-heading .top{
+    font-weight: 900;
+}
