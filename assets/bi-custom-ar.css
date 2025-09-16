@@ -18,8 +18,8 @@
 
 @font-face {
     font-family: 'Avenir Arabic';
-    src: url('AvenirArabic-Book.woff2') format('woff2'),
-        url('AvenirArabic-Book.woff') format('woff');
+    src: url('https://cdn.shopify.com/s/files/1/0742/2669/6436/files/AvenirArabic-Book.woff2') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0742/2669/6436/files/AvenirArabic-Book.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -27,8 +27,8 @@
 
 @font-face {
     font-family: 'Avenir Arabic';
-    src: url('AvenirArabic-Medium.woff2') format('woff2'),
-        url('AvenirArabic-Medium.woff') format('woff');
+    src: url('https://cdn.shopify.com/s/files/1/0742/2669/6436/files/AvenirArabic-Medium.woff2') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0742/2669/6436/files/AvenirArabic-Medium.woff') format('woff');
     font-weight: 500;
     font-style: normal;
     font-display: swap;
