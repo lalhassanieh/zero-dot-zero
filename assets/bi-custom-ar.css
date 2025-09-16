@@ -45,6 +45,8 @@
 
 body *{
     font-family: "Avenir Arabic" !important;
+    text-align: right;
+    direction: rtl;
 }
 .slide-heading .top, 
 .slide-content .slide-heading span{
