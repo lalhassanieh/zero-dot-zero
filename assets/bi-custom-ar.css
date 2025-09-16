@@ -43,6 +43,6 @@
     font-display: swap;
 }
 
-body{
-       font-family: 'Avenir Arabic';
+body *{
+         font-family: "Avenir Arabic" !important;
 }
