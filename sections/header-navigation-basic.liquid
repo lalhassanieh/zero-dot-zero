@@ -1,6 +1,9 @@
 {{ 'component-megamenu.css' | asset_url | stylesheet_tag: preload: true }}
 {{ 'bi-custom.css' | asset_url | stylesheet_tag }}
 {{ 'bi-custom-new.css' | asset_url | stylesheet_tag }}
+{% if request.locale.iso_code == 'ar' %}
+{{ 'bi-custom-ar.css' | asset_url | stylesheet_tag }}
+ {% endif %}   
 <style>
     @media screen and (max-width: 1024px) {
         .header-mobile--icon .header__icon--wishlist .wishlist-count-bubble {top: -8px}
