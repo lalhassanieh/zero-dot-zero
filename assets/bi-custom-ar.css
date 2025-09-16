@@ -44,9 +44,16 @@
 }
 
 body *{
-         font-family: "Avenir Arabic" !important;
+    font-family: "Avenir Arabic" !important;
 }
 .slide-heading .top, 
 .slide-content .slide-heading span{
     font-weight: 900;
+}
+.flex-box__banner.row-reverse .content-box.text-left {
+    padding-left: 40px;
+}
+.flex-box__banner.row-reverse .content-box.text-left {
+    font-family: "Avenir Arabic" !important;
+    text-align: right;
 }
