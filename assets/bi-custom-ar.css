@@ -129,7 +129,7 @@ li.list-social__item:last-child {
 /**Begin btn flipping**/
 .productView-groupTop .product-form__submit,
 .product-infinite-scroll .button {
-    padding-left: 50px;
+    padding-left: 50px!important;
     padding-right: 30px;
 }
 .slide-button:after, .banner-button:after, .productView-groupTop .product-form__submit:after,
