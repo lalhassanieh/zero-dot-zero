@@ -47,6 +47,9 @@ body *{
     font-family: "Avenir Arabic", sans-serif !important;
     direction: rtl;
 }
+.left, .text-left {
+    text-align: right;
+}
 #halo-image-banner-template--19396943118580__image_banner_cwnjQq .item .banner-text,
 #halo-image-banner-template--19396943118580__image_banner_mUejpe .item .banner-text{
  font-family: "Avenir Arabic", sans-serif !important;
@@ -128,6 +131,7 @@ li.list-social__item:last-child {
 .featured-product:has(.productView-nav.productView-horizontal-tabs) .productView-quantity .quantity__label {
     margin: 0 0 0 14px !important;
 }
+
 /**Begin btn flipping**/
 .productView-groupTop .product-form__submit,
 .product-infinite-scroll .button, #halo-image-banner-template--19396943118580__image_banner_mUejpe .banner-button,
