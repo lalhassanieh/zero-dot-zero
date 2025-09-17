@@ -140,3 +140,9 @@ li.list-social__item:last-child {
     right: auto !important;
 }
 /**End btn flipping**/
+
+
+.faqs-item .card-header .icon-plus {
+    left: 0 !important;
+    right: auto !important;
+}
