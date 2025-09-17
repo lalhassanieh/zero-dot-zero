@@ -74,5 +74,5 @@ li.list-social__item:last-child {
     }
     .header-nav-basic .header__icon--cart .cart-count-bubble {
         left: -10px;
-        right: auto;
+        right: auto!important;
     }
