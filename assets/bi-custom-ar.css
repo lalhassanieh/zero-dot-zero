@@ -97,3 +97,9 @@ li.list-social__item:last-child {
     left: 28px;
     right: auto !important;
 }
+.halo-banner-wrapper .flex-box__banner .content-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: flex-start;
+}
