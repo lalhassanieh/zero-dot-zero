@@ -111,3 +111,6 @@ li.list-social__item:last-child {
     left: -4px;
        right: auto;
 }
+.slick-dots li:last-child, .slider-dots li:last-child {
+    margin-right: 7px;
+}
