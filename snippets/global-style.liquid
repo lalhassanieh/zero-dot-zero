@@ -51,7 +51,7 @@
 <link rel="stylesheet" href="{{ 'component-list-social.css' | asset_url }}" media="print" onload="this.media='all'">
 
 {% if request.locale.iso_code == 'ar' %}
-	  <link rel="stylesheet" href="{{ 'bi-custom-new-ar.css' | asset_url }}">
+	  <link rel="stylesheet" href="{{ 'bi-custom-ar.css' | asset_url }}">
 {% endif %}
 {%- unless request.page_type == 'product' -%}
 	<noscript>{{ 'component-product-form.css' | asset_url | stylesheet_tag }}</noscript>
