@@ -1060,9 +1060,10 @@ padding: 50px 0;
     position: relative;
 }
 .custom-service-block.service_block_style_3 .policies-content {
-    text-align: left;
-    position: absolute;
-    bottom: 70px;
+    text-align: right;
     left: 20px;
-    width: 90%;
+}
+.productView-details .product-form__input .form__label {
+    margin-right: 0 !important;
+    margin-left: 25px;
 }
