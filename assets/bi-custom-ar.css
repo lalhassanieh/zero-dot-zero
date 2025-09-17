@@ -162,7 +162,8 @@ li.list-social__item:last-child {
 .faqs .faqs-item .card-header .title {
     text-align: right;
 }
-.section-block-template--19396943118580__faqs_RfB3pw .halo-block-header.text-left .text {
+.section-block-template--19396943118580__faqs_RfB3pw .halo-block-header.text-left .text,
+.section-block-template--19396941644020__faqs_7F3bQ4 .halo-block-header.text-left .text {
     padding-left: 5rem!important;
     padding-right: 0!important;
 }
