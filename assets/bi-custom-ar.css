@@ -114,3 +114,7 @@ li.list-social__item:last-child {
 .slick-dots li:last-child, .slider-dots li:last-child {
     margin-right: 7px;
 }
+    .featured-product .productView-top.style-2 .halo-productView-right {
+        padding-left: 0;
+        padding-right: 60px;
+    }
