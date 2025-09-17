@@ -103,3 +103,10 @@ li.list-social__item:last-child {
     justify-content: start;
     align-items: flex-start;
 }
+.add-sparkles h2 {
+ padding-left: 30px;
+    padding-right: 0;
+}
+.add-sparkles h2:after{
+
+}
