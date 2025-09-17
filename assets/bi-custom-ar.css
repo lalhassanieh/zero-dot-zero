@@ -127,7 +127,7 @@ li.list-social__item:last-child {
     margin-left: 25px;
 }
 .featured-product:has(.productView-nav.productView-horizontal-tabs) .productView-quantity .quantity__label {
-    margin: 0 14px 0 0;
+    margin: 0 0 0 14px !important;
 }
 .productView-groupTop .product-form__submit {
     padding-left: 50px;
