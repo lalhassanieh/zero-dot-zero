@@ -129,8 +129,8 @@ li.list-social__item:last-child {
 .featured-product:has(.productView-nav.productView-horizontal-tabs) .productView-quantity .quantity__label {
     margin: 0 0 0 14px !important;
 }
-.productView-groupTop .product-form__submit {
+.productView-groupTop .product-form__submit,
+.product-infinite-scroll .button {
     padding-left: 50px;
     padding-right: 30px;
-    position: relative;
 }
