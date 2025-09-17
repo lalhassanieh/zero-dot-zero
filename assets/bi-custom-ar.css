@@ -137,7 +137,8 @@ li.list-social__item:last-child {
 .productView-groupTop .product-form__submit,
 .product-infinite-scroll .button, #halo-image-banner-template--19396943118580__image_banner_mUejpe .banner-button,
 .contact-support-btn,
-#shopify-section-template--19396943118580__slide_show_FadCMd .slide-content .slide-button {
+#shopify-section-template--19396943118580__slide_show_FadCMd .slide-content .slide-button, 
+.banner-button.button {
     padding-left: 50px!important;
     padding-right: 30px;
 }
@@ -147,7 +148,9 @@ li.list-social__item:last-child {
     right: auto !important;
 }
 /**End btn flipping**/
-
+.banner-button.button {
+    text-align:right;
+}
 
 .faqs-item .card-header .icon-plus {
     left: 0 !important;
