@@ -141,7 +141,8 @@ li.list-social__item:last-child {
 .product-infinite-scroll .button, #halo-image-banner-template--19396943118580__image_banner_mUejpe .banner-button,
 .contact-support-btn,
 #shopify-section-template--19396943118580__slide_show_FadCMd .slide-content .slide-button, 
-.banner-button.button {
+.banner-button.button,
+.contact-support-btn {
     padding-left: 50px!important;
     padding-right: 30px;
 }
