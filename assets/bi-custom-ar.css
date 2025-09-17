@@ -47,7 +47,8 @@ body *{
     font-family: "Avenir Arabic", sans-serif !important;
     direction: rtl;
 }
-#halo-image-banner-template--19396943118580__image_banner_cwnjQq .item .banner-text{
+#halo-image-banner-template--19396943118580__image_banner_cwnjQq .item .banner-text,
+#halo-image-banner-template--19396943118580__image_banner_mUejpe .item .banner-text{
  font-family: "Avenir Arabic", sans-serif !important;
 }
 .slide-heading .top, 
@@ -57,7 +58,8 @@ body *{
 .flex-box__banner.row-reverse .content-box.text-left {
     padding-left: 40px;
 }
-.flex-box__banner.row-reverse .content-box.text-left {
+.flex-box__banner.row-reverse .content-box.text-left,
+#halo-image-banner-template--19396943118580__image_banner_mUejpe .item .banner-text {
     font-family: "Avenir Arabic" !important;
     text-align: right;
 }
