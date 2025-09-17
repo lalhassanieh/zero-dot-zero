@@ -62,8 +62,7 @@ body *{
     padding-left: 40px;
 }
 .flex-box__banner.row-reverse .content-box.text-left,
-#halo-image-banner-template--19396943118580__image_banner_mUejpe .item .banner-text,
-#halo-image-banner-template--19396943118580__image_banner_N4xP8B .item .banner-text {
+ .item .banner-text {
     font-family: "Avenir Arabic" !important;
     text-align: right;
 }
