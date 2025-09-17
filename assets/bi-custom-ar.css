@@ -172,3 +172,6 @@ li.list-social__item:last-child {
 #ContactSection-template--19396941873396__main .contact-item.contact-itemRight .contact-btn:hover:after, .banner-button.button:hover:after{
         filter: brightness(0) invert(1);
 }
+.custom-service-block.service_block_style_3 .policies-content {
+    text-align: right;
+}
