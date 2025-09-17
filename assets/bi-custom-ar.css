@@ -118,3 +118,14 @@ li.list-social__item:last-child {
         padding-left: 0;
         padding-right: 60px;
     }
+.custom-service-block.service_block_style_3 .policies-content {
+    text-align: right;
+    left: 20px;
+}
+.productView-details .product-form__input .form__label {
+    margin-right: 0 !important;
+    margin-left: 25px;
+}
+.featured-product:has(.productView-nav.productView-horizontal-tabs) .productView-quantity .quantity__label {
+    margin: 0 14px 0 0;
+}
