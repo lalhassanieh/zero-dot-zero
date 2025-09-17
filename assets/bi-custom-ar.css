@@ -146,3 +146,6 @@ li.list-social__item:last-child {
     left: 0 !important;
     right: auto !important;
 }
+.faqs .faqs-item .card-header .title {
+    text-align: right;
+}
