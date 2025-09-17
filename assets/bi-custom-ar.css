@@ -144,7 +144,7 @@ li.list-social__item:last-child {
 .banner-button.button,
 .contact-support-btn {
     padding-left: 50px!important;
-    padding-right: 30px;
+    padding-right: 30px!important;
 }
 .slide-button:after, .banner-button:after, .productView-groupTop .product-form__submit:after,
 .contact-support-btn:after, .button--secondary:after, .ai-banner-button-aajazafvwcu5wbnr2daigenblockdfb8083urbx48:after {
