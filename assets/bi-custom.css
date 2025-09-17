@@ -1067,3 +1067,6 @@ padding: 50px 0;
     margin-right: 0 !important;
     margin-left: 25px;
 }
+.featured-product:has(.productView-nav.productView-horizontal-tabs) .productView-quantity .quantity__label {
+    margin: 0 14px 0 0;
+}
