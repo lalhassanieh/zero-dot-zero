@@ -156,6 +156,6 @@ li.list-social__item:last-child {
     text-align: right;
 }
 .section-block-template--19396943118580__faqs_RfB3pw .halo-block-header.text-left .text {
-    padding-left: 5rem;
-    padding-right: 0;
+    padding-left: 5rem!important;
+    padding-right: 0!important;
 }
