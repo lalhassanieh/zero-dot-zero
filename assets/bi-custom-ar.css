@@ -67,7 +67,8 @@ body *{
     font-family: "Avenir Arabic" !important;
     text-align: right;
 }
-.rich-text__blocks h2, .slide-content .slide-heading
+.rich-text__blocks h2, .slide-content .slide-heading, 
+#halo-image-banner-template--19396941644020__16474839872eb210cf .item .banner-text {
         font-family: "Avenir Arabic" !important;
 }
 #halo-image-banner-template--19396943118580__image_banner_cwnjQq .banner-button {
