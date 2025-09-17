@@ -1066,3 +1066,6 @@ padding: 50px 0;
     left: 20px;
     width: 90%;
 }
+.slide-button:after, .banner-button:after, .productView-groupTop .product-form__submit:after {
+      transform: scaleX(-1);
+}
