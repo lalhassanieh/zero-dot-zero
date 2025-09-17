@@ -1060,13 +1060,9 @@ padding: 50px 0;
     position: relative;
 }
 .custom-service-block.service_block_style_3 .policies-content {
-    text-align: right;
+    text-align: left;
+    position: absolute;
+    bottom: 70px;
     left: 20px;
-}
-.productView-details .product-form__input .form__label {
-    margin-right: 0 !important;
-    margin-left: 25px;
-}
-.featured-product:has(.productView-nav.productView-horizontal-tabs) .productView-quantity .quantity__label {
-    margin: 0 0 0 14px !important;
+    width: 90%;
 }
