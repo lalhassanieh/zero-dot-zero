@@ -70,3 +70,10 @@ body *{
 li.list-social__item:last-child {
     margin-right: 15px;
 }
+    .header-navigation .header-icons .stroke-icon svg {
+        transform: scaleX(-1);
+    }
+    .header-nav-basic .header__icon--cart .cart-count-bubble {
+        left: -10px;
+        right: auto;
+    }
