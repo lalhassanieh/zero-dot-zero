@@ -161,6 +161,3 @@ li.list-social__item:last-child {
     padding-right: 0!important;
 }
 
-.slide-button:hover:after, .banner-button:hover:after, .productView-groupTop .product-form__submit:hover:after {
-    filter: brightness(0) invert(1);
-}
