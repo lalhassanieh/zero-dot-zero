@@ -109,5 +109,5 @@ li.list-social__item:last-child {
 }
 .add-sparkles h2:after{
     left: -4px;
-    righht: auto;
+       right: auto;
 }
