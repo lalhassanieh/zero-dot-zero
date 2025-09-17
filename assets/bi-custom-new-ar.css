@@ -5,7 +5,7 @@
 }
 .tab-panel-content .product.slider__slide.grid__item {
     border-left: 1px solid #A1A1A1;
-  border-right: none;
+  border-right: none!important;
 }
 .product-card-layout-08 .card-product .card-action .button.button-ATC, 
 .product-card-layout-08 .card-product .card-action .button.product-form__submit {
