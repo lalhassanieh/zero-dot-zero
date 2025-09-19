@@ -197,9 +197,9 @@ font-weight: 600;
     padding-left: 0;
     paadding-right: 100px
 }
-.faqs-filterDropdown-text .icon-dropdown{
-    right: auto;
-    left: 2rem;
+.faqs-filterDropdown-text .icon-dropdown {
+    right: auto!important;
+    left: 2rem!important;
 }
 .faqs-filterLabel{
     margin:0 0 0 20px!important;
