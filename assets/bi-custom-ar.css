@@ -227,3 +227,9 @@ font-weight: 600;
         padding-right: 20px;
     }
 }
+@media (min-width: 1350px) {
+    .contact.contact-2 .contact-item.contact-itemRight {
+        margin-left: 0;
+        margin-right: 62px;
+    }
+}
