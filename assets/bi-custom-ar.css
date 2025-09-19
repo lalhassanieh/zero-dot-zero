@@ -132,13 +132,14 @@ li.list-social__item:last-child {
 .product-infinite-scroll .button, #halo-image-banner-template--19396943118580__image_banner_mUejpe .banner-button,
 .contact-support-btn,
 #shopify-section-template--19396943118580__slide_show_FadCMd .slide-content .slide-button, 
-.banner-button.button,
+.banner-button.button, .section-block-template--19396943118580__product_block_nEDnQ8 .product-infinite-scroll .button,
 .contact-support-btn {
     padding-left: 50px!important;
     padding-right: 30px!important`;
 }
 .slide-button:after, .banner-button:after, .productView-groupTop .product-form__submit:after,
-.contact-support-btn:after, .button--secondary:after, .ai-banner-button-aajazafvwcu5wbnr2daigenblockdfb8083urbx48:after {
+.contact-support-btn:after, .button--secondary:after, .ai-banner-button-aajazafvwcu5wbnr2daigenblockdfb8083urbx48:after, 
+.section-block-template--19396943118580__product_block_nEDnQ8 .product-infinite-scroll .button:after {
     left: 28px;
     right: auto !important;
 }
