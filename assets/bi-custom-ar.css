@@ -208,3 +208,11 @@ font-weight: 600;
 .faqs-filterDropdown-text {
     padding: 7px 20px 7px 38px!important;
 }
+
+@media all and (max-width: 767px){
+    .faq-container {
+        max-width: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
