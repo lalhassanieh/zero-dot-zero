@@ -228,6 +228,9 @@ font-weight: 600;
   .ai-banner-title-aajazafvwcu5wbnr2daigenblockdfb8083urbx48{
         text-align: right;
     }
+    #ContactSection-template--19396941873396__main .contact-item.contact-itemRight .contact-btn{
+        margin-right: 0;
+    }
 @media all and (max-width: 767px){
     .faq-container {
         max-width: 100%;
