@@ -133,7 +133,7 @@ li.list-social__item:last-child {
 .contact-support-btn,
 #shopify-section-template--19396943118580__slide_show_FadCMd .slide-content .slide-button, 
 .banner-button.button, .section-block-template--19396943118580__product_block_nEDnQ8 .product-infinite-scroll .button,
-.contact-support-btn {
+.contact-support-btn, .product-infinite-scroll .button{
     padding-left: 50px!important;
     padding-right: 30px!important`;
 }
