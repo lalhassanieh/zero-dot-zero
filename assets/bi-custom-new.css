@@ -199,6 +199,12 @@ position: relative;
 .template-page .policies-icon.image-zoom img {
     width: 100%;
 }
+.faq-container 
+ {
+        max-width: 100%;
+        padding-left: 100px;
+        padding-right: 100px;
+    }
 @media all and (max-width: 767px){
         .halo-banner-wrapper .item--smallImg .flex-box__banner .banner-content {
             width: 100%;
