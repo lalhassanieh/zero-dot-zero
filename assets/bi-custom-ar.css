@@ -259,12 +259,12 @@ font-weight: 600;
         padding-right: 20px;
     }
     .tabs-contents .toggleLink{
-        padding: 18px 0 18px 46px;
+        padding: 18px 0 18px 46px!important;
     } 
 }
 @media (min-width: 1350px) {
     .contact.contact-2 .contact-item.contact-itemRight {
-        margin-left: 00!important;
+        margin-left: 0!important;
         margin-right: 62px;
     }
 }
