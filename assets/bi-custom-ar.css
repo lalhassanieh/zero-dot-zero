@@ -175,3 +175,6 @@ li.list-social__item:last-child {
 h2.heading {
 font-weight: 600;
 }
+.halo-banner-wrapper .item--smallImg .flex-box__banner .banner-content {
+    margin-right: 30px;
+}
