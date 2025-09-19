@@ -226,7 +226,8 @@ font-weight: 600;
     text-align: right;
 }
   .ai-banner-title-aajazafvwcu5wbnr2daigenblockdfb8083urbx48,
-  .productView-details .product-form__input .form__label {
+  .productView-details .product-form__input .form__label, 
+  .previewCartTotals .previewCartTotals-label {
         text-align: right;
     }
     #ContactSection-template--19396941873396__main .contact-item.contact-itemRight .contact-btn{
