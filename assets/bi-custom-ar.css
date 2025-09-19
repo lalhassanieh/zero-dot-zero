@@ -208,7 +208,12 @@ font-weight: 600;
 .faqs-filterDropdown-text {
     padding: 7px 20px 7px 38px!important;
 }
-
+    .faqs .faqs-item .card-header .title, .faqs .faqs-item .card-body, .faqs .faqs-item .halo-text-format {
+        padding-left: 16px!impoortant;
+    }
+    .faqs .faqs-item .card-header .title {
+    padding-left: 20px !important;
+}
 @media all and (max-width: 767px){
     .faq-container {
         max-width: 100%;
