@@ -214,6 +214,9 @@ font-weight: 600;
     .faqs .faqs-item .card-header .title {
     padding-left: 20px !important;
 }
+.contact-support-button-wrapper{
+    margin-bottom: 30px;
+}
 @media all and (max-width: 767px){
     .faq-container {
         max-width: 100%;
