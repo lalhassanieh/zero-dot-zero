@@ -116,7 +116,7 @@ li.list-social__item:last-child {
         padding-right: 60px;
     }
 .custom-service-block.service_block_style_3 .policies-content {
-    text-align: right;
+    text-align: right!important;
     left: 20px;
 }
 .productView-details .product-form__input .form__label {
