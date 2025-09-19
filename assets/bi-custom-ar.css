@@ -256,7 +256,7 @@ font-weight: 600;
     padding-right: 0!important;
 }
     .cart-item-block.cart-item-total {
-        text-align: left;
+        text-align: left!important;
         padding-left: 3px;  padding-right: 0!important;
     }
 @media all and (max-width: 767px){
