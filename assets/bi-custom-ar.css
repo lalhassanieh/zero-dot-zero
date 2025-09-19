@@ -251,7 +251,14 @@ font-weight: 600;
     margin-left: 10px;
     margin-right: 0;
 }
-
+.cart-content-item[data-cart-content] {
+    padding-left: 30px;
+    padding-right: 0!important;
+}
+    .cart-item-block.cart-item-total {
+        text-align: left;
+        padding-left: 3px;  padding-right: 0!important;
+    }
 @media all and (max-width: 767px){
     .faq-container {
         max-width: 100%;
