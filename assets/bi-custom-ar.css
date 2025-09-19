@@ -283,4 +283,9 @@ font-weight: 600;
         margin-left: 0!important;
         margin-right: 62px;
     }
+    .product-card-layout-08 .card-action>form {
+        margin-left: 20px;
+        margin-right: auto;
+    }
+}
 }
