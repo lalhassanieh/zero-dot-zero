@@ -235,7 +235,10 @@ font-weight: 600;
     margin-right: 0 !important;
      margin-left: 10px !important;
 }
-
+.productView .price__regular {
+    padding-left: 0 !important;
+     padding-right: 22px !important;
+}
 @media all and (max-width: 767px){
     .faq-container {
         max-width: 100%;
