@@ -217,6 +217,9 @@ font-weight: 600;
 .contact-support-button-wrapper{
     margin-bottom: 70px;
 }
+.form-label, .field__label{
+    text-align: right;
+}
 @media all and (max-width: 767px){
     .faq-container {
         max-width: 100%;
