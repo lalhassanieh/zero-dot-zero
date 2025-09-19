@@ -243,6 +243,9 @@ font-weight: 600;
 .productView-wishlist {
     margin: 0 15px 0!important;
 }
+.productView-groupTop .productView-share.style-2 .share-button__button {
+    padding: 14px 0 14px 15px !important;
+}
 @media all and (max-width: 767px){
     .faq-container {
         max-width: 100%;
