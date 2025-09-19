@@ -149,10 +149,11 @@ li.list-social__item:last-child {
     right: auto !important;
 }
 /**End btn flipping**/
-.banner-button.button {
-    text-align:right;
-}
+.banner-button.button,
+#ContactSection-template--19396941873396__main .contact-item.contact-itemRight .contact-btn {
 
+    text-align: right;
+}
 .faqs-item .card-header .icon-plus {
     left: 0 !important;
     right: auto !important;
