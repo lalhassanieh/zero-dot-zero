@@ -228,7 +228,7 @@ font-weight: 600;
   .ai-banner-title-aajazafvwcu5wbnr2daigenblockdfb8083urbx48,
   .productView-details .product-form__input .form__label, 
   .previewCartTotals .previewCartTotals-label {
-        text-align: right;
+        text-align: right!important;
     }
     #ContactSection-template--19396941873396__main .contact-item.contact-itemRight .contact-btn{
         margin-right: 0;
