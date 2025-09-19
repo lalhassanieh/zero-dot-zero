@@ -262,5 +262,8 @@ position: relative;
 }.contact {
     letter-spacing: 0;
     padding: 0 20px;
-}
+}    .contact-item.contact-itemRight {
+        width: 100%;
+        padding: 20px;
+    }
 }
