@@ -193,6 +193,12 @@ position: relative;
     color: #005339!important;
      background-color: #fff!important;
 }
+.template-page .policies-icon.image-zoom  {
+    width: 100%;
+}
+.template-page .policies-icon.image-zoom img {
+    width: 100%;
+}
 @media all and (max-width: 767px){
         .halo-banner-wrapper .item--smallImg .flex-box__banner .banner-content {
             width: 100%;
