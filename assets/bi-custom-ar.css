@@ -231,6 +231,9 @@ font-weight: 600;
   .cart-note .form-input {
         text-align: right!important;
     }
+    .list-social__item {
+    margin: 0 0 6px 15px;
+}
     #ContactSection-template--19396941873396__main .contact-item.contact-itemRight .contact-btn{
         margin-right: 0;
     }
