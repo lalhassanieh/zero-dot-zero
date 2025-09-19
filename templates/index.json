@@ -2140,7 +2140,7 @@
       "name": "t:sections.faqs.presets.name",
       "settings": {
         "container": "fullwidth",
-        "padding_full_width": 0,
+        "padding_full_width": 100,
         "title": "FAQ’s",
         "color_title": "#ef6532",
         "fontsize_title": 15,
