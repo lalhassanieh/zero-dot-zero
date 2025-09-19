@@ -16,7 +16,6 @@
     font-display: swap;
 }
 
-
 @font-face {
     font-family: 'Avenir Arabic';
     src: url('https://cdn.shopify.com/s/files/1/0742/2669/6436/files/AvenirArabic-Medium.woff2') format('woff2'),
@@ -172,6 +171,6 @@ li.list-social__item:last-child {
 .halo-banner-wrapper .flex-box__banner .content-box{
     margin: 0;
 }
-.rich-text__blocks h2{
-
+h2.heading {
+font-weight: 600;
 }
