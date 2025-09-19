@@ -261,6 +261,11 @@ font-weight: 600;
     .tabs-contents .toggleLink{
         padding: 18px 0 18px 46px!important;
     } 
+        .tabs-contents .toggleLink.popup-mobile .icon-dropdown, .tabs-contents .toggleLink.sidebar-mobile .icon-dropdown {
+        transform: translateY(-50%) rotate(89deg);
+        right: auto;
+        left: 0;
+    }
 }
 @media (min-width: 1350px) {
     .contact.contact-2 .contact-item.contact-itemRight {
