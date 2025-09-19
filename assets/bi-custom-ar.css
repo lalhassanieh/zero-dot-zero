@@ -134,14 +134,17 @@ li.list-social__item:last-child {
 #shopify-section-template--19396943118580__slide_show_FadCMd .slide-content .slide-button, 
 .banner-button.button, .section-block-template--19396943118580__product_block_nEDnQ8 .product-infinite-scroll .button,
 .contact-support-btn, .product-infinite-scroll .button,
-.contact-support-btn, .button--secondary, .ai-banner-button-aajazafvwcu5wbnr2daigenblockdfb8083urbx48{
+.contact-support-btn, .button--secondary, .ai-banner-button-aajazafvwcu5wbnr2daigenblockdfb8083urbx48,
+#custom-map-template--19396941873396__google-map .map-btn, 
+#ContactSection-template--19396941873396__main .contact-item.contact-itemRight .contact-btn{
     padding-left: 50px!important;
     padding-right: 30px!important;
 }
 
 .slide-button:after, .banner-button:after, .productView-groupTop .product-form__submit:after,
 .contact-support-btn:after, .button--secondary:after, .ai-banner-button-aajazafvwcu5wbnr2daigenblockdfb8083urbx48:after, 
-.section-block-template--19396943118580__product_block_nEDnQ8 .product-infinite-scroll .button:after {
+.section-block-template--19396943118580__product_block_nEDnQ8 .product-infinite-scroll .button:after,
+#custom-map-template--19396941873396__google-map .map-btn:after, #ContactSection-template--19396941873396__main .contact-item.contact-itemRight .contact-btn:after {
     left: 28px;
     right: auto !important;
 }
