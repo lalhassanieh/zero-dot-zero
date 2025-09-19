@@ -229,7 +229,7 @@ font-weight: 600;
 }
 @media (min-width: 1350px) {
     .contact.contact-2 .contact-item.contact-itemRight {
-        margin-left: 0;
+        margin-left: 00!important;
         margin-right: 62px;
     }
 }
