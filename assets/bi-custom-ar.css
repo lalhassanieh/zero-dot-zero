@@ -255,14 +255,7 @@ font-weight: 600;
     margin-left: 10px;
     margin-right: 0;
 }
-.announcement-text:before {
-    left: auto;
-    right: 0;
-}
-.announcement-text:before {
-    left: auto;
-    right: 0;
-}
+
 .cart-content-item[data-cart-content] {
     padding-left: 30px;
     padding-right: 0!important;
@@ -277,6 +270,10 @@ font-weight: 600;
 .announcement-text {
     padding-left: 0;
     padding-right: 20px;
+}
+.announcement-text:before {
+    left: auto;
+    right: 0;
 }
 @media all and (max-width: 767px){
     .faq-container {
