@@ -266,6 +266,10 @@ font-weight: 600;
     .halo-top-language .icon {
     margin-left: 10px;
 }
+.announcement-text {
+    padding-left: 0;
+    padding-right: 20px;
+}
 @media all and (max-width: 767px){
     .faq-container {
         max-width: 100%;
