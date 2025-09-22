@@ -255,6 +255,14 @@ font-weight: 600;
     margin-left: 10px;
     margin-right: 0;
 }
+.announcement-text:before {
+    left: auto;
+    right: 0;
+}
+.announcement-text:before {
+    left: auto;
+    right: 0;
+}
 .cart-content-item[data-cart-content] {
     padding-left: 30px;
     padding-right: 0!important;
