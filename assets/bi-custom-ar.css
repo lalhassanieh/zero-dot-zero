@@ -275,6 +275,11 @@ font-weight: 600;
     left: auto;
     right: 0;
 }
+.sidebarBlock-headingWrapper .sidebarBlock-heading:after {
+    left: 12px !important;
+       right: auto!important;
+}
+
 @media all and (max-width: 767px){
     .faq-container {
         max-width: 100%;
