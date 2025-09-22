@@ -105,7 +105,7 @@
             "show_shop_name": true,
             "enable_layout_grid": true,
             "text_fontsize": 12,
-            "copyright_content": "<p>© 2025 Zero.Zero Dry Store |  All Right Reserved | Powered By Born Interactive.</p>",
+            "copyright_content": "<p>© 2025 Zero.Zero Dry Store |  All Right Reserved | Powered By <a href=\"https://www.borninteractive.com/\" target=\"_blank\">Born interactive</a>.</p>",
             "copyright_content_color": "#005339",
             "shop_name": "",
             "show_payment": true,
