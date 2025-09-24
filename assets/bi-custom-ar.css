@@ -306,7 +306,8 @@ font-weight: 600;
 }
 .facets__item input[type=checkbox]+.form-label--checkbox {
     padding-right: 25px;
-    padding-left: 0;
+    padding-left: 0 !important;
+    text-align: right;
 }
 
 @media all and (max-width: 767px){
