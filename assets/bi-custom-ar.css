@@ -301,7 +301,7 @@ font-weight: 600;
     padding-left: 0;
 }
 .facets__price--box .filter__price {
-    padding: 12px 32px 12px 0;
+    padding: 12px 32px 12px 0!important;
     text-align: right;
 }
 @media all and (max-width: 767px){
