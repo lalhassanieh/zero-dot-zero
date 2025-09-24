@@ -345,6 +345,10 @@ input[type=checkbox]+.form-label--checkbox:before {
         padding-right: 30px;
         padding-left: 0!important;
     }
+    .login-item .form-input {
+
+    text-align: right;
+}
 @media all and (max-width: 767px){
     .faq-container {
         max-width: 100%;
