@@ -304,6 +304,11 @@ font-weight: 600;
     padding: 12px 32px 12px 0!important;
     text-align: right;
 }
+.facets__item input[type=checkbox]+.form-label--checkbox {
+    padding-right: 25px;
+    padding-left: 0;
+}
+
 @media all and (max-width: 767px){
     .faq-container {
         max-width: 100%;
