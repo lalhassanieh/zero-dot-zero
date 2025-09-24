@@ -292,6 +292,11 @@ font-weight: 600;
 .footer-1 .list-social__item {
     margin-left: 0;
 }
+#shopify-section-template--19396941644020__main .about-content-wrapper h1 {
+   padding-right: 100px;
+    padding-left: 0;
+}
+
 @media all and (max-width: 767px){
     .faq-container {
         max-width: 100%;
