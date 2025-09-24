@@ -338,6 +338,7 @@ input[type=checkbox]+.form-label--checkbox:before {
 .facets__price--slide input[type=range]
  {
     right: 0;
+    left: auto !important;
  }
 @media all and (max-width: 767px){
     .faq-container {
