@@ -883,5 +883,12 @@
       "send_on": "السنة-الشهر-اليوم",
       "send_on_label": "أرسل (اختياري)"
     }
+  },
+  "shopify": {
+    "checkout": {
+      "general": {
+        "submit": "أرسل"
+      }
+    }
   }
 }
