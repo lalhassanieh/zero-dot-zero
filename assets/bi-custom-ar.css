@@ -286,7 +286,9 @@ font-weight: 600;
     right: auto;
     left: 20px;
 }
-
+.auth-form.auth-form-2 .form-input {
+    text-align: right;
+}
 @media all and (max-width: 767px){
     .faq-container {
         max-width: 100%;
