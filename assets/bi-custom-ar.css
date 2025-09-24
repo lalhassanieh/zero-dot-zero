@@ -190,7 +190,8 @@ font-weight: 600;
 #halo-image-banner-template--19396943118580__image_banner_mUejpe .banner-button {
     width: 150px;
 }
-#shopify-section-template--19396943118580__faqs_RfB3pw .faq-container {
+#shopify-section-template--19396943118580__faqs_RfB3pw .faq-container,
+.contact-text-content {
     padding-right: 100px!important;
 }
 .custom-service-block.service_block_style_3 .policies-content {
