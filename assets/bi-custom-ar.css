@@ -280,7 +280,7 @@ font-weight: 600;
        right: auto!important;
 }
 .quantity__style--1 .quantity__input {
-    padding: 10px 38px 9px 20px;
+    padding: 10px 38px 9px 20px!important;
 }
 @media all and (max-width: 767px){
     .faq-container {
