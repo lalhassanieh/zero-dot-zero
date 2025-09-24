@@ -330,7 +330,10 @@ input[type=checkbox]+.form-label--checkbox:before {
     margin-right: 10px;
     margin-left: 0;
 }
-
+.facets__price--slide:before {
+    left: 0;
+    right: auto;
+}
 
  .facets__price--box {
     /* flex-direction: row-reverse; */
