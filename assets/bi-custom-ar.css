@@ -339,7 +339,7 @@ input[type=checkbox]+.form-label--checkbox:before {
     right: 0!important;
 }
 .page-sidebar {
-    float: right;
+    float: right!important;
 }
 @media all and (max-width: 767px){
     .faq-container {
