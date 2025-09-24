@@ -352,6 +352,10 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
     padding: 0 23px 0 0;
     text-align: right;
 }
+.halo-popup-close{
+    right: auto!important;
+    left: -15px;
+}
 @media all and (max-width: 767px){
     .faq-container {
         max-width: 100%;
