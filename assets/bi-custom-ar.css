@@ -331,8 +331,8 @@ input[type=checkbox]+.form-label--checkbox:before {
     margin-left: 0;
 }
 .facets__price--slide:after {
-    left: auto;
-    right: 0;
+    left: auto!impoortant;
+    right: 0!impoortant;
 }
 
 @media all and (max-width: 767px){
