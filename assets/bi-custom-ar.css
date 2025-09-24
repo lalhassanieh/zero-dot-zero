@@ -345,7 +345,7 @@ input[type=checkbox]+.form-label--checkbox:before {
     left: auto !important;
  }
  .facets__price--box {
-    flex-direction: row-reverse;
+    /* flex-direction: row-reverse; */
 }
 @media all and (max-width: 767px){
     .faq-container {
