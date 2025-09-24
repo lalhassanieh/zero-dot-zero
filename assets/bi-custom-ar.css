@@ -356,6 +356,9 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
     right: auto!important;
     left: -15px;
 }
+.contact-form .form-input {
+    text-align: right;
+}
 @media all and (max-width: 767px){
     .faq-container {
         max-width: 100%;
