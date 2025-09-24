@@ -332,7 +332,7 @@ input[type=checkbox]+.form-label--checkbox:before {
 }
 .facets__price--slide:before {
     left: 0;
-    right: auto;
+    right: auto!important;
 }
 
  .facets__price--box {
