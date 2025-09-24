@@ -900,6 +900,12 @@
       "storefront": {
         "invalid_password": "كلمة المرور غير صحيحة، يُرجى المحاولة مرة أخرى."
       }
+    },
+    "challenge": {
+      "submit_button_text": "أرسل"
+    },
+    "checkpoint": {
+      "submit_button_text": "أرسل"
     }
   }
 }
