@@ -346,7 +346,10 @@ input[type=checkbox]+.form-label--checkbox:before {
         padding-left: 0!important;
     }
     .login-item .form-input {
-
+    text-align: right;
+}
+input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio {
+    padding: 0 23px 0 0;
     text-align: right;
 }
 @media all and (max-width: 767px){
