@@ -330,6 +330,11 @@ input[type=checkbox]+.form-label--checkbox:before {
     margin-right: 10px;
     margin-left: 0;
 }
+.facets__price--slide:after {
+    left: auto;
+    right: 0;
+}
+
 @media all and (max-width: 767px){
     .faq-container {
         max-width: 100%;
