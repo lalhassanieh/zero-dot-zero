@@ -335,6 +335,10 @@ input[type=checkbox]+.form-label--checkbox:before {
      left: auto !important;
     right: 0 !important;
 }
+.facets__price--slide:before {
+    left: 0;
+    width: var(--left-space, 0);
+}
 .facets__price--slide input[type=range]
  {
     right: 0;
