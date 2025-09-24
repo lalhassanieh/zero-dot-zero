@@ -323,6 +323,9 @@ input[type=checkbox]+.form-label--checkbox:before {
         margin-left: 20px;
         margin-right: auto;
     }
+    .search-form .form-input {
+    text-align: right;
+}
 @media all and (max-width: 767px){
     .faq-container {
         max-width: 100%;
