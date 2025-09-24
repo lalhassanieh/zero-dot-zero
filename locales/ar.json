@@ -888,6 +888,12 @@
     "checkout": {
       "general": {
         "submit": "أرسل"
+      },
+      "payment": {
+        "order_covered_by_gift_cards_notice": {
+          "one": "طلبك مُغطى ببطاقتك الهدية.",
+          "other": "طلبك مُغطى ببطاقتك الهدية."
+        }
       }
     }
   }
