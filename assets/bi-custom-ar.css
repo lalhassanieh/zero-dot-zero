@@ -309,7 +309,10 @@ font-weight: 600;
     padding-left: 0 !important;
     text-align: right;
 }
-
+input[type=checkbox]+.form-label--checkbox:before {
+    left: auto;
+    right: 0;
+}
 @media all and (max-width: 767px){
     .faq-container {
         max-width: 100%;
