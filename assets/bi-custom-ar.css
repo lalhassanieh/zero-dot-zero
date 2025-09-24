@@ -343,7 +343,7 @@ input[type=checkbox]+.form-label--checkbox:before {
 }
     .page-sidebar+.page-content {
         padding-right: 30px;
-        padding-left: 0;
+        padding-left: 0!important;
     }
 @media all and (max-width: 767px){
     .faq-container {
