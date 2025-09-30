@@ -17,7 +17,7 @@
         "text_UwB6R7": {
           "type": "text",
           "settings": {
-            "custom_width": "20",
+            "custom_width": "30",
             "heading": "",
             "logo": "shopify://shop_images/Layer_1_4.svg",
             "logo_margin_bottom": 28,
@@ -82,15 +82,6 @@
             "mg_bottom": 10
           }
         },
-        "link_list_yL4FKJ": {
-          "type": "link_list",
-          "settings": {
-            "custom_width": "20",
-            "heading": "Loyalty Program",
-            "menu": "footer-menu-6",
-            "mg_bottom": 10
-          }
-        },
         "41adb6e5-e71d-422b-a1e1-d2034c83869c": {
           "type": "footer_bottom",
           "settings": {
@@ -141,7 +132,6 @@
         "592a8373-a70d-47d3-a311-321a645e1f14",
         "a6e74cd6-bd47-4ada-98b5-15e28b94aef6",
         "2265e00a-3824-4d57-af37-fa00fa88a555",
-        "link_list_yL4FKJ",
         "41adb6e5-e71d-422b-a1e1-d2034c83869c"
       ],
       "settings": {
