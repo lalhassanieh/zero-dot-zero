@@ -58,7 +58,7 @@
         "592a8373-a70d-47d3-a311-321a645e1f14": {
           "type": "link_list",
           "settings": {
-            "custom_width": "20",
+            "custom_width": "25",
             "heading": "Explore",
             "menu": "footer",
             "mg_bottom": 11
@@ -67,7 +67,7 @@
         "a6e74cd6-bd47-4ada-98b5-15e28b94aef6": {
           "type": "link_list",
           "settings": {
-            "custom_width": "20",
+            "custom_width": "25",
             "heading": "Shop",
             "menu": "footer-menu-2",
             "mg_bottom": 10
@@ -76,7 +76,7 @@
         "2265e00a-3824-4d57-af37-fa00fa88a555": {
           "type": "link_list",
           "settings": {
-            "custom_width": "20",
+            "custom_width": "25",
             "heading": "Recipes",
             "menu": "footer-menu-3",
             "mg_bottom": 10
