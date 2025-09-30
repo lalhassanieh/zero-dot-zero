@@ -207,7 +207,8 @@ position: relative;
     .fluid-width-video-wrapper{
         min-height: 300px;
     }
-    #shopify-section-template--19396941644020__main .about-content-wrapper h1 {
+    #shopify-section-template--19396941644020__main .about-content-wrapper h1,
+    #ContactSection-template--19396941873396__main .image-container .page-header {
     padding-left: 30px!important;
     font-size: 40px;
 }
