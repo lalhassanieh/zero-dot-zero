@@ -8,9 +8,15 @@
  * ------------------------------------------------------------
  */
 {
-  "markets": {
-    "sa": {
-      "parent": "@default"
+  "parent": "page.template-contact-us-2.json",
+  "context": {
+    "market": "sa"
+  },
+  "sections": {
+    "main": {
+      "settings": {
+        "btn_text": "اتصل بنا"
+      }
     }
   }
 }
