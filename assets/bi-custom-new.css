@@ -211,6 +211,11 @@ position: relative;
     padding-left: 30px!important;
     font-size: 40px;
 }
+ #halo-image-banner-template--19396941644020__16474839872eb210cf  .halo-block-content .halo-banner-wrapper {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
         .halo-banner-wrapper .item--smallImg .flex-box__banner .banner-content {
             width: 100%;
         }
