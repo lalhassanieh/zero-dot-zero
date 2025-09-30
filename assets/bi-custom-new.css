@@ -224,7 +224,7 @@ position: relative;
         padding-right: 0;
     }
     .custom-service-block.service_block_style_3 .halo-item .policies-icon img {
-        max-height: 300px;
+        max-height: 300px!important;
     }
      .custom-service-block.service_block_style_3 .halo-item .policies-icon .slider-buttons {
         display: none;
