@@ -359,6 +359,9 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
 .contact-form .form-input {
     text-align: right;
 }
+.brand__custom--tab ul li:last-child {
+    margin-right: 20px;
+}
 @media all and (max-width: 767px){
     .faq-container {
         max-width: 100%;
