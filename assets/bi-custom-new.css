@@ -223,7 +223,9 @@ position: relative;
         padding-left: 0;
         padding-right: 0;
     }
-
+    .custom-service-block.service_block_style_3 .halo-item .policies-icon img {
+        max-height: 300px;
+    }
         .halo-banner-wrapper .item--smallImg .flex-box__banner .banner-content {
             width: 100%;
         }
