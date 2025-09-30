@@ -208,7 +208,7 @@ position: relative;
         min-height: 300px;
     }
     #shopify-section-template--19396941644020__main .about-content-wrapper h1 {
-    padding-left: 30px;
+    padding-left: 30px!important;
     font-size: 40px;
 }
         .halo-banner-wrapper .item--smallImg .flex-box__banner .banner-content {
