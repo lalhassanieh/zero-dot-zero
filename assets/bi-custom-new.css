@@ -229,6 +229,10 @@ position: relative;
      .policies-block-wrapper .slider-buttons {
         display: none;
     }
+    .faq-container{
+        padding-left: 30px;
+        padding-right: 30px;
+    }
         .halo-banner-wrapper .item--smallImg .flex-box__banner .banner-content {
             width: 100%;
         }
