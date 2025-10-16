@@ -608,7 +608,7 @@
           "settings": {
             "row_reverse": true,
             "image_width": "50",
-            "image": "shopify://shop_images/Rectangle.jpg",
+            "image": "shopify://shop_images/second_section_728_572.png",
             "flying_effect": false,
             "small_img_block_style": "style_1",
             "enable_divider": true,
@@ -1804,7 +1804,7 @@
           "settings": {
             "row_reverse": false,
             "image_width": "50",
-            "image": "shopify://shop_images/Rectangle_1.png",
+            "image": "shopify://shop_images/About_us_section_620_726.png",
             "flying_effect": false,
             "small_img_block_style": "style_1",
             "enable_divider": true,
