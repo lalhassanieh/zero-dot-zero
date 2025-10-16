@@ -15,7 +15,7 @@
         "image_M9rGXy": {
           "type": "image",
           "settings": {
-            "image_slide": "shopify://shop_images/Frame_790.png",
+            "image_slide": "shopify://shop_images/Hero_section_1400_486.png",
             "image_slide_mb": "shopify://shop_images/photo.jpg",
             "alignment": "left",
             "enable_custom_position": true,
@@ -608,7 +608,7 @@
           "settings": {
             "row_reverse": true,
             "image_width": "50",
-            "image": "shopify://shop_images/Rectangle.jpg",
+            "image": "shopify://shop_images/second_section_728_572.png",
             "flying_effect": false,
             "small_img_block_style": "style_1",
             "enable_divider": true,
@@ -1804,7 +1804,7 @@
           "settings": {
             "row_reverse": false,
             "image_width": "50",
-            "image": "shopify://shop_images/Rectangle_1.png",
+            "image": "shopify://shop_images/About_us_section_620_726.png",
             "flying_effect": false,
             "small_img_block_style": "style_1",
             "enable_divider": true,
@@ -2125,7 +2125,7 @@
         "image_GtaWTr": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/image_25.png"
+            "image": "shopify://shop_images/FAQ_458_576.png"
           }
         }
       },
@@ -2321,7 +2321,7 @@
         "style_bg": "none",
         "bg_color": "#fdf7eb",
         "bg_color_gradient": "",
-        "bg_image": "shopify://shop_images/taste.jpg",
+        "bg_image": "shopify://shop_images/Before_the_footer_1440_570.png",
         "mg_top_desktop": 0,
         "mg_top_tablet": 0,
         "mg_top_mobile": 0,
