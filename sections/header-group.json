@@ -210,13 +210,13 @@
         "megamenu_style_4_aKJMHH": {
           "type": "megamenu_style_4",
           "settings": {
-            "layout_block": "full",
+            "layout_block": "custom_width",
             "header_custom_width_size": 1200,
             "item": "Shop",
-            "column": 4,
+            "column": 2,
             "menu_text_left": "shop-menu",
             "menu_text_left_sale": "",
-            "show_banner_1": true,
+            "show_banner_1": false,
             "banner_1": "shopify://shop_images/41004a990b4d257faa761a00af6b591e3dc0a86a_1.png",
             "banner_url_1": "",
             "show_banner_2": false,
@@ -229,35 +229,13 @@
             "az_brand_link_text_color": "#000000",
             "product_collection": "sparkling-wines"
           }
-        },
-        "megamenu_style_5_G98fQE": {
-          "type": "megamenu_style_5",
-          "disabled": true,
-          "settings": {
-            "layout_block": "full",
-            "header_custom_width_size": 1200,
-            "mega_tyle": "style2",
-            "item": "Shop",
-            "column": 4,
-            "menu_text_left": "",
-            "menu_text_left_sale": "",
-            "show_banner_1": true,
-            "banner_1": "shopify://shop_images/image_10.png",
-            "banner_url_1": "",
-            "product_limit": 4,
-            "show_product": true,
-            "product_title": "Featured Products",
-            "product_collection": "sparkling-wines",
-            "bg_mega_menu_bottom": "#f8f8f8"
-          }
         }
       },
       "block_order": [
         "main_menu_PDD3kW",
         "logo_UcJFcw",
         "header_icons_f98xwX",
-        "megamenu_style_4_aKJMHH",
-        "megamenu_style_5_G98fQE"
+        "megamenu_style_4_aKJMHH"
       ],
       "settings": {
         "container": "full",
