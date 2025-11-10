@@ -214,7 +214,7 @@
             "header_custom_width_size": 1200,
             "item": "Shop",
             "column": 4,
-            "menu_text_left": "",
+            "menu_text_left": "shop-menu",
             "menu_text_left_sale": "",
             "show_banner_1": true,
             "banner_1": "shopify://shop_images/41004a990b4d257faa761a00af6b591e3dc0a86a_1.png",
