@@ -164,7 +164,7 @@
     "disable_product_card_border": true,
     "enable_custom_layout_card": false,
     "enable_infor_on_image": true,
-    "product_block_image_ratio": "portrait",
+    "product_block_image_ratio": "square",
     "portrait_height": "131",
     "product_block_image_fit": "cover",
     "show_image_loading": true,
