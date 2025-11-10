@@ -768,8 +768,8 @@
         "tab_M8tHqC": {
           "type": "tab",
           "settings": {
-            "title": "Sparkling Water",
-            "menu": "sparkling-wines",
+            "title": "Ready to Drink",
+            "menu": "ready-to-drink",
             "items_grid_gap": 7.5,
             "items_spacing_tb": 30,
             "items_spacing_lr": 10,
