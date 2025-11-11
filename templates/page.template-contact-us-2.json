@@ -71,6 +71,7 @@
     },
     "google-map": {
       "type": "google-map",
+      "disabled": true,
       "settings": {
         "show_custom_map": true,
         "container": "1170",
