@@ -765,6 +765,28 @@
     "brand_tab_block_az6GWe": {
       "type": "brand-tab-block",
       "blocks": {
+        "tab_wiDU3p": {
+          "type": "tab",
+          "settings": {
+            "title": "Beer",
+            "menu": "beer",
+            "items_grid_gap": 7.5,
+            "items_spacing_tb": 30,
+            "items_spacing_lr": 10,
+            "items_border_radius": 5,
+            "image_width": 145,
+            "image_height": 15,
+            "image_border_radius": 0,
+            "items_bg_color": "",
+            "items_border_color": "#d0d0d0",
+            "enable_title": false,
+            "fontsize_title": 18,
+            "fontweight_title": "500",
+            "title_color": "#202020",
+            "title_color_hover": "#202020",
+            "show_tab_image": true
+          }
+        },
         "tab_CMH6PH": {
           "type": "tab",
           "settings": {
@@ -877,6 +899,7 @@
         }
       },
       "block_order": [
+        "tab_wiDU3p",
         "tab_CMH6PH",
         "tab_feetyx",
         "tab_M8tHqC",
