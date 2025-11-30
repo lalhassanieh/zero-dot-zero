@@ -1331,6 +1331,7 @@
         "buy_buttons_q3JktD",
         "view_detail_MgRqLM"
       ],
+      "disabled": true,
       "custom_css": [
         ".productView-container {padding-left: 60px; padding-right: 60px;}",
         "@media only screen and (max-width: 1025px) {.productView-container {padding-left: 15px; padding-right: 15px; }}"
