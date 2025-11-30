@@ -528,7 +528,8 @@
         ".slide-content .slide-button {justify-content: inherit; padding-left: 25px;}",
         ".slideshow .slick-dots {bottom: 80px;}",
         ".slideshow-wrapper {border-top: 1px solid #dddddd;}",
-        "@media only screen and (max-width: 1025px) {.content-box--absolute {top: unset; bottom: 10px; left: 50%; transform: translateX(-50%); position: absolute; } .slideshow .slick-dots {left: 50%; transform: translateX(-50%); } .slide-content {padding-top: 25px; background-image: unset; }}"
+        "@media only screen and (max-width: 1025px) {.content-box--absolute {top: unset; bottom: 10px; left: 50%; transform: translateX(-50%); position: absolute; } .slideshow .slick-dots {left: 50%; transform: translateX(-50%); } .slide-content {padding-top: 25px; background-image: unset; }}",
+        "@media (max-width: 767px) {.content-box--absolute {bottom: 200px !important; }}"
       ],
       "name": "t:sections.slide-show.presets.name",
       "settings": {
