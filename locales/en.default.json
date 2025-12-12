@@ -423,6 +423,9 @@
         "header": {
             "announcement": "Announcement",
             "menu": "Menu",
+            "header_top": {
+                "announcement_text_html": "Free Delivery for Orders Above <span class=\"price-item price-item--regular\"><span class=\"riyal-font\"></span> 300</span>"
+            },
             "cart_count": {
                 "one": "{{ count }} item",
                 "other": "{{ count }} items"

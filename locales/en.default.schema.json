@@ -3020,6 +3020,7 @@
           "first_text_color": "First text color",
           "second_text_color": "Second text color",
           "announcement_text": "Announcement text",
+          "announcement_text_html": "Free Delivery for Orders Above <span class=\"price-item price-item--regular\"><span class=\"riyal-font\"></span> 300</span>",
           "announcement_text_color": " Color",
         },
         "header_bottom": {
