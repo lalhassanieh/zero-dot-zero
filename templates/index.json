@@ -907,9 +907,7 @@
         "tab_wCkDYq",
         "tab_3bftmi"
       ],
-      "custom_css": [
-        ".card-title-ellipsis{font-size:16px !important;}"
-      ],
+      "custom_css": [],
       "name": "t:sections.brand_tab.presets.name",
       "settings": {
         "container": "1170",
