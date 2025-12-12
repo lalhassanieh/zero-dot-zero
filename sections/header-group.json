@@ -23,7 +23,7 @@
         "group_3_68GmHA": {
           "type": "group_3",
           "settings": {
-            "announcement_text": "Free Delivery for Orders above 300",
+            "announcement_text": "",
             "announcement_text_color": "#ffffff"
           }
         },
