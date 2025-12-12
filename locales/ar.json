@@ -423,7 +423,7 @@
       "announcement": "إعلان",
       "menu": "قائمة طعام",
       "header_top": {
-          "announcement_text_html": "<span class=\"price-item price-item--regular\"><span class=\"riyal-font\"></span> 300</span> توصيل مجاني للطلبات التي تزيد قيمتها عن"
+          "announcement_text_html": " <span class=\"price-item price-item--regular\"><span class=\"riyal-font\"></span> 300</span> توصيل مجاني للطلبات التي تزيد قيمتها عن" 
       },
       "cart_count": {
         "one": "{{ count }} غرض",
