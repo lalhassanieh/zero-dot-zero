@@ -152,7 +152,7 @@
     display: -webkit-box;
     -webkit-line-clamp: var(--product-title-line-text);
     text-overflow: ellipsis;
-    -webkit-box-orient: vertical;
+    /*-webkit-box-orient: vertical;*/
 }
 
 .card-price {
