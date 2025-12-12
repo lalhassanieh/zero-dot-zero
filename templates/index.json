@@ -803,7 +803,7 @@
             "items_bg_color": "",
             "items_border_color": "#d0d0d0",
             "enable_title": false,
-            "fontsize_title": 18,
+            "fontsize_title": 16,
             "fontweight_title": "500",
             "title_color": "#202020",
             "title_color_hover": "#202020",
