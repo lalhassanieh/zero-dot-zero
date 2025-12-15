@@ -265,7 +265,7 @@
             "text_description": "<p>Free standard shipping on orders over $99</p>\n<p>Estimated to be delivered on 12/01/2022 - 15/10/2022.</p>",
             "color_des": "#4d4d4d",
             "fontsize_text": 12,
-            "content_popup": "<div class=\"halo-text-format\">\n<p>We can ship to virtually any address in the world. Note that there are restrictions on some products, and some products cannot be shipped to international destinations.</p>\n<p>When you place an order, we will estimate shipping and delivery dates for you based on the availability of your items and the shipping options you choose. Depending on the shipping provider you choose, shipping date estimates may appear on the shipping quotes page.</p>\n<p>Please also note that the shipping rates for many items we sell are weight-based. The weight of any such item can be found on its detail page. To reflect the policies of the shipping companies we use, all weights will be rounded up to the next full pound.</p>\t\t\t\t\t\t</div>",
+            "content_popup": "<div class=\"halo-text-format\">\n<p>We can ship to virtually any address within the main cities inside the Kingdom of Saudi Arabia</p>\n<p>When you place an order, we will estimate shipping and delivery dates for you based on the availability of your items and the shipping options you choose. \n</p>\n</div>",
             "spacing_top": 0,
             "spacing_bottom": 12
           }
