@@ -195,6 +195,7 @@
       "blog": "مدونة",
       "read_more_title": "اقرأ المزيد: {{ title }}",
       "read_more": "عرض التفاصيل",
+      "read_more_recipe": "عرض الوصفة",
       "author": "{{ author }}",
       "comments": {
         "one": "{{ count }} تعليق",
