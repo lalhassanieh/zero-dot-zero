@@ -23,10 +23,10 @@
                     style="--fontsize-text:{{ fontsize_text | append: 'px' }};
                     --color-title: {{ color_title }}"
                 >
-                    <h2 class="title">{{ 'popup.free_delivery.title' | replace: '﷼', '<span class="riyal-font" style="margin-left: 20px;"></span>' }}</h2>
-                    {%- if content_popup != blank -%}
+                    <h2 class="title">{{ 'popup.free_delivery.title' | t |  replace: '﷼', '<span class="riyal-font" style="margin-left: 20px;"></span>' }}</h2>
+
                         {% render 'icon-info-note' %}
-                    {%- endif -%}
+
                 </div>
             {%- endif -%}
             {%- if text_description != blank -%}
