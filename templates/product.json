@@ -265,7 +265,7 @@
             "text_description": "<p>Free standard shipping on orders over $99</p>\n<p>Estimated to be delivered on 12/01/2022 - 15/10/2022.</p>",
             "color_des": "#4d4d4d",
             "fontsize_text": 12,
-            "content_popup": "",
+            "content_popup": "Enabled pop up",
             "spacing_top": 0,
             "spacing_bottom": 12
           }
