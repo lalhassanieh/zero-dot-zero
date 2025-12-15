@@ -23,10 +23,14 @@
                     style="--fontsize-text:{{ fontsize_text | append: 'px' }};
                     --color-title: {{ color_title }}"
                 >
-                    <h2 class="title">{{ text | replace: '﷼', '&nbsp;&nbsp;<span class="riyal-font"></span>' }}</h2>
+                    <h2 class="title">
+                        {{ text | append: '&#160;' }}<span class="riyal-font"></span>
+                    </h2>
+                    {% comment %}
                     {%- if content_popup != blank -%}
                         {% render 'icon-info-note' %}
                     {%- endif -%}
+                    {% endcomment %}
                 </div>
             {%- endif -%}
             {%- if text_description != blank -%}
