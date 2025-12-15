@@ -151,6 +151,11 @@
       "no_more_collection": "لا مزيد من المجموعة"
     }
   },
+  "pages": {
+    "about": {
+      "title": "من نحن"
+    }
+  },
   "brands_page": {
     "general": {
       "az_title": "العلامات التجارية من الألف إلى الياء",
