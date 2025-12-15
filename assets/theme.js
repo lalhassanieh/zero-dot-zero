@@ -6692,12 +6692,12 @@
             
             $customInfo.on('click', (event) => {
                 const $this = $(event.currentTarget);
-                const title = $this.find('.title')[0].innerText;
+                const title = $this.find('.title').html();
                 const thisContent = $this.find('.product-customInformation__popup').html();
 
                 if (thisContent === "" || thisContent == null) return;
                 $thisPopup.addClass('is-show');
-                $thisPopup.find('.halo-popup-title').text(title);
+                $thisPopup.find('.halo-popup-title').html(title);
                 $thisPopup.find('.halo-popup-content').html(thisContent);
                 $body.addClass('is-custom-information');
             });
