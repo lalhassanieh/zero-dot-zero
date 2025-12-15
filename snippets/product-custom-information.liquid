@@ -23,10 +23,10 @@
                     style="--fontsize-text:{{ fontsize_text | append: 'px' }};
                     --color-title: {{ color_title }}"
                 >
-                    <h2 class="title">{{ 'popup.free_delivery.title' | t |  replace: '﷼', '<span class="riyal-font" style="margin-left: 20px;"></span>' }}</h2>
-
+                    <h2 class="title">{{ 'popup.free_delivery.title' | replace: '﷼', '<span class="riyal-font" style="margin-left: 20px;"></span>' }}</h2>
+                    {%- if content_popup != blank -%}
                         {% render 'icon-info-note' %}
-
+                    {%- endif -%}
                 </div>
             {%- endif -%}
             {%- if text_description != blank -%}
@@ -39,10 +39,12 @@
             {%- endif -%}
         </div>
     {%- endif -%}
+    {%- if content_popup != blank -%}        
         <div class="product-customInformation__popup hidden">
             <div class="halo-text-format">
                 {{ 'popup.free_delivery.content' | t }}
             </div>
         </div>
 
+    {%- endif -%}
 </div>
