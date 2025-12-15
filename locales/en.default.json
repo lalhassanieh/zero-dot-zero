@@ -364,7 +364,7 @@
     "popup": {
         "free_delivery": {
             "title": "FREE DELIVERY FOR ORDERS ABOVE ﷼300",
-            "content": "<p>We can ship to virtually any address within the main cities inside the Kingdom of Saudi Arabia.</p><p>When you place an order, we will estimate shipping and delivery dates for you based on the availability of your items and the shipping options you choose.</p>"
+            "content_html": "<p>We can ship to virtually any address within the main cities inside the Kingdom of Saudi Arabia.</p><p>When you place an order, we will estimate shipping and delivery dates for you based on the availability of your items and the shipping options you choose.</p>"
         }
     },
     "portfolio_page": {
