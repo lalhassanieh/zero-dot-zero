@@ -151,6 +151,11 @@
             "no_more_collection": "No more collection"
         }
     },
+    "pages": {
+        "about": {
+            "title": "About us"
+        }
+    },
     "brands_page": {
         "general": {
             "az_title": "Brands A-Z",
