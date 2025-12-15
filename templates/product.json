@@ -30,7 +30,7 @@
         "b0ea69b7-8a54-4a3c-9abd-0fcceeabaaa0": {
           "type": "title",
           "settings": {
-            "fontsize_text": 26,
+            "fontsize_text": 27,
             "fontsize_text_mb": 18,
             "color_title": "#000000",
             "spacing_top": 0,
@@ -41,7 +41,7 @@
           "type": "short_description",
           "settings": {
             "show_short_description": true,
-            "word_number": "17",
+            "word_number": "26",
             "fontsize_text": 17,
             "color_text": "#000000",
             "spacing_top": 15,
