@@ -24,11 +24,9 @@
                     --color-title: {{ color_title }}"
                 >
                     <h2 class="title">{{ text | replace: '﷼', '<span class="riyal-font" style="margin-left: 20px;"></span>' }}</h2>
-                    {% comment %}
                     {%- if content_popup != blank -%}
                         {% render 'icon-info-note' %}
                     {%- endif -%}
-                    {% endcomment %}
                 </div>
             {%- endif -%}
             {%- if text_description != blank -%}
