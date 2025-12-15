@@ -346,8 +346,8 @@
         "9630b233-8164-4dad-ab64-8830bedf328a"
       ],
       "custom_css": [
-        ".product__text .riyal-font {display: inline-flex; align-items: center; position: relative; margin-inline: 4px; }",
-        " .product__text .riyal-font::after {position: static; transform: none; line-height: 1; }"
+        ".product__text .riyal-font,.halo-popup-title .riyal-font {display: inline-flex; align-items: center; position: relative; margin-inline: 4px;}",
+        ".product__text .riyal-font::after,.halo-popup-title .riyal-font::after {position: static; transform: none; line-height: 1;}"
       ],
       "settings": {
         "container": "default",
