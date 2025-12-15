@@ -1069,3 +1069,22 @@ padding: 50px 0;
 .slide-button:after, .banner-button:after, .productView-groupTop .product-form__submit:after {
       transform: scaleX(-1);
 }
+
+/*CSS By Alex*/
+
+.product__text .riyal-font,
+.halo-popup-title .riyal-font,
+.product-customInformation__popup .riyal-font {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  margin-inline: 4px;
+}
+
+.product__text .riyal-font::after,
+.halo-popup-title .riyal-font::after,
+.product-customInformation__popup .riyal-font::after {
+  position: static;
+  transform: none;
+  line-height: 1;
+}
