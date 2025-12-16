@@ -75,7 +75,7 @@
         "9bcdee17-7ee7-4353-b16c-f7b04bdf5b84"
       ],
       "custom_css": [
-        ".pagination-arrow {padding-right: 50px;}"
+        ".pagination-arrow{width: auto !important;}"
       ],
       "settings": {
         "container": "1170",
