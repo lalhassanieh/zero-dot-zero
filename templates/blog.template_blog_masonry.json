@@ -74,6 +74,9 @@
         "74038a9b-b77e-4134-88bb-bcd7f06fdda1",
         "9bcdee17-7ee7-4353-b16c-f7b04bdf5b84"
       ],
+      "custom_css": [
+        ".pagination-arrow {padding-right: 50px;}"
+      ],
       "settings": {
         "container": "1170",
         "padding_full_width": 0,
