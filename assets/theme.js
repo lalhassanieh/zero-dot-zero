@@ -6014,6 +6014,10 @@
                 isRTL: isRTL,
                 originLeft: !isRTL
             });
+
+            $blogMasonry.imagesLoaded(function() {
+                $blogMasonry.masonry('layout');
+            });
         },
 
         articleGallery: function() {
