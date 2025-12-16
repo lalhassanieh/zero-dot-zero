@@ -6006,7 +6006,7 @@
 
         initBlogMasonry: function() {
             const $blogMasonry = $('.blog-layout-masonry .blog-block-item');
-            const isRTL = $body.hasClass('layout_rtl');
+            const isRTL = document.documentElement.getAttribute('dir') === 'rtl';
 
             $blogMasonry.masonry({
                 columnWidth: '.blog-grid-sizer',
