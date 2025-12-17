@@ -41,7 +41,7 @@
           "type": "short_description",
           "settings": {
             "show_short_description": true,
-            "word_number": "26",
+            "word_number": "30",
             "fontsize_text": 17,
             "color_text": "#000000",
             "spacing_top": 15,
