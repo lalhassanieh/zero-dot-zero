@@ -944,14 +944,10 @@
         "disabled": false,
         "settings": {}
       },
-      "4291333794791649201": {
-        "type": "shopify://apps/loyalty-rewards-and-referrals/blocks/embed-sdk/6f172e67-4106-4ac0-89c5-b32a069b3101",
-        "disabled": true,
-        "settings": {
-          "disableBundledCSS": false,
-          "disableBundledFonts": false,
-          "useClassIsolator": false
-        }
+      "14868561720390754469": {
+        "type": "shopify://apps/trustoo-loyalty-loloyal/blocks/boom-cend/930ac91f-2bf2-4655-9ba0-574771f782d6",
+        "disabled": false,
+        "settings": {}
       }
     }
   },
