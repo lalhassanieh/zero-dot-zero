@@ -235,7 +235,7 @@
             "bg_color_icon": "#000000",
             "button_style": "style_1",
             "btn_text": "",
-            "link": "shopify://pages/about-us",
+            "link": "",
             "button_1_width": 165,
             "enable_button_custom_border": false,
             "button_color": "#ffffff",
