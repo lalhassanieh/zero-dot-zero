@@ -175,6 +175,7 @@ Shopify.Products = (function () {
 
                 if (productGrid.length > 0) {
                     
+                    //New isRTL
                     var isRTL = (window.Shopify && Shopify.locale && Shopify.locale.toLowerCase().includes('ar'))
                         || document.documentElement.getAttribute('dir') === 'rtl'
                         || document.body.classList.contains('layout_rtl');
