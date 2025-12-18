@@ -174,104 +174,55 @@ Shopify.Products = (function () {
                     itemArrowsMb = productGrid.data('item-arrows-mb');
 
                 if (productGrid.length > 0) {
-                   if (!productGrid.hasClass('slick-initialized')) {
-                        productGrid.slick({
-                            mobileFirst: true,
-                            adaptiveHeight: true,
-                            vertical: false,
-                            infinite: true,
-                            slidesToShow: 1,
-                            slidesToScroll: 1,
-                            arrows: itemArrowsMb,
-                            dots: itemDotsMb,
-                            nextArrow: window.arrows.icon_next,
-                            prevArrow: window.arrows.icon_prev,
-                            rtl: window.rtl_slick,
-                            responsive:
-                                [
-                                    {
-                                        breakpoint: 1599,
-                                        settings: {
-                                            arrows: itemArrows,
-                                            dots: itemDots,
-                                            get slidesToShow() {
-                                                if (itemToShow !== undefined && itemToShow !== null && itemToShow !== '') {
-                                                    return this.slidesToShow = itemToShow;
-                                                } else {
-                                                    return this.slidesToShow = 1;
-                                                }
-                                            },
-                                            get slidesToScroll() {
-                                                if (itemToShow !== undefined && itemToShow !== null && itemToShow !== '') {
-                                                    return this.slidesToScroll = itemToShow;
-                                                } else {
-                                                    return this.slidesToScroll = 1;
-                                                }
-                                            }
-                                        }
-                                    },
-                                    {
-                                        breakpoint: 1024,
-                                        settings: {
-                                            arrows: itemArrows,
-                                            dots: itemDots,
-                                            get slidesToShow() {
-                                                if (itemToShow !== undefined && itemToShow !== null && itemToShow !== '') {
-                                                    if (itemToShow == 5) {
-                                                        return this.slidesToShow = itemToShow - 1;
-                                                    } else {
-                                                        return this.slidesToShow = itemToShow;
-                                                    }
-                                                } else {
-                                                    return this.slidesToShow = 1;
-                                                }
-                                            },
-                                            get slidesToScroll() {
-                                                if (itemToShow !== undefined && itemToShow !== null && itemToShow !== '') {
-                                                    if (itemToShow == 5) {
-                                                        return this.slidesToScroll = itemToShow - 1;
-                                                    } else {
-                                                        return this.slidesToScroll = itemToShow;
-                                                    }
-                                                } else {
-                                                    return this.slidesToScroll = 1;
-                                                }
-                                            }
-                                        }
-                                    },
-                                    {
-                                        breakpoint: 991,
-                                        settings: {
-                                            arrows: itemArrowsMb,
-                                            dots: itemDotsMb,
-                                            slidesToShow: 4,
-                                            slidesToScroll: 4
-                                        }
-                                    },
-                                    {
-                                        breakpoint: 767,
-                                        settings: {
-                                            arrows: itemArrowsMb,
-                                            dots: itemDotsMb,
-                                            slidesToShow: 3,
-                                            slidesToScroll: 3
-                                        }
-                                    },
-                                    {
-                                        breakpoint: 320,
-                                        settings: {
-                                            arrows: itemArrowsMb,
-                                            dots: itemDotsMb,
-                                            slidesToShow: 2,
-                                            slidesToScroll: 2
-                                        }
-                                    }
-                                ]
-                        });
-                        productGrid.slick('setPosition');
+  // Detect RTL from your existing setup
+  var isRTL = document.body.classList.contains('layout_rtl')
+    || document.documentElement.getAttribute('dir') === 'rtl';
 
-                    }
-                }
+  // Force the flag (in case window.rtl_slick is missing/wrong)
+  window.rtl_slick = isRTL;
+
+  if (!productGrid.hasClass('slick-initialized')) {
+    productGrid.slick({
+      mobileFirst: true,
+      adaptiveHeight: true,
+      vertical: false,
+      infinite: true,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows: itemArrowsMb,
+      dots: itemDotsMb,
+      nextArrow: window.arrows.icon_next,
+      prevArrow: window.arrows.icon_prev,
+      rtl: isRTL,
+      responsive: [
+        {
+          breakpoint: 1599,
+          settings: {
+            arrows: itemArrows,
+            dots: itemDots,
+            slidesToShow: itemToShow ? itemToShow : 1,
+            slidesToScroll: itemToShow ? itemToShow : 1
+          }
+        },
+        {
+          breakpoint: 1024,
+          settings: {
+            arrows: itemArrows,
+            dots: itemDots,
+            slidesToShow: itemToShow ? (itemToShow == 5 ? itemToShow - 1 : itemToShow) : 1,
+            slidesToScroll: itemToShow ? (itemToShow == 5 ? itemToShow - 1 : itemToShow) : 1
+          }
+        },
+        { breakpoint: 991, settings: { arrows: itemArrowsMb, dots: itemDotsMb, slidesToShow: 4, slidesToScroll: 4 } },
+        { breakpoint: 767, settings: { arrows: itemArrowsMb, dots: itemDotsMb, slidesToShow: 3, slidesToScroll: 3 } },
+        { breakpoint: 320, settings: { arrows: itemArrowsMb, dots: itemDotsMb, slidesToShow: 2, slidesToScroll: 2 } }
+      ]
+    });
+  } else {
+    // ✅ If already initialized (e.g., theme re-renders), just refresh
+    productGrid.slick('setPosition');
+  }
+}
 
                 if ($('body').hasClass('cursor-fixed__show')){
                     window.sharedFunctionsAnimation.onEnterButton();
