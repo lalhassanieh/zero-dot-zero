@@ -400,50 +400,43 @@
 
         var cookieValue = $.cookie('shopify_recently_viewed') || localStorage.getItem('shopify_recently_viewed');
 
-        function removeIfNoRecentlyViewed() {
-            cookieValue = $.cookie('shopify_recently_viewed') || localStorage.getItem('shopify_recently_viewed');
-
-            if (!cookieValue) {
-            $('#halo-recently-viewed-block-{{ section.id }}').remove();
-            return false;
-            }
-            return true;
+        if (Shopify.designMode && !cookieValue) {
+            cookieValue = localStorage.getItem('shopify_recently_viewed');
         }
 
-        if (!removeIfNoRecentlyViewed()) {
-            setTimeout(removeIfNoRecentlyViewed, 300);
+        if (!(cookieValue !== null && cookieValue !== undefined && cookieValue !== "")){
+            $('#halo-recently-viewed-block-{{ section.id }}').remove();
         } else {
+            var recentlyViewed = $(this.popup);
+
             var limit = {{ limit }},
                 expireDay = {{ settings.recently_viewed_expire }};
 
             const handler = (entries, observer) => {
-            if (!entries[0].isIntersecting || entries[0].target.matches('.ajax-loaded')) return;
-            entries[0].target.classList.add('ajax-loaded');
-
-            Shopify.Products.showRecentlyViewed({
-                howManyToShow: limit,
-                wrapperId: 'recently-viewed-products-list-2',
-                templateId: 'recently-viewed-product-block',
-                layout: '{{ layout }}',
-                swipe: {{ swipe }},
-                media: '{{ image_ratio }}',
-                onComplete: function() {
-                var rootDomain = window.location.hostname.replace(/^www\./, '');
-
-                $.cookie('shopify_recently_viewed', cookieValue, {
-                    expires: expireDay,
-                    path: "/",
-                    domain: rootDomain
+                if (!entries[0].isIntersecting || entries[0].target.matches('.ajax-loaded')) return;
+                entries[0].target.classList.add('ajax-loaded');
+                Shopify.Products.showRecentlyViewed({
+                    howManyToShow: limit,
+                    wrapperId: 'recently-viewed-products-list-2', 
+                    templateId: 'recently-viewed-product-block',
+                    layout: '{{ layout }}',
+                    swipe: {{ swipe }},
+                    media: '{{ image_ratio }}',
+                    onComplete: function() {
+                        if (window.location.pathname.indexOf('/products/') !== -1) {
+                            $.cookie('shopify_recently_viewed', cookieValue, { expires: expireDay, path: "/", domain: window.location.hostname });
+                        }
+                    }
                 });
-                }
-            });
-            };
+            }
 
-            var recentlyViewedBlock = document.querySelector('[data-recently-viewed-block]');
-            if (!recentlyViewedBlock) return;
+            this.recentlyViewedBlock = document.querySelector('[data-recently-viewed-block]');
 
-            const config = { threshold: 0.25 };
-            new IntersectionObserver(handler, config).observe(recentlyViewedBlock);
+            const config = {
+                threshold: 0.25,
+            }
+
+            new IntersectionObserver(handler.bind(this.recentlyViewedBlock), ({}, config)).observe(this.recentlyViewedBlock);
         }
     </script>
 {%- endif -%}
