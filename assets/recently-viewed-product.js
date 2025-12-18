@@ -193,8 +193,8 @@ Shopify.Products = (function () {
                             slidesToScroll: 1,
                             arrows: itemArrowsMb,
                             dots: itemDotsMb,
-                            nextArrow: window.arrows.icon_next,
-                            prevArrow: window.arrows.icon_prev,
+                            nextArrow: isRTL ? window.arrows.icon_prev : window.arrows.icon_next,
+                            prevArrow: isRTL ? window.arrows.icon_next : window.arrows.icon_prev,
                             rtl: isRTL,
                             responsive:
                                 [
