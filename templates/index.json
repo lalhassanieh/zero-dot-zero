@@ -1385,18 +1385,6 @@
     "brand_slider_dgGjh3": {
       "type": "brand-slider",
       "blocks": {
-        "image_f3XPRe": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/frenchbloom_1.png",
-            "title": "",
-            "color_text": "#000000",
-            "color_text_hover": "#3e8cc4",
-            "description": "",
-            "color_des": "#3c3c3c",
-            "link": ""
-          }
-        },
         "image_e3r6am": {
           "type": "image",
           "settings": {
@@ -1444,14 +1432,26 @@
             "color_des": "#3c3c3c",
             "link": ""
           }
+        },
+        "image_f3XPRe": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/frenchbloom_1.png",
+            "title": "",
+            "color_text": "#000000",
+            "color_text_hover": "#3e8cc4",
+            "description": "",
+            "color_des": "#3c3c3c",
+            "link": ""
+          }
         }
       },
       "block_order": [
-        "image_f3XPRe",
         "image_e3r6am",
         "image_LcwhXw",
         "image_bLxy9e",
-        "image_UdJ9jG"
+        "image_UdJ9jG",
+        "image_f3XPRe"
       ],
       "name": "t:sections.brand.presets.name",
       "settings": {
