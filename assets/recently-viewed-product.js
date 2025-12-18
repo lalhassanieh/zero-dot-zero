@@ -186,7 +186,7 @@ Shopify.Products = (function () {
                             dots: itemDotsMb,
                             nextArrow: window.arrows.icon_next,
                             prevArrow: window.arrows.icon_prev,
-                            rtl: true,
+                            rtl: window.rtl_slick,
                             responsive:
                                 [
                                     {
