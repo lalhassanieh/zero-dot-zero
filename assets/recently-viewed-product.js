@@ -186,7 +186,7 @@ Shopify.Products = (function () {
                             dots: itemDotsMb,
                             nextArrow: window.arrows.icon_next,
                             prevArrow: window.arrows.icon_prev,
-                            rtl: window.rtl_slick,
+                            rtl: document.documentElement.getAttribute('dir') === 'rtl' || document.body.classList.contains('layout_rtl'),
                             responsive:
                                 [
                                     {
