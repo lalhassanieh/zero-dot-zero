@@ -36,8 +36,10 @@
 
 body *{
     font-family: "Avenir Arabic", sans-serif !important;
-    direction: rtl;
 }
+
+html[dir="rtl"], body.layout_rtl { direction: rtl; }
+
 .left, .text-left {
     text-align: right;
 }
