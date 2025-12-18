@@ -166,14 +166,6 @@ Shopify.Products = (function () {
             }
 
             if (config.layout == 'slider') {
-                var productGrid = wrapperS,
-                    itemToShow = productGrid.data('item-to-show'),
-                    itemDots = productGrid.data('item-dots'),
-                    itemDotsMb = productGrid.data('item-dots-mb'),
-                    itemArrows = productGrid.data('item-arrows'),
-                    itemArrowsMb = productGrid.data('item-arrows-mb');
-
-                if (config.layout == 'slider') {
   var productGrid = wrapperS,
       itemToShow = productGrid.data('item-to-show'),
       itemDots = productGrid.data('item-dots'),
@@ -226,25 +218,18 @@ Shopify.Products = (function () {
           { breakpoint: 320, settings: { arrows: itemArrowsMb, dots: itemDotsMb, slidesToShow: 2, slidesToScroll: 2 } }
         ]
       });
-
-    } else {
-      // ✅ if already initialized, refresh layout
-      productGrid.slick('setPosition');
-      productGrid.slick('refresh');
     }
+
+    // ✅ always refresh after ajax-rendered items (important for RTL)
+    productGrid.slick('setPosition');
   }
 
-  if ($('body').hasClass('cursor-fixed__show')){
+  if ($('body').hasClass('cursor-fixed__show')) {
     window.sharedFunctionsAnimation.onEnterButton();
     window.sharedFunctionsAnimation.onLeaveButton();
   }
 }
 
-                if ($('body').hasClass('cursor-fixed__show')){
-                    window.sharedFunctionsAnimation.onEnterButton();
-                    window.sharedFunctionsAnimation.onLeaveButton();
-                }
-            }
 
             if($('body').hasClass('product-card-layout-08')) {
                 window.sharedFunctions?.productCountdownCard();
