@@ -178,8 +178,12 @@ Shopify.Products = (function () {
                     var isRTL = (window.Shopify && Shopify.locale && Shopify.locale.toLowerCase().includes('ar'))
                         || document.documentElement.getAttribute('dir') === 'rtl'
                         || document.body.classList.contains('layout_rtl');
-
+                
                     if (!productGrid.hasClass('slick-initialized')) {
+                        if (isRTL) {
+                            var items = productGrid.children().get().reverse();
+                            productGrid.empty().append(items);
+                        }
                         productGrid.slick({
                             mobileFirst: true,
                             adaptiveHeight: true,
