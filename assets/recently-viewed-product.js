@@ -174,12 +174,7 @@ Shopify.Products = (function () {
                     itemArrowsMb = productGrid.data('item-arrows-mb');
 
                 if (productGrid.length > 0) {
-                    if (productGrid.length > 0 && !productGrid.hasClass('slick-initialized')) {
-                          var isRTL = document.documentElement.getAttribute('dir') === 'rtl'
-                            || document.body.classList.contains('layout_rtl');
-
-                        window.rtl_slick = isRTL;
-
+                   if (!productGrid.hasClass('slick-initialized')) {
                         productGrid.slick({
                             mobileFirst: true,
                             adaptiveHeight: true,
@@ -191,8 +186,8 @@ Shopify.Products = (function () {
                             dots: itemDotsMb,
                             nextArrow: window.arrows.icon_next,
                             prevArrow: window.arrows.icon_prev,
-                            rtl: isRTL,
-                            responsive: 
+                            rtl: window.rtl_slick,
+                            responsive:
                                 [
                                     {
                                         breakpoint: 1599,
@@ -274,6 +269,7 @@ Shopify.Products = (function () {
                                 ]
                         });
                         productGrid.slick('setPosition');
+
                     }
                 }
 
