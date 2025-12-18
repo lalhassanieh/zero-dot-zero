@@ -113,7 +113,7 @@
           "settings": {
             "heading": "Categories",
             "type": "3_level",
-            "link_list": "collections"
+            "link_list": ""
           }
         },
         "ce351101-2c54-4627-b740-b2c592067b4a": {
@@ -255,7 +255,7 @@
         "product_recently_viewed_arrows": true,
         "product_recently_viewed_arrows_mb": false,
         "product_recently_viewed_show": "5",
-        "product_block_per_view": "4",
+        "product_block_per_view": "5",
         "show_half": true,
         "scroll_height": 4,
         "scroll_track_bg": "#f1f1f1",
