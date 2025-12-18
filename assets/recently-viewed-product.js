@@ -166,70 +166,117 @@ Shopify.Products = (function () {
             }
 
             if (config.layout == 'slider') {
-  var productGrid = wrapperS,
-      itemToShow = productGrid.data('item-to-show'),
-      itemDots = productGrid.data('item-dots'),
-      itemDotsMb = productGrid.data('item-dots-mb'),
-      itemArrows = productGrid.data('item-arrows'),
-      itemArrowsMb = productGrid.data('item-arrows-mb');
+                var productGrid = wrapperS,
+                    itemToShow = productGrid.data('item-to-show'),
+                    itemDots = productGrid.data('item-dots'),
+                    itemDotsMb = productGrid.data('item-dots-mb'),
+                    itemArrows = productGrid.data('item-arrows'),
+                    itemArrowsMb = productGrid.data('item-arrows-mb');
 
-  var isRTL = document.body.classList.contains('layout_rtl')
-    || document.documentElement.getAttribute('dir') === 'rtl';
+                if (productGrid.length > 0) {
+                    if (productGrid.not('.slick-initialized')) {
+                        productGrid.slick({
+                            mobileFirst: true,
+                            adaptiveHeight: true,
+                            vertical: false,
+                            infinite: true,
+                            slidesToShow: 1,
+                            slidesToScroll: 1,
+                            arrows: itemArrowsMb,
+                            dots: itemDotsMb,
+                            nextArrow: window.arrows.icon_next,
+                            prevArrow: window.arrows.icon_prev,
+                            // Ensure correct swipe direction based on page direction (LTR / RTL)
+                            rtl: document.documentElement.dir === 'rtl' || window.rtl_slick,
+                            responsive:
+                                [
+                                    {
+                                        breakpoint: 1599,
+                                        settings: {
+                                            arrows: itemArrows,
+                                            dots: itemDots,
+                                            get slidesToShow() {
+                                                if (itemToShow !== undefined && itemToShow !== null && itemToShow !== '') {
+                                                    return this.slidesToShow = itemToShow;
+                                                } else {
+                                                    return this.slidesToShow = 1;
+                                                }
+                                            },
+                                            get slidesToScroll() {
+                                                if (itemToShow !== undefined && itemToShow !== null && itemToShow !== '') {
+                                                    return this.slidesToScroll = itemToShow;
+                                                } else {
+                                                    return this.slidesToScroll = 1;
+                                                }
+                                            }
+                                        }
+                                    },
+                                    {
+                                        breakpoint: 1024,
+                                        settings: {
+                                            arrows: itemArrows,
+                                            dots: itemDots,
+                                            get slidesToShow() {
+                                                if (itemToShow !== undefined && itemToShow !== null && itemToShow !== '') {
+                                                    if (itemToShow == 5) {
+                                                        return this.slidesToShow = itemToShow - 1;
+                                                    } else {
+                                                        return this.slidesToShow = itemToShow;
+                                                    }
+                                                } else {
+                                                    return this.slidesToShow = 1;
+                                                }
+                                            },
+                                            get slidesToScroll() {
+                                                if (itemToShow !== undefined && itemToShow !== null && itemToShow !== '') {
+                                                    if (itemToShow == 5) {
+                                                        return this.slidesToScroll = itemToShow - 1;
+                                                    } else {
+                                                        return this.slidesToScroll = itemToShow;
+                                                    }
+                                                } else {
+                                                    return this.slidesToScroll = 1;
+                                                }
+                                            }
+                                        }
+                                    },
+                                    {
+                                        breakpoint: 991,
+                                        settings: {
+                                            arrows: itemArrowsMb,
+                                            dots: itemDotsMb,
+                                            slidesToShow: 4,
+                                            slidesToScroll: 4
+                                        }
+                                    },
+                                    {
+                                        breakpoint: 767,
+                                        settings: {
+                                            arrows: itemArrowsMb,
+                                            dots: itemDotsMb,
+                                            slidesToShow: 3,
+                                            slidesToScroll: 3
+                                        }
+                                    },
+                                    {
+                                        breakpoint: 320,
+                                        settings: {
+                                            arrows: itemArrowsMb,
+                                            dots: itemDotsMb,
+                                            slidesToShow: 2,
+                                            slidesToScroll: 2
+                                        }
+                                    }
+                                ]
+                        });
+                    }
+                }
 
-  window.rtl_slick = isRTL;
-
-  if (productGrid.length > 0) {
-
-    // ✅ init only once
-    if (!productGrid.hasClass('slick-initialized')) {
-      productGrid.slick({
-        mobileFirst: true,
-        adaptiveHeight: true,
-        vertical: false,
-        infinite: true,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        arrows: itemArrowsMb,
-        dots: itemDotsMb,
-        nextArrow: window.arrows.icon_next,
-        prevArrow: window.arrows.icon_prev,
-        rtl: isRTL,
-        responsive: [
-          {
-            breakpoint: 1599,
-            settings: {
-              arrows: itemArrows,
-              dots: itemDots,
-              slidesToShow: itemToShow ? itemToShow : 1,
-              slidesToScroll: itemToShow ? itemToShow : 1
+                if ($('body').hasClass('cursor-fixed__show')){
+                    window.sharedFunctionsAnimation.onEnterButton();
+                    window.sharedFunctionsAnimation.onLeaveButton();
+                }
             }
-          },
-          {
-            breakpoint: 1024,
-            settings: {
-              arrows: itemArrows,
-              dots: itemDots,
-              slidesToShow: itemToShow ? (itemToShow == 5 ? itemToShow - 1 : itemToShow) : 1,
-              slidesToScroll: itemToShow ? (itemToShow == 5 ? itemToShow - 1 : itemToShow) : 1
-            }
-          },
-          { breakpoint: 991, settings: { arrows: itemArrowsMb, dots: itemDotsMb, slidesToShow: 4, slidesToScroll: 4 } },
-          { breakpoint: 767, settings: { arrows: itemArrowsMb, dots: itemDotsMb, slidesToShow: 3, slidesToScroll: 3 } },
-          { breakpoint: 320, settings: { arrows: itemArrowsMb, dots: itemDotsMb, slidesToShow: 2, slidesToScroll: 2 } }
-        ]
-      });
-    }
-
-    // ✅ always refresh after ajax-rendered items (important for RTL)
-    productGrid.slick('setPosition');
-  }
-
-  if ($('body').hasClass('cursor-fixed__show')) {
-    window.sharedFunctionsAnimation.onEnterButton();
-    window.sharedFunctionsAnimation.onLeaveButton();
-  }
-}
-
 
             if($('body').hasClass('product-card-layout-08')) {
                 window.sharedFunctions?.productCountdownCard();
