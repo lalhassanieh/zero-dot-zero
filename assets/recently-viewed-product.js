@@ -174,7 +174,7 @@ Shopify.Products = (function () {
                     itemArrowsMb = productGrid.data('item-arrows-mb');
 
                 if (productGrid.length > 0) {
-                    if (productGrid.not('.slick-initialized')) {
+                    if (!productGrid.hasClass('slick-initialized')) {
                         productGrid.slick({
                             mobileFirst: true,
                             adaptiveHeight: true,
