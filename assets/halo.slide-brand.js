@@ -18,6 +18,8 @@
 					(window.Shopify && Shopify.locale && Shopify.locale.toLowerCase().startsWith('ar')) ||
 					document.body.classList.contains('layout_rtl');
 
+				var startIndex = isRTL ? itemTotal - 1 : 0
+
 	            if (self.not('.slick-initialized')) {
 	                self.slick({
 	                    slidesToShow: itemsToShow,
