@@ -83,6 +83,13 @@
             }
         {% endif %}
 
+        body.layout_rtl .halo-recently-viewed-block .slider,
+        body.layout_rtl .halo-recently-viewed-block .products-carousel,
+        body.layout_rtl .halo-recently-viewed-block product-slider-component {
+        direction: ltr !important;
+        }
+
+
         .section-block-{{section.id}} .halo-block-header .title {
             color: {{ color_title }};
             font-size: {{ fontsize_title | append: 'px'  }};
