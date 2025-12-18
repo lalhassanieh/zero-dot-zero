@@ -174,10 +174,24 @@ Shopify.Products = (function () {
                     itemArrowsMb = productGrid.data('item-arrows-mb');
 
                 if (productGrid.length > 0) {
-                    
-                    var isRTL = (window.Shopify && Shopify.locale && Shopify.locale.toLowerCase().includes('ar'))
-                        || document.documentElement.getAttribute('dir') === 'rtl'
-                        || document.body.classList.contains('layout_rtl');
+
+                    var isRTL = false;
+                    try {
+                        var htmlDir = document.documentElement.getAttribute('dir') || document.documentElement.dir;
+                        var bodyDir = document.body.getAttribute('dir');
+
+                        isRTL =
+                            // Shopify locale contains Arabic
+                            (window.Shopify && Shopify.locale && Shopify.locale.toLowerCase().indexOf('ar') !== -1) ||
+                            // Any dir="rtl" on html or body
+                            (htmlDir && htmlDir.toLowerCase() === 'rtl') ||
+                            (bodyDir && bodyDir.toLowerCase() === 'rtl') ||
+                            // Theme-level RTL body classes
+                            document.body.classList.contains('layout_rtl') ||
+                            document.body.classList.contains('rtl') ||
+                            // Fallback: computed CSS direction
+                            window.getComputedStyle(document.body).direction === 'rtl';
+                    } catch (e) { }
 
                     if (!productGrid.hasClass('slick-initialized')) {
                         productGrid.slick({
@@ -274,6 +288,14 @@ Shopify.Products = (function () {
                                 ]
                         });
 
+                        productGrid.on('reInit breakpoint', function () {
+                            var slick = $(this).slick('getSlick');
+                            if (!slick) return;
+
+                            if (isRTL && slick.options.rtl !== true) {
+                            $(this).slick('slickSetOption', 'rtl', true, true);
+                            }
+                        });
                     }
                 }
 
