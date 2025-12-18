@@ -186,8 +186,7 @@ Shopify.Products = (function () {
                             dots: itemDotsMb,
                             nextArrow: window.arrows.icon_next,
                             prevArrow: window.arrows.icon_prev,
-                            // Ensure correct swipe direction based on page direction (LTR / RTL)
-                            rtl: document.documentElement.dir === 'rtl' || window.rtl_slick,
+                            rtl: window.rtl_slick,
                             responsive:
                                 [
                                     {
