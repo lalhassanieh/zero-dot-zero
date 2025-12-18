@@ -13,6 +13,11 @@
 					autoplaySpeed = self.data('autoplay-speed'),
 					itemTotal = self.find('.halo-item').length;
 
+				var isRTL =
+					document.documentElement.getAttribute('dir') === 'rtl' ||
+					(window.Shopify && Shopify.locale && Shopify.locale.toLowerCase().startsWith('ar')) ||
+					document.body.classList.contains('layout_rtl');
+
 	            if (self.not('.slick-initialized')) {
 	                self.slick({
 	                    slidesToShow: itemsToShow,
@@ -32,7 +37,7 @@
                         prevArrow: window.arrows.icon_prev,
                         autoplay: autoplay,
   						autoplaySpeed: autoplaySpeed,
-                        rtl: window.rtl_slick,
+                        rtl: isRTL,
 	                    responsive: [{
 	                            breakpoint: 1200,
 	                            settings: {
