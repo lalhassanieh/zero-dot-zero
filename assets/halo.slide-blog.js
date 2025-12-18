@@ -6,7 +6,17 @@
             blogBlock.each(function() {
                 var self = $(this),
                     rows = self.data('rows');
+
+                var isRTL =
+                    document.documentElement.getAttribute('dir') === 'rtl' ||
+                    (window.Shopify && Shopify.locale && Shopify.locale.toLowerCase().startsWith('ar')) ||
+                    document.body.classList.contains('layout_rtl');
+
                 if(self.not('.slick-initialized')) {
+                    if (isRTL) {
+                        var items = self.find('.halo-item').get().reverse();
+                        self.empty().append(items);
+                    }
                     self.slick({
                         slidesToShow: rows,
                         slidesToScroll: 1,
@@ -15,9 +25,9 @@
                         infinite: false,
                         dots: false,
                         arrows: true,
-                        nextArrow: window.arrows.icon_next,
-                        prevArrow: window.arrows.icon_prev,
-                        rtl: window.rtl_slick,
+                        nextArrow: isRTL ? window.arrows.icon_prev : window.arrows.icon_next,
+                        prevArrow: isRTL ? window.arrows.icon_next : window.arrows.icon_prev,
+                        rtl: isRTL,
                         responsive: [
                             {
                                 breakpoint: 992,
