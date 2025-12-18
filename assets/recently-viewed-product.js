@@ -274,14 +274,6 @@ Shopify.Products = (function () {
                                 ]
                         });
 
-                        productGrid.on('reInit breakpoint', function () {
-                            var slick = $(this).slick('getSlick');
-                            if (!slick) return;
-
-                            if (isRTL && slick.options.rtl !== true) {
-                            $(this).slick('slickSetOption', 'rtl', true, false);
-                            }
-                        });
                     }
                 }
 
