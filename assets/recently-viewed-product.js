@@ -274,11 +274,17 @@ Shopify.Products = (function () {
                                 ]
                         });
 
-                            productGrid.on('setPosition reInit breakpoint', function () {
-                                if (isRTL) {
-                                    $(this).slick('slickSetOption', 'rtl', true, false);
-                                }
-                            });
+                        productGrid.on('init reInit breakpoint setPosition', function () {
+                        var $s = $(this);
+                        var slick = $s.slick('getSlick');
+                        if (!slick) return;
+
+                        if (isRTL && slick.options.rtl !== true) {
+                            $s.slick('slickSetOption', 'rtl', true, true); 
+                        }
+
+                        $s.slick('setPosition');
+                        });
 
                     }
                 }
