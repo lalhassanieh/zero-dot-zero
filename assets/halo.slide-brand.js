@@ -13,7 +13,17 @@
 					autoplaySpeed = self.data('autoplay-speed'),
 					itemTotal = self.find('.halo-item').length;
 
+				var isRTL =
+					document.documentElement.getAttribute('dir') === 'rtl' ||
+					(window.Shopify && Shopify.locale && Shopify.locale.toLowerCase().startsWith('ar')) ||
+					document.body.classList.contains('layout_rtl');
+					
+
 	            if (self.not('.slick-initialized')) {
+					if (isRTL) {
+						var items = self.find('.halo-item').get().reverse();
+						self.empty().append(items);
+					}
 	                self.slick({
 	                    slidesToShow: itemsToShow,
 	                    slidesToScroll: 1,
@@ -28,11 +38,11 @@
 						centerMode: dataCenterMode && itemTotal > itemsToShow,
 						centerPadding: "10%",
 	                    speed: 800,
-	                    nextArrow: window.arrows.icon_next,
-                        prevArrow: window.arrows.icon_prev,
+	                    nextArrow: isRTL ? window.arrows.icon_prev : window.arrows.icon_next,
+						prevArrow: isRTL ? window.arrows.icon_next : window.arrows.icon_prev,
                         autoplay: autoplay,
   						autoplaySpeed: autoplaySpeed,
-                        rtl: window.rtl_slick,
+                        rtl: isRTL,
 	                    responsive: [{
 	                            breakpoint: 1200,
 	                            settings: {
