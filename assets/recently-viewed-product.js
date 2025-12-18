@@ -174,7 +174,7 @@ Shopify.Products = (function () {
                     itemArrowsMb = productGrid.data('item-arrows-mb');
 
                 if (productGrid.length > 0) {
-                    if (!productGrid.hasClass('slick-initialized')) {
+                    if (productGrid.not('.slick-initialized')) {
                         productGrid.slick({
                             mobileFirst: true,
                             adaptiveHeight: true,
@@ -186,7 +186,7 @@ Shopify.Products = (function () {
                             dots: itemDotsMb,
                             nextArrow: window.arrows.icon_next,
                             prevArrow: window.arrows.icon_prev,
-                            rtl: document.documentElement.getAttribute('dir') === 'rtl' || document.body.classList.contains('layout_rtl'),
+                            rtl: (window.Shopify && Shopify.locale && Shopify.locale.toLowerCase().includes('ar')),
                             responsive:
                                 [
                                     {
