@@ -40,6 +40,7 @@
                         autoplay: autoplay,
   						autoplaySpeed: autoplaySpeed,
                         rtl: isRTL,
+						initialSlide: startIndex,
 	                    responsive: [{
 	                            breakpoint: 1200,
 	                            settings: {
