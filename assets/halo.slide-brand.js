@@ -17,8 +17,7 @@
 					document.documentElement.getAttribute('dir') === 'rtl' ||
 					(window.Shopify && Shopify.locale && Shopify.locale.toLowerCase().startsWith('ar')) ||
 					document.body.classList.contains('layout_rtl');
-
-				var startIndex = isRTL ? itemTotal - 1 : 0
+					
 
 	            if (self.not('.slick-initialized')) {
 	                self.slick({
@@ -40,7 +39,6 @@
                         autoplay: autoplay,
   						autoplaySpeed: autoplaySpeed,
                         rtl: isRTL,
-						initialSlide: startIndex,
 	                    responsive: [{
 	                            breakpoint: 1200,
 	                            settings: {
