@@ -174,25 +174,6 @@ Shopify.Products = (function () {
                     itemArrowsMb = productGrid.data('item-arrows-mb');
 
                 if (productGrid.length > 0) {
-
-                    var isRTL = false;
-                    try {
-                        var htmlDir = document.documentElement.getAttribute('dir') || document.documentElement.dir;
-                        var bodyDir = document.body.getAttribute('dir');
-
-                        isRTL =
-                            // Shopify locale contains Arabic
-                            (window.Shopify && Shopify.locale && Shopify.locale.toLowerCase().indexOf('ar') !== -1) ||
-                            // Any dir="rtl" on html or body
-                            (htmlDir && htmlDir.toLowerCase() === 'rtl') ||
-                            (bodyDir && bodyDir.toLowerCase() === 'rtl') ||
-                            // Theme-level RTL body classes
-                            document.body.classList.contains('layout_rtl') ||
-                            document.body.classList.contains('rtl') ||
-                            // Fallback: computed CSS direction
-                            window.getComputedStyle(document.body).direction === 'rtl';
-                    } catch (e) { }
-
                     if (!productGrid.hasClass('slick-initialized')) {
                         productGrid.slick({
                             mobileFirst: true,
@@ -205,7 +186,8 @@ Shopify.Products = (function () {
                             dots: itemDotsMb,
                             nextArrow: window.arrows.icon_next,
                             prevArrow: window.arrows.icon_prev,
-                            rtl: isRTL,
+                            // Force RTL for this slider so it doesn't flip back to LTR
+                            rtl: true,
                             responsive:
                                 [
                                     {
@@ -292,8 +274,8 @@ Shopify.Products = (function () {
                             var slick = $(this).slick('getSlick');
                             if (!slick) return;
 
-                            if (isRTL && slick.options.rtl !== true) {
-                            $(this).slick('slickSetOption', 'rtl', true, true);
+                            if (slick.options.rtl !== true) {
+                                $(this).slick('slickSetOption', 'rtl', true, true);
                             }
                         });
                     }
