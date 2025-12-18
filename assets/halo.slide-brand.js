@@ -20,6 +20,10 @@
 					
 
 	            if (self.not('.slick-initialized')) {
+					if (isRTL) {
+						var items = self.find('.halo-item').get().reverse();
+						self.empty().append(items);
+					}
 	                self.slick({
 	                    slidesToShow: itemsToShow,
 	                    slidesToScroll: 1,
