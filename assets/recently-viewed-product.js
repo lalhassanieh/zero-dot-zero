@@ -174,6 +174,11 @@ Shopify.Products = (function () {
                     itemArrowsMb = productGrid.data('item-arrows-mb');
 
                 if (productGrid.length > 0) {
+                    
+                    var isRTL = (window.Shopify && Shopify.locale && Shopify.locale.toLowerCase().includes('ar'))
+                        || document.documentElement.getAttribute('dir') === 'rtl'
+                        || document.body.classList.contains('layout_rtl');
+
                     if (!productGrid.hasClass('slick-initialized')) {
                         productGrid.slick({
                             mobileFirst: true,
@@ -186,8 +191,7 @@ Shopify.Products = (function () {
                             dots: itemDotsMb,
                             nextArrow: window.arrows.icon_next,
                             prevArrow: window.arrows.icon_prev,
-                            // Force RTL for this slider so it doesn't flip back to LTR
-                            rtl: true,
+                            rtl: isRTL,
                             responsive:
                                 [
                                     {
@@ -270,14 +274,6 @@ Shopify.Products = (function () {
                                 ]
                         });
 
-                        productGrid.on('reInit breakpoint', function () {
-                            var slick = $(this).slick('getSlick');
-                            if (!slick) return;
-
-                            if (slick.options.rtl !== true) {
-                                $(this).slick('slickSetOption', 'rtl', true, true);
-                            }
-                        });
                     }
                 }
 
