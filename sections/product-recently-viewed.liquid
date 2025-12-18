@@ -83,9 +83,23 @@
             }
         {% endif %}
 
-        .halo-block-content{
-            direction: ltr !important;
-        } 
+       /* Force the slider engine to behave LTR in RTL pages */
+body.layout_rtl #halo-recently-viewed-block-{{ section.id }},
+body.layout_rtl #halo-recently-viewed-block-{{ section.id }} .products-carousel,
+body.layout_rtl #halo-recently-viewed-block-{{ section.id }} .products-flex,
+body.layout_rtl #halo-recently-viewed-block-{{ section.id }} .slider,
+body.layout_rtl #halo-recently-viewed-block-{{ section.id }} .slider__slide,
+body.layout_rtl #halo-recently-viewed-block-{{ section.id }} .slick-list,
+body.layout_rtl #halo-recently-viewed-block-{{ section.id }} .slick-track {
+  direction: ltr !important;
+}
+
+/* Keep content inside cards RTL */
+body.layout_rtl #halo-recently-viewed-block-{{ section.id }} .product,
+body.layout_rtl #halo-recently-viewed-block-{{ section.id }} .product * {
+  direction: rtl;
+}
+
 
         .section-block-{{section.id}} .halo-block-header .title {
             color: {{ color_title }};
