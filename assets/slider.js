@@ -8,8 +8,7 @@ class SliderComponent extends HTMLElement {
         this.prevButton = this.querySelector('button[name="previous"]');
         this.nextButton = this.querySelector('button[name="next"]');
         this.dotButton = this.querySelectorAll('button[name="dots"]');
-        // Track RTL once; keep scroll math using LTR coordinates
-        this.isRtl = document.body.classList.contains('layout_rtl');
+        this.rtl_num = document.body.classList.contains('layout_rtl') ? -1 : 1;
             
         if (!this.slider || !this.nextButton) return;
 
@@ -32,7 +31,7 @@ class SliderComponent extends HTMLElement {
     }   
 
     update() {
-        this.currentPage = Math.round(this.slider.scrollLeft / this.sliderItems[0].clientWidth);
+        this.currentPage = Math.round(this.slider.scrollLeft / this.sliderItems[0].clientWidth * this.rtl_num);
         this.querySelector('.dots-item.active')?.classList.remove('active');
         this.querySelectorAll('.dots-item')[this.currentPage]?.classList.add('active');
         if (this.pageCount) this.pageCount.innerText = this.slidesPerPage + this.currentPage;
@@ -40,12 +39,7 @@ class SliderComponent extends HTMLElement {
 
     onButtonClick(event) {
         event.preventDefault();
-        const step = this.sliderItems[0].clientWidth;
-        // In RTL we move the visual "next" by decreasing scrollLeft (browser handles RTL),
-        // but we keep scrollLeft math positive for page calculations.
-        const isNext = event.currentTarget.name === 'next';
-        const delta = (this.isRtl ? -1 : 1) * step * (isNext ? 1 : -1);
-        const slideScrollPosition = this.slider.scrollLeft + delta;
+        const slideScrollPosition = event.currentTarget.name === 'next' ? this.slider.scrollLeft + this.sliderItems[0].clientWidth * this.rtl_num : this.slider.scrollLeft - this.sliderItems[0].clientWidth * this.rtl_num;
         this.slider.scrollTo({
             left: slideScrollPosition
         });
