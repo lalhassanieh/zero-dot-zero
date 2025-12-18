@@ -308,38 +308,8 @@
             }
         }
     </style>
-    {% if swipe %}
-        <product-slider-component
-          class="halo-block halo-product-block halo-recently-viewed-block section-block-{{ section.id }}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}"
-          id="halo-recently-viewed-block-{{ section.id }}"
-          data-recently-viewed-block
-          data-limit="{{ limit }}"
-          data-layout="{{ layout }}"
-          data-section-id="{{ section.id }}"
-          data-image-ratio="{{ image_ratio }}"
-          data-swipe="{{ swipe }}"
-          style="--grid-gap: {{ grid_gap }}"
-        >
-    {% else %}
-        <div
-          class="halo-block halo-product-block halo-recently-viewed-block section-block-{{ section.id }}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}"
-          id="halo-recently-viewed-block-{{ section.id }}"
-          data-recently-viewed-block
-          data-limit="{{ limit }}"
-          data-layout="{{ layout }}"
-          data-section-id="{{ section.id }}"
-          data-image-ratio="{{ image_ratio }}"
-          data-swipe="{{ swipe }}"
-          style="--grid-gap: {{ grid_gap }}"
-        >
-    {% endif %}
-
-    {% if layout == 'scroll' %}
-        <product-scroller class="{% if container == '1170' %}container-1170{% elsif container == '1770' %}container-1770{% elsif container == 'fullwidth' %}container-full{% else %}container{% endif %}">
-    {% else %}
-        <div class="{% if container == '1170' %}container-1170{% elsif container == '1770' %}container-1770{% elsif container == 'fullwidth' %}container-full{% else %}container{% endif %}">
-    {% endif %}
-
+    <{% if swipe %}product-slider-component{% else %}div{% endif %} class="halo-block halo-product-block halo-recently-viewed-block section-block-{{section.id}}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" id="halo-recently-viewed-block-{{ section.id }}" data-recently-viewed-block data-limit="{{ limit }}" data-layout="{{ layout }}" sectionId="{{ section.id }}" data-image-ratio="{{ image_ratio }}" data-swipe="{{ swipe }}" style="--grid-gap: {{ grid_gap }}">
+        <{% if layout == 'scroll' %}product-scroller{% else %}div{% endif %} class="{% if container == '1170' %}container-1170{% elsif container == '1770' %}container-1770{% elsif container == 'fullwidth'%}container-full{% else %}container{% endif %}">
             {%- if block_title != blank -%}
                 <div class="halo-block-header text-{{ block_title_align }} block-title--{{section.settings.style_block_header}}">
                     <h3 class="title{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
@@ -357,14 +327,6 @@
                         endif
                     -%}
                     <div class="recentlyViewed-row products-grid column-{{ column }}{% if swipe %} slider slider--tablet grid grid--peek{% endif %}" data-products-to-show="{{ limit }}" id="recently-viewed-products-list-2">
-                        {%- for product in (1..limit) -%}
-                            <div class="product{% if swipe %} slider__slide grid__item{% endif %}">
-                                {% render 'product-card-loading-no-info',
-                                    portrait_aspect_ratio: '133'
-                                %}
-                            </div>
-                        {%- endfor -%}
-                    </div>
                 {%- elsif layout == 'slider' -%}
                     {%- liquid
                         assign column = section.settings.product_recently_viewed_show
@@ -381,14 +343,6 @@
                         data-item-arrows-mb="{{ arrows_mb }}"
                         id="recently-viewed-products-list-2"
                     >
-                        {%- for product in (1..limit) -%}
-                            <div class="product{% if swipe %} slider__slide grid__item{% endif %}">
-                                {% render 'product-card-loading-no-info',
-                                    portrait_aspect_ratio: '133'
-                                %}
-                            </div>
-                        {%- endfor -%}
-                    </div>
                 {% elsif layout == 'scroll' %}
                     {% liquid
                         assign column = section.settings.product_block_per_view 
@@ -410,15 +364,15 @@
                         "
                         id="recently-viewed-products-list-2"
                     >
-                        {%- for product in (1..limit) -%}
-                            <div class="product{% if swipe %} slider__slide grid__item{% endif %}">
-                                {% render 'product-card-loading-no-info',
-                                    portrait_aspect_ratio: '133'
-                                %}
-                            </div>
-                        {%- endfor -%}
-                    </div>
                 {%- endif -%}
+                    {%- for product in (1..limit) -%}
+                        <div class="product{% if swipe %} slider__slide grid__item{% endif %}">
+                            {% render 'product-card-loading-no-info',
+                                portrait_aspect_ratio: '133'
+                            %}
+                        </div>
+                    {%- endfor -%}
+                </div>
                 {%- if swipe -%}
                     <div class="slider-buttons no-js-hidden{% if products_to_display < 4 %} medium-hide{% endif %}{% if products_to_display < 3 %} small-hide{% endif %}">
                         <div class="slider-counter">
@@ -438,19 +392,9 @@
                     </div>
                 {%- endif -%}
             </div>
-    {% if layout == 'scroll' %}
-        </product-scroller>
-    {% else %}
-        </div>
-    {% endif %}
-
-    {% if swipe %}
-        </product-slider-component>
-    {% else %}
-        </div>
-    {% endif %}
-    <script src="{{ 'recently-viewed-product.js' | asset_url }}" defer></script>
-
+        </{% if layout == 'scroll' %}product-scroller{% else %}div{% endif %}>
+    </{% if swipe %}product-slider-component{% else %}div{% endif %}>
+    {{ 'recently-viewed-product.js' | asset_url | script_tag }}
     <script type="text/javascript">
         Shopify.Products.recordRecentlyViewed();
 
