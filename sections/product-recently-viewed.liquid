@@ -398,9 +398,9 @@
     <script type="text/javascript">
         Shopify.Products.recordRecentlyViewed();
 
-        var cookieValue = $.cookie('shopify_recently_viewed') || localStorage.getItem('shopify_recently_viewed');
+        var cookieValue = $.cookie('shopify_recently_viewed');
 
-        if (Shopify.designMode && !cookieValue) {
+        if (!cookieValue) {
             cookieValue = localStorage.getItem('shopify_recently_viewed');
         }
 
@@ -425,6 +425,9 @@
                     onComplete: function() {
                         if (window.location.pathname.indexOf('/products/') !== -1) {
                             $.cookie('shopify_recently_viewed', cookieValue, { expires: expireDay, path: "/", domain: window.location.hostname });
+                            try {
+                                localStorage.setItem('shopify_recently_viewed', cookieValue);
+                            } catch(e) {}
                         }
                     }
                 });
