@@ -6008,12 +6008,33 @@
             const $blogMasonry = $('.blog-layout-masonry .blog-block-item');
             const isRTL = $body.hasClass('layout_rtl');
 
-            $blogMasonry.masonry({
-                columnWidth: '.blog-grid-sizer',
-                itemSelector: '[data-masonry-item]',
-                isRTL: isRTL,
-                originLeft: !isRTL
-            });
+            if ($blogMasonry.length) {
+                const $items = $blogMasonry.find('[data-masonry-item]');
+                const count = $items.length;
+
+                if (count <= 2) {
+                    // Disable masonry positioning for few items
+                    // Destroy existing masonry instance if any
+                    if ($blogMasonry.data('masonry')) {
+                        $blogMasonry.masonry('destroy');
+                    }
+                    $blogMasonry.addClass('is-few-items');
+                    $items.css({ position: 'relative', left: '', top: '', right: '' });
+                } else {
+                    // Use masonry normally
+                    $blogMasonry.removeClass('is-few-items');
+                    // Destroy existing instance before reinitializing
+                    if ($blogMasonry.data('masonry')) {
+                        $blogMasonry.masonry('destroy');
+                    }
+                    $blogMasonry.masonry({
+                        columnWidth: '.blog-grid-sizer',
+                        itemSelector: '[data-masonry-item]',
+                        isRTL: isRTL,
+                        originLeft: !isRTL
+                    });
+                }
+            }
         },
 
         articleGallery: function() {
