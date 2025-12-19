@@ -6008,21 +6008,12 @@
             const $blogMasonry = $('.blog-layout-masonry .blog-block-item');
             const isRTL = $body.hasClass('layout_rtl');
 
-            if ($blogMasonry.length) {
-                $blogMasonry.masonry({
-                    columnWidth: '.blog-grid-sizer',
-                    itemSelector: '[data-masonry-item]',
-                    isRTL: isRTL,
-                    originLeft: !isRTL,
-                    percentPosition: true
-                });
-
-                if (isRTL) {
-                    $blogMasonry.imagesLoaded(function() {
-                        $blogMasonry.masonry('layout');
-                    });
-                }
-            }
+            $blogMasonry.masonry({
+                columnWidth: '.blog-grid-sizer',
+                itemSelector: '[data-masonry-item]',
+                isRTL: isRTL,
+                originLeft: !isRTL
+            });
         },
 
         articleGallery: function() {
