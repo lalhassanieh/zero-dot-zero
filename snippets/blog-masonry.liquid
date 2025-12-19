@@ -127,7 +127,17 @@
 
     #BlogSection-{{ section.id }} .blog-grid-sizer {
         width: calc((100% - 60px) / {{ item_per_row }});
+        height: 0;
+        display: block;
+        visibility: hidden;
     }
+    
+    {% if settings.enable_layout_rtl %}
+    /* Force LTR direction for masonry container to ensure correct column calculation */
+    body.layout_rtl #BlogSection-{{ section.id }} .blog-block-item {
+        direction: ltr;
+    }
+    {% endif %}
 
     @media (max-width: 1024px) {
         #BlogSection-{{ section.id }}{
