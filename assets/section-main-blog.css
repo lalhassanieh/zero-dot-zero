@@ -524,3 +524,33 @@
         padding: 30px 80px 30px 0;
     }
 }
+
+/* Direction-aware alignment for blog masonry */
+.blog-layout-masonry .blog-block-item {
+    direction: ltr;
+}
+
+html[dir="rtl"] .blog-layout-masonry .blog-block-item,
+body.layout_rtl .blog-layout-masonry .blog-block-item {
+    direction: rtl;
+}
+
+/* Flex alignment for 1-2 items */
+.blog-layout-masonry .blog-block-item.is-few-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+html[dir="rtl"] .blog-layout-masonry .blog-block-item.is-few-items,
+body.layout_rtl .blog-layout-masonry .blog-block-item.is-few-items {
+    justify-content: flex-end;
+}
+
+.blog-layout-masonry .blog-block-item.is-few-items .item {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    right: auto !important;
+}
