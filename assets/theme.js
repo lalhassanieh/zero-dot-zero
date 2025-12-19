@@ -6012,7 +6012,6 @@
                 columnWidth: '.blog-grid-sizer',
                 itemSelector: '[data-masonry-item]',
                 isRTL: isRTL,
-                originLeft: !isRTL
             });
         },
 
