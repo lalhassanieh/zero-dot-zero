@@ -125,6 +125,10 @@
         text-transform: {{ text_text_transform }};
     }
 
+    #BlogSection-{{ section.id }} .blog-grid-sizer {
+        width: calc((100% - 60px) / {{ item_per_row }});
+    }
+
     @media (max-width: 1024px) {
         #BlogSection-{{ section.id }}{
             padding-top: {{ padding_top_tablet }};
