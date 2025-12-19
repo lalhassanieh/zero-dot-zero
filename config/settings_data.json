@@ -160,6 +160,7 @@
     "type_dots_width": 8,
     "type_dots_height": 8,
     "pagination_style": "1",
+    "pagination_align": "center",
     "show_effect_close": true,
     "product_card_layout": "08",
     "disable_product_card_border": true,
