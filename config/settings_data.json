@@ -947,10 +947,10 @@
       },
       "13974608683207948951": {
         "type": "shopify://apps/suitefleet/blocks/theme/a6c4fc72-93bb-4cc9-916b-3926bfef8162",
-        "disabled": true,
+        "disabled": false,
         "settings": {
           "app_font": "sans_serif_n4",
-          "app_color": "dark"
+          "app_color": "green"
         }
       }
     }
