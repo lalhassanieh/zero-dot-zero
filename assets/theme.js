@@ -6006,74 +6006,13 @@
 
         initBlogMasonry: function() {
             const $blogMasonry = $('.blog-layout-masonry .blog-block-item');
-            if (!$blogMasonry.length) return;
-            
             const isRTL = $body.hasClass('layout_rtl');
-            
-            // Function to initialize masonry
-            function initMasonry() {
-                // Destroy existing instance if any
-                if ($blogMasonry.data('masonry')) {
-                    $blogMasonry.masonry('destroy');
-                }
-                
-                $blogMasonry.masonry({
-                    columnWidth: '.blog-grid-sizer',
-                    itemSelector: '[data-masonry-item]',
-                    isRTL: isRTL,
-                    originLeft: !isRTL
-                });
-            }
-            
-            // Initialize immediately
-            initMasonry();
-            
-            // Wait for all images to load, then completely reinitialize
-            const $images = $blogMasonry.find('img');
-            const totalImages = $images.length;
-            let imagesLoaded = 0;
-            let reinitDone = false;
-            
-            function doReinit() {
-                if (reinitDone) return;
-                reinitDone = true;
-                
-                // Destroy and reinitialize to force fresh calculation
-                setTimeout(function() {
-                    initMasonry();
-                    // Force layout recalculation
-                    setTimeout(function() {
-                        $blogMasonry.masonry('layout');
-                    }, 100);
-                }, 200);
-            }
-            
-            if (totalImages > 0) {
-                $images.on('load error', function() {
-                    imagesLoaded++;
-                    if (imagesLoaded === totalImages) {
-                        doReinit();
-                    }
-                }).each(function() {
-                    if (this.complete || (this.naturalWidth && this.naturalWidth > 0)) {
-                        imagesLoaded++;
-                        if (imagesLoaded === totalImages) {
-                            doReinit();
-                        }
-                    }
-                });
-            } else {
-                // No images, still reinitialize after a delay
-                setTimeout(function() {
-                    doReinit();
-                }, 300);
-            }
-            
-            // Fallback: reinitialize after window load
-            $(window).on('load', function() {
-                setTimeout(function() {
-                    doReinit();
-                }, 400);
+
+            $blogMasonry.masonry({
+                columnWidth: '.blog-grid-sizer',
+                itemSelector: '[data-masonry-item]',
+                isRTL: isRTL,
+                originLeft: !isRTL
             });
         },
 
