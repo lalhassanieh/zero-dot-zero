@@ -3165,11 +3165,6 @@
 			padding: 30px 0px 30px 30px;
 		}
 
-		/* Force LTR direction for masonry container to ensure correct column calculation */
-		body.layout_rtl .blog-layout-masonry .blog-block-item {
-			direction: ltr;
-		}
-
 		body.layout_rtl .blog-layout-list .article-item .blog-content {
 			padding-left: 0;
 			padding-right: 30px;
