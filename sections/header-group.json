@@ -215,7 +215,7 @@
           "settings": {
             "layout_block": "custom_width",
             "header_custom_width_size": 1200,
-            "item": "Shop",
+            "item": "",
             "column": 2,
             "menu_text_left": "shop-menu",
             "menu_text_left_sale": "",
