@@ -80,7 +80,7 @@
         "padding_full_width": 0,
         "show_breadcrumb": true,
         "breadcrumb_alignment": "left",
-        "breadcrumb_bg": "#de1e1e",
+        "breadcrumb_bg": "rgba(0,0,0,0)",
         "breadcrumb_gradient": "",
         "breadcrumb_bg_mb": "#f6f6f6",
         "breadcrumb_gradient_mb": "",
