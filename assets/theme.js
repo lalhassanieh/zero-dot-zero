@@ -6006,6 +6006,8 @@
 
         initBlogMasonry: function() {
             const $blogMasonry = $('.blog-layout-masonry .blog-block-item');
+            if (!$blogMasonry.length) return;
+            
             const isRTL = $body.hasClass('layout_rtl');
 
             $blogMasonry.masonry({
@@ -6013,6 +6015,59 @@
                 itemSelector: '[data-masonry-item]',
                 isRTL: isRTL,
                 originLeft: !isRTL
+            });
+            
+            // Force layout recalculation after images load
+            const $items = $blogMasonry.find('[data-masonry-item]');
+            let loadedCount = 0;
+            const totalItems = $items.length;
+            
+            if (totalItems > 0) {
+                $items.each(function() {
+                    const $item = $(this);
+                    const $images = $item.find('img');
+                    
+                    if ($images.length === 0) {
+                        loadedCount++;
+                        checkComplete();
+                        return;
+                    }
+                    
+                    let itemImagesLoaded = 0;
+                    const itemTotalImages = $images.length;
+                    
+                    $images.on('load error', function() {
+                        itemImagesLoaded++;
+                        if (itemImagesLoaded === itemTotalImages) {
+                            loadedCount++;
+                            checkComplete();
+                        }
+                    }).each(function() {
+                        if (this.complete || this.naturalWidth > 0) {
+                            itemImagesLoaded++;
+                            if (itemImagesLoaded === itemTotalImages) {
+                                loadedCount++;
+                                checkComplete();
+                            }
+                        }
+                    });
+                });
+            }
+            
+            function checkComplete() {
+                if (loadedCount === totalItems) {
+                    // All items loaded, recalculate layout
+                    setTimeout(function() {
+                        $blogMasonry.masonry('layout');
+                    }, 50);
+                }
+            }
+            
+            // Fallback: re-layout after window load
+            $(window).on('load', function() {
+                setTimeout(function() {
+                    $blogMasonry.masonry('layout');
+                }, 200);
             });
         },
 
