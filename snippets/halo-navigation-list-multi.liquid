@@ -31,6 +31,7 @@
             assign sale_item_lv2 = section.settings.sale_item_2 | split: "," | strip | downcase | handle
             assign sale_item_lv3 = section.settings.sale_item_3 | split: "," | strip | downcase | handle
             assign title = link.title | escape | downcase | handle
+            assign link_handle = link.handle | downcase | handle
             if section.settings.label_position != 'none'
                 assign show_label_blink = section.settings.show_label_blink
                 assign new_label_1 = section.settings.new_label_1 | split: "," | strip | downcase | handle
@@ -45,9 +46,11 @@
             endif
             for menuItem in section.blocks
                 assign check_menu = false
-                assign item = menuItem.settings.item | escape | downcase | handle
-                case item
-                    when title
+                assign item = menuItem.settings.item
+                assign item_list = item | split: "," | strip
+                for item_title in item_list
+                    assign item_handle = item_title | downcase | handle
+                    if item_handle == link_handle or item_handle == title
                         assign check_menu = true
                         assign block_style = menuItem.type
                         assign column = menuItem.settings.column
@@ -106,7 +109,11 @@
                         assign product_limit = menuItem.settings.product_limit
 
                         break
-                endcase
+                    endif
+                endfor
+                if check_menu
+                    break
+                endif
             endfor
         -%}
         {%- if check_menu -%}
