@@ -6009,16 +6009,14 @@
             if (!$blogMasonry.length) return;
             
             const isRTL = $body.hasClass('layout_rtl');
-            const self = this;
             
-            // Function to initialize/reinitialize masonry
-            function setupMasonry() {
+            // Function to initialize masonry
+            function initMasonry() {
                 // Destroy existing instance if any
                 if ($blogMasonry.data('masonry')) {
                     $blogMasonry.masonry('destroy');
                 }
                 
-                // Use grid-sizer for column width calculation
                 $blogMasonry.masonry({
                     columnWidth: '.blog-grid-sizer',
                     itemSelector: '[data-masonry-item]',
@@ -6027,61 +6025,55 @@
                 });
             }
             
-            // Initialize masonry first
-            setupMasonry();
+            // Initialize immediately
+            initMasonry();
             
-            // Wait for all images to load, then recalculate
+            // Wait for all images to load, then completely reinitialize
             const $images = $blogMasonry.find('img');
-            let imagesLoaded = 0;
             const totalImages = $images.length;
-            let layoutTriggered = false;
+            let imagesLoaded = 0;
+            let reinitDone = false;
             
-            function triggerLayout() {
-                if (layoutTriggered) return;
-                layoutTriggered = true;
+            function doReinit() {
+                if (reinitDone) return;
+                reinitDone = true;
                 
+                // Destroy and reinitialize to force fresh calculation
                 setTimeout(function() {
-                    // Force masonry to recalculate all items and column heights
-                    if ($blogMasonry.data('masonry')) {
-                        $blogMasonry.masonry('reloadItems');
-                        // Small delay to ensure heights are recalculated
-                        setTimeout(function() {
-                            $blogMasonry.masonry('layout');
-                        }, 50);
-                    }
-                }, 150);
+                    initMasonry();
+                    // Force layout recalculation
+                    setTimeout(function() {
+                        $blogMasonry.masonry('layout');
+                    }, 100);
+                }, 200);
             }
             
             if (totalImages > 0) {
                 $images.on('load error', function() {
                     imagesLoaded++;
                     if (imagesLoaded === totalImages) {
-                        triggerLayout();
+                        doReinit();
                     }
                 }).each(function() {
                     if (this.complete || (this.naturalWidth && this.naturalWidth > 0)) {
                         imagesLoaded++;
                         if (imagesLoaded === totalImages) {
-                            triggerLayout();
+                            doReinit();
                         }
                     }
                 });
             } else {
-                // No images, trigger layout immediately but still reload items
+                // No images, still reinitialize after a delay
                 setTimeout(function() {
-                    $blogMasonry.masonry('reloadItems');
-                    setTimeout(function() {
-                        $blogMasonry.masonry('layout');
-                    }, 50);
-                }, 100);
+                    doReinit();
+                }, 300);
             }
             
-            // Fallback: re-layout after window load
+            // Fallback: reinitialize after window load
             $(window).on('load', function() {
                 setTimeout(function() {
-                    $blogMasonry.masonry('reloadItems');
-                    $blogMasonry.masonry('layout');
-                }, 300);
+                    doReinit();
+                }, 400);
             });
         },
 
