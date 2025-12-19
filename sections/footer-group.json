@@ -75,10 +75,11 @@
         },
         "2265e00a-3824-4d57-af37-fa00fa88a555": {
           "type": "link_list",
+          "disabled": true,
           "settings": {
             "custom_width": "25",
             "heading": "Recipes",
-            "menu": "footer-menu-3",
+            "menu": "footer-recipes-menu",
             "mg_bottom": 10
           }
         },
