@@ -6057,22 +6057,44 @@
                     const colWidth = $allItems.first().outerWidth(true) || 0;
                     if (!colWidth) return;
 
+                    // Get grid width to calculate RTL positions
+                    const gridWidth = $grid.outerWidth() || 0;
+                    if (!gridWidth) return;
+
+                    // Determine column count from class "column-X" if present
+                    let colCount = 3; // default
+                    const classMatch = $grid.attr('class') && $grid.attr('class').match(/column-(\d+)/);
+                    if (classMatch && classMatch[1]) {
+                        colCount = parseInt(classMatch[1], 10);
+                    }
+
                     // Sort last-row items by current left so we keep order
                     const lastRowSorted = $lastRowItems
                         .toArray()
                         .sort((a, b) => {
                             const la = parseFloat($(a).css('left')) || 0;
                             const lb = parseFloat($(b).css('left')) || 0;
-                            return la - lb;
+                            return isRTL ? lb - la : la - lb; // reverse sort for RTL
                         });
 
-                    console.log('[Blog Masonry] Adjusting last row in grid #' + index + ', items:', $lastRowItems.length);
+                    console.log('[Blog Masonry] Adjusting last row in grid #' + index + ', items:', $lastRowItems.length + ', RTL:', isRTL);
 
-                    // Reposition last row items from left to right, filling from column 0
-                    lastRowSorted.forEach((el, i) => {
-                        const newLeft = colWidth * i;
-                        $(el).css('left', newLeft + 'px');
-                    });
+                    // Reposition last row items based on direction
+                    if (isRTL) {
+                        // RTL: position from right to left (rightmost columns first)
+                        // Start from the rightmost column and work left
+                        lastRowSorted.forEach((el, i) => {
+                            const colIndex = colCount - $lastRowItems.length + i;
+                            const newLeft = colWidth * colIndex;
+                            $(el).css('left', newLeft + 'px');
+                        });
+                    } else {
+                        // LTR: position from left to right (leftmost columns first)
+                        lastRowSorted.forEach((el, i) => {
+                            const newLeft = colWidth * i;
+                            $(el).css('left', newLeft + 'px');
+                        });
+                    }
                 };
 
                 const initMasonry = function() {
