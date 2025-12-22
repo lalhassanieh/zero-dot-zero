@@ -6054,7 +6054,7 @@
                         return Math.abs(top - maxTop) < 1;
                     });
 
-                    if ($lastRowItems.length === 0 || $lastRowItems.length > 2) return;
+                    if ($lastRowItems.length === 0) return;
 
                     // Use the first item width as column width
                     const colWidth = $allItems.first().outerWidth(true) || 0;
@@ -6071,6 +6071,8 @@
                     }
 
                     const lastRowArray = $lastRowItems.toArray();
+                    // If the last row is already full-width (items == columns), leave Masonry as-is
+                    if (lastRowArray.length >= colCount) return;
 
                     console.log('[Blog Masonry] Adjusting last row in grid #' + index + ', items:', $lastRowItems.length + ', RTL:', isRTL);
 
