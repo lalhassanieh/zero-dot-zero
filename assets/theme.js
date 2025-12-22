@@ -6086,6 +6086,8 @@
 
                 const initMasonry = function() {
                     console.log('[Blog Masonry] Init Masonry for grid #' + index + ', RTL:', isRTL);
+                    console.log('[Blog Masonry] Grid direction:', document.documentElement.getAttribute('dir'));
+                    console.log('[Blog Masonry] Shopify locale:', window.Shopify && window.Shopify.locale);
 
                     // Only attach adjustment handler for LTR
                     if (!isRTL) {
@@ -6093,6 +6095,19 @@
                         $grid.off('layoutComplete.blogMasonryAdjust')
                             .on('layoutComplete.blogMasonryAdjust', function() {
                                 adjustLastRow();
+                            });
+                    } else {
+                        // For RTL, log positions after layout to debug
+                        $grid.off('layoutComplete.blogMasonryDebug')
+                            .on('layoutComplete.blogMasonryDebug', function() {
+                                const $allItems = $grid.find('[data-masonry-item]');
+                                console.log('[Blog Masonry] RTL Layout complete. Item positions:');
+                                $allItems.each(function(i) {
+                                    const $item = $(this);
+                                    const left = parseFloat($item.css('left')) || 0;
+                                    const top = parseFloat($item.css('top')) || 0;
+                                    console.log('[Blog Masonry] Item ' + i + ': left=' + left + ', top=' + top);
+                                });
                             });
                     }
 
