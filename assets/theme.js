@@ -6008,11 +6008,42 @@
             const $blogMasonry = $('.blog-layout-masonry .blog-block-item');
             const isRTL = $body.hasClass('layout_rtl');
 
-            $blogMasonry.masonry({
-                columnWidth: '.blog-grid-sizer',
-                itemSelector: '[data-masonry-item]',
-                isRTL: isRTL,
-                originLeft: !isRTL
+            if (!$blogMasonry.length) return;
+
+            $blogMasonry.each(function() {
+                const $grid = $(this);
+                const $items = $grid.find('[data-masonry-item]');
+
+                // If we only have 1–2 items, do not initialize Masonry.
+                // Let the normal flex/grid CSS handle left-to-right layout.
+                if ($items.length <= 2) {
+                    // In case Masonry was previously applied, reset inline layout styles.
+                    $grid.css('height', '');
+                    $items.css({
+                        position: '',
+                        top: '',
+                        left: ''
+                    });
+                    return;
+                }
+
+                const initMasonry = function() {
+                    $grid.masonry({
+                        columnWidth: '.blog-grid-sizer',
+                        itemSelector: '[data-masonry-item]',
+                        isRTL: isRTL,
+                        originLeft: !isRTL
+                    });
+                };
+
+                // Initialize Masonry after images are loaded (if imagesLoaded is available)
+                if (typeof $.fn.imagesLoaded === 'function') {
+                    $grid.imagesLoaded(function() {
+                        initMasonry();
+                    });
+                } else {
+                    initMasonry();
+                }
             });
         },
 
