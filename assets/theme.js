@@ -6012,7 +6012,6 @@
                 document.body.classList.contains('layout_rtl');
 
             if (!$blogMasonry.length) {
-                console.log('[Blog Masonry] No masonry grids found');
                 return;
             }
 
@@ -6020,14 +6019,7 @@
                 const $grid = $(this);
                 const $items = $grid.find('[data-masonry-item]');
 
-                console.log('[Blog Masonry] Grid #' + index + ' items:', $items.length);
-
-                // If we only have 1–2 items, do not initialize Masonry.
-                // Let the normal flex/grid CSS handle left-to-right layout.
                 if ($items.length <= 2) {
-                    console.log('[Blog Masonry] Skip Masonry for grid #' + index + ' (<= 2 items)');
-
-                    // In case Masonry was previously applied, reset inline layout styles.
                     $grid.css('height', '');
                     $items.css({
                         position: '',
@@ -6039,13 +6031,11 @@
 
                 const adjustLastRow = function() {
                     const $allItems = $grid.find('[data-masonry-item]');
-                    if ($allItems.length <= 2) return; // already handled earlier
+                    if ($allItems.length <= 2) return;
 
-                    // Use the first item width as column width
                     const colWidth = $allItems.first().outerWidth(true) || 0;
                     if (!colWidth) return;
 
-                    // Determine number of columns from class "column-X" if present (fallback: 3)
                     let colCount = 3;
                     const classMatch = ($grid.attr('class') || '').match(/column-(\d+)/);
                     if (classMatch && classMatch[1]) {
@@ -6055,7 +6045,6 @@
                         }
                     }
 
-                    // Find all items and sort by position (top first, then left)
                     const allItemsArray = $allItems.toArray().map(function(el) {
                         const $el = $(el);
                         return {
@@ -6064,60 +6053,40 @@
                             left: parseFloat($el.css('left')) || 0
                         };
                     }).sort(function(a, b) {
-                        // Sort by top (descending), then by left
                         if (Math.abs(a.top - b.top) > 1) {
-                            return b.top - a.top; // higher top first (items at bottom)
+                            return b.top - a.top;
                         }
                         return a.left - b.left;
                     });
 
-                    // Find the maximum top value
                     const maxTop = allItemsArray.length > 0 ? allItemsArray[0].top : 0;
-                    
-                    // Find all items in the "last row area" - items that are close to maxTop
-                    // Use a larger tolerance (50px) to catch items that might be slightly above due to height differences
                     const lastRowItems = allItemsArray.filter(function(item) {
                         return Math.abs(item.top - maxTop) < 50;
                     });
 
-                    // If the last row is already full-width (items == columns), leave Masonry as-is
                     if (lastRowItems.length >= colCount || lastRowItems.length === 0) return;
 
                     const $lastRowItems = $(lastRowItems.map(function(item) { return item.el; }));
                     const lastRowArray = $lastRowItems.toArray();
 
-                    console.log('[Blog Masonry] Adjusting last row in grid #' + index + ', items:', $lastRowItems.length + ', RTL:', isRTL);
-
                     if (isRTL) {
-                        // RTL: we want items to occupy the rightmost columns.
-                        // Sort by current left descending so the visually rightmost item is first.
                         lastRowArray.sort((a, b) => {
                             const la = parseFloat($(a).css('left')) || 0;
                             const lb = parseFloat($(b).css('left')) || 0;
-                            return lb - la; // rightmost first
+                            return lb - la;
                         });
 
-                        // Get grid width to calculate right positions
                         const gridWidth = $grid.outerWidth() || 0;
                         if (!gridWidth) return;
 
                         lastRowArray.forEach((el, i) => {
-                            // Place items into rightmost columns: colCount-1, colCount-2, ...
-                            // For RTL, we calculate from the right side
-                            const colIndex = colCount - 1 - i;
-                            // Calculate right position: from right edge, column 0 is at right=0, column 1 is at right=colWidth, etc.
                             const rightPosition = colWidth * i;
-                            
-                            // Clear left and set right for RTL
                             $(el).css({
                                 'left': 'auto',
                                 'right': rightPosition + 'px'
                             });
-                            
-                            console.log('[Blog Masonry] RTL item ' + i + ': right=' + rightPosition + ' (colIndex=' + colIndex + ')');
                         });
                     } else {
-                        // LTR: position from left to right, filling from column 0
                         lastRowArray
                             .sort((a, b) => {
                                 const la = parseFloat($(a).css('left')) || 0;
@@ -6132,28 +6101,11 @@
                 };
 
                 const initMasonry = function() {
-                    console.log('[Blog Masonry] Init Masonry for grid #' + index + ', RTL:', isRTL);
-                    console.log('[Blog Masonry] Grid direction:', document.documentElement.getAttribute('dir'));
-                    console.log('[Blog Masonry] Shopify locale:', window.Shopify && window.Shopify.locale);
-
-                    // Attach handler for both LTR and RTL – logic inside adjustLastRow branches on isRTL
                     $grid
-                        .off('layoutComplete.blogMasonryAdjust layoutComplete.blogMasonryDebug')
+                        .off('layoutComplete.blogMasonryAdjust')
                         .on('layoutComplete.blogMasonryAdjust', function() {
                             adjustLastRow();
                         });
-
-                    // Keep detailed debug positions, helpful while tuning RTL
-                    $grid.on('layoutComplete.blogMasonryDebug', function() {
-                        const $allItems = $grid.find('[data-masonry-item]');
-                        console.log('[Blog Masonry] Layout complete. Item positions:');
-                        $allItems.each(function(i) {
-                            const $item = $(this);
-                            const left = parseFloat($item.css('left')) || 0;
-                            const top = parseFloat($item.css('top')) || 0;
-                            console.log('[Blog Masonry] Item ' + i + ': left=' + left + ', top=' + top);
-                        });
-                    });
 
                     $grid.masonry({
                         columnWidth: '.blog-grid-sizer',
@@ -6162,19 +6114,14 @@
                         originLeft: !isRTL
                     });
 
-                    // Run once immediately in case layoutComplete already fired
                     adjustLastRow();
                 };
 
-                // Initialize Masonry after images are loaded (if imagesLoaded is available)
                 if (typeof $.fn.imagesLoaded === 'function') {
-                    console.log('[Blog Masonry] Using imagesLoaded for grid #' + index);
                     $grid.imagesLoaded(function() {
-                        console.log('[Blog Masonry] imagesLoaded complete for grid #' + index);
                         initMasonry();
                     });
                 } else {
-                    console.log('[Blog Masonry] imagesLoaded not available, init immediately for grid #' + index);
                     initMasonry();
                 }
             });
