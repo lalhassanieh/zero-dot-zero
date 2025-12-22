@@ -6087,11 +6087,14 @@
                 const initMasonry = function() {
                     console.log('[Blog Masonry] Init Masonry for grid #' + index + ', RTL:', isRTL);
 
-                    // Attach handler before layout so we capture the initial layout as well
-                    $grid.off('layoutComplete.blogMasonryAdjust')
-                        .on('layoutComplete.blogMasonryAdjust', function() {
-                            adjustLastRow();
-                        });
+                    // Only attach adjustment handler for LTR
+                    if (!isRTL) {
+                        // Attach handler before layout so we capture the initial layout as well
+                        $grid.off('layoutComplete.blogMasonryAdjust')
+                            .on('layoutComplete.blogMasonryAdjust', function() {
+                                adjustLastRow();
+                            });
+                    }
 
                     $grid.masonry({
                         columnWidth: '.blog-grid-sizer',
@@ -6100,8 +6103,10 @@
                         originLeft: !isRTL
                     });
 
-                    // Also adjust once immediately after init in case layoutComplete already fired
-                    adjustLastRow();
+                    // Only adjust for LTR
+                    if (!isRTL) {
+                        adjustLastRow();
+                    }
                 };
 
                 // Initialize Masonry after images are loaded (if imagesLoaded is available)
