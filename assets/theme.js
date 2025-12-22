@@ -6083,11 +6083,24 @@
                             return lb - la; // rightmost first
                         });
 
+                        // Get grid width to calculate right positions
+                        const gridWidth = $grid.outerWidth() || 0;
+                        if (!gridWidth) return;
+
                         lastRowArray.forEach((el, i) => {
                             // Place items into rightmost columns: colCount-1, colCount-2, ...
+                            // For RTL, we calculate from the right side
                             const colIndex = colCount - 1 - i;
-                            const newLeft = colWidth * colIndex;
-                            $(el).css('left', newLeft + 'px');
+                            // Calculate right position: from right edge, column 0 is at right=0, column 1 is at right=colWidth, etc.
+                            const rightPosition = colWidth * i;
+                            
+                            // Clear left and set right for RTL
+                            $(el).css({
+                                'left': 'auto',
+                                'right': rightPosition + 'px'
+                            });
+                            
+                            console.log('[Blog Masonry] RTL item ' + i + ': right=' + rightPosition + ' (colIndex=' + colIndex + ')');
                         });
                     } else {
                         // LTR: position from left to right, filling from column 0
