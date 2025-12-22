@@ -6041,21 +6041,6 @@
                     const $allItems = $grid.find('[data-masonry-item]');
                     if ($allItems.length <= 2) return; // already handled earlier
 
-                    // Find the max top value = last "row"
-                    let maxTop = 0;
-                    $allItems.each(function() {
-                        const top = parseFloat($(this).css('top')) || 0;
-                        if (top > maxTop) maxTop = top;
-                    });
-
-                    // Items that are on the last row (within 1px tolerance)
-                    const $lastRowItems = $allItems.filter(function() {
-                        const top = parseFloat($(this).css('top')) || 0;
-                        return Math.abs(top - maxTop) < 1;
-                    });
-
-                    if ($lastRowItems.length === 0) return;
-
                     // Use the first item width as column width
                     const colWidth = $allItems.first().outerWidth(true) || 0;
                     if (!colWidth) return;
@@ -6070,9 +6055,36 @@
                         }
                     }
 
-                    const lastRowArray = $lastRowItems.toArray();
+                    // Find all items and sort by position (top first, then left)
+                    const allItemsArray = $allItems.toArray().map(function(el) {
+                        const $el = $(el);
+                        return {
+                            el: el,
+                            top: parseFloat($el.css('top')) || 0,
+                            left: parseFloat($el.css('left')) || 0
+                        };
+                    }).sort(function(a, b) {
+                        // Sort by top (descending), then by left
+                        if (Math.abs(a.top - b.top) > 1) {
+                            return b.top - a.top; // higher top first (items at bottom)
+                        }
+                        return a.left - b.left;
+                    });
+
+                    // Find the maximum top value
+                    const maxTop = allItemsArray.length > 0 ? allItemsArray[0].top : 0;
+                    
+                    // Find all items in the "last row area" - items that are close to maxTop
+                    // Use a larger tolerance (50px) to catch items that might be slightly above due to height differences
+                    const lastRowItems = allItemsArray.filter(function(item) {
+                        return Math.abs(item.top - maxTop) < 50;
+                    });
+
                     // If the last row is already full-width (items == columns), leave Masonry as-is
-                    if (lastRowArray.length >= colCount) return;
+                    if (lastRowItems.length >= colCount || lastRowItems.length === 0) return;
+
+                    const $lastRowItems = $(lastRowItems.map(function(item) { return item.el; }));
+                    const lastRowArray = $lastRowItems.toArray();
 
                     console.log('[Blog Masonry] Adjusting last row in grid #' + index + ', items:', $lastRowItems.length + ', RTL:', isRTL);
 
