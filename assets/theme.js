@@ -6036,11 +6036,62 @@
 
                 const initMasonry = function() {
                     console.log('[Blog Masonry] Init Masonry for grid #' + index + ', RTL:', isRTL);
+
                     $grid.masonry({
                         columnWidth: '.blog-grid-sizer',
                         itemSelector: '[data-masonry-item]',
                         isRTL: isRTL,
                         originLeft: !isRTL
+                    });
+
+                    // After Masonry lays out items, adjust the LAST "row" if it has only 1–2 items
+                    // so they are visually aligned from left to right instead of leaving a gap.
+                    $grid.on('layoutComplete.blogMasonryAdjust', function(event, laidOutItems) {
+                        const $allItems = $grid.find('[data-masonry-item]');
+                        if ($allItems.length <= 2) return; // already handled earlier
+
+                        // Find the max top value = last "row"
+                        let maxTop = 0;
+                        $allItems.each(function() {
+                            const top = parseFloat($(this).css('top')) || 0;
+                            if (top > maxTop) maxTop = top;
+                        });
+
+                        // Items that are on the last row (within 1px tolerance)
+                        const $lastRowItems = $allItems.filter(function() {
+                            const top = parseFloat($(this).css('top')) || 0;
+                            return Math.abs(top - maxTop) < 1;
+                        });
+
+                        if ($lastRowItems.length === 0 || $lastRowItems.length > 2) return;
+
+                        // Determine column count from class "column-X" if present
+                        let colCount = 0;
+                        const classMatch = $grid.attr('class') && $grid.attr('class').match(/column-(\d+)/);
+                        if (classMatch && classMatch[1]) {
+                            colCount = parseInt(classMatch[1], 10);
+                        }
+
+                        // Use the first item width as column width
+                        const colWidth = $allItems.first().outerWidth(true) || 0;
+                        if (!colWidth) return;
+
+                        // Sort last-row items by current left so we keep order
+                        const lastRowSorted = $lastRowItems
+                            .toArray()
+                            .sort((a, b) => {
+                                const la = parseFloat($(a).css('left')) || 0;
+                                const lb = parseFloat($(b).css('left')) || 0;
+                                return la - lb;
+                            });
+
+                        console.log('[Blog Masonry] Adjusting last row in grid #' + index + ', items:', $lastRowItems.length);
+
+                        // Reposition last row items from left to right, filling from column 0
+                        lastRowSorted.forEach((el, i) => {
+                            const newLeft = colWidth * i;
+                            $(el).css('left', newLeft + 'px');
+                        });
                     });
                 };
 
