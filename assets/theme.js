@@ -6008,15 +6008,22 @@
             const $blogMasonry = $('.blog-layout-masonry .blog-block-item');
             const isRTL = $body.hasClass('layout_rtl');
 
-            if (!$blogMasonry.length) return;
+            if (!$blogMasonry.length) {
+                console.log('[Blog Masonry] No masonry grids found');
+                return;
+            }
 
-            $blogMasonry.each(function() {
+            $blogMasonry.each(function(index) {
                 const $grid = $(this);
                 const $items = $grid.find('[data-masonry-item]');
+
+                console.log('[Blog Masonry] Grid #' + index + ' items:', $items.length);
 
                 // If we only have 1–2 items, do not initialize Masonry.
                 // Let the normal flex/grid CSS handle left-to-right layout.
                 if ($items.length <= 2) {
+                    console.log('[Blog Masonry] Skip Masonry for grid #' + index + ' (<= 2 items)');
+
                     // In case Masonry was previously applied, reset inline layout styles.
                     $grid.css('height', '');
                     $items.css({
@@ -6028,6 +6035,7 @@
                 }
 
                 const initMasonry = function() {
+                    console.log('[Blog Masonry] Init Masonry for grid #' + index + ', RTL:', isRTL);
                     $grid.masonry({
                         columnWidth: '.blog-grid-sizer',
                         itemSelector: '[data-masonry-item]',
@@ -6038,10 +6046,13 @@
 
                 // Initialize Masonry after images are loaded (if imagesLoaded is available)
                 if (typeof $.fn.imagesLoaded === 'function') {
+                    console.log('[Blog Masonry] Using imagesLoaded for grid #' + index);
                     $grid.imagesLoaded(function() {
+                        console.log('[Blog Masonry] imagesLoaded complete for grid #' + index);
                         initMasonry();
                     });
                 } else {
+                    console.log('[Blog Masonry] imagesLoaded not available, init immediately for grid #' + index);
                     initMasonry();
                 }
             });
