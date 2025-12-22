@@ -6006,7 +6006,10 @@
 
         initBlogMasonry: function() {
             const $blogMasonry = $('.blog-layout-masonry .blog-block-item');
-            const isRTL = $body.hasClass('layout_rtl');
+            const isRTL =
+                document.documentElement.getAttribute('dir') === 'rtl' ||
+                (window.Shopify && Shopify.locale && Shopify.locale.toLowerCase().startsWith('ar')) ||
+                document.body.classList.contains('layout_rtl');
 
             if (!$blogMasonry.length) {
                 console.log('[Blog Masonry] No masonry grids found');
