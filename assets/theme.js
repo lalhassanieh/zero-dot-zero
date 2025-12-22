@@ -6038,12 +6038,6 @@
                 }
 
                 const adjustLastRow = function() {
-                    // Skip adjustment for RTL - let Masonry work as it originally did
-                    if (isRTL) {
-                        console.log('[Blog Masonry] Skipping last row adjustment for RTL (grid #' + index + ')');
-                        return;
-                    }
-
                     const $allItems = $grid.find('[data-masonry-item]');
                     if ($allItems.length <= 2) return; // already handled earlier
 
@@ -6066,22 +6060,48 @@
                     const colWidth = $allItems.first().outerWidth(true) || 0;
                     if (!colWidth) return;
 
-                    // Sort last-row items by current left so we keep order
-                    const lastRowSorted = $lastRowItems
-                        .toArray()
-                        .sort((a, b) => {
-                            const la = parseFloat($(a).css('left')) || 0;
-                            const lb = parseFloat($(b).css('left')) || 0;
-                            return la - lb;
-                        });
+                    // Determine number of columns from class "column-X" if present (fallback: 3)
+                    let colCount = 3;
+                    const classMatch = ($grid.attr('class') || '').match(/column-(\d+)/);
+                    if (classMatch && classMatch[1]) {
+                        const parsed = parseInt(classMatch[1], 10);
+                        if (!isNaN(parsed) && parsed > 0) {
+                            colCount = parsed;
+                        }
+                    }
+
+                    const lastRowArray = $lastRowItems.toArray();
 
                     console.log('[Blog Masonry] Adjusting last row in grid #' + index + ', items:', $lastRowItems.length + ', RTL:', isRTL);
 
-                    // LTR: position from left to right (leftmost columns first)
-                    lastRowSorted.forEach((el, i) => {
-                        const newLeft = colWidth * i;
-                        $(el).css('left', newLeft + 'px');
-                    });
+                    if (isRTL) {
+                        // RTL: we want items to occupy the rightmost columns.
+                        // Sort by current left descending so the visually rightmost item is first.
+                        lastRowArray.sort((a, b) => {
+                            const la = parseFloat($(a).css('left')) || 0;
+                            const lb = parseFloat($(b).css('left')) || 0;
+                            return lb - la; // rightmost first
+                        });
+
+                        lastRowArray.forEach((el, i) => {
+                            // Place items into rightmost columns: colCount-1, colCount-2, ...
+                            const colIndex = colCount - 1 - i;
+                            const newLeft = colWidth * colIndex;
+                            $(el).css('left', newLeft + 'px');
+                        });
+                    } else {
+                        // LTR: position from left to right, filling from column 0
+                        lastRowArray
+                            .sort((a, b) => {
+                                const la = parseFloat($(a).css('left')) || 0;
+                                const lb = parseFloat($(b).css('left')) || 0;
+                                return la - lb;
+                            })
+                            .forEach((el, i) => {
+                                const newLeft = colWidth * i;
+                                $(el).css('left', newLeft + 'px');
+                            });
+                    }
                 };
 
                 const initMasonry = function() {
@@ -6089,27 +6109,24 @@
                     console.log('[Blog Masonry] Grid direction:', document.documentElement.getAttribute('dir'));
                     console.log('[Blog Masonry] Shopify locale:', window.Shopify && window.Shopify.locale);
 
-                    // Only attach adjustment handler for LTR
-                    if (!isRTL) {
-                        // Attach handler before layout so we capture the initial layout as well
-                        $grid.off('layoutComplete.blogMasonryAdjust')
-                            .on('layoutComplete.blogMasonryAdjust', function() {
-                                adjustLastRow();
-                            });
-                    } else {
-                        // For RTL, log positions after layout to debug
-                        $grid.off('layoutComplete.blogMasonryDebug')
-                            .on('layoutComplete.blogMasonryDebug', function() {
-                                const $allItems = $grid.find('[data-masonry-item]');
-                                console.log('[Blog Masonry] RTL Layout complete. Item positions:');
-                                $allItems.each(function(i) {
-                                    const $item = $(this);
-                                    const left = parseFloat($item.css('left')) || 0;
-                                    const top = parseFloat($item.css('top')) || 0;
-                                    console.log('[Blog Masonry] Item ' + i + ': left=' + left + ', top=' + top);
-                                });
-                            });
-                    }
+                    // Attach handler for both LTR and RTL – logic inside adjustLastRow branches on isRTL
+                    $grid
+                        .off('layoutComplete.blogMasonryAdjust layoutComplete.blogMasonryDebug')
+                        .on('layoutComplete.blogMasonryAdjust', function() {
+                            adjustLastRow();
+                        });
+
+                    // Keep detailed debug positions, helpful while tuning RTL
+                    $grid.on('layoutComplete.blogMasonryDebug', function() {
+                        const $allItems = $grid.find('[data-masonry-item]');
+                        console.log('[Blog Masonry] Layout complete. Item positions:');
+                        $allItems.each(function(i) {
+                            const $item = $(this);
+                            const left = parseFloat($item.css('left')) || 0;
+                            const top = parseFloat($item.css('top')) || 0;
+                            console.log('[Blog Masonry] Item ' + i + ': left=' + left + ', top=' + top);
+                        });
+                    });
 
                     $grid.masonry({
                         columnWidth: '.blog-grid-sizer',
@@ -6118,10 +6135,8 @@
                         originLeft: !isRTL
                     });
 
-                    // Only adjust for LTR
-                    if (!isRTL) {
-                        adjustLastRow();
-                    }
+                    // Run once immediately in case layoutComplete already fired
+                    adjustLastRow();
                 };
 
                 // Initialize Masonry after images are loaded (if imagesLoaded is available)
