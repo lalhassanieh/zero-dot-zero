@@ -6141,12 +6141,10 @@
                 document.body.classList.contains('layout_rtl');
 
             // High-level debug: is this function running and what mode?
-            console.log('[RTL pagination] adjustPaginationRTL called', {
+            console.log('[pagination] adjustPaginationLayout called', {
                 isRTL: isRTL,
                 path: window.location.pathname
             });
-            
-            if (!isRTL) return;
 
             setTimeout(function() {
                 $('.pagination__list').each(function(index) {
@@ -6195,39 +6193,71 @@
                     const prevInfo = getArrowInfo($prevArrow);
                     const nextInfo = getArrowInfo($nextArrow);
 
-                    console.log('[RTL pagination] list #' + index, {
+                    console.log('[pagination] list #' + index, {
                         pages: pagesInfo,
                         prevArrow: prevInfo,
                         nextArrow: nextInfo
                     });
 
                     if ($prevArrow.length && $numbers.length && $nextArrow.length) {
-                        // In RTL, some themes position the arrows so they overlap the
-                        // page numbers. Instead of using large margins, explicitly
-                        // control flex order so numbers are centered between arrows.
+                        // Desired layout:
+                        //   - LTR : [prev arrow text] [page numbers] [next arrow text]
+                        //   - RTL : [next arrow text] [page numbers] [prev arrow text]
                         //
-                        // Order:
-                        //   1) page numbers
-                        //   2) prev arrow
-                        //   3) next arrow
-                        $list.addClass('pagination-rtl-fixed').css('display', 'flex');
+                        // Enforce a flex row with no wrap, keep arrows on the
+                        // sides, and center the numbers between them.
+                        $list
+                            .addClass('pagination-fixed')
+                            .css({
+                                display: 'flex',
+                                'flex-wrap': 'nowrap',
+                                'justify-content': 'center',
+                                'align-items': 'center'
+                            });
 
-                        $numbers.css({
-                            order: 1,
-                            margin: '0 4px'
+                        // Prevent arrow labels from wrapping under each other
+                        $list.find('.arrow-text').css({
+                            'white-space': 'nowrap'
                         });
 
-                        $prevArrow.css({
-                            order: 2,
-                            'margin-right': '8px',
-                            'margin-left': '0'
-                        });
+                        // Order depends on direction
+                        if (isRTL) {
+                            // RTL: [next] [pages] [prev]
+                            $nextArrow.css({
+                                order: 0,
+                                'flex': '0 0 auto',
+                                'margin-inline': '8px'
+                            });
 
-                        $nextArrow.css({
-                            order: 3,
-                            'margin-left': '8px',
-                            'margin-right': '0'
-                        });
+                            $numbers.css({
+                                order: 1,
+                                margin: '0 4px'
+                            });
+
+                            $prevArrow.css({
+                                order: 2,
+                                'flex': '0 0 auto',
+                                'margin-inline': '8px'
+                            });
+                        } else {
+                            // LTR: [prev] [pages] [next]
+                            $prevArrow.css({
+                                order: 0,
+                                'flex': '0 0 auto',
+                                'margin-inline': '8px'
+                            });
+
+                            $numbers.css({
+                                order: 1,
+                                margin: '0 4px'
+                            });
+
+                            $nextArrow.css({
+                                order: 2,
+                                'flex': '0 0 auto',
+                                'margin-inline': '8px'
+                            });
+                        }
                     }
                 });
             }, 100);
