@@ -6221,8 +6221,8 @@
                         // keep the DOM order for directionality.
                         // Increase gaps a bit to avoid any overlap between
                         // arrow text and the first/last page numbers.
-                        $numbers.css('margin', '0 410px');
-                        $prevArrow.add($nextArrow).css('margin-inline', '20px');
+                        $numbers.css('margin', '0 4px');
+                        $prevArrow.add($nextArrow).css('margin-inline', '50px');
                     }
                 });
             }, 100);
