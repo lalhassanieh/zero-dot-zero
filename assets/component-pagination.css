@@ -334,10 +334,10 @@ a.pagination__item:hover::after {
   }
 }
 
-html[dir='rtl'] .pagination__item--next .icon-caret {
+html:lang(ar) .pagination__item--next .icon-caret {
   transform: rotate(90deg) !important;
 }
 
-html[dir='rtl'] .pagination__item--prev .icon-caret {
+html:lang(ar) .pagination__item--prev .icon-caret {
   transform: rotate(-90deg) !important;
 }
