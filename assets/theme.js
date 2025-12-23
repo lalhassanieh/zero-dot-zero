@@ -12,6 +12,7 @@
 
         $doc.ajaxStop(() => {
             halo.isAjaxLoading = false;
+            halo.adjustPaginationRTL();
         });
 
         halo.ready();
@@ -19,6 +20,10 @@
 
     document.addEventListener("DOMContentLoaded", function () {
         halo.init();
+    });
+
+    $(window).on('load', function() {
+        halo.adjustPaginationRTL();
     });
 
     var halo = {
@@ -6131,26 +6136,55 @@
         },
 
         adjustPaginationRTL: function() {
-            if (!$body.hasClass('layout_rtl')) return;
+            const isRTL = document.documentElement.getAttribute('dir') === 'rtl' ||
+                (window.Shopify && window.Shopify.locale && window.Shopify.locale.toLowerCase().startsWith('ar')) ||
+                document.body.classList.contains('layout_rtl');
 
-            $('.pagination__list').each(function() {
-                const $list = $(this);
-                const $prevArrow = $list.find('.pagination-arrow:first-child');
-                const $numbers = $list.find('.pagination-num');
-                
-                if ($prevArrow.length && $numbers.length) {
-                    // Calculate total width of all number items plus their margins
-                    let totalWidth = 0;
-                    $numbers.each(function() {
-                        const $num = $(this);
-                        totalWidth += $num.outerWidth(true);
-                    });
-                    
-                    // Add some extra spacing (15px buffer for better visual separation)
-                    const marginValue = totalWidth + 15;
-                    $prevArrow.css('margin-right', marginValue + 'px');
-                }
+            // High-level debug: is this function running and what mode?
+            console.log('[RTL pagination] adjustPaginationRTL called', {
+                isRTL: isRTL,
+                path: window.location.pathname
             });
+            
+            if (!isRTL) return;
+
+            setTimeout(function() {
+                $('.pagination__list').each(function(index) {
+                    const $list = $(this);
+                    const $prevArrow = $list.find('.pagination-arrow:first-child');
+                    const $nextArrow = $list.find('.pagination-arrow:last-child');
+                    const $numbers = $list.find('.pagination-num');
+                    
+                    // Detailed debug information for each pagination instance
+                    const pagesInfo = $numbers.map(function() {
+                        const $num = $(this);
+                        const rect = this.getBoundingClientRect();
+                        return {
+                            text: $num.text().trim(),
+                            left: rect.left,
+                            right: rect.right,
+                            width: rect.width,
+                            isVisible: rect.right > 0 && rect.left < window.innerWidth
+                        };
+                    }).get();
+
+                    console.log('[RTL pagination] list #' + index, {
+                        pages: pagesInfo,
+                        prevArrowHtml: $prevArrow.html(),
+                        nextArrowHtml: $nextArrow.html()
+                    });
+
+                    if ($prevArrow.length && $numbers.length) {
+                        // Use a fixed small gap so arrows never push the
+                        // page numbers out of view in RTL layouts.
+                        const marginValue = 15; // px
+                        $prevArrow.css({
+                            'margin-right': marginValue + 'px',
+                            'margin-left': ''
+                        });
+                    }
+                });
+            }, 100);
         },
 
         articleGallery: function() {
