@@ -330,10 +330,14 @@ a.pagination__item:hover::after {
   }
 }
 
-html[dir='rtl'] .pagination__item--next .icon {
-  transform: rotate(90deg);
+body.layout_rtl .pagination__item--next svg.icon-caret,
+body[dir='rtl'] .pagination__item--next svg.icon-caret,
+html[dir='rtl'] .pagination__item--next svg.icon-caret {
+  transform: rotate(90deg) !important;
 }
 
-html[dir='rtl'] .pagination__item--prev .icon {
-  transform: rotate(-90deg);
+body.layout_rtl .pagination__item--prev svg.icon-caret,
+body[dir='rtl'] .pagination__item--prev svg.icon-caret,
+html[dir='rtl'] .pagination__item--prev svg.icon-caret {
+  transform: rotate(-90deg) !important;
 }
