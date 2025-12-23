@@ -6217,29 +6217,13 @@
                             'white-space': 'nowrap'
                         });
 
-                        // Reset any inline margins we may have set before
-                        $numbers.css('margin', '');
-                        $prevArrow.add($nextArrow).css({
-                            'margin-left': '',
-                            'margin-right': ''
-                        });
-
                         // Simple spacing so arrows and numbers don't touch, but
                         // keep the DOM order and the original arrow positions.
-                        // We only add small symmetric gaps; no per-number margins
-                        // that could interfere with existing CSS.
+                        // Give the number group its own side padding instead of
+                        // pushing PREV/NEXT far away.
                         $numbers.css('margin', '0 4px');
-
-                        if (isRTL) {
-                            // In RTL, put a bit of space between NEXT/previous
-                            // labels and the numbers without changing order.
-                            $prevArrow.css('margin-left', '8px');
-                            $nextArrow.css('margin-right', '8px');
-                        } else {
-                            // LTR spacing
-                            $prevArrow.css('margin-right', '8px');
-                            $nextArrow.css('margin-left', '8px');
-                        }
+                        $numbers.first().css('margin-left', '14px');
+                        $numbers.last().css('margin-right', '14px');
                     }
                 });
             }, 100);
