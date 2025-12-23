@@ -12,7 +12,6 @@
 
         $doc.ajaxStop(() => {
             halo.isAjaxLoading = false;
-            halo.adjustPaginationRTL();
         });
 
         halo.ready();
@@ -20,10 +19,6 @@
 
     document.addEventListener("DOMContentLoaded", function () {
         halo.init();
-    });
-
-    $(window).on('load', function() {
-        halo.adjustPaginationRTL();
     });
 
     var halo = {
@@ -6136,41 +6131,26 @@
         },
 
         adjustPaginationRTL: function() {
-            const isRTL = document.documentElement.getAttribute('dir') === 'rtl' ||
-                (window.Shopify && window.Shopify.locale && window.Shopify.locale.toLowerCase().startsWith('ar')) ||
-                document.body.classList.contains('layout_rtl');
-            
-            if (!isRTL) return;
+            if (!$body.hasClass('layout_rtl')) return;
 
-            setTimeout(function() {
-                $('.pagination__list').each(function(index) {
-                    const $list = $(this);
-                    const $prevArrow = $list.find('.pagination-arrow:first-child');
-                    const $nextArrow = $list.find('.pagination-arrow:last-child');
-                    const $numbers = $list.find('.pagination-num');
-                    
-                    // Debug information to understand current pagination state
-                    const visiblePages = $numbers.map(function() {
-                        return $(this).text().trim();
-                    }).get();
-
-                    console.log('[RTL pagination] list #' + index, {
-                        visiblePages: visiblePages,
-                        prevArrowHtml: $prevArrow.html(),
-                        nextArrowHtml: $nextArrow.html()
+            $('.pagination__list').each(function() {
+                const $list = $(this);
+                const $prevArrow = $list.find('.pagination-arrow:first-child');
+                const $numbers = $list.find('.pagination-num');
+                
+                if ($prevArrow.length && $numbers.length) {
+                    // Calculate total width of all number items plus their margins
+                    let totalWidth = 0;
+                    $numbers.each(function() {
+                        const $num = $(this);
+                        totalWidth += $num.outerWidth(true);
                     });
-
-                    if ($prevArrow.length && $numbers.length) {
-                        // Use a fixed small gap so arrows never push the
-                        // page numbers out of view in RTL layouts.
-                        const marginValue = 15; // px
-                        $prevArrow.css({
-                            'margin-right': marginValue + 'px',
-                            'margin-left': ''
-                        });
-                    }
-                });
-            }, 100);
+                    
+                    // Add some extra spacing (15px buffer for better visual separation)
+                    const marginValue = totalWidth + 15;
+                    $prevArrow.css('margin-right', marginValue + 'px');
+                }
+            });
         },
 
         articleGallery: function() {
