@@ -233,15 +233,6 @@ a.pagination__item:hover::after {
 }
 
 .pagination.style--1 .pagination__list > li {
-  /* Let the base item width be automatic; we will
-     control the numeric items separately so arrows
-     don't get forced spacing. */
-  min-width: auto;
-}
-
-/* Give only the page number items a consistent width,
-   regardless of how many pages there are (1–5, 1–10, etc.) */
-.pagination.style--1 .pagination-num {
   min-width: 2rem;
 }
 
