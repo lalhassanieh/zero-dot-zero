@@ -160,6 +160,11 @@ a.pagination__item:hover::after {
   border-radius: var(--arrow-border-radius);
 }
 
+.pagination.style--1 .pagination__item-arrow {
+  width: auto;
+  min-width: var(--arrow-width);
+}
+
 .pagination__item-arrow .icon {
   fill: var(--pagination-arrow-color);
   max-width: 100%;
