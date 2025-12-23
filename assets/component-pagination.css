@@ -160,17 +160,14 @@ a.pagination__item:hover::after {
   border-radius: var(--arrow-border-radius);
 }
 
-/* Style 1: keep button auto-width but tighten icon–text spacing */
 .pagination.style--1 .pagination__item-arrow {
-  width: auto;
   min-width: var(--arrow-width);
-  justify-content: center;     /* center content inside pill */
+  justify-content: center;  
 }
 
-/* Remove extra margin on the label – let 'gap' control spacing */
 .pagination.style--1 .pagination__item--prev .arrow-text,
 .pagination.style--1 .pagination__item--next .arrow-text {
-  margin: 0;
+  margin: 4px;
 }
 .pagination__item-arrow .icon {
   fill: var(--pagination-arrow-color);
