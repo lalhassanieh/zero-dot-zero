@@ -1856,9 +1856,9 @@
 	}
 
 	body.layout_rtl .custom-cursor__inner .arrow:before {
-		left: 50%;
-		right: auto;
-    	transform: translateX(-50%);
+		left: auto;
+		right: 50%;
+    	transform: translate(50%);
 	}
 
 	body.layout_rtl .productView-stickyCart.style-1 .sticky-info {
