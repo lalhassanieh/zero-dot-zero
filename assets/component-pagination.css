@@ -330,14 +330,11 @@ a.pagination__item:hover::after {
   }
 }
 
-body.layout_rtl .pagination__item--next svg.icon-caret,
-body[dir='rtl'] .pagination__item--next svg.icon-caret,
-html[dir='rtl'] .pagination__item--next svg.icon-caret {
+/* RTL overrides: flip pagination caret directions based on Arabic labels */
+a.pagination__item--next[aria-label="التالي"] svg.icon-caret {
   transform: rotate(90deg) !important;
 }
 
-body.layout_rtl .pagination__item--prev svg.icon-caret,
-body[dir='rtl'] .pagination__item--prev svg.icon-caret,
-html[dir='rtl'] .pagination__item--prev svg.icon-caret {
+a.pagination__item--prev[aria-label="السابق"] svg.icon-caret {
   transform: rotate(-90deg) !important;
 }
