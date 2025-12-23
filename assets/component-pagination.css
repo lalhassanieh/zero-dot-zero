@@ -222,7 +222,7 @@ a.pagination__item:hover::after {
 .pagination-arrow.style-3 .pagination__item-arrow {
   display: flex;
   align-items: center;
-  gap: 0.25rem;
+  gap: 0rem;
   border-radius: 0;
   transform: translateY(0);
   width: max-content;
