@@ -153,7 +153,7 @@ a.pagination__item:hover::after {
   cursor: pointer;
   padding: 8px;
   width: var(--arrow-width);
-  /*height: var(--arrow-height);*/
+  height: var(--arrow-height);
   z-index: 1;
   outline: none;
   transition: var(--anchor-transition);
@@ -170,7 +170,7 @@ a.pagination__item:hover::after {
   max-width: 100%;
   max-height: 100%;
   width: var(--arrow-size-icon);
-  height: var(--arrow-size-icon);
+  /*height: var(--arrow-size-icon);*/
   color: var(--arrow-color);
   stroke: transparent;
 }
