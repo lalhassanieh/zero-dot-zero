@@ -12,7 +12,6 @@
 
         $doc.ajaxStop(() => {
             halo.isAjaxLoading = false;
-            halo.adjustPaginationRTL();
         });
 
         halo.ready();
@@ -20,10 +19,6 @@
 
     document.addEventListener("DOMContentLoaded", function () {
         halo.init();
-    });
-
-    $(window).on('load', function() {
-        halo.adjustPaginationRTL();
     });
 
     var halo = {
@@ -6136,97 +6131,26 @@
         },
 
         adjustPaginationRTL: function() {
-            const isRTL = document.documentElement.getAttribute('dir') === 'rtl' ||
-                (window.Shopify && window.Shopify.locale && window.Shopify.locale.toLowerCase().startsWith('ar')) ||
-                document.body.classList.contains('layout_rtl');
+            if (!$body.hasClass('layout_rtl')) return;
 
-            // High-level debug: is this function running and what mode?
-            console.log('[pagination] adjustPaginationLayout called', {
-                isRTL: isRTL,
-                path: window.location.pathname
-            });
-
-            setTimeout(function() {
-                $('.pagination__list').each(function(index) {
-                    const $list = $(this);
-                    const $prevArrow = $list.find('.pagination-arrow:first-child');
-                    const $nextArrow = $list.find('.pagination-arrow:last-child');
-                    const $numbers = $list.find('.pagination-num');
-
-                    // Detailed debug information for each pagination instance
-                    const pagesInfo = $numbers.map(function() {
+            $('.pagination__list').each(function() {
+                const $list = $(this);
+                const $prevArrow = $list.find('.pagination-arrow:first-child');
+                const $numbers = $list.find('.pagination-num');
+                
+                if ($prevArrow.length && $numbers.length) {
+                    // Calculate total width of all number items plus their margins
+                    let totalWidth = 0;
+                    $numbers.each(function() {
                         const $num = $(this);
-                        const rect = this.getBoundingClientRect();
-                        return {
-                            text: $num.text().trim(),
-                            left: rect.left,
-                            right: rect.right,
-                            width: rect.width,
-                            isVisible: rect.right > 0 && rect.left < window.innerWidth
-                        };
-                    }).get();
-
-                    // Arrow text / icon positions
-                    const getArrowInfo = ($arrow) => {
-                        if (!$arrow.length) return null;
-                        const el = $arrow.get(0);
-                        const rect = el.getBoundingClientRect();
-                        const $text = $arrow.find('.arrow-text');
-                        const textRect = $text.length ? $text.get(0).getBoundingClientRect() : null;
-                        return {
-                            fullText: $arrow.text().trim(),
-                            container: {
-                                left: rect.left,
-                                right: rect.right,
-                                width: rect.width,
-                                isVisible: rect.right > 0 && rect.left < window.innerWidth
-                            },
-                            textSpan: textRect ? {
-                                left: textRect.left,
-                                right: textRect.right,
-                                width: textRect.width,
-                                isVisible: textRect.right > 0 && textRect.left < window.innerWidth
-                            } : null
-                        };
-                    };
-
-                    const prevInfo = getArrowInfo($prevArrow);
-                    const nextInfo = getArrowInfo($nextArrow);
-
-                    console.log('[pagination] list #' + index, {
-                        pages: pagesInfo,
-                        prevArrow: prevInfo,
-                        nextArrow: nextInfo
+                        totalWidth += $num.outerWidth(true);
                     });
-
-                    if ($numbers.length) {
-                        // Enforce a flex row with no wrap and keep everything on one line,
-                        // but DO NOT change the logical order of items — the theme's
-                        // original markup already has the correct order for LTR/RTL.
-                        $list
-                            .addClass('pagination-fixed')
-                            .css({
-                                display: 'flex',
-                                'flex-wrap': 'nowrap',
-                                'justify-content': 'center',
-                                'align-items': 'center'
-                            });
-
-                        // Prevent arrow labels from wrapping under each other
-                        $list.find('.arrow-text').css({
-                            'white-space': 'nowrap'
-                        });
-
-                        // Simple spacing so arrows and numbers don't touch, but
-                        // keep the DOM order and the original arrow positions.
-                        // Give the number group its own side padding instead of
-                        // pushing PREV/NEXT far away.
-                        $numbers.css('margin', '0 4px');
-                        $numbers.first().css('margin-left', '14px');
-                        $numbers.last().css('margin-right', '14px');
-                    }
-                });
-            }, 100);
+                    
+                    // Add some extra spacing (15px buffer for better visual separation)
+                    const marginValue = totalWidth + 15;
+                    $prevArrow.css('margin-right', marginValue + 'px');
+                }
+            });
         },
 
         articleGallery: function() {
