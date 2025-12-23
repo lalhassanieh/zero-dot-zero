@@ -27,6 +27,14 @@
   align-items: center;
 }
 
+.pagination-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+
 .pagination__list > li {
   min-width: 4rem;
 }
@@ -234,6 +242,10 @@ a.pagination__item:hover::after {
 
 .pagination.style--1 .pagination__list > li {
   min-width: 2rem;
+}
+
+.pagination.style--1 .pagination-inner .pagination-arrow {
+  flex: 0 0 auto;
 }
 
 .pagination.style--1 .arrow-text {
