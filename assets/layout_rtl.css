@@ -131,22 +131,6 @@
 		margin-right: 7px;
 	}
 
-	body.layout_rtl .pagination__item--prev .icon {
-		transform: rotate(-90deg);
-	}
-
-	body.layout_rtl .pagination__item--next .icon {
-		transform: rotate(90deg);
-	}
-
-	body.layout_rtl .pagination__item--prev .icon.thin-arrow {
-		transform: rotate(180deg);
-	}
-
-	body.layout_rtl .pagination__item--next .icon.thin-arrow {
-		transform: rotate(0deg);
-	}
-
 	body.layout_rtl .announcement-bar__message .message span img {
 		margin-left: 16px;
     	margin-right: 0 !important;
