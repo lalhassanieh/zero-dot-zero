@@ -78,7 +78,7 @@
           "settings": {
             "custom_width": "25",
             "heading": "Recipes",
-            "menu": "",
+            "menu": "footer-recipes-menu",
             "mg_bottom": 10
           }
         },
