@@ -12,6 +12,7 @@
 
         $doc.ajaxStop(() => {
             halo.isAjaxLoading = false;
+            halo.adjustPaginationRTL();
         });
 
         halo.ready();
@@ -19,6 +20,10 @@
 
     document.addEventListener("DOMContentLoaded", function () {
         halo.init();
+    });
+
+    $(window).on('load', function() {
+        halo.adjustPaginationRTL();
     });
 
     var halo = {
@@ -6131,26 +6136,32 @@
         },
 
         adjustPaginationRTL: function() {
-            if (!$body.hasClass('layout_rtl')) return;
+            const isRTL = document.documentElement.getAttribute('dir') === 'rtl' ||
+                (window.Shopify && window.Shopify.locale && window.Shopify.locale.toLowerCase().startsWith('ar')) ||
+                document.body.classList.contains('layout_rtl');
+            
+            if (!isRTL) return;
 
-            $('.pagination__list').each(function() {
-                const $list = $(this);
-                const $prevArrow = $list.find('.pagination-arrow:first-child');
-                const $numbers = $list.find('.pagination-num');
-                
-                if ($prevArrow.length && $numbers.length) {
-                    // Calculate total width of all number items plus their margins
-                    let totalWidth = 0;
-                    $numbers.each(function() {
-                        const $num = $(this);
-                        totalWidth += $num.outerWidth(true);
-                    });
+            setTimeout(function() {
+                $('.pagination__list').each(function() {
+                    const $list = $(this);
+                    const $prevArrow = $list.find('.pagination-arrow:first-child');
+                    const $numbers = $list.find('.pagination-num');
                     
-                    // Add some extra spacing (15px buffer for better visual separation)
-                    const marginValue = totalWidth + 15;
-                    $prevArrow.css('margin-right', marginValue + 'px');
-                }
-            });
+                    if ($prevArrow.length && $numbers.length) {
+                        // Calculate total width of all number items plus their margins
+                        let totalWidth = 0;
+                        $numbers.each(function() {
+                            const $num = $(this);
+                            totalWidth += $num.outerWidth(true);
+                        });
+                        
+                        // Add some extra spacing (15px buffer for better visual separation)
+                        const marginValue = totalWidth + 15;
+                        $prevArrow.css('margin-right', marginValue + 'px');
+                    }
+                });
+            }, 100);
         },
 
         articleGallery: function() {
