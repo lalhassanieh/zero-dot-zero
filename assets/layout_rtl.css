@@ -131,6 +131,14 @@
 		margin-right: 7px;
 	}
 
+	html[dir='rtl'] .pagination__item--prev svg.icon-caret {
+		transform: rotate(-90deg) !important;
+	}
+
+	html[dir='rtl'] .pagination__item--next svg.icon-caret {
+		transform: rotate(90deg) !important;
+	}
+
 	body.layout_rtl .announcement-bar__message .message span img {
 		margin-left: 16px;
     	margin-right: 0 !important;
