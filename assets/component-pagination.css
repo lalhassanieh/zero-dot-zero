@@ -27,13 +27,13 @@
   align-items: center;
 }
 
+/* New wrapper that holds arrows + number list in a single row */
 .pagination-inner {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1rem;
 }
-
 
 .pagination__list > li {
   min-width: 4rem;
@@ -159,12 +159,9 @@ a.pagination__item:hover::after {
   font-size: 0;
   letter-spacing: 0;
   cursor: pointer;
-  position: absolute;
-  top: 50%;
   padding: 8px;
   width: var(--arrow-width);
   height: var(--arrow-height);
-  transform: translateY(-50%);
   z-index: 1;
   outline: none;
   transition: var(--anchor-transition);
@@ -238,14 +235,6 @@ a.pagination__item:hover::after {
 .pagination-arrow.disabled {
   pointer-events: none;
   opacity: 0.5;
-}
-
-.pagination.style--1 .pagination__list > li {
-  min-width: 2rem;
-}
-
-.pagination.style--1 .pagination-inner .pagination-arrow {
-  flex: 0 0 auto;
 }
 
 .pagination.style--1 .arrow-text {
