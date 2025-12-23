@@ -329,3 +329,11 @@ a.pagination__item:hover::after {
     margin-bottom: 8rem;
   }
 }
+
+html[dir='rtl'] .pagination__item--next .icon {
+  transform: rotate(90deg);
+}
+
+html[dir='rtl'] .pagination__item--prev .icon {
+  transform: rotate(-90deg);
+}
