@@ -462,6 +462,12 @@
     transform: translateX(-50%);
 }
 
+html[lang^="ar"] .halo-productView .custom-cursor__inner .arrow::before {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+}
+
 .cursor-wrapper.handleMouseEnter .custom-cursor__inner .arrow {
     z-index: 1;
     opacity: 1;
