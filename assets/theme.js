@@ -6217,12 +6217,13 @@
                             'white-space': 'nowrap'
                         });
 
-                        // Simple margins so arrows and numbers don't touch, but
-                        // keep the DOM order for directionality.
-                        // Increase gaps a bit to avoid any overlap between
-                        // arrow text and the first/last page numbers.
+                        // Simple spacing so arrows and numbers don't touch, but
+                        // keep the DOM order and the original arrow positions.
+                        // Give the number group its own side padding instead of
+                        // pushing PREV/NEXT far away.
                         $numbers.css('margin', '0 4px');
-                        $prevArrow.add($nextArrow).css('margin-inline', '50px');
+                        $numbers.first().css('margin-left', '14px');
+                        $numbers.last().css('margin-right', '14px');
                     }
                 });
             }, 100);
