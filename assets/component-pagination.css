@@ -334,11 +334,10 @@ a.pagination__item:hover::after {
   }
 }
 
-/* RTL overrides: flip pagination caret directions based on Arabic labels */
-a.pagination__item--next[aria-label="التالي"] svg.icon-caret {
+html[dir='rtl'] .pagination__item--next .icon-caret {
   transform: rotate(90deg) !important;
 }
 
-a.pagination__item--prev[aria-label="السابق"] svg.icon-caret {
+html[dir='rtl'] .pagination__item--prev .icon-caret {
   transform: rotate(-90deg) !important;
 }
