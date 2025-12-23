@@ -6199,13 +6199,17 @@
                         nextArrow: nextInfo
                     });
 
-                    if ($prevArrow.length && $numbers.length && $nextArrow.length) {
-                        // Desired layout:
-                        //   - LTR : [prev arrow text] [page numbers] [next arrow text]
-                        //   - RTL : [next arrow text] [page numbers] [prev arrow text]
+                    if ($numbers.length) {
+                        // Desired layout (must also work when only one arrow exists):
+                        //   - LTR, middle pages : [prev] [pages] [next]
+                        //   - LTR, first page   : [pages] [next]
+                        //   - LTR, last page    : [prev] [pages]
                         //
-                        // Enforce a flex row with no wrap, keep arrows on the
-                        // sides, and center the numbers between them.
+                        //   - RTL, middle pages : [next] [pages] [prev]
+                        //   - RTL, first page   : [next] [pages]
+                        //   - RTL, last page    : [pages] [prev]
+                        //
+                        // Enforce a flex row with no wrap and keep everything on one line.
                         $list
                             .addClass('pagination-fixed')
                             .css({
@@ -6220,43 +6224,104 @@
                             'white-space': 'nowrap'
                         });
 
-                        // Order depends on direction
+                        // Reset defaults so we don't keep old orders when elements disappear
+                        $prevArrow.add($nextArrow).add($numbers).css({
+                            order: '',
+                            'flex': '',
+                            'margin-inline': '',
+                            margin: ''
+                        });
+
                         if (isRTL) {
-                            // RTL: [next] [pages] [prev]
-                            $nextArrow.css({
-                                order: 0,
-                                'flex': '0 0 auto',
-                                'margin-inline': '8px'
-                            });
+                            // RTL
+                            if ($prevArrow.length && $nextArrow.length) {
+                                // Middle page: [next] [pages] [prev]
+                                $nextArrow.css({
+                                    order: 0,
+                                    'flex': '0 0 auto',
+                                    'margin-inline': '8px'
+                                });
 
-                            $numbers.css({
-                                order: 1,
-                                margin: '0 4px'
-                            });
+                                $numbers.css({
+                                    order: 1,
+                                    margin: '0 4px'
+                                });
 
-                            $prevArrow.css({
-                                order: 2,
-                                'flex': '0 0 auto',
-                                'margin-inline': '8px'
-                            });
+                                $prevArrow.css({
+                                    order: 2,
+                                    'flex': '0 0 auto',
+                                    'margin-inline': '8px'
+                                });
+                            } else if ($nextArrow.length && !$prevArrow.length) {
+                                // First page: [next] [pages]
+                                $nextArrow.css({
+                                    order: 0,
+                                    'flex': '0 0 auto',
+                                    'margin-inline': '8px'
+                                });
+
+                                $numbers.css({
+                                    order: 1,
+                                    margin: '0 4px'
+                                });
+                            } else if ($prevArrow.length && !$nextArrow.length) {
+                                // Last page: [pages] [prev]
+                                $numbers.css({
+                                    order: 0,
+                                    margin: '0 4px'
+                                });
+
+                                $prevArrow.css({
+                                    order: 1,
+                                    'flex': '0 0 auto',
+                                    'margin-inline': '8px'
+                                });
+                            }
                         } else {
-                            // LTR: [prev] [pages] [next]
-                            $prevArrow.css({
-                                order: 0,
-                                'flex': '0 0 auto',
-                                'margin-inline': '8px'
-                            });
+                            // LTR
+                            if ($prevArrow.length && $nextArrow.length) {
+                                // Middle page: [prev] [pages] [next]
+                                $prevArrow.css({
+                                    order: 0,
+                                    'flex': '0 0 auto',
+                                    'margin-inline': '8px'
+                                });
 
-                            $numbers.css({
-                                order: 1,
-                                margin: '0 4px'
-                            });
+                                $numbers.css({
+                                    order: 1,
+                                    margin: '0 4px'
+                                });
 
-                            $nextArrow.css({
-                                order: 2,
-                                'flex': '0 0 auto',
-                                'margin-inline': '8px'
-                            });
+                                $nextArrow.css({
+                                    order: 2,
+                                    'flex': '0 0 auto',
+                                    'margin-inline': '8px'
+                                });
+                            } else if ($nextArrow.length && !$prevArrow.length) {
+                                // First page: [pages] [next]
+                                $numbers.css({
+                                    order: 0,
+                                    margin: '0 4px'
+                                });
+
+                                $nextArrow.css({
+                                    order: 1,
+                                    'flex': '0 0 auto',
+                                    'margin-inline': '8px'
+                                });
+                            } else if ($prevArrow.length && !$nextArrow.length) {
+                                // Last page: [prev] [pages]
+                                $prevArrow.css({
+                                    order: 0,
+                                    'flex': '0 0 auto',
+                                    'margin-inline': '8px'
+                                });
+
+                                $numbers.css({
+                                    order: 1,
+                                    margin: '0 4px'
+                                });
+                            }
                         }
                     }
                 });
