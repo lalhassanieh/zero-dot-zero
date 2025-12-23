@@ -654,7 +654,7 @@
         "color_des": "#005339",
         "fontsize_des": 35,
         "contact_text": "Learn more",
-        "contact_link": "/pages/faq",
+        "contact_link": "shopify://pages/faq",
         "contact_color": "#005339",
         "contact_color_border": "#005339",
         "contact_color_bg": "#ffffff",
