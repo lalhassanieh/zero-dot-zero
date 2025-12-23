@@ -27,14 +27,6 @@
   align-items: center;
 }
 
-/* New wrapper that holds arrows + number list in a single row */
-.pagination-inner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-}
-
 .pagination__list > li {
   min-width: 4rem;
 }
