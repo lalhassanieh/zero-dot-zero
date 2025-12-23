@@ -6147,7 +6147,7 @@
                     });
                     
                     // Add some extra spacing (15px buffer for better visual separation)
-                    const marginValue = totalWidth + 15;
+                    const marginValue = totalWidth + 50;
                     $prevArrow.css('margin-right', marginValue + 'px');
                 }
             });
