@@ -6131,26 +6131,7 @@
         },
 
         adjustPaginationRTL: function() {
-            if (!$body.hasClass('layout_rtl')) return;
-
-            $('.pagination__list').each(function() {
-                const $list = $(this);
-                const $prevArrow = $list.find('.pagination-arrow:first-child');
-                const $numbers = $list.find('.pagination-num');
-                
-                if ($prevArrow.length && $numbers.length) {
-                    // Calculate total width of all number items plus their margins
-                    let totalWidth = 0;
-                    $numbers.each(function() {
-                        const $num = $(this);
-                        totalWidth += $num.outerWidth(true);
-                    });
-                    
-                    // Add some extra spacing (15px buffer for better visual separation)
-                    const marginValue = totalWidth + 0;
-                    $prevArrow.css('margin-right', marginValue + 'px');
-                }
-            });
+           return;
         },
 
         articleGallery: function() {
