@@ -250,7 +250,7 @@ a.pagination__item:hover::after {
 }
 
 .pagination.style--2 .pagination__list>li:not(:last-child) {
-    margin-right: 1.5rem;
+    margin-right: 0.5rem;
 }
 
 .pagination.style--2 .pagination__item {
