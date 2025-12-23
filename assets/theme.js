@@ -6174,13 +6174,32 @@
                         nextArrowHtml: $nextArrow.html()
                     });
 
-                    if ($prevArrow.length && $numbers.length) {
-                        // Use a fixed small gap so arrows never push the
-                        // page numbers out of view in RTL layouts.
-                        const marginValue = 15; // px
+                    if ($prevArrow.length && $numbers.length && $nextArrow.length) {
+                        // In RTL, some themes position the arrows so they overlap the
+                        // page numbers. Instead of using large margins, explicitly
+                        // control flex order so numbers are centered between arrows.
+                        //
+                        // Order:
+                        //   1) page numbers
+                        //   2) prev arrow
+                        //   3) next arrow
+                        $list.addClass('pagination-rtl-fixed').css('display', 'flex');
+
+                        $numbers.css({
+                            order: 1,
+                            margin: '0 4px'
+                        });
+
                         $prevArrow.css({
-                            'margin-right': marginValue + 'px',
-                            'margin-left': ''
+                            order: 2,
+                            'margin-right': '8px',
+                            'margin-left': '0'
+                        });
+
+                        $nextArrow.css({
+                            order: 3,
+                            'margin-left': '8px',
+                            'margin-right': '0'
                         });
                     }
                 });
