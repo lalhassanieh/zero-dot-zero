@@ -6154,7 +6154,7 @@
                     const $prevArrow = $list.find('.pagination-arrow:first-child');
                     const $nextArrow = $list.find('.pagination-arrow:last-child');
                     const $numbers = $list.find('.pagination-num');
-                    
+
                     // Detailed debug information for each pagination instance
                     const pagesInfo = $numbers.map(function() {
                         const $num = $(this);
@@ -6168,10 +6168,37 @@
                         };
                     }).get();
 
+                    // Arrow text / icon positions
+                    const getArrowInfo = ($arrow) => {
+                        if (!$arrow.length) return null;
+                        const el = $arrow.get(0);
+                        const rect = el.getBoundingClientRect();
+                        const $text = $arrow.find('.arrow-text');
+                        const textRect = $text.length ? $text.get(0).getBoundingClientRect() : null;
+                        return {
+                            fullText: $arrow.text().trim(),
+                            container: {
+                                left: rect.left,
+                                right: rect.right,
+                                width: rect.width,
+                                isVisible: rect.right > 0 && rect.left < window.innerWidth
+                            },
+                            textSpan: textRect ? {
+                                left: textRect.left,
+                                right: textRect.right,
+                                width: textRect.width,
+                                isVisible: textRect.right > 0 && textRect.left < window.innerWidth
+                            } : null
+                        };
+                    };
+
+                    const prevInfo = getArrowInfo($prevArrow);
+                    const nextInfo = getArrowInfo($nextArrow);
+
                     console.log('[RTL pagination] list #' + index, {
                         pages: pagesInfo,
-                        prevArrowHtml: $prevArrow.html(),
-                        nextArrowHtml: $nextArrow.html()
+                        prevArrow: prevInfo,
+                        nextArrow: nextInfo
                     });
 
                     if ($prevArrow.length && $numbers.length && $nextArrow.length) {
