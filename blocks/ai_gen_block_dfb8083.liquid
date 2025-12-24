@@ -132,6 +132,22 @@
     display: block;
   }
 
+  .ai-newsletter-errors-{{ ai_gen_id }} {
+    display: none !important;
+  }
+
+  .ai-newsletter-form-{{ ai_gen_id }} .note--error,
+  .ai-newsletter-form-{{ ai_gen_id }} .errors,
+  .ai-newsletter-form-{{ ai_gen_id }} .form-error {
+    display: none !important;
+  }
+
+  form[class*="ai-newsletter-auto-subscribe"] .note--error,
+  form[class*="ai-newsletter-auto-subscribe"] .errors,
+  form[class*="ai-newsletter-auto-subscribe"] .form-error {
+    display: none !important;
+  }
+
   .ai-newsletter-form-{{ ai_gen_id }} {
     display: flex;
     gap: 10px;
@@ -281,10 +297,14 @@
           </div>
         </div>
         {% if customer and customer.accepts_marketing == false %}
-          <div class="ai-newsletter-success-{{ ai_gen_id }}" data-newsletter-success style="display:none;">
+          <div class="ai-newsletter-success-{{ ai_gen_id }}" data-newsletter-success style="display:none; margin-top: 16px;">
             Thank you! You've been subscribed successfully.
           </div>
         {% endif %}
+      {% endif %}
+      
+      {% if block.settings.banner_1_enable_subscribe %}
+        <div class="ai-newsletter-errors-{{ ai_gen_id }}" data-newsletter-errors style="display:none;"></div>
       {% endif %}
     </div>
   </div><div class="ai-banner-item-{{ ai_gen_id }}" data-banner-item>
