@@ -93,7 +93,6 @@
     transition: all 0.3s ease;
     border: {{ block.settings.button_border_width }}px solid {{ block.settings.button_border_color }};
     text-transform: {{ block.settings.button_text_transform }};
-    position: relative;
   }
 
   .ai-banner-button-{{ ai_gen_id }}:hover {
@@ -106,9 +105,10 @@
     cursor: pointer;
     font-family: inherit;
     margin: 0;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
+    padding: {{ block.settings.button_padding_vertical }}px {{ block.settings.button_padding_horizontal }}px;
+    box-sizing: border-box;
+    line-height: 1;
+    height: auto;
   }
 
   .ai-newsletter-wrap-{{ ai_gen_id }} {
