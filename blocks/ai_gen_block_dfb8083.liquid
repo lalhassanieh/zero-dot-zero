@@ -104,32 +104,13 @@
     border-color: {{ block.settings.button_hover_border_color }};
   }
 
-  .ai-banner-button-{{ ai_gen_id }}[type="button"] {
+ .ai-banner-button-{{ ai_gen_id }}[type="button"] {
     cursor: pointer;
-    font-family: inherit;
-    margin: 0;
-    line-height: 1;
   }
 
   .ai-newsletter-wrap-{{ ai_gen_id }} {
     margin-top: 16px;
     transition: all 0.3s ease;
-  }
-
-  .ai-newsletter-success-{{ ai_gen_id }} {
-    display: none;
-    margin-top: 16px;
-    padding: {{ block.settings.button_padding_vertical }}px {{ block.settings.button_padding_horizontal }}px;
-    background-color: rgba(0, 0, 0, 0.3);
-    color: {{ block.settings.text_color }};
-    border-radius: {{ block.settings.button_border_radius }}px;
-    text-align: center;
-    font-size: {{ block.settings.button_font_size }}px;
-    font-weight: {{ block.settings.button_font_weight }};
-  }
-
-  .ai-newsletter-success-{{ ai_gen_id }}.show {
-    display: block;
   }
 
   .ai-newsletter-form-{{ ai_gen_id }} {
@@ -140,15 +121,13 @@
 
   .ai-newsletter-form-{{ ai_gen_id }} input[type="email"] {
     flex: 1;
-    min-width: 310px;
+    min-width: 200px;
     padding: 12px 14px;
-    border-radius: 30px;
+    border-radius: 8px;
     border: 1px solid rgba(255, 255, 255, 0.35);
     background: rgba(255, 255, 255, 0.12);
     color: {{ block.settings.text_color }};
     font-size: {{ block.settings.button_font_size }}px;
-    font-weight: {{ block.settings.button_font_weight }};
-    line-height: 1;
   }
 
   .ai-newsletter-form-{{ ai_gen_id }} input[type="email"]::placeholder {
@@ -160,6 +139,7 @@
     border-color: rgba(255, 255, 255, 0.6);
     background: rgba(255, 255, 255, 0.18);
   }
+
 
   .ai-banner-empty-state-{{ ai_gen_id }} {
     position: absolute;
