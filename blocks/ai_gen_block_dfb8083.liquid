@@ -305,6 +305,9 @@
       // Toggle
       var isHidden = (wrap.style.display === 'none' || wrap.style.display === '');
       wrap.style.display = isHidden ? 'block' : 'none';
+      
+      // Hide/show the button
+      btn.style.display = isHidden ? 'none' : 'inline-block';
 
       // Focus email when opening
       if (isHidden) {
