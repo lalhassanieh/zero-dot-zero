@@ -118,7 +118,7 @@
             "banner_2_image": "shopify://shop_images/Rectangle_5.jpg",
             "banner_2_title": "Let’s Stay Connected",
             "banner_2_button_text": "See what's new",
-            "banner_2_button_link": "shopify://collections",
+            "banner_2_button_link": "shopify://blogs/recipes",
             "show_overlay": true,
             "overlay_opacity": 30,
             "text_alignment": "center",
