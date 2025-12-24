@@ -310,68 +310,57 @@
     var root = document.querySelector('.ai-banner-row-{{ ai_gen_id }}');
     if (!root) return;
 
-    // Handle toggle button click
     root.addEventListener('click', function (e) {
       var btn = e.target.closest('[data-toggle-newsletter]');
       if (!btn) return;
 
-      // Find the nearest banner item and its form wrapper
       var item = btn.closest('.ai-banner-item-{{ ai_gen_id }}');
       if (!item) return;
 
       var wrap = item.querySelector('[data-newsletter-wrap]');
       if (!wrap) return;
 
-      // Toggle
       var isHidden = (wrap.style.display === 'none' || wrap.style.display === '');
       wrap.style.display = isHidden ? 'block' : 'none';
-      
-      // Hide/show the button
       btn.style.display = isHidden ? 'none' : 'inline-block';
 
-      // Focus email when opening
       if (isHidden) {
         var email = wrap.querySelector('input[type="email"]');
         if (email) setTimeout(function(){ email.focus(); }, 50);
       }
     });
 
-    // Handle form submission
     var forms = root.querySelectorAll('form[class*="ai-newsletter-form"]');
     forms.forEach(function(form) {
       form.addEventListener('submit', function(e) {
         var wrap = form.closest('[data-newsletter-wrap]');
         if (!wrap) return;
+        var item = wrap.closest('.ai-banner-item-{{ ai_gen_id }}');
 
-        // Use Shopify's form handling - check for success after submission
         setTimeout(function() {
-          // Check if form was successful (Shopify adds success class or we can check URL params)
           var urlParams = new URLSearchParams(window.location.search);
           var customerPost = urlParams.get('customer_posted');
-          
-          // Also check for form success indicators
           var formSuccess = form.querySelector('.note--success') || 
                            form.closest('form').classList.contains('form-success') ||
                            customerPost === 'true';
           
           if (formSuccess || form.querySelector('input[type="email"]').value) {
-            // Hide form, show success message
             form.style.display = 'none';
             var successMsg = wrap.querySelector('[data-newsletter-success]');
             if (successMsg) {
               successMsg.classList.add('show');
             }
-            // Keep the toggle button hidden
-            var toggleBtn = item.querySelector('[data-toggle-newsletter]');
-            if (toggleBtn) {
-              toggleBtn.style.display = 'none';
+            if (item) {
+              var toggleBtn = item.querySelector('[data-toggle-newsletter]');
+              if (toggleBtn) {
+                toggleBtn.style.display = 'none';
+              }
             }
           }
         }, 500);
       });
     });
 
-    // Check for success on page load (in case of redirect back)
     if (window.location.search.indexOf('customer_posted=true') > -1) {
       var wraps = root.querySelectorAll('[data-newsletter-wrap]');
       wraps.forEach(function(wrap) {
@@ -381,7 +370,6 @@
           form.style.display = 'none';
           successMsg.classList.add('show');
           wrap.style.display = 'block';
-          // Hide the toggle button
           var item = wrap.closest('.ai-banner-item-{{ ai_gen_id }}');
           if (item) {
             var toggleBtn = item.querySelector('[data-toggle-newsletter]');
