@@ -361,6 +361,11 @@
             if (successMsg) {
               successMsg.classList.add('show');
             }
+            // Keep the toggle button hidden
+            var toggleBtn = item.querySelector('[data-toggle-newsletter]');
+            if (toggleBtn) {
+              toggleBtn.style.display = 'none';
+            }
           }
         }, 500);
       });
@@ -376,6 +381,14 @@
           form.style.display = 'none';
           successMsg.classList.add('show');
           wrap.style.display = 'block';
+          // Hide the toggle button
+          var item = wrap.closest('.ai-banner-item-{{ ai_gen_id }}');
+          if (item) {
+            var toggleBtn = item.querySelector('[data-toggle-newsletter]');
+            if (toggleBtn) {
+              toggleBtn.style.display = 'none';
+            }
+          }
         }
       });
     }
