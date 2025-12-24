@@ -112,15 +112,17 @@
   }
 
   .ai-newsletter-wrap-{{ ai_gen_id }} {
+    margin-top: 16px;
     transition: all 0.3s ease;
   }
 
   .ai-newsletter-success-{{ ai_gen_id }} {
     display: none;
+    margin-top: 16px;
     padding: {{ block.settings.button_padding_vertical }}px {{ block.settings.button_padding_horizontal }}px;
     background-color: rgba(0, 0, 0, 0.3);
     color: {{ block.settings.text_color }};
-    border-radius: 30px;
+    border-radius: {{ block.settings.button_border_radius }}px;
     text-align: center;
     font-size: {{ block.settings.button_font_size }}px;
     font-weight: {{ block.settings.button_font_weight }};
@@ -236,9 +238,22 @@
 
       {% if block.settings.banner_1_button_text != blank %}
         {% if block.settings.banner_1_enable_subscribe %}
-          <button type="button" class="ai-banner-button-{{ ai_gen_id }}" data-toggle-newsletter>
-            {{ block.settings.banner_1_button_text }}
-          </button>
+          {% if customer and customer.accepts_marketing == false %}
+            {%- form 'customer', class: 'ai-newsletter-auto-subscribe-' | append: ai_gen_id, style: 'display:none;' -%}
+              <input type="hidden" name="contact[tags]" value="newsletter">
+              <input type="hidden" name="contact[email]" value="{{ customer.email }}">
+              <button type="submit" class="ai-banner-button-{{ ai_gen_id }}" data-auto-subscribe style="display:none;">
+                {{ block.settings.banner_1_button_text }}
+              </button>
+            {%- endform -%}
+            <button type="button" class="ai-banner-button-{{ ai_gen_id }}" data-subscribe-logged-in>
+              {{ block.settings.banner_1_button_text }}
+            </button>
+          {% else %}
+            <button type="button" class="ai-banner-button-{{ ai_gen_id }}" data-toggle-newsletter>
+              {{ block.settings.banner_1_button_text }}
+            </button>
+          {% endif %}
         {% elsif block.settings.banner_1_button_link != blank %}
           <a href="{{ block.settings.banner_1_button_link }}" class="ai-banner-button-{{ ai_gen_id }}">
             {{ block.settings.banner_1_button_text }}
@@ -264,6 +279,11 @@
             Thank you! You've been subscribed successfully.
           </div>
         </div>
+        {% if customer and customer.accepts_marketing == false %}
+          <div class="ai-newsletter-success-{{ ai_gen_id }}" data-newsletter-success style="display:none;">
+            Thank you! You've been subscribed successfully.
+          </div>
+        {% endif %}
       {% endif %}
     </div>
   </div><div class="ai-banner-item-{{ ai_gen_id }}" data-banner-item>
