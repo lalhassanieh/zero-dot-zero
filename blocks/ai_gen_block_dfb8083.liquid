@@ -209,7 +209,7 @@
   }
 {% endstyle %}
 
-<div class="ai-banner-row-{{ ai_gen_id }}" {{ block.shopify_attributes }}><div class="ai-banner-item-{{ ai_gen_id }}">
+<div class="ai-banner-row-{{ ai_gen_id }}" data-newsletter-banner {{ block.shopify_attributes }}><div class="ai-banner-item-{{ ai_gen_id }}" data-banner-item>
     {% if block.settings.banner_1_image %}
       <img
         src="{{ block.settings.banner_1_image | image_url: width: 800 }}"
@@ -268,7 +268,7 @@
         </div>
       {% endif %}
     </div>
-  </div><div class="ai-banner-item-{{ ai_gen_id }}">
+  </div><div class="ai-banner-item-{{ ai_gen_id }}" data-banner-item>
     {% if block.settings.banner_2_image %}
       <img
         src="{{ block.settings.banner_2_image | image_url: width: 800 }}"
@@ -305,83 +305,7 @@
   </div>
 </div>
 
-<script>
-  (function () {
-    var root = document.querySelector('.ai-banner-row-{{ ai_gen_id }}');
-    if (!root) return;
-
-    root.addEventListener('click', function (e) {
-      var btn = e.target.closest('[data-toggle-newsletter]');
-      if (!btn) return;
-
-      var item = btn.closest('.ai-banner-item-{{ ai_gen_id }}');
-      if (!item) return;
-
-      var wrap = item.querySelector('[data-newsletter-wrap]');
-      if (!wrap) return;
-
-      var isHidden = (wrap.style.display === 'none' || wrap.style.display === '');
-      wrap.style.display = isHidden ? 'block' : 'none';
-      btn.style.display = isHidden ? 'none' : 'inline-block';
-
-      if (isHidden) {
-        var email = wrap.querySelector('input[type="email"]');
-        if (email) setTimeout(function(){ email.focus(); }, 50);
-      }
-    });
-
-    var forms = root.querySelectorAll('form[class*="ai-newsletter-form"]');
-    forms.forEach(function(form) {
-      form.addEventListener('submit', function(e) {
-        var wrap = form.closest('[data-newsletter-wrap]');
-        if (!wrap) return;
-        var item = wrap.closest('.ai-banner-item-{{ ai_gen_id }}');
-
-        setTimeout(function() {
-          var urlParams = new URLSearchParams(window.location.search);
-          var customerPost = urlParams.get('customer_posted');
-          var formSuccess = form.querySelector('.note--success') || 
-                           form.closest('form').classList.contains('form-success') ||
-                           customerPost === 'true';
-          
-          if (formSuccess || form.querySelector('input[type="email"]').value) {
-            form.style.display = 'none';
-            var successMsg = wrap.querySelector('[data-newsletter-success]');
-            if (successMsg) {
-              successMsg.classList.add('show');
-            }
-            if (item) {
-              var toggleBtn = item.querySelector('[data-toggle-newsletter]');
-              if (toggleBtn) {
-                toggleBtn.style.display = 'none';
-              }
-            }
-          }
-        }, 500);
-      });
-    });
-
-    if (window.location.search.indexOf('customer_posted=true') > -1) {
-      var wraps = root.querySelectorAll('[data-newsletter-wrap]');
-      wraps.forEach(function(wrap) {
-        var form = wrap.querySelector('form');
-        var successMsg = wrap.querySelector('[data-newsletter-success]');
-        if (form && successMsg) {
-          form.style.display = 'none';
-          successMsg.classList.add('show');
-          wrap.style.display = 'block';
-          var item = wrap.closest('.ai-banner-item-{{ ai_gen_id }}');
-          if (item) {
-            var toggleBtn = item.querySelector('[data-toggle-newsletter]');
-            if (toggleBtn) {
-              toggleBtn.style.display = 'none';
-            }
-          }
-        }
-      });
-    }
-  })();
-</script>
+<script src="{{ 'bi-custom.js' | asset_url }}" defer></script>
 
 {% schema %}
 {
