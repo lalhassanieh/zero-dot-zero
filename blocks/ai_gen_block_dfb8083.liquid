@@ -119,12 +119,14 @@
   .ai-newsletter-form-{{ ai_gen_id }} input[type="email"] {
     flex: 1;
     min-width: 200px;
-    padding: 12px 14px;
-    border-radius: 8px;
+    padding: {{ block.settings.button_padding_vertical }}px {{ block.settings.button_padding_horizontal }}px;
+    border-radius: {{ block.settings.button_border_radius }}px;
     border: 1px solid rgba(255, 255, 255, 0.35);
     background: rgba(255, 255, 255, 0.12);
     color: {{ block.settings.text_color }};
     font-size: {{ block.settings.button_font_size }}px;
+    font-weight: {{ block.settings.button_font_weight }};
+    line-height: 1;
   }
 
   .ai-newsletter-form-{{ ai_gen_id }} input[type="email"]::placeholder {
@@ -180,6 +182,7 @@
     .ai-newsletter-form-{{ ai_gen_id }} input[type="email"] {
       min-width: 100%;
       width: 100%;
+      font-size: {{ block.settings.mobile_button_font_size }}px;
     }
   }
 {% endstyle %}
