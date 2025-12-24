@@ -93,6 +93,9 @@
     transition: all 0.3s ease;
     border: {{ block.settings.button_border_width }}px solid {{ block.settings.button_border_color }};
     text-transform: {{ block.settings.button_text_transform }};
+    line-height: 1;
+    box-sizing: border-box;
+    vertical-align: middle;
   }
 
   .ai-banner-button-{{ ai_gen_id }}:hover {
@@ -105,6 +108,9 @@
     cursor: pointer;
     font-family: inherit;
     margin: 0;
+    line-height: 1;
+    box-sizing: border-box;
+    vertical-align: middle;
   }
 
   .ai-newsletter-wrap-{{ ai_gen_id }} {
@@ -128,7 +134,7 @@
     color: {{ block.settings.text_color }};
     font-size: {{ block.settings.button_font_size }}px;
     font-weight: {{ block.settings.button_font_weight }};
-    line-height: 1.2;
+    line-height: 1;
   }
 
   .ai-newsletter-form-{{ ai_gen_id }} input[type="email"]::placeholder {
