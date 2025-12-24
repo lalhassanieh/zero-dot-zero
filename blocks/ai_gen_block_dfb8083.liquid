@@ -4,7 +4,6 @@
 
 {% enddoc %}
 {% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
-{% assign newsletter_form_class = 'ai-newsletter-form-' | append: ai_gen_id %}
 
 {% style %}
   .ai-banner-row-{{ ai_gen_id }} {
@@ -114,6 +113,22 @@
   .ai-newsletter-wrap-{{ ai_gen_id }} {
     margin-top: 16px;
     transition: all 0.3s ease;
+  }
+
+  .ai-newsletter-success-{{ ai_gen_id }} {
+    display: none;
+    margin-top: 16px;
+    padding: {{ block.settings.button_padding_vertical }}px {{ block.settings.button_padding_horizontal }}px;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: {{ block.settings.text_color }};
+    border-radius: {{ block.settings.button_border_radius }}px;
+    text-align: center;
+    font-size: {{ block.settings.button_font_size }}px;
+    font-weight: {{ block.settings.button_font_weight }};
+  }
+
+  .ai-newsletter-success-{{ ai_gen_id }}.show {
+    display: block;
   }
 
   .ai-newsletter-form-{{ ai_gen_id }} {
@@ -234,7 +249,7 @@
 
       {% if block.settings.banner_1_enable_subscribe %}
         <div class="ai-newsletter-wrap-{{ ai_gen_id }}" data-newsletter-wrap style="display:none;">
-          {%- form 'customer', class: newsletter_form_class -%}
+          {%- form 'customer', class: 'ai-newsletter-form-' | append: ai_gen_id, id: 'newsletter-form-1-' | append: ai_gen_id -%}
             <input type="hidden" name="contact[tags]" value="newsletter">
             <input
               type="email"
@@ -246,6 +261,9 @@
               {{ block.settings.banner_1_subscribe_button_label | default: 'Subscribe' }}
             </button>
           {%- endform -%}
+          <div class="ai-newsletter-success-{{ ai_gen_id }}" data-newsletter-success>
+            Thank you! You've been subscribed successfully.
+          </div>
         </div>
       {% endif %}
     </div>
@@ -291,6 +309,7 @@
     var root = document.querySelector('.ai-banner-row-{{ ai_gen_id }}');
     if (!root) return;
 
+    // Handle toggle button click
     root.addEventListener('click', function (e) {
       var btn = e.target.closest('[data-toggle-newsletter]');
       if (!btn) return;
@@ -315,6 +334,50 @@
         if (email) setTimeout(function(){ email.focus(); }, 50);
       }
     });
+
+    // Handle form submission
+    var forms = root.querySelectorAll('form[class*="ai-newsletter-form"]');
+    forms.forEach(function(form) {
+      form.addEventListener('submit', function(e) {
+        var wrap = form.closest('[data-newsletter-wrap]');
+        if (!wrap) return;
+
+        // Use Shopify's form handling - check for success after submission
+        setTimeout(function() {
+          // Check if form was successful (Shopify adds success class or we can check URL params)
+          var urlParams = new URLSearchParams(window.location.search);
+          var customerPost = urlParams.get('customer_posted');
+          
+          // Also check for form success indicators
+          var formSuccess = form.querySelector('.note--success') || 
+                           form.closest('form').classList.contains('form-success') ||
+                           customerPost === 'true';
+          
+          if (formSuccess || form.querySelector('input[type="email"]').value) {
+            // Hide form, show success message
+            form.style.display = 'none';
+            var successMsg = wrap.querySelector('[data-newsletter-success]');
+            if (successMsg) {
+              successMsg.classList.add('show');
+            }
+          }
+        }, 500);
+      });
+    });
+
+    // Check for success on page load (in case of redirect back)
+    if (window.location.search.indexOf('customer_posted=true') > -1) {
+      var wraps = root.querySelectorAll('[data-newsletter-wrap]');
+      wraps.forEach(function(wrap) {
+        var form = wrap.querySelector('form');
+        var successMsg = wrap.querySelector('[data-newsletter-success]');
+        if (form && successMsg) {
+          form.style.display = 'none';
+          successMsg.classList.add('show');
+          wrap.style.display = 'block';
+        }
+      });
+    }
   })();
 </script>
 
