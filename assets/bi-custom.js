@@ -8,18 +8,23 @@
         try {
           var autoForm = root.querySelector('form[class*="ai-newsletter-auto-subscribe"]');
           if (autoForm) {
+            var item = btn.closest('[data-banner-item]');
+            btn.style.display = 'none';
+            
             var submitBtn = autoForm.querySelector('[data-auto-subscribe]');
             if (submitBtn) {
               submitBtn.click();
-              btn.style.display = 'none';
-              var item = btn.closest('[data-banner-item]');
-              if (item) {
-                var successMsg = item.querySelector('[data-newsletter-success]');
-                if (successMsg) {
-                  successMsg.classList.add('show');
-                }
-              }
+            } else {
+              autoForm.submit();
             }
+            
+            setTimeout(function() {
+              var successMsg = item ? item.querySelector('[data-newsletter-success]') : null;
+              if (successMsg) {
+                successMsg.style.display = 'block';
+                successMsg.classList.add('show');
+              }
+            }, 500);
           }
         } catch(err) {
           console.error('Auto-subscribe error:', err);
@@ -48,11 +53,20 @@
 
     var forms = root.querySelectorAll('form[class*="ai-newsletter-form"], form[class*="ai-newsletter-auto-subscribe"]');
     forms.forEach(function(form) {
+      var isAutoSubscribe = form.className.indexOf('ai-newsletter-auto-subscribe') > -1;
+      
       form.addEventListener('submit', function(e) {
         try {
           var wrap = form.closest('[data-newsletter-wrap]');
           var item = wrap ? wrap.closest('[data-banner-item]') : form.closest('[data-banner-item]');
           var errorContainer = root.querySelector('[data-newsletter-errors]');
+
+          if (isAutoSubscribe && item) {
+            var loggedInBtn = item.querySelector('[data-subscribe-logged-in]');
+            if (loggedInBtn) {
+              loggedInBtn.style.display = 'none';
+            }
+          }
 
           setTimeout(function() {
             try {
@@ -61,7 +75,8 @@
               var formErrors = form.querySelector('.note--error, .errors, .form-error');
               var formSuccess = form.querySelector('.note--success') || 
                                form.closest('form').classList.contains('form-success') ||
-                               customerPost === 'true';
+                               customerPost === 'true' ||
+                               isAutoSubscribe;
               
               if (formErrors && errorContainer) {
                 formErrors.style.display = 'none';
@@ -70,10 +85,11 @@
                 }
               }
               
-              if (formSuccess || (form.querySelector('input[type="email"]') && form.querySelector('input[type="email"]').value)) {
+              if (formSuccess || (form.querySelector('input[type="email"]') && form.querySelector('input[type="email"]').value) || isAutoSubscribe) {
                 form.style.display = 'none';
                 var successMsg = wrap ? wrap.querySelector('[data-newsletter-success]') : (item ? item.querySelector('[data-newsletter-success]') : null);
                 if (successMsg) {
+                  successMsg.style.display = 'block';
                   successMsg.classList.add('show');
                 }
                 if (item) {
