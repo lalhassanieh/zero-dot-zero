@@ -940,14 +940,6 @@
         "disabled": false,
         "settings": {}
       },
-      "13974608683207948951": {
-        "type": "shopify://apps/suitefleet/blocks/theme/a6c4fc72-93bb-4cc9-916b-3926bfef8162",
-        "disabled": true,
-        "settings": {
-          "app_font": "sans_serif_n4",
-          "app_color": "green"
-        }
-      },
       "491784548736544534": {
         "type": "shopify://apps/zing-loyalty/blocks/referral_program/6416ef3c-a792-4a34-a327-7cb16ed3b301",
         "disabled": false,
@@ -967,6 +959,14 @@
         "type": "shopify://apps/smile-io/blocks/smile-shopify-app/2fae4e25-1841-4ea2-bc02-bd548478c4f6",
         "disabled": true,
         "settings": {}
+      },
+      "13974608683207948951": {
+        "type": "shopify://apps/suitefleet/blocks/theme/a6c4fc72-93bb-4cc9-916b-3926bfef8162",
+        "disabled": false,
+        "settings": {
+          "app_font": "sans_serif_n4",
+          "app_color": "green"
+        }
       }
     }
   },
