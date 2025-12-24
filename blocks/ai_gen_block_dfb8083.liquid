@@ -4,6 +4,7 @@
 
 {% enddoc %}
 {% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+{% assign newsletter_form_class = 'ai-newsletter-form-' | append: ai_gen_id %}
 
 {% style %}
   .ai-banner-row-{{ ai_gen_id }} {
@@ -100,6 +101,42 @@
     border-color: {{ block.settings.button_hover_border_color }};
   }
 
+  .ai-banner-button-{{ ai_gen_id }}[type="button"] {
+    cursor: pointer;
+  }
+
+  .ai-newsletter-wrap-{{ ai_gen_id }} {
+    margin-top: 16px;
+    transition: all 0.3s ease;
+  }
+
+  .ai-newsletter-form-{{ ai_gen_id }} {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .ai-newsletter-form-{{ ai_gen_id }} input[type="email"] {
+    flex: 1;
+    min-width: 200px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    background: rgba(255, 255, 255, 0.12);
+    color: {{ block.settings.text_color }};
+    font-size: {{ block.settings.button_font_size }}px;
+  }
+
+  .ai-newsletter-form-{{ ai_gen_id }} input[type="email"]::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .ai-newsletter-form-{{ ai_gen_id }} input[type="email"]:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.18);
+  }
+
   .ai-banner-empty-state-{{ ai_gen_id }} {
     position: absolute;
     bottom: 20px;
@@ -135,6 +172,15 @@
     .ai-banner-button-{{ ai_gen_id }} {
       font-size: {{ block.settings.mobile_button_font_size }}px;
     }
+
+    .ai-newsletter-form-{{ ai_gen_id }} {
+      flex-direction: column;
+    }
+
+    .ai-newsletter-form-{{ ai_gen_id }} input[type="email"] {
+      min-width: 100%;
+      width: 100%;
+    }
   }
 {% endstyle %}
 
@@ -165,10 +211,33 @@
         <h2 class="ai-banner-title-{{ ai_gen_id }}">{{ block.settings.banner_1_title }}</h2>
       {% endif %}
 
-      {% if block.settings.banner_1_button_text != blank and block.settings.banner_1_button_link != blank %}
-        <a href="{{ block.settings.banner_1_button_link }}" class="ai-banner-button-{{ ai_gen_id }}">
-          {{ block.settings.banner_1_button_text }}
-        </a>
+      {% if block.settings.banner_1_button_text != blank %}
+        {% if block.settings.banner_1_enable_subscribe %}
+          <button type="button" class="ai-banner-button-{{ ai_gen_id }}" data-toggle-newsletter>
+            {{ block.settings.banner_1_button_text }}
+          </button>
+        {% elsif block.settings.banner_1_button_link != blank %}
+          <a href="{{ block.settings.banner_1_button_link }}" class="ai-banner-button-{{ ai_gen_id }}">
+            {{ block.settings.banner_1_button_text }}
+          </a>
+        {% endif %}
+      {% endif %}
+
+      {% if block.settings.banner_1_enable_subscribe %}
+        <div class="ai-newsletter-wrap-{{ ai_gen_id }}" data-newsletter-wrap style="display:none;">
+          {%- form 'customer', class: newsletter_form_class -%}
+            <input type="hidden" name="contact[tags]" value="newsletter">
+            <input
+              type="email"
+              name="contact[email]"
+              required
+              placeholder="{{ block.settings.banner_1_email_placeholder | default: 'Your email address' }}"
+            >
+            <button type="submit" class="ai-banner-button-{{ ai_gen_id }}">
+              {{ block.settings.banner_1_subscribe_button_label | default: 'Subscribe' }}
+            </button>
+          {%- endform -%}
+        </div>
       {% endif %}
     </div>
   </div><div class="ai-banner-item-{{ ai_gen_id }}">
@@ -207,6 +276,35 @@
     </div>
   </div>
 </div>
+
+<script>
+  (function () {
+    var root = document.querySelector('.ai-banner-row-{{ ai_gen_id }}');
+    if (!root) return;
+
+    root.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-toggle-newsletter]');
+      if (!btn) return;
+
+      // Find the nearest banner item and its form wrapper
+      var item = btn.closest('.ai-banner-item-{{ ai_gen_id }}');
+      if (!item) return;
+
+      var wrap = item.querySelector('[data-newsletter-wrap]');
+      if (!wrap) return;
+
+      // Toggle
+      var isHidden = (wrap.style.display === 'none' || wrap.style.display === '');
+      wrap.style.display = isHidden ? 'block' : 'none';
+
+      // Focus email when opening
+      if (isHidden) {
+        var email = wrap.querySelector('input[type="email"]');
+        if (email) setTimeout(function(){ email.focus(); }, 50);
+      }
+    });
+  })();
+</script>
 
 {% schema %}
 {
@@ -307,6 +405,24 @@
       "type": "url",
       "id": "banner_1_button_link",
       "label": "Button link"
+    },
+    {
+      "type": "checkbox",
+      "id": "banner_1_enable_subscribe",
+      "label": "Banner 1: Enable newsletter subscribe form",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "banner_1_subscribe_button_label",
+      "label": "Banner 1: Subscribe button label",
+      "default": "Subscribe"
+    },
+    {
+      "type": "text",
+      "id": "banner_1_email_placeholder",
+      "label": "Banner 1: Email placeholder",
+      "default": "Your email address"
     },
     {
       "type": "header",
