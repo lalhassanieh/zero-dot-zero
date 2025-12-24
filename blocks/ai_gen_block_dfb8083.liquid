@@ -4,6 +4,7 @@
 
 {% enddoc %}
 {% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+{% assign newsletter_form_class = 'ai-newsletter-form-' | append: ai_gen_id %}
 
 {% style %}
   .ai-banner-row-{{ ai_gen_id }} {
@@ -249,7 +250,7 @@
 
       {% if block.settings.banner_1_enable_subscribe %}
         <div class="ai-newsletter-wrap-{{ ai_gen_id }}" data-newsletter-wrap style="display:none;">
-          {%- form 'customer', class: 'ai-newsletter-form-' | append: ai_gen_id, id: 'newsletter-form-1-' | append: ai_gen_id -%}
+          {%- form 'customer', class: newsletter_form_class -%}
             <input type="hidden" name="contact[tags]" value="newsletter">
             <input
               type="email"
