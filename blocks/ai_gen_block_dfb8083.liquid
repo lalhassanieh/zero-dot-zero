@@ -93,9 +93,7 @@
     transition: all 0.3s ease;
     border: {{ block.settings.button_border_width }}px solid {{ block.settings.button_border_color }};
     text-transform: {{ block.settings.button_text_transform }};
-    line-height: 1;
-    box-sizing: border-box;
-    vertical-align: middle;
+    position: relative;
   }
 
   .ai-banner-button-{{ ai_gen_id }}:hover {
@@ -108,9 +106,9 @@
     cursor: pointer;
     font-family: inherit;
     margin: 0;
-    line-height: 1;
-    box-sizing: border-box;
-    vertical-align: middle;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
   }
 
   .ai-newsletter-wrap-{{ ai_gen_id }} {
