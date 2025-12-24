@@ -140,6 +140,22 @@
     background: rgba(255, 255, 255, 0.18);
   }
 
+  .ai-newsletter-success-{{ ai_gen_id }} {
+    display: none;
+    margin-top: 16px;
+    padding: {{ block.settings.button_padding_vertical }}px {{ block.settings.button_padding_horizontal }}px;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: {{ block.settings.text_color }};
+    border-radius: {{ block.settings.button_border_radius }}px;
+    text-align: center;
+    font-size: {{ block.settings.button_font_size }}px;
+    font-weight: {{ block.settings.button_font_weight }};
+  }
+
+  .ai-newsletter-success-{{ ai_gen_id }}.show {
+    display: block;
+  }
+
 
   .ai-banner-empty-state-{{ ai_gen_id }} {
     position: absolute;
