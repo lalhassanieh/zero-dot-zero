@@ -7,10 +7,14 @@
       if (btn) {
         console.log('Subscribe button clicked for logged-in customer');
         try {
-          var autoForm = root.querySelector('form[class*="ai-newsletter-auto-subscribe"]');
+          var item = btn.closest('[data-banner-item]');
+          if (!item) {
+            console.log('Banner item not found');
+            return;
+          }
+          var autoForm = item.querySelector('form[class*="ai-newsletter-auto-subscribe"]');
           if (autoForm) {
-            console.log('Auto-subscribe form found');
-            var item = btn.closest('[data-banner-item]');
+            console.log('Auto-subscribe form found in correct item');
             btn.style.display = 'none';
             console.log('Button hidden, submitting form...');
             
@@ -25,25 +29,27 @@
             
             setTimeout(function() {
               console.log('Checking subscription status after form submission');
-              var successMsg = item ? item.querySelector('[data-newsletter-success]') : null;
-              if (successMsg) {
-                console.log('Success message element found:', successMsg);
-                successMsg.removeAttribute('style');
-                successMsg.style.cssText = 'display: block !important; margin-top: 16px;';
-                successMsg.classList.add('show');
-                console.log('Success message displayed, computed style:', window.getComputedStyle(successMsg).display);
-              } else {
-                console.log('Success message element NOT found in item');
-                var allSuccessMsgs = root.querySelectorAll('[data-newsletter-success]');
-                console.log('All success messages found:', allSuccessMsgs.length);
-                if (allSuccessMsgs.length > 0) {
-                  allSuccessMsgs[0].removeAttribute('style');
-                  allSuccessMsgs[0].style.cssText = 'display: block !important; margin-top: 16px;';
-                  allSuccessMsgs[0].classList.add('show');
-                  console.log('Using first success message found');
+              var urlParams = new URLSearchParams(window.location.search);
+              var customerPost = urlParams.get('customer_posted');
+              var formSuccess = customerPost === 'true' || autoForm.querySelector('.note--success');
+              
+              console.log('Form success after submission:', formSuccess, 'customer_posted:', customerPost);
+              
+              if (formSuccess) {
+                var successMsg = item ? item.querySelector('[data-newsletter-success]') : null;
+                if (successMsg) {
+                  console.log('Success message element found:', successMsg);
+                  successMsg.removeAttribute('style');
+                  successMsg.style.cssText = 'display: block !important; margin-top: 16px;';
+                  successMsg.classList.add('show');
+                  console.log('Success message displayed, computed style:', window.getComputedStyle(successMsg).display);
+                } else {
+                  console.log('Success message element NOT found in item');
                 }
+              } else {
+                console.log('Subscription not confirmed by Shopify yet, waiting for redirect or response...');
               }
-            }, 500);
+            }, 1000);
           } else {
             console.log('Auto-subscribe form not found');
           }
@@ -104,12 +110,13 @@
               var urlParams = new URLSearchParams(window.location.search);
               var customerPost = urlParams.get('customer_posted');
               var formErrors = form.querySelector('.note--error, .errors, .form-error');
-              var formSuccess = form.querySelector('.note--success') || 
-                               form.closest('form').classList.contains('form-success') ||
-                               customerPost === 'true' ||
-                               isAutoSubscribe;
+              var formSuccess = !!(
+                form.querySelector('.note--success') ||
+                form.classList.contains('form-success') ||
+                customerPost === 'true'
+              );
               
-              console.log('Form success check:', formSuccess);
+              console.log('Form success check:', formSuccess, 'isAutoSubscribe:', isAutoSubscribe);
               
               if (formErrors && errorContainer) {
                 formErrors.style.display = 'none';
@@ -119,8 +126,8 @@
                 console.log('Errors hidden');
               }
               
-              if (formSuccess || (form.querySelector('input[type="email"]') && form.querySelector('input[type="email"]').value) || isAutoSubscribe) {
-                console.log('Subscription successful, showing success message');
+              if (formSuccess) {
+                console.log('Subscription successful (confirmed by Shopify), showing success message');
                 form.style.display = 'none';
                 var successMsg = wrap ? wrap.querySelector('[data-newsletter-success]') : (item ? item.querySelector('[data-newsletter-success]') : null);
                 if (successMsg) {
