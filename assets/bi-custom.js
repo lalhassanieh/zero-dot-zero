@@ -112,31 +112,38 @@
   
 
   function initZingRiyalFormatter() {
-  function process(scope) {
-    (scope || document)
-      .querySelectorAll(".zing-loyalty-popup__box-description:not(.has-riyal)")
-      .forEach(function (el) {
-        var text = el.textContent || "";
-        if (text.indexOf("ريال") === -1) return;
+    function process(scope) {
+        (scope || document)
+        .querySelectorAll(".zing-loyalty-popup__box-description:not(.has-riyal)")
+        .forEach(function (el) {
+            var text = (el.textContent || "").replace(/\s+/g, " ").trim();
 
-        el.textContent = text.replace(/ريال/g, "").replace(/\s+/g, " ").trim();
-        el.classList.add("has-riyal");
-      });
-  }
+            text = text.replace(/ريال/g, "").replace(/\s+/g, " ").trim();
 
-  process(document);
+            var m = text.match(/(\d{1,3}(?:,\d{3})*(?:\.\d+)?|\d+(?:\.\d+)?)/);
+            if (!m) return;
 
-  var observer = new MutationObserver(function (mutations) {
-    mutations.forEach(function (m) {
-      m.addedNodes &&
+            var amount = m[1];
+
+            el.innerHTML = text.replace(amount, '<span class="zing-amount">' + amount + "</span>");
+            el.classList.add("has-riyal");
+        });
+    }
+
+    process(document);
+
+    var observer = new MutationObserver(function (mutations) {
+        mutations.forEach(function (m) {
+        if (!m.addedNodes) return;
         m.addedNodes.forEach(function (node) {
-          if (node.nodeType === 1) process(node);
+            if (node.nodeType === 1) process(node);
+        });
         });
     });
-  });
 
-  observer.observe(document.body, { childList: true, subtree: true });
-}
+    observer.observe(document.body, { childList: true, subtree: true });
+    }
+
 
 document.addEventListener("DOMContentLoaded", function () {
   initZingRiyalFormatter();
