@@ -259,25 +259,27 @@
       {% endif %}
 
       {% if block.settings.banner_1_enable_subscribe %}
-        <div class="ai-newsletter-wrap-{{ ai_gen_id }}" data-newsletter-wrap style="display:none;">
-          {%- form 'customer', class: newsletter_form_class -%}
-            <input type="hidden" name="contact[tags]" value="newsletter">
-            <input
-              type="email"
-              name="contact[email]"
-              required
-              placeholder="{{ block.settings.banner_1_email_placeholder | default: 'Your email address' }}"
-              value="{% if customer %}{{ customer.email }}{% endif %}"
-            >
-            <button type="submit" class="ai-banner-button-{{ ai_gen_id }}">
-              {{ block.settings.banner_1_subscribe_button_label | default: 'Subscribe' }}
-            </button>
-          {%- endform -%}
-          <div class="ai-newsletter-success-{{ ai_gen_id }}" data-newsletter-success>
-            Thank you! You've been subscribed successfully.
+        {% unless customer and customer.accepts_marketing %}
+          <div class="ai-newsletter-wrap-{{ ai_gen_id }}" data-newsletter-wrap style="display:none;">
+            {%- form 'customer', class: newsletter_form_class -%}
+              <input type="hidden" name="contact[tags]" value="newsletter">
+              <input
+                type="email"
+                name="contact[email]"
+                required
+                placeholder="{{ block.settings.banner_1_email_placeholder | default: 'Your email address' }}"
+                value="{% if customer %}{{ customer.email }}{% endif %}"
+              >
+              <button type="submit" class="ai-banner-button-{{ ai_gen_id }}">
+                {{ block.settings.banner_1_subscribe_button_label | default: 'Subscribe' }}
+              </button>
+            {%- endform -%}
+            <div class="ai-newsletter-success-{{ ai_gen_id }}" data-newsletter-success>
+              Thank you! You've been subscribed successfully.
+            </div>
           </div>
-        </div>
-        <div class="ai-newsletter-errors-{{ ai_gen_id }}" data-newsletter-errors style="display:none;"></div>
+          <div class="ai-newsletter-errors-{{ ai_gen_id }}" data-newsletter-errors style="display:none;"></div>
+        {% endunless %}
       {% endif %}
     </div>
   </div><div class="ai-banner-item-{{ ai_gen_id }}" data-banner-item>
