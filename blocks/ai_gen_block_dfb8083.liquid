@@ -244,11 +244,7 @@
         {% if block.settings.banner_1_enable_subscribe %}
           {% if customer and customer.accepts_marketing %}
             <div class="ai-newsletter-success-{{ ai_gen_id }}" data-newsletter-success style="display:block; margin-top: 0;">
-              {% if block.settings.banner_1_success_message != blank %}
-                {{ block.settings.banner_1_success_message }}
-              {% else %}
-                {{ 'sections.dual_banners.banner_1_success_message' | t }}
-              {% endif %}
+              {{ block.settings.banner_1_success_message }}
             </div>
           {% else %}
             <button type="button" class="ai-banner-button-{{ ai_gen_id }}" data-toggle-newsletter>
@@ -271,23 +267,15 @@
                 type="email"
                 name="contact[email]"
                 required
-                placeholder="{% if block.settings.banner_1_email_placeholder != blank %}{{ block.settings.banner_1_email_placeholder }}{% else %}{{ 'sections.dual_banners.banner_1_email_placeholder' | t }}{% endif %}"
+                placeholder="{{ block.settings.banner_1_email_placeholder }}"
                 value="{% if customer %}{{ customer.email }}{% endif %}"
               >
               <button type="submit" class="ai-banner-button-{{ ai_gen_id }}">
-                {% if block.settings.banner_1_subscribe_button_label != blank %}
-                  {{ block.settings.banner_1_subscribe_button_label }}
-                {% else %}
-                  {{ 'sections.dual_banners.banner_1_subscribe_button_label' | t }}
-                {% endif %}
+                {{ block.settings.banner_1_subscribe_button_label }}
               </button>
             {%- endform -%}
             <div class="ai-newsletter-success-{{ ai_gen_id }}" data-newsletter-success>
-              {% if block.settings.banner_1_success_message != blank %}
-                {{ block.settings.banner_1_success_message }}
-              {% else %}
-                {{ 'sections.dual_banners.banner_1_success_message' | t }}
-              {% endif %}
+              {{ block.settings.banner_1_success_message }}
             </div>
           </div>
           <div class="ai-newsletter-errors-{{ ai_gen_id }}" data-newsletter-errors style="display:none;"></div>
