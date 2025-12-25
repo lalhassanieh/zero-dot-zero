@@ -5,11 +5,14 @@
     root.addEventListener('click', function (e) {
       var btn = e.target.closest('[data-subscribe-logged-in]');
       if (btn) {
+        console.log('Subscribe button clicked for logged-in customer');
         try {
           var autoForm = root.querySelector('form[class*="ai-newsletter-auto-subscribe"]');
           if (autoForm) {
+            console.log('Auto-subscribe form found');
             var item = btn.closest('[data-banner-item]');
             btn.style.display = 'none';
+            console.log('Button hidden, submitting form...');
             
             var submitBtn = autoForm.querySelector('[data-auto-subscribe]');
             if (submitBtn) {
@@ -21,10 +24,15 @@
             setTimeout(function() {
               var successMsg = item ? item.querySelector('[data-newsletter-success]') : null;
               if (successMsg) {
+                console.log('Showing success message');
                 successMsg.style.display = 'block';
                 successMsg.classList.add('show');
+              } else {
+                console.log('Success message element not found');
               }
             }, 500);
+          } else {
+            console.log('Auto-subscribe form not found');
           }
         } catch(err) {
           console.error('Auto-subscribe error:', err);
@@ -35,6 +43,7 @@
       btn = e.target.closest('[data-toggle-newsletter]');
       if (!btn) return;
 
+      console.log('Toggle newsletter button clicked (guest user)');
       var item = btn.closest('[data-banner-item]');
       if (!item) return;
 
@@ -42,12 +51,16 @@
       if (!wrap) return;
 
       var isHidden = (wrap.style.display === 'none' || wrap.style.display === '');
+      console.log('Form is hidden:', isHidden);
       wrap.style.display = isHidden ? 'block' : 'none';
       btn.style.display = isHidden ? 'none' : 'inline-block';
 
       if (isHidden) {
+        console.log('Showing email form for guest user');
         var email = wrap.querySelector('input[type="email"]');
         if (email) setTimeout(function(){ email.focus(); }, 50);
+      } else {
+        console.log('Hiding email form');
       }
     });
 
@@ -56,16 +69,21 @@
       var isAutoSubscribe = form.className.indexOf('ai-newsletter-auto-subscribe') > -1;
       
       form.addEventListener('submit', function(e) {
+        console.log('Form submitted, isAutoSubscribe:', isAutoSubscribe);
         try {
           var wrap = form.closest('[data-newsletter-wrap]');
           var item = wrap ? wrap.closest('[data-banner-item]') : form.closest('[data-banner-item]');
           var errorContainer = root.querySelector('[data-newsletter-errors]');
 
           if (isAutoSubscribe && item) {
+            console.log('Logged-in customer subscribing...');
             var loggedInBtn = item.querySelector('[data-subscribe-logged-in]');
             if (loggedInBtn) {
               loggedInBtn.style.display = 'none';
+              console.log('Logged-in button hidden');
             }
+          } else {
+            console.log('Guest user submitting email form');
           }
 
           setTimeout(function() {
@@ -78,19 +96,26 @@
                                customerPost === 'true' ||
                                isAutoSubscribe;
               
+              console.log('Form success check:', formSuccess);
+              
               if (formErrors && errorContainer) {
                 formErrors.style.display = 'none';
                 if (errorContainer) {
                   errorContainer.style.display = 'none';
                 }
+                console.log('Errors hidden');
               }
               
               if (formSuccess || (form.querySelector('input[type="email"]') && form.querySelector('input[type="email"]').value) || isAutoSubscribe) {
+                console.log('Subscription successful, showing success message');
                 form.style.display = 'none';
                 var successMsg = wrap ? wrap.querySelector('[data-newsletter-success]') : (item ? item.querySelector('[data-newsletter-success]') : null);
                 if (successMsg) {
                   successMsg.style.display = 'block';
                   successMsg.classList.add('show');
+                  console.log('Success message displayed');
+                } else {
+                  console.log('Success message element not found');
                 }
                 if (item) {
                   var toggleBtn = item.querySelector('[data-toggle-newsletter]');
@@ -102,6 +127,8 @@
                     loggedInBtn.style.display = 'none';
                   }
                 }
+              } else {
+                console.log('Form submission may have failed');
               }
             } catch(err) {
               console.error('Newsletter form error:', err);
