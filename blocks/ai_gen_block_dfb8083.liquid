@@ -263,9 +263,15 @@
               {% assign auto_subscribe_form_class = 'ai-newsletter-auto-subscribe-' | append: ai_gen_id %}
               {%- form 'customer', class: auto_subscribe_form_class, style: 'display:none;' -%}
                 <input type="hidden" name="contact[tags]" value="newsletter">
-                <input type="hidden" name="contact[email]" value="{{ customer.email }}">
+                <input
+                  type="email"
+                  name="contact[email]"
+                  value="{{ customer.email }}"
+                  required
+                  style="display:none;"
+                >
                 <button type="submit" class="ai-banner-button-{{ ai_gen_id }}" data-auto-subscribe style="display:none;">
-                  {{ block.settings.banner_1_button_text }}
+                  {{ block.settings.banner_1_subscribe_button_label | default: 'Subscribe' }}
                 </button>
               {%- endform -%}
               <button type="button" class="ai-banner-button-{{ ai_gen_id }}" data-subscribe-logged-in>
