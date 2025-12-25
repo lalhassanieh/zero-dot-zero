@@ -12,24 +12,26 @@
             console.log('Auto-subscribe form found');
             var item = btn.closest('[data-banner-item]');
             btn.style.display = 'none';
-            console.log('Button hidden, submitting form...');
+            console.log('Button hidden, submitting form via AJAX...');
             
             var submitBtn = autoForm.querySelector('[data-auto-subscribe]');
             if (submitBtn) {
+              console.log('Submitting form using submit button click');
               submitBtn.click();
             } else {
+              console.log('Submitting form directly');
               autoForm.submit();
             }
             
             setTimeout(function() {
+              console.log('Checking subscription status after form submission');
               var successMsg = item ? item.querySelector('[data-newsletter-success]') : null;
               if (successMsg) {
                 console.log('Success message element found:', successMsg);
                 successMsg.style.display = 'block';
                 successMsg.style.marginTop = '16px';
                 successMsg.classList.add('show');
-                console.log('Success message display style:', successMsg.style.display);
-                console.log('Success message computed style:', window.getComputedStyle(successMsg).display);
+                console.log('Success message displayed');
               } else {
                 console.log('Success message element NOT found in item');
                 var allSuccessMsgs = root.querySelectorAll('[data-newsletter-success]');
