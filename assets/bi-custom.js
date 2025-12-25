@@ -114,9 +114,11 @@
   function initZingRiyalFormatter() {
     function process(scope) {
         (scope || document)
-        .querySelectorAll(".zing-loyalty-popup__box-description:not(.has-riyal)")
-        .forEach(function (el) {
+            .querySelectorAll(".zing-loyalty-popup__box-description:not(.has-riyal)")
+            .forEach(function (el) {
             var text = (el.textContent || "").replace(/\s+/g, " ").trim();
+
+            if (!text.includes("ريال")) return;
 
             text = text.replace(/ريال/g, "").replace(/\s+/g, " ").trim();
 
@@ -125,10 +127,15 @@
 
             var amount = m[1];
 
-            el.innerHTML = text.replace(amount, '<span class="zing-amount">' + amount + "</span>");
+            el.innerHTML = text.replace(
+                amount,
+                '<span class="zing-amount">' + amount + "</span>"
+            );
+
             el.classList.add("has-riyal");
-        });
+            });
     }
+
 
     process(document);
 
