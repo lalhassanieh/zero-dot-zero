@@ -493,10 +493,10 @@
       "your_order": "طلبك",
       "more_than_99": "99+"
     },
-     "dual_banners": {
+    "dual_banners": {
       "email_placeholder": "بريدك الإلكتروني",
       "subscribe": "اشترك",
-      "subscribed_success": "شكرًا لك! تم الاشتراك بنجاح."
+      "subscribed_success": "شكرًا لك! تم الاشتراك بنجاح sda."
     },
     "footer": {
       "payment": "طرق الدفع"
