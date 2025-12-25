@@ -3,63 +3,10 @@
     if (!root) return;
 
     root.addEventListener('click', function (e) {
-      var btn = e.target.closest('[data-subscribe-logged-in]');
-      if (btn) {
-        console.log('Subscribe button clicked for logged-in customer');
-        try {
-          var item = btn.closest('[data-banner-item]');
-          if (!item) {
-            console.log('Banner item not found');
-            return;
-          }
-          var autoForm = item.querySelector('form[class*="ai-newsletter-auto-subscribe"]');
-          if (autoForm) {
-            console.log('Auto-subscribe form found, submitting...');
-            btn.style.display = 'none';
-            
-            var submitBtn = autoForm.querySelector('[data-auto-subscribe]');
-            if (submitBtn) {
-              submitBtn.click();
-            } else {
-              autoForm.submit();
-            }
-            
-            setTimeout(function() {
-              var urlParams = new URLSearchParams(window.location.search);
-              var customerPost = urlParams.get('customer_posted');
-              var formSuccess = customerPost === 'true' || autoForm.querySelector('.note--success');
-              var formError = autoForm.querySelector('.note--error, .errors, .form-error');
-              
-              console.log('Form success after submission:', formSuccess, 'customer_posted:', customerPost);
-              console.log('Form error found:', formError ? formError.textContent : 'none');
-              
-              if (formError) {
-                console.log('Shopify returned an error:', formError.textContent);
-              } else if (formSuccess) {
-                console.log('Subscription successful');
-              }
-              
-              var successMsg = item ? item.querySelector('[data-newsletter-success]') : null;
-              if (successMsg) {
-                successMsg.removeAttribute('style');
-                successMsg.style.cssText = 'display: block !important; margin-top: 16px;';
-                successMsg.classList.add('show');
-                console.log('Success message displayed');
-              }
-            }, 1000);
-          } else {
-            console.log('Auto-subscribe form not found');
-          }
-        } catch(err) {
-          console.error('Auto-subscribe error:', err);
-        }
-        return;
-      }
-
-      btn = e.target.closest('[data-toggle-newsletter]');
+      var btn = e.target.closest('[data-toggle-newsletter]');
       if (!btn) return;
 
-      console.log('Toggle newsletter button clicked (guest user)');
+      console.log('Toggle newsletter button clicked');
       var item = btn.closest('[data-banner-item]');
       if (!item) return;
 
@@ -80,26 +27,16 @@
       }
     });
 
-    var forms = root.querySelectorAll('form[class*="ai-newsletter-form"], form[class*="ai-newsletter-auto-subscribe"]');
+    var forms = root.querySelectorAll('form[class*="ai-newsletter-form"]');
     forms.forEach(function(form) {
-      var isAutoSubscribe = form.className.indexOf('ai-newsletter-auto-subscribe') > -1;
-      
       form.addEventListener('submit', function(e) {
-        console.log('Form submitted, isAutoSubscribe:', isAutoSubscribe);
+        console.log('Form submitted');
         try {
           var wrap = form.closest('[data-newsletter-wrap]');
           var item = wrap ? wrap.closest('[data-banner-item]') : form.closest('[data-banner-item]');
           var errorContainer = root.querySelector('[data-newsletter-errors]');
 
-          if (isAutoSubscribe && item) {
-            console.log('Logged-in customer auto-subscribing...');
-            var loggedInBtn = item.querySelector('[data-subscribe-logged-in]');
-            if (loggedInBtn) {
-              loggedInBtn.style.display = 'none';
-            }
-          } else {
-            console.log('Guest user submitting email form');
-          }
+          console.log('User submitting email form');
 
           setTimeout(function() {
             try {
@@ -132,23 +69,9 @@
                 }
                 if (item) {
                   var toggleBtn = item.querySelector('[data-toggle-newsletter]');
-                  var loggedInBtn = item.querySelector('[data-subscribe-logged-in]');
                   if (toggleBtn) {
                     toggleBtn.style.display = 'none';
                   }
-                  if (loggedInBtn) {
-                    loggedInBtn.style.display = 'none';
-                  }
-                }
-              } else if (isAutoSubscribe) {
-                console.log('Auto-subscribe form submitted, showing success message');
-                var successMsg = item ? item.querySelector('[data-newsletter-success]') : null;
-                if (successMsg) {
-                  successMsg.removeAttribute('style');
-                  successMsg.style.cssText = 'display: block !important; margin-top: 16px;';
-                  successMsg.textContent = 'Thank you! You\'ve been subscribed successfully.';
-                  successMsg.classList.add('show');
-                  console.log('Success message displayed for auto-subscribe');
                 }
               } else {
                 console.log('Form submission may have failed');
