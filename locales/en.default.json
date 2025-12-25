@@ -494,9 +494,9 @@
             "more_than_99": "99+"
         },
         "dual_banners": {
-            "email_placeholder": "Your email 11address",
-            "subscribe": "Subscribe11",
-            "subscribed_success": "Thank you11! You've been subscribed successfully."
+            "email_placeholder": "Your email address",
+            "subscribe": "Subscribe",
+            "subscribed_success": "Thank you! You've been subscribed successfully."
         },
         "footer": {
             "payment": "Payment methods"
