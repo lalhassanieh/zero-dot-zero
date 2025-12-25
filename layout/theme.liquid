@@ -140,6 +140,7 @@
         {% comment %} {%- if settings.use_custom_js -%} {% endcomment %}
             {{ 'custom.js' | asset_url | script_tag }}
         {% comment %} {%- endif -%} {% endcomment %}
+         {{ 'bi-custom.js' | asset_url| script_tag }}
 
         <div class="background-overlay">
             {%- if settings.show_effect_close -%}
