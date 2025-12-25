@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-{
+ {
   "general": {
     "breadcrumb": {
       "home": "الرئيسية"
@@ -493,10 +493,10 @@
       "your_order": "طلبك",
       "more_than_99": "99+"
     },
-    "dual_banners": {
-      "email_placeholder": "بريدك الإلكتروني",
-      "subscribe": "اشترك",
-      "subscribed_success": "شكرًا لك! تم الاشتراك بنجاح."
+     "dual_banners": {
+      "banner_1_email_placeholder": "بريدك الإلكتروني",
+      "banner_1_subscribe_button_label": "اشترك",
+      "banner_1_success_message": "شكرًا لك! تم الاشتراك بنجاح."
     },
     "footer": {
       "payment": "طرق الدفع"
