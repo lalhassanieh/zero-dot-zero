@@ -122,7 +122,7 @@
     padding: {{ block.settings.button_padding_vertical }}px {{ block.settings.button_padding_horizontal }}px;
     background-color: rgba(0, 0, 0, 0.3);
     color: {{ block.settings.text_color }};
-    border-radius: 30px;
+    border-radius: {{ block.settings.button_border_radius }}px;
     text-align: center;
     font-size: {{ block.settings.button_font_size }}px;
     font-weight: {{ block.settings.button_font_weight }};
@@ -242,8 +242,25 @@
 
       {% if block.settings.banner_1_button_text != blank %}
         {% if block.settings.banner_1_enable_subscribe %}
-          {% if customer and customer.accepts_marketing %}
-            <div class="ai-newsletter-success-{{ ai_gen_id }}" data-newsletter-success style="display:block; margin-top: 0;">
+          {% if customer %}
+            {% assign auto_subscribe_form_class = 'ai-newsletter-auto-subscribe-' | append: ai_gen_id %}
+            {%- form 'customer', class: auto_subscribe_form_class, style: 'display:none;' -%}
+              <input type="hidden" name="contact[tags]" value="newsletter">
+              <input
+                type="email"
+                name="contact[email]"
+                value="{{ customer.email }}"
+                required
+                style="display:none;"
+              >
+              <button type="submit" class="ai-banner-button-{{ ai_gen_id }}" data-auto-subscribe style="display:none;">
+                {{ block.settings.banner_1_subscribe_button_label | default: 'Subscribe' }}
+              </button>
+            {%- endform -%}
+            <button type="button" class="ai-banner-button-{{ ai_gen_id }}" data-subscribe-logged-in>
+              {{ block.settings.banner_1_button_text }}
+            </button>
+            <div class="ai-newsletter-success-{{ ai_gen_id }}" data-newsletter-success style="display:none; margin-top: 16px;">
               Thank you! You've been subscribed successfully.
             </div>
           {% else %}
@@ -259,7 +276,7 @@
       {% endif %}
 
       {% if block.settings.banner_1_enable_subscribe %}
-        {% unless customer and customer.accepts_marketing %}
+        {% unless customer %}
           <div class="ai-newsletter-wrap-{{ ai_gen_id }}" data-newsletter-wrap style="display:none;">
             {%- form 'customer', class: newsletter_form_class -%}
               <input type="hidden" name="contact[tags]" value="newsletter">
@@ -268,7 +285,6 @@
                 name="contact[email]"
                 required
                 placeholder="{{ block.settings.banner_1_email_placeholder | default: 'Your email address' }}"
-                value="{% if customer %}{{ customer.email }}{% endif %}"
               >
               <button type="submit" class="ai-banner-button-{{ ai_gen_id }}">
                 {{ block.settings.banner_1_subscribe_button_label | default: 'Subscribe' }}
@@ -278,8 +294,8 @@
               Thank you! You've been subscribed successfully.
             </div>
           </div>
-          <div class="ai-newsletter-errors-{{ ai_gen_id }}" data-newsletter-errors style="display:none;"></div>
         {% endunless %}
+        <div class="ai-newsletter-errors-{{ ai_gen_id }}" data-newsletter-errors style="display:none;"></div>
       {% endif %}
     </div>
   </div><div class="ai-banner-item-{{ ai_gen_id }}" data-banner-item>
