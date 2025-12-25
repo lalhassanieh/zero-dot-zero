@@ -32,24 +32,43 @@
               var urlParams = new URLSearchParams(window.location.search);
               var customerPost = urlParams.get('customer_posted');
               var formSuccess = customerPost === 'true' || autoForm.querySelector('.note--success');
+              var formError = autoForm.querySelector('.note--error, .errors, .form-error');
               
               console.log('Form success after submission:', formSuccess, 'customer_posted:', customerPost);
+              console.log('Form error found:', formError ? formError.textContent : 'none');
               
-              if (formSuccess) {
+              if (formError) {
+                console.log('Shopify returned an error:', formError.textContent);
+                var successMsg = item ? item.querySelector('[data-newsletter-success]') : null;
+                if (successMsg) {
+                  successMsg.removeAttribute('style');
+                  successMsg.style.cssText = 'display: block !important; margin-top: 16px;';
+                  successMsg.textContent = 'Please check your email to confirm your subscription, or contact support if you continue to have issues.';
+                  successMsg.classList.add('show');
+                }
+              } else if (formSuccess) {
                 var successMsg = item ? item.querySelector('[data-newsletter-success]') : null;
                 if (successMsg) {
                   console.log('Success message element found:', successMsg);
                   successMsg.removeAttribute('style');
                   successMsg.style.cssText = 'display: block !important; margin-top: 16px;';
+                  successMsg.textContent = 'Thank you! You\'ve been subscribed successfully.';
                   successMsg.classList.add('show');
                   console.log('Success message displayed, computed style:', window.getComputedStyle(successMsg).display);
                 } else {
                   console.log('Success message element NOT found in item');
                 }
               } else {
-                console.log('Subscription not confirmed by Shopify yet, waiting for redirect or response...');
+                console.log('Subscription not confirmed by Shopify yet - may require email confirmation');
+                var successMsg = item ? item.querySelector('[data-newsletter-success]') : null;
+                if (successMsg) {
+                  successMsg.removeAttribute('style');
+                  successMsg.style.cssText = 'display: block !important; margin-top: 16px;';
+                  successMsg.textContent = 'If your store uses double opt-in, please confirm the subscription from the email we sent you.';
+                  successMsg.classList.add('show');
+                }
               }
-            }, 1000);
+            }, 1500);
           } else {
             console.log('Auto-subscribe form not found');
           }
@@ -117,22 +136,28 @@
               );
               
               console.log('Form success check:', formSuccess, 'isAutoSubscribe:', isAutoSubscribe);
+              console.log('Form errors found:', formErrors ? formErrors.textContent : 'none');
               
-              if (formErrors && errorContainer) {
-                formErrors.style.display = 'none';
+              if (formErrors) {
+                console.log('Shopify returned an error:', formErrors.textContent);
+                var successMsg = wrap ? wrap.querySelector('[data-newsletter-success]') : (item ? item.querySelector('[data-newsletter-success]') : null);
+                if (successMsg) {
+                  successMsg.removeAttribute('style');
+                  successMsg.style.cssText = 'display: block !important; margin-top: 16px;';
+                  successMsg.textContent = 'Please check your email to confirm your subscription, or contact support if you continue to have issues.';
+                  successMsg.classList.add('show');
+                }
                 if (errorContainer) {
                   errorContainer.style.display = 'none';
                 }
-                console.log('Errors hidden');
-              }
-              
-              if (formSuccess) {
+              } else if (formSuccess) {
                 console.log('Subscription successful (confirmed by Shopify), showing success message');
                 form.style.display = 'none';
                 var successMsg = wrap ? wrap.querySelector('[data-newsletter-success]') : (item ? item.querySelector('[data-newsletter-success]') : null);
                 if (successMsg) {
                   successMsg.removeAttribute('style');
                   successMsg.style.cssText = 'display: block !important; margin-top: 16px;';
+                  successMsg.textContent = 'Thank you! You\'ve been subscribed successfully.';
                   successMsg.classList.add('show');
                   console.log('Success message displayed, computed style:', window.getComputedStyle(successMsg).display);
                 } else {
