@@ -12,7 +12,7 @@
             console.log('Auto-subscribe form found');
             var item = btn.closest('[data-banner-item]');
             btn.style.display = 'none';
-            console.log('Button hidden, submitting form via AJAX...');
+            console.log('Button hidden, submitting form...');
             
             var submitBtn = autoForm.querySelector('[data-auto-subscribe]');
             if (submitBtn) {
@@ -28,17 +28,17 @@
               var successMsg = item ? item.querySelector('[data-newsletter-success]') : null;
               if (successMsg) {
                 console.log('Success message element found:', successMsg);
-                successMsg.style.display = 'block';
-                successMsg.style.marginTop = '16px';
+                successMsg.removeAttribute('style');
+                successMsg.style.cssText = 'display: block !important; margin-top: 16px;';
                 successMsg.classList.add('show');
-                console.log('Success message displayed');
+                console.log('Success message displayed, computed style:', window.getComputedStyle(successMsg).display);
               } else {
                 console.log('Success message element NOT found in item');
                 var allSuccessMsgs = root.querySelectorAll('[data-newsletter-success]');
                 console.log('All success messages found:', allSuccessMsgs.length);
                 if (allSuccessMsgs.length > 0) {
-                  allSuccessMsgs[0].style.display = 'block';
-                  allSuccessMsgs[0].style.marginTop = '16px';
+                  allSuccessMsgs[0].removeAttribute('style');
+                  allSuccessMsgs[0].style.cssText = 'display: block !important; margin-top: 16px;';
                   allSuccessMsgs[0].classList.add('show');
                   console.log('Using first success message found');
                 }
@@ -124,9 +124,10 @@
                 form.style.display = 'none';
                 var successMsg = wrap ? wrap.querySelector('[data-newsletter-success]') : (item ? item.querySelector('[data-newsletter-success]') : null);
                 if (successMsg) {
-                  successMsg.style.display = 'block';
+                  successMsg.removeAttribute('style');
+                  successMsg.style.cssText = 'display: block !important; margin-top: 16px;';
                   successMsg.classList.add('show');
-                  console.log('Success message displayed');
+                  console.log('Success message displayed, computed style:', window.getComputedStyle(successMsg).display);
                 } else {
                   console.log('Success message element not found');
                 }
