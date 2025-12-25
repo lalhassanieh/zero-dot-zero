@@ -244,7 +244,7 @@
         {% if block.settings.banner_1_enable_subscribe %}
           {% if customer and customer.accepts_marketing %}
             <div class="ai-newsletter-success-{{ ai_gen_id }}" data-newsletter-success style="display:block; margin-top: 0;">
-              {{ block.settings.banner_1_success_message }}
+              {{ 'sections.dual_banners.subscribed_success' | t | default: "Thank you! You've been subscribed successfully." }}
             </div>
           {% else %}
             <button type="button" class="ai-banner-button-{{ ai_gen_id }}" data-toggle-newsletter>
@@ -267,15 +267,15 @@
                 type="email"
                 name="contact[email]"
                 required
-                placeholder="{{ block.settings.banner_1_email_placeholder }}"
+                placeholder="{{ 'sections.dual_banners.email_placeholder' | t | default: block.settings.banner_1_email_placeholder | default: 'Your email address' }}"
                 value="{% if customer %}{{ customer.email }}{% endif %}"
               >
               <button type="submit" class="ai-banner-button-{{ ai_gen_id }}">
-                {{ block.settings.banner_1_subscribe_button_label }}
+                {{ 'sections.dual_banners.subscribe' | t | default: block.settings.banner_1_subscribe_button_label | default: 'Subscribe' }}
               </button>
             {%- endform -%}
             <div class="ai-newsletter-success-{{ ai_gen_id }}" data-newsletter-success>
-              {{ block.settings.banner_1_success_message }}
+              {{ 'sections.dual_banners.subscribed_success' | t | default: "Thank you! You've been subscribed successfully." }}
             </div>
           </div>
           <div class="ai-newsletter-errors-{{ ai_gen_id }}" data-newsletter-errors style="display:none;"></div>
@@ -438,12 +438,6 @@
       "id": "banner_1_email_placeholder",
       "label": "Banner 1: Email placeholder",
       "default": "Your email address"
-    },
-    {
-      "type": "text",
-      "id": "banner_1_success_message",
-      "label": "Banner 1: Success message",
-      "default": "Thank you! You've been subscribed successfully."
     },
     {
       "type": "header",
