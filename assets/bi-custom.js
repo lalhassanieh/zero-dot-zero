@@ -24,11 +24,22 @@
             setTimeout(function() {
               var successMsg = item ? item.querySelector('[data-newsletter-success]') : null;
               if (successMsg) {
-                console.log('Showing success message');
+                console.log('Success message element found:', successMsg);
                 successMsg.style.display = 'block';
+                successMsg.style.marginTop = '16px';
                 successMsg.classList.add('show');
+                console.log('Success message display style:', successMsg.style.display);
+                console.log('Success message computed style:', window.getComputedStyle(successMsg).display);
               } else {
-                console.log('Success message element not found');
+                console.log('Success message element NOT found in item');
+                var allSuccessMsgs = root.querySelectorAll('[data-newsletter-success]');
+                console.log('All success messages found:', allSuccessMsgs.length);
+                if (allSuccessMsgs.length > 0) {
+                  allSuccessMsgs[0].style.display = 'block';
+                  allSuccessMsgs[0].style.marginTop = '16px';
+                  allSuccessMsgs[0].classList.add('show');
+                  console.log('Using first success message found');
+                }
               }
             }, 500);
           } else {
