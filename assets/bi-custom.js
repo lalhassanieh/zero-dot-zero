@@ -93,6 +93,42 @@
         });
       }
     }
+
+    // ===============================
+    // ZING: add class only when text contains "ريال"
+    // ===============================
+    function applyRiyalClass(scope) {
+        var root = scope || document;
+        var els = root.querySelectorAll(
+        ".zing-loyalty-popup__box-description:not(.has-riyal)"
+        );
+
+        els.forEach(function (el) {
+        // normalize spacing just in case: "ريال  10.00"
+        var txt = (el.textContent || "").replace(/\s+/g, " ").trim();
+        if (txt.indexOf("ريال") !== -1) {
+            el.classList.add("has-riyal");
+        }
+        });
+    }
+
+    // run once immediately
+    applyRiyalClass(document);
+
+    // observe dynamic popup render
+    var observer = new MutationObserver(function (mutations) {
+        mutations.forEach(function (m) {
+        if (m.addedNodes && m.addedNodes.length) {
+            m.addedNodes.forEach(function (node) {
+            if (node.nodeType !== 1) return; // element only
+            // only scan inside newly added nodes for performance
+            applyRiyalClass(node);
+            });
+        }
+        });
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
   
     var banners = document.querySelectorAll('[data-newsletter-banner]');
     banners.forEach(function(banner) {
