@@ -512,8 +512,11 @@
         "4fa051b7-7efe-4fea-ba27-4589826d875a",
         "text_74kVQc"
       ],
+      "custom_css": [
+        "#hide-articles {display: none;}"
+      ],
       "settings": {
-        "id_section": "",
+        "id_section": "hide-articles",
         "container": "fullwidth",
         "padding_full_width": 100,
         "display_border_top": false,
