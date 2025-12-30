@@ -972,7 +972,8 @@
   },
   "platform_customizations": {
     "custom_css": [
-      ".halo-banner.image-banner:after {display: none;}"
+      "n-right.halo-banner.image-banner:after {display: none;}",
+      ".article-image-holder {margin-right: 20px;}"
     ]
   }
 }
