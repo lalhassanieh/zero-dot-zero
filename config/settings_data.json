@@ -974,7 +974,7 @@
     "custom_css": [
       "n-right.halo-banner.image-banner:after {display: none;}",
       ".article-image-holder {margin-right: 20px;}",
-      ".article-body p strong {color: rgb(239, 100, 49);}"
+      ".article-body .article-content p strong {color: rgb(239, 100, 49) !important;}"
     ]
   }
 }
