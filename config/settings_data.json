@@ -973,7 +973,8 @@
   "platform_customizations": {
     "custom_css": [
       "n-right.halo-banner.image-banner:after {display: none;}",
-      ".article-image-holder {margin-right: 20px;}"
+      ".article-image-holder {margin-right: 20px;}",
+      ".article-body p strong {color: rgb(239, 100, 49);}"
     ]
   }
 }
