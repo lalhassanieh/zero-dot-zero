@@ -1182,7 +1182,7 @@
         "blog_show_more_icon": "none",
         "blog_date_format": "short_month",
         "enable_autoplay": true,
-        "autoplay_speed": 3,
+        "autoplay_speed": 1,
         "enable_infinite": true,
         "blog_item_bg": "rgba(0,0,0,0)",
         "border_radius_item": 0,
