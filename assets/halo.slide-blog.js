@@ -5,9 +5,12 @@
 
             blogBlock.each(function() {
                 var self = $(this),
-                    rows = self.data('rows'),
+                    rows = parseInt(self.data('rows')) || 3,
                     autoplay = self.data('autoplay') !== undefined ? self.data('autoplay') : false,
                     autoplaySpeed = (self.data('autoplay-speed') || 3) * 1000;
+                
+                var infiniteAttr = self.attr('data-infinite');
+                var infiniteSetting = infiniteAttr !== undefined && (infiniteAttr === 'true' || infiniteAttr === true);
 
                 var isRTL =
                     document.documentElement.getAttribute('dir') === 'rtl' ||
@@ -19,13 +22,20 @@
                         var items = self.find('.halo-item').get().reverse();
                         self.empty().append(items);
                     }
+                    
+                    var totalSlides = self.find('.halo-item').length;
+                    
+                    var infinite = infiniteSetting && totalSlides > rows;
+                    var infiniteTablet = infiniteSetting && totalSlides > 2;
+                    var infiniteMobile = infiniteSetting && totalSlides > 1;
+                    
                     self.slick({
                         slidesToShow: rows,
                         slidesToScroll: 1,
                         speed: 1000,
                         autoplay: autoplay,
                         autoplaySpeed: autoplaySpeed,
-                        infinite: true,
+                        infinite: infinite,
                         dots: false,
                         arrows: true,
                         nextArrow: isRTL ? window.arrows.icon_prev : window.arrows.icon_next,
@@ -40,7 +50,7 @@
                                     arrows: false,
                                     autoplay: autoplay,
                                     autoplaySpeed: autoplaySpeed,
-                                    infinite: true,
+                                    infinite: infiniteTablet,
                                 }
                             },
                             {
@@ -51,7 +61,7 @@
                                     arrows: false,
                                     autoplay: autoplay,
                                     autoplaySpeed: autoplaySpeed,
-                                    infinite: true,
+                                    infinite: infiniteMobile,
                                 }
                             }
                         ]
