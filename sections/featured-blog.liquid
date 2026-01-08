@@ -98,6 +98,9 @@
     .section-block-{{section.id}} .view_all .icon-svg svg {fill: var(--color-view-all-icon-style)}
     .article-card-header .article-card__link {margin-top:{% if settings.blog_title_font_size >= 18 %} 5px{% else %} 2px{% endif %}}
     .section-block-{{section.id}}  .halo-row-placeholder {display: flex;}
+    .section-block-{{section.id}} .recipes-blog-section.swiper {overflow: hidden;}
+    .section-block-{{section.id}} .recipes-blog-section .swiper-wrapper {display: flex;}
+    .section-block-{{section.id}} .recipes-blog-section .swiper-slide {width: 100%;}
     {%- if enable_blog_button -%}
         .section-block-{{section.id}} .article-card__footer {text-decoration: unset}
         .section-block-{{section.id}} .article-card__footer a.button {color: {{ color_button_item }};background: {{ color_button_item_bg }};border: 1px solid {{ color_button_item_border }};font-weight: var(--btn-1-font-weight);text-transform: var(--btn-1-text-transform);width: 162px}
@@ -131,6 +134,7 @@
         .section-block-{{ section.id }} .halo-block-header.view_all-right_title .view_all {position: absolute;top: 50%;right: 0;transform: translateY(-50%)}
         .section-block-{{section.id}} .halo-row {margin-left: var(--row-distance-style);margin-right: var(--row-distance-style)}
         .section-block-{{section.id}} .halo-row .halo-item{padding-left: var(--item-distance-style);padding-right: var(--item-distance-style)}
+        .section-block-{{section.id}} .recipes-blog-section.swiper .swiper-slide.halo-item {padding-left: var(--item-distance-style);padding-right: var(--item-distance-style)}
         .section-block-{{section.id}} .article-card__title:hover a span{background-size: 100% 1px}
     }
     @media (min-width: 768px) and (max-width: 1199px) {.section-block-{{section.id}} {padding-top: {{ mg_top_tablet | append: 'px' }};padding-bottom: {{ mg_bottom_tablet | append: 'px' }}}}
@@ -155,7 +159,7 @@
     }
 </style>
 
-<div class="featured-blog-block section-block-{{section.id}}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" id="featured-blog-{{section.id}}" data-loader-script="{{ 'halo.slide-blog.js' | asset_url }}">
+<div class="featured-blog-block section-block-{{section.id}}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" id="featured-blog-{{section.id}}">
     <div class="{% if section.settings.container == 'fullwidth' %}container-full{% elsif section.settings.container == '1170' %}container-1170{% elsif section.settings.container == '1570' %}container-1570{% elsif section.settings.container == '1770' %}container-1770{% else %}container{% endif %}">
         {%- if section.settings.featured_blog_title != blank -%}
             <div class="halo-block-header text-{{ section.settings.title_align }} view_all-{{ section.settings.view_all_pos }}">
@@ -173,52 +177,68 @@
                 {%- endif -%}
             </div>
         {%- endif -%}
-        <div class="recipes-blog-section {% if section.settings.blog_posts != blank %}halo-row{% else %}halo-row-placeholder{% endif %} column-{{ section.settings.blog_results_per_row }}{% if section.settings.post_limit == 2 %} disable_dots_tablet{% endif %}" data-rows="{{ section.settings.blog_results_per_row }}" data-blogs-slider{% if enable_autoplay %} data-autoplay="true"{% endif %} data-autoplay-speed="{{ autoplay_speed }}"{% if enable_infinite %} data-infinite="true"{% endif %} style="--row-distance-style: {{ section.settings.item_distance | prepend: '-' | append: 'px' }};">
-            {%- assign blog = blogs[section.settings.blog_posts] -%}
-            {%- if section.settings.blog_posts != blank and section.settings.blog_posts.articles_count > 0 -%}
-                {%- for article in blog.articles limit: section.settings.post_limit -%}
-                <div class="halo-item" id="block-{{article.id}}" style="--item-distance-style: {{ section.settings.item_distance | append: 'px' }};">
-                    {% render 'article-card-featured',
-                        article: article,
-                        blog_show_author: blog_show_author,
-                        blog_show_date: blog_show_date,
-                        blog_show_des: blog_show_des,
-                        show_more_pos: show_more_pos,
-                        blog_show_more_icon: blog_show_more_icon,
-                        text_align: text_align,
-                        text_by: text_by,
-                        text_on: text_on,
-                        margin_bottom_image: margin_bottom_image,
-                        margin_bottom_title: margin_bottom_title,
-                        margin_bottom_info: margin_bottom_info,
-                        margin_bottom_des: margin_bottom_des,
-                        limit_content_des: limit_content_des,
-                        blog_date_format: blog_date_format,
-                        enable_blog_button: enable_blog_button,
-                        block_item_style: block_item_style
-                    %}
-                </div>
-                {%- endfor -%}
-            {%- else -%}
-                {% for i in (1..section.settings.post_limit) -%}
-                    {%- assign placeholder_image_index = forloop.index0 | modulo: 3 | plus: 1 -%}
-                    {%- assign placeholder_image = 'blog-apparel-' | append: placeholder_image_index -%}
-                    <div class="halo-item" id="block-{{article.id}}" style="--item-distance-style: {{ section.settings.item_distance | append: 'px' }};">
-                        <div class="article-card">
-                            <div class="article-card__image-wrapper" style="--margin-bottom: {{ margin_bottom_image | append: 'px' }}">
-                                {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
-                            </div>
-                            <div class="article-card__info text-{{ text_align }}">
-                                <h3 class="article-card__title" style="--margin-bottom: {{ margin_bottom_title | append: 'px' }}">{{ 'sections.featured_blog.onboarding_title' | t }}</h3>
-                                <div class="article-card__des" style="--margin-bottom: {{ margin_bottom_des | append: 'px' }}">{{ 'sections.featured_blog.onboarding_content' | t }}</div>
+        <slide-section
+            class="swiper recipes-blog-section{% if section.settings.post_limit == 2 %} disable_dots_tablet{% endif %}"
+            data-section-id="{{ section.id }}"
+            data-effect="slide"
+            data-loop="{% if enable_infinite %}true{% else %}false{% endif %}"
+            data-autoplay="{% if enable_autoplay %}true{% else %}false{% endif %}"
+            data-autoplay-speed="{{ autoplay_speed }}"
+            data-speed="500"
+            data-spacing="{{ section.settings.item_distance }}"
+            data-mobile="1"
+            data-tablet="2"
+            data-desktop="{{ section.settings.blog_results_per_row }}"
+            style="--row-distance-style: {{ section.settings.item_distance | prepend: '-' | append: 'px' }};"
+        >
+            <div class="swiper-wrapper">
+                {%- assign blog = blogs[section.settings.blog_posts] -%}
+                {%- if section.settings.blog_posts != blank and section.settings.blog_posts.articles_count > 0 -%}
+                    {%- for article in blog.articles limit: section.settings.post_limit -%}
+                    <div class="swiper-slide halo-item" id="block-{{article.id}}" style="--item-distance-style: {{ section.settings.item_distance | append: 'px' }};">
+                        {% render 'article-card-featured',
+                            article: article,
+                            blog_show_author: blog_show_author,
+                            blog_show_date: blog_show_date,
+                            blog_show_des: blog_show_des,
+                            show_more_pos: show_more_pos,
+                            blog_show_more_icon: blog_show_more_icon,
+                            text_align: text_align,
+                            text_by: text_by,
+                            text_on: text_on,
+                            margin_bottom_image: margin_bottom_image,
+                            margin_bottom_title: margin_bottom_title,
+                            margin_bottom_info: margin_bottom_info,
+                            margin_bottom_des: margin_bottom_des,
+                            limit_content_des: limit_content_des,
+                            blog_date_format: blog_date_format,
+                            enable_blog_button: enable_blog_button,
+                            block_item_style: block_item_style
+                        %}
+                    </div>
+                    {%- endfor -%}
+                {%- else -%}
+                    {% for i in (1..section.settings.post_limit) -%}
+                        {%- assign placeholder_image_index = forloop.index0 | modulo: 3 | plus: 1 -%}
+                        {%- assign placeholder_image = 'blog-apparel-' | append: placeholder_image_index -%}
+                        <div class="swiper-slide halo-item" id="block-placeholder-{{i}}" style="--item-distance-style: {{ section.settings.item_distance | append: 'px' }};">
+                            <div class="article-card">
+                                <div class="article-card__image-wrapper" style="--margin-bottom: {{ margin_bottom_image | append: 'px' }}">
+                                    {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
+                                </div>
+                                <div class="article-card__info text-{{ text_align }}">
+                                    <h3 class="article-card__title" style="--margin-bottom: {{ margin_bottom_title | append: 'px' }}">{{ 'sections.featured_blog.onboarding_title' | t }}</h3>
+                                    <div class="article-card__des" style="--margin-bottom: {{ margin_bottom_des | append: 'px' }}">{{ 'sections.featured_blog.onboarding_content' | t }}</div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                {%- endfor -%}
-            {%- endif -%}
-        </div>
+                    {%- endfor -%}
+                {%- endif -%}
+            </div>
+            <div class="swiper-pagination"></div>
+        </slide-section>
     </div>
-    </div>
+</div>
 {% schema %}
 {
     "name": "t:sections.featured_blog.name",
