@@ -98,6 +98,17 @@
     .section-block-{{section.id}} .view_all .icon-svg svg {fill: var(--color-view-all-icon-style)}
     .article-card-header .article-card__link {margin-top:{% if settings.blog_title_font_size >= 18 %} 5px{% else %} 2px{% endif %}}
     .section-block-{{section.id}}  .halo-row-placeholder {display: flex;}
+    /* Only this section + only after slick init */
+    #shopify-section-{{ section.id }} .recipes-blog-section--slick.slick-initialized {
+        display: block !important; /* stop halo-row flex grid */
+    }
+    /* Remove column-* forced widths when slick is active */
+    #shopify-section-{{ section.id }} .recipes-blog-section--slick.slick-initialized .halo-item,
+    #shopify-section-{{ section.id }} .recipes-blog-section--slick.slick-initialized .slick-slide {
+        flex: 0 0 auto !important;
+        max-width: none !important;
+        width: auto !important; /* allow slick inline widths */
+    }
     {%- if enable_blog_button -%}
         .section-block-{{section.id}} .article-card__footer {text-decoration: unset}
         .section-block-{{section.id}} .article-card__footer a.button {color: {{ color_button_item }};background: {{ color_button_item_bg }};border: 1px solid {{ color_button_item_border }};font-weight: var(--btn-1-font-weight);text-transform: var(--btn-1-text-transform);width: 162px}
@@ -173,7 +184,7 @@
                 {%- endif -%}
             </div>
         {%- endif -%}
-        <div class="recipes-blog-section {% if section.settings.blog_posts != blank %}halo-row{% else %}halo-row-placeholder{% endif %} column-{{ section.settings.blog_results_per_row }}{% if section.settings.post_limit == 2 %} disable_dots_tablet{% endif %}" data-rows="{{ section.settings.blog_results_per_row }}" data-blogs-slider{% if enable_autoplay %} data-autoplay="true"{% endif %} data-autoplay-speed="{{ autoplay_speed }}"{% if enable_infinite %} data-infinite="true"{% endif %} style="--row-distance-style: {{ section.settings.item_distance | prepend: '-' | append: 'px' }};">
+        <div class="recipes-blog-section recipes-blog-section--slick {% if section.settings.blog_posts != blank %}halo-row{% else %}halo-row-placeholder{% endif %} column-{{ section.settings.blog_results_per_row }}{% if section.settings.post_limit == 2 %} disable_dots_tablet{% endif %}" data-rows="{{ section.settings.blog_results_per_row }}" data-blogs-slider{% if enable_autoplay %} data-autoplay="true"{% endif %} data-autoplay-speed="{{ autoplay_speed }}"{% if enable_infinite %} data-infinite="true"{% endif %} style="--row-distance-style: {{ section.settings.item_distance | prepend: '-' | append: 'px' }};">
             {%- assign blog = blogs[section.settings.blog_posts] -%}
             {%- if section.settings.blog_posts != blank and section.settings.blog_posts.articles_count > 0 -%}
                 {%- for article in blog.articles limit: section.settings.post_limit -%}
