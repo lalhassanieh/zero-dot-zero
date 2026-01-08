@@ -9,6 +9,7 @@
                     autoplay = self.data('autoplay') !== undefined ? self.data('autoplay') : false,
                     autoplaySpeed = (self.data('autoplay-speed') || 3) * 1000;
                 
+                // Check if data-infinite attribute exists and is set to true
                 var infiniteAttr = self.attr('data-infinite');
                 var infiniteSetting = infiniteAttr !== undefined && (infiniteAttr === 'true' || infiniteAttr === true);
 
@@ -23,11 +24,29 @@
                         self.empty().append(items);
                     }
                     
+                    // Count total slides
                     var totalSlides = self.find('.halo-item').length;
                     
-                    var infinite = infiniteSetting && totalSlides > rows;
-                    var infiniteTablet = infiniteSetting && totalSlides > 2;
-                    var infiniteMobile = infiniteSetting && totalSlides > 1;
+                    // Only enable infinite if there are enough slides to prevent empty slides
+                    // For proper infinite loop without empty spaces, we need enough slides to duplicate
+                    // Minimum: slidesToShow + 1, but for smooth odd/even handling, use slidesToShow * 2
+                    // However, if totalSlides is exactly divisible by slidesToShow, we can use a lower threshold
+                    var remainder = totalSlides % rows;
+                    var isDivisible = remainder === 0;
+                    
+                    // Enable infinite if: 
+                    // - Setting is enabled AND
+                    // - Either slides are divisible by rows (clean fit) OR we have at least rows * 2 slides
+                    var infinite = infiniteSetting && (isDivisible ? totalSlides > rows : totalSlides >= (rows * 2));
+                    
+                    // Same logic for responsive breakpoints
+                    var remainderTablet = totalSlides % 2;
+                    var isDivisibleTablet = remainderTablet === 0;
+                    var infiniteTablet = infiniteSetting && (isDivisibleTablet ? totalSlides > 2 : totalSlides >= 4);
+                    
+                    var remainderMobile = totalSlides % 1;
+                    var isDivisibleMobile = remainderMobile === 0;
+                    var infiniteMobile = infiniteSetting && (isDivisibleMobile ? totalSlides > 1 : totalSlides >= 2);
                     
                     self.slick({
                         slidesToShow: rows,
