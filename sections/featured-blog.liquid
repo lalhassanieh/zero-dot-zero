@@ -57,6 +57,9 @@
     assign content_gradient = section.settings.content_gradient
     assign button_text_transform = section.settings.block_button_text_transform
     assign button_text_fw = section.settings.block_button_fw
+    assign enable_autoplay = section.settings.enable_autoplay
+    assign autoplay_speed = section.settings.autoplay_speed | default: 3000
+    assign enable_infinite = section.settings.enable_infinite
 -%}
 
 <style>
@@ -170,7 +173,7 @@
                 {%- endif -%}
             </div>
         {%- endif -%}
-        <div class="recipes-blog-section {% if section.settings.blog_posts != blank %}halo-row{% else %}halo-row-placeholder{% endif %} column-{{ section.settings.blog_results_per_row }}{% if section.settings.post_limit == 2 %} disable_dots_tablet{% endif %}" data-rows="{{ section.settings.blog_results_per_row }}" data-blogs-slider style="--row-distance-style: {{ section.settings.item_distance | prepend: '-' | append: 'px' }};">
+        <div class="recipes-blog-section {% if section.settings.blog_posts != blank %}halo-row{% else %}halo-row-placeholder{% endif %} column-{{ section.settings.blog_results_per_row }}{% if section.settings.post_limit == 2 %} disable_dots_tablet{% endif %}" data-rows="{{ section.settings.blog_results_per_row }}" data-blogs-slider{% if enable_autoplay %} data-autoplay="true"{% endif %} data-autoplay-speed="{{ autoplay_speed }}"{% if enable_infinite %} data-infinite="true"{% endif %} style="--row-distance-style: {{ section.settings.item_distance | prepend: '-' | append: 'px' }};">
             {%- assign blog = blogs[section.settings.blog_posts] -%}
             {%- if section.settings.blog_posts != blank and section.settings.blog_posts.articles_count > 0 -%}
                 {%- for article in blog.articles limit: section.settings.post_limit -%}
@@ -675,6 +678,32 @@
             "value": "long_month",
             "label": "t:sections.featured_blog.settings.blog.date_format_option_2"
         }]
+    },
+    {
+        "type": "header",
+        "content": "Slider Settings"
+    },
+    {
+        "type": "checkbox",
+        "id": "enable_autoplay",
+        "label": "Enable Auto Slide",
+        "default": true
+    },
+    {
+        "type": "range",
+        "id": "autoplay_speed",
+        "label": "Auto Slide Speed (ms)",
+        "min": 1000,
+        "max": 9000,
+        "step": 500,
+        "unit": "ms",
+        "default": 3000
+    },
+    {
+        "type": "checkbox",
+        "id": "enable_infinite",
+        "label": "Enable Infinite Loop",
+        "default": true
     },
     {
         "type": "header",
