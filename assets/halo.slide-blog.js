@@ -5,7 +5,10 @@
 
             blogBlock.each(function() {
                 var self = $(this),
-                    rows = self.data('rows');
+                    rows = self.data('rows'),
+                    autoplay = self.data('autoplay') !== undefined ? self.data('autoplay') : false,
+                    autoplaySpeed = (self.data('autoplay-speed') || 3) * 1000,
+                    infinite = self.data('infinite') !== undefined ? self.data('infinite') : true;
 
                 var isRTL =
                     document.documentElement.getAttribute('dir') === 'rtl' ||
@@ -21,8 +24,9 @@
                         slidesToShow: rows,
                         slidesToScroll: 1,
                         speed: 1000,
-                        autoplay: false,
-                        infinite: false,
+                        autoplay: autoplay,
+                        autoplaySpeed: autoplaySpeed,
+                        infinite: infinite,
                         dots: false,
                         arrows: true,
                         nextArrow: isRTL ? window.arrows.icon_prev : window.arrows.icon_next,
@@ -35,6 +39,9 @@
                                     slidesToShow: 2,
                                     dots: true,
                                     arrows: false,
+                                    autoplay: autoplay,
+                                    autoplaySpeed: autoplaySpeed,
+                                    infinite: infinite,
                                 }
                             },
                             {
@@ -43,6 +50,9 @@
                                     slidesToShow: 1,
                                     dots: true,
                                     arrows: false,
+                                    autoplay: autoplay,
+                                    autoplaySpeed: autoplaySpeed,
+                                    infinite: infinite,
                                 }
                             }
                         ]
