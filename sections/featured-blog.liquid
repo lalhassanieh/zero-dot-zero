@@ -98,6 +98,23 @@
     .section-block-{{section.id}} .view_all .icon-svg svg {fill: var(--color-view-all-icon-style)}
     .article-card-header .article-card__link {margin-top:{% if settings.blog_title_font_size >= 18 %} 5px{% else %} 2px{% endif %}}
     .section-block-{{section.id}}  .halo-row-placeholder {display: flex;}
+    /* Override theme grid widths when Slick slider is initialized */
+    .section-block-{{section.id}} [data-blogs-slider].slick-initialized {
+        display: block !important;
+    }
+    .section-block-{{section.id}} [data-blogs-slider].slick-initialized .halo-item,
+    .section-block-{{section.id}} [data-blogs-slider].slick-initialized .slick-slide {
+        flex: 0 0 auto !important;
+        max-width: none !important;
+        width: auto !important;
+    }
+    .section-block-{{section.id}} [data-blogs-slider].slick-initialized.column-2 .halo-item,
+    .section-block-{{section.id}} [data-blogs-slider].slick-initialized.column-3 .halo-item,
+    .section-block-{{section.id}} [data-blogs-slider].slick-initialized.column-4 .halo-item {
+        flex: 0 0 auto !important;
+        max-width: none !important;
+        width: auto !important;
+    }
     {%- if enable_blog_button -%}
         .section-block-{{section.id}} .article-card__footer {text-decoration: unset}
         .section-block-{{section.id}} .article-card__footer a.button {color: {{ color_button_item }};background: {{ color_button_item_bg }};border: 1px solid {{ color_button_item_border }};font-weight: var(--btn-1-font-weight);text-transform: var(--btn-1-text-transform);width: 162px}
