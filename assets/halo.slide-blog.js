@@ -9,9 +9,6 @@
                     autoplay = self.data('autoplay') !== undefined ? self.data('autoplay') : false,
                     autoplaySpeed = (self.data('autoplay-speed') || 3) * 1000;
 
-                var itemCount = self.find('.halo-item').length;
-                var enableInfinite = (itemCount >= 4 && itemCount % 4 === 0);
-
                 var isRTL =
                     document.documentElement.getAttribute('dir') === 'rtl' ||
                     (window.Shopify && Shopify.locale && Shopify.locale.toLowerCase().startsWith('ar')) ||
@@ -28,7 +25,7 @@
                         speed: 1000,
                         autoplay: autoplay,
                         autoplaySpeed: autoplaySpeed,
-                        infinite: enableInfinite,
+                        infinite: false,
                         dots: false,
                         arrows: true,
                         nextArrow: isRTL ? window.arrows.icon_prev : window.arrows.icon_next,
@@ -43,7 +40,7 @@
                                     arrows: false,
                                     autoplay: autoplay,
                                     autoplaySpeed: autoplaySpeed,
-                                    infinite: enableInfinite,
+                                    infinite: false,
                                 }
                             },
                             {
@@ -54,7 +51,7 @@
                                     arrows: false,
                                     autoplay: autoplay,
                                     autoplaySpeed: autoplaySpeed,
-                                    infinite: enableInfinite,
+                                    infinite: false,
                                 }
                             }
                         ]
