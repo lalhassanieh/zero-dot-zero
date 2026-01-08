@@ -58,7 +58,7 @@
     assign button_text_transform = section.settings.block_button_text_transform
     assign button_text_fw = section.settings.block_button_fw
     assign enable_autoplay = section.settings.enable_autoplay
-    assign autoplay_speed = section.settings.autoplay_speed | default: 3000
+    assign autoplay_speed = section.settings.autoplay_speed | default: 3
     assign enable_infinite = section.settings.enable_infinite
 -%}
 
@@ -692,12 +692,12 @@
     {
         "type": "range",
         "id": "autoplay_speed",
-        "label": "Auto Slide Speed (ms)",
-        "min": 1000,
-        "max": 9000,
-        "step": 500,
-        "unit": "ms",
-        "default": 3000
+        "label": "Auto Slide Speed",
+        "min": 1,
+        "max": 10,
+        "step": 0.5,
+        "unit": "s",
+        "default": 3
     },
     {
         "type": "checkbox",
