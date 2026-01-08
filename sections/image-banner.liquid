@@ -44,12 +44,12 @@
         #halo-image-banner-{{ section.id }} .item--largeImg .btn-scroll-down {color: var(--btn-scroll_color)}
         #halo-image-banner-{{ section.id }} .item--specialImg .banner-btn--style2{background: none;border: none;padding-left: 0;padding-right: 0;display: inline-block;width: auto;min-width: unset}
         #halo-image-banner-{{ section.id }} .item--specialImg .banner-btn--style2 span{background-image: linear-gradient(transparent 97%, var(--button_border) 3%);background-repeat: repeat-x;background-position-y: 0}
-        #halo-image-banner-{{ section.id }} .banner-button{color: var(--button_color);background: var(--button_bg);background-origin: border-box;border-color: var(--button_border);width: var(--button_width);max-width: var(--button_width)}
+        #halo-image-banner-{{ section.id }} .banner-button{color: var(--button_color);background: var(--button_bg);background-origin: border-box;border-color: var(--button_border);width: var(--button_width);max-width: var(--button_width);cursor: pointer;position: relative;z-index: 10}
         .btn_1_br_outside #halo-image-banner-{{ section.id }} .banner-button:after{border: 1px solid var(--button_border)}
         #halo-image-banner-{{ section.id }} .banner-button svg {fill: var(--button_color)}
         #halo-image-banner-{{ section.id }} .flex-box__banner .content-box__divider {height: 240px;width: 1px;min-width: 1px; background: var(--divider_bg_color);display: block;transform: translateY(var(--smallImg_divider_center_pos))}
         #halo-image-banner-{{ section.id }} .banner-content--style_2 .small_img_button_2, #halo-image-banner-{{ section.id }} .banner-content--style_4 .small_img_button_2{margin-top: var(--smallImg_btn_2_spacing_top)}         
-        #halo-image-banner-{{ section.id }} .content-box--absolute {width: var(--content_width)}
+        #halo-image-banner-{{ section.id }} .content-box--absolute {width: var(--content_width);position: relative;z-index: 10}
         #halo-image-banner-{{ section.id }} .content-box--absolute-half {position: relative;top: 0;left: 0;right: 0;bottom: 0;z-index: 2;transform: translate(0);padding: 25px 25px 30px}
         #halo-image-banner-{{ section.id }} .flex-box__banner .content-box {max-width: var(--content_width)}
         #halo-image-banner-{{ section.id }} .flex-box__banner .content-box__col-1 {margin-right: var(--content_spacing_right);margin-bottom: 0;max-width: var(--content_width);transform: translateY(var(--smallImg_text_center_pos))}
@@ -59,6 +59,9 @@
         #halo-image-banner-{{ section.id }} .flex-box__banner .sub-title-icon img {margin-right: auto;margin-left: auto;margin-bottom: var(--mg-bottom-icon-style)}
         #halo-image-banner-{{ section.id }} .banner-item.slick-initialized {z-index: 2}
         #halo-image-banner-{{ section.id }} .banner-item--maxWidth{max-width: var(--custom_width_image); margin: 0 auto}
+        #halo-image-banner-{{ section.id }} .banner-item .image {position: relative;z-index: 1}
+        #halo-image-banner-{{ section.id }} .banner-item .content-box--absolute {pointer-events: auto}
+        #halo-image-banner-{{ section.id }} .banner-item .content-box--absolute * {pointer-events: auto}
         #halo-image-banner-{{ section.id }} .banner-button--custom-border{overflow: unset; transform: none !important}
         #halo-image-banner-{{ section.id }} .banner-button--custom-border:after{content: "";position: absolute;top: 6px;left: 6px;width: 100%;height: 100%;border: 1px solid var(--button_border);z-index: -1}
         #halo-image-banner-{{ section.id }} .banner-button:hover:after{border: 1px solid var(--button_border_hover)}
