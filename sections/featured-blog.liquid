@@ -154,7 +154,7 @@
     }
 </style>
 
-<div class="featured-blog-block section-block-{{section.id}}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" id="featured-blog-{{section.id}}" data-loader-script="{{ 'halo.slide-blog-infinite.js' | asset_url }}">
+<div class="featured-blog-block section-block-{{section.id}}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" id="featured-blog-{{section.id}}" data-loader-script="{{ 'halo.slide-blog.js' | asset_url }}">
     <div class="{% if section.settings.container == 'fullwidth' %}container-full{% elsif section.settings.container == '1170' %}container-1170{% elsif section.settings.container == '1570' %}container-1570{% elsif section.settings.container == '1770' %}container-1770{% else %}container{% endif %}">
         {%- if section.settings.featured_blog_title != blank -%}
             <div class="halo-block-header text-{{ section.settings.title_align }} view_all-{{ section.settings.view_all_pos }}">
