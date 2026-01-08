@@ -25,7 +25,7 @@
                         speed: 1000,
                         autoplay: autoplay,
                         autoplaySpeed: autoplaySpeed,
-                        infinite: false,
+                        infinite: true,
                         dots: false,
                         arrows: true,
                         nextArrow: isRTL ? window.arrows.icon_prev : window.arrows.icon_next,
@@ -40,7 +40,7 @@
                                     arrows: false,
                                     autoplay: autoplay,
                                     autoplaySpeed: autoplaySpeed,
-                                    infinite: false,
+                                    infinite: true,
                                 }
                             },
                             {
@@ -51,7 +51,7 @@
                                     arrows: false,
                                     autoplay: autoplay,
                                     autoplaySpeed: autoplaySpeed,
-                                    infinite: false,
+                                    infinite: true,
                                 }
                             }
                         ]
