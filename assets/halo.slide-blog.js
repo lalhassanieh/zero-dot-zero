@@ -7,8 +7,7 @@
                 var self = $(this),
                     rows = self.data('rows'),
                     autoplay = self.data('autoplay') !== undefined ? self.data('autoplay') : false,
-                    autoplaySpeed = (self.data('autoplay-speed') || 3) * 1000,
-                    infinite = self.data('infinite') !== undefined ? self.data('infinite') : true;
+                    autoplaySpeed = (self.data('autoplay-speed') || 3) * 1000;
 
                 var isRTL =
                     document.documentElement.getAttribute('dir') === 'rtl' ||
@@ -26,7 +25,7 @@
                         speed: 1000,
                         autoplay: autoplay,
                         autoplaySpeed: autoplaySpeed,
-                        infinite: infinite,
+                        infinite: false,
                         dots: false,
                         arrows: true,
                         nextArrow: isRTL ? window.arrows.icon_prev : window.arrows.icon_next,
@@ -41,7 +40,7 @@
                                     arrows: false,
                                     autoplay: autoplay,
                                     autoplaySpeed: autoplaySpeed,
-                                    infinite: infinite,
+                                    infinite: false,
                                 }
                             },
                             {
@@ -52,7 +51,7 @@
                                     arrows: false,
                                     autoplay: autoplay,
                                     autoplaySpeed: autoplaySpeed,
-                                    infinite: infinite,
+                                    infinite: false,
                                 }
                             }
                         ]
