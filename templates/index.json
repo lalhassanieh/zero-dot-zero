@@ -15,8 +15,8 @@
         "image_M9rGXy": {
           "type": "image",
           "settings": {
-            "image_slide": "shopify://shop_images/Hero_section_1370_x_477_1.jpg",
-            "image_slide_mb": "shopify://shop_images/Hero_section_750_x1313_d78fdbbf-64ab-429a-a929-6fa564a982f7.jpg",
+            "image_slide": "shopify://shop_images/Hero_section_1370_x_477_1.png",
+            "image_slide_mb": "shopify://shop_images/Hero_section_1370_x_477_1.png",
             "alignment": "left",
             "enable_custom_position": true,
             "custom_horizontal": "5",
