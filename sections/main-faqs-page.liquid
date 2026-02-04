@@ -55,13 +55,7 @@
             </h1>
         {%- endif -%}
         <div class="halo-page-content halo-faqs-content{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
-            <!-- DEBUG ALL PAGE METAFIELDS: {{ page.metafields | json }} -->
             {%- assign faq_categories = page.metafields.custom.faq_categories.value -%}
-            {%- if faq_categories == blank -%}
-                {%- assign faq_categories = page.metafields.custom.faq_category.value -%}
-            {%- endif -%}
-            <!-- DEBUG faq_categories size: {{ faq_categories.size }} -->
-            <!-- DEBUG faq_categories type: {{ faq_categories }} -->
             {%- if faq_categories != blank and faq_categories.size > 0 -%}
                 <div class="faqs">
                     {%- if faqs_text != blank -%}
