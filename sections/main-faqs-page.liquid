@@ -137,24 +137,24 @@
                                         </h3>
                                     {%- endif -%}
                                     <div class="faqs-body">
-                                        <div class="faqs-row" id="accordion-{{ category.id }}">
+                                        <div class="faqs-row" id="accordion-{{ category.system.id }}">
                                             {%- for item in faq_items -%}
                                                 {%- assign question = item.question -%}
                                                 {%- assign answer = item.answer -%}
 
                                                 {%- if question != blank -%}
                                                     <div class="faqs-item{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
-                                                        <div class="card" id="accordion-card-{{ category.id }}-{{ forloop.index }}">
-                                                            <div class="card-header collapsed" id="question-{{ category.id }}-{{ forloop.index }}" data-toggle="collapse" data-target="#collapse-{{ category.id }}-{{ forloop.index }}" aria-expanded="true" aria-controls="collapse-{{ category.id }}-{{ forloop.index }}">
+                                                        <div class="card" id="accordion-card-{{ category.system.id }}-{{ forloop.index }}">
+                                                            <div class="card-header collapsed" id="question-{{ category.system.id }}-{{ forloop.index }}" data-toggle="collapse" data-target="#collapse-{{ category.system.id }}-{{ forloop.index }}" aria-expanded="true" aria-controls="collapse-{{ category.system.id }}-{{ forloop.index }}">
                                                                 <div class="title" role="button" tabindex="0">
                                                                     {{ question }}
                                                                 </div>
                                                                 <span class="icon-plus arrow" role="none"></span>
                                                             </div>
-                                                            <div id="collapse-{{ category.id }}-{{ forloop.index }}" class="collapse" data-parent="#accordion-{{ category.id }}">
-                                                                <div class="card-body" id="answer-{{ category.id }}-{{ forloop.index }}">
+                                                            <div id="collapse-{{ category.system.id }}-{{ forloop.index }}" class="collapse" data-parent="#accordion-{{ category.system.id }}">
+                                                                <div class="card-body" id="answer-{{ category.system.id }}-{{ forloop.index }}">
                                                                     <div class="">
-                                                                        {{ answer }}
+                                                                        {{ answer | metafield_tag }}
                                                                     </div>
                                                                 </div>
                                                             </div>
