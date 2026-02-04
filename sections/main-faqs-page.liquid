@@ -56,7 +56,8 @@
         {%- endif -%}
         <div class="halo-page-content halo-faqs-content{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
             {%- assign faq_categories = page.metafields.custom.faq_categories.value -%}
-            {%- if faq_categories.size > 0 -%}
+            <!-- DEBUG FAQ CATEGORIES COUNT: {{ faq_categories.size }} -->
+            {%- if faq_categories != blank and faq_categories.size > 0 -%}
                 <div class="faqs">
                     {%- if faqs_text != blank -%}
                         <div class="faqs-desc{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
@@ -76,7 +77,7 @@
                                         <span class="text">{{ 'faqs.general.all' | t }}</span>
                                     </li>
                                     {%- for category in faq_categories -%}
-                                        {%- assign title = category.title.value -%}
+                                        {%- assign title = category.title -%}
                                         {%- if title != blank -%}
                                             <li data-value="paragraph-{{ title | handleize }}">
                                                 <span class="text">{{ title | escape }}</span>
@@ -122,7 +123,7 @@
                         </div>
                         <div class="faqs-questions-and-answers{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
                         {%- for category in faq_categories -%}
-                            {%- assign title = category.title.value -%}
+                            {%- assign title = category.title -%}
                             {%- assign faq_items = category.items.value -%}
                             <div class="faqs-paragraph" id="paragraph-{{ title | handleize }}">
                                     {%- if title != blank -%}
@@ -131,21 +132,21 @@
                                         </h3>
                                     {%- endif -%}
                                     <div class="faqs-body">
-                                        <div class="faqs-row">
+                                        <div class="faqs-row" id="accordion-{{ category.id }}">
                                             {%- for item in faq_items -%}
-                                                {%- assign question = item.question.value -%}
-                                                {%- assign answer = item.answer.value -%}
+                                                {%- assign question = item.question -%}
+                                                {%- assign answer = item.answer -%}
 
                                                 {%- if question != blank -%}
                                                     <div class="faqs-item{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
-                                                        <div class="card" id="#accordion-{{ category.id }}-{{ forloop.index }}">
+                                                        <div class="card" id="accordion-card-{{ category.id }}-{{ forloop.index }}">
                                                             <div class="card-header collapsed" id="question-{{ category.id }}-{{ forloop.index }}" data-toggle="collapse" data-target="#collapse-{{ category.id }}-{{ forloop.index }}" aria-expanded="true" aria-controls="collapse-{{ category.id }}-{{ forloop.index }}">
                                                                 <div class="title" role="button" tabindex="0">
                                                                     {{ question }}
                                                                 </div>
                                                                 <span class="icon-plus arrow" role="none"></span>
                                                             </div>
-                                                            <div id="collapse-{{ category.id }}-{{ forloop.index }}" class="collapse" data-parent="#accordion">
+                                                            <div id="collapse-{{ category.id }}-{{ forloop.index }}" class="collapse" data-parent="#accordion-{{ category.id }}">
                                                                 <div class="card-body" id="answer-{{ category.id }}-{{ forloop.index }}">
                                                                     <div class="">
                                                                         {{ answer }}
