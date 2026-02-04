@@ -56,6 +56,9 @@
         {%- endif -%}
         <div class="halo-page-content halo-faqs-content{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
             {%- assign faq_categories = page.metafields.custom.faq_categories.value -%}
+            {%- if faq_categories == blank -%}
+                {%- assign faq_categories = page.metafields.custom.faq_category.value -%}
+            {%- endif -%}
             {%- if faq_categories != blank and faq_categories.size > 0 -%}
                 <div class="faqs">
                     {%- if faqs_text != blank -%}
