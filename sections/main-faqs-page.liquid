@@ -55,7 +55,8 @@
             </h1>
         {%- endif -%}
         <div class="halo-page-content halo-faqs-content{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
-            {%- if section.blocks.size > 0 -%}
+            {%- assign faq_categories = page.metafields.custom.faq_categories.value -%}
+            {%- if faq_categories.size > 0 -%}
                 <div class="faqs">
                     {%- if faqs_text != blank -%}
                         <div class="faqs-desc{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
@@ -74,10 +75,8 @@
                                     <li class="is-active">
                                         <span class="text">{{ 'faqs.general.all' | t }}</span>
                                     </li>
-                                    {%- for block in section.blocks -%}
-                                        {%- liquid
-                                            assign title = block.settings.title
-                                        -%}
+                                    {%- for category in faq_categories -%}
+                                        {%- assign title = category.title.value -%}
                                         {%- if title != blank -%}
                                             <li data-value="paragraph-{{ title | handleize }}">
                                                 <span class="text">{{ title | escape }}</span>
@@ -122,10 +121,9 @@
                             {% endif %}
                         </div>
                         <div class="faqs-questions-and-answers{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
-                        {%- for block in section.blocks -%}
-                            {%- liquid
-                                assign title = block.settings.title
-                            -%}
+                        {%- for category in faq_categories -%}
+                            {%- assign title = category.title.value -%}
+                            {%- assign faq_items = category.items.value -%}
                             <div class="faqs-paragraph" id="paragraph-{{ title | handleize }}">
                                     {%- if title != blank -%}
                                         <h3 class="faqs-title page-subheader{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
@@ -134,26 +132,21 @@
                                     {%- endif -%}
                                     <div class="faqs-body">
                                         <div class="faqs-row">
-                                            {%- for i in (1..15) -%}
-                                                {% capture cap_question %}question_{{ i }}{% endcapture %}
-                                                {% capture cap_answer %}answer_{{ i }}{% endcapture %}
-
-                                                {%- liquid
-                                                    assign question = block.settings[cap_question]
-                                                    assign answer = block.settings[cap_answer]
-                                                -%}
+                                            {%- for item in faq_items -%}
+                                                {%- assign question = item.question.value -%}
+                                                {%- assign answer = item.answer.value -%}
 
                                                 {%- if question != blank -%}
                                                     <div class="faqs-item{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
-                                                        <div class="card" id="#accordion-{{ block.id }}-{{ forloop.index }}">
-                                                            <div class="card-header collapsed" id="question-{{ block.id }}-{{ forloop.index }}" data-toggle="collapse" data-target="#collapse-{{ block.id }}-{{ forloop.index }}" aria-expanded="true" aria-controls="collapse-{{ block.id }}-{{ forloop.index }}">
+                                                        <div class="card" id="#accordion-{{ category.id }}-{{ forloop.index }}">
+                                                            <div class="card-header collapsed" id="question-{{ category.id }}-{{ forloop.index }}" data-toggle="collapse" data-target="#collapse-{{ category.id }}-{{ forloop.index }}" aria-expanded="true" aria-controls="collapse-{{ category.id }}-{{ forloop.index }}">
                                                                 <div class="title" role="button" tabindex="0">
                                                                     {{ question }}
                                                                 </div>
                                                                 <span class="icon-plus arrow" role="none"></span>
                                                             </div>
-                                                            <div id="collapse-{{ block.id }}-{{ forloop.index }}" class="collapse" data-parent="#accordion">
-                                                                <div class="card-body" id="answer-{{ block.id }}-{{ forloop.index }}">
+                                                            <div id="collapse-{{ category.id }}-{{ forloop.index }}" class="collapse" data-parent="#accordion">
+                                                                <div class="card-body" id="answer-{{ category.id }}-{{ forloop.index }}">
                                                                     <div class="">
                                                                         {{ answer }}
                                                                     </div>
