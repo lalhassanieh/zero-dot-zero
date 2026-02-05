@@ -267,24 +267,6 @@
                             {%- liquid
 
                                 assign heading = block.settings.heading
-                                assign text = block.settings.text
-                                assign btn_text = block.settings.btn_text
-                                assign use_metaobject_banner = false
-                                
-                                if block.settings.use_metaobject_content
-                                    assign content_blocks = page.metafields.custom.content_block.value
-                                    if content_blocks != blank
-                                        for content_block in content_blocks
-                                            if content_block.type == 'banner'
-                                                assign heading = content_block.title
-                                                assign text = content_block.description
-                                                assign btn_text = content_block.button_label
-                                                assign use_metaobject_banner = true
-                                                break
-                                            endif
-                                        endfor
-                                    endif
-                                endif
 
                                 if block.type == 'largeImg'
                                     assign video_link = block.settings.video_link
@@ -314,7 +296,9 @@
                                 assign preview_img_item_2 = block.settings.image_item_2
                                 assign mobile_image = block.settings.mobile_image
                                 assign heading_item_2 = block.settings.heading_item_2
+                                assign text = block.settings.text
                                 assign text_item_2 = block.settings.text_item_2
+                                assign btn_text = block.settings.btn_text
                                 assign btn_text_2 = block.settings.btn_text_2
                                 assign btn_text_item_2 = block.settings.btn_text_item_2
                                 assign link = block.settings.link
@@ -594,7 +578,7 @@
                                                     <div class="countdown-block countdown-{{ block.id }} hide--{{ hide_countdown_fc }} shape-{{ countdown_style }}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" data-countdown data-countdown-value="{{ countdown }}" style="--font-size-countdown-number-style: {{ font_size_countdown_number | append: 'px' }};--font-size-countdown-text-style: {{ font_size_countdown_text | append: 'px' }};--color-countdown-style: {{ color_countdown }};--color-countdown-mb-style: {{ color_countdown_mb }};--countdown-margin-bottom-style: {{ countdown_margin_bottom | append: 'px' }}"></div>
                                                 {%- endif -%}
                                                 {%- if text != blank -%}
-                                                    <span class="banner-text{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="{% if settings.banner_animation == 'effect_fade_up' %}--animation-order: 2;{% endif %}--des_font_size: {{ des_font_size | append: 'px'}};--des_font_size_mb: {{ des_font_size_mb | append: 'px'}};--des_color: {{ des_color }};--des_color_mb: {{ des_color_mb }};--line_height_des: {{ line_height_des | append: 'px'}};--margin_bottom_des: {{ margin_bottom_des | append: 'px'}};--margin_bottom_des_tab: {% if margin_bottom_des >= 25 %}25px{% else %}{{ margin_bottom_des | append: 'px'}}{% endif %}">{%- if use_metaobject_banner -%}{{ text | metafield_tag }}{%- else -%}{{ text }}{%- endif -%}</span>
+                                                    <span class="banner-text{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="{% if settings.banner_animation == 'effect_fade_up' %}--animation-order: 2;{% endif %}--des_font_size: {{ des_font_size | append: 'px'}};--des_font_size_mb: {{ des_font_size_mb | append: 'px'}};--des_color: {{ des_color }};--des_color_mb: {{ des_color_mb }};--line_height_des: {{ line_height_des | append: 'px'}};--margin_bottom_des: {{ margin_bottom_des | append: 'px'}};--margin_bottom_des_tab: {% if margin_bottom_des >= 25 %}25px{% else %}{{ margin_bottom_des | append: 'px'}}{% endif %}">{{ text }}</span>
                                                 {%- endif -%}
                                                 {%- if countdown != blank and countdown_position == 'countdown_below_desc' -%}
                                                     <div class="countdown-block countdown-{{ block.id }} hide--{{ hide_countdown_fc }} shape-{{ countdown_style }}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" data-countdown data-countdown-value="{{ countdown }}" style="--font-size-countdown-number-style: {{ font_size_countdown_number | append: 'px' }};--font-size-countdown-text-style: {{ font_size_countdown_text | append: 'px' }};--color-countdown-style: {{ color_countdown }};--color-countdown-mb-style: {{ color_countdown_mb }};--countdown-margin-bottom-style: {{ countdown_margin_bottom | append: 'px' }}"></div>
@@ -1382,21 +1366,6 @@
                 "name": "t:sections.image-banner.blocks.image.name",
                 "settings": [
                 {
-                    "type": "header",
-                    "content": "Content Source"
-                },
-                {
-                    "type": "checkbox",
-                    "id": "use_metaobject_content",
-                    "label": "Use metaobject for title, description and button",
-                    "info": "When enabled, content will be loaded from page metafield custom.content_block (banner type)",
-                    "default": false
-                },
-                {
-                    "type": "header",
-                    "content": "Images"
-                },
-                {
                     "type": "image_picker",
                     "id": "image",
                     "label": "t:sections.header.settings.mega_menu.banner__img",
@@ -1602,8 +1571,7 @@
                     "type": "text",
                     "id": "heading",
                     "label": "t:sections.image-banner.blocks.image.settings.content.label__1",
-                    "default": "MetropÃ³lis",
-                    "info": "Ignored when 'Use metaobject' is enabled"
+                    "default": "Metropólis"
                 },
                 {
                 "type": "text",
@@ -1730,8 +1698,7 @@
                     "type": "textarea",
                     "id": "text",
                     "label": "t:sections.image-banner.blocks.image.settings.content.label__2",
-                    "default": "Pellentesque posuere orci lobortis scelerisque blandit. Donec id tellus lacinia an tincidunt risus an consequat delit quisquemos.",
-                    "info": "Ignored when 'Use metaobject' is enabled"
+                    "default": "Pellentesque posuere orci lobortis scelerisque blandit. Donec id tellus lacinia an tincidunt risus an consequat delit quisquemos."
                 },
                 {
                     "type": "range",
@@ -1988,8 +1955,7 @@
                     "type": "text",
                     "id": "btn_text",
                     "label": "t:settings_schema.typography.settings.typography.button_text",
-                    "default": "Shop Now",
-                    "info": "Ignored when 'Use metaobject' is enabled"
+                    "default": "Shop Now"
                 },
                 {
                     "type": "url",
@@ -2509,7 +2475,7 @@
                     "type": "text",
                     "id": "heading",
                     "label": "t:sections.image-banner.blocks.image.settings.content.label__1",
-                    "default": "MetropÃ³lis"
+                    "default": "Metropólis"
                 },
                 {
                     "type": "text",
@@ -3081,7 +3047,7 @@
                     "type": "text",
                     "id": "heading",
                     "label": "t:sections.image-banner.blocks.image.settings.content.label__1",
-                    "default": "MetropÃ³lis"
+                    "default": "Metropólis"
                 },
                 {
                     "type": "text",
@@ -3531,7 +3497,7 @@
                     "type": "text",
                     "id": "heading_item_2",
                     "label": "t:sections.image-banner.blocks.image.settings.content.label__1",
-                    "default": "MetropÃ³lis"
+                    "default": "Metropólis"
                 },
                 {
                     "type": "text",
@@ -4387,7 +4353,7 @@
                     "type": "text",
                     "id": "heading",
                     "label": "t:sections.image-banner.blocks.image.settings.content.label__1",
-                    "default": "MetropÃ³lis"
+                    "default": "Metropólis"
                 },
                 {
                     "type": "text",
