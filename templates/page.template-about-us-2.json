@@ -597,37 +597,6 @@
     "faqs_7F3bQ4": {
       "type": "faqs",
       "blocks": {
-        "paragraph_EUE6kw": {
-          "type": "paragraph",
-          "disabled": true,
-          "settings": {
-            "title": "",
-            "question_1": "Can these be sold openly in retail and hospitality venues?",
-            "answer_1": "<p>Yes, they are approved for distribution and sale in KSA through both on-trade (restaurants, hotels) and off-trade (retail) channels. \n \n</p>",
-            "question_2": "Do these products taste the same as the alcoholic versions?",
-            "answer_2": "<p>Yes, they are designed to replicate the flavor and experience of the originals without any alcohol. </p>",
-            "question_3": "Why are they priced higher than juices or sodas?",
-            "answer_3": "<p>These are premium lifestyle products crafted with complex ingredients and techniques. The pricing reflects quality, brand heritage, and production processes.</p>",
-            "question_4": "",
-            "answer_4": "",
-            "question_5": "",
-            "answer_5": "",
-            "question_6": "",
-            "answer_6": "",
-            "question_7": "",
-            "answer_7": "",
-            "question_8": "",
-            "answer_8": "",
-            "question_9": "",
-            "answer_9": "",
-            "question_10": "",
-            "answer_10": "",
-            "question_11": "",
-            "answer_11": "",
-            "question_12": "",
-            "answer_12": ""
-          }
-        },
         "image_xpdmjM": {
           "type": "image",
           "settings": {
@@ -636,7 +605,6 @@
         }
       },
       "block_order": [
-        "paragraph_EUE6kw",
         "image_xpdmjM"
       ],
       "custom_css": [
