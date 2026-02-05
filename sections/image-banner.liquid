@@ -2214,6 +2214,21 @@
                 "name": "t:sections.image-banner.blocks.smallImg.name",
                 "settings": [
                 {
+                    "type": "header",
+                    "content": "Content Source"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "use_metaobject_content",
+                    "label": "Use metaobject for title, description and button",
+                    "info": "When enabled, content will be loaded from page metafield custom.content_block (banner type)",
+                    "default": false
+                },
+                {
+                    "type": "header",
+                    "content": "Layout"
+                },
+                {
                     "type": "checkbox",
                     "id": "row_reverse",
                     "label": "t:sections.image-banner.blocks.smallImg.settings.row_reverse"
@@ -2598,7 +2613,8 @@
                     "type": "textarea",
                     "id": "text",
                     "label": "t:sections.image-banner.blocks.image.settings.content.label__2",
-                    "default": "Pellentesque posuere orci lobortis scelerisque blandit. Donec id tellus lacinia an tincidunt risus an consequat delit quisquemos."
+                    "default": "Pellentesque posuere orci lobortis scelerisque blandit. Donec id tellus lacinia an tincidunt risus an consequat delit quisquemos.",
+                    "info": "Ignored when 'Use metaobject' is enabled"
                 },
                 {
                     "type": "range",
@@ -2768,7 +2784,8 @@
                     "type": "text",
                     "id": "btn_text",
                     "label": "t:settings_schema.typography.settings.typography.button_text",
-                    "default": "Shop Now"
+                    "default": "Shop Now",
+                    "info": "Ignored when 'Use metaobject' is enabled"
                 },
                 {
                     "type": "url",
