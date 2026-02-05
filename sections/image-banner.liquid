@@ -262,6 +262,7 @@
                 {%- endif -%}
                 <div class="halo-block-content{% if fontsize_title == 60 %} disable_space_item{% endif %}" style="--arrows_position: {{ arrows_position }}">
                     <div class="halo-banner-wrapper {% if section.settings.display_type == 'slide' %}slideshow is-slide{% endif %}"{% if section.blocks.size > 1 and section.settings.display_type == 'slide' %} data-image-banner-slide data-arrows={{ section.settings.enable_arrows}} data-dots={{ section.settings.enable_dots}} data-autoplay={{ section.settings.enable_autoplay}} data-autoplay-speed=1000{% endif %}>
+                        {%- assign metaobject_block_index = 0 -%}
                         {%- for block in section.blocks -%}
                             {%- if section.settings.display_type == 'slide' -%}<div>{%- endif -%}
                             {%- liquid
@@ -278,7 +279,7 @@
                                         assign banner_count = 0
                                         for content_block in sorted_blocks
                                             if content_block.type == 'banner'
-                                                if banner_count == forloop.index0
+                                                if banner_count == metaobject_block_index
                                                     assign heading = content_block.title
                                                     assign text = content_block.description
                                                     assign btn_text = content_block.button_label
@@ -289,6 +290,7 @@
                                             endif
                                         endfor
                                     endif
+                                    assign metaobject_block_index = metaobject_block_index | plus: 1
                                 endif
 
                                 if block.type == 'largeImg'
