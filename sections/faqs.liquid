@@ -89,16 +89,34 @@
   data-section="{{ section.id }}"
 >
   <div class="faq-container {{ container }}">
-    {%- if section.settings.title != blank or section.settings.description != blank -%}
+    {%- assign faq_header_title = section.settings.title -%}
+    {%- assign faq_header_description = section.settings.description -%}
+    {%- assign faq_contact_text = section.settings.contact_text -%}
+    
+    {%- if section.settings.use_metaobject_content -%}
+      {%- assign content_blocks = page.metafields.custom.content_block.value -%}
+      {%- if content_blocks != blank -%}
+        {%- for block in content_blocks -%}
+          {%- if block.type == 'faq_header' -%}
+            {%- assign faq_header_title = block.title -%}
+            {%- assign faq_header_description = block.description -%}
+            {%- assign faq_contact_text = block.button_label -%}
+            {%- break -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
+    {%- endif -%}
+    
+    {%- if faq_header_title != blank or faq_header_description != blank -%}
       <div class="halo-block-header text-{{ section.settings.title_alignment }}">
-        {%- if section.settings.title != blank -%}
+        {%- if faq_header_title != blank -%}
           <h3 class="title w-100{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
-            <span class="text">{{ section.settings.title }}</span>
+            <span class="text">{{ faq_header_title }}</span>
           </h3>
         {%- endif -%}
-        {%- if section.settings.description != blank -%}
+        {%- if faq_header_description != blank -%}
           <div class="faqs-desc{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
-            {{ section.settings.description }}
+            {{ faq_header_description }}
           </div>
         {%- endif -%}
       </div>
@@ -180,7 +198,7 @@
                   </div>
                 </div>
               {%- endfor -%}
-                  {% if section.settings.contact_text != blank %}
+                  {% if faq_contact_text != blank %}
       <div class="contact-support-button-wrapper{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
         <a
           {% if section.settings.contact_link == blank %}
@@ -198,7 +216,7 @@
             --button-bg-color-hover-style: {% if contact_color_bg_gradient_hover != blank %}{{ contact_color_bg_gradient_hover }}{% else %}{{ contact_color_bg_hover }}{% endif %}
           "
         >
-          {{ section.settings.contact_text }}
+          {{ faq_contact_text }}
         </a>
       </div>
     {% endif %}
@@ -238,6 +256,21 @@
   "name": "t:sections.faqs.name",
   "settings": [
     {
+      "type": "header",
+      "content": "Content Source"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_metaobject_content",
+      "label": "Use metaobject for title, description and button",
+      "info": "When enabled, content will be loaded from page metafield custom.content_block (faq_header type). Section settings below will be disabled.",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Container"
+    },
+    {
       "type": "select",
       "id": "container",
       "label": "t:sections.layout.container.option",
@@ -272,10 +305,15 @@
       "default": 0
     },
     {
+      "type": "header",
+      "content": "Section Content"
+    },
+    {
       "type": "text",
       "id": "title",
       "label": "t:sections.image-banner.blocks.image.settings.content.label__1",
-      "default": "FAQs"
+      "default": "FAQs",
+      "info": "Ignored when 'Use metaobject' is enabled"
     },
 
     {
@@ -340,7 +378,8 @@
       "type": "textarea",
       "id": "description",
       "label": "t:sections.image-banner.blocks.image.settings.content.label__2",
-      "default": "Below FAQ are some common concerns of our clients before purchasing the theme, if you have other questions, please just send it to example@domain.com."
+      "default": "Below FAQ are some common concerns of our clients before purchasing the theme, if you have other questions, please just send it to example@domain.com.",
+      "info": "Ignored when 'Use metaobject' is enabled"
     },
     {
       "type": "color",
@@ -359,10 +398,15 @@
       "default": 16
     },
     {
+      "type": "header",
+      "content": "Contact Button"
+    },
+    {
       "type": "text",
       "id": "contact_text",
       "label": "t:settings_schema.typography.settings.typography.button_text",
-      "default": "Contact Support"
+      "default": "Contact Support",
+      "info": "Text for the contact support button. Ignored when 'Use metaobject' is enabled"
     },
     {
       "type": "url",
