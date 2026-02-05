@@ -92,6 +92,7 @@
     {%- assign faq_header_title = section.settings.title -%}
     {%- assign faq_header_description = section.settings.description -%}
     {%- assign faq_contact_text = section.settings.contact_text -%}
+    {%- assign use_metaobject = false -%}
     
     {%- if section.settings.use_metaobject_content -%}
       {%- assign content_blocks = page.metafields.custom.content_block.value -%}
@@ -101,6 +102,7 @@
             {%- assign faq_header_title = block.title -%}
             {%- assign faq_header_description = block.description -%}
             {%- assign faq_contact_text = block.button_label -%}
+            {%- assign use_metaobject = true -%}
             {%- break -%}
           {%- endif -%}
         {%- endfor -%}
@@ -116,7 +118,11 @@
         {%- endif -%}
         {%- if faq_header_description != blank -%}
           <div class="faqs-desc{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
-            {{ faq_header_description }}
+            {%- if use_metaobject -%}
+              {{ faq_header_description | metafield_tag }}
+            {%- else -%}
+              {{ faq_header_description }}
+            {%- endif -%}
           </div>
         {%- endif -%}
       </div>
