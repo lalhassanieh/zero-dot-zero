@@ -262,7 +262,6 @@
                 {%- endif -%}
                 <div class="halo-block-content{% if fontsize_title == 60 %} disable_space_item{% endif %}" style="--arrows_position: {{ arrows_position }}">
                     <div class="halo-banner-wrapper {% if section.settings.display_type == 'slide' %}slideshow is-slide{% endif %}"{% if section.blocks.size > 1 and section.settings.display_type == 'slide' %} data-image-banner-slide data-arrows={{ section.settings.enable_arrows}} data-dots={{ section.settings.enable_dots}} data-autoplay={{ section.settings.enable_autoplay}} data-autoplay-speed=1000{% endif %}>
-                        {%- assign metaobject_block_index = 0 -%}
                         {%- for block in section.blocks -%}
                             {%- if section.settings.display_type == 'slide' -%}<div>{%- endif -%}
                             {%- liquid
@@ -273,24 +272,20 @@
                                 assign use_metaobject_banner = false
                                 
                                 if block.settings.use_metaobject_content
+                                    assign desired_slot = block.settings.slot
                                     assign content_blocks = page.metafields.custom.content_block.value
-                                    if content_blocks != blank
-                                        assign sorted_blocks = content_blocks | sort: 'order'
-                                        assign banner_count = 0
-                                        for content_block in sorted_blocks
-                                            if content_block.type == 'banner'
-                                                if banner_count == metaobject_block_index
-                                                    assign heading = content_block.title
-                                                    assign text = content_block.description
-                                                    assign btn_text = content_block.button_label
-                                                    assign use_metaobject_banner = true
-                                                    break
-                                                endif
-                                                assign banner_count = banner_count | plus: 1
+                                    if desired_slot != blank and content_blocks != blank
+                                        for content_block in content_blocks
+                                            assign block_type = content_block.type.value | default: content_block.type
+                                            if block_type == 'banner' and content_block.slot == desired_slot
+                                                assign heading = content_block.title
+                                                assign text = content_block.description
+                                                assign btn_text = content_block.button_label
+                                                assign use_metaobject_banner = true
+                                                break
                                             endif
                                         endfor
                                     endif
-                                    assign metaobject_block_index = metaobject_block_index | plus: 1
                                 endif
 
                                 if block.type == 'largeImg'
@@ -1400,6 +1395,13 @@
                     "default": false
                 },
                 {
+                    "type": "text",
+                    "id": "slot",
+                    "label": "Content slot",
+                    "info": "Unique identifier to match metaobject banner (e.g., 'about-hero-1', 'about-hero-2'). Must match the 'slot' field in your banner metaobject.",
+                    "placeholder": "e.g., about-hero-1"
+                },
+                {
                     "type": "header",
                     "content": "Images"
                 },
@@ -2230,6 +2232,13 @@
                     "label": "Use metaobject for title, description and button",
                     "info": "When enabled, content will be loaded from page metafield custom.content_block (banner type)",
                     "default": false
+                },
+                {
+                    "type": "text",
+                    "id": "slot",
+                    "label": "Content slot",
+                    "info": "Unique identifier to match metaobject banner (e.g., 'about-hero-1', 'about-hero-2'). Must match the 'slot' field in your banner metaobject.",
+                    "placeholder": "e.g., about-hero-1"
                 },
                 {
                     "type": "header",
