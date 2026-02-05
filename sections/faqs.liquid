@@ -104,7 +104,8 @@
       </div>
     {%- endif -%}
     <div class="halo-page-content halo-faqs-content{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
-      {%- if section.blocks.size > 0 -%}
+      {%- assign faq_categories = page.metafields.custom.faq_category.value -%}
+      {%- if faq_categories != blank and faq_categories.size > 0 -%}
         <div class="faqs">
           {%- if section.settings.show_faqs_filter -%}
             <div
@@ -121,10 +122,11 @@
                   <li class="is-active">
                     <span class="text">{{ 'faqs.general.all' | t }}</span>
                   </li>
-                  {%- for block in section.blocks -%}
-                    {%- if block.settings.title != blank -%}
-                      <li data-value="paragraph-{{ block.settings.title | handleize }}">
-                        <span class="text">{{ block.settings.title | escape }}</span>
+                  {%- for category in faq_categories -%}
+                    {%- assign title = category.title -%}
+                    {%- if title != blank -%}
+                      <li data-value="paragraph-{{ title | handleize }}">
+                        <span class="text">{{ title | escape }}</span>
                       </li>
                     {%- endif -%}
                   {%- endfor -%}
@@ -134,34 +136,25 @@
           {%- endif -%}
           <div class="faqs-message-and-questions test">
             <div class="faqs-questions-and-answers{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
-              {%- for block in section.blocks -%}
-                <div class="faqs-paragraph" id="paragraph-{{ block.settings.title | handleize }}">
-                  {%- if block.settings.title != blank -%}
-                    <h3 class="faqs-title page-subheader{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
-                      {{ block.settings.title | escape }}
-                    </h3>
-                  {%- endif -%}
+              {%- for category in faq_categories -%}
+                {%- assign faq_items = category.items.value -%}
+                <div class="faqs-paragraph" id="paragraph-{{ category.title | handleize }}">
                   <div class="faqs-body">
-                    <div class="faqs-row">
-                      {%- for i in (1..13) -%}
-                        {% capture cap_question %}question_{{ i }}{% endcapture %}
-                        {% capture cap_answer %}answer_{{ i }}{% endcapture %}
-
-                        {%- liquid
-                          assign question = block.settings[cap_question]
-                          assign answer = block.settings[cap_answer]
-                        -%}
+                    <div class="faqs-row" id="accordion-{{ category.system.id }}">
+                      {%- for item in faq_items -%}
+                        {%- assign question = item.question -%}
+                        {%- assign answer = item.answer -%}
 
                         {%- if question != blank -%}
                           <div class="faqs-item{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
-                            <div class="card" id="#accordion-{{ block.id }}-{{ forloop.index }}">
+                            <div class="card" id="accordion-card-{{ category.system.id }}-{{ forloop.index }}">
                               <div
                                 class="card-header collapsed"
-                                id="question-{{ block.id }}-{{ forloop.index }}"
+                                id="question-{{ category.system.id }}-{{ forloop.index }}"
                                 data-toggle="collapse"
-                                data-target="#collapse-{{ block.id }}-{{ forloop.index }}"
+                                data-target="#collapse-{{ category.system.id }}-{{ forloop.index }}"
                                 aria-expanded="true"
-                                aria-controls="collapse-{{ block.id }}-{{ forloop.index }}"
+                                aria-controls="collapse-{{ category.system.id }}-{{ forloop.index }}"
                               >
                                 <div class="title" role="button" tabindex="0">
                                   {{ question }}
@@ -169,13 +162,13 @@
                                 <span class="icon-plus arrow" role="none"></span>
                               </div>
                               <div
-                                id="collapse-{{ block.id }}-{{ forloop.index }}"
+                                id="collapse-{{ category.system.id }}-{{ forloop.index }}"
                                 class="collapse"
-                                data-parent="#accordion"
+                                data-parent="#accordion-{{ category.system.id }}"
                               >
-                                <div class="card-body" id="answer-{{ block.id }}-{{ forloop.index }}">
+                                <div class="card-body" id="answer-{{ category.system.id }}-{{ forloop.index }}">
                                   <div class="">
-                                    {{ answer }}
+                                    {{ answer | metafield_tag }}
                                   </div>
                                 </div>
                               </div>
@@ -215,17 +208,12 @@
               {%- for block in section.blocks -%}
                 {% if block.type == 'image' and block.settings.image != blank %}
                   <div class="faqs-image-block" {{ block.shopify_attributes }}>
-                    <!-- Replace the existing img tag with this -->
                     <img
                       {% render 'lazyload', preview_img: block.settings.image %}
                       width="{{ block.settings.image.width }}"
                       height="{{ block.settings.image.height }}"
                       style="
-                        {% if section.settings.image_ratio == 'adapt' %}
-                          width: {{ block.settings.image.width }}px;
-                        {% else %}
-                          max-width: {{ block.settings.image.width }}px;
-                        {% endif %}
+                        max-width: {{ block.settings.image.width }}px;
                         margin: 0 auto;
                         height: auto
                       "
