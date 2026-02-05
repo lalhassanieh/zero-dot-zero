@@ -599,6 +599,7 @@
       "blocks": {
         "paragraph_EUE6kw": {
           "type": "paragraph",
+          "disabled": true,
           "settings": {
             "title": "",
             "question_1": "Can these be sold openly in retail and hospitality venues?",
