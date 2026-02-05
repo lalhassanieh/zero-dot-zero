@@ -2134,6 +2134,7 @@
       ],
       "name": "t:sections.faqs.presets.name",
       "settings": {
+        "use_metaobject_content": false,
         "container": "fullwidth",
         "padding_full_width": 100,
         "title": "FAQ’s",
