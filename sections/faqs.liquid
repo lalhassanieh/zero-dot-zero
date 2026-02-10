@@ -101,7 +101,7 @@
       {%- assign content_blocks = page.metafields.custom.content_block.value -%}
       {%- if content_blocks != blank -%}
         {%- for block in content_blocks -%}
-          {%- if block.type == 'faq_header' -%}
+          {%- if block.type == 'faq' -%}
             {%- assign faq_header_title = block.title -%}
             {%- assign faq_header_description = block.description -%}
             {%- assign faq_contact_text = block.button_label -%}
