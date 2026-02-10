@@ -238,6 +238,42 @@
       </div>
     {% endif %}
             </div>
+            <!-- FAQ Images Column -->
+            <div class="faqs-images-wrapper">
+              {%- if faq_metaobject_image != blank -%}
+                <div class="faqs-image-block">
+                  <img
+                    {% render 'lazyload', preview_img: faq_metaobject_image %}
+                    width="{{ faq_metaobject_image.width }}"
+                    height="{{ faq_metaobject_image.height }}"
+                    style="
+                      max-width: {{ faq_metaobject_image.width }}px;
+                      margin: 0 auto;
+                      height: auto
+                    "
+                    alt="{{ faq_metaobject_image.alt | default: shop.name | escape }}"
+                  >
+                </div>
+              {%- else -%}
+                {%- for block in section.blocks -%}
+                  {% if block.type == 'image' and block.settings.image != blank %}
+                    <div class="faqs-image-block" {{ block.shopify_attributes }}>
+                      <img
+                        {% render 'lazyload', preview_img: block.settings.image %}
+                        width="{{ block.settings.image.width }}"
+                        height="{{ block.settings.image.height }}"
+                        style="
+                          max-width: {{ block.settings.image.width }}px;
+                          margin: 0 auto;
+                          height: auto
+                        "
+                        alt="{{ block.settings.image.alt | default: shop.name | escape }}"
+                      >
+                    </div>
+                  {% endif %}
+                {%- endfor -%}
+              {%- endif -%}
+            </div>
           </div>
         </div>
       {%- else -%}
@@ -341,46 +377,30 @@
                   </div>
                 {% endif %}
               </div>
+              <!-- FAQ Images Column -->
+              <div class="faqs-images-wrapper">
+                {%- for block in section.blocks -%}
+                  {% if block.type == 'image' and block.settings.image != blank %}
+                    <div class="faqs-image-block" {{ block.shopify_attributes }}>
+                      <img
+                        {% render 'lazyload', preview_img: block.settings.image %}
+                        width="{{ block.settings.image.width }}"
+                        height="{{ block.settings.image.height }}"
+                        style="
+                          max-width: {{ block.settings.image.width }}px;
+                          margin: 0 auto;
+                          height: auto
+                        "
+                        alt="{{ block.settings.image.alt | default: shop.name | escape }}"
+                      >
+                    </div>
+                  {% endif %}
+                {%- endfor -%}
+              </div>
             </div>
           </div>
         {%- endif -%}
       {%- endif -%}
-      <!-- FAQ Images Column -->
-      <div class="faqs-images-wrapper">
-        {%- if use_metaobject and faq_metaobject_image != blank -%}
-          <div class="faqs-image-block">
-            <img
-              {% render 'lazyload', preview_img: faq_metaobject_image %}
-              width="{{ faq_metaobject_image.width }}"
-              height="{{ faq_metaobject_image.height }}"
-              style="
-                max-width: {{ faq_metaobject_image.width }}px;
-                margin: 0 auto;
-                height: auto
-              "
-              alt="{{ faq_metaobject_image.alt | default: shop.name | escape }}"
-            >
-          </div>
-        {%- else -%}
-          {%- for block in section.blocks -%}
-            {% if block.type == 'image' and block.settings.image != blank %}
-              <div class="faqs-image-block" {{ block.shopify_attributes }}>
-                <img
-                  {% render 'lazyload', preview_img: block.settings.image %}
-                  width="{{ block.settings.image.width }}"
-                  height="{{ block.settings.image.height }}"
-                  style="
-                    max-width: {{ block.settings.image.width }}px;
-                    margin: 0 auto;
-                    height: auto
-                  "
-                  alt="{{ block.settings.image.alt | default: shop.name | escape }}"
-                >
-              </div>
-            {% endif %}
-          {%- endfor -%}
-        {%- endif -%}
-      </div>
     </div>
 
   </div>
