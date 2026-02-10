@@ -92,6 +92,9 @@
     {%- assign faq_header_title = section.settings.title -%}
     {%- assign faq_header_description = section.settings.description -%}
     {%- assign faq_contact_text = section.settings.contact_text -%}
+    {%- assign faq_contact_link = section.settings.contact_link -%}
+    {%- assign faq_block_image = blank -%}
+    {%- assign faq_categories = page.metafields.custom.faq_category.value -%}
     {%- assign use_metaobject = false -%}
     
     {%- if section.settings.use_metaobject_content -%}
@@ -102,6 +105,18 @@
             {%- assign faq_header_title = block.title -%}
             {%- assign faq_header_description = block.description -%}
             {%- assign faq_contact_text = block.button_label -%}
+            {%- comment -%} Get button link from metaobject (Page reference) {%- endcomment -%}
+            {%- if block.button_link.value != blank -%}
+              {%- assign faq_contact_link = block.button_link.value.url -%}
+            {%- endif -%}
+            {%- comment -%} Get image from metaobject {%- endcomment -%}
+            {%- if block.image.value != blank -%}
+              {%- assign faq_block_image = block.image.value -%}
+            {%- endif -%}
+            {%- comment -%} Get FAQ category from metaobject {%- endcomment -%}
+            {%- if block.faq_category.value != blank -%}
+              {%- assign faq_categories = block.faq_category.value -%}
+            {%- endif -%}
             {%- assign use_metaobject = true -%}
             {%- break -%}
           {%- endif -%}
@@ -128,7 +143,6 @@
       </div>
     {%- endif -%}
     <div class="halo-page-content halo-faqs-content{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
-      {%- assign faq_categories = page.metafields.custom.faq_category.value -%}
       {%- if faq_categories != blank and faq_categories.size > 0 -%}
         <div class="faqs">
           {%- if section.settings.show_faqs_filter -%}
@@ -207,10 +221,10 @@
                   {% if faq_contact_text != blank %}
       <div class="contact-support-button-wrapper{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
         <a
-          {% if section.settings.contact_link == blank %}
+          {% if faq_contact_link == blank %}
             role="link" aria-disabled="true"
           {% else %}
-            href="{{ section.settings.contact_link }}"
+            href="{{ faq_contact_link }}"
           {% endif %}
           class="contact-support-btn"
           style="
@@ -229,23 +243,41 @@
             </div>
             <!-- FAQ Images Column -->
             <div class="faqs-images-wrapper">
-              {%- for block in section.blocks -%}
-                {% if block.type == 'image' and block.settings.image != blank %}
-                  <div class="faqs-image-block" {{ block.shopify_attributes }}>
-                    <img
-                      {% render 'lazyload', preview_img: block.settings.image %}
-                      width="{{ block.settings.image.width }}"
-                      height="{{ block.settings.image.height }}"
-                      style="
-                        max-width: {{ block.settings.image.width }}px;
-                        margin: 0 auto;
-                        height: auto
-                      "
-                      alt="{{ block.settings.image.alt | default: shop.name | escape }}"
-                    >
-                  </div>
-                {% endif %}
-              {%- endfor -%}
+              {%- comment -%} Show image from metaobject if available {%- endcomment -%}
+              {%- if use_metaobject and faq_block_image != blank -%}
+                <div class="faqs-image-block">
+                  <img
+                    {% render 'lazyload', preview_img: faq_block_image %}
+                    width="{{ faq_block_image.width }}"
+                    height="{{ faq_block_image.height }}"
+                    style="
+                      max-width: {{ faq_block_image.width }}px;
+                      margin: 0 auto;
+                      height: auto
+                    "
+                    alt="{{ faq_block_image.alt | default: faq_header_title | default: shop.name | escape }}"
+                  >
+                </div>
+              {%- else -%}
+                {%- comment -%} Fallback to section block images {%- endcomment -%}
+                {%- for block in section.blocks -%}
+                  {% if block.type == 'image' and block.settings.image != blank %}
+                    <div class="faqs-image-block" {{ block.shopify_attributes }}>
+                      <img
+                        {% render 'lazyload', preview_img: block.settings.image %}
+                        width="{{ block.settings.image.width }}"
+                        height="{{ block.settings.image.height }}"
+                        style="
+                          max-width: {{ block.settings.image.width }}px;
+                          margin: 0 auto;
+                          height: auto
+                        "
+                        alt="{{ block.settings.image.alt | default: shop.name | escape }}"
+                      >
+                    </div>
+                  {% endif %}
+                {%- endfor -%}
+              {%- endif -%}
             </div>
           </div>
         </div>
