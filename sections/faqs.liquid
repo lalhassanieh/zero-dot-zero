@@ -105,14 +105,20 @@
             {%- assign faq_header_title = block.title -%}
             {%- assign faq_header_description = block.description -%}
             {%- assign faq_contact_text = block.button_label -%}
-            {%- if block.button_url != blank -%}
-              {%- assign faq_contact_link = block.button_url -%}
+            {%- if block.button_link != blank -%}
+              {%- assign faq_contact_link = block.button_link -%}
             {%- endif -%}
             {%- if block.image != blank -%}
               {%- assign faq_metaobject_image = block.image -%}
+            {%- elsif block.image.value != blank -%}
+              {%- assign faq_metaobject_image = block.image.value -%}
             {%- endif -%}
             {%- if block.faq_category != blank -%}
-              {%- assign faq_categories = block.faq_category.value -%}
+              {%- comment -%} Handle single category reference - wrap in array for loop {%- endcomment -%}
+              {%- assign single_category = block.faq_category.value -%}
+              {%- if single_category != blank -%}
+                {%- assign faq_categories = single_category | default: blank -%}
+              {%- endif -%}
             {%- endif -%}
             {%- assign use_metaobject = true -%}
             {%- break -%}
@@ -140,7 +146,7 @@
       </div>
     {%- endif -%}
     <div class="halo-page-content halo-faqs-content{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
-      {%- if faq_categories != blank and faq_categories.size > 0 -%}
+      {%- if faq_categories != blank -%}
         <div class="faqs">
           {%- if section.settings.show_faqs_filter -%}
             <div
@@ -157,64 +163,60 @@
                   <li class="is-active">
                     <span class="text">{{ 'faqs.general.all' | t }}</span>
                   </li>
-                  {%- for category in faq_categories -%}
-                    {%- assign title = category.title -%}
-                    {%- if title != blank -%}
-                      <li data-value="paragraph-{{ title | handleize }}">
-                        <span class="text">{{ title | escape }}</span>
-                      </li>
-                    {%- endif -%}
-                  {%- endfor -%}
+                  {%- assign cat_title = faq_categories.title -%}
+                  {%- if cat_title != blank -%}
+                    <li data-value="paragraph-{{ cat_title | handleize }}">
+                      <span class="text">{{ cat_title | escape }}</span>
+                    </li>
+                  {%- endif -%}
                 </ul>
               </div>
             </div>
           {%- endif -%}
           <div class="faqs-message-and-questions test">
             <div class="faqs-questions-and-answers{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
-              {%- for category in faq_categories -%}
-                {%- assign faq_items = category.items.value -%}
-                <div class="faqs-paragraph" id="paragraph-{{ category.title | handleize }}">
-                  <div class="faqs-body">
-                    <div class="faqs-row" id="accordion-{{ category.system.id }}">
-                      {%- for item in faq_items -%}
-                        {%- assign question = item.question -%}
-                        {%- assign answer = item.answer -%}
+              {%- assign faq_items = faq_categories.items.value -%}
+              <div class="faqs-paragraph" id="paragraph-{{ faq_categories.title | handleize }}">
+                <div class="faqs-body">
+                  <div class="faqs-row" id="accordion-{{ faq_categories.system.id }}">
+                    {%- for item in faq_items -%}
+                      {%- assign question = item.question -%}
+                      {%- assign answer = item.answer -%}
 
-                        {%- if question != blank -%}
-                          <div class="faqs-item{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
-                            <div class="card" id="accordion-card-{{ category.system.id }}-{{ forloop.index }}">
-                              <div
-                                class="card-header collapsed"
-                                id="question-{{ category.system.id }}-{{ forloop.index }}"
-                                data-toggle="collapse"
-                                data-target="#collapse-{{ category.system.id }}-{{ forloop.index }}"
-                                aria-expanded="true"
-                                aria-controls="collapse-{{ category.system.id }}-{{ forloop.index }}"
-                              >
-                                <div class="title" role="button" tabindex="0">
-                                  {{ question }}
-                                </div>
-                                <span class="icon-plus arrow" role="none"></span>
+                      {%- if question != blank -%}
+                        <div class="faqs-item{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
+                          <div class="card" id="accordion-card-{{ faq_categories.system.id }}-{{ forloop.index }}">
+                            <div
+                              class="card-header collapsed"
+                              id="question-{{ faq_categories.system.id }}-{{ forloop.index }}"
+                              data-toggle="collapse"
+                              data-target="#collapse-{{ faq_categories.system.id }}-{{ forloop.index }}"
+                              aria-expanded="true"
+                              aria-controls="collapse-{{ faq_categories.system.id }}-{{ forloop.index }}"
+                            >
+                              <div class="title" role="button" tabindex="0">
+                                {{ question }}
                               </div>
-                              <div
-                                id="collapse-{{ category.system.id }}-{{ forloop.index }}"
-                                class="collapse"
-                                data-parent="#accordion-{{ category.system.id }}"
-                              >
-                                <div class="card-body" id="answer-{{ category.system.id }}-{{ forloop.index }}">
-                                  <div class="">
-                                    {{ answer | metafield_tag }}
-                                  </div>
+                              <span class="icon-plus arrow" role="none"></span>
+                            </div>
+                            <div
+                              id="collapse-{{ faq_categories.system.id }}-{{ forloop.index }}"
+                              class="collapse"
+                              data-parent="#accordion-{{ faq_categories.system.id }}"
+                            >
+                              <div class="card-body" id="answer-{{ faq_categories.system.id }}-{{ forloop.index }}">
+                                <div class="">
+                                  {{ answer | metafield_tag }}
                                 </div>
                               </div>
                             </div>
                           </div>
-                        {%- endif -%}
-                      {%- endfor -%}
-                    </div>
+                        </div>
+                      {%- endif -%}
+                    {%- endfor -%}
                   </div>
                 </div>
-              {%- endfor -%}
+              </div>
                   {% if faq_contact_text != blank %}
       <div class="contact-support-button-wrapper{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
         <a
