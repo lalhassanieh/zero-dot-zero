@@ -273,7 +273,7 @@
                                 
                                 if block.settings.use_metaobject_content
                                     assign desired_slot = block.settings.block_id
-                                    assign content_blocks = page.metafields.custom.content_block.value
+                                    assign content_blocks = page.metafields.custom.page_content.value.blocks
                                     if desired_slot != blank and content_blocks != blank
                                         for content_block in content_blocks
                                             assign block_type = content_block.type.value | default: content_block.type
@@ -1412,14 +1412,14 @@
                     "type": "checkbox",
                     "id": "use_metaobject_content",
                     "label": "Use metaobject for title, description and button",
-                    "info": "When enabled, content will be loaded from page metafield custom.content_block (banner type)",
+                    "info": "When enabled, content will be loaded from page metafield custom.page_content.blocks (banner type)",
                     "default": false
                 },
                 {
                     "type": "text",
                     "id": "block_id",
                     "label": "Block ID",
-                    "info": "Unique identifier to match metaobject banner (e.g., 'about-hero-1', 'about-hero-2'). Must match the 'Block Id' field in your banner metaobject.",
+                    "info": "Unique identifier to match metaobject banner (e.g., 'about-hero-1', 'about-hero-2'). Must match the 'block_id' field in your banner metaobject.",
                     "placeholder": "e.g., about-hero-1"
                 },
                 {
@@ -2251,14 +2251,14 @@
                     "type": "checkbox",
                     "id": "use_metaobject_content",
                     "label": "Use metaobject for title, description and button",
-                    "info": "When enabled, content will be loaded from page metafield custom.content_block (banner type)",
+                    "info": "When enabled, content will be loaded from page metafield custom.page_content.blocks (banner type)",
                     "default": false
                 },
                 {
                     "type": "text",
                     "id": "block_id",
                     "label": "Block ID",
-                    "info": "Unique identifier to match metaobject banner (e.g., 'about-hero-1', 'about-hero-2'). Must match the 'Block Id' field in your banner metaobject.",
+                    "info": "Unique identifier to match metaobject banner (e.g., 'about-hero-1', 'about-hero-2'). Must match the 'block_id' field in your banner metaobject.",
                     "placeholder": "e.g., about-hero-1"
                 },
                 {
