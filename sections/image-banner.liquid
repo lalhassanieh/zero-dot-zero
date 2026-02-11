@@ -259,8 +259,8 @@
         {%- if section.settings.use_metaobject_background and section.settings.section_block_id != blank and metaobject_content_blocks != blank -%}
             {%- for content_block in metaobject_content_blocks -%}
                 {%- if content_block.block_id == section.settings.section_block_id -%}
-                    {%- if content_block.image.value != blank -%}
-                        {%- assign section_bg_image = content_block.image.value -%}
+                    {%- if content_block.background_image.value != blank -%}
+                        {%- assign section_bg_image = content_block.background_image.value -%}
                         {%- assign bg_from_metaobject = true -%}
                     {%- endif -%}
                     {%- break -%}
