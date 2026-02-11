@@ -51,7 +51,6 @@
           "type": "smallImg",
           "settings": {
             "use_metaobject_content": true,
-            "block_id": "about-hero-1",
             "row_reverse": true,
             "image_width": "50",
             "flying_effect": false,
@@ -135,6 +134,8 @@
         ".halo-banner.image-banner,#halo-image-banner-template--19396941644020__16474839872eb210cf .item--smallImg-st3 .flex-box__banner::after,.halo-banner-wrapper .flex-box__banner {background: transparent !important;}"
       ],
       "settings": {
+        "use_metaobject_background": false,
+        "section_block_id": "about-hero-1",
         "id_section": "",
         "container": "fullwidth",
         "padding_full_width": 100,
@@ -172,7 +173,6 @@
           "type": "smallImg",
           "settings": {
             "use_metaobject_content": true,
-            "block_id": "about-hero-2",
             "row_reverse": false,
             "image_width": "50",
             "flying_effect": false,
@@ -256,6 +256,8 @@
         ".halo-banner.image-banner {background: transparent !important;}"
       ],
       "settings": {
+        "use_metaobject_background": false,
+        "section_block_id": "about-hero-2",
         "id_section": "",
         "container": "fullwidth",
         "padding_full_width": 100,
@@ -293,7 +295,6 @@
           "type": "smallImg",
           "settings": {
             "use_metaobject_content": true,
-            "block_id": "about-hero-3",
             "row_reverse": true,
             "image_width": "50",
             "flying_effect": false,
@@ -377,6 +378,8 @@
         ".halo-banner.image-banner {background: transparent !important;}"
       ],
       "settings": {
+        "use_metaobject_background": false,
+        "section_block_id": "about-hero-3",
         "id_section": "",
         "container": "fullwidth",
         "padding_full_width": 100,
