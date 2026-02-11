@@ -694,7 +694,7 @@
       ],
       "name": "t:sections.image-banner.presets.name",
       "settings": {
-        "use_metaobject_background": false,
+        "use_metaobject_background": true,
         "section_block_id": "home-sc-banner-1",
         "id_section": "",
         "container": "fullwidth",
