@@ -607,6 +607,8 @@
         "small_img_yaYiqy": {
           "type": "smallImg",
           "settings": {
+            "use_metaobject_content": false,
+            "block_id": "",
             "row_reverse": true,
             "image_width": "50",
             "image": "shopify://shop_images/second_section_728_572_3_2.png",
@@ -1797,6 +1799,8 @@
         "small_img_kktr3L": {
           "type": "smallImg",
           "settings": {
+            "use_metaobject_content": true,
+            "block_id": "home-sc-banner-2",
             "row_reverse": false,
             "image_width": "50",
             "image": "shopify://shop_images/About_us_section_620_726_c6df936b-6c7e-460d-befe-4d1f32ff510b.png",
@@ -2134,6 +2138,7 @@
       ],
       "name": "t:sections.faqs.presets.name",
       "settings": {
+        "use_metaobject_content": false,
         "container": "fullwidth",
         "padding_full_width": 100,
         "title": "FAQ’s",
@@ -2210,6 +2215,8 @@
         "small_img_DaJk6x": {
           "type": "smallImg",
           "settings": {
+            "use_metaobject_content": false,
+            "block_id": "",
             "row_reverse": true,
             "image_width": "0",
             "flying_effect": false,
