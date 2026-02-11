@@ -106,9 +106,15 @@
             {%- assign faq_header_title = block.title -%}
             {%- assign faq_header_description = block.description -%}
             {%- assign faq_contact_text = block.button_label -%}
-            {%- comment -%} Get button link from metaobject (Page reference) {%- endcomment -%}
-            {%- if block.button_link.value != blank -%}
-              {%- assign faq_contact_link = block.button_link.value.url -%}
+            {%- comment -%} Get button link from metaobject - check page, then collection, then product {%- endcomment -%}
+            {%- if faq_contact_text != blank -%}
+              {%- if block.button_page.value != blank -%}
+                {%- assign faq_contact_link = block.button_page.value.url -%}
+              {%- elsif block.button_collection.value != blank -%}
+                {%- assign faq_contact_link = block.button_collection.value.url -%}
+              {%- elsif block.button_product.value != blank -%}
+                {%- assign faq_contact_link = block.button_product.value.url -%}
+              {%- endif -%}
             {%- endif -%}
             {%- comment -%} Get image from metaobject {%- endcomment -%}
             {%- if block.image.value != blank -%}
