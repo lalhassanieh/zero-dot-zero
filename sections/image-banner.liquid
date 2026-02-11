@@ -240,6 +240,7 @@
     
     {%- comment -%} Section-level metaobject loading {%- endcomment -%}
     {%- assign section_bg_image = section.settings.bg_image -%}
+    {%- assign bg_from_metaobject = false -%}
     {%- assign page_content_source = blank -%}
     {%- assign metaobject_content_blocks = blank -%}
     
@@ -253,6 +254,7 @@
     {%- if page_content_source != blank -%}
         {%- if section.settings.use_metaobject_background and page_content_source.background_image.value != blank -%}
             {%- assign section_bg_image = page_content_source.background_image.value -%}
+            {%- assign bg_from_metaobject = true -%}
         {%- endif -%}
         {%- if page_content_source.blocks != blank -%}
             {%- assign metaobject_content_blocks = page_content_source.blocks.value -%}
@@ -266,7 +268,11 @@
             style="
                 --section_margin: {{ list_gap }}; --mg_top_desktop: {{ mg_top_desktop | append: 'px' }};--mg_top_tablet:{{ mg_top_tablet | append: 'px' }};--mg_top_mobile: {{ mg_top_mobile | append: 'px' }};--mg_bottom_desktop:{{ mg_bottom_desktop | append: 'px' }};--mg_bottom_tablet:{{ mg_bottom_tablet | append: 'px' }};--mg_bottom_mobile:{{ mg_bottom_mobile | append: 'px' }};--padding_full_width:{{ padding_full_width | append: 'px' }};
                 {%- if section_bg_image != blank -%}
-                    background: url({{ section_bg_image | img_url: '1920x' }});background-repeat: no-repeat;background-size: cover;
+                    {%- if bg_from_metaobject -%}
+                        background: url({{ section_bg_image | image_url: width: 1920 }});background-repeat: no-repeat;background-size: cover;
+                    {%- else -%}
+                        background: url({{ section_bg_image | img_url: '1920x' }});background-repeat: no-repeat;background-size: cover;
+                    {%- endif -%}
                 {%- else -%}
                 --bg-color-style: {% if section.settings.bg_color_gradient != blank %}{{ section.settings.bg_color_gradient }}{% else %}{{ section.settings.bg_color }}{% endif %}{%- endif -%}
             " data-loader-script="{{ 'halo.image-banner-slide.js' | asset_url }}" allow-transparent-header
