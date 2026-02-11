@@ -187,7 +187,7 @@
           "type": "smallImg",
           "settings": {
             "use_metaobject_content": true,
-            "block_id": "",
+            "block_id": "about-hero-2",
             "row_reverse": false,
             "image_width": "50",
             "image": "shopify://shop_images/second_section_620_405_3_images_2.png",
@@ -309,7 +309,7 @@
           "type": "smallImg",
           "settings": {
             "use_metaobject_content": true,
-            "block_id": "",
+            "block_id": "about-hero-3",
             "row_reverse": true,
             "image_width": "50",
             "image": "shopify://shop_images/another_section_604_282_2_images.png",
