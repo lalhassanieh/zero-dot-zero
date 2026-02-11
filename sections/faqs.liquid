@@ -98,7 +98,7 @@
     {%- assign use_metaobject = false -%}
     
     {%- if section.settings.use_metaobject_content -%}
-      {%- assign content_blocks = page.metafields.custom.content_block.value -%}
+      {%- assign content_blocks = page.metafields.custom.page_content.value.blocks -%}
       {%- if content_blocks != blank -%}
         {%- for block in content_blocks -%}
           {%- if block.type == 'faq' -%}
@@ -382,7 +382,7 @@
       "type": "checkbox",
       "id": "use_metaobject_content",
       "label": "Use metaobject for title, description and button",
-      "info": "When enabled, content will be loaded from page metafield custom.content_block (faq_header type). Section settings below will be disabled.",
+      "info": "When enabled, content will be loaded from page metafield custom.page_content.blocks (faq type). Section settings below will be disabled.",
       "default": false
     },
     {
