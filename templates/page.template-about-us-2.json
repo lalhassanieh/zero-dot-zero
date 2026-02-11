@@ -11,21 +11,6 @@
   "sections": {
     "main": {
       "type": "main-about-2-page",
-      "blocks": {
-        "d4bab6c1-ab4b-442b-8884-47890038f054": {
-          "type": "content",
-          "settings": {
-            "title": "",
-            "content": "",
-            "content_max_width": 550,
-            "align": "center",
-            "content_text_color": "#ffffff"
-          }
-        }
-      },
-      "block_order": [
-        "d4bab6c1-ab4b-442b-8884-47890038f054"
-      ],
       "custom_css": [
         ".about-content-wrapper {height: 100%; display: flex; align-items: end;}",
         ".about-content-wrapper h1 {height: 100%; display: flex; align-items: end; padding-left: 100px;}",
@@ -68,7 +53,6 @@
             "block_id": "about-hero-1",
             "row_reverse": true,
             "image_width": "50",
-            "image": "shopify://shop_images/another_section_604_282_2_images_1.png",
             "flying_effect": false,
             "small_img_block_style": "style_3",
             "enable_divider": true,
@@ -91,7 +75,7 @@
             "font_weight_sub_title": "700",
             "sub_title_position": "sub_title_above",
             "color_sub_title": "#232323",
-            "heading": "Made to Belong at Every Table",
+            "heading": "",
             "letter_spacing_heading": "",
             "font_size_heading": 32,
             "font_size_heading_mb": 24,
@@ -99,7 +83,7 @@
             "margin_bottom_heading_mb": 15,
             "font_weight_heading": "600",
             "color_heading": "#005339",
-            "text": "At Zero.Zero Drystore, we believe every bottle should match the mood, whether it’s a laid-back night in or a full-on gathering. <br>\nWe created a platform that brings together the world’s best non-alcoholic drinks with flavor profiles tailored to local tastes. From 0.0% icons to unique blends, everything we offer is made to fit your lifestyle, modern, mindful, and full of taste.",
+            "text": "",
             "font_size_des": 18,
             "font_size_des_mb": 14,
             "line_height_des": 24,
@@ -190,7 +174,6 @@
             "block_id": "about-hero-2",
             "row_reverse": false,
             "image_width": "50",
-            "image": "shopify://shop_images/second_section_620_405_3_images_2.png",
             "flying_effect": false,
             "small_img_block_style": "style_3",
             "enable_divider": true,
@@ -213,7 +196,7 @@
             "font_weight_sub_title": "700",
             "sub_title_position": "sub_title_above",
             "color_sub_title": "#232323",
-            "heading": "Redefining the Drink",
+            "heading": "",
             "letter_spacing_heading": "",
             "font_size_heading": 32,
             "font_size_heading_mb": 24,
@@ -221,7 +204,7 @@
             "margin_bottom_heading_mb": 15,
             "font_weight_heading": "600",
             "color_heading": "#005339",
-            "text": "At Zero.Zero Drystore, our mission is to make every table more welcoming, more flavorful, and a whole lot more inclusive. From laid-back nights to big celebrations, we believe 0.0% should be the go-to for anyone who loves great taste and good company, no compromises, just pure flavor and sophistication.",
+            "text": "",
             "font_size_des": 18,
             "font_size_des_mb": 12,
             "line_height_des": 24,
@@ -312,7 +295,6 @@
             "block_id": "about-hero-3",
             "row_reverse": true,
             "image_width": "50",
-            "image": "shopify://shop_images/another_section_604_282_2_images.png",
             "flying_effect": false,
             "small_img_block_style": "style_3",
             "enable_divider": true,
@@ -335,7 +317,7 @@
             "font_weight_sub_title": "700",
             "sub_title_position": "sub_title_above",
             "color_sub_title": "#232323",
-            "heading": "Less About the Drink. More About the Moment.",
+            "heading": "",
             "letter_spacing_heading": "",
             "font_size_heading": 32,
             "font_size_heading_mb": 24,
@@ -343,7 +325,7 @@
             "margin_bottom_heading_mb": 15,
             "font_weight_heading": "600",
             "color_heading": "#005339",
-            "text": "At Zero.Zero, our goal is simple, to bring people together. \n<br>\nWhether it's a gathering of close friends or a full celebration, we believe what’s poured should always enhance the connection, not distract from it. \n<br>\nWith premium, alcohol-free beverages, every moment becomes more intentional, more stylish, and more you.",
+            "text": "",
             "font_size_des": 18,
             "font_size_des_mb": 12,
             "line_height_des": 24,
@@ -426,48 +408,6 @@
     },
     "faqs_7F3bQ4": {
       "type": "faqs",
-      "blocks": {
-        "paragraph_6R8wMy": {
-          "type": "paragraph",
-          "settings": {
-            "title": "Presale",
-            "question_1": "Question",
-            "answer_1": "<p>Use overlay text to give your customers insight into your brand. Select image and text that relates to your style and story.</p>",
-            "question_2": "Question",
-            "answer_2": "<p>Use overlay text to give your customers insight into your brand. Select image and text that relates to your style and story.</p>",
-            "question_3": "Question",
-            "answer_3": "<p>Use overlay text to give your customers insight into your brand. Select image and text that relates to your style and story.</p>",
-            "question_4": "",
-            "answer_4": "",
-            "question_5": "",
-            "answer_5": "",
-            "question_6": "",
-            "answer_6": "",
-            "question_7": "",
-            "answer_7": "",
-            "question_8": "",
-            "answer_8": "",
-            "question_9": "",
-            "answer_9": "",
-            "question_10": "",
-            "answer_10": "",
-            "question_11": "",
-            "answer_11": "",
-            "question_12": "",
-            "answer_12": ""
-          }
-        },
-        "image_xpdmjM": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/image_25.png"
-          }
-        }
-      },
-      "block_order": [
-        "paragraph_6R8wMy",
-        "image_xpdmjM"
-      ],
       "custom_css": [
         ".wrapper-body {padding-bottom: 0 !important;}"
       ],
