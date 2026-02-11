@@ -1907,7 +1907,6 @@
         "style_bg": "full",
         "bg_color": "rgba(0,0,0,0)",
         "bg_color_gradient": "",
-        "bg_image": "shopify://shop_images/bannerEmblem.jpg",
         "mg_top_desktop": 0,
         "mg_top_tablet": 20,
         "mg_top_mobile": 20,
@@ -2302,8 +2301,8 @@
       ],
       "name": "t:sections.image-banner.presets.name",
       "settings": {
-        "use_metaobject_background": false,
-        "section_block_id": "",
+        "use_metaobject_background": true,
+        "section_block_id": "home-sc-banner-2",
         "id_section": "",
         "container": "1770",
         "padding_full_width": 0,
