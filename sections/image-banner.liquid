@@ -269,6 +269,7 @@
                                 assign heading = block.settings.heading
                                 assign text = block.settings.text
                                 assign btn_text = block.settings.btn_text
+                                assign sub_title = blank
                                 assign use_metaobject_banner = false
                                 
                                 if block.settings.use_metaobject_content
@@ -281,6 +282,9 @@
                                                 assign heading = content_block.title
                                                 assign text = content_block.description
                                                 assign btn_text = content_block.button_label
+                                                if content_block.subtitle != blank
+                                                    assign sub_title = content_block.subtitle
+                                                endif
                                                 if btn_text != blank
                                                     if content_block.button_page.value != blank
                                                         assign link = content_block.button_page.value.url
@@ -359,7 +363,9 @@
                                 assign enable_custom_image = block.settings.enable_custom_image
                                 assign image_custom = block.settings.image_custom
 
-                                assign sub_title = block.settings.sub_title
+                                unless use_metaobject_banner and sub_title != blank
+                                    assign sub_title = block.settings.sub_title
+                                endunless
                                 assign letter_spacing_sub_title = block.settings.letter_spacing_sub_title
                                 assign font_size_sub_title = block.settings.font_size_sub_title
                                 assign font_size_sub_title_mb = block.settings.font_size_sub_title_mb
