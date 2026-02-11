@@ -98,10 +98,11 @@
     {%- assign use_metaobject = false -%}
     
     {%- if section.settings.use_metaobject_content -%}
-      {%- assign content_blocks = page.metafields.custom.page_content.value.blocks -%}
+      {%- assign content_blocks = page.metafields.custom.page_content.value.blocks.value -%}
       {%- if content_blocks != blank -%}
         {%- for block in content_blocks -%}
-          {%- if block.type == 'faq' -%}
+          {%- assign block_type = block.type.value | default: block.type -%}
+          {%- if block_type == 'faq' -%}
             {%- assign faq_header_title = block.title -%}
             {%- assign faq_header_description = block.description -%}
             {%- assign faq_contact_text = block.button_label -%}

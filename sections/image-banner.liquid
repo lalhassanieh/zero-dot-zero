@@ -273,7 +273,7 @@
                                 
                                 if block.settings.use_metaobject_content
                                     assign desired_slot = block.settings.block_id
-                                    assign content_blocks = page.metafields.custom.page_content.value.blocks
+                                    assign content_blocks = page.metafields.custom.page_content.value.blocks.value
                                     if desired_slot != blank and content_blocks != blank
                                         for content_block in content_blocks
                                             assign block_type = content_block.type.value | default: content_block.type
