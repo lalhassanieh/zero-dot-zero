@@ -98,7 +98,19 @@
     {%- assign use_metaobject = false -%}
     
     {%- if section.settings.use_metaobject_content -%}
-      {%- assign content_blocks = page.metafields.custom.page_content.value.blocks.value -%}
+      {%- assign page_content_source = blank -%}
+      {%- assign content_blocks = blank -%}
+      
+      {%- if template.name == 'index' -%}
+        {%- assign page_content_source = shop.metafields.custom.homepage_content.value -%}
+      {%- elsif page != blank -%}
+        {%- assign page_content_source = page.metafields.custom.page_content.value -%}
+      {%- endif -%}
+      
+      {%- if page_content_source != blank and page_content_source.blocks != blank -%}
+        {%- assign content_blocks = page_content_source.blocks.value -%}
+      {%- endif -%}
+      
       {%- if content_blocks != blank -%}
         {%- for block in content_blocks -%}
           {%- assign block_type = block.type.value | default: block.type -%}
