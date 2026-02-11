@@ -253,7 +253,7 @@
             </div>
           </div>
         </div>
-      {%- else -%}
+      {%- elsif section.settings.use_metaobject_content == false -%}
         {%- comment -%} ===================== SECTION BLOCKS MODE ===================== {%- endcomment -%}
         {%- assign paragraph_blocks = section.blocks | where: 'type', 'paragraph' -%}
         {%- assign image_blocks = section.blocks | where: 'type', 'image' -%}
