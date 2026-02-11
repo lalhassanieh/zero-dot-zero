@@ -281,8 +281,14 @@
                                                 assign heading = content_block.title
                                                 assign text = content_block.description
                                                 assign btn_text = content_block.button_label
-                                                if content_block.button_link.value != blank
-                                                    assign link = content_block.button_link.value.url
+                                                if btn_text != blank
+                                                    if content_block.button_page.value != blank
+                                                        assign link = content_block.button_page.value.url
+                                                    elsif content_block.button_collection.value != blank
+                                                        assign link = content_block.button_collection.value.url
+                                                    elsif content_block.button_product.value != blank
+                                                        assign link = content_block.button_product.value.url
+                                                    endif
                                                 endif
                                                 if content_block.image.value != blank
                                                     assign image = content_block.image.value
