@@ -607,8 +607,8 @@
         "small_img_yaYiqy": {
           "type": "smallImg",
           "settings": {
-            "use_metaobject_content": false,
-            "block_id": "",
+            "use_metaobject_content": true,
+            "block_id": "home-sc-banner-1",
             "row_reverse": true,
             "image_width": "50",
             "image": "shopify://shop_images/second_section_728_572_3_2.png",
@@ -2138,7 +2138,7 @@
       ],
       "name": "t:sections.faqs.presets.name",
       "settings": {
-        "use_metaobject_content": false,
+        "use_metaobject_content": true,
         "container": "fullwidth",
         "padding_full_width": 100,
         "title": "FAQ’s",
