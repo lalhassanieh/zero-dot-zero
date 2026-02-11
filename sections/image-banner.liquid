@@ -252,12 +252,20 @@
     {%- endif -%}
     
     {%- if page_content_source != blank -%}
-        {%- if section.settings.use_metaobject_background and page_content_source.background_image.value != blank -%}
-            {%- assign section_bg_image = page_content_source.background_image.value -%}
-            {%- assign bg_from_metaobject = true -%}
-        {%- endif -%}
         {%- if page_content_source.blocks != blank -%}
             {%- assign metaobject_content_blocks = page_content_source.blocks.value -%}
+        {%- endif -%}
+        
+        {%- if section.settings.use_metaobject_background and section.settings.section_block_id != blank and metaobject_content_blocks != blank -%}
+            {%- for content_block in metaobject_content_blocks -%}
+                {%- if content_block.block_id == section.settings.section_block_id -%}
+                    {%- if content_block.image.value != blank -%}
+                        {%- assign section_bg_image = content_block.image.value -%}
+                        {%- assign bg_from_metaobject = true -%}
+                    {%- endif -%}
+                    {%- break -%}
+                {%- endif -%}
+            {%- endfor -%}
         {%- endif -%}
     {%- endif -%}
     
@@ -301,7 +309,7 @@
                                 assign use_metaobject_banner = false
                                 
                                 if block.settings.use_metaobject_content
-                                    assign desired_slot = block.settings.block_id
+                                    assign desired_slot = section.settings.section_block_id
                                     
                                     if desired_slot != blank and metaobject_content_blocks != blank
                                         for content_block in metaobject_content_blocks
@@ -1140,8 +1148,15 @@
                 "type": "checkbox",
                 "id": "use_metaobject_background",
                 "label": "Use metaobject background image",
-                "info": "When enabled, background image will be loaded from page_content metaobject.",
+                "info": "When enabled, background image will be loaded from the matching metaobject block.",
                 "default": false
+            },
+            {
+                "type": "text",
+                "id": "section_block_id",
+                "label": "Section Block ID",
+                "info": "Unique identifier to match metaobject block for background image (e.g., 'about-section-bg'). Must match the 'block_id' field in your metaobject.",
+                "placeholder": "e.g., about-section-bg"
             },
             {
                 "type": "text",
@@ -1461,15 +1476,8 @@
                     "type": "checkbox",
                     "id": "use_metaobject_content",
                     "label": "Use metaobject for content",
-                    "info": "When enabled, title, description, button and image will be loaded from metaobject (banner type)",
+                    "info": "When enabled, uses section-level Block ID to load content from metaobject",
                     "default": false
-                },
-                {
-                    "type": "text",
-                    "id": "block_id",
-                    "label": "Block ID",
-                    "info": "Unique identifier to match metaobject banner (e.g., 'about-hero-1', 'about-hero-2'). Must match the 'block_id' field in your banner metaobject.",
-                    "placeholder": "e.g., about-hero-1"
                 },
                 {
                     "type": "header",
@@ -2300,15 +2308,8 @@
                     "type": "checkbox",
                     "id": "use_metaobject_content",
                     "label": "Use metaobject for content",
-                    "info": "When enabled, title, description, button and image will be loaded from metaobject (banner type)",
+                    "info": "When enabled, uses section-level Block ID to load content from metaobject",
                     "default": false
-                },
-                {
-                    "type": "text",
-                    "id": "block_id",
-                    "label": "Block ID",
-                    "info": "Unique identifier to match metaobject banner (e.g., 'about-hero-1', 'about-hero-2'). Must match the 'block_id' field in your banner metaobject.",
-                    "placeholder": "e.g., about-hero-1"
                 },
                 {
                     "type": "header",
