@@ -272,15 +272,24 @@
                                 assign use_metaobject_banner = false
                                 
                                 if block.settings.use_metaobject_content
-                                    assign desired_slot = block.settings.slot
+                                    assign desired_slot = block.settings.block_id
                                     assign content_blocks = page.metafields.custom.content_block.value
                                     if desired_slot != blank and content_blocks != blank
                                         for content_block in content_blocks
                                             assign block_type = content_block.type.value | default: content_block.type
-                                            if block_type == 'banner' and content_block.slot == desired_slot
+                                            if block_type == 'banner' and content_block.block_id == desired_slot
                                                 assign heading = content_block.title
                                                 assign text = content_block.description
                                                 assign btn_text = content_block.button_label
+                                                if content_block.button_link.value != blank
+                                                    assign link = content_block.button_link.value.url
+                                                endif
+                                                if content_block.image.value != blank
+                                                    assign image = content_block.image.value
+                                                endif
+                                                if content_block.video != blank
+                                                    assign video_link = content_block.video
+                                                endif
                                                 assign use_metaobject_banner = true
                                                 break
                                             endif
@@ -289,7 +298,9 @@
                                 endif
 
                                 if block.type == 'largeImg'
-                                    assign video_link = block.settings.video_link
+                                    unless use_metaobject_banner and video_link != blank
+                                        assign video_link = block.settings.video_link
+                                    endunless
                                     assign color_icon = block.settings.color_icon
                                     assign bg_color_icon = block.settings.bg_color_icon | color_modify: 'alpha', 0.4
                                     assign bg_color_content = block.settings.bg_color_content
@@ -310,16 +321,24 @@
                                     endif
                                 endif
 
-                                assign image = block.settings.image
+                                unless use_metaobject_banner and image != blank
+                                    assign image = block.settings.image
+                                endunless
                                 assign image_item_2 = block.settings.image_item_2
-                                assign preview_img = block.settings.image
+                                unless use_metaobject_banner and image != blank
+                                    assign preview_img = block.settings.image
+                                else
+                                    assign preview_img = image
+                                endunless
                                 assign preview_img_item_2 = block.settings.image_item_2
                                 assign mobile_image = block.settings.mobile_image
                                 assign heading_item_2 = block.settings.heading_item_2
                                 assign text_item_2 = block.settings.text_item_2
                                 assign btn_text_2 = block.settings.btn_text_2
                                 assign btn_text_item_2 = block.settings.btn_text_item_2
-                                assign link = block.settings.link
+                                unless use_metaobject_banner and link != blank
+                                    assign link = block.settings.link
+                                endunless
                                 assign link_2 = block.settings.link_2
                                 assign link_item_2 = block.settings.link_item_2
                                 assign position = block.settings.position
@@ -481,7 +500,9 @@
                                 assign bg_color = block.settings.bg_color
                                 assign bg_color_gradient = block.settings.bg_color_gradient
         
-                                assign video_link = block.settings.video_link
+                                unless use_metaobject_banner and video_link != blank
+                                    assign video_link = block.settings.video_link
+                                endunless
                                 assign video_link_item_2 = block.settings.video_link_item_2
                                 assign color_icon = block.settings.color_icon
                                 assign bg_color_icon = block.settings.bg_color_icon | color_modify: 'alpha', 0.4
@@ -1396,9 +1417,9 @@
                 },
                 {
                     "type": "text",
-                    "id": "slot",
-                    "label": "Content slot",
-                    "info": "Unique identifier to match metaobject banner (e.g., 'about-hero-1', 'about-hero-2'). Must match the 'slot' field in your banner metaobject.",
+                    "id": "block_id",
+                    "label": "Block ID",
+                    "info": "Unique identifier to match metaobject banner (e.g., 'about-hero-1', 'about-hero-2'). Must match the 'Block Id' field in your banner metaobject.",
                     "placeholder": "e.g., about-hero-1"
                 },
                 {
@@ -2235,9 +2256,9 @@
                 },
                 {
                     "type": "text",
-                    "id": "slot",
-                    "label": "Content slot",
-                    "info": "Unique identifier to match metaobject banner (e.g., 'about-hero-1', 'about-hero-2'). Must match the 'slot' field in your banner metaobject.",
+                    "id": "block_id",
+                    "label": "Block ID",
+                    "info": "Unique identifier to match metaobject banner (e.g., 'about-hero-1', 'about-hero-2'). Must match the 'Block Id' field in your banner metaobject.",
                     "placeholder": "e.g., about-hero-1"
                 },
                 {
