@@ -304,6 +304,8 @@
                                                         assign link = content_block.button_collection.value.url
                                                     elsif content_block.button_product.value != blank
                                                         assign link = content_block.button_product.value.url
+                                                    elsif content_block.button_url != blank
+                                                        assign link = content_block.button_url
                                                     endif
                                                 endif
                                                 if content_block.image.value != blank
