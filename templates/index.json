@@ -2216,7 +2216,7 @@
         "small_img_DaJk6x": {
           "type": "smallImg",
           "settings": {
-            "use_metaobject_content": false,
+            "use_metaobject_content": true,
             "row_reverse": true,
             "image_width": "0",
             "flying_effect": false,
@@ -2302,7 +2302,7 @@
       "name": "t:sections.image-banner.presets.name",
       "settings": {
         "use_metaobject_background": true,
-        "section_block_id": "home-sc-banner-2",
+        "section_block_id": "home-sc-banner-3",
         "id_section": "",
         "container": "1770",
         "padding_full_width": 0,
@@ -2325,7 +2325,6 @@
         "style_bg": "none",
         "bg_color": "#fdf7eb",
         "bg_color_gradient": "",
-        "bg_image": "shopify://shop_images/Before_the_footer_1920_x_578_a67d1cec-c417-490c-9c69-8d04571808a1.png",
         "mg_top_desktop": 0,
         "mg_top_tablet": 0,
         "mg_top_mobile": 0,
