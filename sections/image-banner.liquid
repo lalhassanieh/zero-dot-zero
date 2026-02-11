@@ -237,14 +237,50 @@
             }
         {% endif %}
     </style>
+    
+    {%- comment -%} Section-level metaobject loading {%- endcomment -%}
+    {%- assign section_bg_image = section.settings.bg_image -%}
+    {%- assign bg_from_metaobject = false -%}
+    {%- assign page_content_source = blank -%}
+    {%- assign metaobject_content_blocks = blank -%}
+    
+    {%- comment -%} Load metaobject data once at section level {%- endcomment -%}
+    {%- if template.name == 'index' -%}
+        {%- assign page_content_source = shop.metafields.custom.homepage_content.value -%}
+    {%- elsif page != blank -%}
+        {%- assign page_content_source = page.metafields.custom.page_content.value -%}
+    {%- endif -%}
+    
+    {%- if page_content_source != blank -%}
+        {%- if page_content_source.blocks != blank -%}
+            {%- assign metaobject_content_blocks = page_content_source.blocks.value -%}
+        {%- endif -%}
+        
+        {%- if section.settings.use_metaobject_background and section.settings.section_block_id != blank and metaobject_content_blocks != blank -%}
+            {%- for content_block in metaobject_content_blocks -%}
+                {%- if content_block.block_id == section.settings.section_block_id -%}
+                    {%- if content_block.background_image.value != blank -%}
+                        {%- assign section_bg_image = content_block.background_image.value -%}
+                        {%- assign bg_from_metaobject = true -%}
+                    {%- endif -%}
+                    {%- break -%}
+                {%- endif -%}
+            {%- endfor -%}
+        {%- endif -%}
+    {%- endif -%}
+    
     {%- if section.settings.id_section != blank -%}
     <div id="{{ section.settings.id_section }}">
     {%- endif -%}
-        <div class="halo-block halo-banner image-banner style_bg--{{ section.settings.style_bg }}{%- if section.settings.bg_image != blank -%} image-banner--bg-image{%- endif -%}" id="halo-image-banner-{{ section.id }}"
+        <div class="halo-block halo-banner image-banner style_bg--{{ section.settings.style_bg }}{%- if section_bg_image != blank -%} image-banner--bg-image{%- endif -%}" id="halo-image-banner-{{ section.id }}"
             style="
                 --section_margin: {{ list_gap }}; --mg_top_desktop: {{ mg_top_desktop | append: 'px' }};--mg_top_tablet:{{ mg_top_tablet | append: 'px' }};--mg_top_mobile: {{ mg_top_mobile | append: 'px' }};--mg_bottom_desktop:{{ mg_bottom_desktop | append: 'px' }};--mg_bottom_tablet:{{ mg_bottom_tablet | append: 'px' }};--mg_bottom_mobile:{{ mg_bottom_mobile | append: 'px' }};--padding_full_width:{{ padding_full_width | append: 'px' }};
-                {%- if section.settings.bg_image != blank -%}
-                    background: url({{ section.settings.bg_image | img_url: '1920x' }});background-repeat: no-repeat;background-size: cover;
+                {%- if section_bg_image != blank -%}
+                    {%- if bg_from_metaobject -%}
+                        background: url({{ section_bg_image | image_url: width: 1920 }});background-repeat: no-repeat;background-size: cover;
+                    {%- else -%}
+                        background: url({{ section_bg_image | img_url: '1920x' }});background-repeat: no-repeat;background-size: cover;
+                    {%- endif -%}
                 {%- else -%}
                 --bg-color-style: {% if section.settings.bg_color_gradient != blank %}{{ section.settings.bg_color_gradient }}{% else %}{{ section.settings.bg_color }}{% endif %}{%- endif -%}
             " data-loader-script="{{ 'halo.image-banner-slide.js' | asset_url }}" allow-transparent-header
@@ -273,22 +309,10 @@
                                 assign use_metaobject_banner = false
                                 
                                 if block.settings.use_metaobject_content
-                                    assign desired_slot = block.settings.block_id
-                                    assign page_content_source = blank
-                                    assign content_blocks = blank
+                                    assign desired_slot = section.settings.section_block_id
                                     
-                                    if template.name == 'index'
-                                        assign page_content_source = shop.metafields.custom.homepage_content.value
-                                    elsif page != blank
-                                        assign page_content_source = page.metafields.custom.page_content.value
-                                    endif
-                                    
-                                    if page_content_source != blank and page_content_source.blocks != blank
-                                        assign content_blocks = page_content_source.blocks.value
-                                    endif
-                                    
-                                    if desired_slot != blank and content_blocks != blank
-                                        for content_block in content_blocks
+                                    if desired_slot != blank and metaobject_content_blocks != blank
+                                        for content_block in metaobject_content_blocks
                                             assign block_type = content_block.type.value | default: content_block.type
                                             if block_type == 'banner' and content_block.block_id == desired_slot
                                                 assign heading = content_block.title
@@ -1121,6 +1145,20 @@
                 "content": "t:settings_schema.general.name"
             },
             {
+                "type": "checkbox",
+                "id": "use_metaobject_background",
+                "label": "Use metaobject background image",
+                "info": "When enabled, background image will be loaded from the matching metaobject block.",
+                "default": false
+            },
+            {
+                "type": "text",
+                "id": "section_block_id",
+                "label": "Block ID",
+                "info": "Unique identifier to match metaobject block for content. Must match the 'block_id' field in your metaobject.",
+                "placeholder": "e.g., about-section-bg"
+            },
+            {
                 "type": "text",
                 "id": "id_section",
                 "label": "t:sections.image-banner.blocks.image.settings.content.id_section",
@@ -1437,16 +1475,9 @@
                 {
                     "type": "checkbox",
                     "id": "use_metaobject_content",
-                    "label": "Use metaobject for title, description and button",
-                    "info": "When enabled, content will be loaded from page metafield custom.page_content.blocks (banner type)",
+                    "label": "Use metaobject for content",
+                    "info": "When enabled, uses section-level Block ID to load content from metaobject",
                     "default": false
-                },
-                {
-                    "type": "text",
-                    "id": "block_id",
-                    "label": "Block ID",
-                    "info": "Unique identifier to match metaobject banner (e.g., 'about-hero-1', 'about-hero-2'). Must match the 'block_id' field in your banner metaobject.",
-                    "placeholder": "e.g., about-hero-1"
                 },
                 {
                     "type": "header",
@@ -2276,16 +2307,9 @@
                 {
                     "type": "checkbox",
                     "id": "use_metaobject_content",
-                    "label": "Use metaobject for title, description and button",
-                    "info": "When enabled, content will be loaded from page metafield custom.page_content.blocks (banner type)",
+                    "label": "Use metaobject for content",
+                    "info": "When enabled, uses section-level Block ID to load content from metaobject",
                     "default": false
-                },
-                {
-                    "type": "text",
-                    "id": "block_id",
-                    "label": "Block ID",
-                    "info": "Unique identifier to match metaobject banner (e.g., 'about-hero-1', 'about-hero-2'). Must match the 'block_id' field in your banner metaobject.",
-                    "placeholder": "e.g., about-hero-1"
                 },
                 {
                     "type": "header",
