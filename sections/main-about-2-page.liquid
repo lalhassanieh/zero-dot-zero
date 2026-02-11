@@ -23,6 +23,24 @@
     if section.blocks.size > 0
         assign show_about_info = true
     endif
+
+    if section.settings.use_metaobject_content
+        assign desired_slot = section.settings.block_id
+        assign content_blocks = page.metafields.custom.page_content.value.blocks.value
+        if content_blocks != blank
+            for content_block in content_blocks
+                assign block_type = content_block.type.value | default: content_block.type
+                if block_type == 'main_banner'
+                    if desired_slot == blank or content_block.block_id == desired_slot
+                        if content_block.image.value != blank
+                            assign about_image = content_block.image.value
+                        endif
+                        break
+                    endif
+                endif
+            endfor
+        endif
+    endif
 -%}
 
 <div data-section-id="{{ section.id }}" data-section-type="about" id="AboutSection-{{ section.id }}" data-section="{{ section.id }}">
@@ -412,6 +430,28 @@
 {
     "name": "t:sections.main-about-page.name",
     "settings": [
+    {
+        "type": "header",
+        "content": "Content Source"
+    },
+    {
+        "type": "checkbox",
+        "id": "use_metaobject_content",
+        "label": "Use metaobject for background image",
+        "info": "When enabled, background image will be loaded from page metafield custom.page_content.blocks (main_banner type)",
+        "default": false
+    },
+    {
+        "type": "text",
+        "id": "block_id",
+        "label": "Block ID",
+        "info": "Optional. If empty, uses first main_banner block. If set, must match the 'block_id' field in your metaobject.",
+        "placeholder": "e.g., about-banner-1"
+    },
+    {
+        "type": "header",
+        "content": "Container"
+    },
     {
         "type": "select",
         "id": "container",
