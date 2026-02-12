@@ -15,7 +15,7 @@
         "image_M9rGXy": {
           "type": "image",
           "settings": {
-            "use_metaobject_slide": false,
+            "use_metaobject_slide": true,
             "slide_id": "main-slide-show-1",
             "image_slide": "shopify://shop_images/Hero_section_1370_x_477_1.png",
             "image_slide_mb": "shopify://shop_images/Hero_section_1370_x_477_1.png",
@@ -53,6 +53,8 @@
             "sub_title_position": "sub_title_above",
             "color_sub_heading": "#ffffff",
             "heading": "<div class=\"top\">\nThe Future of Drinking  \n</div>  <span> Starts at Zero.Zero </span>",
+            "heading_top": "",
+            "heading_bottom": "",
             "letter_spacing_heading": "",
             "enable_border_heading": false,
             "font_style_heading": "normal",
@@ -156,6 +158,8 @@
             "sub_title_position": "sub_title_above",
             "color_sub_heading": "#ffffff",
             "heading": "<div class=\"top\">Try 2025's Top-Rated</div>  <span>Non - Alcoholic </span>",
+            "heading_top": "",
+            "heading_bottom": "",
             "letter_spacing_heading": "",
             "enable_border_heading": false,
             "font_style_heading": "normal",
@@ -259,6 +263,8 @@
             "sub_title_position": "sub_title_above",
             "color_sub_heading": "#ffffff",
             "heading": "<div class=\"top\">Try 2025's Top-Rated</div>  <span>Non - Alcoholic </span>",
+            "heading_top": "",
+            "heading_bottom": "",
             "letter_spacing_heading": "",
             "enable_border_heading": false,
             "font_style_heading": "normal",
@@ -362,6 +368,8 @@
             "sub_title_position": "sub_title_above",
             "color_sub_heading": "#ffffff",
             "heading": "<div class=\"top\">Try 2025's Top-Rated</div>  <span>Non - Alcoholic </span>",
+            "heading_top": "",
+            "heading_bottom": "",
             "letter_spacing_heading": "",
             "enable_border_heading": false,
             "font_style_heading": "normal",
@@ -465,6 +473,8 @@
             "sub_title_position": "sub_title_above",
             "color_sub_heading": "#ffffff",
             "heading": "<div class=\"top\">Try 2025's Top-Rated</div>  <span>Non - Alcoholic </span>",
+            "heading_top": "",
+            "heading_bottom": "",
             "letter_spacing_heading": "",
             "enable_border_heading": false,
             "font_style_heading": "normal",
