@@ -46,7 +46,18 @@
         <p><strong>DEBUG INFO:</strong></p>
         <p>Template: {{ template.name }}</p>
         <p>Slideshow block found: {% if slideshow_block != blank %}YES (handle: {{ slideshow_block.system.handle }}){% else %}NO{% endif %}</p>
-        <p>slideshow_block.slide_show exists: {% if slideshow_block.slide_show != blank %}YES{% else %}NO{% endif %}</p>
+        
+        <p><strong>Testing field handles on slideshow_block:</strong></p>
+        <p>slides exists: {% if slideshow_block.slides != blank %}YES{% else %}NO{% endif %}</p>
+        <p>slide_show exists: {% if slideshow_block.slide_show != blank %}YES{% else %}NO{% endif %}</p>
+        <p>items exists: {% if slideshow_block.items != blank %}YES{% else %}NO{% endif %}</p>
+        <p>slide_items exists: {% if slideshow_block.slide_items != blank %}YES{% else %}NO{% endif %}</p>
+        <p>slides_list exists: {% if slideshow_block.slides_list != blank %}YES{% else %}NO{% endif %}</p>
+        <p>slide exists: {% if slideshow_block.slide != blank %}YES{% else %}NO{% endif %}</p>
+        
+        <p><strong>Full slideshow_block JSON:</strong></p>
+        <pre style="background: #fff; padding: 5px; overflow: auto; max-height: 300px; font-size: 10px;">{{ slideshow_block | json }}</pre>
+        
         <p><strong>metaobject_slides count:</strong> {{ metaobject_slides.size | default: 0 }}</p>
         
         {%- if metaobject_slides != blank -%}
