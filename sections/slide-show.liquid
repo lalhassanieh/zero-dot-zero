@@ -70,7 +70,7 @@
             <div class="slideshow{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--fade-in{% endif %}{% if show_dot_with_image %} show-dot-with-image{% endif %}" data-auto-video="{{ section.settings.auto_playvideo }}" {% if total_slides_count > 1 %}data-init-slideshow data-arrows="{{arrow}}" data-dots="{{dots}}" data-autoplay="{{ autoplay }}" data-autoplay-speed="{{ autoplaySpeed }}" data-fade="{{ fade }}" {% endif %} data-dot-with-image="{% if show_dot_with_image %}true{% else %}false{% endif %}">
             
             {%- comment -%} =============== PURE METAOBJECT SLIDES (when no section blocks) =============== {%- endcomment -%}
-            {%- if section.blocks.size == 0 and metaobject_slides_source != blank -%}
+            {%- if metaobject_slides_source != blank -%}
                 {%- liquid
                     assign lookbook_style = section.settings.lookbook_style
                     assign dot_desktop_size = section.settings.dot_desktop_size | append: 'px'
@@ -102,12 +102,12 @@
                             assign mo_description_desktop_mf = slide.description_desktop
                             assign mo_description_mobile_mf = slide.description_mobile
                             
-                            assign mo_button_label = slide.primary_button_label
-                            assign mo_button_page = slide.primary_button_page.value
-                            assign mo_button_collection = slide.primary_button_collection.value
-                            assign mo_secondary_button_label = slide.secondary_button_label
-                            assign mo_secondary_button_page = slide.secondary_button_page.value
-                            assign mo_secondary_button_collection = slide.secondary_button_collection.value
+                            assign mo_button_label = slide.first_button_label
+                            assign mo_button_page = slide.first_button_page.value
+                            assign mo_button_collection = slide.first_button_collection.value
+                            assign mo_secondary_button_label = slide.second_button_label
+                            assign mo_secondary_button_page = slide.second_button_page.value
+                            assign mo_secondary_button_collection = slide.second_button_collection.value
                             
                             assign mo_video_source = slide.video_source | default: 'youtube'
                             assign mo_youtube_id_desktop = slide.youtube_id_desktop
@@ -215,23 +215,23 @@
 
                                 {%- if mo_heading_desktop_mf != blank or mo_heading_mobile_mf != blank -%}
                                     {%- if mo_heading_desktop_mf != blank -%}
-                                        <div class="slide-heading slide-pc{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="{% if settings.banner_animation == 'effect_fade_up' %}--animation-order: 1;{% endif %}">{{ mo_heading_desktop_mf | metafield_tag }}</div>
+                                        <div class="slide-heading slide-pc{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="{% if settings.banner_animation == 'effect_fade_up' %}--animation-order: 1;{% endif %}">{{ mo_heading_desktop_mf.value }}</div>
                                     {%- endif -%}
                                     {%- if mo_heading_mobile_mf != blank -%}
-                                        <div class="slide-heading slide-mobile{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="{% if settings.banner_animation == 'effect_fade_up' %}--animation-order: 1;{% endif %}">{{ mo_heading_mobile_mf | metafield_tag }}</div>
+                                        <div class="slide-heading slide-mobile{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="{% if settings.banner_animation == 'effect_fade_up' %}--animation-order: 1;{% endif %}">{{ mo_heading_mobile_mf.value }}</div>
                                     {%- elsif mo_heading_desktop_mf != blank -%}
-                                        <div class="slide-heading slide-mobile{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="{% if settings.banner_animation == 'effect_fade_up' %}--animation-order: 1;{% endif %}">{{ mo_heading_desktop_mf | metafield_tag }}</div>
+                                        <div class="slide-heading slide-mobile{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="{% if settings.banner_animation == 'effect_fade_up' %}--animation-order: 1;{% endif %}">{{ mo_heading_desktop_mf.value }}</div>
                                     {%- endif -%}
                                 {%- endif -%}
 
                                 {%- if mo_description_desktop_mf != blank or mo_description_mobile_mf != blank -%}
                                     {%- if mo_description_desktop_mf != blank -%}
-                                        <div class="slide-text slide-pc{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="{% if settings.banner_animation == 'effect_fade_up' %}--animation-order: 2;{% endif %}">{{ mo_description_desktop_mf | metafield_tag }}</div>
+                                        <div class="slide-text slide-pc{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="{% if settings.banner_animation == 'effect_fade_up' %}--animation-order: 2;{% endif %}">{{ mo_description_desktop_mf.value }}</div>
                                     {%- endif -%}
                                     {%- if mo_description_mobile_mf != blank -%}
-                                        <div class="slide-text slide-mobile{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="{% if settings.banner_animation == 'effect_fade_up' %}--animation-order: 2;{% endif %}">{{ mo_description_mobile_mf | metafield_tag }}</div>
+                                        <div class="slide-text slide-mobile{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="{% if settings.banner_animation == 'effect_fade_up' %}--animation-order: 2;{% endif %}">{{ mo_description_mobile_mf.value }}</div>
                                     {%- elsif mo_description_desktop_mf != blank -%}
-                                        <div class="slide-text slide-mobile{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="{% if settings.banner_animation == 'effect_fade_up' %}--animation-order: 2;{% endif %}">{{ mo_description_desktop_mf | metafield_tag }}</div>
+                                        <div class="slide-text slide-mobile{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="{% if settings.banner_animation == 'effect_fade_up' %}--animation-order: 2;{% endif %}">{{ mo_description_desktop_mf.value }}</div>
                                     {%- endif -%}
                                 {%- endif -%}
 
@@ -267,7 +267,7 @@
                         </div>
                     {%- endif -%}
                 {%- endfor -%}
-            {%- endif -%}
+            {%- else -%}
             
             {%- comment -%} =============== REGULAR BLOCK SLIDES =============== {%- endcomment -%}
             {%- for block in section.blocks -%}
@@ -326,10 +326,10 @@
                                 assign slide_image_desktop = mo_slide.image_desktop.value | default: mo_slide.image_desktop
                                 assign slide_image_mobile = mo_slide.image_mobile.value | default: mo_slide.image_mobile
                                 assign slide_link = blank
-                                if mo_slide.button_page.value != blank
-                                    assign slide_link = mo_slide.button_page.value.url
-                                elsif mo_slide.button_collection.value != blank
-                                    assign slide_link = mo_slide.button_collection.value.url
+                                if mo_slide.first_button_page.value != blank
+                                    assign slide_link = mo_slide.first_button_page.value.url
+                                elsif mo_slide.first_button_collection.value != blank
+                                    assign slide_link = mo_slide.first_button_collection.value.url
                                 endif
                             else
                                 assign slide_image_desktop = block.settings.image_slide
@@ -769,6 +769,7 @@
                     </div>
                 {%- endif -%}
             {%- endfor -%}
+            {%- endif -%}
             </div>
             {%- if section.settings.enable_banner -%}
                 <div class="block-banner-slider{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--fade-in{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}">
