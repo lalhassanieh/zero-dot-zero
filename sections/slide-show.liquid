@@ -96,8 +96,8 @@
                             assign slide_image_mb = block.settings.image_slide_mb
                             assign slide_heading = block.settings.heading
                             assign slide_heading_mb = block.settings.heading_mb
-                            assign slide_heading_top = blank
-                            assign slide_heading_bottom = blank
+                            assign slide_heading_top = block.settings.heading_top
+                            assign slide_heading_bottom = block.settings.heading_bottom
                             assign slide_sub_heading = block.settings.sub_heading
                             assign slide_sub_heading_mb = block.settings.sub_heading_mb
                             assign slide_description = block.settings.slide-des
@@ -344,28 +344,8 @@
                             {%- endif -%}
 
                             {%- comment -%} Desktop Heading {%- endcomment -%}
-                            {%- if use_metaobject and slide_heading_top != blank or slide_heading_bottom != blank -%}
-                                {%- comment -%} Metaobject: Two-part heading {%- endcomment -%}
-                                {%- if slide_heading_top != blank and slide_heading_bottom != blank -%}
-                                    <h2 class="slide-heading slide-pc {% if block.settings.enable_border_heading %}has-border{% endif %}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="{% if settings.banner_animation == 'effect_fade_up' %}--animation-order: 1;{% endif %}{%- if block.settings.font_size_heading != blank -%}font-size: {% if show_dot_with_image and section.blocks.size > 1 %}clamp({{ block.settings.font_size_heading_mb | append: 'px' }}, calc({{ block.settings.font_size_heading }} / 1920 * 100vw), {{ block.settings.font_size_heading | append: 'px' }}){% else %}{{ block.settings.font_size_heading | append: 'px' }}{% endif %};line-height: {{ block.settings.line_height_heading | append: 'px' }};{%- endif -%}{%- if block.settings.color_heading != blank -%}color:{{ block.settings.color_heading }};{%- endif -%}font-style: {{ block.settings.font_style_heading }};--heading-spacing-bottom-style: {{ block.settings.heading_spacing_bottom | append: 'px' }}">
-                                        {%- if block.settings.enable_border_heading -%}<span class="line" style="background-color: {{ block.settings.color_heading }}"></span>{%- endif -%}
-                                        <div class="top">{{ slide_heading_top | metafield_tag }}</div>
-                                        <span>{{ slide_heading_bottom | metafield_tag }}</span>
-                                    </h2>
-                                {%- elsif slide_heading_top != blank -%}
-                                    <h2 class="slide-heading slide-pc {% if block.settings.enable_border_heading %}has-border{% endif %}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="{% if settings.banner_animation == 'effect_fade_up' %}--animation-order: 1;{% endif %}{%- if block.settings.font_size_heading != blank -%}font-size: {% if show_dot_with_image and section.blocks.size > 1 %}clamp({{ block.settings.font_size_heading_mb | append: 'px' }}, calc({{ block.settings.font_size_heading }} / 1920 * 100vw), {{ block.settings.font_size_heading | append: 'px' }}){% else %}{{ block.settings.font_size_heading | append: 'px' }}{% endif %};line-height: {{ block.settings.line_height_heading | append: 'px' }};{%- endif -%}{%- if block.settings.color_heading != blank -%}color:{{ block.settings.color_heading }};{%- endif -%}font-style: {{ block.settings.font_style_heading }};--heading-spacing-bottom-style: {{ block.settings.heading_spacing_bottom | append: 'px' }}">
-                                        {%- if block.settings.enable_border_heading -%}<span class="line" style="background-color: {{ block.settings.color_heading }}"></span>{%- endif -%}
-                                        <div class="top">{{ slide_heading_top | metafield_tag }}</div>
-                                    </h2>
-                                {%- elsif slide_heading_bottom != blank -%}
-                                    <h2 class="slide-heading slide-pc {% if block.settings.enable_border_heading %}has-border{% endif %}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="{% if settings.banner_animation == 'effect_fade_up' %}--animation-order: 1;{% endif %}{%- if block.settings.font_size_heading != blank -%}font-size: {% if show_dot_with_image and section.blocks.size > 1 %}clamp({{ block.settings.font_size_heading_mb | append: 'px' }}, calc({{ block.settings.font_size_heading }} / 1920 * 100vw), {{ block.settings.font_size_heading | append: 'px' }}){% else %}{{ block.settings.font_size_heading | append: 'px' }}{% endif %};line-height: {{ block.settings.line_height_heading | append: 'px' }};{%- endif -%}{%- if block.settings.color_heading != blank -%}color:{{ block.settings.color_heading }};{%- endif -%}font-style: {{ block.settings.font_style_heading }};--heading-spacing-bottom-style: {{ block.settings.heading_spacing_bottom | append: 'px' }}">
-                                        {%- if block.settings.enable_border_heading -%}<span class="line" style="background-color: {{ block.settings.color_heading }}"></span>{%- endif -%}
-                                        <span>{{ slide_heading_bottom | metafield_tag }}</span>
-                                    </h2>
-                                {%- endif -%}
-                            {%- elsif slide_heading != blank -%}
-                                {%- comment -%} Block settings: Single heading {%- endcomment -%}
-                                <h2 class="slide-heading slide-pc {% if block.settings.enable_border_heading %}has-border{% endif %}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="{% if settings.banner_animation == 'effect_fade_up' %}--animation-order: 1;{% endif %}{%- if block.settings.font_size_heading != blank -%}font-size: {% if show_dot_with_image and section.blocks.size > 1 %}clamp({{ block.settings.font_size_heading_mb | append: 'px' }}, calc({{ block.settings.font_size_heading }} / 1920 * 100vw), {{ block.settings.font_size_heading | append: 'px' }}){% else %}{{ block.settings.font_size_heading | append: 'px' }}{% endif %};line-height: {{ block.settings.line_height_heading | append: 'px' }};{%- endif -%}{%- if block.settings.color_heading != blank -%}color:{{ block.settings.color_heading }};{%- endif -%}font-style: {{ block.settings.font_style_heading }};--heading-spacing-bottom-style: {{ block.settings.heading_spacing_bottom | append: 'px' }}">{%- if block.settings.enable_border_heading -%}<span class="line" style="background-color: {{ block.settings.color_heading }}"></span>{%- endif -%}{{ slide_heading }}</h2>
+                            {%- if slide_heading_top != blank or slide_heading_bottom != blank or slide_heading != blank -%}
+                                <h2 class="slide-heading slide-pc {% if block.settings.enable_border_heading %}has-border{% endif %}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="{% if settings.banner_animation == 'effect_fade_up' %}--animation-order: 1;{% endif %}{%- if block.settings.font_size_heading != blank -%}font-size: {% if show_dot_with_image and section.blocks.size > 1 %}clamp({{ block.settings.font_size_heading_mb | append: 'px' }}, calc({{ block.settings.font_size_heading }} / 1920 * 100vw), {{ block.settings.font_size_heading | append: 'px' }}){% else %}{{ block.settings.font_size_heading | append: 'px' }}{% endif %};line-height: {{ block.settings.line_height_heading | append: 'px' }};{%- endif -%}{%- if block.settings.color_heading != blank -%}color:{{ block.settings.color_heading }};{%- endif -%}font-style: {{ block.settings.font_style_heading }};--heading-spacing-bottom-style: {{ block.settings.heading_spacing_bottom | append: 'px' }}">{%- if block.settings.enable_border_heading -%}<span class="line" style="background-color: {{ block.settings.color_heading }}"></span>{%- endif -%}{%- if slide_heading_top != blank -%}<div class="top">{%- if use_metaobject -%}{{ slide_heading_top | metafield_tag | replace: '<p>', '' | replace: '</p>', '' }}{%- else -%}{{ slide_heading_top }}{%- endif -%}</div>{%- endif -%}{%- if slide_heading_bottom != blank -%}<span>{%- if use_metaobject -%}{{ slide_heading_bottom | metafield_tag | replace: '<p>', '' | replace: '</p>', '' }}{%- else -%}{{ slide_heading_bottom }}{%- endif -%}</span>{%- endif -%}{%- if slide_heading_top == blank and slide_heading_bottom == blank -%}{{ slide_heading }}{%- endif -%}</h2>
                             {%- endif -%}
                             
                             {%- comment -%} Mobile Heading {%- endcomment -%}
@@ -1970,10 +1950,22 @@
                         "default" : "#fff"
                     },
                     {
-                        "type" : "textarea",
+                        "type" : "html",
                         "id" : "heading",
                         "label" : "t:sections.image-banner.blocks.image.settings.content.label__19",
                         "default" : "Cosmopolis"
+                    },
+                    {
+                        "type" : "html",
+                        "id" : "heading_top",
+                        "label" : "Heading Top",
+                        "info" : "Two-part heading: Top line (e.g., 'The Future of Drinking')"
+                    },
+                    {
+                        "type" : "html",
+                        "id" : "heading_bottom",
+                        "label" : "Heading Bottom",
+                        "info" : "Two-part heading: Bottom line (e.g., 'Starts at Zero.Zero')"
                     },
                     {
                         "type": "text",
