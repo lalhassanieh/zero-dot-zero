@@ -1,22 +1,4 @@
-{%- comment -%} Load metaobject slides source for block-level lookups {%- endcomment -%}
-{%- assign metaobject_slides_source = blank -%}
-
-{%- if template.name == 'index' -%}
-    {%- comment -%} Load from homepage_content.blocks (Page Content system) {%- endcomment -%}
-    {%- assign homepage_entry = shop.metafields.custom.homepage_content.value -%}
-    {%- if homepage_entry != blank and homepage_entry.blocks != blank and homepage_entry.blocks.value != blank -%}
-        {%- assign metaobject_slides_source = homepage_entry.blocks.value -%}
-    {%- endif -%}
-{%- elsif page != blank -%}
-    {%- comment -%} Load from page_content.blocks (Page Content system) {%- endcomment -%}
-    {%- assign page_entry = page.metafields.custom.page_content.value -%}
-    {%- if page_entry != blank and page_entry.blocks != blank and page_entry.blocks.value != blank -%}
-        {%- assign metaobject_slides_source = page_entry.blocks.value -%}
-    {%- endif -%}
-{%- endif -%}
-
-{%- comment -%} Render if we have section blocks OR metaobject slides source {%- endcomment -%}
-{%- if section.blocks.size > 0 or metaobject_slides_source != blank -%}
+{%- if section.blocks.size > 0 -%}
     {%-liquid
         assign autoplay = section.settings.autoplay
         assign autoplaySpeed = section.settings.slideshow_speed
@@ -33,17 +15,7 @@
         endif
     -%}
 
-    {%- comment -%} Calculate total slides count {%- endcomment -%}
-    {%- assign total_slides_count = section.blocks.size -%}
-    {%- if metaobject_slides_source != blank -%}
-        {%- for mo_slide in metaobject_slides_source -%}
-            {%- if mo_slide.type.name == 'Slide Show' or mo_slide.slide_type != blank -%}
-                {%- assign total_slides_count = total_slides_count | plus: 1 -%}
-            {%- endif -%}
-        {%- endfor -%}
-    {%- endif -%}
-
-    <div class="test slideshow-wrapper section-block-{{section.id}}" id="slideshow-wrapper-{{section.id}}" {% if total_slides_count > 1 %}data-loader-script="{{ 'halo.slide-show.js' | asset_url }}"{% endif %} allow-transparent-header>
+    <div class="test slideshow-wrapper section-block-{{section.id}}" id="slideshow-wrapper-{{section.id}}" {% if section.blocks.size > 1 %}data-loader-script="{{ 'halo.slide-show.js' | asset_url }}"{% endif %} allow-transparent-header>
         <div class="{% if container == '1170' %}container-1170{% elsif section.settings.container == '1470' %}container-1470{% elsif section.settings.container == '1570' %}container-1570{% elsif container == '1770' %}container-1770{% elsif container == '1920' %}container-1920{% elsif container == 'fullwidth'%}container-full{% else %}container{% endif %}">
         {%- if section.settings.enable_categories or section.settings.enable_banner -%}
         <div class="wrapper-category-banner{% if section.settings.enable_categories %} has-categories{% endif %}{% if section.settings.enable_banner %} has-banner{% endif %}">
@@ -67,223 +39,8 @@
                     </div>
                 </div>
             {%- endif -%}
-            <div class="slideshow{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--fade-in{% endif %}{% if show_dot_with_image %} show-dot-with-image{% endif %}" data-auto-video="{{ section.settings.auto_playvideo }}" {% if total_slides_count > 1 %}data-init-slideshow data-arrows="{{arrow}}" data-dots="{{dots}}" data-autoplay="{{ autoplay }}" data-autoplay-speed="{{ autoplaySpeed }}" data-fade="{{ fade }}" {% endif %} data-dot-with-image="{% if show_dot_with_image %}true{% else %}false{% endif %}">
-            
-            {%- comment -%} =============== PURE METAOBJECT SLIDES (when no section blocks) =============== {%- endcomment -%}
-            {%- if metaobject_slides_source != blank -%}
-                {%- liquid
-                    assign lookbook_style = section.settings.lookbook_style
-                    assign dot_desktop_size = section.settings.dot_desktop_size | append: 'px'
-                    assign dot_mobile_size = section.settings.dot_mobile_size | append: 'px'
-                    assign dot_shadow_color = section.settings.dot_shadow_color | color_modify: 'alpha', 0.5
-                    assign dot_outer_color = section.settings.dot_outer_color
-                    assign dot_inner_color = section.settings.dot_inner_color
-                    assign number_desktop_size = section.settings.number_desktop_size | append: 'px'
-                    assign number_mobile_size = section.settings.number_mobile_size | append: 'px'
-                    assign enable_lookbook_width = section.settings.enable_lookbook_width
-                    assign lookbook_width = section.settings.lookbook_width | append: 'px'
-                    assign lookbook_truncate = section.settings.lookbook_truncate
-                -%}
-                {%- for slide in metaobject_slides_source -%}
-                    {%- comment -%} Only render slides that are Slide Show type {%- endcomment -%}
-                    {%- if slide.type.name == 'Slide Show' or slide.slide_type != blank or slide.slide_id != blank -%}
-                        {%- liquid
-                            assign mo_slide_type = slide.slide_type | default: 'image' | downcase
-                            assign mo_slide_id = slide.slide_id | default: forloop.index
-                            assign mo_order = slide.order | default: forloop.index
-                            
-                            assign mo_image_desktop = slide.image_desktop.value | default: slide.image_desktop
-                            assign mo_image_mobile = slide.image_mobile.value | default: slide.image_mobile
-                            
-                            assign mo_heading_desktop_mf = slide.heading_desktop
-                            assign mo_heading_mobile_mf = slide.heading_mobile
-                            assign mo_sub_heading_desktop = slide.subheading_desktop
-                            assign mo_sub_heading_mobile = slide.subheading_mobile
-                            assign mo_description_desktop_mf = slide.description_desktop
-                            assign mo_description_mobile_mf = slide.description_mobile
-                            
-                            assign mo_button_label = slide.first_button_label
-                            assign mo_button_page = slide.first_button_page.value
-                            assign mo_button_collection = slide.first_button_collection.value
-                            assign mo_secondary_button_label = slide.second_button_label
-                            assign mo_secondary_button_page = slide.second_button_page.value
-                            assign mo_secondary_button_collection = slide.second_button_collection.value
-                            
-                            assign mo_video_source = slide.video_source | default: 'youtube'
-                            assign mo_youtube_id_desktop = slide.youtube_id_desktop
-                            assign mo_youtube_id_mobile = slide.youtube_id_mobile
-                            assign mo_mp4_url_desktop = slide.mp4_url_desktop
-                            assign mo_mp4_url_mobile = slide.mp4_url_mobile
-                            
-                            assign mo_button_link = blank
-                            if mo_button_page != blank
-                                assign mo_button_link = mo_button_page.url
-                            elsif mo_button_collection != blank
-                                assign mo_button_link = mo_button_collection.url
-                            endif
-                            
-                            assign mo_secondary_button_link = blank
-                            if mo_secondary_button_page != blank
-                                assign mo_secondary_button_link = mo_secondary_button_page.url
-                            elsif mo_secondary_button_collection != blank
-                                assign mo_secondary_button_link = mo_secondary_button_collection.url
-                            endif
-                        -%}
-                        
-                        <div class="item slide-block-mo-{{ mo_slide_id }}" id="block-mo-{{ mo_slide_id }}" data-index="{{forloop.index}}" data-style="{{ lookbook_style }}" data-show-lookbook-container data-slide-id="{{ mo_slide_id }}" data-slide-type="{{ mo_slide_type }}" data-order="{{ mo_order }}">
-                            {%- if mo_slide_type == 'video' -%}
-                                {%- comment -%} VIDEO SLIDE {%- endcomment -%}
-                                {%- if mo_video_source == 'youtube' -%}
-                                    {%- liquid
-                                        assign autoplay_youtube = 0
-                                        if forloop.first and section.settings.auto_playvideo
-                                            assign autoplay_youtube = 1
-                                        endif
-                                    -%}
-                                    <div data-video-youtube class="item slide-youtube embed-responsive item-video" id="slide-mo-{{ mo_slide_id }}">
-                                        <div class="fluid-width-video-wrapper">
-                                            <iframe class="youtube-player{% if mo_youtube_id_mobile != blank %} slide-pc{% endif %}" id="player_mo_{{ mo_slide_id }}" width="100%" height="100%" data-video-id="{{ mo_youtube_id_desktop }}" src="https://www.youtube.com/embed/{{ mo_youtube_id_desktop }}?enablejsapi=1&rel=0&autoplay={{ autoplay_youtube }}&mute=1" frameborder="0" allowfullscreen=""></iframe>
-                                            {%- if mo_youtube_id_mobile != blank -%}
-                                                <iframe class="youtube-player slide-mobile" id="player_mo_mb_{{ mo_slide_id }}" width="100%" height="100%" data-video-id="{{ mo_youtube_id_mobile }}" src="https://www.youtube.com/embed/{{ mo_youtube_id_mobile }}?enablejsapi=1&rel=0&autoplay={{ autoplay_youtube }}&mute=1" frameborder="0" allowfullscreen=""></iframe>
-                                            {%- endif -%}
-                                        </div>
-                                    </div>
-                                {%- else -%}
-                                    <div data-video-mp4 class="item slide-video item-video" id="slide-mo-{{ mo_slide_id }}">
-                                        <div class="fluid-width-video-wrapper">
-                                            <video class="video{% if mo_mp4_url_mobile != blank %} slide-pc{% endif %}" muted playsinline preload="none" autoplay loop><source type="video/mp4" src="{{ mo_mp4_url_desktop }}"></video>
-                                            {%- if mo_mp4_url_mobile != blank -%}
-                                                <video class="video slide-mobile" muted playsinline preload="none" autoplay loop><source type="video/mp4" src="{{ mo_mp4_url_mobile }}"></video>
-                                            {%- endif -%}
-                                        </div>
-                                    </div>
-                                {%- endif -%}
-                            {%- else -%}
-                                {%- comment -%} IMAGE / BANNER SLIDE {%- endcomment -%}
-                                <div class="images-contain lookbook-image-item {% if enable_lookbook_width %}width-restricted{% endif %}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--fade-in{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }} o-hidden{% endif %}" data-lookbook-item-container style="--dot-desktop-size: {{ dot_desktop_size }};--dot-mobile-size: {{ dot_mobile_size }};--dot-shadow-color: {{ dot_shadow_color }};--dot-outer-color: {{ dot_outer_color }};--dot-inner-color: {{ dot_inner_color }};--dot-number-desktop-size: {{ number_desktop_size }};--dot-number-mobile-size: {{ number_mobile_size }};--max-width: {{ lookbook_width }};--truncate-line: {{ lookbook_truncate }}">
-                                    {%- if mo_image_mobile != blank -%}
-                                        {%- assign img_url_mb = mo_image_mobile -%}
-                                        <div class="adaptive_height image slide-mobile" style="padding-top: {% unless img_url_mb.presentation.focal_point == '50.0% 50.0%' %}{{ 1 | divided_by: img_url_mb.aspect_ratio | times: 120 }}%{% else %}{{ 1 | divided_by: img_url_mb.aspect_ratio | times: 100 }}%{% endunless %}">
-                                            <a {% if mo_button_link == blank %}role="link" aria-disabled="true"{% else %}href="{{ mo_button_link }}"{% endif %} title="{{ img_url_mb.alt | default: shop.name | escape }}" class="slide-image">
-                                                <img srcset="{%- if img_url_mb.width >= 375 -%}{{ img_url_mb | image_url: width: 375 }} 375w,{%- endif -%}
-                                                    {%- if img_url_mb.width >= 750 -%}{{ img_url_mb | image_url: width: 750 }} 750w,{%- endif -%}
-                                                    {%- if img_url_mb.width >= 1100 -%}{{ img_url_mb | image_url: width: 1100 }} 1100w,{%- endif -%}
-                                                    {%- if img_url_mb.width >= 1500 -%}{{ img_url_mb | image_url: width: 1500 }} 1500w{%- endif -%}"
-                                                    sizes="100vw" src="{{ img_url_mb | image_url: width: 750 }}" alt="{{ img_url_mb.alt | escape }}" width="{{ img_url_mb.width }}" height="{{ img_url_mb.width | divided_by: img_url_mb.aspect_ratio | round }}"
-                                                    {% if forloop.first == false %}loading="lazy"{% endif %}
-                                                >
-                                            </a>
-                                        </div>
-                                    {%- endif -%}
-                                    
-                                    {%- if mo_image_desktop != blank -%}
-                                        {%- assign img_url = mo_image_desktop -%}
-                                        <div class="adaptive_height image{% if mo_image_mobile != blank %} slide-pc{% endif %}" style="padding-top: {% unless img_url.presentation.focal_point == '50.0% 50.0%' %}{{ 1 | divided_by: img_url.aspect_ratio | times: 110 }}%{% else %}{{ 1 | divided_by: img_url.aspect_ratio | times: 100 }}%{% endunless %}">
-                                            <a {% if mo_button_link == blank %}role="link" aria-disabled="true"{% else %}href="{{ mo_button_link }}"{% endif %} title="{{ img_url.alt | default: shop.name | escape }}" class="slide-image">
-                                                <img srcset="{%- if img_url.width >= 375 -%}{{ img_url | image_url: width: 375 }} 375w,{%- endif -%}
-                                                    {%- if img_url.width >= 750 -%}{{ img_url | image_url: width: 750 }} 750w,{%- endif -%}
-                                                    {%- if img_url.width >= 1100 -%}{{ img_url | image_url: width: 1100 }} 1100w,{%- endif -%}
-                                                    {%- if img_url.width >= 1500 -%}{{ img_url | image_url: width: 1500 }} 1500w,{%- endif -%}
-                                                    {%- if img_url.width >= 1920 -%}{{ img_url | image_url: width: 1920 }} 1920w,{%- endif -%}
-                                                    {%- if img_url.width >= 2800 -%}{{ img_url | image_url: width: 2800 }} 2800w{%- endif -%}"
-                                                    sizes="100vw" src="{{ img_url | image_url: width: 1500 }}" alt="{{ img_url.alt | escape }}" width="{{ img_url.width }}" height="{{ img_url.width | divided_by: img_url.aspect_ratio | round }}"
-                                                    {% if forloop.first == false %}loading="lazy"{% endif %}
-                                                >
-                                            </a>
-                                        </div>
-                                    {%- else -%}
-                                        <div class="placeholder{% if mo_image_mobile != blank %} slide-pc{% endif %}" style="--height_placeholder: clamp(570px, calc(720 / 1920 * 100vw), 720px);">
-                                            {{ 'hero-apparel-2' | placeholder_svg_tag: 'placeholder-svg' }}
-                                        </div>
-                                    {%- endif -%}
-                                </div>
-                            {%- endif -%}
-                            
-                            {%- comment -%} SLIDE CONTENT (heading, description, buttons) {%- endcomment -%}
-                            {%- if mo_heading_desktop_mf != blank or mo_sub_heading_desktop != blank or mo_description_desktop_mf != blank or mo_button_label != blank -%}
-                                <div class="slide-content content-box--absolute content-box--center text-center">
-                                {%- if mo_sub_heading_desktop != blank or mo_sub_heading_mobile != blank -%}
-                                    {%- if mo_sub_heading_desktop != blank -%}
-                                    <h3 class="slide-sub slide-pc{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="{% if settings.banner_animation == 'effect_fade_up' %}--animation-order: 0;{% endif %}"><span>{{ mo_sub_heading_desktop }}</span></h3>
-                                    {%- endif -%}
-                                    {%- if mo_sub_heading_mobile != blank -%}
-                                    <h3 class="slide-sub slide-mobile{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="{% if settings.banner_animation == 'effect_fade_up' %}--animation-order: 0;{% endif %}"><span>{{ mo_sub_heading_mobile }}</span></h3>
-                                    {%- elsif mo_sub_heading_desktop != blank -%}
-                                    <h3 class="slide-sub slide-mobile{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="{% if settings.banner_animation == 'effect_fade_up' %}--animation-order: 0;{% endif %}"><span>{{ mo_sub_heading_desktop }}</span></h3>
-                                    {%- endif -%}
-                                {%- endif -%}
-
-                                {%- if mo_heading_desktop_mf != blank or mo_heading_mobile_mf != blank -%}
-                                    {%- if mo_heading_desktop_mf != blank -%}
-                                        <div class="slide-heading slide-pc{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="{% if settings.banner_animation == 'effect_fade_up' %}--animation-order: 1;{% endif %}">{{ mo_heading_desktop_mf.value }}</div>
-                                    {%- endif -%}
-                                    {%- if mo_heading_mobile_mf != blank -%}
-                                        <div class="slide-heading slide-mobile{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="{% if settings.banner_animation == 'effect_fade_up' %}--animation-order: 1;{% endif %}">{{ mo_heading_mobile_mf.value }}</div>
-                                    {%- elsif mo_heading_desktop_mf != blank -%}
-                                        <div class="slide-heading slide-mobile{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="{% if settings.banner_animation == 'effect_fade_up' %}--animation-order: 1;{% endif %}">{{ mo_heading_desktop_mf.value }}</div>
-                                    {%- endif -%}
-                                {%- endif -%}
-
-                                {%- if mo_description_desktop_mf != blank or mo_description_mobile_mf != blank -%}
-                                    {%- if mo_description_desktop_mf != blank -%}
-                                        <div class="slide-text slide-pc{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="{% if settings.banner_animation == 'effect_fade_up' %}--animation-order: 2;{% endif %}">{{ mo_description_desktop_mf.value }}</div>
-                                    {%- endif -%}
-                                    {%- if mo_description_mobile_mf != blank -%}
-                                        <div class="slide-text slide-mobile{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="{% if settings.banner_animation == 'effect_fade_up' %}--animation-order: 2;{% endif %}">{{ mo_description_mobile_mf.value }}</div>
-                                    {%- elsif mo_description_desktop_mf != blank -%}
-                                        <div class="slide-text slide-mobile{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="{% if settings.banner_animation == 'effect_fade_up' %}--animation-order: 2;{% endif %}">{{ mo_description_desktop_mf.value }}</div>
-                                    {%- endif -%}
-                                {%- endif -%}
-
-                                {%- if mo_button_label != blank and mo_secondary_button_label != blank -%}
-                                <div class="grouped_btn--slider">
-                                {%- endif -%}
-
-                                {%- if mo_button_label != blank -%}
-                                    {% if settings.banner_animation == 'effect_fade_up' %}
-                                    <div class="scroll-trigger animate--slide-in" style="--animation-order: 3;">
-                                    {% endif %}
-                                        <a {% if mo_button_link == blank %} role="link" aria-disabled="true"{% else %} href="{{ mo_button_link }}"{% endif %} class="slide-button button">{{ mo_button_label }}</a>
-                                    {% if settings.banner_animation == 'effect_fade_up' %}
-                                    </div>
-                                    {% endif %}
-                                {%- endif -%}
-
-                                {%- if mo_secondary_button_label != blank -%}
-                                    {% if settings.banner_animation == 'effect_fade_up' %}
-                                    <div class="scroll-trigger animate--slide-in" style="--animation-order: 3;">
-                                    {% endif %}
-                                        <a {% if mo_secondary_button_link == blank %} role="link" aria-disabled="true"{% else %} href="{{ mo_secondary_button_link }}"{% endif %} class="slide-button button">{{ mo_secondary_button_label }}</a>
-                                    {% if settings.banner_animation == 'effect_fade_up' %}
-                                    </div>
-                                    {% endif %}
-                                {%- endif -%}
-
-                                {%- if mo_button_label != blank and mo_secondary_button_label != blank -%}
-                                </div>
-                                {%- endif -%}
-                                </div>
-                            {%- endif -%}
-                        </div>
-                    {%- endif -%}
-                {%- endfor -%}
-            {%- else -%}
-            
-            {%- comment -%} =============== REGULAR BLOCK SLIDES =============== {%- endcomment -%}
+            <div class="slideshow{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--fade-in{% endif %}{% if show_dot_with_image %} show-dot-with-image{% endif %}" data-auto-video="{{ section.settings.auto_playvideo }}" {% if section.blocks.size > 1 %}data-init-slideshow data-arrows="{{arrow}}" data-dots="{{dots}}" data-autoplay="{{ autoplay }}" data-autoplay-speed="{{ autoplaySpeed }}" data-fade="{{ fade }}" {% endif %} data-dot-with-image="{% if show_dot_with_image %}true{% else %}false{% endif %}">
             {%- for block in section.blocks -%}
-                {%- comment -%} Check for metaobject content override {%- endcomment -%}
-                {%- assign use_mo_content = false -%}
-                {%- assign mo_slide = blank -%}
-                {%- if block.settings.use_metaobject_content and block.settings.slide_id != blank and metaobject_slides_source != blank -%}
-                    {%- for slide in metaobject_slides_source -%}
-                        {%- if slide.slide_id == block.settings.slide_id -%}
-                            {%- assign mo_slide = slide -%}
-                            {%- assign use_mo_content = true -%}
-                            {%- break -%}
-                        {%- endif -%}
-                    {%- endfor -%}
-                {%- endif -%}
-                
                 {%- if block.type == 'image' or block.type == 'video' -%}
                     {%- if block.type == 'image' -%}
                         {%- liquid 
@@ -318,27 +75,9 @@
                             assign left_3 = block.settings.horizontal_pos_3 | append: '%' 
                             assign top_3 = block.settings.vertical_pos_3 | append: '%' 
                             assign lookbook_pos_3 = block.settings.lookbook_pos_3
-                            
-                            comment
-                                Determine image sources - from metaobject or block settings
-                            endcomment
-                            if use_mo_content and mo_slide != blank
-                                assign slide_image_desktop = mo_slide.image_desktop.value | default: mo_slide.image_desktop
-                                assign slide_image_mobile = mo_slide.image_mobile.value | default: mo_slide.image_mobile
-                                assign slide_link = blank
-                                if mo_slide.first_button_page.value != blank
-                                    assign slide_link = mo_slide.first_button_page.value.url
-                                elsif mo_slide.first_button_collection.value != blank
-                                    assign slide_link = mo_slide.first_button_collection.value.url
-                                endif
-                            else
-                                assign slide_image_desktop = block.settings.image_slide
-                                assign slide_image_mobile = block.settings.image_slide_mb
-                                assign slide_link = block.settings.link
-                            endif
                         -%}
                     {%- endif -%}
-                <div class="item slide-block-{{block.id}}" id="block-{{block.id}}" data-index="{{forloop.index}}" data-style="{{ lookbook_style }}" data-show-lookbook-container{% if block.settings.image_for_dot != blank %} data-dot-img="{{ block.settings.image_for_dot | img_url: 'master' }}"{% endif %}{% if use_mo_content %} data-mo-slide-id="{{ block.settings.slide_id }}"{% endif %}>
+                <div class="item slide-block-{{block.id}}" id="block-{{block.id}}" data-index="{{forloop.index}}" data-style="{{ lookbook_style }}" data-show-lookbook-container{% if block.settings.image_for_dot != blank %} data-dot-img="{{ block.settings.image_for_dot | img_url: 'master' }}"{% endif %}>
                         {%- if block.type == 'image' -%}
                             {%- if check_lookbook -%}
                                 {%- if product_1 != blank or product_2 != blank or product_3 != blank -%}
@@ -349,10 +88,10 @@
                                 {%- endif -%}
                             {%- endif -%}
                             <div class="images-contain lookbook-image-item {% if enable_lookbook_width %}width-restricted{% endif %}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--fade-in{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }} o-hidden{% endif %}" data-lookbook-item-container style="--dot-desktop-size: {{ dot_desktop_size }};--dot-mobile-size: {{ dot_mobile_size }};--dot-shadow-color: {{ dot_shadow_color }};--dot-outer-color: {{ dot_outer_color }};--dot-inner-color: {{ dot_inner_color }};--dot-number-desktop-size: {{ number_desktop_size }};--dot-number-mobile-size: {{ number_mobile_size }};--max-width: {{ lookbook_width }};--des-max-width: {% if des_width > 0 %}{{ des_width | append: 'px' }}{% else %}unset{% endif %};--truncate-line: {{ lookbook_truncate }}">
-                                {% if slide_image_mobile != blank %}
-                                    {%- assign img_url_mb = slide_image_mobile -%}
+                                {% if block.settings.image_slide_mb != blank %}
+                                    {%- assign img_url_mb = block.settings.image_slide_mb -%}
                                     <div class="adaptive_height image slide-mobile" style="padding-top: {% unless img_url_mb.presentation.focal_point == '50.0% 50.0%' %}{{ 1 | divided_by: img_url_mb.aspect_ratio | times: 120 }}%{% else %}{{ 1 | divided_by: img_url_mb.aspect_ratio | times: 100 }}%{% endunless %}">
-                                        <a {% if slide_link == blank %}role="link" aria-disabled="true"{% else %}href="{{ slide_link }}"{% endif %} title="{{ img_url_mb.alt | default: shop.name | escape }}" class="slide-image">
+                                        <a {% if block.settings.link == blank %}role="link" aria-disabled="true"{% else %}href="{{ block.settings.link }}"{% endif %} title="{{ img_url_mb.alt | default: shop.name | escape }}" class="slide-image">
                                             <img {% if settings.enable_lazyload and forloop.first == false %}data-{% endif %}srcset="{%- if img_url_mb.width < 320 -%}{{ img_url_mb | image_url: width: img_url_mb.width }} 320w,{%- endif -%}
                                                 {%- if img_url_mb.width >= 320 -%}{{ img_url_mb | image_url: width: 375 }} 375w,{%- endif -%}
                                                 {%- if img_url_mb.width >= 750 -%}{{ img_url_mb | image_url: width: 750 }} 750w,{%- endif -%}
@@ -371,10 +110,10 @@
                                     </div>
                                 {% endif %}
                                 
-                                {%- if slide_image_desktop != blank -%}
-                                    {%- assign img_url = slide_image_desktop -%}
-                                    <div class="adaptive_height image{% if slide_image_mobile != blank %} slide-pc{% endif %}" style="padding-top: {% unless img_url.presentation.focal_point == '50.0% 50.0%' %}{{ 1 | divided_by: img_url.aspect_ratio | times: 110 }}%; --padding-top-fpmb: {{ 1 | divided_by: img_url.aspect_ratio | times: 200 }}%{% else %}{{ 1 | divided_by: img_url.aspect_ratio | times: 100 }}%{% endunless %}">
-                                        <a {% if slide_link == blank %}role="link" aria-disabled="true"{% else %}href="{{ slide_link }}"{% endif %} title="{{ img_url.alt | default: shop.name | escape }}" class="slide-image">
+                                {%- if block.settings.image_slide != blank -%}
+                                    {%- assign img_url = block.settings.image_slide -%}
+                                    <div class="adaptive_height image{% if block.settings.image_slide_mb != blank %} slide-pc{% endif %}" style="padding-top: {% unless img_url.presentation.focal_point == '50.0% 50.0%' %}{{ 1 | divided_by: img_url.aspect_ratio | times: 110 }}%; --padding-top-fpmb: {{ 1 | divided_by: img_url.aspect_ratio | times: 200 }}%{% else %}{{ 1 | divided_by: img_url.aspect_ratio | times: 100 }}%{% endunless %}">
+                                        <a {% if block.settings.link == blank %}role="link" aria-disabled="true"{% else %}href="{{ block.settings.link }}"{% endif %} title="{{ img_url.alt | default: shop.name | escape }}" class="slide-image">
                                             <img {% if settings.enable_lazyload and forloop.first == false %}data-{% endif %}srcset="{%- if img_url.width < 320 -%}{{ img_url | image_url: width: img_url.width }} 320w,{%- endif -%}
                                                 {%- if img_url.width >= 320 -%}{{ img_url | image_url: width: 375 }} 375w,{%- endif -%}
                                                 {%- if img_url.width >= 740 -%}{{ img_url | image_url: width: 740 }} 740w,{%- endif -%} 
@@ -393,7 +132,7 @@
                                             >{%- if settings.enable_lazyload and forloop.first == false -%}<span class="data-lazy-loading"></span>{%- endif -%}</a>
                                     </div>
                                 {%- else -%}
-                                    <div class="placeholder{% if slide_image_mobile != blank %} slide-pc{% endif %}" style="--height_placeholder:{% if section.settings.enable_banner %} 510px{% else %} clamp(570px, calc(720 / 1920 * 100vw), 720px){% endif %};">
+                                    <div class="placeholder{% if block.settings.image_slide_mb != blank %} slide-pc{% endif %}" style="--height_placeholder:{% if section.settings.enable_banner %} 510px{% else %} clamp(570px, calc(720 / 1920 * 100vw), 720px){% endif %};">
                                         {{ 'hero-apparel-2' | placeholder_svg_tag: 'placeholder-svg' }}
                                     </div>
                                 {%- endif -%}
@@ -428,25 +167,7 @@
                                 </style>
                             </div>
                         {%- elsif block.type == 'video'-%}
-                            {%- liquid
-                                comment
-                                    Determine video sources - from metaobject or block settings
-                                endcomment
-                                if use_mo_content and mo_slide != blank
-                                    assign video_style = mo_slide.video_source | default: 'youtube'
-                                    assign video_youtube_desktop = mo_slide.youtube_id_desktop
-                                    assign video_youtube_mobile = mo_slide.youtube_id_mobile
-                                    assign video_mp4_desktop = mo_slide.mp4_url_desktop
-                                    assign video_mp4_mobile = mo_slide.mp4_url_mobile
-                                else
-                                    assign video_style = block.settings.style_video
-                                    assign video_youtube_desktop = block.settings.video_link
-                                    assign video_youtube_mobile = block.settings.video_link_mb
-                                    assign video_mp4_desktop = block.settings.video_mp4_link
-                                    assign video_mp4_mobile = block.settings.video_mp4_link_mb
-                                endif
-                            -%}
-                            {% if video_style == 'youtube' %}
+                            {% if block.settings.style_video == 'youtube' %}
                                 {%- liquid
                                     assign autoplay_youtube = 0
                                     if forloop.first and section.settings.auto_playvideo
@@ -455,18 +176,18 @@
                                 -%}
                                 <div data-video-youtube class="item slide-youtube embed-responsive item-video" id="slide-{{ block.id }}">
                                     <div class="fluid-width-video-wrapper">
-                                        <iframe class="youtube-player{% if video_youtube_mobile != blank %} slide-pc{% endif %}" id="player_{{ block.id }}" width="100%" height="100%" data-video-id="{{ video_youtube_desktop }}" src="https://www.youtube.com/embed/{{ video_youtube_desktop }}?enablejsapi=1&rel=0&autoplay={{ autoplay_youtube }}&mute=1" frameborder="0" allowfullscreen=""></iframe>
-                                        {%- if video_youtube_mobile != blank -%}
-                                            <iframe class="youtube-player slide-mobile" id="player_mb_{{ block.id }}" width="100%" height="100%" data-video-id="{{ video_youtube_mobile }}" src="https://www.youtube.com/embed/{{ video_youtube_mobile }}?enablejsapi=1&rel=0&autoplay={{ autoplay_youtube }}&mute=1" frameborder="0" allowfullscreen=""></iframe>
+                                        <iframe class="youtube-player{% if block.settings.video_link_mb != blank %} slide-pc{% endif %}" id="player_{{ block.id }}" width="100%" height="100%" data-video-id="{{ block.settings.video_link }}" src="https://www.youtube.com/embed/{{ block.settings.video_link }}?enablejsapi=1&rel=0&autoplay={{ autoplay_youtube }}&mute=1" frameborder="0" allowfullscreen=""></iframe>
+                                        {%- if block.settings.video_link_mb != blank -%}
+                                            <iframe class="youtube-player slide-mobile" id="player_mb_{{ block.id }}" width="100%" height="100%" data-video-id="{{ block.settings.video_link_mb }}" src="https://www.youtube.com/embed/{{ block.settings.video_link_mb }}?enablejsapi=1&rel=0&autoplay={{ autoplay_youtube }}&mute=1" frameborder="0" allowfullscreen=""></iframe>
                                         {%- endif -%}
                                     </div>
                                 </div>
                             {% else %}
                                 <div data-video-mp4 class="item slide-video item-video" id="slide-{{ block.id }}">
                                     <div class="fluid-width-video-wrapper">
-                                        <video class="video{% if video_mp4_mobile != blank %} slide-pc{% endif %}" muted playsinline preload="none" autoplay loop><source type="video/mp4" src="{{ video_mp4_desktop }}"></video>
-                                        {%- if video_mp4_mobile != blank -%}
-                                            <video class="video slide-mobile" muted playsinline preload="none" autoplay loop><source type="video/mp4" src="{{ video_mp4_mobile }}"></video>
+                                        <video class="video{% if block.settings.video_mp4_link_mb != blank %} slide-pc{% endif %}" muted playsinline preload="none" autoplay loop><source type="video/mp4" src="{{ block.settings.video_mp4_link }}"></video>
+                                        {%- if block.settings.video_mp4_link_mb != blank -%}
+                                            <video class="video slide-mobile" muted playsinline preload="none" autoplay loop><source type="video/mp4" src="{{ block.settings.video_mp4_link_mb }}"></video>
                                         {%- endif -%}
                                     </div>
                                 </div>
@@ -769,49 +490,21 @@
                     </div>
                 {%- endif -%}
             {%- endfor -%}
-            {%- endif -%}
             </div>
             {%- if section.settings.enable_banner -%}
                 <div class="block-banner-slider{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--fade-in{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}">
                     {%- assign banners = section.blocks | where: 'type', 'banner' -%}
                     {%- for block in banners -%}
-                        {%- comment -%} Check for metaobject content override for banner {%- endcomment -%}
-                        {%- assign use_mo_banner = false -%}
-                        {%- assign mo_banner = blank -%}
-                        {%- if block.settings.use_metaobject_content and block.settings.slide_id != blank and metaobject_slides_source != blank -%}
-                            {%- for slide in metaobject_slides_source -%}
-                                {%- if slide.slide_id == block.settings.slide_id -%}
-                                    {%- assign mo_banner = slide -%}
-                                    {%- assign use_mo_banner = true -%}
-                                    {%- break -%}
-                                {%- endif -%}
-                            {%- endfor -%}
-                        {%- endif -%}
-                        
-                        {%- liquid
-                            if use_mo_banner and mo_banner != blank
-                                assign banner_image = mo_banner.image_desktop.value | default: mo_banner.image_desktop
-                                assign banner_link = blank
-                                if mo_banner.button_page.value != blank
-                                    assign banner_link = mo_banner.button_page.value.url
-                                elsif mo_banner.button_collection.value != blank
-                                    assign banner_link = mo_banner.button_collection.value.url
-                                endif
-                            else
-                                assign banner_image = block.settings.image
-                                assign banner_link = block.settings.link
-                            endif
-                        -%}
-                        {%- assign preview_img = banner_image -%}
-                        {%- assign img_url = banner_image | img_url: 'master' -%}
-                        <div class="banner{% if section.settings.image_behavior != 'none' %} o-hidden{% endif %}"{% if use_mo_banner %} data-mo-slide-id="{{ block.settings.slide_id }}"{% endif %}>
-                            {%- if banner_image != blank -%}
-                                <a {% if banner_link == blank %} role="link" aria-disabled="true"{% else %} href="{{ banner_link }}"{% endif %} class="adaptive_height image" style="padding-top: {{ 1 | divided_by: preview_img.aspect_ratio | times: 100 }}%">
+                        {%- assign preview_img = block.settings.image -%}
+                        {%- assign img_url = block.settings.image | img_url: 'master' -%}
+                        <div class="banner{% if section.settings.image_behavior != 'none' %} o-hidden{% endif %}">
+                            {%- if block.settings.image != blank -%}
+                                <a {% if block.settings.link == blank %} role="link" aria-disabled="true"{% else %} href="{{ block.settings.link }}"{% endif %} class="adaptive_height image" style="padding-top: {{ 1 | divided_by: preview_img.aspect_ratio | times: 100 }}%">
                                     <img {% if settings.enable_lazyload %}data-{% endif %}srcset="{{ img_url }}" {% unless settings.enable_lazyload %}src="{{ img_url }}"{% endunless %} alt="{{ preview_img.alt | escape }}" width="{{ preview_img.width }}" height="{{ preview_img.width | divided_by: preview_img.aspect_ratio }}" {% if settings.enable_lazyload and forloop.first == false %}class="lazyload" {% unless settings.enable_layout_rtl %}loading="lazy"{% endunless %} {% elsif forloop.first %}src="{{ img_url }}"{% endif %}>
                                     {% if settings.enable_lazyload and forloop.first == false %}<span class="data-lazy-loading"></span>{% endif %}
                                 </a>
                             {%- else -%}
-                                <a {% if banner_link == blank %} role="link" aria-disabled="true"{% else %} href="{{ banner_link }}"{% endif %} class="banner">
+                                <a {% if block.settings.link == blank %} role="link" aria-disabled="true"{% else %} href="{{ block.settings.link }}"{% endif %} class="banner">
                                     {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
                                     {%- assign placeholder_image = 'product-apparel-' | append: placeholder_image_index -%}
                                     <div class="placeholder" style="--height_placeholder: 250px;">
@@ -1029,7 +722,7 @@
         "settings": [
             {
                 "type": "header",
-                "content": "General Settings"
+                "content": "t:settings_schema.general.name"
             },
             {
                 "type": "select",
@@ -1687,27 +1380,6 @@
                 "type": "image",
                 "name": "t:sections.slide-show.blocks.image.name",
                 "settings":[
-                    {
-                        "type": "header",
-                        "content": "Metaobject Source"
-                    },
-                    {
-                        "type": "checkbox",
-                        "id": "use_metaobject_content",
-                        "label": "Use metaobject content",
-                        "info": "When enabled, slide content will be loaded from the specified slide_id metaobject entry.",
-                        "default": false
-                    },
-                    {
-                        "type": "text",
-                        "id": "slide_id",
-                        "label": "Slide ID",
-                        "info": "Enter the slide_id from metaobject to load content from."
-                    },
-                    {
-                        "type": "header",
-                        "content": "Manual Content"
-                    },
                     {
                         "type": "image_picker",
                         "id": "image_slide",
@@ -2709,27 +2381,6 @@
                 "name": "t:sections.slide-show.blocks.video.name",
                 "settings": [
                     {
-                        "type": "header",
-                        "content": "Metaobject Source"
-                    },
-                    {
-                        "type": "checkbox",
-                        "id": "use_metaobject_content",
-                        "label": "Use metaobject content",
-                        "info": "When enabled, video content will be loaded from the specified slide_id metaobject entry.",
-                        "default": false
-                    },
-                    {
-                        "type": "text",
-                        "id": "slide_id",
-                        "label": "Slide ID",
-                        "info": "Enter the slide_id from metaobject to load video content from."
-                    },
-                    {
-                        "type": "header",
-                        "content": "Manual Content"
-                    },
-                    {
                         "type": "image_picker",
                         "id": "image_for_dot",
                         "label" : "t:sections.slide-show.blocks.image_for_dot.label_1",
@@ -3159,27 +2810,6 @@
                 "type": "banner",
                 "name": "Banner",
                 "settings": [
-                    {
-                        "type": "header",
-                        "content": "Metaobject Source"
-                    },
-                    {
-                        "type": "checkbox",
-                        "id": "use_metaobject_content",
-                        "label": "Use metaobject content",
-                        "info": "When enabled, banner content will be loaded from the specified slide_id metaobject entry.",
-                        "default": false
-                    },
-                    {
-                        "type": "text",
-                        "id": "slide_id",
-                        "label": "Slide ID",
-                        "info": "Enter the slide_id from metaobject to load banner content from."
-                    },
-                    {
-                        "type": "header",
-                        "content": "Manual Content"
-                    },
                     {
                         "type": "image_picker",
                         "id": "image_for_dot",
