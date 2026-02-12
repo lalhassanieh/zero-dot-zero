@@ -37,6 +37,8 @@
         <p><strong>DEBUG INFO:</strong></p>
         <p>Template: {{ template.name }}</p>
         <p>homepage_content exists: {% if homepage_content != blank %}YES{% else %}NO{% endif %}</p>
+        <p>homepage_content.page_content exists: {% if homepage_content.page_content != blank %}YES{% else %}NO{% endif %}</p>
+        <p>homepage_content.slide_show exists: {% if homepage_content.slide_show != blank %}YES{% else %}NO{% endif %}</p>
         <p>page_content_source exists: {% if page_content_source != blank %}YES{% else %}NO{% endif %}</p>
         <p>page_content_source.slide_show exists: {% if page_content_source.slide_show != blank %}YES{% else %}NO{% endif %}</p>
         <p>metaobject_slides count: {{ metaobject_slides.size | default: 0 }}</p>
