@@ -35,7 +35,18 @@
         <p>Template: {{ template.name }}</p>
         <p>page_content_source exists: {% if page_content_source != blank %}YES{% else %}NO{% endif %}</p>
         <p>page_content_source.slides exists: {% if page_content_source.slides != blank %}YES{% else %}NO{% endif %}</p>
+        <p>page_content_source.blocks exists: {% if page_content_source.blocks != blank %}YES{% else %}NO{% endif %}</p>
         <p>metaobject_slides count: {{ metaobject_slides.size | default: 0 }}</p>
+        
+        {%- comment -%} Show what blocks contain {%- endcomment -%}
+        {%- if page_content_source.blocks != blank -%}
+            {%- assign temp_blocks = page_content_source.blocks.value -%}
+            <p><strong>Blocks found: {{ temp_blocks.size }}</strong></p>
+            {%- for b in temp_blocks -%}
+                <p>Block {{ forloop.index }}: block_id="{{ b.block_id }}", type="{{ b.type }}", has slides={{ b.slides.size | default: 'none' }}</p>
+            {%- endfor -%}
+        {%- endif -%}
+        
         {%- if metaobject_slides != blank -%}
             {%- for slide in metaobject_slides -%}
                 <p>Slide {{ forloop.index }}: slide_id = "{{ slide.slide_id }}", heading = "{{ slide.heading_desktop }}"</p>
