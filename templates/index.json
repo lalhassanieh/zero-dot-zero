@@ -992,7 +992,7 @@
           "type": "video",
           "settings": {
             "use_metaobject_slide": false,
-            "slide_id": "",
+            "slide_id": "video-slide-show-1",
             "style_video": "mp4",
             "video_link": "",
             "video_link_mb": "",
