@@ -15,9 +15,10 @@
         endif
     -%}
 
-    {%- comment -%} Metaobject content loading - read slides from blocks {%- endcomment -%}
+    {%- comment -%} Metaobject content loading - find slide_show block and get its slides {%- endcomment -%}
     {%- assign page_content_source = blank -%}
-    {%- assign metaobject_slides = '' | split: ',' -%}
+    {%- assign slideshow_block = blank -%}
+    {%- assign metaobject_slides = blank -%}
     
     {%- if template.name == 'index' -%}
         {%- assign page_content_source = shop.metafields.custom.homepage_content.value -%}
@@ -28,11 +29,16 @@
     {%- if page_content_source != blank and page_content_source.blocks != blank -%}
         {%- assign all_blocks = page_content_source.blocks.value -%}
         
-        {%- for item in all_blocks -%}
-            {%- if item.type == 'slide_show' -%}
-                {%- assign metaobject_slides = metaobject_slides | push: item -%}
+        {%- for b in all_blocks -%}
+            {%- if b.system.type == 'slide_show' -%}
+                {%- assign slideshow_block = b -%}
+                {%- break -%}
             {%- endif -%}
         {%- endfor -%}
+        
+        {%- if slideshow_block != blank and slideshow_block.slides != blank -%}
+            {%- assign metaobject_slides = slideshow_block.slides.value -%}
+        {%- endif -%}
     {%- endif -%}
 
     {%- comment -%} DEBUG - remove after testing {%- endcomment -%}
@@ -42,22 +48,23 @@
         <p>page_content_source exists: {% if page_content_source != blank %}YES{% else %}NO{% endif %}</p>
         <p>page_content_source.blocks exists: {% if page_content_source.blocks != blank %}YES{% else %}NO{% endif %}</p>
         <p>all_blocks count: {{ all_blocks.size | default: 0 }}</p>
-        <p>metaobject_slides count (type=slide_show): {{ metaobject_slides.size | default: 0 }}</p>
         
-        <p><strong>All block types in page_content:</strong></p>
+        <p><strong>All blocks (using system.type):</strong></p>
         {%- if all_blocks != blank -%}
             {%- for item in all_blocks -%}
-                <p>Block {{ forloop.index }}: type = "{{ item.type }}", block_id = "{{ item.block_id }}"</p>
+                <p>Block {{ forloop.index }}: system.type = "{{ item.system.type }}", system.handle = "{{ item.system.handle }}", block_id = "{{ item.block_id }}"</p>
             {%- endfor -%}
         {%- endif -%}
         
-        <p><strong>Filtered slides:</strong></p>
-        {%- if metaobject_slides.size > 0 -%}
+        <p><strong>Slideshow block found:</strong> {% if slideshow_block != blank %}YES (handle: {{ slideshow_block.system.handle }}){% else %}NO{% endif %}</p>
+        <p><strong>slideshow_block.slides exists:</strong> {% if slideshow_block.slides != blank %}YES{% else %}NO{% endif %}</p>
+        <p><strong>metaobject_slides count:</strong> {{ metaobject_slides.size | default: 0 }}</p>
+        
+        {%- if metaobject_slides != blank -%}
+            <p><strong>Slides:</strong></p>
             {%- for slide in metaobject_slides -%}
                 <p>Slide {{ forloop.index }}: slide_id = "{{ slide.slide_id }}", heading = "{{ slide.heading_desktop }}"</p>
             {%- endfor -%}
-        {%- else -%}
-            <p>No slides found with type="slide_show"</p>
         {%- endif -%}
     </div>
 
