@@ -753,8 +753,8 @@
         "heading_f9XMe3": {
           "type": "heading",
           "settings": {
-            "use_metaobject_content": false,
-            "block_id": "",
+            "use_metaobject_content": true,
+            "block_id": "rich-text-2",
             "heading": "Shop by Category",
             "heading_size": 35,
             "heading_size_mb": 20,
