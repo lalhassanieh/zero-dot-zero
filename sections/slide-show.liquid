@@ -20,7 +20,10 @@
     {%- assign metaobject_slides = blank -%}
     
     {%- if template.name == 'index' -%}
-        {%- assign page_content_source = shop.metafields.custom.homepage_content.value -%}
+        {%- assign homepage_content = shop.metafields.custom.homepage_content.value -%}
+        {%- if homepage_content != blank and homepage_content.page_content != blank -%}
+            {%- assign page_content_source = homepage_content.page_content.value -%}
+        {%- endif -%}
     {%- elsif page != blank -%}
         {%- assign page_content_source = page.metafields.custom.page_content.value -%}
     {%- endif -%}
@@ -33,6 +36,7 @@
     <div style="background: #ffcccc; padding: 10px; margin: 10px; font-size: 12px;">
         <p><strong>DEBUG INFO:</strong></p>
         <p>Template: {{ template.name }}</p>
+        <p>homepage_content exists: {% if homepage_content != blank %}YES{% else %}NO{% endif %}</p>
         <p>page_content_source exists: {% if page_content_source != blank %}YES{% else %}NO{% endif %}</p>
         <p>page_content_source.slide_show exists: {% if page_content_source.slide_show != blank %}YES{% else %}NO{% endif %}</p>
         <p>metaobject_slides count: {{ metaobject_slides.size | default: 0 }}</p>
