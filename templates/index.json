@@ -15,7 +15,7 @@
         "image_M9rGXy": {
           "type": "image",
           "settings": {
-            "use_metaobject_slide": true,
+            "use_metaobject_slide": false,
             "slide_id": "main-slide-show-1",
             "image_slide": "shopify://shop_images/Hero_section_1370_x_477_1.png",
             "image_slide_mb": "shopify://shop_images/Hero_section_1370_x_477_1.png",
