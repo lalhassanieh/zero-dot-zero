@@ -991,7 +991,7 @@
         "video_4GrCnE": {
           "type": "video",
           "settings": {
-            "use_metaobject_slide": false,
+            "use_metaobject_slide": true,
             "slide_id": "video-slide-show-1",
             "style_video": "mp4",
             "video_link": "",
