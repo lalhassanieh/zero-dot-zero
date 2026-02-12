@@ -36,8 +36,8 @@
             {%- endif -%}
         {%- endfor -%}
         
-        {%- if slideshow_block != blank and slideshow_block.slides != blank -%}
-            {%- assign metaobject_slides = slideshow_block.slides.value -%}
+        {%- if slideshow_block != blank and slideshow_block.slide_show != blank -%}
+            {%- assign metaobject_slides = slideshow_block.slide_show.value -%}
         {%- endif -%}
     {%- endif -%}
 
@@ -45,19 +45,8 @@
     <div style="background: #ffcccc; padding: 10px; margin: 10px; font-size: 12px;">
         <p><strong>DEBUG INFO:</strong></p>
         <p>Template: {{ template.name }}</p>
-        <p>page_content_source exists: {% if page_content_source != blank %}YES{% else %}NO{% endif %}</p>
-        <p>page_content_source.blocks exists: {% if page_content_source.blocks != blank %}YES{% else %}NO{% endif %}</p>
-        <p>all_blocks count: {{ all_blocks.size | default: 0 }}</p>
-        
-        <p><strong>All blocks (using system.type):</strong></p>
-        {%- if all_blocks != blank -%}
-            {%- for item in all_blocks -%}
-                <p>Block {{ forloop.index }}: system.type = "{{ item.system.type }}", system.handle = "{{ item.system.handle }}", block_id = "{{ item.block_id }}"</p>
-            {%- endfor -%}
-        {%- endif -%}
-        
-        <p><strong>Slideshow block found:</strong> {% if slideshow_block != blank %}YES (handle: {{ slideshow_block.system.handle }}){% else %}NO{% endif %}</p>
-        <p><strong>slideshow_block.slides exists:</strong> {% if slideshow_block.slides != blank %}YES{% else %}NO{% endif %}</p>
+        <p>Slideshow block found: {% if slideshow_block != blank %}YES (handle: {{ slideshow_block.system.handle }}){% else %}NO{% endif %}</p>
+        <p>slideshow_block.slide_show exists: {% if slideshow_block.slide_show != blank %}YES{% else %}NO{% endif %}</p>
         <p><strong>metaobject_slides count:</strong> {{ metaobject_slides.size | default: 0 }}</p>
         
         {%- if metaobject_slides != blank -%}
