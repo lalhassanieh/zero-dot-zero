@@ -5,24 +5,17 @@
 
 {%- comment -%} Metaobject content loading {%- endcomment -%}
 {%- assign page_content_source = blank -%}
-{%- assign all_blocks = '' | split: ',' -%}
+{%- assign all_blocks = blank -%}
 
 {%- if template.name == 'index' -%}
     {%- assign page_content_source = shop.metafields.custom.homepage_content.value -%}
-{%- elsif template.name == 'page' and page != blank -%}
+{%- elsif page != blank -%}
     {%- assign page_content_source = page.metafields.custom.page_content.value -%}
 {%- endif -%}
 
 {%- if page_content_source != blank and page_content_source.blocks != blank -%}
     {%- assign all_blocks = page_content_source.blocks.value -%}
 {%- endif -%}
-
-<!-- DEBUG: template.name = {{ template.name }} -->
-<!-- DEBUG: page_content_source exists = {% if page_content_source != blank %}yes{% else %}no{% endif %} -->
-<!-- DEBUG: all_blocks.size = {{ all_blocks.size }} -->
-{%- for meta_block in all_blocks -%}
-<!-- DEBUG: block type={{ meta_block.system.type }}, block_id={{ meta_block.block_id }}, title={{ meta_block.title }} -->
-{%- endfor -%}
 
 <div class="rich-text section-block-{{section.id}}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}{% if section.settings.custom_class != blank %} {{ section.settings.custom_class }}{% endif %}">
   <div class="{% if section.settings.container == 'fullwidth' %}container-full{% elsif section.settings.container == '1770' %}container-1770{% elsif section.settings.container == '1170' %}container-1170{% else %}container{% endif %}">
@@ -33,9 +26,10 @@
             {%- liquid
                 assign heading_text = block.settings.heading
                 
-                if block.settings.use_metaobject_content and block.settings.block_id != blank and all_blocks.size > 0
+                if block.settings.use_metaobject_content and block.settings.block_id != blank and all_blocks != blank
                     for meta_block in all_blocks
-                        if meta_block.system.type == 'rich_text' and meta_block.block_id == block.settings.block_id
+                        assign block_type = meta_block.type.value | default: meta_block.type
+                        if block_type == 'rich_text' and meta_block.block_id == block.settings.block_id
                             if meta_block.title != blank
                                 assign heading_text = meta_block.title
                             endif
@@ -49,9 +43,10 @@
             {%- liquid
                 assign sub_heading_text = block.settings.sub_heading
                 
-                if block.settings.use_metaobject_content and block.settings.block_id != blank and all_blocks.size > 0
+                if block.settings.use_metaobject_content and block.settings.block_id != blank and all_blocks != blank
                     for meta_block in all_blocks
-                        if meta_block.system.type == 'rich_text' and meta_block.block_id == block.settings.block_id
+                        assign block_type = meta_block.type.value | default: meta_block.type
+                        if block_type == 'rich_text' and meta_block.block_id == block.settings.block_id
                             if meta_block.subtitle != blank
                                 assign sub_heading_text = meta_block.subtitle
                             endif
@@ -66,9 +61,10 @@
                 assign text_content = block.settings.text
                 assign use_metaobject_text = false
                 
-                if block.settings.use_metaobject_content and block.settings.block_id != blank and all_blocks.size > 0
+                if block.settings.use_metaobject_content and block.settings.block_id != blank and all_blocks != blank
                     for meta_block in all_blocks
-                        if meta_block.system.type == 'rich_text' and meta_block.block_id == block.settings.block_id
+                        assign block_type = meta_block.type.value | default: meta_block.type
+                        if block_type == 'rich_text' and meta_block.block_id == block.settings.block_id
                             assign use_metaobject_text = true
                             if meta_block.description != blank
                                 assign text_content = meta_block.description
@@ -89,9 +85,10 @@
                 assign use_metaobject = false
                 
                 # Override with metaobject content if enabled
-                if block.settings.use_metaobject_content and block.settings.block_id != blank and all_blocks.size > 0
+                if block.settings.use_metaobject_content and block.settings.block_id != blank and all_blocks != blank
                     for meta_block in all_blocks
-                        if meta_block.system.type == 'rich_text' and meta_block.block_id == block.settings.block_id
+                        assign block_type = meta_block.type.value | default: meta_block.type
+                        if block_type == 'rich_text' and meta_block.block_id == block.settings.block_id
                             assign use_metaobject = true
                             
                             if meta_block.description != blank
@@ -130,9 +127,10 @@
                 assign button_label_text = block.settings.button_label
                 assign button_link_url = block.settings.button_link
                 
-                if block.settings.use_metaobject_content and block.settings.block_id != blank and all_blocks.size > 0
+                if block.settings.use_metaobject_content and block.settings.block_id != blank and all_blocks != blank
                     for meta_block in all_blocks
-                        if meta_block.system.type == 'rich_text' and meta_block.block_id == block.settings.block_id
+                        assign block_type = meta_block.type.value | default: meta_block.type
+                        if block_type == 'rich_text' and meta_block.block_id == block.settings.block_id
                             if meta_block.button_label != blank
                                 assign button_label_text = meta_block.button_label
                             endif
@@ -183,9 +181,10 @@
                         assign use_metaobject = false
                         
                         # Override with metaobject content if enabled
-                        if block.settings.use_metaobject_content and block.settings.block_id != blank and all_blocks.size > 0
+                        if block.settings.use_metaobject_content and block.settings.block_id != blank and all_blocks != blank
                             for meta_block in all_blocks
-                                if meta_block.system.type == 'rich_text' and meta_block.block_id == block.settings.block_id
+                                assign block_type = meta_block.type.value | default: meta_block.type
+                                if block_type == 'rich_text' and meta_block.block_id == block.settings.block_id
                                     assign use_metaobject = true
                                     
                                     if meta_block.description != blank
