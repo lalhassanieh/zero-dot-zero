@@ -15,10 +15,9 @@
         endif
     -%}
 
-    {%- comment -%} Metaobject content loading - find slide_show block and get its slides {%- endcomment -%}
+    {%- comment -%} Metaobject content loading - collect all slide_show blocks as slides {%- endcomment -%}
     {%- assign page_content_source = blank -%}
-    {%- assign slideshow_block = blank -%}
-    {%- assign metaobject_slides = blank -%}
+    {%- assign metaobject_slides = '' | split: ',' -%}
     
     {%- if template.name == 'index' -%}
         {%- assign page_content_source = shop.metafields.custom.homepage_content.value -%}
@@ -31,37 +30,20 @@
         
         {%- for b in all_blocks -%}
             {%- if b.system.type == 'slide_show' -%}
-                {%- assign slideshow_block = b -%}
-                {%- break -%}
+                {%- assign metaobject_slides = metaobject_slides | push: b -%}
             {%- endif -%}
         {%- endfor -%}
-        
-        {%- if slideshow_block != blank and slideshow_block.slide_show != blank -%}
-            {%- assign metaobject_slides = slideshow_block.slide_show.value -%}
-        {%- endif -%}
     {%- endif -%}
 
     {%- comment -%} DEBUG - remove after testing {%- endcomment -%}
     <div style="background: #ffcccc; padding: 10px; margin: 10px; font-size: 12px;">
         <p><strong>DEBUG INFO:</strong></p>
         <p>Template: {{ template.name }}</p>
-        <p>Slideshow block found: {% if slideshow_block != blank %}YES (handle: {{ slideshow_block.system.handle }}){% else %}NO{% endif %}</p>
+        <p>page_content_source exists: {% if page_content_source != blank %}YES{% else %}NO{% endif %}</p>
+        <p>metaobject_slides count: {{ metaobject_slides.size }}</p>
         
-        <p><strong>Testing field handles on slideshow_block:</strong></p>
-        <p>slides exists: {% if slideshow_block.slides != blank %}YES{% else %}NO{% endif %}</p>
-        <p>slide_show exists: {% if slideshow_block.slide_show != blank %}YES{% else %}NO{% endif %}</p>
-        <p>items exists: {% if slideshow_block.items != blank %}YES{% else %}NO{% endif %}</p>
-        <p>slide_items exists: {% if slideshow_block.slide_items != blank %}YES{% else %}NO{% endif %}</p>
-        <p>slides_list exists: {% if slideshow_block.slides_list != blank %}YES{% else %}NO{% endif %}</p>
-        <p>slide exists: {% if slideshow_block.slide != blank %}YES{% else %}NO{% endif %}</p>
-        
-        <p><strong>Full slideshow_block JSON:</strong></p>
-        <pre style="background: #fff; padding: 5px; overflow: auto; max-height: 300px; font-size: 10px;">{{ slideshow_block | json }}</pre>
-        
-        <p><strong>metaobject_slides count:</strong> {{ metaobject_slides.size | default: 0 }}</p>
-        
-        {%- if metaobject_slides != blank -%}
-            <p><strong>Slides:</strong></p>
+        {%- if metaobject_slides.size > 0 -%}
+            <p><strong>Slides found:</strong></p>
             {%- for slide in metaobject_slides -%}
                 <p>Slide {{ forloop.index }}: slide_id = "{{ slide.slide_id }}", heading = "{{ slide.heading_desktop }}"</p>
             {%- endfor -%}
@@ -150,9 +132,11 @@
                             assign use_metaobject = false
                             
                             # Override with metaobject content if enabled - match by slide_id
-                            if block.settings.use_metaobject_slide and block.settings.slide_id != blank and metaobject_slides != blank
+                            if block.settings.use_metaobject_slide and block.settings.slide_id != blank and metaobject_slides.size > 0
                                 for meta_slide in metaobject_slides
                                     if meta_slide.slide_id == block.settings.slide_id
+                                        assign use_metaobject = true
+                                        
                                         # Desktop text content
                                         if meta_slide.heading_desktop != blank
                                             assign slide_heading = meta_slide.heading_desktop
@@ -220,7 +204,6 @@
                                             assign slide_link_2 = meta_slide.second_button_collection.value.url
                                         endif
                                         
-                                        assign use_metaobject = true
                                         break
                                     endif
                                 endfor
