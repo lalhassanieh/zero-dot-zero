@@ -18,6 +18,7 @@
     {%- comment -%} Metaobject content loading - collect all slide_show blocks as slides {%- endcomment -%}
     {%- assign page_content_source = blank -%}
     {%- assign metaobject_slides = '' | split: ',' -%}
+    {%- assign all_blocks = '' | split: ',' -%}
     
     {%- if template.name == 'index' -%}
         {%- assign page_content_source = shop.metafields.custom.homepage_content.value -%}
@@ -27,12 +28,6 @@
     
     {%- if page_content_source != blank and page_content_source.blocks != blank -%}
         {%- assign all_blocks = page_content_source.blocks.value -%}
-        
-        {%- for b in all_blocks -%}
-            {%- if b.system.type == 'slide_show' -%}
-                {%- assign metaobject_slides = metaobject_slides | push: b -%}
-            {%- endif -%}
-        {%- endfor -%}
     {%- endif -%}
 
     {%- comment -%} DEBUG - remove after testing {%- endcomment -%}
@@ -40,14 +35,13 @@
         <p><strong>DEBUG INFO:</strong></p>
         <p>Template: {{ template.name }}</p>
         <p>page_content_source exists: {% if page_content_source != blank %}YES{% else %}NO{% endif %}</p>
-        <p>metaobject_slides count: {{ metaobject_slides.size }}</p>
+        <p>page_content_source.blocks exists: {% if page_content_source.blocks != blank %}YES{% else %}NO{% endif %}</p>
+        <p>all_blocks count: {{ all_blocks.size }}</p>
         
-        {%- if metaobject_slides.size > 0 -%}
-            <p><strong>Slides found:</strong></p>
-            {%- for slide in metaobject_slides -%}
-                <p>Slide {{ forloop.index }}: slide_id = "{{ slide.slide_id }}", heading = "{{ slide.heading_desktop }}"</p>
-            {%- endfor -%}
-        {%- endif -%}
+        <p><strong>All blocks:</strong></p>
+        {%- for b in all_blocks -%}
+            <p>Block {{ forloop.index }}: system.type = "{{ b.system.type }}", slide_id = "{{ b.slide_id }}"</p>
+        {%- endfor -%}
     </div>
 
     <div class="test slideshow-wrapper section-block-{{section.id}}" id="slideshow-wrapper-{{section.id}}" {% if section.blocks.size > 1 %}data-loader-script="{{ 'halo.slide-show.js' | asset_url }}"{% endif %} allow-transparent-header>
@@ -132,9 +126,9 @@
                             assign use_metaobject = false
                             
                             # Override with metaobject content if enabled - match by slide_id
-                            if block.settings.use_metaobject_slide and block.settings.slide_id != blank and metaobject_slides.size > 0
-                                for meta_slide in metaobject_slides
-                                    if meta_slide.slide_id == block.settings.slide_id
+                            if block.settings.use_metaobject_slide and block.settings.slide_id != blank and all_blocks.size > 0
+                                for meta_slide in all_blocks
+                                    if meta_slide.system.type == 'slide_show' and meta_slide.slide_id == block.settings.slide_id
                                         assign use_metaobject = true
                                         
                                         # Desktop text content
@@ -214,7 +208,7 @@
                 <div style="background: #ccffcc; padding: 5px; font-size: 11px; border: 1px solid green;">
                     Block {{ forloop.index }}: use_metaobject_slide={{ block.settings.use_metaobject_slide }}, 
                     slide_id="{{ block.settings.slide_id }}", 
-                    metaobject_slides_size={{ metaobject_slides.size | default: 0 }},
+                    all_blocks_size={{ all_blocks.size | default: 0 }},
                     use_metaobject={{ use_metaobject }},
                     slide_heading="{{ slide_heading }}"
                 </div>
