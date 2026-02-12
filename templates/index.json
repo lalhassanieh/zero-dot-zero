@@ -15,6 +15,8 @@
         "image_M9rGXy": {
           "type": "image",
           "settings": {
+            "use_metaobject_content": false,
+            "slide_id": "",
             "image_slide": "shopify://shop_images/Hero_section_1370_x_477_1.png",
             "image_slide_mb": "shopify://shop_images/Hero_section_1370_x_477_1.png",
             "alignment": "left",
@@ -116,6 +118,8 @@
           "type": "image",
           "disabled": true,
           "settings": {
+            "use_metaobject_content": false,
+            "slide_id": "",
             "image_slide": "shopify://shop_images/2ddUntitled-1.jpg",
             "image_slide_mb": "shopify://shop_images/iPhone_14_15_Pro_Max_-_1_7d83be4d-40ae-4592-831a-734eff703deb.jpg",
             "alignment": "left",
@@ -217,6 +221,8 @@
           "type": "image",
           "disabled": true,
           "settings": {
+            "use_metaobject_content": false,
+            "slide_id": "",
             "image_slide": "shopify://shop_images/2ddUntitled-1.jpg",
             "image_slide_mb": "shopify://shop_images/iPhone_14_15_Pro_Max_-_1_7d83be4d-40ae-4592-831a-734eff703deb.jpg",
             "alignment": "left",
@@ -318,6 +324,8 @@
           "type": "image",
           "disabled": true,
           "settings": {
+            "use_metaobject_content": false,
+            "slide_id": "",
             "image_slide": "shopify://shop_images/Frame-780-_1.jpg",
             "image_slide_mb": "shopify://shop_images/iPhone_14_15_Pro_Max_-_1_7d83be4d-40ae-4592-831a-734eff703deb.jpg",
             "alignment": "left",
@@ -419,6 +427,8 @@
           "type": "image",
           "disabled": true,
           "settings": {
+            "use_metaobject_content": false,
+            "slide_id": "",
             "image_slide": "shopify://shop_images/Frame-780-_1.jpg",
             "image_slide_mb": "shopify://shop_images/iPhone_14_15_Pro_Max_-_1_7d83be4d-40ae-4592-831a-734eff703deb.jpg",
             "alignment": "left",
@@ -694,7 +704,7 @@
       ],
       "name": "t:sections.image-banner.presets.name",
       "settings": {
-        "use_metaobject_background": false,
+        "use_metaobject_background": true,
         "section_block_id": "home-sc-banner-1",
         "id_section": "",
         "container": "fullwidth",
@@ -971,6 +981,8 @@
         "video_4GrCnE": {
           "type": "video",
           "settings": {
+            "use_metaobject_content": false,
+            "slide_id": "",
             "style_video": "mp4",
             "video_link": "",
             "video_link_mb": "",
