@@ -144,6 +144,8 @@
                                         assign slide_link = meta_slide.first_button_page.value.url
                                     elsif meta_slide.first_button_collection.value != blank
                                         assign slide_link = meta_slide.first_button_collection.value.url
+                                    elsif meta_slide.first_button_url != blank
+                                        assign slide_link = meta_slide.first_button_url
                                     endif
                                     
                                     # Second button
@@ -154,6 +156,8 @@
                                         assign slide_link_2 = meta_slide.second_button_page.value.url
                                     elsif meta_slide.second_button_collection.value != blank
                                         assign slide_link_2 = meta_slide.second_button_collection.value.url
+                                    elsif meta_slide.second_button_url != blank
+                                        assign slide_link_2 = meta_slide.second_button_url
                                     endif
                                     
                                     break
