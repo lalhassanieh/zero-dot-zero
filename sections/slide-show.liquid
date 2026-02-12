@@ -19,16 +19,14 @@
     {%- assign page_content_source = blank -%}
     {%- assign metaobject_slides = blank -%}
     
-    {%- if section.settings.use_metaobject_content -%}
-        {%- if template.name == 'index' -%}
-            {%- assign page_content_source = shop.metafields.custom.homepage_content.value -%}
-        {%- elsif page != blank -%}
-            {%- assign page_content_source = page.metafields.custom.page_content.value -%}
-        {%- endif -%}
-        
-        {%- if page_content_source != blank and page_content_source.slides != blank -%}
-            {%- assign metaobject_slides = page_content_source.slides.value -%}
-        {%- endif -%}
+    {%- if template.name == 'index' -%}
+        {%- assign page_content_source = shop.metafields.custom.homepage_content.value -%}
+    {%- elsif page != blank -%}
+        {%- assign page_content_source = page.metafields.custom.page_content.value -%}
+    {%- endif -%}
+    
+    {%- if page_content_source != blank and page_content_source.slides != blank -%}
+        {%- assign metaobject_slides = page_content_source.slides.value -%}
     {%- endif -%}
 
     <div class="test slideshow-wrapper section-block-{{section.id}}" id="slideshow-wrapper-{{section.id}}" {% if section.blocks.size > 1 %}data-loader-script="{{ 'halo.slide-show.js' | asset_url }}"{% endif %} allow-transparent-header>
@@ -856,13 +854,6 @@
             {
                 "type": "header",
                 "content": "t:settings_schema.general.name"
-            },
-            {
-                "type": "checkbox",
-                "id": "use_metaobject_content",
-                "label": "Use metaobject content",
-                "info": "When enabled, slides can load content from metaobjects using their Slide ID.",
-                "default": false
             },
             {
                 "type": "select",
