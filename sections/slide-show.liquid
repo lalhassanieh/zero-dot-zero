@@ -30,21 +30,7 @@
         {%- assign all_blocks = page_content_source.blocks.value -%}
     {%- endif -%}
 
-    {%- comment -%} DEBUG - remove after testing {%- endcomment -%}
-    <div style="background: #ffcccc; padding: 10px; margin: 10px; font-size: 12px;">
-        <p><strong>DEBUG INFO:</strong></p>
-        <p>Template: {{ template.name }}</p>
-        <p>page_content_source exists: {% if page_content_source != blank %}YES{% else %}NO{% endif %}</p>
-        <p>page_content_source.blocks exists: {% if page_content_source.blocks != blank %}YES{% else %}NO{% endif %}</p>
-        <p>all_blocks count: {{ all_blocks.size }}</p>
-        
-        <p><strong>All blocks:</strong></p>
-        {%- for b in all_blocks -%}
-            <p>Block {{ forloop.index }}: system.type = "{{ b.system.type }}", slide_id = "{{ b.slide_id }}"</p>
-        {%- endfor -%}
-    </div>
-
-    <div class="test slideshow-wrapper section-block-{{section.id}}" id="slideshow-wrapper-{{section.id}}" {% if section.blocks.size > 1 %}data-loader-script="{{ 'halo.slide-show.js' | asset_url }}"{% endif %} allow-transparent-header>
+    <div class="slideshow-wrapper section-block-{{section.id}}" id="slideshow-wrapper-{{section.id}}" {% if section.blocks.size > 1 %}data-loader-script="{{ 'halo.slide-show.js' | asset_url }}"{% endif %} allow-transparent-header>
         <div class="{% if container == '1170' %}container-1170{% elsif section.settings.container == '1470' %}container-1470{% elsif section.settings.container == '1570' %}container-1570{% elsif container == '1770' %}container-1770{% elsif container == '1920' %}container-1920{% elsif container == 'fullwidth'%}container-full{% else %}container{% endif %}">
         {%- if section.settings.enable_categories or section.settings.enable_banner -%}
         <div class="wrapper-category-banner{% if section.settings.enable_categories %} has-categories{% endif %}{% if section.settings.enable_banner %} has-banner{% endif %}">
@@ -204,14 +190,6 @@
                             endif
                         -%}
                     {%- endif -%}
-                {%- comment -%} DEBUG Block {%- endcomment -%}
-                <div style="background: #ccffcc; padding: 5px; font-size: 11px; border: 1px solid green;">
-                    Block {{ forloop.index }}: use_metaobject_slide={{ block.settings.use_metaobject_slide }}, 
-                    slide_id="{{ block.settings.slide_id }}", 
-                    all_blocks_size={{ all_blocks.size | default: 0 }},
-                    use_metaobject={{ use_metaobject }},
-                    slide_heading="{{ slide_heading }}"
-                </div>
                 <div class="item slide-block-{{block.id}}" id="block-{{block.id}}" data-index="{{forloop.index}}" data-style="{{ lookbook_style }}" data-show-lookbook-container{% if block.settings.image_for_dot != blank %} data-dot-img="{{ block.settings.image_for_dot | img_url: 'master' }}"{% endif %}>
                         {%- if block.type == 'image' -%}
                             {%- if check_lookbook -%}
