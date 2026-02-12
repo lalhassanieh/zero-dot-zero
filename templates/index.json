@@ -15,8 +15,8 @@
         "image_M9rGXy": {
           "type": "image",
           "settings": {
-            "use_metaobject_content": false,
-            "slide_id": "",
+            "use_metaobject_slide": true,
+            "slide_id": "main-slide-show-1",
             "image_slide": "shopify://shop_images/Hero_section_1370_x_477_1.png",
             "image_slide_mb": "shopify://shop_images/Hero_section_1370_x_477_1.png",
             "alignment": "left",
@@ -118,7 +118,7 @@
           "type": "image",
           "disabled": true,
           "settings": {
-            "use_metaobject_content": false,
+            "use_metaobject_slide": false,
             "slide_id": "",
             "image_slide": "shopify://shop_images/2ddUntitled-1.jpg",
             "image_slide_mb": "shopify://shop_images/iPhone_14_15_Pro_Max_-_1_7d83be4d-40ae-4592-831a-734eff703deb.jpg",
@@ -221,7 +221,7 @@
           "type": "image",
           "disabled": true,
           "settings": {
-            "use_metaobject_content": false,
+            "use_metaobject_slide": false,
             "slide_id": "",
             "image_slide": "shopify://shop_images/2ddUntitled-1.jpg",
             "image_slide_mb": "shopify://shop_images/iPhone_14_15_Pro_Max_-_1_7d83be4d-40ae-4592-831a-734eff703deb.jpg",
@@ -324,7 +324,7 @@
           "type": "image",
           "disabled": true,
           "settings": {
-            "use_metaobject_content": false,
+            "use_metaobject_slide": false,
             "slide_id": "",
             "image_slide": "shopify://shop_images/Frame-780-_1.jpg",
             "image_slide_mb": "shopify://shop_images/iPhone_14_15_Pro_Max_-_1_7d83be4d-40ae-4592-831a-734eff703deb.jpg",
@@ -427,7 +427,7 @@
           "type": "image",
           "disabled": true,
           "settings": {
-            "use_metaobject_content": false,
+            "use_metaobject_slide": false,
             "slide_id": "",
             "image_slide": "shopify://shop_images/Frame-780-_1.jpg",
             "image_slide_mb": "shopify://shop_images/iPhone_14_15_Pro_Max_-_1_7d83be4d-40ae-4592-831a-734eff703deb.jpg",
@@ -981,7 +981,7 @@
         "video_4GrCnE": {
           "type": "video",
           "settings": {
-            "use_metaobject_content": false,
+            "use_metaobject_slide": false,
             "slide_id": "",
             "style_video": "mp4",
             "video_link": "",
