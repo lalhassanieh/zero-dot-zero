@@ -17,6 +17,13 @@
     {%- assign all_blocks = page_content_source.blocks.value -%}
 {%- endif -%}
 
+<!-- DEBUG: template.name = {{ template.name }} -->
+<!-- DEBUG: page_content_source exists = {% if page_content_source != blank %}yes{% else %}no{% endif %} -->
+<!-- DEBUG: all_blocks.size = {{ all_blocks.size }} -->
+{%- for meta_block in all_blocks -%}
+<!-- DEBUG: block type={{ meta_block.system.type }}, block_id={{ meta_block.block_id }}, title={{ meta_block.title }} -->
+{%- endfor -%}
+
 <div class="rich-text section-block-{{section.id}}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}{% if section.settings.custom_class != blank %} {{ section.settings.custom_class }}{% endif %}">
   <div class="{% if section.settings.container == 'fullwidth' %}container-full{% elsif section.settings.container == '1770' %}container-1770{% elsif section.settings.container == '1170' %}container-1170{% else %}container{% endif %}">
     <div class="rich-text__blocks{% if section.settings.enable_column %} enable_column{% endif %} text-{{section.settings.content_align}}{% if section.settings.padding_full_width == 65 %} pad-65{% endif %}">
@@ -25,12 +32,10 @@
         {%- when 'heading' -%}
             {%- liquid
                 assign heading_text = block.settings.heading
-                assign use_metaobject_heading = false
                 
                 if block.settings.use_metaobject_content and block.settings.block_id != blank and all_blocks.size > 0
                     for meta_block in all_blocks
                         if meta_block.system.type == 'rich_text' and meta_block.block_id == block.settings.block_id
-                            assign use_metaobject_heading = true
                             if meta_block.title != blank
                                 assign heading_text = meta_block.title
                             endif
@@ -39,16 +44,14 @@
                     endfor
                 endif
             -%}
-            <h2 class="heading{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="{% if settings.banner_animation == 'effect_fade_up' %}--animation-order:  {{ forloop.index }};{% endif %}--color-heading-style: {{ block.settings.heading_color }};--fontsize-heading-style: {{ block.settings.heading_size | append: 'px' }};--heading-size-mb-style: {{ block.settings.heading_size_mb | append: 'px' }};--heading-line-height-style: {{ block.settings.heading_line_height }}">{%- if use_metaobject_heading -%}{{ heading_text | metafield_tag | replace: '<p>', '' | replace: '</p>', '' }}{%- else -%}{{ heading_text | escape }}{%- endif -%}</h2>
+            <h2 class="heading{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="{% if settings.banner_animation == 'effect_fade_up' %}--animation-order:  {{ forloop.index }};{% endif %}--color-heading-style: {{ block.settings.heading_color }};--fontsize-heading-style: {{ block.settings.heading_size | append: 'px' }};--heading-size-mb-style: {{ block.settings.heading_size_mb | append: 'px' }};--heading-line-height-style: {{ block.settings.heading_line_height }}">{{ heading_text | escape }}</h2>
         {%- when 'sub_heading' -%}
             {%- liquid
                 assign sub_heading_text = block.settings.sub_heading
-                assign use_metaobject_sub = false
                 
                 if block.settings.use_metaobject_content and block.settings.block_id != blank and all_blocks.size > 0
                     for meta_block in all_blocks
                         if meta_block.system.type == 'rich_text' and meta_block.block_id == block.settings.block_id
-                            assign use_metaobject_sub = true
                             if meta_block.subtitle != blank
                                 assign sub_heading_text = meta_block.subtitle
                             endif
@@ -57,7 +60,7 @@
                     endfor
                 endif
             -%}
-            <div class="rich-text__sub{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="{% if settings.banner_animation == 'effect_fade_up' %}--animation-order: {{ forloop.index }};{% endif %}--sub-heading-size-style: {{ block.settings.sub_heading_size | append: 'px' }};--sub-heading-color-style: {{ block.settings.sub_heading_color }};--font-weight-sub-heading-style: {{ block.settings.font_weight_sub_heading }};--margin-top-sub-heading-style: {{ block.settings.margin_top_sub_heading | append: 'px' }}"><p>{%- if use_metaobject_sub -%}{{ sub_heading_text | metafield_tag | replace: '<p>', '' | replace: '</p>', '' }}{%- else -%}{{ sub_heading_text }}{%- endif -%}</p></div> 
+            <div class="rich-text__sub{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="{% if settings.banner_animation == 'effect_fade_up' %}--animation-order: {{ forloop.index }};{% endif %}--sub-heading-size-style: {{ block.settings.sub_heading_size | append: 'px' }};--sub-heading-color-style: {{ block.settings.sub_heading_color }};--font-weight-sub-heading-style: {{ block.settings.font_weight_sub_heading }};--margin-top-sub-heading-style: {{ block.settings.margin_top_sub_heading | append: 'px' }}"><p>{{ sub_heading_text }}</p></div> 
         {%- when 'text' -%}
             {%- liquid
                 assign text_content = block.settings.text
