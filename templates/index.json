@@ -753,6 +753,8 @@
         "heading_f9XMe3": {
           "type": "heading",
           "settings": {
+            "use_metaobject_content": false,
+            "block_id": "",
             "heading": "Shop by Category",
             "heading_size": 35,
             "heading_size_mb": 20,
@@ -1126,6 +1128,8 @@
         "heading_6YXPV9": {
           "type": "heading",
           "settings": {
+            "use_metaobject_content": false,
+            "block_id": "rich-text-1",
             "heading": "Our Recipes",
             "heading_size": 35,
             "heading_size_mb": 20,
@@ -1563,6 +1567,8 @@
         "heading_rXiUjG": {
           "type": "heading",
           "settings": {
+            "use_metaobject_content": false,
+            "block_id": "",
             "heading": "Top Picks",
             "heading_size": 35,
             "heading_size_mb": 20,
@@ -1943,6 +1949,8 @@
         "sub_heading_qK7Q6z": {
           "type": "sub_heading",
           "settings": {
+            "use_metaobject_content": false,
+            "block_id": "",
             "sub_heading": "TANQUERAY",
             "font_weight_sub_heading": "700",
             "sub_heading_size": 15,
@@ -1953,6 +1961,8 @@
         "heading_7HG3Qt": {
           "type": "heading",
           "settings": {
+            "use_metaobject_content": false,
+            "block_id": "",
             "heading": "Pick your favorite",
             "heading_size": 35,
             "heading_size_mb": 20,
