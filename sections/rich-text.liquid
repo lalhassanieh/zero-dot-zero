@@ -29,8 +29,8 @@
                 if block.settings.use_metaobject_content and block.settings.block_id != blank and all_blocks.size > 0
                     for meta_block in all_blocks
                         if meta_block.system.type == 'rich_text' and meta_block.block_id == block.settings.block_id
-                            if meta_block.heading != blank
-                                assign heading_text = meta_block.heading
+                            if meta_block.title != blank
+                                assign heading_text = meta_block.title
                             endif
                             break
                         endif
@@ -45,8 +45,8 @@
                 if block.settings.use_metaobject_content and block.settings.block_id != blank and all_blocks.size > 0
                     for meta_block in all_blocks
                         if meta_block.system.type == 'rich_text' and meta_block.block_id == block.settings.block_id
-                            if meta_block.sub_heading != blank
-                                assign sub_heading_text = meta_block.sub_heading
+                            if meta_block.subtitle != blank
+                                assign sub_heading_text = meta_block.subtitle
                             endif
                             break
                         endif
