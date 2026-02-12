@@ -1128,7 +1128,7 @@
         "heading_6YXPV9": {
           "type": "heading",
           "settings": {
-            "use_metaobject_content": false,
+            "use_metaobject_content": true,
             "block_id": "rich-text-1",
             "heading": "Our Recipes",
             "heading_size": 35,
