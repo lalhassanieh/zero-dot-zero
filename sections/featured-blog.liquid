@@ -21,8 +21,8 @@
 {%- comment -%} Find blog_posts_section in blocks list {%- endcomment -%}
 {%- if section.settings.use_metaobject_blog and all_blocks != blank -%}
   {%- for block_item in all_blocks -%}
-    {%- if block_item.blog_posts != blank -%}
-      {%- assign metaobject_blog_posts = block_item.blog_posts.value -%}
+    {%- if block_item.system.type == 'blog_posts_section' and block_item.blogs != blank -%}
+      {%- assign metaobject_blog_posts = block_item.blogs.value -%}
       {%- assign metaobject_post_limit = block_item.number_of_posts -%}
       {%- assign use_metaobject_blog = true -%}
       {%- break -%}
