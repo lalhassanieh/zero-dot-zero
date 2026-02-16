@@ -1,3 +1,30 @@
+{%- comment -%} Metaobject content loading {%- endcomment -%}
+{%- assign page_content_source = blank -%}
+{%- assign all_blocks = blank -%}
+{%- assign metaobject_brands = blank -%}
+{%- assign use_metaobject_brands = false -%}
+
+{%- if template.name == 'index' -%}
+  {%- assign page_content_source = shop.metafields.custom.homepage_content.value -%}
+{%- elsif page != blank -%}
+  {%- assign page_content_source = page.metafields.custom.page_content.value -%}
+{%- endif -%}
+
+{%- if page_content_source != blank and page_content_source.blocks != blank -%}
+  {%- assign all_blocks = page_content_source.blocks.value -%}
+{%- endif -%}
+
+{%- comment -%} Find brand_slider in blocks list {%- endcomment -%}
+{%- if section.settings.use_metaobject_brands and all_blocks != blank -%}
+  {%- for block_item in all_blocks -%}
+    {%- if block_item.system.type == 'brand_slider' and block_item.brands != blank -%}
+      {%- assign metaobject_brands = block_item.brands.value -%}
+      {%- assign use_metaobject_brands = true -%}
+      {%- break -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+
 <style type="text/css">
     {%- liquid
         assign color_arrow = section.settings.color_arrow
@@ -495,22 +522,46 @@
                         </div>
                     {%- endif -%}
                     <div class="halo-row brand-layout--{{ section.settings.brand_layout }} column-{{ section.settings.brand_rows }} brands-slider halo-slider{% if section.settings.brand_rows_mb == '3' %} sm-column-3{% elsif section.settings.brand_rows_mb == '2' %} sm-column-2{% else %} sm-column-1{% endif %} md-column-3{% if section.settings.brand_layout == 'infinite' %} flex-nowrap o-hidden{% endif %}" {% if section.settings.brand_layout == 'slider' %}data-brands-slider{% endif %} data-rows="{{ section.settings.brand_rows }}" data-arrows="{{ section.settings.enable_arrows }}" data-dots="{{ section.settings.enable_dots }}" data-center-mode="{{ section.settings.enable_center_mode }}" data-rows-mobile="{{ section.settings.brand_rows_mb }}" data-autoplay="{{ section.settings.enable_autoplay }}" data-autoplay-speed="{{ section.settings.brand_speed }}" style="--row-distance-style: {{ section.settings.item_distance | prepend: '-' | append: 'px' }};{% if section.settings.brand_layout == 'infinite' %}--timeScroll: {{timeScroll | append: 's'}};--width_item: {{width_item}}{% endif %}">
+                        {%- comment -%} Determine which items to render {%- endcomment -%}
+                        {%- if use_metaobject_brands and metaobject_brands != blank -%}
+                            {%- assign brand_items = metaobject_brands -%}
+                            {%- assign is_metaobject = true -%}
+                        {%- else -%}
+                            {%- assign brand_items = section.blocks -%}
+                            {%- assign is_metaobject = false -%}
+                        {%- endif -%}
+                        
                         {%- if section.settings.brand_layout == 'infinite' -%}
                             {%- for i in (1..limitItems) -%}
                                 <div class="brand-item-scroll d-flex flex-align-center fs-0{% if section.settings.scroll_from == 'ltr'%} marquee-ltr{% else %} marquee-rtl{% endif %}">
-                                    {%- for block in section.blocks -%}
-                                        <div class="halo-item block-{{block.id}}" id="block-{{block.id}}" style="--item-distance-style: {{ section.settings.item_distance | append: 'px' }};--title_color: {{block.settings.color_text}};--title_color_hover:{{block.settings.color_text_hover}};--color_des:{{block.settings.color_des}}">
+                                    {%- for item in brand_items -%}
+                                        {%- comment -%} Get values based on source {%- endcomment -%}
+                                        {%- if is_metaobject -%}
+                                            {%- assign item_image = item.image -%}
+                                            {%- assign item_title = item.title -%}
+                                            {%- assign item_description = item.description -%}
+                                            {%- assign item_link = item.button_url | default: item.button_page | default: item.button_product | default: item.button_collection -%}
+                                            {%- assign item_id = item.id -%}
+                                        {%- else -%}
+                                            {%- assign item_image = item.settings.image -%}
+                                            {%- assign item_title = item.settings.title -%}
+                                            {%- assign item_description = item.settings.description -%}
+                                            {%- assign item_link = item.settings.link -%}
+                                            {%- assign item_id = item.id -%}
+                                        {%- endif -%}
+                                        
+                                        <div class="halo-item block-{{item_id}}" id="block-{{item_id}}" style="--item-distance-style: {{ section.settings.item_distance | append: 'px' }};{% unless is_metaobject %}--title_color: {{item.settings.color_text}};--title_color_hover:{{item.settings.color_text_hover}};--color_des:{{item.settings.color_des}}{% endunless %}">
                                             <div class="wrapper-content{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger{% if section.settings.brand_layout == 'infinite' %} animate--fade-in{% else %} animate--slide-in{% endif %}{% endif %}" style="--border_radius:{{ section.settings.border_radius | append: 'px' }};--animation-order: {{ forloop.index }};"{% if settings.banner_animation == 'effect_fade_up' %} data-cascade style=""{% endif %}>
-                                                {%- if block.settings.image != blank -%}
-                                                    {%- assign preview_img = block.settings.image -%}
+                                                {%- if item_image != blank -%}
+                                                    {%- assign preview_img = item_image -%}
                                                     <div class="wrapper-image{% if section.settings.hover_effect == 'zoom' %} image-zoom{% elsif section.settings.hover_effect == 'fadeup' %} image-fadeInUp{% endif %}">
-                                                        <a class="{% if section.settings.brand_image_ratio == 'square' %} adaptive_height{% endif %}{% if section.settings.brands_block_style == 'style_2' %} pt-30 pb-15 w-100{% endif %}" title="{% if block.settings.title != blank %}{{ block.settings.title }}{% else %}{{ preview_img.alt | escape }}{% endif %}"{% if block.settings.link == blank %} role="link" aria-disabled="true"{% else %} href="{{ block.settings.link }}"{% endif %}{% if section.settings.brand_image_ratio == 'square' %} style="padding-top: {{ 1 | divided_by: preview_img.aspect_ratio | times: 100 }}%;"{% endif %} aria-label="{{ preview_img.alt | default: shop.name | escape }}">
-                                                            <img {% render 'lazyload', preview_img: preview_img  %} style="{% if section.settings.brand_image_ratio == 'adapt' %}width: {{block.settings.image.width}}px;{% else %}max-width: {{block.settings.image.width}}px;{% endif %} margin: 0 auto;height: auto"/>
+                                                        <a class="{% if section.settings.brand_image_ratio == 'square' %} adaptive_height{% endif %}{% if section.settings.brands_block_style == 'style_2' %} pt-30 pb-15 w-100{% endif %}" title="{% if item_title != blank %}{{ item_title }}{% else %}{{ preview_img.alt | escape }}{% endif %}"{% if item_link == blank %} role="link" aria-disabled="true"{% else %} href="{{ item_link }}"{% endif %}{% if section.settings.brand_image_ratio == 'square' %} style="padding-top: {{ 1 | divided_by: preview_img.aspect_ratio | times: 100 }}%;"{% endif %} aria-label="{{ preview_img.alt | default: shop.name | escape }}">
+                                                            <img {% render 'lazyload', preview_img: preview_img  %} style="{% if section.settings.brand_image_ratio == 'adapt' %}width: {{item_image.width}}px;{% else %}max-width: {{item_image.width}}px;{% endif %} margin: 0 auto;height: auto"/>
                                                             {%- if settings.enable_lazyload -%}<span class="data-lazy-loading"></span>{%- endif -%}
                                                         </a>
                                                     </div>
                                                 {%- else -%} 
-                                                    <a class="wrapper-image" title="{% if block.settings.title != blank %}{{ block.settings.title }}{% else %}Coming Soon{% endif %}"{% if block.settings.link == blank %} role="link" aria-disabled="true"{% else %} href="{{ block.settings.link }}"{% endif %}>
+                                                    <a class="wrapper-image" title="{% if item_title != blank %}{{ item_title }}{% else %}Coming Soon{% endif %}"{% if item_link == blank %} role="link" aria-disabled="true"{% else %} href="{{ item_link }}"{% endif %}>
                                                         {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
                                                         {%- assign placeholder_image = 'collection-apparel-' | append: placeholder_image_index -%}
                                                         <div class="placeholder" style="--height_placeholder: 200px;">
@@ -518,11 +569,11 @@
                                                         </div>
                                                     </a>
                                                 {%- endif -%}
-                                                {%- if block.settings.title != blank -%}
-                                                    <a class="text" {% if block.settings.link == blank %} role="link" aria-disabled="true"{% else %} href="{{ block.settings.link }}"{% endif %}>{{ block.settings.title }}</a>
+                                                {%- if item_title != blank -%}
+                                                    <a class="text" {% if item_link == blank %} role="link" aria-disabled="true"{% else %} href="{{ item_link }}"{% endif %}>{{ item_title }}</a>
                                                 {%- endif -%}
-                                                {%- if block.settings.description != blank -%}
-                                                    <a class="description"{% if block.settings.link == blank %} role="link" aria-disabled="true"{% else %} href="{{ block.settings.link }}"{% endif %}>{{ block.settings.description }}</a>
+                                                {%- if item_description != blank -%}
+                                                    <a class="description"{% if item_link == blank %} role="link" aria-disabled="true"{% else %} href="{{ item_link }}"{% endif %}>{{ item_description }}</a>
                                                 {%- endif -%}
                                             </div>
                                         </div>
@@ -530,19 +581,34 @@
                                 </div>
                             {%- endfor -%}
                         {%- else -%}
-                            {%- for block in section.blocks -%}
-                                <div class="halo-item block-{{block.id}}" id="block-{{block.id}}" style="--item-distance-style: {{ section.settings.item_distance | append: 'px' }};--title_color: {{block.settings.color_text}};--title_color_hover:{{block.settings.color_text_hover}};--color_des:{{block.settings.color_des}}">
+                            {%- for item in brand_items -%}
+                                {%- comment -%} Get values based on source {%- endcomment -%}
+                                {%- if is_metaobject -%}
+                                    {%- assign item_image = item.image -%}
+                                    {%- assign item_title = item.title -%}
+                                    {%- assign item_description = item.description -%}
+                                    {%- assign item_link = item.button_url | default: item.button_page | default: item.button_product | default: item.button_collection -%}
+                                    {%- assign item_id = item.id -%}
+                                {%- else -%}
+                                    {%- assign item_image = item.settings.image -%}
+                                    {%- assign item_title = item.settings.title -%}
+                                    {%- assign item_description = item.settings.description -%}
+                                    {%- assign item_link = item.settings.link -%}
+                                    {%- assign item_id = item.id -%}
+                                {%- endif -%}
+                                
+                                <div class="halo-item block-{{item_id}}" id="block-{{item_id}}" style="--item-distance-style: {{ section.settings.item_distance | append: 'px' }};{% unless is_metaobject %}--title_color: {{item.settings.color_text}};--title_color_hover:{{item.settings.color_text_hover}};--color_des:{{item.settings.color_des}}{% endunless %}">
                                     <div class="wrapper-content{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="--border_radius:{{ section.settings.border_radius | append: 'px' }};--animation-order: {{ forloop.index }};"{% if settings.banner_animation == 'effect_fade_up' %} data-cascade style=""{% endif %}>
-                                        {%- if block.settings.image != blank -%}
-                                            {%- assign preview_img = block.settings.image -%}
+                                        {%- if item_image != blank -%}
+                                            {%- assign preview_img = item_image -%}
                                             <div class="wrapper-image{% if section.settings.hover_effect == 'zoom' %} image-zoom{% elsif section.settings.hover_effect == 'fadeup' %} image-fadeInUp{% endif %}">
-                                                <a class="{% if section.settings.brand_image_ratio == 'square' %} adaptive_height{% endif %}{% if section.settings.brands_block_style == 'style_2' %} pt-30 pb-15 w-100{% endif %}" title="{% if block.settings.title != blank %}{{ block.settings.title }}{% else %}{{ preview_img.alt | escape }}{% endif %}"{% if block.settings.link == blank %} role="link" aria-disabled="true"{% else %} href="{{ block.settings.link }}"{% endif %}{% if section.settings.brand_image_ratio == 'square' %} style="padding-top: {{ 1 | divided_by: preview_img.aspect_ratio | times: 100 }}%;"{% endif %} aria-label="{{ preview_img.alt | default: shop.name | escape }}">
-                                                    <img {% render 'lazyload', preview_img: preview_img  %} style="{% if section.settings.brand_image_ratio == 'adapt' %}width: {{block.settings.image.width}}px;{% else %}max-width: {{block.settings.image.width}}px;{% endif %} margin: 0 auto;height: auto"/>
+                                                <a class="{% if section.settings.brand_image_ratio == 'square' %} adaptive_height{% endif %}{% if section.settings.brands_block_style == 'style_2' %} pt-30 pb-15 w-100{% endif %}" title="{% if item_title != blank %}{{ item_title }}{% else %}{{ preview_img.alt | escape }}{% endif %}"{% if item_link == blank %} role="link" aria-disabled="true"{% else %} href="{{ item_link }}"{% endif %}{% if section.settings.brand_image_ratio == 'square' %} style="padding-top: {{ 1 | divided_by: preview_img.aspect_ratio | times: 100 }}%;"{% endif %} aria-label="{{ preview_img.alt | default: shop.name | escape }}">
+                                                    <img {% render 'lazyload', preview_img: preview_img  %} style="{% if section.settings.brand_image_ratio == 'adapt' %}width: {{item_image.width}}px;{% else %}max-width: {{item_image.width}}px;{% endif %} margin: 0 auto;height: auto"/>
                                                     {%- if settings.enable_lazyload -%}<span class="data-lazy-loading"></span>{%- endif -%}
                                                 </a>
                                             </div>
                                         {%- else -%}
-                                            <a class="wrapper-image" title="{% if block.settings.title != blank %}{{ block.settings.title }}{% else %}Coming Soon{% endif %}"{% if block.settings.link == blank %} role="link" aria-disabled="true"{% else %} href="{{ block.settings.link }}"{% endif %}>
+                                            <a class="wrapper-image" title="{% if item_title != blank %}{{ item_title }}{% else %}Coming Soon{% endif %}"{% if item_link == blank %} role="link" aria-disabled="true"{% else %} href="{{ item_link }}"{% endif %}>
                                                 {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
                                                 {%- assign placeholder_image = 'collection-apparel-' | append: placeholder_image_index -%}
                                                 <div class="placeholder" style="--height_placeholder: 200px;">
@@ -550,11 +616,11 @@
                                                 </div>
                                             </a>
                                         {%- endif -%}
-                                        {%- if block.settings.title != blank -%}
-                                            <a class="text" {% if block.settings.link == blank %} role="link" aria-disabled="true"{% else %} href="{{ block.settings.link }}"{% endif %}>{{ block.settings.title }}</a>
+                                        {%- if item_title != blank -%}
+                                            <a class="text" {% if item_link == blank %} role="link" aria-disabled="true"{% else %} href="{{ item_link }}"{% endif %}>{{ item_title }}</a>
                                         {%- endif -%}
-                                        {%- if block.settings.description != blank -%}
-                                            <a class="description"{% if block.settings.link == blank %} role="link" aria-disabled="true"{% else %} href="{{ block.settings.link }}"{% endif %}>{{ block.settings.description }}</a>
+                                        {%- if item_description != blank -%}
+                                            <a class="description"{% if item_link == blank %} role="link" aria-disabled="true"{% else %} href="{{ item_link }}"{% endif %}>{{ item_description }}</a>
                                         {%- endif -%}
                                     </div>
                                 </div>
@@ -577,6 +643,17 @@
     "name": "t:sections.brand.name",
     "class": "sections-brand-slider",
     "settings": [
+    {
+        "type": "header",
+        "content": "Metaobject Content"
+    },
+    {
+        "type": "checkbox",
+        "id": "use_metaobject_brands",
+        "label": "Use metaobject brands",
+        "default": false,
+        "info": "Enable to render brands from metaobject (type: brand_slider). Uses 'brands' field containing content_block items."
+    },
     {
         "type": "header",
         "content": "t:settings_schema.general.name"
