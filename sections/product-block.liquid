@@ -31,8 +31,8 @@
 
     assign container = section.settings.container
     
-    if use_metaobject_products and metaobject_product_block.button_collection != blank
-      assign collection = metaobject_product_block.button_collection.value
+    if use_metaobject_products and metaobject_product_block.collection != blank
+      assign collection = metaobject_product_block.collection.value
     else
       assign collection = section.settings.product_block_collection
     endif
