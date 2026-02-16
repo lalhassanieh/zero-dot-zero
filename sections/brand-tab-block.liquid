@@ -1,4 +1,4 @@
-{% if section.blocks.size > 0 %}
+{% if section.blocks.size > 0 or section.settings.use_metaobject_tabs %}
   <link
     rel="stylesheet"
     href="{{ 'component-brand-tab-block.css' | asset_url }}"
@@ -6,6 +6,36 @@
     onload="this.media='all'"
   >
   <noscript>{{ 'component-brand-tab-block.css' | asset_url | stylesheet_tag }}</noscript>
+
+  {%- comment -%} Metaobject content loading {%- endcomment -%}
+  {%- assign page_content_source = blank -%}
+  {%- assign all_blocks = blank -%}
+  {%- assign metaobject_tabs = blank -%}
+  {%- assign use_metaobject_tabs = false -%}
+
+  {%- if template.name == 'index' -%}
+    {%- assign page_content_source = shop.metafields.custom.homepage_content.value -%}
+  {%- elsif page != blank -%}
+    {%- assign page_content_source = page.metafields.custom.page_content.value -%}
+  {%- endif -%}
+
+  {%- if page_content_source != blank and page_content_source.blocks != blank -%}
+    {%- assign all_blocks = page_content_source.blocks.value -%}
+  {%- endif -%}
+
+  {%- comment -%} Find matching multitab_image metaobject {%- endcomment -%}
+  {%- if section.settings.use_metaobject_tabs and section.settings.multitab_id != blank and all_blocks != blank -%}
+    {%- for meta_block in all_blocks -%}
+      {%- assign block_type = meta_block.type.value | default: meta_block.type -%}
+      {%- if block_type == 'multitab_image' and meta_block.multitab_id == section.settings.multitab_id -%}
+        {%- if meta_block.tabs != blank -%}
+          {%- assign metaobject_tabs = meta_block.tabs.value -%}
+          {%- assign use_metaobject_tabs = true -%}
+        {%- endif -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
 
   {%- assign numer_lg = section.settings.brand_item_limit -%}
   <div
@@ -53,16 +83,17 @@
           </div>
         {% endif %}
         <brand-tab class="brand__custom--tab">
-          {% case section.blocks.size %}
-            {% when 0 %}
-
-            {% when 1 %}
-              {% for block in section.blocks %}
-                {% if block.settings.title != blank %}
+          {%- comment -%} Render tabs from metaobject or fallback to blocks {%- endcomment -%}
+          {% if use_metaobject_tabs and metaobject_tabs != blank %}
+            {%- comment -%} Metaobject tabs rendering {%- endcomment -%}
+            {% assign tabs_size = metaobject_tabs | size %}
+            {% if tabs_size == 1 %}
+              {% for tab_item in metaobject_tabs %}
+                {% if tab_item.title != blank %}
                   <ul class="tab-panel tab-title disable-srollbar{% if section.settings.title_tab_style == 'style_02' %} title_style_02{% endif %}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
                     <li class="active">
-                      <a tab-title-action href="javascript:void(0)" data-target="#block-{{block.id}}">
-                        {{- block.settings.title -}}
+                      <a tab-title-action href="javascript:void(0)" data-target="#tab-{{ forloop.index }}">
+                        {{- tab_item.title -}}
                       </a>
                     </li>
                   </ul>
@@ -70,70 +101,65 @@
               {% endfor %}
             {% else %}
               <ul class="tab-panel tab-title disable-srollbar{% if section.settings.title_tab_style == 'style_02' %} title_style_02{% endif %}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
-                {% for block in section.blocks %}
-                  {% if block.settings.title != blank %}
-                    <li
-                      {% if forloop.first %}
-                        class="active"
-                      {% endif %}
-                    >
-                      <a tab-title-action href="javascript:void(0)" data-target="#block-{{block.id}}">
-                        {{- block.settings.title -}}
+                {% for tab_item in metaobject_tabs %}
+                  {% if tab_item.title != blank %}
+                    <li {% if forloop.first %}class="active"{% endif %}>
+                      <a tab-title-action href="javascript:void(0)" data-target="#tab-{{ forloop.index }}">
+                        {{- tab_item.title -}}
                       </a>
                     </li>
                   {% endif %}
                 {% endfor %}
               </ul>
-          {% endcase %}
+            {% endif %}
+          {% else %}
+            {%- comment -%} Fallback to blocks {%- endcomment -%}
+            {% case section.blocks.size %}
+              {% when 0 %}
+
+              {% when 1 %}
+                {% for block in section.blocks %}
+                  {% if block.settings.title != blank %}
+                    <ul class="tab-panel tab-title disable-srollbar{% if section.settings.title_tab_style == 'style_02' %} title_style_02{% endif %}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
+                      <li class="active">
+                        <a tab-title-action href="javascript:void(0)" data-target="#block-{{block.id}}">
+                          {{- block.settings.title -}}
+                        </a>
+                      </li>
+                    </ul>
+                  {% endif %}
+                {% endfor %}
+              {% else %}
+                <ul class="tab-panel tab-title disable-srollbar{% if section.settings.title_tab_style == 'style_02' %} title_style_02{% endif %}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
+                  {% for block in section.blocks %}
+                    {% if block.settings.title != blank %}
+                      <li {% if forloop.first %}class="active"{% endif %}>
+                        <a tab-title-action href="javascript:void(0)" data-target="#block-{{block.id}}">
+                          {{- block.settings.title -}}
+                        </a>
+                      </li>
+                    {% endif %}
+                  {% endfor %}
+                </ul>
+            {% endcase %}
+          {% endif %}
           <div class="tab-panel-content test4">
-            {% for block in section.blocks %}
-              {%- liquid
-                assign link_size = block.settings.menu.links | size
-                assign class_btn = ''
-                if link_size <= 6
-                  assign class_btn = 'hidden'
-                else
-                  if link_size <= 9
-                    assign class_btn = 'hidden-md'
-                  elsif link_size <= numer_lg
-                    assign class_btn = 'hidden-lg'
-                  endif
-                endif
-              -%}
-              <div
-                class="tab-content--block {% if forloop.first %}active{% endif %} text-center"
-                id="block-{{block.id}}"
-              >
+            {%- comment -%} Render tab content from metaobject or fallback to blocks {%- endcomment -%}
+            {% if use_metaobject_tabs and metaobject_tabs != blank %}
+              {%- comment -%} Metaobject tab content rendering {%- endcomment -%}
+              {% for tab_item in metaobject_tabs %}
+                {%- assign tab_collection = tab_item.collection.value -%}
                 <div
-                  class="halo-row column-{{ section.settings.brand_rows }} sm-column-2 md-column-3"
-                  style="--items-grid-gap-style: {{ block.settings.items_grid_gap | prepend: '-' | append: 'px' }}"
+                  class="tab-content--block {% if forloop.first %}active{% endif %} text-center"
+                  id="tab-{{ forloop.index }}"
                 >
-                  {% assign results_count = 0 %}
-
-                  {% for link in block.settings.menu.links %}
-                    {%- liquid
-                      # Get collection handle from URL
-                      assign collection_handle = link.url | split: '/collections/' | last
-                      assign collection = collections[collection_handle]
-
-                      assign class_hidden = ''
-                      if forloop.index > 6
-                        assign class_hidden = class_hidden | append: 'hidden-sm'
-                      endif
-                      if forloop.index > 9
-                        assign class_hidden = class_hidden | append: ' hidden-md'
-                      endif
-                      if forloop.index > numer_lg
-                        assign class_hidden = class_hidden | append: ' hidden-lg'
-                      endif
-                      assign results_count = results_count | plus: 1
-                    -%}
-
-                    {% if collection != blank %}
-                      <div
-                        class="products-grid-section"
-                      >
-                        {% for product in collection.products limit: 8 %}
+                  <div
+                    class="halo-row column-{{ section.settings.brand_rows }} sm-column-2 md-column-3"
+                    style="--items-grid-gap-style: {{ section.settings.items_grid_gap | default: 7.5 | prepend: '-' | append: 'px' }}"
+                  >
+                    {% if tab_collection != blank %}
+                      <div class="products-grid-section">
+                        {% for product in tab_collection.products limit: 8 %}
                           <div class="product slider__slide grid__item">
                             <div class="product-item">
                               <div class="card">
@@ -155,28 +181,101 @@
                         {% endfor %}
                       </div>
                     {% endif %}
-                  {% endfor %}
+                  </div>
                 </div>
-                {%- if section.settings.brand_button_text != blank
-                  or brand_button_text_less != blank
-                  or section.settings.brand_button_icon != blank
+              {% endfor %}
+            {% else %}
+              {%- comment -%} Fallback to blocks {%- endcomment -%}
+              {% for block in section.blocks %}
+                {%- liquid
+                  assign link_size = block.settings.menu.links | size
+                  assign class_btn = ''
+                  if link_size <= 6
+                    assign class_btn = 'hidden'
+                  else
+                    if link_size <= 9
+                      assign class_btn = 'hidden-md'
+                    elsif link_size <= numer_lg
+                      assign class_btn = 'hidden-lg'
+                    endif
+                  endif
                 -%}
-                  <button
-                    type="button"
-                    aria-label="{% if section.settings.brand_button_text != blank %}{{ section.settings.brand_button_text | split: '|' | first }}{% else %}{{ 'general.button_load_more.default' | t }}{% endif %}"
-                    class="btn button {{ class_btn }}{% if results_count <= numer_lg %} hidden-desktop{% endif %}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}"
-                    data-load-more-block
-                    data-buttonMore="{{ section.settings.brand_button_text }}"
-                    data-buttonLess="{{ section.settings.brand_button_text_less }}"
-                    data-rowlg="{{numer_lg}}"
-                    data-results="{{ results_count }}"
+                <div
+                  class="tab-content--block {% if forloop.first %}active{% endif %} text-center"
+                  id="block-{{block.id}}"
+                >
+                  <div
+                    class="halo-row column-{{ section.settings.brand_rows }} sm-column-2 md-column-3"
+                    style="--items-grid-gap-style: {{ block.settings.items_grid_gap | prepend: '-' | append: 'px' }}"
                   >
-                    {{ section.settings.brand_button_icon }}
-                    <span>{{ section.settings.brand_button_text }}</span>
-                  </button>
-                {%- endif -%}
-              </div>
-            {% endfor %}
+                    {% assign results_count = 0 %}
+
+                    {% for link in block.settings.menu.links %}
+                      {%- liquid
+                        # Get collection handle from URL
+                        assign collection_handle = link.url | split: '/collections/' | last
+                        assign collection = collections[collection_handle]
+
+                        assign class_hidden = ''
+                        if forloop.index > 6
+                          assign class_hidden = class_hidden | append: 'hidden-sm'
+                        endif
+                        if forloop.index > 9
+                          assign class_hidden = class_hidden | append: ' hidden-md'
+                        endif
+                        if forloop.index > numer_lg
+                          assign class_hidden = class_hidden | append: ' hidden-lg'
+                        endif
+                        assign results_count = results_count | plus: 1
+                      -%}
+
+                      {% if collection != blank %}
+                        <div class="products-grid-section">
+                          {% for product in collection.products limit: 8 %}
+                            <div class="product slider__slide grid__item">
+                              <div class="product-item">
+                                <div class="card">
+                                  <div class="card-product">
+                                    {% render 'product-grid-layout',
+                                      product_card_product: product,
+                                      media_size: section.settings.image_ratio,
+                                      portrait_aspect_ratio: section.settings.portrait_aspect_ratio,
+                                      complementary_product_button_atc: true,
+                                      serial: forloop.index,
+                                      sectionId: section.id,
+                                      show_list: true,
+                                      loading: true
+                                    %}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          {% endfor %}
+                        </div>
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                  {%- if section.settings.brand_button_text != blank
+                    or section.settings.brand_button_text_less != blank
+                    or section.settings.brand_button_icon != blank
+                  -%}
+                    <button
+                      type="button"
+                      aria-label="{% if section.settings.brand_button_text != blank %}{{ section.settings.brand_button_text | split: '|' | first }}{% else %}{{ 'general.button_load_more.default' | t }}{% endif %}"
+                      class="btn button {{ class_btn }}{% if results_count <= numer_lg %} hidden-desktop{% endif %}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}"
+                      data-load-more-block
+                      data-buttonMore="{{ section.settings.brand_button_text }}"
+                      data-buttonLess="{{ section.settings.brand_button_text_less }}"
+                      data-rowlg="{{numer_lg}}"
+                      data-results="{{ results_count }}"
+                    >
+                      {{ section.settings.brand_button_icon }}
+                      <span>{{ section.settings.brand_button_text }}</span>
+                    </button>
+                  {%- endif -%}
+                </div>
+              {% endfor %}
+            {% endif %}
           </div>
         </brand-tab>
       </div>
@@ -430,6 +529,23 @@
   "name": "t:sections.brand_tab.name",
   "class": "sections-brand-tab-block",
   "settings": [
+    {
+      "type": "header",
+      "content": "Metaobject Content"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_metaobject_tabs",
+      "label": "Use metaobject tabs",
+      "default": false,
+      "info": "Enable to render tabs from metaobject (type: multitab_image) instead of blocks"
+    },
+    {
+      "type": "text",
+      "id": "multitab_id",
+      "label": "Multitab ID",
+      "info": "Must match 'multitab_id' field in metaobject (type: multitab_image). Tabs will render from the tabs list containing tab_item entries with Title and Collection."
+    },
     {
       "type": "header",
       "content": "t:settings_schema.general.name"
@@ -929,6 +1045,14 @@
       "name": "t:sections.brand_tab.blocks.tab.name",
       "settings": [
         {
+          "type": "header",
+          "content": "Fallback Settings"
+        },
+        {
+          "type": "paragraph",
+          "content": "These settings are used when metaobject tabs are disabled. Enable 'Use metaobject tabs' in section settings to render from metaobject instead."
+        },
+        {
           "type": "text",
           "id": "title",
           "label": "t:sections.product_block.settings.general.label__6"
@@ -937,7 +1061,7 @@
           "type": "link_list",
           "id": "menu",
           "label": "t:sections.mobile_menu.settings.general.label__11",
-          "info": "t:sections.brand_tab.blocks.tab.info"
+          "info": "Links to collections for product rendering."
         },
         {
           "type": "header",
