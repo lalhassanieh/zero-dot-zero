@@ -1169,6 +1169,7 @@
       "type": "featured-blog",
       "name": "t:sections.featured_blog.presets.name",
       "settings": {
+        "use_metaobject_blog": true,
         "container": "1770",
         "padding_full_width": 0,
         "mg_minus_desktop": 0,
