@@ -1610,6 +1610,7 @@
       "type": "product-block",
       "name": "t:sections.product_block.presets.name",
       "settings": {
+        "use_metaobject_products": true,
         "container": "1770",
         "padding_full_width": 0,
         "disable_padding_content": false,
@@ -2007,6 +2008,7 @@
       "disabled": true,
       "name": "t:sections.product_block.presets.name",
       "settings": {
+        "use_metaobject_products": false,
         "container": "1770",
         "padding_full_width": 0,
         "disable_padding_content": false,
@@ -2215,6 +2217,7 @@
         "ai_gen_block_324eef5_QY6Udr": {
           "type": "ai_gen_block_324eef5",
           "settings": {
+            "use_metaobject_icons": false,
             "icon_1": "shopify://shop_images/no_alcohol.svg",
             "title_1": "0.0% Alcohol",
             "icon_2": "shopify://shop_images/award-quality-svgrepo-com_1.svg",
