@@ -204,7 +204,7 @@
         <div class="recipes-blog-section {% if section.settings.blog_posts != blank or use_metaobject_blog %}halo-row{% else %}halo-row-placeholder{% endif %} column-{{ section.settings.blog_results_per_row }}{% if section.settings.post_limit == 2 %} disable_dots_tablet{% endif %}" data-rows="{{ section.settings.blog_results_per_row }}" data-blogs-slider{% if enable_autoplay %} data-autoplay="true"{% endif %} data-autoplay-speed="{{ autoplay_speed }}" style="--row-distance-style: {{ section.settings.item_distance | prepend: '-' | append: 'px' }};">
             {%- comment -%} Render from metaobject or fallback to blog picker {%- endcomment -%}
             {%- if use_metaobject_blog and metaobject_blog_posts != blank -%}
-                {%- comment -%} Metaobject blog posts rendering {%- endcomment -%}
+                {%- comment -%} Metaobject blog posts rendering - limited by post_limit setting {%- endcomment -%}
                 {%- for article in metaobject_blog_posts limit: section.settings.post_limit -%}
                 <div class="halo-item" id="block-{{article.id}}" style="--item-distance-style: {{ section.settings.item_distance | append: 'px' }};">
                     {% render 'article-card-featured',
@@ -231,7 +231,7 @@
             {%- else -%}
                 {%- comment -%} Fallback to blog picker {%- endcomment -%}
                 {%- assign blog = blogs[section.settings.blog_posts] -%}
-                {%- if section.settings.blog_posts != blank and section.settings.blog_posts.articles_count > 0 -%}
+                {%- if section.settings.blog_posts != blank and blog.articles_count > 0 -%}
                     {%- for article in blog.articles limit: section.settings.post_limit -%}
                     <div class="halo-item" id="block-{{article.id}}" style="--item-distance-style: {{ section.settings.item_distance | append: 'px' }};">
                         {% render 'article-card-featured',
@@ -290,7 +290,7 @@
         "id": "use_metaobject_blog",
         "label": "Use metaobject blog posts",
         "default": false,
-        "info": "Enable to render blog posts from metaobject (type: blog_posts_section) instead of blog picker"
+        "info": "Enable to render blog posts from metaobject (type: blog_posts_section). Number of posts is controlled by Post Limit setting."
     },
     {
         "type": "header",
