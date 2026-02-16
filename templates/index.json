@@ -1610,7 +1610,7 @@
       "type": "product-block",
       "name": "t:sections.product_block.presets.name",
       "settings": {
-        "use_metaobject_products": false,
+        "use_metaobject_products": true,
         "container": "1770",
         "padding_full_width": 0,
         "disable_padding_content": false,
