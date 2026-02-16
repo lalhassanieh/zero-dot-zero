@@ -206,7 +206,7 @@
         <div class="recipes-blog-section {% if section.settings.blog_posts != blank or use_metaobject_blog %}halo-row{% else %}halo-row-placeholder{% endif %} column-{{ section.settings.blog_results_per_row }}{% if section.settings.post_limit == 2 %} disable_dots_tablet{% endif %}" data-rows="{{ section.settings.blog_results_per_row }}" data-blogs-slider{% if enable_autoplay %} data-autoplay="true"{% endif %} data-autoplay-speed="{{ autoplay_speed }}" style="--row-distance-style: {{ section.settings.item_distance | prepend: '-' | append: 'px' }};">
             {%- comment -%} Render from metaobject or fallback to blog picker {%- endcomment -%}
             {%- if use_metaobject_blog and metaobject_blog_posts != blank -%}
-                {%- comment -%} Metaobject blog posts rendering - limited by number_of_posts field from metaobject {%- endcomment -%}
+                {%- comment -%} Metaobject blog posts rendering - limited by number_of_posts field {%- endcomment -%}
                 {%- for article in metaobject_blog_posts limit: metaobject_post_limit -%}
                 <div class="halo-item" id="block-{{article.id}}" style="--item-distance-style: {{ section.settings.item_distance | append: 'px' }};">
                     {% render 'article-card-featured',
@@ -615,7 +615,8 @@
     {
         "id": "blog_posts",
         "type": "blog",
-        "label": "t:sections.featured_blog.settings.blog.blog_posts"
+        "label": "t:sections.featured_blog.settings.blog.blog_posts",
+        "info": "Ignored when 'Use metaobject blog posts' is enabled."
     },
     {
         "type": "select",
@@ -653,9 +654,10 @@
         "id": "post_limit",
         "label": "t:sections.featured_blog.settings.blog.post_limit",
         "min": 2,
-        "max": 9,
+        "max": 50,
         "step": 1,
-        "default": 3
+        "default": 3,
+        "info": "Ignored when 'Use metaobject blog posts' is enabled."
     },
     {
         "type": "range",
