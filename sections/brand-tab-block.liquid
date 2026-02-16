@@ -9,6 +9,7 @@
 
   {%- comment -%} Metaobject content loading {%- endcomment -%}
   {%- assign page_content_source = blank -%}
+  {%- assign all_blocks = blank -%}
   {%- assign metaobject_tabs = blank -%}
   {%- assign use_metaobject_tabs = false -%}
 
@@ -18,28 +19,20 @@
     {%- assign page_content_source = page.metafields.custom.page_content.value -%}
   {%- endif -%}
 
-  {%- comment -%} Access multitab_image directly from page_content {%- endcomment -%}
-  {%- if section.settings.use_metaobject_tabs and section.settings.multitab_id != blank and page_content_source != blank -%}
-    {%- if page_content_source.multitab_image != blank -%}
-      {%- assign multitab_entries = page_content_source.multitab_image.value -%}
-      {%- comment -%} Check if it's a single entry or list {%- endcomment -%}
-      {%- if multitab_entries.multitab_id != blank -%}
-        {%- comment -%} Single entry {%- endcomment -%}
-        {%- if multitab_entries.multitab_id == section.settings.multitab_id and multitab_entries.tabs != blank -%}
-          {%- assign metaobject_tabs = multitab_entries.tabs.value -%}
-          {%- assign use_metaobject_tabs = true -%}
-        {%- endif -%}
-      {%- else -%}
-        {%- comment -%} List of entries {%- endcomment -%}
-        {%- for multitab_entry in multitab_entries -%}
-          {%- if multitab_entry.multitab_id == section.settings.multitab_id and multitab_entry.tabs != blank -%}
-            {%- assign metaobject_tabs = multitab_entry.tabs.value -%}
-            {%- assign use_metaobject_tabs = true -%}
-            {%- break -%}
-          {%- endif -%}
-        {%- endfor -%}
+  {%- if page_content_source != blank and page_content_source.blocks != blank -%}
+    {%- assign all_blocks = page_content_source.blocks.value -%}
+  {%- endif -%}
+
+  {%- comment -%} Find Multitab Image in blocks list by multitab_id {%- endcomment -%}
+  {%- if section.settings.use_metaobject_tabs and section.settings.multitab_id != blank and all_blocks != blank -%}
+    {%- for block_item in all_blocks -%}
+      {%- comment -%} Check if this block has multitab_id field (indicating it's a Multitab Image type) {%- endcomment -%}
+      {%- if block_item.multitab_id == section.settings.multitab_id and block_item.tabs != blank -%}
+        {%- assign metaobject_tabs = block_item.tabs.value -%}
+        {%- assign use_metaobject_tabs = true -%}
+        {%- break -%}
       {%- endif -%}
-    {%- endif -%}
+    {%- endfor -%}
   {%- endif -%}
 
   {%- assign numer_lg = section.settings.brand_item_limit -%}
@@ -549,7 +542,7 @@
       "type": "text",
       "id": "multitab_id",
       "label": "Multitab ID",
-      "info": "Must match 'multitab_id' field in page_content.multitab_image. Tabs render from tab_item entries with Title and Collection."
+      "info": "Must match 'Multitab Id' field in the Multitab Image entry (e.g., 'home-multitab-1'). Tabs render from tab_item entries with Title and Collection."
     },
     {
       "type": "header",
