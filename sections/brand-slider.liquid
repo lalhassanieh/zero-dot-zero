@@ -537,10 +537,20 @@
                                     {%- for item in brand_items -%}
                                         {%- comment -%} Get values based on source {%- endcomment -%}
                                         {%- if is_metaobject -%}
-                                            {%- assign item_image = item.image -%}
+                                            {%- assign item_image = item.image.value -%}
                                             {%- assign item_title = item.title -%}
                                             {%- assign item_description = item.description -%}
-                                            {%- assign item_link = item.button_url | default: item.button_page | default: item.button_product | default: item.button_collection -%}
+                                            {%- if item.button_url != blank -%}
+                                                {%- assign item_link = item.button_url -%}
+                                            {%- elsif item.button_page != blank -%}
+                                                {%- assign item_link = item.button_page.value.url -%}
+                                            {%- elsif item.button_product != blank -%}
+                                                {%- assign item_link = item.button_product.value.url -%}
+                                            {%- elsif item.button_collection != blank -%}
+                                                {%- assign item_link = item.button_collection.value.url -%}
+                                            {%- else -%}
+                                                {%- assign item_link = blank -%}
+                                            {%- endif -%}
                                             {%- assign item_id = item.id -%}
                                         {%- else -%}
                                             {%- assign item_image = item.settings.image -%}
@@ -584,10 +594,20 @@
                             {%- for item in brand_items -%}
                                 {%- comment -%} Get values based on source {%- endcomment -%}
                                 {%- if is_metaobject -%}
-                                    {%- assign item_image = item.image -%}
+                                    {%- assign item_image = item.image.value -%}
                                     {%- assign item_title = item.title -%}
                                     {%- assign item_description = item.description -%}
-                                    {%- assign item_link = item.button_url | default: item.button_page | default: item.button_product | default: item.button_collection -%}
+                                    {%- if item.button_url != blank -%}
+                                        {%- assign item_link = item.button_url -%}
+                                    {%- elsif item.button_page != blank -%}
+                                        {%- assign item_link = item.button_page.value.url -%}
+                                    {%- elsif item.button_product != blank -%}
+                                        {%- assign item_link = item.button_product.value.url -%}
+                                    {%- elsif item.button_collection != blank -%}
+                                        {%- assign item_link = item.button_collection.value.url -%}
+                                    {%- else -%}
+                                        {%- assign item_link = blank -%}
+                                    {%- endif -%}
                                     {%- assign item_id = item.id -%}
                                 {%- else -%}
                                     {%- assign item_image = item.settings.image -%}
