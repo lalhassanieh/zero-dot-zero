@@ -1571,8 +1571,8 @@
         "heading_rXiUjG": {
           "type": "heading",
           "settings": {
-            "use_metaobject_content": false,
-            "block_id": "",
+            "use_metaobject_content": true,
+            "block_id": "rich-text-3",
             "heading": "Top Picks",
             "heading_size": 35,
             "heading_size_mb": 20,
