@@ -935,6 +935,8 @@
       "custom_css": [],
       "name": "t:sections.brand_tab.presets.name",
       "settings": {
+        "use_metaobject_tabs": true,
+        "multitab_id": "home-Multitab-1",
         "container": "1170",
         "padding_full_width": 0,
         "display_brand_border": true,
