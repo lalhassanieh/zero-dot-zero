@@ -1476,7 +1476,7 @@
             "color_text_hover": "#3e8cc4",
             "description": "",
             "color_des": "#3c3c3c",
-            "link": ""
+            "link": "shopify://collections/french-bloom"
           }
         }
       },
@@ -1489,6 +1489,7 @@
       ],
       "name": "t:sections.brand.presets.name",
       "settings": {
+        "use_metaobject_brands": true,
         "container": "1770",
         "padding_full_width": 0,
         "brands_block_style": "style_1",
