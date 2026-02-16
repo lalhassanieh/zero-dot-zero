@@ -5,6 +5,7 @@
 {%- assign page_content_source = blank -%}
 {%- assign all_blocks = blank -%}
 {%- assign metaobject_blog_posts = blank -%}
+{%- assign metaobject_post_limit = blank -%}
 {%- assign use_metaobject_blog = false -%}
 
 {%- if template.name == 'index' -%}
@@ -22,6 +23,7 @@
   {%- for block_item in all_blocks -%}
     {%- if block_item.blog_posts != blank -%}
       {%- assign metaobject_blog_posts = block_item.blog_posts.value -%}
+      {%- assign metaobject_post_limit = block_item.number_of_posts -%}
       {%- assign use_metaobject_blog = true -%}
       {%- break -%}
     {%- endif -%}
@@ -204,8 +206,8 @@
         <div class="recipes-blog-section {% if section.settings.blog_posts != blank or use_metaobject_blog %}halo-row{% else %}halo-row-placeholder{% endif %} column-{{ section.settings.blog_results_per_row }}{% if section.settings.post_limit == 2 %} disable_dots_tablet{% endif %}" data-rows="{{ section.settings.blog_results_per_row }}" data-blogs-slider{% if enable_autoplay %} data-autoplay="true"{% endif %} data-autoplay-speed="{{ autoplay_speed }}" style="--row-distance-style: {{ section.settings.item_distance | prepend: '-' | append: 'px' }};">
             {%- comment -%} Render from metaobject or fallback to blog picker {%- endcomment -%}
             {%- if use_metaobject_blog and metaobject_blog_posts != blank -%}
-                {%- comment -%} Metaobject blog posts rendering - limited by post_limit setting {%- endcomment -%}
-                {%- for article in metaobject_blog_posts limit: section.settings.post_limit -%}
+                {%- comment -%} Metaobject blog posts rendering - limited by number_of_posts field from metaobject {%- endcomment -%}
+                {%- for article in metaobject_blog_posts limit: metaobject_post_limit -%}
                 <div class="halo-item" id="block-{{article.id}}" style="--item-distance-style: {{ section.settings.item_distance | append: 'px' }};">
                     {% render 'article-card-featured',
                         article: article,
@@ -290,7 +292,7 @@
         "id": "use_metaobject_blog",
         "label": "Use metaobject blog posts",
         "default": false,
-        "info": "Enable to render blog posts from metaobject (type: blog_posts_section). Number of posts is controlled by Post Limit setting."
+        "info": "Enable to render blog posts from metaobject (type: blog_posts_section). Number of posts is controlled by 'number_of_posts' field in metaobject."
     },
     {
         "type": "header",
