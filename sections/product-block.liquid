@@ -1,9 +1,41 @@
+{%- comment -%} Metaobject content loading {%- endcomment -%}
+{%- assign page_content_source = blank -%}
+{%- assign all_blocks = blank -%}
+{%- assign metaobject_product_block = blank -%}
+{%- assign use_metaobject_products = false -%}
+
+{%- if template.name == 'index' -%}
+  {%- assign page_content_source = shop.metafields.custom.homepage_content.value -%}
+{%- elsif page != blank -%}
+  {%- assign page_content_source = page.metafields.custom.page_content.value -%}
+{%- endif -%}
+
+{%- if page_content_source != blank and page_content_source.blocks != blank -%}
+  {%- assign all_blocks = page_content_source.blocks.value -%}
+{%- endif -%}
+
+{%- comment -%} Find product_block in blocks list {%- endcomment -%}
+{%- if section.settings.use_metaobject_products and all_blocks != blank -%}
+  {%- for block_item in all_blocks -%}
+    {%- if block_item.system.type == 'product_block' -%}
+      {%- assign metaobject_product_block = block_item -%}
+      {%- assign use_metaobject_products = true -%}
+      {%- break -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+
 {%- liquid
     assign as_grid_gap = section.settings.grid_gap
     assign grid_gap = section.settings.grid_gap | times: 0.5 | append: 'px'
 
     assign container = section.settings.container
-    assign collection = section.settings.product_block_collection
+    
+    if use_metaobject_products and metaobject_product_block.collection != blank
+      assign collection = metaobject_product_block.collection.value
+    else
+      assign collection = section.settings.product_block_collection
+    endif
     assign limit = section.settings.product_block_limit
     assign layout = section.settings.product_block_layout
     assign infinite_scroll = section.settings.product_block_infinite_scroll
@@ -756,8 +788,12 @@
                         {%- if infinite_scroll and collections[collection].handle != '' and layout == 'grid' -%}
                             {%- assign product_total = collections[collection].all_products_count -%}
                             {%- if product_total > product_limit -%}
+                                {%- assign show_more_button_text = section.settings.button_text -%}
+                                {%- if use_metaobject_products and metaobject_product_block.button_label != blank -%}
+                                  {%- assign show_more_button_text = metaobject_product_block.button_label -%}
+                                {%- endif -%}
                                 <div class="product-infinite-scroll text-center {% if swipe %}hidden-mobile{% endif %}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" data-product-infinite>
-                                    <button type="button" class="button button--secondary" data-collection="{{ collection.handle }}" data-limit="{{ product_limit }}" data-swipe="{{ swipe }}" data-page="2" data-total="{{ product_total }}" data-image-ratio="{{ image_ratio }}" sectionId="{{ section.id }}"{% if countdown != blank %} hasCountdown="true"{% endif %}{% if product_total <= product_limit %} disabled="disabled"{% endif %}>{{ section.settings.button_icon }}<span>{{ section.settings.button_text }}</span></button>
+                                    <button type="button" class="button button--secondary" data-collection="{{ collection.handle }}" data-limit="{{ product_limit }}" data-swipe="{{ swipe }}" data-page="2" data-total="{{ product_total }}" data-image-ratio="{{ image_ratio }}" sectionId="{{ section.id }}"{% if countdown != blank %} hasCountdown="true"{% endif %}{% if product_total <= product_limit %} disabled="disabled"{% endif %}>{{ section.settings.button_icon }}<span>{{ show_more_button_text }}</span></button>
                                 </div>
                             {%- endif -%}
                         {%- endif -%}
@@ -823,6 +859,12 @@
     {
         "type": "header",
         "content": "t:settings_schema.general.name"
+    },
+    {
+        "type": "checkbox",
+        "id": "use_metaobject_products",
+        "label": "Use metaobject products",
+        "default": false
     },
     {
         "type": "select",
