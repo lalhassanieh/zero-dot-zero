@@ -32,9 +32,11 @@
     assign container = section.settings.container
     
     if use_metaobject_products and metaobject_product_block.collection != blank
-      assign collection = metaobject_product_block.collection.value
+      assign collection_obj = metaobject_product_block.collection.value
+      assign collection = collection_obj.handle
     else
       assign collection = section.settings.product_block_collection
+      assign collection_obj = collections[collection]
     endif
     assign limit = section.settings.product_block_limit
     assign layout = section.settings.product_block_layout
@@ -47,11 +49,11 @@
     assign swipe_on_mobile = section.settings.product_block_swipe_on_mobile
 
     assign products_to_display = 0
-    if collections[collection].handle != ''
-        if collections[collection].all_products_count > limit
+    if collection_obj.handle != ''
+        if collection_obj.all_products_count > limit
             assign products_to_display = limit
         else
-            assign products_to_display = collections[collection].all_products_count
+            assign products_to_display = collection_obj.all_products_count
         endif 
     else
         assign products_to_display = limit
@@ -785,8 +787,8 @@
                                 </div>
                             </div>
                         {%- endif -%}
-                        {%- if infinite_scroll and collections[collection].handle != '' and layout == 'grid' -%}
-                            {%- assign product_total = collections[collection].all_products_count -%}
+                        {%- if infinite_scroll and collection_obj.handle != '' and layout == 'grid' -%}
+                            {%- assign product_total = collection_obj.all_products_count -%}
                             {%- if product_total > product_limit -%}
                                 {%- assign show_more_button_text = section.settings.button_text -%}
                                 {%- if use_metaobject_products and metaobject_product_block.button_label != blank -%}
@@ -805,7 +807,7 @@
                             </div>
                         {%- endif -%}
                         {%- if section.settings.product_block_counter_number -%}
-                            {%- assign product_total = collections[collection].all_products_count -%}
+                            {%- assign product_total = collection_obj.all_products_count -%}
                             <div class="products-counter-number"> 
                                 <div class="counter"><span id="count-image">{{column}}</span>/{% if collection.products[0] != nil %}{% if product_total <= limit %}{{ product_total }}{% else %}{{limit}}{% endif %}{% else %}6{% endif %}
                              </div>
