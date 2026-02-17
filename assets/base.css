@@ -6693,7 +6693,7 @@ summary::-webkit-details-marker {
         .button.button-1:hover,
         .button.button--primary:hover,
         .button.button--primary:focus{
-            color: #ffffff;
+            color: #005339;
             background: var(--btn-1-bg-hover);
             border-color: #005339;
             background-origin: border-box;
