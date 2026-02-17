@@ -502,13 +502,13 @@
     .address-button{
         display: inline-block;
         width: calc(50% - 5px);
-        margin-right: 5px;
+        margin-inline-end: 5px;
         min-width: unset;
     }
 
     .address-button + .address-button{
-        margin-left: 5px;
-        margin-right: 0;
+        margin-inline-start: 5px;
+        margin-inline-end: 0;
     }
 
     .address-form{
