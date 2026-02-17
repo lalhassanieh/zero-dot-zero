@@ -422,3 +422,22 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
     display: inline-block;
 }
 
+.ar-h2[style*="--left:"] {
+  left: auto !important;              
+  right: var(--left) !important;          
+}
+
+.ar-h2 [style*="--left:"] {
+  left: auto !important;
+  right: var(--left) !important;
+}
+
+.ar-h2 h2 {
+  direction: rtl !important;
+  unicode-bidi: isolate-override !important;
+  text-align: right !important;
+}
+
+.ar-h2 h2.gp-g-heading-1 {
+  --ta: right !important;
+}
