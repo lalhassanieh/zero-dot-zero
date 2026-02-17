@@ -6720,13 +6720,13 @@ summary::-webkit-details-marker {
 
         .btn_1_br_outside .button.button-2:hover:after,
         .btn_1_br_outside .button.button--secondary:hover:after {
-           border: 1px solid var(--btn-2-border-hover);
+           border: 1px solid var(--btn-1-border-hover);
         }
         
         .button.button-2:hover svg,
         .button.button--secondary:hover svg,
         .button.button--secondary:focus svg{
-            fill: var(--btn-2-color-hover);
+            fill: var(--btn-1-color-hover);
         }
 
         .btn_2_br_outside .productView-action .button:hover:after {
