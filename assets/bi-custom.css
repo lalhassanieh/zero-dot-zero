@@ -1090,27 +1090,3 @@ padding: 50px 0;
 }
 
 
-/* Fix address buttons to show full text instead of truncating */
-.account-content [data-address] .address-button {
-    width: auto;
-    min-width: auto;
-    padding-left: 20px;
-    padding-right: 20px;
-    white-space: nowrap;
-    overflow: visible;
-    text-overflow: unset;
-}
-
-.account-content [data-address] {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.account-content [data-address] .address-content {
-    width: 100%;
-}
-
-.account-content [data-address] .address-button + .address-button {
-    margin-inline-start: 0;
-}
