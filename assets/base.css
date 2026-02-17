@@ -856,7 +856,7 @@ option.soldout {
     
     .button.button-1,
     .button.button--primary{
-        background: var(--btn-1-bg);
+        background: #005339;
         border-color: var(--btn-1-border);
         color: var(--btn-1-color);
         background-origin: border-box;
