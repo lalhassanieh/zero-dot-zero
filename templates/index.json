@@ -1833,7 +1833,7 @@
         "small_img_kktr3L": {
           "type": "smallImg",
           "settings": {
-            "use_metaobject_content": false,
+            "use_metaobject_content": true,
             "row_reverse": false,
             "image_width": "50",
             "image": "shopify://shop_images/About_us_section_620_726_c6df936b-6c7e-460d-befe-4d1f32ff510b.png",
