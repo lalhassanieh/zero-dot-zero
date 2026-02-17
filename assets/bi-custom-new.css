@@ -307,27 +307,3 @@
         margin-bottom: 30px;
     }
 }
-
-/* Address Button Styling */
-.address-button.button.button--secondary {
-    position: relative;
-    border-radius: 30px;
-    padding-inline-start: 25px !important;
-    padding-inline-end: 50px !important;
-}
-
-.address-button.button.button--secondary:after {
-    content: "";
-    background-image: url(/cdn/shop/files/button-icon.svg?v=1746020835);
-    background-repeat: no-repeat;
-    position: absolute;
-    inset-inline-end: 28px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 14px;
-    height: 17px;
-}
-
-.address-button.button.button--secondary:hover:after {
-    filter: brightness(0) invert(1);
-}
