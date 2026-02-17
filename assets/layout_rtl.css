@@ -1856,9 +1856,9 @@
 	}
 
 	body.layout_rtl .custom-cursor__inner .arrow:before {
-		left: auto;
-		right: 50%;
-    	transform: translate(50%);
+		left: 50%;
+		right: auto;
+    	transform: translateX(-50%);
 	}
 
 	body.layout_rtl .productView-stickyCart.style-1 .sticky-info {
@@ -2304,13 +2304,8 @@
 	}
 
 	body.layout_rtl .address-new > button {
-		margin-left: auto;
-		margin-right: 0;
-	}
-
-	body.layout_rtl .address-button+.address-button {
-		margin-left: 0;
-		margin-right: 5px;
+		margin-inline-start: auto;
+		margin-inline-end: 0;
 	}
 
 	.layout_rtl.password-template {
