@@ -421,3 +421,9 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
     unicode-bidi: embed;
     display: inline-block;
 }
+
+.ar-h2 {
+  direction: rtl;
+  unicode-bidi: embed;
+  text-align: right; 
+}
