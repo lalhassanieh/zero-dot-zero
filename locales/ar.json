@@ -1281,7 +1281,59 @@
         "separate_payments_label": "مشترياتك من أكثر من متجر. سيتم تحصيل المبلغ منك عبر %{separate_payments_link}.",
         "separate_payments_text": "دفعات منفصلة",
         "payments": "المدفوعات",
-        "add_payment_method": "إضافة طريقة دفع"
+        "add_payment_method": "إضافة طريقة دفع",
+        "apply_gift_card_button_label": "يتقدم",
+        "credit_card_vaulting_sign_in_banner_button_label": "تسجيل الدخول",
+        "delete_customer_mandate_modal_cancel": "يلغي",
+        "card_change_label": "يتغير",
+        "crypto_modal": {
+          "error": {
+            "close": "يغلق"
+          }
+        },
+        "paypal_label": "باي بال",
+        "klarna_label": "كلارنا",
+        "ideal_label": "مثالي",
+        "bank_picker_label": "بنك",
+        "blik_label": "بليك",
+        "twint_label": "توأم",
+        "swish_label": "حفيف",
+        "vipps_label": "فيبس",
+        "usdc_label": "مقاطعة الولايات المتحدة",
+        "pending_payment": {
+          "multibanco": {
+            "entity": "كيان",
+            "amount": "كمية"
+          }
+        },
+        "clear": "واضح",
+        "preview_not_available": {
+          "button": "نعم"
+        },
+        "saved_credit_card_actions": {
+          "edit": "يحرر",
+          "delete": "يمسح"
+        },
+        "saved_credit_cards_modal": {
+          "done": "منتهي",
+          "cancel": "يلغي"
+        },
+        "add_credit_card_modal": {
+          "save": "يحفظ",
+          "cancel": "يلغي"
+        },
+        "delete_credit_card_modal": {
+          "cancel": "يلغي",
+          "delete": "يمسح"
+        },
+        "edit_credit_card_modal": {
+          "done": "منتهي",
+          "cancel": "يلغي"
+        },
+        "order_edit_banner_items_added": {
+          "one": "تمت الإضافة"
+        },
+        "order_edit_banner_single_item_added": "تمت الإضافة"
       },
       "thank_you": {
         "order_updates_upcoming_step_prefix": "الخطوة التالية: ",
@@ -1717,7 +1769,8 @@
         "local_delivery": "خدمة التوصيل المحلية",
         "prime_not_available": {
           "default": "خدمة التوصيل السريع غير متاحة لطلبك. تم تحديث خيارات الشحن الخاصة بك."
-        }
+        },
+        "split_shipping_option_custom": "مخصص"
       },
       "order_summary": {
         "discount_has_been_removed": "تم إلغاء الخصم",
@@ -2115,7 +2168,10 @@
           "description": "هذه المنتجات لم تعد متوفرة وتمت إزالتها من سلة التسوق الخاصة بك.",
           "items_unavailable": "بعض المنتجات لم تعد متوفرة وتمت إزالتها من سلة التسوق الخاصة بك."
         },
-        "out_of_stock_in_context_label": "هذا المنتج غير متوفر في بلدك/منطقتك."
+        "out_of_stock_in_context_label": "هذا المنتج غير متوفر في بلدك/منطقتك.",
+        "price_column_header": "سعر",
+        "status_column_header": "حالة",
+        "remove": "يزيل"
       },
       "contextual_availability": {
         "title": {
@@ -2734,7 +2790,55 @@
         "region_label": "منطقة",
         "region_placeholder": "منطقة",
         "region_none": "لا شيء محدد",
-        "prefecture_label": "المحافظة"
+        "prefecture_label": "المحافظة",
+        "emirate_label": "إمارة",
+        "emirate_placeholder": "إمارة",
+        "phone_label": "هاتف",
+        "phone_placeholder": "هاتف"
+      },
+      "delivery_options": {
+        "free_total_label": "حر",
+        "ship": "سفينة",
+        "pick_up": "يلتقط"
+      },
+      "customer_account": {
+        "sign_in_link_label": "تسجيل الدخول",
+        "rollup_label": "حساب"
+      },
+      "localized_fields": {
+        "additional_information": {
+          "tax_credential_cl": "شبق",
+          "shipping_credential_cl": "شبق"
+        }
+      },
+      "tips": {
+        "no_tip_label": "لا أحد"
+      },
+      "subscriptions": {
+        "recurring_total_intervals": {
+          "day": {
+            "one": "يوم"
+          },
+          "week": {
+            "one": "أسبوع"
+          },
+          "month": {
+            "one": "شهر"
+          },
+          "year": {
+            "one": "سنة"
+          }
+        }
+      },
+      "throttle": {
+        "title": "طابور"
+      },
+      "pickup_point": {
+        "location_is_currently_closed": "مغلق",
+        "or": "أو",
+        "search_button": "يبحث",
+        "selector_tab_map": "رسم خريطة",
+        "selector_tab_list": "قائمة"
       }
     },
     "notices": {
@@ -2969,7 +3073,20 @@
       "email": "بريد إلكتروني",
       "password": "كلمة المرور",
       "password_confirmation": "تأكيد كلمة المرور",
-      "first_name": "الاسم الأول"
+      "first_name": "الاسم الأول",
+      "body": "جسم"
+    },
+    "addresses": {
+      "region": "منطقة",
+      "state": "ولاية",
+      "county": "مقاطعة"
+    },
+    "errors": {
+      "shop_404": {
+        "owner_ctas": {
+          "admin_link_text": "مسؤل"
+        }
+      }
     }
   },
   "customer_accounts": {
@@ -3352,7 +3469,22 @@
       "adjusted_total": "المجموع المعدل",
       "due_on_date": "تاريخ الاستحقاق {{date}}",
       "due_on_fulfillment": "مستحق الدفع عند الإنجاز",
-      "due_on_receipt": "مستحق الدفع عند الاستلام"
+      "due_on_receipt": "مستحق الدفع عند الاستلام",
+      "view_controls": {
+        "list": "قائمة"
+      },
+      "no_data": "لا أحد",
+      "not_applicable": "غير متوفر",
+      "paid_amount": "مدفوع",
+      "payment": {
+        "payment_type": {
+          "manual": "يدوي"
+        },
+        "emv_details": {
+          "auth": "المصادقة:",
+          "aid": "يساعد:"
+        }
+      }
     },
     "addresses": {
       "add_button": "إضافة عنوان",
@@ -3455,7 +3587,8 @@
       "view_details": "عرض التفاصيل",
       "company_location": "موقع الشركة",
       "search": "يبحث",
-      "skip_to_content": "انتقل إلى المحتوى"
+      "skip_to_content": "انتقل إلى المحتوى",
+      "orders_link_label": "طلبات"
     },
     "announcement_bar": {
       "expand_label": "توسيع شريط الإعلانات",
@@ -3479,7 +3612,12 @@
         "phone_number_help_text": "لا يمكن تعديل رقم الهاتف",
         "save": "يحفظ",
         "save_accessibility_label": "حفظ الملف الشخصي"
-      }
+      },
+      "verify_new_email_modal": {
+        "verify_button": "يؤكد",
+        "cancel_button": "يلغي"
+      },
+      "add_button": "يضيف"
     },
     "throttle": {
       "too_many_attempts": {
@@ -3702,7 +3840,8 @@
           "choose_billing_address_from_list_button_accessibility_label": "اختر عنوانًا للفواتير من القائمة",
           "missing_billing_address_error_message": "يرجى تحديد عنوان الفوترة",
           "default_checkbox": "قم بتعيينها كطريقة الدفع الافتراضية"
-        }
+        },
+        "button_title": "يضيف"
       },
       "three_d_secure": {
         "verification_failed": "لم يتم التحقق من عملية الدفع. حاول مرة أخرى أو استخدم طريقة دفع مختلفة."
@@ -3928,6 +4067,57 @@
           "invalid_email": "أدخل عنوان بريد إلكتروني صحيح",
           "invalid_code": "أدخل الرمز الصحيح المكون من 6 أرقام"
         }
+      }
+    },
+    "orders": {
+      "list_title": "طلبات",
+      "order_list": {
+        "column_headers": {
+          "order": "طلب",
+          "total": "المجموع"
+        },
+        "carousel": {
+          "next": "التالي"
+        },
+        "pagination": {
+          "next": "التالي",
+          "previous": "السابق"
+        },
+        "payment_status": {
+          "list_view": {
+            "paid": "مدفوع",
+            "due_without_date": "حق"
+          }
+        },
+        "sort_title": "نوع",
+        "filter_title": "فلتر",
+        "filter": {
+          "apply": "يتقدم",
+          "date": {
+            "today": "اليوم",
+            "custom": "مخصص"
+          }
+        }
+      },
+      "manage": "يدير"
+    },
+    "account_menu": {
+      "signed_out_state": {
+        "alternate_divider": "أو",
+        "email_field_label": "بريد إلكتروني",
+        "orders_button": "طلبات"
+      },
+      "signed_in_state": {
+        "orders_button": "طلبات"
+      },
+      "location_picker": {
+        "search_field_placeholder": "يبحث"
+      }
+    },
+    "intents": {
+      "subscription_replace_payment_method": {
+        "save_button": "يحفظ",
+        "close_button": "يغلق"
       }
     }
   }
