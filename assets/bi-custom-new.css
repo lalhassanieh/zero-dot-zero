@@ -24,9 +24,10 @@
 } 
 .contact-support-btn, 
  .button--secondary, .ai-banner-button-aajazafvwcu5wbnr2daigenblockdfb8083urbx48{
-position: relative;
+    position: relative;
     border-radius: 30px;
-    padding-left: 25px !important;
+    padding-inline-start: 25px !important;
+    padding-inline-end: 50px !important;
 }
 .contact-support-btn:after,
  .button--secondary:after, 
@@ -35,8 +36,9 @@ position: relative;
     background-image: url(/cdn/shop/files/button-icon.svg?v=1746020835);
     background-repeat: no-repeat;
     position: absolute;
-    right: 28px;
-    top: 13px;
+    inset-inline-end: 28px;
+    top: 50%;
+    transform: translateY(-50%);
     width: 14px;
     height: 17px;
 }
