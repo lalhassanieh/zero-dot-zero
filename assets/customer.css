@@ -514,6 +514,7 @@
     .address-form{
         margin: 52px 0 50px 0;
         font-size: var(--font-body-size);
+        text-align: start;
     }
 
     .address-form .address-title{
