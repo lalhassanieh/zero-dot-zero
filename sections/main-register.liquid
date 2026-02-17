@@ -37,12 +37,14 @@
                       {%- for field in form.errors -%}
                         <li>
                           {%- if field == 'form' -%}
-                            {{ form.errors.messages[field] }}
+                            {%- capture error_message -%}{{ form.errors.messages[field] }}{%- endcapture -%}
+                            {{ error_message | replace: '&lt;', '<' | replace: '&gt;', '>' | replace: '&quot;', '"' | replace: '&#39;', "'" }}
                           {%- else -%}
                             <a href="#RegisterForm-{{ field }}" class="link link-underline">
                               <span class="text">
                                 {{ form.errors.translated_fields[field] | capitalize }}
-                                {{ form.errors.messages[field] }}
+                                {%- capture field_error_message -%}{{ form.errors.messages[field] }}{%- endcapture -%}
+                                {{ field_error_message | replace: '&lt;', '<' | replace: '&gt;', '>' | replace: '&quot;', '"' | replace: '&#39;', "'" }}
                               </span>
                             </a>
                           {%- endif -%}
