@@ -2217,7 +2217,7 @@
         "ai_gen_block_324eef5_QY6Udr": {
           "type": "ai_gen_block_324eef5",
           "settings": {
-            "use_metaobject_icons": false,
+            "use_metaobject_icons": true,
             "icon_1": "shopify://shop_images/no_alcohol.svg",
             "title_1": "0.0% Alcohol",
             "icon_2": "shopify://shop_images/award-quality-svgrepo-com_1.svg",
