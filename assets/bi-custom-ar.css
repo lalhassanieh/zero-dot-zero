@@ -399,14 +399,9 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
     }
 }
 
-/* Contact section - force LTR for phone numbers and emails */
-.contact-info .contact-store p {
-    direction: ltr;
-    text-align: left;
-}
-
-.contact-info .contact-store a[href^="tel:"],
-.contact-info .contact-store a[href^="mailto:"] {
+/* Contact section - force LTR only for phone numbers */
+.contact-info .contact-store a[href^="tel:"] {
     direction: ltr;
     unicode-bidi: embed;
+    display: inline-block;
 }
