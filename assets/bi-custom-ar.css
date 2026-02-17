@@ -41,6 +41,19 @@ body *{
 .left, .text-left {
     text-align: right;
 }
+
+/* RTL fix for address page button and title */
+.address-new > button {
+    display: block;
+    margin-inline-start: auto;
+    margin-inline-end: 0;
+}
+
+.address-form .address-title,
+.address-form .address-title.text-left {
+    text-align: right;
+}
+
 #halo-image-banner-template--19396943118580__image_banner_cwnjQq .item .banner-text,
 #halo-image-banner-template--19396943118580__image_banner_mUejpe .item .banner-text{
  font-family: "Avenir Arabic", sans-serif !important;
@@ -384,4 +397,16 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
         margin-left: 20px;
         margin-right: auto;
     }
+}
+
+/* Contact section - force LTR for phone numbers and emails */
+.contact-info .contact-store p {
+    direction: ltr;
+    text-align: left;
+}
+
+.contact-info .contact-store a[href^="tel:"],
+.contact-info .contact-store a[href^="mailto:"] {
+    direction: ltr;
+    unicode-bidi: embed;
 }
