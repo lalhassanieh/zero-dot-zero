@@ -264,7 +264,11 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         const $block = $(entry.target);
-                        if ($block.hasClass('ajax-loaded')) return;
+                        
+                        // Skip if already initialized
+                        if ($block.hasClass('init-complete')) return;
+                        
+                        const isPreRendered = $block.hasClass('ajax-loaded');
 
                         var url = $block.data('collection'),
                             layout = $block.data('layout'),
@@ -273,6 +277,52 @@
                             swipe = $block.data('swipe'),
                             sectionId = $block.attr('sectionId'),
                             hasCountdown = $block.attr('hasCountdown');
+
+                        // If pre-rendered server-side, skip AJAX but run initialization
+                        if (isPreRendered) {
+                            $block.addClass('init-complete');
+                            
+                            if (layout == 'slider') {
+                                halo.productBlockSilder($block);
+                            }
+
+                            if ($block.hasClass('special-banner__product') && layout == 'grid' && window.innerWidth < 1200) {
+                                $block.find('.special-banner__products--grid').addClass('products-carousel');
+                                halo.productBlockSilder($block);
+                            }
+
+                            if ($block.hasClass("halo-block-unsymmetrical") && layout == 'grid' && window.innerWidth < 1200) {
+                                halo.unsymmetricalSlider($block);
+                            }
+
+                            if(window.compare.show){
+                                halo.setLocalStorageProductForCompare($('[data-compare-link]'));
+                            }
+
+                            halo.swapHoverVideoProductCard();
+
+                            if(window.wishlist.show){
+                                halo.setLocalStorageProductForWishlist();
+                            }
+
+                            if (halo.checkNeedToConvertCurrency()) {
+                                Currency.convertAll(window.shop_currency, $('#currencies .active').attr('data-currency'), 'span.money', 'money_format');
+                            }
+
+                            if ($('body').hasClass('cursor-fixed__show')){
+                                window.sharedFunctionsAnimation.onEnterButton();
+                                window.sharedFunctionsAnimation.onLeaveButton();
+                            }
+
+                            if($body.hasClass('product-card-layout-08')) {
+                                halo.productCountdownCard();
+                            }
+
+                            if ($body.hasClass('product-card-layout-07') || $body.hasClass('product-card-layout-08')) {
+                                halo.calculateTranslateYHeight();
+                            }
+                            return;
+                        }
 
                         if(url != null && url != undefined) {
                             $.ajax({
@@ -325,6 +375,8 @@
                                     }
                                 },
                                 complete: function () {
+                                    $block.addClass('init-complete');
+                                    
                                     if (layout == 'slider') {
                                         halo.productBlockSilder($block);
                                     }
@@ -369,7 +421,7 @@
                                 }
                             });
                         } else {
-                            $block.addClass('ajax-loaded');
+                            $block.addClass('ajax-loaded init-complete');
 
                             if (layout == 'slider') {
                                 halo.productBlockSilder($block);
