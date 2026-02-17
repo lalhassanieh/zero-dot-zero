@@ -422,8 +422,13 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
     display: inline-block;
 }
 
-.ar-h2 {
-  direction: rtl;
-  unicode-bidi: embed;
-  text-align: right; 
+.ar-h2 h2 {
+  direction: rtl !important;
+  unicode-bidi: isolate-override;
+  text-align: right !important;
+}
+
+/* override GemPages alignment variable */
+.ar-h2 h2.gp-g-heading-1 {
+  --ta: right !important;
 }
