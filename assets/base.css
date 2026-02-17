@@ -6712,9 +6712,9 @@ summary::-webkit-details-marker {
         .button.button-2:hover,
         .button.button--secondary:hover,
         .button.button--secondary:focus{
-            color: var(--btn-2-color-hover);
-            background: var(--btn-2-bg-hover);
-            border-color: var(--btn-2-border-hover);
+            color: #fff;
+            background: #005339;
+            border-color: #005339;
             background-origin: border-box;
         }
 
