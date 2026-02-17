@@ -134,19 +134,17 @@ li.list-social__item:last-child {
 #shopify-section-template--19396943118580__slide_show_FadCMd .slide-content .slide-button, 
 .banner-button.button, .section-block-template--19396943118580__product_block_nEDnQ8 .product-infinite-scroll .button,
 .contact-support-btn, .product-infinite-scroll .button,
-.contact-support-btn, .button--secondary, .ai-banner-button-aajazafvwcu5wbnr2daigenblockdfb8083urbx48,
 #custom-map-template--19396941873396__google-map .map-btn, 
 #ContactSection-template--19396941873396__main .contact-item.contact-itemRight .contact-btn{
-    padding-left: 50px!important;
-    padding-right: 30px!important;
+    padding-inline-start: 30px!important;
+    padding-inline-end: 50px!important;
 }
 
 .slide-button:after, .banner-button:after, .productView-groupTop .product-form__submit:after,
-.contact-support-btn:after, .button--secondary:after, .ai-banner-button-aajazafvwcu5wbnr2daigenblockdfb8083urbx48:after, 
 .section-block-template--19396943118580__product_block_nEDnQ8 .product-infinite-scroll .button:after,
 #custom-map-template--19396941873396__google-map .map-btn:after, #ContactSection-template--19396941873396__main .contact-item.contact-itemRight .contact-btn:after {
-    left: 28px;
-    right: auto !important;
+    inset-inline-end: 28px;
+    inset-inline-start: auto !important;
 }
 /**End btn flipping**/
 .banner-button.button,
@@ -204,7 +202,7 @@ font-weight: 600;
 
 #shopify-section-template--19396941644020__main .about-content-wrapper h1 {
     padding-left: 0;
-    paadding-right: 100px
+    padding-right: 100px;
 }
 .faqs-filterDropdown-text .icon-dropdown {
     right: auto!important;
@@ -218,7 +216,7 @@ font-weight: 600;
     padding: 7px 20px 7px 38px!important;
 }
     .faqs .faqs-item .card-header .title, .faqs .faqs-item .card-body, .faqs .faqs-item .halo-text-format {
-        padding-left: 16px!impoortant;
+        padding-left: 16px !important;
     }
     .faqs .faqs-item .card-header .title {
     padding-left: 20px !important;
@@ -386,5 +384,4 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
         margin-left: 20px;
         margin-right: auto;
     }
-}
 }
