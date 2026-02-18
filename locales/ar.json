@@ -3003,7 +3003,11 @@
         "optional_zip_code_label": "الرمز البريدي (اختياري)",
         "optional_postcode_label": "الرمز البريدي (اختياري)",
         "optional_pincode_label": "رمز التعريف الشخصي (اختياري)",
-        "optional_last_name_label": "اسم العائلة (اختياري)"
+        "optional_last_name_label": "اسم العائلة (اختياري)",
+        "postcode_label": "الرمز البريدي",
+        "postcode_placeholder": "الرمز البريدي",
+        "pincode_label": "رمز التعريف الشخصي",
+        "pincode_placeholder": "رمز التعريف الشخصي"
       },
       "delivery_options": {
         "free_total_label": "حر",
