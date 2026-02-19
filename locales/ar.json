@@ -1432,7 +1432,9 @@
           "other": "يوجد عدد %{count} من البطاقات المنتهية الصلاحية، والتي يمكنك عرضها وتعديلها في حسابك."
         },
         "order_edit_banner_subtitle": "تم تحديث طلبك {{order_number}} . راجع هذه التغييرات، ثم ادفع لتأكيد طلبك.",
-        "same_billing_address_label": "نفس عنوان الشحن"
+        "same_billing_address_label": "نفس عنوان الشحن",
+        "title": "الدفع",
+        "amount_left_to_pay_label": "المبلغ المستحق:"
       },
       "thank_you": {
         "order_updates_upcoming_step_prefix": "الخطوة التالية: ",
