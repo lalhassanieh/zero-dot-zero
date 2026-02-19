@@ -3473,13 +3473,13 @@
       "bad_domain": "يحتوي على اسم نطاق غير صالح",
       "password_mismatch": "يجب أن تتطابق كلمة المرور المقدمة",
       "invalid_province_in_country": "ليست مقاطعة صالحة في %{country}",
-      "invalid_state_in_country": "ليست ولاية صالحة في %{country}",
       "invalid_region_in_country": "ليست منطقة صالحة في %{country}",
       "less_than_or_equal_to": "يجب أن يكون أقل من أو يساوي %{count}",
       "full_name_required": "أدخل الاسم الأول واسم العائلة",
       "invalid_expiry_year": "سنة انتهاء الصلاحية غير صالحة",
       "invalid_format": "التنسيق غير صالح",
-      "gift_card_currency_mismatch": "بطاقة هديتك بعملة %{gift_card_currency}. تواصل معنا لإعادة إصدارها بعملة %{checkout_currency}."
+      "gift_card_currency_mismatch": "بطاقة هديتك بعملة %{gift_card_currency}. تواصل معنا لإعادة إصدارها بعملة %{checkout_currency}.",
+      "reset_password_html": "عنوان البريد الإلكتروني هذا مرتبط بالفعل بحساب. إذا كان هذا الحساب لك، يمكنك <a href=\"/account/login#recover\">إعادة تعيين كلمة المرور</a>"
     },
     "collections": {
       "sorting": {
