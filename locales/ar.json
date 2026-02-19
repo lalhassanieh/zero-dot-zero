@@ -1887,7 +1887,7 @@
         "no_pickup_location_notice": "أحد منتجاتك على الأقل غير متاح للاستلام",
         "no_rates_for_country_notice": "لم يتم العثور على أسعار الشحن لهذا العنوان.",
         "no_rates_contact_notice": "تواصل معنا للحصول على مزيد من المعلومات",
-        "free_rate_label": "حر",
+        "free_rate_label": "مجاني",
         "cheapest_rate_label": "الأرخص",
         "please_enter_your_shipping_information_notice": "يرجى إدخال معلومات الشحن الخاصة بك.",
         "estimated_delivery_date": {
