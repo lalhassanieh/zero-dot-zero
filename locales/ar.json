@@ -3479,7 +3479,7 @@
       "invalid_expiry_year": "سنة انتهاء الصلاحية غير صالحة",
       "invalid_format": "التنسيق غير صالح",
       "gift_card_currency_mismatch": "بطاقة هديتك بعملة %{gift_card_currency}. تواصل معنا لإعادة إصدارها بعملة %{checkout_currency}.",
-      "reset_password_html": "عنوان البريد الإلكتروني هذا مرتبط بالفعل بحساب. إذا كان هذا الحساب لك، يمكنك <a href=\"/account/login#recover\">إعادة تعيين كلمة المرور</a>"
+      "reset_password_html": "هذا البريد الإلكتروني مسجل مسبقًا. إذا كان الحساب لك، يمكنك <a href=\"/account/login#recover\">استعادة كلمة المرور</a>"
     },
     "collections": {
       "sorting": {
