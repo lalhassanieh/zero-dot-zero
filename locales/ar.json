@@ -1427,7 +1427,8 @@
         "title": "الدفع",
         "amount_left_to_pay_label": "المبلغ المستحق:",
         "offsite_gateway_redirect_hint": "سيتم توجيهك إلى %{gateway_label} لإكمال عملية الشراء.",
-        "choose_new_payment_method": "اختر طريقة دفع جديدة"
+        "choose_new_payment_method": "اختر طريقة دفع جديدة",
+        "card_security_notice": "جميع المعاملات آمنة ومشفّرة."
       },
       "thank_you": {
         "order_updates_upcoming_step_prefix": "الخطوة التالية: ",
