@@ -1435,7 +1435,8 @@
         "same_billing_address_label": "نفس عنوان الشحن",
         "title": "الدفع",
         "amount_left_to_pay_label": "المبلغ المستحق:",
-        "offsite_gateway_redirect_hint": "سيتم توجيهك إلى %{gateway_label} لإكمال عملية الشراء."
+        "offsite_gateway_redirect_hint": "سيتم توجيهك إلى %{gateway_label} لإكمال عملية الشراء.",
+        "choose_new_payment_method": "اختر طريقة دفع جديدة"
       },
       "thank_you": {
         "order_updates_upcoming_step_prefix": "الخطوة التالية: ",
