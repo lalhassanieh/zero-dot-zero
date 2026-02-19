@@ -2744,7 +2744,7 @@
         "express_payment_gateway_label": "يعبر",
         "manual_payment_gateway_label": "يدوي",
         "billing_address_title": "عنوان الفواتير",
-        "free_label": "حر"
+        "free_label": "مجاني"
       },
       "field_errors": {
         "handle_phone_invalid": "أدخل رقم هاتف صحيح",
