@@ -1708,7 +1708,8 @@
         "order_status_payments_app_failed_pending_payment": "لم يتم تحصيل أي مبلغ مقابل طلبك. ارجع إلى سلة التسوق لمراجعة طلبك والدفع مرة أخرى.",
         "order_status_payments_app_failed_pending_payment_payment": "لم يتم تحصيل أي مبلغ مقابل طلبك. ارجع إلى سلة التسوق لمراجعة طلبك والدفع مرة أخرى.",
         "order_status_payments_app_failed_pending_payment_pick_up": "لم يتم تحصيل أي مبلغ مقابل طلبك. ارجع إلى سلة التسوق لمراجعة طلبك والدفع مرة أخرى.",
-        "shop_phone_description": "ستتلقى رسالة نصية تحتوي على رابط لتطبيق المتجر لمساعدتك في تتبع طلبك."
+        "shop_phone_description": "ستتلقى رسالة نصية تحتوي على رابط لتطبيق المتجر لمساعدتك في تتبع طلبك.",
+        "thank_you_payments_app_pending_payment_description_default_with_email_and_phone_payment": "ستتلقى قريبًا رسالة تأكيد عبر البريد الإلكتروني تحتوي على رقم طلبك."
       },
       "shipping": {
         "subscription_delivery_description": {
