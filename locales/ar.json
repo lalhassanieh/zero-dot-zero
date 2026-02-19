@@ -1179,13 +1179,7 @@
             "sunday": "الأحد"
           },
           "weekdays_abbreviation": {
-            "monday": "شهر",
-            "tuesday": "تو",
-            "wednesday": "نحن",
-            "thursday": "ذ",
-            "friday": "الأب",
-            "saturday": "سا",
-            "sunday": "سو"
+            "monday": "شهر"
           },
           "months": {
             "january": "يناير",
