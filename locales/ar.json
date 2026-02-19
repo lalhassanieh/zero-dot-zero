@@ -3009,10 +3009,12 @@
         "pincode_label": "رمز التعريف الشخصي",
         "pincode_placeholder": "رمز التعريف الشخصي",
         "prefecture_placeholder": "المحافظة",
-        "zip_code_label": "الرمز البريدي"
+        "zip_code_label": "الرمز البريدي",
+        "different_shipping_address_label": "الشحن إلى عنوان مختلف",
+        "change_company_location_link_label": "تغيير موقع الشركة"
       },
       "delivery_options": {
-        "free_total_label": "حر",
+        "free_total_label": "مجاني",
         "ship": "سفينة",
         "pick_up": "يلتقط",
         "ship_to_address": "عنوان الشحن",
