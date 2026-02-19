@@ -3024,7 +3024,19 @@
         "retail_method_definition": "الشحن بالتجزئة",
         "pick_up_immediately": "جاهز للاستلام الآن",
         "pickup_point_method_definition": "الشحن إلى نقطة الاستلام",
-        "company_location_no_address_banner": "سيتم تقديم الطلبات التي يتم شحنها إلى مواقع بدون عنوان للمراجعة."
+        "company_location_no_address_banner": "سيتم تقديم الطلبات التي يتم شحنها إلى مواقع بدون عنوان للمراجعة.",
+        "pickup_point_map_title": "خريطة نقطة الاستلام",
+        "pick_up_in_one_hour": "عادةً جاهز خلال 1 ساعة",
+        "pick_up_in_two_hours": "عادةً جاهز خلال 2 ساعة",
+        "pick_up_in_four_hours": "عادةً جاهز خلال 4 ساعة",
+        "pick_up_in_twenty_four_hours": "عادةً جاهز خلال 24 ساعة",
+        "pick_up_in_two_to_four_days": "عادةً جاهز خلال 2-4 أيام",
+        "pick_up_in_five_or_more_days": "عادةً جاهز خلال 5 أيام أو أكثر",
+        "pick_up_in_zero_to_two_hours": "جاهز للاستلام خلال 2 ساعات",
+        "pick_up_in_two_to_four_hours": "جاهز للاستلام خلال 4 ساعات",
+        "pick_up_next_day": "جاهز للاستلام في اليوم التالي",
+        "none_method_definition": "بدون شحن",
+        "subscription_pickup_information": "سيتم تطبيق طريقة التوصيل هذه على جميع العناصر في هذا الطلب وعلى جميع الطلبات المستقبلية لهذا الاشتراك."
       },
       "customer_account": {
         "sign_in_link_label": "تسجيل الدخول",
