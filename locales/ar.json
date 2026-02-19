@@ -3007,7 +3007,9 @@
         "postcode_label": "الرمز البريدي",
         "postcode_placeholder": "الرمز البريدي",
         "pincode_label": "رمز التعريف الشخصي",
-        "pincode_placeholder": "رمز التعريف الشخصي"
+        "pincode_placeholder": "رمز التعريف الشخصي",
+        "prefecture_placeholder": "المحافظة",
+        "zip_code_label": "الرمز البريدي"
       },
       "delivery_options": {
         "free_total_label": "حر",
