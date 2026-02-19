@@ -2345,7 +2345,8 @@
         "removed_from_cart_notice": "تمت إزالته من سلة التسوق",
         "go_back_to_cart_button_label": "العودة إلى سلة التسوق",
         "continue_cta_label": "تابع عملية الدفع",
-        "empty_cart_label": "سلة التسوق الخاصة بك فارغة"
+        "empty_cart_label": "سلة التسوق الخاصة بك فارغة",
+        "title": "غير متوفر حالياً"
       },
       "contextual_availability": {
         "title": {
@@ -3043,7 +3044,8 @@
         "saved_address_modal_title": "استخدم عنواني المحفوظ",
         "invalid_address": "العنوان المُختار غير صالح. %{update_address_link} أو اختر عنوانًا مختلفًا.",
         "incomplete_address": "العنوان المحدد غير مكتمل. %{update_address_link} أو اختر عنوانًا مختلفًا.",
-        "invalid_shipping_method_summary": "اختر عنوان شحن صالحًا لعرض طرق الشحن المتاحة"
+        "invalid_shipping_method_summary": "اختر عنوان شحن صالحًا لعرض طرق الشحن المتاحة",
+        "sign_out_link_label": "تسجيل الخروج"
       },
       "localized_fields": {
         "additional_information": {
