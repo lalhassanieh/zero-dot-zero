@@ -3155,6 +3155,14 @@
       "session_errors": {
         "session_not_unique": "حدثت مشكلة أثناء معالجة طلبك. قم بتحديث هذه الصفحة للعودة إلى المتجر.",
         "session_already_finished": "تم تقديم هذا الطلب مسبقاً. يمكنك العودة إلى المتجر لتقديم طلب جديد."
+      },
+      "embed": {
+        "header": {
+          "review_order": "راجع طلبك"
+        },
+        "shipping": {
+          "shipping_options": "عرض جميع خيارات الشحن"
+        }
       }
     },
     "notices": {
