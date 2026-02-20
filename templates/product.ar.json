@@ -135,20 +135,6 @@
             "maximum_des_to_show": 300
           }
         },
-        "87197f5f-be0e-4b89-9270-62bf6917ebe7": {
-          "type": "custom",
-          "disabled": true,
-          "settings": {
-            "open_tab_mobile": false,
-            "title": "Additional Information",
-            "type": "metafield",
-            "content": "",
-            "product_custom_source": "key_text",
-            "product_tab_key_metafield": "",
-            "enable_btn_show_more": false,
-            "maximum_des_to_show": 300
-          }
-        },
         "3d9ea84d-5527-4bce-abe6-5debef3ec955": {
           "type": "custom",
           "settings": {
@@ -214,7 +200,6 @@
         "19de9abb-17c8-4d67-941d-b32706ed06fd",
         "10093fcf-2053-47e9-bedb-841bb0d046fa",
         "bd066b80-c8e3-4f3e-8280-b27fbf6e9423",
-        "87197f5f-be0e-4b89-9270-62bf6917ebe7",
         "3d9ea84d-5527-4bce-abe6-5debef3ec955",
         "19ab1d9f-74b2-4c76-bf2e-1bc749e5c2a3",
         "a86220cf-8641-4e06-87d3-b5ffa195501b",
