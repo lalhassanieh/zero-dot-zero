@@ -212,6 +212,7 @@
         },
         "megamenu_style_4_aKJMHH": {
           "type": "megamenu_style_4",
+          "disabled": true,
           "settings": {
             "layout_block": "custom_width",
             "header_custom_width_size": 1200,
