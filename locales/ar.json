@@ -303,7 +303,7 @@
       "unavailable": "غير متاح",
       "unavailable_message": "هذا البديل غير متوفر!",
       "value_unavailable": "{{ option_value }} (غير متاح)",
-      "out_of_stock": "غير متوفر",
+      "out_of_stock": " غير متوفر",
       "vendor": "بائع",
       "video_exit_message": "{{ title }} يفتح فيديو بملء الشاشة في نفس النافذة.",
       "xr_button": "عرض في المساحة الخاصة بك",
@@ -320,7 +320,7 @@
       "hot_stock": "أسرع!  {{ inventory }} غادر",
       "hot_stock_2": "من فضلك اسرع!  {{ inventory }} تركت في المخزون",
       "warning_quantity": "الحد الأقصى للكمية: {{ inventory}}",
-      "in_stock": "متوفر",
+      "in_stock": " متوفر",
       "many_in_stock": "العديد من المخزون",
       "on_sale_text": "أُوكَازيُون",
       "off_text": " عن",
@@ -3344,8 +3344,8 @@
     "filters": {
       "availability": {
         "value": {
-          "in_stock": "متوفر",
-          "out_of_stock": "غير متوفر"
+          "in_stock": " متوفر",
+          "out_of_stock": " غير متوفر"
         }
       },
       "boolean": {
