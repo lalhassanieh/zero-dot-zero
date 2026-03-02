@@ -340,6 +340,13 @@ input[type=checkbox]+.form-label--checkbox:before {
     left: auto;
     right: 0;
 }
+
+
+.login-page .login-item .login-text {
+  text-align: right;
+}
+
+
 .float-r {
     float: left;
 }
