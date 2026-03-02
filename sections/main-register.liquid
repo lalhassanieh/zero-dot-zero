@@ -116,7 +116,8 @@
                 >
               </div>
 
-              <input type="hidden" name="customer[phone]" id="RegisterForm-phone-real" value="">
+              <!-- ensure you already have the normalized customer[phone] value set by your existing code -->
+              <input type="hidden" name="customer[addresses][0][phone]" id="RegisterForm-AddressPhone" value="">
             </div>
             <div class="form-field{% if form.errors contains "email" %} form-field--error{% endif %}">
               <label class="form-label" for="RegisterForm-email">
