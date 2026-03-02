@@ -105,7 +105,9 @@
                 inputmode="tel"
                 autocomplete="tel"
                 required
-                placeholder="{{ 'customer.register.phone' | t }}"
+                pattern="^(\+?966)?0?5\d{8}$"
+                title="Saudi mobile numbers: 501234567, 0501234567, or +966501234567"
+                placeholder=""
                 {% if form.phone %}
                   value="{{ form.phone }}"
                 {% endif %}
