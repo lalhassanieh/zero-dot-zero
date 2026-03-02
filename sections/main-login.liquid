@@ -297,27 +297,25 @@
                               >
                           </div>
                           <div class="form-field">
-                              <label class="form-label" for="RegisterForm-country-code">
-                                  Country Code<em>*</em>
-                              </label>
-                              <select class="form-input" name="customer[country_code]" id="RegisterForm-country-code" required aria-required="true">
-                                  <option value="+966">Saudi Arabia (+966)</option>
-                              </select>
-                          </div>
-                          <div class="form-field{% if form.errors contains "phone" %} form-field--error{% endif %}">
                               <label class="form-label" for="RegisterForm-phone">
-                                  Phone Number<em>*</em>
+                                  Phone<em>*</em>
                               </label>
-                              <input class="form-input form-input-placeholder{% if form.errors contains "phone" %} error{% endif %}"
-                                  type="tel"
-                                  name="customer[phone]"
-                                  id="RegisterForm-phone"
-                                  pattern="^05[0-9]{8}$"
-                                  autocomplete="tel"
-                                  aria-required="true"
-                                  required
-                                  placeholder="05XXXXXXXX"
-                              >
+                              <div style="display: flex; align-items: center; gap: 8px;">
+                                  <select style="width: 70px; min-width: 70px;" class="form-input" name="customer[country_code]" id="RegisterForm-country-code" required aria-required="true">
+                                      <option value="+966">+966</option>
+                                  </select>
+                                  <input class="form-input form-input-placeholder{% if form.errors contains "phone" %} error{% endif %}"
+                                      type="tel"
+                                      name="customer[phone]"
+                                      id="RegisterForm-phone"
+                                      pattern="^05[0-9]{8}$"
+                                      autocomplete="tel"
+                                      aria-required="true"
+                                      required
+                                      placeholder=""
+                                      style="flex: 1; min-width: 180px;"
+                                  >
+                              </div>
                           </div>
                           <div class="form-actions">
                               {% if settings.enable_button_1_border_outside %}
