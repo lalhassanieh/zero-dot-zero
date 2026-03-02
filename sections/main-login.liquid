@@ -232,7 +232,7 @@
                           {% endif %}
                           <div class="form-field{% if form.errors contains "first_name" %} form-field--error{% endif %}">
                               <label class="form-label" for="RegisterForm-FirstName">
-                                  {{ 'customer.register.first_name' | t }}
+                                  {{ 'customer.register.first_name' | t }}<em>*</em>
                               </label>
                               <input class="form-input form-input-placeholder{% if form.errors contains "first_name" %} error{% endif %}"
                                   type="text"
@@ -241,11 +241,13 @@
                                   {% if form.first_name %}value="{{ form.first_name }}"{% endif %}
                                   autocomplete="given-name"
                                   placeholder=""
+                                  aria-required="true"
+                                  required
                               >
                           </div>
                           <div class="form-field{% if form.errors contains "last_name" %} form-field--error{% endif %}">
                               <label class="form-label" for="RegisterForm-LastName">
-                                  {{ 'customer.register.last_name' | t }}
+                                  {{ 'customer.register.last_name' | t }}<em>*</em>
                               </label>      
                               <input class="form-input form-input-placeholder{% if form.errors contains "last_name" %} error{% endif %}"
                                   type="text"
@@ -254,6 +256,8 @@
                                   {% if form.last_name %}value="{{ form.last_name }}"{% endif %}
                                   autocomplete="family-name"
                                   placeholder=""
+                                  aria-required="true"
+                                  required
                               >
                           </div>
                           <div class="form-field">
