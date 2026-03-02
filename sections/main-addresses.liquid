@@ -84,10 +84,10 @@
                                                             class="select__select"
                                                             id="AddressCountryNew"
                                                             name="address[country]"
-                                                            data-default="Saudi Arabia"
+                                                            data-default="{{ form.country }}"
                                                             autocomplete="country"
                                                         >
-                                                            <option value="Saudi Arabia" selected>Saudi Arabia</option>
+                                                            {{ all_country_option_tags }}
                                                         </select>
                                                     </div>
                                                 </div>
@@ -241,11 +241,11 @@
                                                         id="AddressCountry_{{ form.id }}"
                                                         name="address[country]"
                                                         data-address-country-select
-                                                        data-default="Saudi Arabia"
+                                                        data-default="{{ form.country }}"
                                                         data-form-id="{{ form.id }}"
                                                         autocomplete="country"
                                                     >
-                                                        <option value="Saudi Arabia" selected>Saudi Arabia</option>
+                                                        {{ all_country_option_tags }}
                                                     </select>
                                                 </div>
                                             </div>
