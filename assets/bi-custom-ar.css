@@ -366,7 +366,7 @@ input[type="checkbox"][required] {
     position: relative;
     width: 18px;
     height: 18px;
-    margin: 0 auto;
+    margin: 3px auto 0;
     pointer-events: none;
 }
 .float-r {
