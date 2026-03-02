@@ -58,6 +58,7 @@
             <div class="form-field{% if form.errors contains "first_name" %} form-field--error{% endif %}">
               <label class="form-label" for="RegisterForm-FirstName">
                 {{ 'customer.register.first_name' | t }}
+                <em>*</em>
               </label>
               <input
                 class="form-input form-input-placeholder{% if form.errors contains "first_name" %} error{% endif %}"
@@ -69,11 +70,14 @@
                 {% endif %}
                 autocomplete="given-name"
                 placeholder=""
+                aria-required="true"
+                required
               >
             </div>
             <div class="form-field{% if form.errors contains "last_name" %} form-field--error{% endif %}">
               <label class="form-label" for="RegisterForm-LastName">
                 {{ 'customer.register.last_name' | t }}
+                <em>*</em>
               </label>
               <input
                 class="form-input form-input-placeholder{% if form.errors contains "last_name" %} error{% endif %}"
@@ -85,7 +89,29 @@
                 {% endif %}
                 autocomplete="family-name"
                 placeholder=""
+                aria-required="true"
+                required
               >
+            </div>
+            <div class="form-field{% if form.errors contains "phone" %} form-field--error{% endif %}">
+                <label class="form-label" for="RegisterForm-phone">
+                    {{ 'customer.register.phone' | t }}<em>*</em>
+                </label>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <span style="width: 70px !important; max-width: 70px !important; flex: 0 0 70px; text-align: center;" class="form-input" >+966</span>
+                    <input class="form-input form-input-placeholder{% if form.errors contains "phone" %} error{% endif %}"
+                        type="tel"
+                        name="customer[phone]"
+                        id="RegisterForm-phone"
+                        pattern="^(5[0-9]{8}|05[0-9]{8})$"
+                        autocomplete="tel"
+                        aria-required="true"
+                        required
+                        placeholder=""
+                        title="Please enter a valid Saudi phone number (e.g., 501234567 or 0501234567)"
+                        style="flex: 1;"
+                    >
+                </div>
             </div>
             <div class="form-field{% if form.errors contains "email" %} form-field--error{% endif %}">
               <label class="form-label" for="RegisterForm-email">
