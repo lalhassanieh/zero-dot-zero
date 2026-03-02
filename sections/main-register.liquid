@@ -165,8 +165,7 @@
               </label>
             </div>
             <div class="accepts-marketing">
-              <input type="hidden" name="customer[accepts_pdpl]" value="false">
-              <input type="checkbox" name="customer[accepts_pdpl]" id="accepts-pdpl" required>
+              <input type="checkbox" name="customer[accepts_pdpl]" id="accepts-pdpl" value="true" required>
               <label class="form-label--checkbox" for="accepts-pdpl">
                 {{- 'customer.register.accept_pdpl_1' | t -}}
                 <a href="{{ pdpl_url }}" target="_blank">{{- 'customer.register.accept_pdpl_2' | t -}}</a>
