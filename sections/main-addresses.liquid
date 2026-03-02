@@ -84,10 +84,10 @@
                                                             class="select__select"
                                                             id="AddressCountryNew"
                                                             name="address[country]"
-                                                            data-default="Saudi Arabia"
+                                                            data-default="{{ form.country }}"
                                                             autocomplete="country"
                                                         >
-                                                            <option value="Saudi Arabia" selected>Saudi Arabia</option>
+                                                            {{ all_country_option_tags }}
                                                         </select>
                                                     </div>
                                                 </div>
@@ -110,7 +110,7 @@
                                                 </div>
                                                 <div class="form-field">
                                                     <label class="form-label" for="AddressPhoneNew">{{ 'customer.addresses.phone' | t }}</label>
-                                                    <input class="form-input form-input-placeholder" type="tel" id="AddressPhoneNew" name="address[phone]" value="{{ form.phone }}" autocomplete="tel" placeholder="{{ 'customer.addresses.phone' | t }}">
+                                                    <input class="form-input form-input-placeholder" type="tel" id="AddressPhoneNew" name="address[phone]" value="{{ form.phone }}" autocomplete="tel" pattern="^(\+?966)?0?5\d{8}$" title="Saudi mobile numbers: 501234567, 0501234567, or +966501234567" placeholder="{{ 'customer.addresses.phone' | t }}">
                                                 </div>
                                                 <div class="form-field form-field--full">
                                                     {{ form.set_as_default_checkbox }}
@@ -241,11 +241,11 @@
                                                         id="AddressCountry_{{ form.id }}"
                                                         name="address[country]"
                                                         data-address-country-select
-                                                        data-default="Saudi Arabia"
+                                                        data-default="{{ form.country }}"
                                                         data-form-id="{{ form.id }}"
                                                         autocomplete="country"
                                                     >
-                                                        <option value="Saudi Arabia" selected>Saudi Arabia</option>
+                                                        {{ all_country_option_tags }}
                                                     </select>
                                                 </div>
                                             </div>
@@ -274,7 +274,7 @@
                                                 <label class="form-label" for="AddressPhone_{{ form.id }}">
                                                     {{ 'customer.addresses.phone' | t }}
                                                 </label>
-                                                <input class="form-input form-input-placeholder" type="tel" id="AddressPhone_{{ form.id }}"  name="address[phone]" value="{{ form.phone }}" autocomplete="tel" placeholder="{{ 'customer.addresses.phone' | t }}">
+                                                <input class="form-input form-input-placeholder" type="tel" id="AddressPhone_{{ form.id }}"  name="address[phone]" value="{{ form.phone }}" autocomplete="tel" pattern="^(\+?966)?0?5\d{8}$" title="Saudi mobile numbers: 501234567, 0501234567, or +966501234567" placeholder="{{ 'customer.addresses.phone' | t }}">
                                             </div>
                                             <div class="form-field form-field--full">
                                                 {{ form.set_as_default_checkbox }}
