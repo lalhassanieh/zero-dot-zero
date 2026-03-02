@@ -151,7 +151,6 @@
     observer.observe(document.body, { childList: true, subtree: true });
 }
 
- // Phone number normalization for customer registration
 function initPhoneNormalization() {
   const form = document.querySelector('.create-customer-form') || document.querySelector('form[action*="/account"]') || document.querySelector('form');
   const visible = document.getElementById('RegisterForm-phone-visible');
@@ -160,11 +159,9 @@ function initPhoneNormalization() {
 
   if (!form || !visible || !hidden || !countrySelect) return;
 
-  // Set pattern and title for Saudi numbers
   visible.setAttribute('pattern', '^(5\\d{8}|05\\d{8})$');
   visible.setAttribute('title', 'Saudi mobile numbers must start with 5 and be 9 digits (e.g., 501234567 or 0501234567)');
 
-  // Generic normalizer
   function normalizePhoneForCountry(visibleRaw, countryCode) {
     if (!visibleRaw) return '';
 
@@ -174,13 +171,11 @@ function initPhoneNormalization() {
     if (s.startsWith(countryCode)) s = s.slice(countryCode.length);
     if (s.length > 0 && s.startsWith('0')) s = s.replace(/^0+/, '');
 
-    // For Saudi (966) validate 9-digit mobile starting with 5
     if (countryCode === '966') {
       if (/^5\d{8}$/.test(s)) return '+' + countryCode + s;
       return '';
     }
 
-    // Generic fallback for other countries
     if (/^\d{6,12}$/.test(s)) {
       return '+' + countryCode + s;
     }
@@ -188,7 +183,6 @@ function initPhoneNormalization() {
     return '';
   }
 
-  // Keep visible input sanitized (digits only)
   visible.addEventListener('input', function () {
     const keep = visible.value.replace(/[^\d\+]/g, '');
     visible.value = keep;
@@ -206,13 +200,10 @@ function initPhoneNormalization() {
       return;
     }
 
-    // Set the hidden field to E.164 for Shopify to save
     hidden.value = normalized;
   });
 }
 
-
-// Initialize all functions on DOMContentLoaded
 document.addEventListener("DOMContentLoaded", function () {
   initZingRiyalFormatter();
   initPhoneNormalization();
