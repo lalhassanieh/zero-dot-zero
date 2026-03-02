@@ -149,9 +149,10 @@
     });
 
     observer.observe(document.body, { childList: true, subtree: true });
-    }
+}
 
-    
+ 
+
 // Phone number normalization for customer registration
 function initPhoneNormalization() {
   const form = document.querySelector('.create-customer-form') || document.querySelector('form[action*="/account"]') || document.querySelector('form');
@@ -161,58 +162,145 @@ function initPhoneNormalization() {
 
   if (!form || !visible || !hidden || !countrySelect) return;
 
+  // Generic normalizer:
+  // - countryCode: numeric string without plus (e.g., "966")
+  // - visible contains whatever user typed
+  // Returns normalized E.164 string like "+9665XXXXXXXX" or '' if invalid.
   function normalizePhoneForCountry(visibleRaw, countryCode) {
     if (!visibleRaw) return '';
 
+    // strip spaces, parentheses, dashes, letters except leading +
     let s = String(visibleRaw).trim();
+    // If user pasted a full international number like +9665..., accept and normalize
     s = s.replace(/[^\d\+]/g, '');
 
+    // If starts with +, remove plus then treat rest as digits
     if (s.startsWith('+')) s = s.slice(1);
 
+    // If user pasted the country code at start (e.g., 9665...), remove redundant countryCode
     if (s.startsWith(countryCode)) {
       s = s.slice(countryCode.length);
     }
 
+    // Remove any leading 0 (local trunk) — common for many countries
     if (s.length > 0 && s.startsWith('0')) {
+      // remove only one leading 0
       s = s.replace(/^0+/, '');
     }
 
+    // Basic sanity checks:
+    // For Saudi (966) prefer 9-digit mobile that starts with 5 (5xxxxxxxx)
     if (countryCode === '966') {
       if (/^5\d{8}$/.test(s)) return '+' + countryCode + s;
+      // otherwise invalid
       return '';
     }
 
+    // Generic fallback for other countries:
+    // If resulting digits are between 6 and 12, accept (best-effort)
     if (/^\d{6,12}$/.test(s)) {
       return '+' + countryCode + s;
     }
 
+    // Otherwise invalid
     return '';
   }
 
+  // Validate and show visual feedback
+  function validatePhoneInput() {
+    const countryCode = countrySelect.value;
+    const visibleVal = visible.value || '';
+    
+    if (!visibleVal) {
+      visible.style.borderColor = '';
+      return false;
+    }
+    
+    const normalized = normalizePhoneForCountry(visibleVal, countryCode);
+    
+    if (!normalized) {
+      // Show error state
+      visible.style.borderColor = '#ff0000';
+      visible.style.borderWidth = '2px';
+      
+      // Show specific error message for Saudi numbers
+      if (countryCode === '966') {
+        visible.title = 'Saudi mobile numbers must start with 5 and be 9 digits (e.g., 501234567 or 0501234567)';
+      }
+      return false;
+    } else {
+      // Valid - remove error state
+      visible.style.borderColor = '#00b300';
+      visible.style.borderWidth = '2px';
+      visible.title = 'Valid phone number: ' + normalized;
+      return true;
+    }
+  }
+
+  // Keep visible input sanitized (digits only)
   visible.addEventListener('input', function () {
+    // allow plus if user intentionally types it — but strip other non-digits
     const v = visible.value;
+    // keep any leading + and digits only after
     const keep = v.replace(/[^\d\+]/g, '');
     visible.value = keep;
+    
+    // Validate on input for real-time feedback
+    if (visible.value.length >= 9) {
+      validatePhoneInput();
+    } else {
+      visible.style.borderColor = '';
+      visible.style.borderWidth = '';
+    }
+  });
+
+  // Validate on blur
+  visible.addEventListener('blur', function() {
+    if (visible.value) {
+      validatePhoneInput();
+    }
+  });
+
+  // Reset border color when country changes
+  countrySelect.addEventListener('change', function() {
+    visible.style.borderColor = '';
+    visible.style.borderWidth = '';
+    if (visible.value) {
+      validatePhoneInput();
+    }
   });
 
   form.addEventListener('submit', function (e) {
-    const countryCode = countrySelect.value;
+    const countryCode = countrySelect.value; // e.g., "966"
     const visibleVal = visible.value || '';
 
     const normalized = normalizePhoneForCountry(visibleVal, countryCode);
 
     if (!normalized) {
+      // block submit and show message so user corrects number
       e.preventDefault();
-      alert('Please enter a valid phone number for selected country (e.g., for +966 enter 501234567 or 0501234567).');
+      
+      // Show specific error for Saudi numbers
+      let errorMsg = 'Please enter a valid phone number.';
+      if (countryCode === '966') {
+        errorMsg = 'Saudi mobile numbers must start with 5 and be 9 digits long.\n\nExamples:\n• 501234567\n• 0501234567';
+      }
+      
+      alert(errorMsg);
       visible.focus();
+      visible.style.borderColor = '#ff0000';
+      visible.style.borderWidth = '2px';
       return;
     }
 
+    // set the hidden field to E.164 for Shopify to save
     hidden.value = normalized;
+    // allow form to submit
   });
 }
 
 
+// Initialize all functions on DOMContentLoaded
 document.addEventListener("DOMContentLoaded", function () {
   initZingRiyalFormatter();
   initPhoneNormalization();
