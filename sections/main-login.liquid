@@ -260,25 +260,6 @@
                                   required
                               >
                           </div>
-                          <div class="form-field{% if form.errors contains 'phone' %} form-field--error{% endif %}">
-                            <label class="form-label" for="RegisterForm-phone">
-                                {{ 'customer.register.phone' | t }}<em>*</em>
-                            </label>
-                            <input
-                                class="form-input form-input-placeholder{% if form.errors contains 'phone' %} error{% endif %}"
-                                type="tel"
-                                name="customer[phone]"
-                                id="RegisterForm-phone"
-                                inputmode="tel"
-                                autocomplete="tel"
-                                pattern="^(\+?966)?0?5\d{8}$"
-                                title="Saudi mobile numbers: 501234567, 0501234567, or +966501234567"
-                                placeholder=""
-                                {% if form.phone %}
-                                value="{{ form.phone }}"
-                                {% endif %}
-                            >
-                          </div>
                           <div class="form-field{% if form.errors contains "email" %} form-field--error{% endif %}">
                               <label class="form-label" for="RegisterForm-email">
                                   {{ 'customer.register.you_email' | t }}
