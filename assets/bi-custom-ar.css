@@ -360,13 +360,19 @@ input[type="tel"],
     direction: ltr;
 }
 
+.accepts-marketing {
+    position: relative;
+}
+
 input[type="checkbox"][required] {
     display: block !important;
     opacity: 0;
-    position: relative;
+    position: absolute;
+    right: 0;
+    top: 2px;
     width: 18px;
     height: 18px;
-    margin: 30px auto 0;
+    margin: 0;
     pointer-events: none;
 }
 .float-r {
