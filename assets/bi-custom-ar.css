@@ -353,7 +353,13 @@ input[type=checkbox]+.form-label--checkbox:before {
 .login-page .form-actions .button {
     width: 100%;
 }
-
+/* Phone input - force LTR for numbers */
+input[type="tel"],
+#RegisterForm-phone,
+#CustomerPhone {
+    direction: ltr;
+    text-align: left;
+}
 
 .float-r {
     float: left;
