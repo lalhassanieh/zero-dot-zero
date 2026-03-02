@@ -256,6 +256,25 @@
                                   placeholder=""
                               >
                           </div>
+                          <div class="form-field">
+                              <label class="form-label" for="RegisterForm-phone">
+                                  Phone<em>*</em>
+                              </label>
+                              <div style="display: flex; align-items: center; gap: 8px;">
+                                  <input type="text" style="width: 50px; min-width: 50px; text-align: center;" class="form-input" name="customer[country_code]" id="RegisterForm-country-code" value="+966" readonly>
+                                  <input class="form-input form-input-placeholder{% if form.errors contains "phone" %} error{% endif %}"
+                                      type="tel"
+                                      name="customer[phone]"
+                                      id="RegisterForm-phone"
+                                      pattern="^05[0-9]{8}$"
+                                      autocomplete="tel"
+                                      aria-required="true"
+                                      required
+                                      placeholder=""
+                                      style="flex: 1; min-width: 180px;"
+                                  >
+                              </div>
+                          </div>
                           <div class="form-field{% if form.errors contains "email" %} form-field--error{% endif %}">
                               <label class="form-label" for="RegisterForm-email">
                                   {{ 'customer.register.you_email' | t }}
@@ -295,27 +314,6 @@
                                   placeholder=""
                                   required
                               >
-                          </div>
-                          <div class="form-field">
-                              <label class="form-label" for="RegisterForm-phone">
-                                  Phone<em>*</em>
-                              </label>
-                              <div style="display: flex; align-items: center; gap: 8px;">
-                                  <select style="width: 70px; min-width: 70px;" class="form-input" name="customer[country_code]" id="RegisterForm-country-code" required aria-required="true">
-                                      <option value="+966">+966</option>
-                                  </select>
-                                  <input class="form-input form-input-placeholder{% if form.errors contains "phone" %} error{% endif %}"
-                                      type="tel"
-                                      name="customer[phone]"
-                                      id="RegisterForm-phone"
-                                      pattern="^05[0-9]{8}$"
-                                      autocomplete="tel"
-                                      aria-required="true"
-                                      required
-                                      placeholder=""
-                                      style="flex: 1; min-width: 180px;"
-                                  >
-                              </div>
                           </div>
                           <div class="form-actions">
                               {% if settings.enable_button_1_border_outside %}
