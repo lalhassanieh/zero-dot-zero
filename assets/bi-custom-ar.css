@@ -360,6 +360,18 @@ input[type="tel"],
     direction: ltr;
 }
 
+/* Make required checkboxes focusable for validation */
+input[type="checkbox"][required] {
+    display: block !important;
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    width: 18px;
+    height: 18px;
+    margin: 2px 0 0 0;
+    pointer-events: none;
+}
+
 .float-r {
     float: left;
 }
