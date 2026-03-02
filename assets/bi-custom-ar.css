@@ -358,7 +358,6 @@ input[type="tel"],
 #RegisterForm-phone,
 #CustomerPhone {
     direction: ltr;
-    text-align: left;
 }
 
 .float-r {
