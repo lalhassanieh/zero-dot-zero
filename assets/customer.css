@@ -33,6 +33,10 @@
   text-align: left;
 }
 
+[dir="rtl"] .login-page .login-item .login-text {
+  text-align: right;
+}
+
 .login-row {
   font-size: 0;
   letter-spacing: 0;
