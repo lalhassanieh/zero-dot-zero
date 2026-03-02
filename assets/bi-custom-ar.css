@@ -341,11 +341,24 @@ input[type=checkbox]+.form-label--checkbox:before {
     right: 0;
 }
 
-
 .login-page .login-item .login-text {
   text-align: right !important;
 }
 
+/* Login page - Form actions spacing */
+.login-page .form-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.login-page .form-actions .button {
+    width: 100%;
+}
+
+.login-page .form-actions .forget-password {
+    text-align: center;
+}
 
 .float-r {
     float: left;
