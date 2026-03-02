@@ -264,26 +264,19 @@
                             <label class="form-label" for="RegisterForm-phone">
                                 {{ 'customer.register.phone' | t }}<em>*</em>
                             </label>
-
-                            <div style="display:flex; align-items:center; gap:8px;">
-                                <select id="RegisterForm-countryCode" class="form-input" style="width:70px; flex:0 0 70px;">
-                                <option value="966" selected>+966</option>
-                                </select>
-
-                                <input
+                            <input
                                 class="form-input form-input-placeholder{% if form.errors contains 'phone' %} error{% endif %}"
                                 type="tel"
-                                id="RegisterForm-phone-visible"
+                                name="customer[phone]"
+                                id="RegisterForm-phone"
                                 inputmode="tel"
                                 autocomplete="tel"
                                 required
-                                placeholder=""
-                                title="Enter phone number without country code, e.g., 501234567 or 0501234567"
-                                style="flex:1;"
-                                >
-                            </div>
-
-                            <input type="hidden" name="customer[phone]" id="RegisterForm-phone-real" value="">
+                                placeholder="{{ 'customer.register.phone' | t }}"
+                                {% if form.phone %}
+                                value="{{ form.phone }}"
+                                {% endif %}
+                            >
                           </div>
                           <div class="form-field{% if form.errors contains "email" %} form-field--error{% endif %}">
                               <label class="form-label" for="RegisterForm-email">
