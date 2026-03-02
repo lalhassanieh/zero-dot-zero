@@ -151,7 +151,69 @@
     observer.observe(document.body, { childList: true, subtree: true });
     }
 
+    
+// Phone number normalization for customer registration
+function initPhoneNormalization() {
+  const form = document.querySelector('.create-customer-form') || document.querySelector('form[action*="/account"]') || document.querySelector('form');
+  const visible = document.getElementById('RegisterForm-phone-visible');
+  const countrySelect = document.getElementById('RegisterForm-countryCode');
+  const hidden = document.getElementById('RegisterForm-phone-real');
+
+  if (!form || !visible || !hidden || !countrySelect) return;
+
+  function normalizePhoneForCountry(visibleRaw, countryCode) {
+    if (!visibleRaw) return '';
+
+    let s = String(visibleRaw).trim();
+    s = s.replace(/[^\d\+]/g, '');
+
+    if (s.startsWith('+')) s = s.slice(1);
+
+    if (s.startsWith(countryCode)) {
+      s = s.slice(countryCode.length);
+    }
+
+    if (s.length > 0 && s.startsWith('0')) {
+      s = s.replace(/^0+/, '');
+    }
+
+    if (countryCode === '966') {
+      if (/^5\d{8}$/.test(s)) return '+' + countryCode + s;
+      return '';
+    }
+
+    if (/^\d{6,12}$/.test(s)) {
+      return '+' + countryCode + s;
+    }
+
+    return '';
+  }
+
+  visible.addEventListener('input', function () {
+    const v = visible.value;
+    const keep = v.replace(/[^\d\+]/g, '');
+    visible.value = keep;
+  });
+
+  form.addEventListener('submit', function (e) {
+    const countryCode = countrySelect.value;
+    const visibleVal = visible.value || '';
+
+    const normalized = normalizePhoneForCountry(visibleVal, countryCode);
+
+    if (!normalized) {
+      e.preventDefault();
+      alert('Please enter a valid phone number for selected country (e.g., for +966 enter 501234567 or 0501234567).');
+      visible.focus();
+      return;
+    }
+
+    hidden.value = normalized;
+  });
+}
+
 
 document.addEventListener("DOMContentLoaded", function () {
   initZingRiyalFormatter();
+  initPhoneNormalization();
 });
