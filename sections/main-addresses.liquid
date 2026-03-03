@@ -114,7 +114,7 @@
                                                 </div>
                                                 <div class="form-field">
                                                     <label class="form-label" for="AddressPhoneNew">{{ 'customer.addresses.phone' | t }}</label>
-                                                    <input class="form-input form-input-placeholder" type="tel" id="AddressPhoneNew" name="address[phone]" value="{{ form.phone }}" autocomplete="tel" pattern="^(\+?966)?0?5\d{8}$" title="Saudi mobile numbers: 501234567, 0501234567, or +966501234567" placeholder="+966501234567 or 501234567">
+                                                    <input class="form-input form-input-placeholder" type="tel" id="AddressPhoneNew" name="address[phone]" value="{{ form.phone }}" autocomplete="tel" pattern="^(\+?966)?0?5\d{8}$" title="Saudi mobile numbers: 501234567, 0501234567, or +966501234567" placeholder="{{ 'customer.addresses.phone' | t }}">
                                                 </div>
                                                 <div class="form-field form-field--full">
                                                     {{ form.set_as_default_checkbox }}
@@ -282,7 +282,7 @@
                                                 <label class="form-label" for="AddressPhone_{{ form.id }}">
                                                     {{ 'customer.addresses.phone' | t }}
                                                 </label>
-                                                <input class="form-input form-input-placeholder" type="tel" id="AddressPhone_{{ form.id }}"  name="address[phone]" value="{{ form.phone }}" autocomplete="tel" pattern="^(\+?966)?0?5\d{8}$" title="Saudi mobile numbers: 501234567, 0501234567, or +966501234567" placeholder="+966501234567 or 501234567">
+                                                <input class="form-input form-input-placeholder" type="tel" id="AddressPhone_{{ form.id }}"  name="address[phone]" value="{{ form.phone }}" autocomplete="tel" pattern="^(\+?966)?0?5\d{8}$" title="Saudi mobile numbers: 501234567, 0501234567, or +966501234567" placeholder="{{ 'customer.addresses.phone' | t }}">
                                             </div>
                                             <div class="form-field form-field--full">
                                                 {{ form.set_as_default_checkbox }}
