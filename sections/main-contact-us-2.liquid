@@ -353,115 +353,50 @@
         }
     }
 
-    /* ── Hulk App Form → theme styling ── */
-    #ContactSection-{{ section.id }} .pxFormGenerator {
-        margin-top: 22px;
-    }
-
-    #ContactSection-{{ section.id }} .pxFormGenerator .formContainer,
-    #ContactSection-{{ section.id }} .pxFormGenerator #formGeneratorForm {
-        background: transparent !important;
-        border: none !important;
-        box-shadow: none !important;
-        padding: 0 !important;
-    }
-
-    #ContactSection-{{ section.id }} .pxFormGenerator .form-group {
-        margin-bottom: 17px;
-    }
-
+    /* ── Hulk App Form overrides ── */
     #ContactSection-{{ section.id }} .pxFormGenerator label.block_label,
     #ContactSection-{{ section.id }} .pxFormGenerator label.fitText {
-        display: block !important;
-        width: 100%;
-        padding: 0;
-        margin: 0 0 8px 0;
-        font-family: var(--font-body-family);
-        font-size: var(--font-body-size);
-        font-weight: var(--font-weight-normal);
-        letter-spacing: var(--body-letter-spacing);
-        color: var(--color-text);
+        font-family: 'Gilroy Extra Bold', sans-serif !important;
+        font-weight: bold;
     }
 
     #ContactSection-{{ section.id }} .pxFormGenerator input.form-control,
     #ContactSection-{{ section.id }} .pxFormGenerator textarea.form-control,
     #ContactSection-{{ section.id }} .pxFormGenerator select.form-control {
-        display: block;
-        width: 100%;
-        height: auto;
-        font-family: var(--font-body-family);
-        font-size: var(--font-body-size);
-        font-weight: var(--font-weight-normal);
-        letter-spacing: var(--body-letter-spacing);
-        line-height: var(--body-line-height);
-        border: 1px solid var(--form-input-border);
-        color: var(--form-input-color);
-        background-color: var(--form-input-bg);
-        box-shadow: none !important;
-        outline: none !important;
-        padding: var(--btn-1-padding-top) 15px var(--btn-1-padding-bottom);
-        margin: 0;
-        border-radius: var(--btn-1-border-radius);
-        -webkit-appearance: none;
-        appearance: none;
-    }
-
-    #ContactSection-{{ section.id }} .pxFormGenerator input.form-control:focus,
-    #ContactSection-{{ section.id }} .pxFormGenerator textarea.form-control:focus,
-    #ContactSection-{{ section.id }} .pxFormGenerator select.form-control:focus {
-        border-color: var(--color-text);
-        outline: none !important;
-    }
-
-    #ContactSection-{{ section.id }} .pxFormGenerator textarea.form-control {
-        min-height: 216px;
-        resize: vertical;
+        font-family: 'Gilroy Extra Bold', sans-serif !important;
         padding-top: 12px;
         padding-bottom: 12px;
     }
 
-    #ContactSection-{{ section.id }} .pxFormGenerator .phone_div {
-        display: flex;
-        gap: 10px;
+    #ContactSection-{{ section.id }} .pxFormGenerator textarea.form-control {
+        min-height: 216px;
     }
 
-    #ContactSection-{{ section.id }} .pxFormGenerator .phone_div .col-sm-6 {
-        float: none !important;
-        width: 50% !important;
-        flex: 1;
-    }
-
-    #ContactSection-{{ section.id }} .pxFormGenerator .form_submit_div {
-        margin-top: 23px;
-    }
-
-    #ContactSection-{{ section.id }} .pxFormGenerator button.btn {
-        display: block;
-        width: 227px;
+    #ContactSection-{{ section.id }} .pxFormGenerator .red-asterisk {
+        color: #f1152f;
         margin-left: 0;
-        margin-right: auto;
-        padding: var(--btn-padding-top) var(--btn-padding-side) var(--btn-padding-bottom);
-        font-family: var(--font-body-family);
-        font-size: var(--font-body-size);
-        font-weight: var(--font-weight-bold);
-        letter-spacing: var(--btn-letter-spacing);
-        text-transform: uppercase;
-        border-radius: 0;
-        border: 1px solid var(--color-btn-primary-border);
-        color: var(--color-btn-primary-text);
-        background-color: var(--color-btn-primary-bg);
-        cursor: pointer;
-        transition: var(--anchor-transition);
-    }
-
-    #ContactSection-{{ section.id }} .pxFormGenerator button.btn:hover {
-        color: var(--color-btn-primary-text-hover);
-        background-color: var(--color-btn-primary-bg-hover);
-        border-color: var(--color-btn-primary-border-hover);
     }
 </style>
 
 <script type="text/javascript">
+    {%- if section.settings.use_app_form -%}
+    (function() {
+        function wrapAsterisks(root) {
+            root.querySelectorAll('.pxFormGenerator label.block_label').forEach(function(label) {
+                if (!label.querySelector('.red-asterisk') && /\*\s*$/.test(label.textContent)) {
+                    label.innerHTML = label.innerHTML.replace(/\*(\s*)$/, '<span class="red-asterisk">*</span>$1');
+                }
+            });
+        }
+        var container = document.getElementById('ContactSection-{{ section.id }}');
+        if (container) {
+            wrapAsterisks(container);
+            new MutationObserver(function() { wrapAsterisks(container); })
+                .observe(container, { childList: true, subtree: true });
+        }
+    })();
+    {%- endif -%}
+
     window.addEventListener('load', () => {
         const collectionLinksElement = document.querySelector('.contact-navigation-container')
         const collectionLinksList = [...collectionLinksElement.querySelectorAll('ul li.item')]

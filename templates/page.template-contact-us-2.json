@@ -38,7 +38,7 @@
         "contact_bg_image_height": 450,
         "contact_bg_image_height_mb": 360,
         "enable_parallax": true,
-        "use_app_form": false,
+        "use_app_form": true,
         "form_container": "fullwidth",
         "form_padding_full_width": 100,
         "contact_form_title": "Let’s Keep the Conversation Flowing",
