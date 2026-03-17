@@ -352,80 +352,9 @@
             padding-bottom: {{ padding_bottom_mobile }};
         }
     }
-
-    /* ── Hulk App Form overrides ── */
-    #ContactSection-{{ section.id }} .pxFormGenerator label.block_label,
-    #ContactSection-{{ section.id }} .pxFormGenerator label.fitText {
-        font-family: var(--font-body-family) !important;
-        font-weight: bold !important;
-    }
-
-    #ContactSection-{{ section.id }} .pxFormGenerator input.form-control,
-    #ContactSection-{{ section.id }} .pxFormGenerator textarea.form-control,
-    #ContactSection-{{ section.id }} .pxFormGenerator select.form-control {
-        font-family: 'Gilroy Extra Bold', sans-serif !important;
-        padding-top: 12px !important;
-        padding-bottom: 12px !important;
-    }
-
-    #ContactSection-{{ section.id }} .pxFormGenerator textarea.form-control {
-        min-height: 216px !important;
-        height: auto !important;
-    }
-
-    #ContactSection-{{ section.id }} .pxFormGenerator .red-asterisk {
-        color: #f1152f;
-        margin-left: 0;
-    }
 </style>
 
 <script type="text/javascript">
-    {%- if section.settings.use_app_form -%}
-    (function() {
-        function applyHulkStyles() {
-            var formEl = document.getElementById('fK1QV9N2zeE0fyS3iG0Gtg');
-            if (!formEl) return;
-
-            // Resolve the theme font from the computed body style
-            var bodyFont = window.getComputedStyle(document.body).fontFamily;
-
-            // Labels: override Hulk's inline font-family !important
-            formEl.querySelectorAll('label.block_label, label.fitText').forEach(function(label) {
-                label.style.setProperty('font-family', bodyFont, 'important');
-                label.style.setProperty('font-weight', 'bold', 'important');
-                // Wrap trailing * in a red-asterisk span (once only)
-                if (!label.querySelector('.red-asterisk') && /\*\s*$/.test(label.textContent)) {
-                    label.innerHTML = label.innerHTML.replace(/\*(\s*)$/, '<span class="red-asterisk" style="color:#f1152f;margin-left:0">*</span>$1');
-                }
-            });
-
-            // Inputs / selects: padding
-            formEl.querySelectorAll('input.form-control, select.form-control').forEach(function(el) {
-                el.style.setProperty('padding-top', '12px', 'important');
-                el.style.setProperty('padding-bottom', '12px', 'important');
-            });
-
-            // Textarea: padding + min-height override Hulk's inline height
-            formEl.querySelectorAll('textarea.form-control').forEach(function(el) {
-                el.style.setProperty('padding-top', '12px', 'important');
-                el.style.setProperty('padding-bottom', '12px', 'important');
-                el.style.setProperty('min-height', '216px', 'important');
-                el.style.setProperty('height', 'auto', 'important');
-            });
-        }
-
-        // Run immediately (in case form already rendered)
-        applyHulkStyles();
-
-        // Watch the entire body for Hulk's async DOM injection
-        new MutationObserver(applyHulkStyles)
-            .observe(document.body, { childList: true, subtree: true });
-
-        // Belt-and-suspenders: also run on load
-        window.addEventListener('load', applyHulkStyles);
-    })();
-    {%- endif -%}
-
     window.addEventListener('load', () => {
         const collectionLinksElement = document.querySelector('.contact-navigation-container')
         const collectionLinksList = [...collectionLinksElement.querySelectorAll('ul li.item')]
