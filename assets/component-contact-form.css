@@ -83,7 +83,7 @@
     padding-right: 15px;
     margin: 0;
     overflow: hidden;
-    border-radius: var(--btn-1-border-radius);
+    border-radius: 30px !important;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -136,4 +136,27 @@
 /* Arabic/RTL support for Globo form */
 body.layout_rtl .globo-form.contact-form .flat_rounded-input {
     text-align: right;
+}
+
+/* Globo Form Builder - Submit Button Styling */
+.globo-form.contact-form .flat_rounded-button,
+.globo-form.contact-form button.flat_rounded-button,
+.globo-form.contact-form .gfb__footer button {
+    border-radius: 75px !important;
+    margin-top: 5px;
+    width: 227px;
+    display: block;
+    margin-left: 0;
+    margin-right: auto;
+    padding-top: var(--btn-padding-top);
+    padding-bottom: var(--btn-padding-bottom);
+    padding-left: var(--btn-padding-left);
+    padding-right: var(--btn-padding-right);
+    font-family: var(--font-body-family);
+    font-size: var(--font-body-size);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--body-letter-spacing);
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: var(--anchor-transition);
 }
