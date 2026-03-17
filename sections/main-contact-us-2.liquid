@@ -152,9 +152,13 @@
                     {% if contact_form_description != blank %}
                         <p class="contact-form-description contact-text{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">{{ contact_form_description }}</p>
                     {% endif %}
-                    {% render 'contact-form',
-                        section: section
-                    %}
+                    {%- if section.settings.use_app_form -%}
+                        <div style="margin:0 auto;" class="pxFormGenerator" id="fK1QV9N2zeE0fyS3iG0Gtg"></div>
+                    {%- else -%}
+                        {% render 'contact-form',
+                            section: section
+                        %}
+                    {%- endif -%}
                 </div>
                 {%- if show_contact_info -%}
                     {%- if has_contact_info -%}
@@ -594,6 +598,12 @@
             {
                 "type": "header",
                 "content": "t:sections.main_contact.settings.header__2"
+            },
+            {
+                "type": "checkbox",
+                "id": "use_app_form",
+                "label": "Use Hulk App Form",
+                "default": false
             },
             {
                 "type": "select",
