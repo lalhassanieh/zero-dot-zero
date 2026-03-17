@@ -38,7 +38,6 @@
         "contact_bg_image_height": 450,
         "contact_bg_image_height_mb": 360,
         "enable_parallax": true,
-        "use_app_form": true,
         "form_container": "fullwidth",
         "form_padding_full_width": 100,
         "contact_form_title": "Let’s Keep the Conversation Flowing",
@@ -73,39 +72,15 @@
     "1773753300135fb965": {
       "type": "apps",
       "blocks": {
-        "hulk_form_builder_form_block_jTRxkU": {
-          "type": "shopify://apps/hulk-form-builder/blocks/form-block/b6b8dd14-356b-4725-a4ed-77232212b3c3",
+        "powerful_form_builder_app_block_94QxWB": {
+          "type": "shopify://apps/powerful-form-builder/blocks/app-block/e4bcb1eb-35b2-42e6-bc37-bfe0e1542c9d",
           "settings": {
-            "form_uuid": "fK1QV9N2zeE0fyS3iG0Gtg",
-            "form_settings": false,
-            "font_color": "#232323",
-            "size": 14,
-            "input_background_color": "#ffffff",
-            "input_background_color_focus": "#f4dada",
-            "input_border_radius": 1,
-            "input_border_color": "#ebe9e9",
-            "input_border_color_focus": "#2d2727",
-            "input_font_color": "#3d3131",
-            "input_size": 14,
-            "border_color": "#121212",
-            "border_radius": 2,
-            "border": 1,
-            "fill_color": "#ebe9e9",
-            "padding": 35,
-            "form_width": 600,
-            "btn_text": "Submit",
-            "sub_btn_txt_color": "#f3f3f3",
-            "sub_btn_bg_color": "#3f3333",
-            "sub_btn_font_size": 14,
-            "sub_btn_bdr_color": "#ffffff",
-            "sub_btn_bdr_rad": 3,
-            "sub_btn_bdr_width": 1,
-            "fonts": "Times New Roman"
+            "shortcode": "<div class=\"globo-formbuilder\" data-id=\"MTM3NzQw\"></div>"
           }
         }
       },
       "block_order": [
-        "hulk_form_builder_form_block_jTRxkU"
+        "powerful_form_builder_app_block_94QxWB"
       ],
       "settings": {
         "include_margins": false
