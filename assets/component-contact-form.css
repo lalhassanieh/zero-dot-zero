@@ -154,7 +154,7 @@ body.layout_rtl .globo-form.contact-form .flat_rounded-input {
     padding-left: var(--btn-padding-left);
     padding-right: var(--btn-padding-right);
     font-family: var(--font-body-family);
-    font-size: var(--font-body-size);
+    font-size: var(--btn-1-font-size);
     font-weight: var(--font-weight-bold);
     letter-spacing: var(--body-letter-spacing);
     text-transform: uppercase;
