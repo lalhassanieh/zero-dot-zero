@@ -352,9 +352,56 @@
             padding-bottom: {{ padding_bottom_mobile }};
         }
     }
+
+    /* ── Hulk App Form overrides ── */
+    #ContactSection-{{ section.id }} .pxFormGenerator label.block_label,
+    #ContactSection-{{ section.id }} .pxFormGenerator label.fitText {
+        font-family: var(--font-body-family) !important;
+        font-weight: bold !important;
+    }
+
+    #ContactSection-{{ section.id }} .pxFormGenerator input.form-control,
+    #ContactSection-{{ section.id }} .pxFormGenerator textarea.form-control,
+    #ContactSection-{{ section.id }} .pxFormGenerator select.form-control {
+        font-family: 'Gilroy Extra Bold', sans-serif !important;
+        padding-top: 12px !important;
+        padding-bottom: 12px !important;
+    }
+
+    #ContactSection-{{ section.id }} .pxFormGenerator textarea.form-control {
+        min-height: 216px !important;
+        height: auto !important;
+    }
+
+    #ContactSection-{{ section.id }} .pxFormGenerator .red-asterisk {
+        color: #f1152f;
+        margin-left: 0;
+    }
 </style>
 
 <script type="text/javascript">
+    {%- if section.settings.use_app_form -%}
+    (function() {
+        function applyHulkLabelStyles(root) {
+            root.querySelectorAll('.pxFormGenerator label.block_label').forEach(function(label) {
+                // Override Hulk's inline font-family with the theme font
+                label.style.setProperty('font-family', 'var(--font-body-family)', 'important');
+                label.style.setProperty('font-weight', 'bold', 'important');
+                // Wrap asterisk in required labels
+                if (!label.querySelector('.red-asterisk') && /\*\s*$/.test(label.textContent)) {
+                    label.innerHTML = label.innerHTML.replace(/\*(\s*)$/, '<span class="red-asterisk">*</span>$1');
+                }
+            });
+        }
+        var container = document.getElementById('ContactSection-{{ section.id }}');
+        if (container) {
+            applyHulkLabelStyles(container);
+            new MutationObserver(function() { applyHulkLabelStyles(container); })
+                .observe(container, { childList: true, subtree: true });
+        }
+    })();
+    {%- endif -%}
+
     window.addEventListener('load', () => {
         const collectionLinksElement = document.querySelector('.contact-navigation-container')
         const collectionLinksList = [...collectionLinksElement.querySelectorAll('ul li.item')]
