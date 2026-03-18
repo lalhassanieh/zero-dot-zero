@@ -108,6 +108,37 @@
         });
       });
     }
+
+      // Style asterisks in Globo Form paragraph headings
+  function styleGloboFormAsterisks() {
+    var headings = document.querySelectorAll('.globo-form.contact-form .globo-paragraph h4');
+    headings.forEach(function(heading) {
+      // Replace asterisk with wrapped version for red styling
+      heading.innerHTML = heading.innerHTML.replace(/\*/g, '<span class="required-asterisk">*</span>');
+    });
+  }
+
+  // Run on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', styleGloboFormAsterisks);
+  } else {
+    styleGloboFormAsterisks();
+  }
+
+  // Also run when Globo form is loaded dynamically
+  var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      mutation.addedNodes.forEach(function(node) {
+        if (node.nodeType === 1 && (node.classList.contains('globo-form') || node.querySelector('.globo-form'))) {
+          styleGloboFormAsterisks();
+        }
+      });
+    });
+  });
+
+  if (document.body) {
+    observer.observe(document.body, { childList: true, subtree: true });
+  }
   })();
   
 
