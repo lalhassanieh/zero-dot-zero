@@ -208,8 +208,6 @@
       '.loyalty-referring-friend-get-info-description .appstle-amount::before{content:"A\u00A0";font-family:"MHE-Riyal-Sign" !important;font-weight:700;line-height:1;}',
       '.loyalty-referrals-friend-get-info-description .appstle-amount::before{content:"A\u00A0";font-family:"MHE-Riyal-Sign" !important;font-weight:700;line-height:1;}',
 
-      '.al-loyalty-money-sign{font-family:"MHE-Riyal-Sign" !important;font-weight:700;}',
-
       'button{border-radius:50px !important;}',
       '.loyalty-cart-widget-rewards-btn{border-radius:50px !important;}'
     ].join('');
@@ -272,55 +270,19 @@
       if (observedIframes.has(iframe)) return;
       observedIframes.add(iframe);
 
-      var lastDoc = null;
-      var iObs = null;
-
-      function applyToDoc(doc) {
-        injectCss(doc);
-        processDoc(doc);
+      function runInIframe() {
+        try {
+          var iDoc = iframe.contentDocument || iframe.contentWindow.document;
+          if (!iDoc || !iDoc.body) return;
+          injectCss(iDoc);
+          processDoc(iDoc);
+          var iObs = new MutationObserver(function () { injectCss(iDoc); processDoc(iDoc); });
+          iObs.observe(iDoc.body, { childList: true, subtree: true });
+        } catch (e) {}
       }
 
-      function attachObserver(doc) {
-        if (iObs) iObs.disconnect();
-        var cb = function () {
-          try {
-            var d = iframe.contentDocument || iframe.contentWindow.document;
-            if (!d || !d.body) return;
-            injectCss(d);
-            processDoc(d);
-          } catch (e) {}
-        };
-        iObs = new MutationObserver(cb);
-        iObs.observe(doc.body, { childList: true, subtree: true });
-        if (doc.head) iObs.observe(doc.head, { childList: true });
-      }
-
-      // Poll every 400ms — survives SPA navigation that doesn't fire load events
-      setInterval(function () {
-        try {
-          var doc = iframe.contentDocument || iframe.contentWindow.document;
-          if (!doc || !doc.body) return;
-          // Re-attach observer if document changed (SPA navigation)
-          if (doc !== lastDoc) {
-            lastDoc = doc;
-            applyToDoc(doc);
-            attachObserver(doc);
-          } else if (!doc.getElementById('appstle-bi-styles')) {
-            // Style was removed — re-inject
-            applyToDoc(doc);
-          }
-        } catch (e) {}
-      }, 400);
-
-      iframe.addEventListener("load", function () {
-        try {
-          var doc = iframe.contentDocument || iframe.contentWindow.document;
-          if (!doc || !doc.body) return;
-          lastDoc = doc;
-          applyToDoc(doc);
-          attachObserver(doc);
-        } catch (e) {}
-      });
+      runInIframe();
+      iframe.addEventListener("load", runInIframe);
     }
 
     function scanAll() {
