@@ -142,7 +142,7 @@
   })();
   
 
-  // ── Zing loyalty riyal formatter (commented out — replaced by Appstle version below) ──
+ // ── Zing loyalty riyal formatter (commented out — replaced by Appstle version below) ──
   // function initZingRiyalFormatter() {
   //   function process(scope) {
   //       (scope || document)
@@ -195,18 +195,39 @@
       ".loyalty-referrals-friend-get-info-description:not(.has-riyal)"
     ].join(",");
 
+    // CSS injected into the iframe (same as bi-custom.css block, safe for JS strings)
+    var IFRAME_CSS = [
+      '@font-face{font-family:"MHE-Riyal-Sign";src:url("https://zero-dot-zero.myshopify.com/cdn/shop/t/2/assets/MHERiyalSign-Regular.woff2") format("woff2"),url("https://zero-dot-zero.myshopify.com/cdn/shop/t/2/assets/MHERiyalSign-Regular.woff") format("woff"),url("https://zero-dot-zero.myshopify.com/cdn/shop/t/2/assets/MHERiyalSign-Regular.ttf") format("truetype");font-weight:normal;font-style:normal;}',
+      '.loyalty-referring-friend-get-info-description .appstle-amount,',
+      '.loyalty-referrals-friend-get-info-description .appstle-amount{',
+      '  display:inline-block;white-space:nowrap;direction:ltr;unicode-bidi:isolate;',
+      '}',
+      '.loyalty-referring-friend-get-info-description .appstle-amount::before,',
+      '.loyalty-referrals-friend-get-info-description .appstle-amount::before{',
+      '  content:"A\u00A0";font-family:"MHE-Riyal-Sign" !important;font-weight:700;line-height:1;',
+      '}'
+    ].join('');
+
+    function injectCssIntoIframe(iDoc) {
+      if (iDoc.getElementById('appstle-riyal-styles')) return;
+      var style = iDoc.createElement('style');
+      style.id = 'appstle-riyal-styles';
+      style.textContent = IFRAME_CSS;
+      (iDoc.head || iDoc.documentElement).appendChild(style);
+      console.log("[AppstleRiyal] CSS injected into iframe");
+    }
+
     function processDoc(doc, label) {
       var found = doc.querySelectorAll(SELECTORS);
       if (found.length) console.log("[AppstleRiyal] found", found.length, "element(s) in", label);
       found.forEach(function (el) {
-        if (!el.textContent.includes("ريال")) return;
-        el.childNodes.forEach(function (node) {
-          if (node.nodeType === 3) {
-            node.textContent = node.textContent
-              .replace(/\s*ريال\s*/g, " ")
-              .replace(/\s+/g, " ");
-          }
-        });
+        var text = (el.textContent || "").replace(/\s+/g, " ").trim();
+        if (!text.includes("ريال")) return;
+        text = text.replace(/ريال/g, "").replace(/\s+/g, " ").trim();
+        var m = text.match(/(\d{1,3}(?:,\d{3})*(?:\.\d+)?|\d+(?:\.\d+)?)/);
+        if (!m) return;
+        var amount = m[1];
+        el.innerHTML = text.replace(amount, '<span class="appstle-amount">' + amount + "</span>");
         el.classList.add("has-riyal");
         console.log("[AppstleRiyal] ✓ processed in", label);
       });
@@ -223,6 +244,7 @@
         try {
           var iDoc = iframe.contentDocument || iframe.contentWindow.document;
           if (!iDoc || !iDoc.body) return;
+          injectCssIntoIframe(iDoc);
           processDoc(iDoc, "iframe#" + (iframe.id || "?"));
           // watch for future mutations inside the iframe
           var iObs = new MutationObserver(function () { processDoc(iDoc, "iframe(mutation)"); });
