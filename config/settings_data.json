@@ -952,17 +952,17 @@
       },
       "2290183850952111542": {
         "type": "shopify://apps/zing-loyalty/blocks/app-embed/6416ef3c-a792-4a34-a327-7cb16ed3b301",
-        "disabled": true,
+        "disabled": false,
         "settings": {}
       },
       "12747914819641017586": {
         "type": "shopify://apps/zing-loyalty/blocks/redeem_in_cart_drawer/6416ef3c-a792-4a34-a327-7cb16ed3b301",
-        "disabled": true,
+        "disabled": false,
         "settings": {}
       },
       "491784548736544534": {
         "type": "shopify://apps/zing-loyalty/blocks/referral_program/6416ef3c-a792-4a34-a327-7cb16ed3b301",
-        "disabled": true,
+        "disabled": false,
         "settings": {}
       }
     }
