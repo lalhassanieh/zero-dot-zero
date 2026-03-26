@@ -208,8 +208,6 @@
       '.loyalty-referring-friend-get-info-description .appstle-amount::before{content:"A\u00A0";font-family:"MHE-Riyal-Sign" !important;font-weight:700;line-height:1;}',
       '.loyalty-referrals-friend-get-info-description .appstle-amount::before{content:"A\u00A0";font-family:"MHE-Riyal-Sign" !important;font-weight:700;line-height:1;}',
 
-      '.al-loyalty-money-sign{font-family:"MHE-Riyal-Sign" !important;font-weight:700;}',
-
       'button{border-radius:50px !important;}',
       '.loyalty-cart-widget-rewards-btn{border-radius:50px !important;}'
     ].join('');
@@ -278,17 +276,8 @@
           if (!iDoc || !iDoc.body) return;
           injectCss(iDoc);
           processDoc(iDoc);
-          var iObsCb = function () {
-            try {
-              var doc = iframe.contentDocument || iframe.contentWindow.document;
-              if (!doc || !doc.body) return;
-              injectCss(doc);
-              processDoc(doc);
-            } catch (e) {}
-          };
-          var iObs = new MutationObserver(iObsCb);
+          var iObs = new MutationObserver(function () { injectCss(iDoc); processDoc(iDoc); });
           iObs.observe(iDoc.body, { childList: true, subtree: true });
-          if (iDoc.head) iObs.observe(iDoc.head, { childList: true });
         } catch (e) {}
       }
 
