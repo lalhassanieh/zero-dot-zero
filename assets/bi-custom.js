@@ -208,7 +208,7 @@
       'display:inline-block;white-space:nowrap;direction:ltr;unicode-bidi:isolate;}',
       '.loyalty-referring-friend-get-info-description .appstle-amount::before,',
       '.loyalty-referrals-friend-get-info-description .appstle-amount::before{',
-      'content:"A\u00A0";font-family:"MHE-Riyal-Sign" !important;font-weight:700;line-height:1;}',
+      'content:"A";font-family:"MHE-Riyal-Sign" !important;font-weight:700;line-height:1;}',
       /* RTL */
       'body{direction:rtl;text-align:right;}',
       '.al-referral-you-get-block,.al-referral-they-get-block{direction:rtl;}',
