@@ -927,37 +927,9 @@
     },
     "content_for_index": [],
     "blocks": {
-      "8962992520437913685": {
-        "type": "shopify://apps/yotpo-loyalty-rewards/blocks/loader-app-embed-block/2f9660df-5018-4e02-9868-ee1fb88d6ccd",
-        "disabled": true,
-        "settings": {
-          "inject_modules_loader": true,
-          "inject_sdk_loader": false
-        }
-      },
       "6478312753674380289": {
         "type": "shopify://apps/gempages-builder/blocks/embed-gp-script-head/20b379d4-1b20-474c-a6ca-665c331919f3",
         "disabled": false,
-        "settings": {}
-      },
-      "491784548736544534": {
-        "type": "shopify://apps/zing-loyalty/blocks/referral_program/6416ef3c-a792-4a34-a327-7cb16ed3b301",
-        "disabled": false,
-        "settings": {}
-      },
-      "12747914819641017586": {
-        "type": "shopify://apps/zing-loyalty/blocks/redeem_in_cart_drawer/6416ef3c-a792-4a34-a327-7cb16ed3b301",
-        "disabled": false,
-        "settings": {}
-      },
-      "2290183850952111542": {
-        "type": "shopify://apps/zing-loyalty/blocks/app-embed/6416ef3c-a792-4a34-a327-7cb16ed3b301",
-        "disabled": false,
-        "settings": {}
-      },
-      "6174324309569838175": {
-        "type": "shopify://apps/smile-io/blocks/smile-shopify-app/2fae4e25-1841-4ea2-bc02-bd548478c4f6",
-        "disabled": true,
         "settings": {}
       },
       "13974608683207948951": {
@@ -968,14 +940,29 @@
           "app_color": "green"
         }
       },
-      "319724205969189013": {
-        "type": "shopify://apps/hulk-form-builder/blocks/app-embed/b6b8dd14-356b-4725-a4ed-77232212b3c3",
-        "disabled": false,
-        "settings": {}
-      },
       "6279071938380501511": {
         "type": "shopify://apps/powerful-form-builder/blocks/app-embed/e4bcb1eb-35b2-42e6-bc37-bfe0e1542c9d",
         "disabled": false,
+        "settings": {}
+      },
+      "1721301647844767814": {
+        "type": "shopify://apps/ait-loyalty-review-affiliate/blocks/app-aioEmbeddedBlock/0ac2ae90-3cb2-4597-b945-a3b33462ea90",
+        "disabled": false,
+        "settings": {}
+      },
+      "2290183850952111542": {
+        "type": "shopify://apps/zing-loyalty/blocks/app-embed/6416ef3c-a792-4a34-a327-7cb16ed3b301",
+        "disabled": true,
+        "settings": {}
+      },
+      "12747914819641017586": {
+        "type": "shopify://apps/zing-loyalty/blocks/redeem_in_cart_drawer/6416ef3c-a792-4a34-a327-7cb16ed3b301",
+        "disabled": true,
+        "settings": {}
+      },
+      "491784548736544534": {
+        "type": "shopify://apps/zing-loyalty/blocks/referral_program/6416ef3c-a792-4a34-a327-7cb16ed3b301",
+        "disabled": true,
         "settings": {}
       }
     }
