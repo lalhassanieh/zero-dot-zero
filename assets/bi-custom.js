@@ -241,11 +241,13 @@
     ].join('');
 
     function injectCss(iDoc) {
-      if (iDoc.getElementById('appstle-bi-styles')) return;
       var isRtl = document.documentElement.dir === 'rtl' || document.documentElement.lang === 'ar';
+      var css = IFRAME_CSS_BASE + (isRtl ? IFRAME_CSS_RTL : '');
+      var existing = iDoc.getElementById('appstle-bi-styles');
+      if (existing) { existing.textContent = css; return; }
       var s = iDoc.createElement('style');
       s.id = 'appstle-bi-styles';
-      s.textContent = IFRAME_CSS_BASE + (isRtl ? IFRAME_CSS_RTL : '');
+      s.textContent = css;
       (iDoc.head || iDoc.documentElement).appendChild(s);
     }
 
