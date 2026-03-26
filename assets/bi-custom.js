@@ -187,39 +187,61 @@
   // });
 
   // ── Appstle loyalty riyal formatter ──
-  // Removes "ريال" from Appstle referral description text.
-  // The <span class="riyal-font"> already present in the markup handles the sign via CSS.
   function initAppstleRiyalFormatter() {
     var SELECTORS = [
       ".loyalty-referring-friend-get-info-description:not(.has-riyal)",
       ".loyalty-referrals-friend-get-info-description:not(.has-riyal)"
     ].join(",");
 
-    function process(scope) {
-      (scope || document).querySelectorAll(SELECTORS).forEach(function (el) {
-        if (!el.textContent.includes("ريال")) return;
-
+    function process() {
+      var found = document.querySelectorAll(SELECTORS);
+      console.log("[AppstleRiyal] process() — elements found:", found.length);
+      found.forEach(function (el) {
+        console.log("[AppstleRiyal] textContent:", JSON.stringify(el.textContent));
+        if (!el.textContent.includes("ريال")) {
+          console.log("[AppstleRiyal] no ريال — skipping");
+          return;
+        }
         el.childNodes.forEach(function (node) {
           if (node.nodeType === 3) {
+            console.log("[AppstleRiyal] text node before:", JSON.stringify(node.textContent));
             node.textContent = node.textContent
               .replace(/\s*ريال\s*/g, " ")
               .replace(/\s+/g, " ");
+            console.log("[AppstleRiyal] text node after:", JSON.stringify(node.textContent));
           }
         });
-
         el.classList.add("has-riyal");
+        console.log("[AppstleRiyal] ✓ processed — has-riyal added");
       });
     }
 
-    process(document);
+    console.log("[AppstleRiyal] init — readyState:", document.readyState);
+    process();
 
+    // Retry every 500 ms for 5 s to catch late Appstle renders
+    var retries = 0;
+    var retryTimer = setInterval(function () {
+      retries++;
+      console.log("[AppstleRiyal] retry #" + retries);
+      process();
+      if (retries >= 10) {
+        clearInterval(retryTimer);
+        console.log("[AppstleRiyal] retries exhausted");
+      }
+    }, 500);
+
+    // MutationObserver as ongoing fallback
     var debounceTimer;
     var observer = new MutationObserver(function () {
       clearTimeout(debounceTimer);
-      debounceTimer = setTimeout(function () { process(document); }, 100);
+      debounceTimer = setTimeout(function () {
+        console.log("[AppstleRiyal] MutationObserver fired — running process()");
+        process();
+      }, 150);
     });
-
     observer.observe(document.body, { childList: true, subtree: true });
+    console.log("[AppstleRiyal] MutationObserver started");
   }
 
   if (document.readyState === "loading") {
