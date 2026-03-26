@@ -205,8 +205,8 @@
 
       '.loyalty-referring-friend-get-info-description .appstle-amount{display:inline-block;white-space:nowrap;direction:ltr;unicode-bidi:isolate;}',
       '.loyalty-referrals-friend-get-info-description .appstle-amount{display:inline-block;white-space:nowrap;direction:ltr;unicode-bidi:isolate;}',
-      '.loyalty-referring-friend-get-info-description .appstle-amount::before{content:"A\u00A0";font-family:"MHE-Riyal-Sign" !important;font-weight:700;line-height:1;}',
-      '.loyalty-referrals-friend-get-info-description .appstle-amount::before{content:"A\u00A0";font-family:"MHE-Riyal-Sign" !important;font-weight:700;line-height:1;}',
+      '.loyalty-referring-friend-get-info-description .appstle-amount::before{content:"A";font-family:"MHE-Riyal-Sign" !important;font-weight:700;line-height:1;}',
+      '.loyalty-referrals-friend-get-info-description .appstle-amount::before{content:"A";font-family:"MHE-Riyal-Sign" !important;font-weight:700;line-height:1;}',
 
       'button{border-radius:50px !important;}',
       '.loyalty-cart-widget-rewards-btn{border-radius:50px !important;}'
