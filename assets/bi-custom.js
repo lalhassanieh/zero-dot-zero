@@ -278,7 +278,14 @@
           if (!iDoc || !iDoc.body) return;
           injectCss(iDoc);
           processDoc(iDoc);
-          var iObs = new MutationObserver(function () { injectCss(iDoc); processDoc(iDoc); });
+          var iObs = new MutationObserver(function () {
+            try {
+              var doc = iframe.contentDocument || iframe.contentWindow.document;
+              if (!doc || !doc.body) return;
+              injectCss(doc);
+              processDoc(doc);
+            } catch (e) {}
+          });
           iObs.observe(iDoc.body, { childList: true, subtree: true });
         } catch (e) {}
       }
