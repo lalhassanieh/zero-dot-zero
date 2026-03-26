@@ -234,7 +234,14 @@
       '.loyalty-cart-widget-rewards-btn{border-radius:50px !important;}',
       '[data-testid="nav-faq"]{flex-direction:row-reverse;gap:6px;}',
       '[data-testid="nav-faq"] .al-ml-1{margin-left:0;}',
-      '.loyalty-home-info-container{direction:rtl;text-align:right;}'
+      '.loyalty-home-info-container{direction:rtl;text-align:right;}',
+
+      /* ── Home screen – force RTL on all content outside fixed header ── */
+      '.loyalty-home-welcome-title{direction:rtl;text-align:right !important;}',
+      '.loyalty-home-loyalty-title{direction:rtl;text-align:right !important;}',
+      '.loyalty-home-community-title{direction:rtl;text-align:right !important;}',
+      '.loyalty-home-card,.loyalty-home-earn-title,.loyalty-home-earn-description{direction:rtl;text-align:right !important;}',
+      '.al-overflow-y-auto,.al-flex-col:not(.al-fixed){direction:rtl;}'
     ].join('');
 
     function injectCss(iDoc) {
@@ -270,7 +277,7 @@
           if (!iDoc || !iDoc.body) return;
           injectCss(iDoc);
           processDoc(iDoc);
-          var iObs = new MutationObserver(function () { processDoc(iDoc); });
+          var iObs = new MutationObserver(function () { injectCss(iDoc); processDoc(iDoc); });
           iObs.observe(iDoc.body, { childList: true, subtree: true });
         } catch (e) {}
       }
