@@ -196,69 +196,6 @@
     ].join(",");
 
 
-    // Always applied (both AR and EN)
-    var IFRAME_CSS_BASE = [
-      /* ── Font ── */
-      '@font-face{font-family:"MHE-Riyal-Sign";',
-      'src:url("https://zero-dot-zero.myshopify.com/cdn/shop/t/2/assets/MHERiyalSign-Regular.woff2") format("woff2"),',
-      'url("https://zero-dot-zero.myshopify.com/cdn/shop/t/2/assets/MHERiyalSign-Regular.woff") format("woff"),',
-      'url("https://zero-dot-zero.myshopify.com/cdn/shop/t/2/assets/MHERiyalSign-Regular.ttf") format("truetype");',
-      'font-weight:normal;font-style:normal;}',
-
-      /* ── Amount span (LTR number inside any text) ── */
-      '.loyalty-referring-friend-get-info-description .appstle-amount{display:inline-block;white-space:nowrap;direction:ltr;unicode-bidi:isolate;}',
-      '.loyalty-referrals-friend-get-info-description .appstle-amount{display:inline-block;white-space:nowrap;direction:ltr;unicode-bidi:isolate;}',
-      '.loyalty-referring-friend-get-info-description .appstle-amount::before{content:"A\u00A0";font-family:"MHE-Riyal-Sign" !important;font-weight:700;line-height:1;}',
-      '.loyalty-referrals-friend-get-info-description .appstle-amount::before{content:"A\u00A0";font-family:"MHE-Riyal-Sign" !important;font-weight:700;line-height:1;}',
-
-      /* ── Misc (always) ── */
-      'button{border-radius:50px !important;}',
-      '.loyalty-cart-widget-rewards-btn{border-radius:50px !important;}'
-    ].join('');
-
-    // Only applied when the main page is Arabic (RTL)
-    var IFRAME_CSS_RTL = [
-      /* ── Arabic description paragraphs ── */
-      '.loyalty-referring-friend-get-info-description{direction:rtl;text-align:right;}',
-      '.loyalty-referrals-friend-get-info-description{direction:rtl;text-align:right;}',
-
-      /* ── Global RTL ── */
-      'body{direction:rtl;text-align:right;}',
-
-      /* ── Exceptions – keep LTR ── */
-      '.al-fixed.al-inset-0{direction:ltr !important;flex-direction:row !important;}',
-
-      /* ── Referral blocks ── */
-      '.al-referral-you-get-block{direction:rtl;}',
-      '.al-referral-they-get-block{direction:rtl;}',
-      '.al-referral-you-get-container{flex-direction:row-reverse;}',
-      '.al-referral-they-get-container{flex-direction:row-reverse;}',
-      '.loyalty-referring-friend-get-info-container{text-align:right;}',
-      '.loyalty-referrals-friend-get-info-container{text-align:right;}',
-      '.al-mr-3{margin-right:0;margin-left:0.75rem;}',
-
-      /* ── FAQ nav ── */
-      '[data-testid="nav-faq"]{flex-direction:row-reverse;gap:6px;}',
-      '[data-testid="nav-faq"] .al-ml-1{margin-left:0;}',
-
-      /* ── Home screen ── */
-      '.loyalty-home-info-container{direction:rtl;text-align:right;}',
-      '.loyalty-home-welcome-title{text-align:right !important;}',
-      '.loyalty-home-loyalty-title{text-align:right !important;}',
-      '.loyalty-home-community-title{text-align:right !important;}',
-      '.loyalty-home-card,.loyalty-home-earn-title,.loyalty-home-earn-description{direction:rtl;text-align:right !important;}',
-      '.al-overflow-y-auto,.al-flex-col:not(.al-fixed){direction:rtl;}'
-    ].join('');
-
-    function injectCss(iDoc) {
-      if (iDoc.getElementById('appstle-bi-styles')) return;
-      var isRtl = document.documentElement.dir === 'rtl' || document.documentElement.lang === 'ar';
-      var s = iDoc.createElement('style');
-      s.id = 'appstle-bi-styles';
-      s.textContent = IFRAME_CSS_BASE + (isRtl ? IFRAME_CSS_RTL : '');
-      (iDoc.head || iDoc.documentElement).appendChild(s);
-    }
-
     function processDoc(doc) {
       doc.querySelectorAll(SELECTORS).forEach(function (el) {
         var text = (el.textContent || "").replace(/\s+/g, " ").trim();
@@ -282,9 +219,8 @@
         try {
           var iDoc = iframe.contentDocument || iframe.contentWindow.document;
           if (!iDoc || !iDoc.body) return;
-          injectCss(iDoc);
           processDoc(iDoc);
-          var iObs = new MutationObserver(function () { injectCss(iDoc); processDoc(iDoc); });
+          var iObs = new MutationObserver(function () { processDoc(iDoc); });
           iObs.observe(iDoc.body, { childList: true, subtree: true });
         } catch (e) {}
       }
