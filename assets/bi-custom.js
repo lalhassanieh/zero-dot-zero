@@ -142,7 +142,7 @@
   })();
   
 
- // ── Zing loyalty riyal formatter (commented out — replaced by Appstle version below) ──
+  // ── Zing loyalty riyal formatter (commented out — replaced by Appstle version below) ──
   // function initZingRiyalFormatter() {
   //   function process(scope) {
   //       (scope || document)
@@ -197,7 +197,6 @@
 
 
     var IFRAME_CSS = [
-      /* riyal sign */
       '@font-face{font-family:"MHE-Riyal-Sign";',
       'src:url("https://zero-dot-zero.myshopify.com/cdn/shop/t/2/assets/MHERiyalSign-Regular.woff2") format("woff2"),',
       'url("https://zero-dot-zero.myshopify.com/cdn/shop/t/2/assets/MHERiyalSign-Regular.woff") format("woff"),',
@@ -209,13 +208,14 @@
       '.loyalty-referring-friend-get-info-description .appstle-amount::before,',
       '.loyalty-referrals-friend-get-info-description .appstle-amount::before{',
       'content:"A";font-family:"MHE-Riyal-Sign" !important;font-weight:700;line-height:1;}',
-      /* RTL */
+
       'body{direction:rtl;text-align:right;}',
+      '.al-fixed.al-inset-0{direction:ltr !important;flex-direction:row !important;}',
       '.al-referral-you-get-block,.al-referral-they-get-block{direction:rtl;}',
       '.al-referral-you-get-container,.al-referral-they-get-container{flex-direction:row-reverse;}',
       '.loyalty-referring-friend-get-info-container,.loyalty-referrals-friend-get-info-container{text-align:right;}',
       '.al-mr-3{margin-right:0;margin-left:0.75rem;}',
-      /* button border-radius */
+
       'button,.loyalty-cart-widget-rewards-btn{border-radius:50px !important;}'
     ].join('');
 
