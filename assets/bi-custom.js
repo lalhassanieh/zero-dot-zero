@@ -205,8 +205,8 @@
 
       '.loyalty-referring-friend-get-info-description .appstle-amount{display:inline-block;white-space:nowrap;direction:ltr;unicode-bidi:isolate;}',
       '.loyalty-referrals-friend-get-info-description .appstle-amount{display:inline-block;white-space:nowrap;direction:ltr;unicode-bidi:isolate;}',
-      '.loyalty-referring-friend-get-info-description .appstle-amount::before{content:"A";font-family:"MHE-Riyal-Sign" !important;font-weight:700;line-height:1;}',
-      '.loyalty-referrals-friend-get-info-description .appstle-amount::before{content:"A";font-family:"MHE-Riyal-Sign" !important;font-weight:700;line-height:1;}',
+      '.loyalty-referring-friend-get-info-description .appstle-amount::before{content:"A\u00A0";font-family:"MHE-Riyal-Sign" !important;font-weight:700;line-height:1;}',
+      '.loyalty-referrals-friend-get-info-description .appstle-amount::before{content:"A\u00A0";font-family:"MHE-Riyal-Sign" !important;font-weight:700;line-height:1;}',
 
       'button{border-radius:50px !important;}',
       '.loyalty-cart-widget-rewards-btn{border-radius:50px !important;}'
@@ -222,8 +222,9 @@
 
       '.al-referral-you-get-block{direction:rtl;}',
       '.al-referral-they-get-block{direction:rtl;}',
-      '.al-referral-you-get-container{flex-direction:row-reverse;}',
-      '.al-referral-they-get-container{flex-direction:row-reverse;}',
+      '.al-referral-you-get-container{flex-direction:row-reverse !important;}',
+      '.al-referral-they-get-container{flex-direction:row-reverse !important;}',
+      '.loyalty-referring-friend-get-left-icon{margin-right:0 !important;margin-left:0.75rem !important;}',
       '.loyalty-referring-friend-get-info-container{text-align:right;}',
       '.loyalty-referrals-friend-get-info-container{text-align:right;}',
       '.al-mr-3{margin-right:0;margin-left:0.75rem;}',
