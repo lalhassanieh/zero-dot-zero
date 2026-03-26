@@ -945,24 +945,24 @@
         "disabled": false,
         "settings": {}
       },
-      "2290183850952111542": {
-        "type": "shopify://apps/zing-loyalty/blocks/app-embed/6416ef3c-a792-4a34-a327-7cb16ed3b301",
+      "16237003337219470499": {
+        "type": "shopify://apps/appstle-loyalty/blocks/appstle-loyalty/1886c0f8-77b6-4a85-af11-b43cc17ae1c1",
         "disabled": false,
         "settings": {}
       },
-      "491784548736544534": {
-        "type": "shopify://apps/zing-loyalty/blocks/referral_program/6416ef3c-a792-4a34-a327-7cb16ed3b301",
-        "disabled": false,
+      "2290183850952111542": {
+        "type": "shopify://apps/zing-loyalty/blocks/app-embed/6416ef3c-a792-4a34-a327-7cb16ed3b301",
+        "disabled": true,
         "settings": {}
       },
       "12747914819641017586": {
         "type": "shopify://apps/zing-loyalty/blocks/redeem_in_cart_drawer/6416ef3c-a792-4a34-a327-7cb16ed3b301",
-        "disabled": false,
+        "disabled": true,
         "settings": {}
       },
-      "16237003337219470499": {
-        "type": "shopify://apps/appstle-loyalty/blocks/appstle-loyalty/1886c0f8-77b6-4a85-af11-b43cc17ae1c1",
-        "disabled": false,
+      "491784548736544534": {
+        "type": "shopify://apps/zing-loyalty/blocks/referral_program/6416ef3c-a792-4a34-a327-7cb16ed3b301",
+        "disabled": true,
         "settings": {}
       }
     }
