@@ -216,7 +216,10 @@
       '.loyalty-referring-friend-get-info-container,.loyalty-referrals-friend-get-info-container{text-align:right;}',
       '.al-mr-3{margin-right:0;margin-left:0.75rem;}',
 
-      'button,.loyalty-cart-widget-rewards-btn{border-radius:50px !important;}'
+      'button,.loyalty-cart-widget-rewards-btn{border-radius:50px !important;}',
+
+      '[data-testid="nav-faq"]{flex-direction:row-reverse;gap:6px;}',
+      '[data-testid="nav-faq"] .al-ml-1{margin-left:0;}'
     ].join('');
 
     function injectCss(iDoc) {
