@@ -142,7 +142,7 @@
   })();
   
 
- // ── Zing loyalty riyal formatter (commented out — replaced by Appstle version below) ──
+  // ── Zing loyalty riyal formatter (commented out — replaced by Appstle version below) ──
   // function initZingRiyalFormatter() {
   //   function process(scope) {
   //       (scope || document)
@@ -222,6 +222,8 @@
     observer.observe(document.body, { childList: true, subtree: true });
   }
 
-  document.addEventListener("DOMContentLoaded", function () {
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initAppstleRiyalFormatter);
+  } else {
     initAppstleRiyalFormatter();
-  });
+  }
