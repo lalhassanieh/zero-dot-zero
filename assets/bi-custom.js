@@ -197,29 +197,44 @@
 
 
     var IFRAME_CSS = [
+      /* ── Font ── */
       '@font-face{font-family:"MHE-Riyal-Sign";',
       'src:url("https://zero-dot-zero.myshopify.com/cdn/shop/t/2/assets/MHERiyalSign-Regular.woff2") format("woff2"),',
       'url("https://zero-dot-zero.myshopify.com/cdn/shop/t/2/assets/MHERiyalSign-Regular.woff") format("woff"),',
       'url("https://zero-dot-zero.myshopify.com/cdn/shop/t/2/assets/MHERiyalSign-Regular.ttf") format("truetype");',
       'font-weight:normal;font-style:normal;}',
-      '.loyalty-referring-friend-get-info-description .appstle-amount,',
-      '.loyalty-referrals-friend-get-info-description .appstle-amount{',
-      'display:inline-block;white-space:nowrap;direction:ltr;unicode-bidi:isolate;}',
-      '.loyalty-referring-friend-get-info-description .appstle-amount::before,',
-      '.loyalty-referrals-friend-get-info-description .appstle-amount::before{',
-      'content:"A";font-family:"MHE-Riyal-Sign" !important;font-weight:700;line-height:1;}',
 
+      /* ── Arabic (RTL) – description paragraphs ── */
+      '.loyalty-referring-friend-get-info-description{direction:rtl;text-align:right;}',
+      '.loyalty-referrals-friend-get-info-description{direction:rtl;text-align:right;}',
+
+      /* ── English (LTR) – amount number span inside Arabic text ── */
+      '.loyalty-referring-friend-get-info-description .appstle-amount{display:inline-block;white-space:nowrap;direction:ltr;unicode-bidi:isolate;}',
+      '.loyalty-referrals-friend-get-info-description .appstle-amount{display:inline-block;white-space:nowrap;direction:ltr;unicode-bidi:isolate;}',
+      '.loyalty-referring-friend-get-info-description .appstle-amount::before{content:"A\u00A0";font-family:"MHE-Riyal-Sign" !important;font-weight:700;line-height:1;}',
+      '.loyalty-referrals-friend-get-info-description .appstle-amount::before{content:"A\u00A0";font-family:"MHE-Riyal-Sign" !important;font-weight:700;line-height:1;}',
+
+      /* ── Global RTL ── */
       'body{direction:rtl;text-align:right;}',
+
+      /* ── Exceptions – keep LTR ── */
       '.al-fixed.al-inset-0{direction:ltr !important;flex-direction:row !important;}',
-      '.al-referral-you-get-block,.al-referral-they-get-block{direction:rtl;}',
-      '.al-referral-you-get-container,.al-referral-they-get-container{flex-direction:row-reverse;}',
-      '.loyalty-referring-friend-get-info-container,.loyalty-referrals-friend-get-info-container{text-align:right;}',
+
+      /* ── Referral blocks RTL ── */
+      '.al-referral-you-get-block{direction:rtl;}',
+      '.al-referral-they-get-block{direction:rtl;}',
+      '.al-referral-you-get-container{flex-direction:row-reverse;}',
+      '.al-referral-they-get-container{flex-direction:row-reverse;}',
+      '.loyalty-referring-friend-get-info-container{text-align:right;}',
+      '.loyalty-referrals-friend-get-info-container{text-align:right;}',
       '.al-mr-3{margin-right:0;margin-left:0.75rem;}',
 
-      'button,.loyalty-cart-widget-rewards-btn{border-radius:50px !important;}',
-
+      /* ── Misc ── */
+      'button{border-radius:50px !important;}',
+      '.loyalty-cart-widget-rewards-btn{border-radius:50px !important;}',
       '[data-testid="nav-faq"]{flex-direction:row-reverse;gap:6px;}',
-      '[data-testid="nav-faq"] .al-ml-1{margin-left:0;}'
+      '[data-testid="nav-faq"] .al-ml-1{margin-left:0;}',
+      '.loyalty-home-info-container{direction:rtl;text-align:right;}'
     ].join('');
 
     function injectCss(iDoc) {
