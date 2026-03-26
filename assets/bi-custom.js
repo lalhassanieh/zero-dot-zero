@@ -230,6 +230,7 @@
 
       '[data-testid="nav-faq"]{flex-direction:row-reverse;gap:6px;}',
       '[data-testid="nav-faq"] .al-ml-1{margin-left:0;}',
+      '[data-testid="nav-faq"] svg{width:1.25rem !important;height:1.25rem !important;flex-shrink:0;}',
 
       '.loyalty-home-info-container{direction:rtl;text-align:right;}',
       '.loyalty-home-welcome-title{text-align:right !important;}',
