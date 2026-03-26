@@ -142,47 +142,89 @@
   })();
   
 
-  function initZingRiyalFormatter() {
+  // ── Zing loyalty riyal formatter (commented out — replaced by Appstle version below) ──
+  // function initZingRiyalFormatter() {
+  //   function process(scope) {
+  //       (scope || document)
+  //           .querySelectorAll(".zing-loyalty-popup__box-description:not(.has-riyal)")
+  //           .forEach(function (el) {
+  //           var text = (el.textContent || "").replace(/\s+/g, " ").trim();
+  //
+  //           if (!text.includes("ريال")) return;
+  //
+  //           text = text.replace(/ريال/g, "").replace(/\s+/g, " ").trim();
+  //
+  //           var m = text.match(/(\d{1,3}(?:,\d{3})*(?:\.\d+)?|\d+(?:\.\d+)?)/);
+  //           if (!m) return;
+  //
+  //           var amount = m[1];
+  //
+  //           el.innerHTML = text.replace(
+  //               amount,
+  //               '<span class="zing-amount">' + amount + "</span>"
+  //           );
+  //
+  //           el.classList.add("has-riyal");
+  //           });
+  //   }
+  //
+  //   process(document);
+  //
+  //   var observer = new MutationObserver(function (mutations) {
+  //       mutations.forEach(function (m) {
+  //       if (!m.addedNodes) return;
+  //       m.addedNodes.forEach(function (node) {
+  //           if (node.nodeType === 1) process(node);
+  //       });
+  //       });
+  //   });
+  //
+  //   observer.observe(document.body, { childList: true, subtree: true });
+  // }
+  //
+  // document.addEventListener("DOMContentLoaded", function () {
+  //   initZingRiyalFormatter();
+  // });
+
+  // ── Appstle loyalty riyal formatter ──
+  // Removes "ريال" from Appstle referral description text.
+  // The <span class="riyal-font"> already present in the markup handles the sign via CSS.
+  function initAppstleRiyalFormatter() {
+    var SELECTORS = [
+      ".loyalty-referring-friend-get-info-description:not(.has-riyal)",
+      ".loyalty-referrals-friend-get-info-description:not(.has-riyal)"
+    ].join(",");
+
     function process(scope) {
-        (scope || document)
-            .querySelectorAll(".zing-loyalty-popup__box-description:not(.has-riyal)")
-            .forEach(function (el) {
-            var text = (el.textContent || "").replace(/\s+/g, " ").trim();
+      (scope || document).querySelectorAll(SELECTORS).forEach(function (el) {
+        if (!el.textContent.includes("ريال")) return;
 
-            if (!text.includes("ريال")) return;
+        el.childNodes.forEach(function (node) {
+          if (node.nodeType === 3) {
+            node.textContent = node.textContent
+              .replace(/\s*ريال\s*/g, " ")
+              .replace(/\s+/g, " ");
+          }
+        });
 
-            text = text.replace(/ريال/g, "").replace(/\s+/g, " ").trim();
-
-            var m = text.match(/(\d{1,3}(?:,\d{3})*(?:\.\d+)?|\d+(?:\.\d+)?)/);
-            if (!m) return;
-
-            var amount = m[1];
-
-            el.innerHTML = text.replace(
-                amount,
-                '<span class="zing-amount">' + amount + "</span>"
-            );
-
-            el.classList.add("has-riyal");
-            });
+        el.classList.add("has-riyal");
+      });
     }
-
 
     process(document);
 
     var observer = new MutationObserver(function (mutations) {
-        mutations.forEach(function (m) {
+      mutations.forEach(function (m) {
         if (!m.addedNodes) return;
         m.addedNodes.forEach(function (node) {
-            if (node.nodeType === 1) process(node);
+          if (node.nodeType === 1) process(node);
         });
-        });
+      });
     });
 
     observer.observe(document.body, { childList: true, subtree: true });
-    }
+  }
 
-
-document.addEventListener("DOMContentLoaded", function () {
-  initZingRiyalFormatter();
-});
+  document.addEventListener("DOMContentLoaded", function () {
+    initAppstleRiyalFormatter();
+  });
