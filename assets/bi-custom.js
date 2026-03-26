@@ -223,9 +223,10 @@
       '.al-referral-you-get-block{direction:rtl;}',
       '.al-referral-they-get-block{direction:rtl;}',
       '.loyalty-referring-friend-get-left-icon{margin-right:0 !important;margin-left:0.75rem !important;}',
+      '.loyalty-referrals-friend-get-left-icon{margin-right:0 !important;margin-left:0.75rem !important;}',
       '.loyalty-referring-friend-get-info-container{text-align:right;}',
       '.loyalty-referrals-friend-get-info-container{text-align:right;}',
-      '.al-mr-3{margin-right:0;margin-left:0.75rem;}',
+      '.al-mr-3{margin-right:0 !important;}',
 
       '[data-testid="nav-faq"]{flex-direction:row-reverse;gap:6px;}',
       '[data-testid="nav-faq"] .al-ml-1{margin-left:0;}',
