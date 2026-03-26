@@ -262,6 +262,12 @@
         el.innerHTML = text.replace(amount, '<span class="appstle-amount">' + amount + "</span>");
         el.classList.add("has-riyal");
       });
+
+      doc.querySelectorAll('.al-loyalty-money-sign:not(.has-riyal-font)').forEach(function (el) {
+        el.style.fontFamily = '"MHE-Riyal-Sign"';
+        el.style.fontWeight = '700';
+        el.classList.add('has-riyal-font');
+      });
     }
 
     var observedIframes = new WeakSet();
