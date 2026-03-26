@@ -196,6 +196,28 @@
     ].join(",");
 
 
+    // Injected into iframe: font + riyal ::before + body RTL (Arabic only)
+    var INJECT_CSS =
+      '@font-face{font-family:"MHE-Riyal-Sign";' +
+      'src:url("https://zero-dot-zero.myshopify.com/cdn/shop/t/2/assets/MHERiyalSign-Regular.woff2") format("woff2"),' +
+      'url("https://zero-dot-zero.myshopify.com/cdn/shop/t/2/assets/MHERiyalSign-Regular.woff") format("woff"),' +
+      'url("https://zero-dot-zero.myshopify.com/cdn/shop/t/2/assets/MHERiyalSign-Regular.ttf") format("truetype");' +
+      'font-weight:normal;font-style:normal;}' +
+      '.loyalty-referring-friend-get-info-description .appstle-amount::before,' +
+      '.loyalty-referrals-friend-get-info-description .appstle-amount::before{' +
+      'content:"A";font-family:"MHE-Riyal-Sign" !important;font-weight:700;line-height:1;}';
+
+    var INJECT_CSS_RTL = 'body{direction:rtl;text-align:right;}';
+
+    function injectCss(iDoc) {
+      if (iDoc.getElementById('appstle-bi-styles')) return;
+      var isRtl = document.documentElement.dir === 'rtl' || document.documentElement.lang === 'ar';
+      var s = iDoc.createElement('style');
+      s.id = 'appstle-bi-styles';
+      s.textContent = INJECT_CSS + (isRtl ? INJECT_CSS_RTL : '');
+      (iDoc.head || iDoc.documentElement).appendChild(s);
+    }
+
     function processDoc(doc) {
       doc.querySelectorAll(SELECTORS).forEach(function (el) {
         var text = (el.textContent || "").replace(/\s+/g, " ").trim();
@@ -219,8 +241,9 @@
         try {
           var iDoc = iframe.contentDocument || iframe.contentWindow.document;
           if (!iDoc || !iDoc.body) return;
+          injectCss(iDoc);
           processDoc(iDoc);
-          var iObs = new MutationObserver(function () { processDoc(iDoc); });
+          var iObs = new MutationObserver(function () { injectCss(iDoc); processDoc(iDoc); });
           iObs.observe(iDoc.body, { childList: true, subtree: true });
         } catch (e) {}
       }
