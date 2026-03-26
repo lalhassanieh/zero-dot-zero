@@ -187,61 +187,79 @@
   // });
 
   // ── Appstle loyalty riyal formatter ──
+  // The referral widget renders inside Appstle's iframe, so we search both
+  // the main document and any accessible iframe contentDocuments.
   function initAppstleRiyalFormatter() {
     var SELECTORS = [
       ".loyalty-referring-friend-get-info-description:not(.has-riyal)",
       ".loyalty-referrals-friend-get-info-description:not(.has-riyal)"
     ].join(",");
 
-    function process() {
-      var found = document.querySelectorAll(SELECTORS);
-      console.log("[AppstleRiyal] process() — elements found:", found.length);
+    function processDoc(doc, label) {
+      var found = doc.querySelectorAll(SELECTORS);
+      if (found.length) console.log("[AppstleRiyal] found", found.length, "element(s) in", label);
       found.forEach(function (el) {
-        console.log("[AppstleRiyal] textContent:", JSON.stringify(el.textContent));
-        if (!el.textContent.includes("ريال")) {
-          console.log("[AppstleRiyal] no ريال — skipping");
-          return;
-        }
+        if (!el.textContent.includes("ريال")) return;
         el.childNodes.forEach(function (node) {
           if (node.nodeType === 3) {
-            console.log("[AppstleRiyal] text node before:", JSON.stringify(node.textContent));
             node.textContent = node.textContent
               .replace(/\s*ريال\s*/g, " ")
               .replace(/\s+/g, " ");
-            console.log("[AppstleRiyal] text node after:", JSON.stringify(node.textContent));
           }
         });
         el.classList.add("has-riyal");
-        console.log("[AppstleRiyal] ✓ processed — has-riyal added");
+        console.log("[AppstleRiyal] ✓ processed in", label);
       });
     }
 
-    console.log("[AppstleRiyal] init — readyState:", document.readyState);
-    process();
+    var observedIframes = new WeakSet();
 
-    // Retry every 500 ms for 5 s to catch late Appstle renders
-    var retries = 0;
-    var retryTimer = setInterval(function () {
-      retries++;
-      console.log("[AppstleRiyal] retry #" + retries);
-      process();
-      if (retries >= 10) {
-        clearInterval(retryTimer);
-        console.log("[AppstleRiyal] retries exhausted");
+    function attachToIframe(iframe) {
+      if (observedIframes.has(iframe)) return;
+      observedIframes.add(iframe);
+      console.log("[AppstleRiyal] attaching to iframe:", iframe.id || iframe.className || "unnamed");
+
+      function runInIframe() {
+        try {
+          var iDoc = iframe.contentDocument || iframe.contentWindow.document;
+          if (!iDoc || !iDoc.body) return;
+          processDoc(iDoc, "iframe#" + (iframe.id || "?"));
+          // watch for future mutations inside the iframe
+          var iObs = new MutationObserver(function () { processDoc(iDoc, "iframe(mutation)"); });
+          iObs.observe(iDoc.body, { childList: true, subtree: true });
+        } catch (e) {
+          console.log("[AppstleRiyal] iframe inaccessible:", e.message);
+        }
       }
-    }, 500);
 
-    // MutationObserver as ongoing fallback
+      // Try immediately (iframe may already have content written via document.write)
+      runInIframe();
+      // Also try on load in case content arrives later
+      iframe.addEventListener("load", runInIframe);
+    }
+
+    function scanAll() {
+      processDoc(document, "main");
+      document.querySelectorAll("iframe").forEach(function (f) { attachToIframe(f); });
+    }
+
+    scanAll();
+
+    // Watch main document for new iframes or new elements
     var debounceTimer;
-    var observer = new MutationObserver(function () {
+    var mainObserver = new MutationObserver(function (mutations) {
+      mutations.forEach(function (m) {
+        m.addedNodes.forEach(function (node) {
+          if (node.nodeType !== 1) return;
+          if (node.tagName === "IFRAME") attachToIframe(node);
+          node.querySelectorAll && node.querySelectorAll("iframe").forEach(function (f) { attachToIframe(f); });
+        });
+      });
       clearTimeout(debounceTimer);
-      debounceTimer = setTimeout(function () {
-        console.log("[AppstleRiyal] MutationObserver fired — running process()");
-        process();
-      }, 150);
+      debounceTimer = setTimeout(function () { processDoc(document, "main(mutation)"); }, 150);
     });
-    observer.observe(document.body, { childList: true, subtree: true });
-    console.log("[AppstleRiyal] MutationObserver started");
+    mainObserver.observe(document.body, { childList: true, subtree: true });
+    console.log("[AppstleRiyal] watching main document + iframes");
   }
 
   if (document.readyState === "loading") {
