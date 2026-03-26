@@ -960,9 +960,9 @@
         "disabled": false,
         "settings": {}
       },
-      "1721301647844767814": {
-        "type": "shopify://apps/ait-loyalty-review-affiliate/blocks/app-aioEmbeddedBlock/0ac2ae90-3cb2-4597-b945-a3b33462ea90",
-        "disabled": true,
+      "16237003337219470499": {
+        "type": "shopify://apps/appstle-loyalty/blocks/appstle-loyalty/1886c0f8-77b6-4a85-af11-b43cc17ae1c1",
+        "disabled": false,
         "settings": {}
       }
     }
