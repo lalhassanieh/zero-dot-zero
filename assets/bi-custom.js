@@ -264,6 +264,7 @@
       });
 
       doc.querySelectorAll('.al-loyalty-money-sign:not(.has-riyal-font)').forEach(function (el) {
+        el.textContent = 'A';
         el.style.fontFamily = '"MHE-Riyal-Sign"';
         el.style.fontWeight = '700';
         el.classList.add('has-riyal-font');
