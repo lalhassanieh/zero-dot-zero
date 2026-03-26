@@ -222,8 +222,6 @@
 
       '.al-referral-you-get-block{direction:rtl;}',
       '.al-referral-they-get-block{direction:rtl;}',
-      '.al-referral-you-get-container{flex-direction:row-reverse !important;}',
-      '.al-referral-they-get-container{flex-direction:row-reverse !important;}',
       '.loyalty-referring-friend-get-left-icon{margin-right:0 !important;margin-left:0.75rem !important;}',
       '.loyalty-referring-friend-get-info-container{text-align:right;}',
       '.loyalty-referrals-friend-get-info-container{text-align:right;}',
