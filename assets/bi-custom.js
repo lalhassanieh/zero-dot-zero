@@ -278,15 +278,17 @@
           if (!iDoc || !iDoc.body) return;
           injectCss(iDoc);
           processDoc(iDoc);
-          var iObs = new MutationObserver(function () {
+          var iObsCb = function () {
             try {
               var doc = iframe.contentDocument || iframe.contentWindow.document;
               if (!doc || !doc.body) return;
               injectCss(doc);
               processDoc(doc);
             } catch (e) {}
-          });
+          };
+          var iObs = new MutationObserver(iObsCb);
           iObs.observe(iDoc.body, { childList: true, subtree: true });
+          if (iDoc.head) iObs.observe(iDoc.head, { childList: true });
         } catch (e) {}
       }
 
