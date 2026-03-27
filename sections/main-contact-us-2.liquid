@@ -152,13 +152,9 @@
                     {% if contact_form_description != blank %}
                         <p class="contact-form-description contact-text{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">{{ contact_form_description }}</p>
                     {% endif %}
-                    {%- if section.settings.use_app_form -%}
-                        <div class="globo-formbuilder" data-id="MTM3NzQw"></div>
-                    {%- else -%}
-                        {% render 'contact-form',
-                            section: section
-                        %}
-                    {%- endif -%}
+                    {% render 'contact-form',
+                        section: section
+                    %}
                 </div>
                 {%- if show_contact_info -%}
                     {%- if has_contact_info -%}
@@ -598,12 +594,6 @@
             {
                 "type": "header",
                 "content": "t:sections.main_contact.settings.header__2"
-            },
-            {
-                "type": "checkbox",
-                "id": "use_app_form",
-                "label": "Use Powerful Form Builder",
-                "default": false
             },
             {
                 "type": "select",
