@@ -208,61 +208,15 @@
       '.loyalty-referring-friend-get-info-description .appstle-amount::before{content:"A";font-family:"MHE-Riyal-Sign" !important;font-weight:700;line-height:1;}',
       '.loyalty-referrals-friend-get-info-description .appstle-amount::before{content:"A";font-family:"MHE-Riyal-Sign" !important;font-weight:700;line-height:1;}',
       '.loyalty-home-refer-help-text .appstle-amount{display:inline-block;white-space:nowrap;direction:ltr;unicode-bidi:isolate;}',
-      '.loyalty-home-refer-help-text .appstle-amount::before{content:"A";font-family:"MHE-Riyal-Sign" !important;font-weight:700;line-height:1;}',
-
-      '.loyalty-home-faq-title{white-space:nowrap;}',
-
-      '.loyalty-referral-claim-gift-button{background-color:#005339 !important;color:#ffffff !important;border-radius:50px !important;border:2px solid #005339 !important;font-family:"Gilroy Extra Bold","DM Sans",sans-serif !important;font-size:16px !important;font-weight:700 !important;text-transform:uppercase !important;letter-spacing:0 !important;line-height:21px !important;padding:10px 28px !important;transition:color .5s cubic-bezier(.25,.46,.45,.94),background .5s cubic-bezier(.25,.46,.45,.94),border .5s cubic-bezier(.25,.46,.45,.94) !important;}',
-      '.loyalty-referral-claim-gift-button:hover{background-color:#ffffff !important;color:#005339 !important;border:2px solid #005339 !important;}',
-
-      'button{border-radius:50px !important;}',
-      '.loyalty-cart-widget-rewards-btn{border-radius:50px !important;}'
-    ].join('');
-
-    var IFRAME_CSS_RTL = [
-      '.loyalty-referring-friend-get-info-description{direction:rtl;text-align:right;}',
-      '.loyalty-referrals-friend-get-info-description{direction:rtl;text-align:right;}',
-
-      'body{direction:rtl;text-align:right;}',
-
-      '.al-fixed.al-inset-0{direction:ltr !important;flex-direction:row !important;}',
-
-      '.al-referral-you-get-block{direction:rtl;}',
-      '.al-referral-they-get-block{direction:rtl;}',
-      '.loyalty-referring-friend-get-left-icon{margin-right:0 !important;margin-left:0.75rem !important;}',
-      '.loyalty-referrals-friend-get-left-icon{margin-right:0 !important;margin-left:0.75rem !important;}',
-      '.loyalty-referring-friend-get-info-container{text-align:right;}',
-      '.loyalty-referrals-friend-get-info-container{text-align:right;}',
-      '.al-mr-3{margin-right:0 !important;}',
-
-      '[data-testid="nav-faq"]{flex-direction:row-reverse;gap:6px;}',
-      '[data-testid="nav-faq"] .al-ml-1{margin-left:0;}',
-      '[data-testid="nav-faq"] svg{width:1.25rem !important;height:1.25rem !important;flex-shrink:0;}',
-
-      '.loyalty-home-info-container{direction:rtl;text-align:right;}',
-      '.loyalty-home-welcome-title{text-align:right !important;}',
-      '.loyalty-home-loyalty-title{text-align:right !important;}',
-      '.loyalty-home-community-title{text-align:right !important;}',
-      '.loyalty-home-card,.loyalty-home-earn-title,.loyalty-home-earn-description{direction:rtl;text-align:right !important;}',
-      '.al-overflow-y-auto,.al-flex-col:not(.al-fixed){direction:rtl;}',
-      '.loyalty-home-refer-help-text{direction:rtl;text-align:right;}',
-      '.ways-to-redeem-arrow-icon{transform:rotate(180deg);}',
-      '.al-fixed.al-inset-0.al-h-16{flex-direction:row-reverse !important;overflow:hidden !important;}',
-      '.al-fixed.al-inset-0.al-h-16 .loyalty-header-text{text-align:right !important;min-width:0 !important;overflow:hidden !important;}',
-      '.al-fixed.al-inset-0.al-h-16 .al-mr-8{margin-right:0 !important;margin-left:0 !important;}',
-      '.al-back-icon{transform:scaleX(-1);}',
-      '.al-w-16:has(.al-back-icon){width:auto !important;}',
-      '.al-fixed.al-inset-0.al-h-16 .al-w-16.al-mr-8{width:auto !important;}'
+      '.loyalty-home-refer-help-text .appstle-amount::before{content:"A";font-family:"MHE-Riyal-Sign" !important;font-weight:700;line-height:1;}'
     ].join('');
 
     function injectCss(iDoc) {
-      var isRtl = document.documentElement.dir === 'rtl' || document.documentElement.lang === 'ar';
-      var css = IFRAME_CSS_BASE + (isRtl ? IFRAME_CSS_RTL : '');
       var existing = iDoc.getElementById('appstle-bi-styles');
-      if (existing) { existing.textContent = css; return; }
+      if (existing) { existing.textContent = IFRAME_CSS_BASE; return; }
       var s = iDoc.createElement('style');
       s.id = 'appstle-bi-styles';
-      s.textContent = css;
+      s.textContent = IFRAME_CSS_BASE;
       (iDoc.head || iDoc.documentElement).appendChild(s);
     }
 
