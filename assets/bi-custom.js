@@ -210,6 +210,8 @@
       '.loyalty-home-refer-help-text .appstle-amount{display:inline-block;white-space:nowrap;direction:ltr;unicode-bidi:isolate;}',
       '.loyalty-home-refer-help-text .appstle-amount::before{content:"A\u00A0";font-family:"MHE-Riyal-Sign" !important;font-weight:700;line-height:1;}',
 
+      '.loyalty-home-faq-title{white-space:nowrap;}',
+
       'button{border-radius:50px !important;}',
       '.loyalty-cart-widget-rewards-btn{border-radius:50px !important;}'
     ].join('');
