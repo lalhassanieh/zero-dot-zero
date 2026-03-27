@@ -267,8 +267,8 @@
         el.textContent = 'A';
         el.style.fontFamily = '"MHE-Riyal-Sign"';
         el.style.fontWeight = '700';
-        el.style.fontSize = '20px';
-        el.style.marginLeft = '4px';
+        el.style.setProperty('font-size', '20px', 'important');
+        el.style.marginRight = '4px';
         el.classList.add('has-riyal-font');
       });
     }
