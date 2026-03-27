@@ -248,7 +248,7 @@
       '.loyalty-home-refer-help-text{direction:rtl;text-align:right;}',
       '.ways-to-redeem-arrow-icon{transform:rotate(180deg);}',
       '.al-fixed.al-inset-0.al-h-16{flex-direction:row-reverse !important;}',
-      '.al-fixed.al-inset-0.al-h-16 .loyalty-header-text{text-align:left !important;}',
+      '.al-fixed.al-inset-0.al-h-16 .loyalty-header-text{text-align:right !important;}',
       '.al-fixed.al-inset-0.al-h-16 .al-mr-8{margin-right:0 !important;margin-left:0 !important;}',
       '.al-back-icon{transform:scaleX(-1);}'
     ].join('');
