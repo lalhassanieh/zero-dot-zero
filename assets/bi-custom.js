@@ -239,7 +239,9 @@
       '.loyalty-home-loyalty-title{text-align:right !important;}',
       '.loyalty-home-community-title{text-align:right !important;}',
       '.loyalty-home-card,.loyalty-home-earn-title,.loyalty-home-earn-description{direction:rtl;text-align:right !important;}',
-      '.al-overflow-y-auto,.al-flex-col:not(.al-fixed){direction:rtl;}'
+      '.al-overflow-y-auto,.al-flex-col:not(.al-fixed){direction:rtl;}',
+      '.loyalty-home-refer-help-text{direction:rtl;text-align:right;}',
+      '.ways-to-redeem-arrow-icon{transform:rotate(180deg);}'
     ].join('');
 
     function injectCss(iDoc) {
