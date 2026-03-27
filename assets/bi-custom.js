@@ -205,12 +205,15 @@
 
       '.loyalty-referring-friend-get-info-description .appstle-amount{display:inline-block;white-space:nowrap;direction:ltr;unicode-bidi:isolate;}',
       '.loyalty-referrals-friend-get-info-description .appstle-amount{display:inline-block;white-space:nowrap;direction:ltr;unicode-bidi:isolate;}',
-      '.loyalty-referring-friend-get-info-description .appstle-amount::before{content:"A\u00A0";font-family:"MHE-Riyal-Sign" !important;font-weight:700;line-height:1;}',
-      '.loyalty-referrals-friend-get-info-description .appstle-amount::before{content:"A\u00A0";font-family:"MHE-Riyal-Sign" !important;font-weight:700;line-height:1;}',
+      '.loyalty-referring-friend-get-info-description .appstle-amount::before{content:"A";font-family:"MHE-Riyal-Sign" !important;font-weight:700;line-height:1;}',
+      '.loyalty-referrals-friend-get-info-description .appstle-amount::before{content:"A";font-family:"MHE-Riyal-Sign" !important;font-weight:700;line-height:1;}',
       '.loyalty-home-refer-help-text .appstle-amount{display:inline-block;white-space:nowrap;direction:ltr;unicode-bidi:isolate;}',
-      '.loyalty-home-refer-help-text .appstle-amount::before{content:"A\u00A0";font-family:"MHE-Riyal-Sign" !important;font-weight:700;line-height:1;}',
+      '.loyalty-home-refer-help-text .appstle-amount::before{content:"A";font-family:"MHE-Riyal-Sign" !important;font-weight:700;line-height:1;}',
 
       '.loyalty-home-faq-title{white-space:nowrap;}',
+
+      '.loyalty-referral-claim-gift-button{background-color:#005339 !important;color:#ffffff !important;border-radius:50px !important;border:2px solid #005339 !important;}',
+      '.loyalty-referral-claim-gift-button:hover{background-color:#ffffff !important;color:#005339 !important;border:2px solid #005339 !important;}',
 
       'button{border-radius:50px !important;}',
       '.loyalty-cart-widget-rewards-btn{border-radius:50px !important;}'
@@ -243,7 +246,9 @@
       '.loyalty-home-card,.loyalty-home-earn-title,.loyalty-home-earn-description{direction:rtl;text-align:right !important;}',
       '.al-overflow-y-auto,.al-flex-col:not(.al-fixed){direction:rtl;}',
       '.loyalty-home-refer-help-text{direction:rtl;text-align:right;}',
-      '.ways-to-redeem-arrow-icon{transform:rotate(180deg);}'
+      '.ways-to-redeem-arrow-icon{transform:rotate(180deg);}',
+      '.al-fixed.al-inset-0.al-h-16 .loyalty-header-text{text-align:left !important;}',
+      '.al-fixed.al-inset-0.al-h-16 .al-mr-8{margin-right:0 !important;}'
     ].join('');
 
     function injectCss(iDoc) {
