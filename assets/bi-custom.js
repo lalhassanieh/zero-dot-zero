@@ -207,6 +207,8 @@
       '.loyalty-referrals-friend-get-info-description .appstle-amount{display:inline-block;white-space:nowrap;direction:ltr;unicode-bidi:isolate;}',
       '.loyalty-referring-friend-get-info-description .appstle-amount::before{content:"A\u00A0";font-family:"MHE-Riyal-Sign" !important;font-weight:700;line-height:1;}',
       '.loyalty-referrals-friend-get-info-description .appstle-amount::before{content:"A\u00A0";font-family:"MHE-Riyal-Sign" !important;font-weight:700;line-height:1;}',
+      '.loyalty-home-refer-help-text .appstle-amount{display:inline-block;white-space:nowrap;direction:ltr;unicode-bidi:isolate;}',
+      '.loyalty-home-refer-help-text .appstle-amount::before{content:"A\u00A0";font-family:"MHE-Riyal-Sign" !important;font-weight:700;line-height:1;}',
 
       'button{border-radius:50px !important;}',
       '.loyalty-cart-widget-rewards-btn{border-radius:50px !important;}'
@@ -261,6 +263,15 @@
         var amount = m[1];
         el.innerHTML = text.replace(amount, '<span class="appstle-amount">' + amount + "</span>");
         el.classList.add("has-riyal");
+      });
+
+      doc.querySelectorAll('.loyalty-home-refer-help-text:not(.has-riyal)').forEach(function (el) {
+        if (!el.innerHTML.includes('\u0631\u064a\u0627\u0644')) return;
+        el.innerHTML = el.innerHTML.replace(
+          /<span class="riyal-font"><\/span>(\d{1,3}(?:,\d{3})*(?:\.\d+)?|\d+(?:\.\d+)?)\s*\u0631\u064a\u0627\u0644/g,
+          '<span class="appstle-amount">$1</span>'
+        );
+        el.classList.add('has-riyal');
       });
 
       doc.querySelectorAll('.al-loyalty-money-sign:not(.has-riyal-font)').forEach(function (el) {
