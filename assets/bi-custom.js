@@ -267,11 +267,14 @@
 
       doc.querySelectorAll('.loyalty-home-refer-help-text:not(.has-riyal)').forEach(function (el) {
         if (!el.innerHTML.includes('\u0631\u064a\u0627\u0644')) return;
-        el.innerHTML = el.innerHTML.replace(
-          /<span class="riyal-font"><\/span>(\d{1,3}(?:,\d{3})*(?:\.\d+)?|\d+(?:\.\d+)?)\s*\u0631\u064a\u0627\u0644/g,
-          '<span class="appstle-amount">$1</span>'
+        var newHtml = el.innerHTML.replace(
+          /<span class="riyal-font"><\/span>(\d{1,3}(?:,\d{3})*(?:\.\d+)?|\d+(?:\.\d+)?)([^<\u0631]*)\u0631\u064a\u0627\u0644/g,
+          '<span class="appstle-amount">$1</span>$2'
         );
-        el.classList.add('has-riyal');
+        if (newHtml !== el.innerHTML) {
+          el.innerHTML = newHtml;
+          el.classList.add('has-riyal');
+        }
       });
 
       doc.querySelectorAll('.al-loyalty-money-sign:not(.has-riyal-font)').forEach(function (el) {
