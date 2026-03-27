@@ -271,6 +271,10 @@
         el.style.marginRight = '4px';
         el.classList.add('has-riyal-font');
       });
+
+      doc.querySelectorAll('.al-loyalty-money-value').forEach(function (el) {
+        el.style.setProperty('font-size', '20px', 'important');
+      });
     }
 
     var observedIframes = new WeakSet();
