@@ -326,7 +326,7 @@
     "social_facebook_link": "",
     "social_pinterest_link": "",
     "social_instagram_link": "https://www.instagram.com/zero.zero_drystore/",
-    "social_tiktok_link": "",
+    "social_tiktok_link": "https://www.tiktok.com/@zero.zero_drystore",
     "social_youtube_link": "",
     "social_vimeo_link": "",
     "product_vendor_color": "#969696",
@@ -939,11 +939,6 @@
           "app_font": "sans_serif_n4",
           "app_color": "green"
         }
-      },
-      "6279071938380501511": {
-        "type": "shopify://apps/powerful-form-builder/blocks/app-embed/e4bcb1eb-35b2-42e6-bc37-bfe0e1542c9d",
-        "disabled": false,
-        "settings": {}
       },
       "2290183850952111542": {
         "type": "shopify://apps/zing-loyalty/blocks/app-embed/6416ef3c-a792-4a34-a327-7cb16ed3b301",
