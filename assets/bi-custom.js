@@ -141,214 +141,247 @@
     }
   })();
   
-
-  // ── Zing loyalty riyal formatter (commented out — replaced by Appstle version below) ──
-  // function initZingRiyalFormatter() {
-  //   function process(scope) {
-  //       (scope || document)
-  //           .querySelectorAll(".zing-loyalty-popup__box-description:not(.has-riyal)")
-  //           .forEach(function (el) {
-  //           var text = (el.textContent || "").replace(/\s+/g, " ").trim();
+  // ── Appstle loyalty riyal formatter (commented out) ──
+  // function initAppstleRiyalFormatter() {
+  //   var SELECTORS = [
+  //     ".loyalty-referring-friend-get-info-description:not(.has-riyal)",
+  //     ".loyalty-referrals-friend-get-info-description:not(.has-riyal)"
+  //   ].join(",");
   //
-  //           if (!text.includes("ريال")) return;
+  //   var IFRAME_CSS_BASE = [
+  //     '@font-face{font-family:"MHE-Riyal-Sign";',
+  //     'src:url("https://zero-dot-zero.myshopify.com/cdn/shop/t/2/assets/MHERiyalSign-Regular.woff2") format("woff2"),',
+  //     'url("https://zero-dot-zero.myshopify.com/cdn/shop/t/2/assets/MHERiyalSign-Regular.woff") format("woff"),',
+  //     'url("https://zero-dot-zero.myshopify.com/cdn/shop/t/2/assets/MHERiyalSign-Regular.ttf") format("truetype");',
+  //     'font-weight:normal;font-style:normal;}',
   //
-  //           text = text.replace(/ريال/g, "").replace(/\s+/g, " ").trim();
+  //     '.loyalty-referring-friend-get-info-description .appstle-amount{display:inline-block;white-space:nowrap;direction:ltr;unicode-bidi:isolate;}',
+  //     '.loyalty-referrals-friend-get-info-description .appstle-amount{display:inline-block;white-space:nowrap;direction:ltr;unicode-bidi:isolate;}',
+  //     '.loyalty-referring-friend-get-info-description .appstle-amount::before{content:"A";font-family:"MHE-Riyal-Sign" !important;font-weight:700;line-height:1;}',
+  //     '.loyalty-referrals-friend-get-info-description .appstle-amount::before{content:"A";font-family:"MHE-Riyal-Sign" !important;font-weight:700;line-height:1;}',
+  //     '.loyalty-home-refer-help-text .appstle-amount{display:inline-block;white-space:nowrap;direction:ltr;unicode-bidi:isolate;}',
+  //     '.loyalty-home-refer-help-text .appstle-amount::before{content:"A";font-family:"MHE-Riyal-Sign" !important;font-weight:700;line-height:1;}',
   //
-  //           var m = text.match(/(\d{1,3}(?:,\d{3})*(?:\.\d+)?|\d+(?:\.\d+)?)/);
-  //           if (!m) return;
+  //     '.loyalty-home-faq-title{white-space:nowrap;}',
   //
-  //           var amount = m[1];
+  //     '.loyalty-referral-claim-gift-button{background-color:#005339 !important;color:#ffffff !important;border-radius:50px !important;border:2px solid #005339 !important;font-family:"Gilroy Extra Bold","DM Sans",sans-serif !important;font-size:16px !important;font-weight:700 !important;text-transform:uppercase !important;letter-spacing:0 !important;line-height:21px !important;padding:10px 28px !important;transition:color .5s cubic-bezier(.25,.46,.45,.94),background .5s cubic-bezier(.25,.46,.45,.94),border .5s cubic-bezier(.25,.46,.45,.94) !important;}',
+  //     '.loyalty-referral-claim-gift-button:hover{background-color:#ffffff !important;color:#005339 !important;border:2px solid #005339 !important;}',
   //
-  //           el.innerHTML = text.replace(
-  //               amount,
-  //               '<span class="zing-amount">' + amount + "</span>"
-  //           );
+  //     'button{border-radius:50px !important;}',
+  //     '.loyalty-cart-widget-rewards-btn{border-radius:50px !important;}'
+  //   ].join('');
   //
-  //           el.classList.add("has-riyal");
-  //           });
+  //   var IFRAME_CSS_RTL = [
+  //     '.loyalty-referring-friend-get-info-description{direction:rtl;text-align:right;}',
+  //     '.loyalty-referrals-friend-get-info-description{direction:rtl;text-align:right;}',
+  //
+  //     'body{direction:rtl;text-align:right;}',
+  //
+  //     '.al-fixed.al-inset-0{direction:ltr !important;flex-direction:row !important;}',
+  //
+  //     '.al-referral-you-get-block{direction:rtl;}',
+  //     '.al-referral-they-get-block{direction:rtl;}',
+  //     '.loyalty-referring-friend-get-left-icon{margin-right:0 !important;margin-left:0.75rem !important;}',
+  //     '.loyalty-referrals-friend-get-left-icon{margin-right:0 !important;margin-left:0.75rem !important;}',
+  //     '.loyalty-referring-friend-get-info-container{text-align:right;}',
+  //     '.loyalty-referrals-friend-get-info-container{text-align:right;}',
+  //     '.al-mr-3{margin-right:0 !important;}',
+  //
+  //     '[data-testid="nav-faq"]{flex-direction:row-reverse;gap:6px;}',
+  //     '[data-testid="nav-faq"] .al-ml-1{margin-left:0;}',
+  //     '[data-testid="nav-faq"] svg{width:1.25rem !important;height:1.25rem !important;flex-shrink:0;}',
+  //
+  //     '.loyalty-home-info-container{direction:rtl;text-align:right;}',
+  //     '.loyalty-home-welcome-title{text-align:right !important;}',
+  //     '.loyalty-home-loyalty-title{text-align:right !important;}',
+  //     '.loyalty-home-community-title{text-align:right !important;}',
+  //     '.loyalty-home-card,.loyalty-home-earn-title,.loyalty-home-earn-description{direction:rtl;text-align:right !important;}',
+  //     '.al-overflow-y-auto,.al-flex-col:not(.al-fixed){direction:rtl;}',
+  //     '.loyalty-home-refer-help-text{direction:rtl;text-align:right;}',
+  //     '.ways-to-redeem-arrow-icon{transform:rotate(180deg);}',
+  //     '.al-fixed.al-inset-0.al-h-16{flex-direction:row-reverse !important;overflow:hidden !important;}',
+  //     '.al-fixed.al-inset-0.al-h-16 .loyalty-header-text{text-align:right !important;min-width:0 !important;overflow:hidden !important;}',
+  //     '.al-fixed.al-inset-0.al-h-16 .al-mr-8{margin-right:0 !important;margin-left:0 !important;}',
+  //     '.al-back-icon{transform:scaleX(-1);}',
+  //     '.al-w-16:has(.al-back-icon){width:auto !important;}',
+  //     '.al-fixed.al-inset-0.al-h-16 .al-w-16.al-mr-8{width:auto !important;}'
+  //   ].join('');
+  //
+  //   function injectCss(iDoc) {
+  //     var isRtl = document.documentElement.dir === 'rtl' || document.documentElement.lang === 'ar';
+  //     var css = IFRAME_CSS_BASE + (isRtl ? IFRAME_CSS_RTL : '');
+  //     var existing = iDoc.getElementById('appstle-bi-styles');
+  //     if (existing) { existing.textContent = css; return; }
+  //     var s = iDoc.createElement('style');
+  //     s.id = 'appstle-bi-styles';
+  //     s.textContent = css;
+  //     (iDoc.head || iDoc.documentElement).appendChild(s);
   //   }
   //
-  //   process(document);
+  //   function processDoc(doc) {
+  //     doc.querySelectorAll(SELECTORS).forEach(function (el) {
+  //       var text = (el.textContent || "").replace(/\s+/g, " ").trim();
+  //       if (!text.includes("ريال")) return;
+  //       text = text.replace(/ريال/g, "").replace(/\s+/g, " ").trim();
+  //       var m = text.match(/(\d{1,3}(?:,\d{3})*(?:\.\d+)?|\d+(?:\.\d+)?)/);
+  //       if (!m) return;
+  //       var amount = m[1];
+  //       el.innerHTML = text.replace(amount, '<span class="appstle-amount">' + amount + "</span>");
+  //       el.classList.add("has-riyal");
+  //     });
   //
-  //   var observer = new MutationObserver(function (mutations) {
-  //       mutations.forEach(function (m) {
-  //       if (!m.addedNodes) return;
+  //     doc.querySelectorAll('.loyalty-home-refer-help-text:not(.has-riyal)').forEach(function (el) {
+  //       if (!el.innerHTML.includes('\u0631\u064a\u0627\u0644')) return;
+  //       var newHtml = el.innerHTML.replace(
+  //         /<span class="riyal-font"><\/span>(\d{1,3}(?:,\d{3})*(?:\.\d+)?|\d+(?:\.\d+)?)([^<\u0631]*)\u0631\u064a\u0627\u0644/g,
+  //         '<span class="appstle-amount">$1</span>$2'
+  //       );
+  //       if (newHtml !== el.innerHTML) {
+  //         el.innerHTML = newHtml;
+  //         el.classList.add('has-riyal');
+  //       }
+  //     });
+  //
+  //     doc.querySelectorAll('.al-loyalty-money-sign:not(.has-riyal-font)').forEach(function (el) {
+  //       el.textContent = 'A';
+  //       el.style.fontFamily = '"MHE-Riyal-Sign"';
+  //       el.style.fontWeight = '700';
+  //       el.style.setProperty('font-size', '20px', 'important');
+  //       el.style.marginRight = '4px';
+  //       el.classList.add('has-riyal-font');
+  //     });
+  //
+  //     doc.querySelectorAll('.al-loyalty-money-value').forEach(function (el) {
+  //       el.style.setProperty('font-size', '20px', 'important');
+  //     });
+  //   }
+  //
+  //   var observedIframes = new WeakSet();
+  //
+  //   function attachToIframe(iframe) {
+  //     if (observedIframes.has(iframe)) return;
+  //     observedIframes.add(iframe);
+  //
+  //     function runInIframe() {
+  //       try {
+  //         var iDoc = iframe.contentDocument || iframe.contentWindow.document;
+  //         if (!iDoc || !iDoc.body) return;
+  //         injectCss(iDoc);
+  //         processDoc(iDoc);
+  //         var iObs = new MutationObserver(function () { injectCss(iDoc); processDoc(iDoc); });
+  //         iObs.observe(iDoc.body, { childList: true, subtree: true });
+  //       } catch (e) {}
+  //     }
+  //
+  //     runInIframe();
+  //     iframe.addEventListener("load", runInIframe);
+  //   }
+  //
+  //   function scanAll() {
+  //     processDoc(document);
+  //     document.querySelectorAll("iframe").forEach(function (f) { attachToIframe(f); });
+  //   }
+  //
+  //   scanAll();
+  //
+  //   var debounceTimer;
+  //   var mainObserver = new MutationObserver(function (mutations) {
+  //     mutations.forEach(function (m) {
   //       m.addedNodes.forEach(function (node) {
-  //           if (node.nodeType === 1) process(node);
+  //         if (node.nodeType !== 1) return;
+  //         if (node.tagName === "IFRAME") attachToIframe(node);
+  //         node.querySelectorAll && node.querySelectorAll("iframe").forEach(function (f) { attachToIframe(f); });
   //       });
-  //       });
+  //     });
+  //     clearTimeout(debounceTimer);
+  //     debounceTimer = setTimeout(function () { processDoc(document); }, 150);
   //   });
-  //
-  //   observer.observe(document.body, { childList: true, subtree: true });
+  //   mainObserver.observe(document.body, { childList: true, subtree: true });
   // }
   //
-  // document.addEventListener("DOMContentLoaded", function () {
-  //   initZingRiyalFormatter();
-  // });
+  // if (document.readyState === "loading") {
+  //   document.addEventListener("DOMContentLoaded", initAppstleRiyalFormatter);
+  // } else {
+  //   initAppstleRiyalFormatter();
+  // }
 
-  // ── Appstle loyalty riyal formatter ──
-  // The referral widget renders inside Appstle's iframe, so we search both
-  // the main document and any accessible iframe contentDocuments.
-  function initAppstleRiyalFormatter() {
-    var SELECTORS = [
-      ".loyalty-referring-friend-get-info-description:not(.has-riyal)",
-      ".loyalty-referrals-friend-get-info-description:not(.has-riyal)"
-    ].join(",");
+  // ── Blog masonry row height equalizer ──
+  // Groups masonry items by their `top` position (same top = same row),
+  // then sets .blog-summary and .blog-title to the tallest in each row.
+  function equalizeBlogRowHeights() {
+    var rows = document.querySelectorAll('.blog-row');
+    rows.forEach(function(row) {
+      var items = row.querySelectorAll('[data-masonry-item]');
+      if (!items.length) return;
 
-
-    var IFRAME_CSS_BASE = [
-      '@font-face{font-family:"MHE-Riyal-Sign";',
-      'src:url("https://zero-dot-zero.myshopify.com/cdn/shop/t/2/assets/MHERiyalSign-Regular.woff2") format("woff2"),',
-      'url("https://zero-dot-zero.myshopify.com/cdn/shop/t/2/assets/MHERiyalSign-Regular.woff") format("woff"),',
-      'url("https://zero-dot-zero.myshopify.com/cdn/shop/t/2/assets/MHERiyalSign-Regular.ttf") format("truetype");',
-      'font-weight:normal;font-style:normal;}',
-
-      '.loyalty-referring-friend-get-info-description .appstle-amount{display:inline-block;white-space:nowrap;direction:ltr;unicode-bidi:isolate;}',
-      '.loyalty-referrals-friend-get-info-description .appstle-amount{display:inline-block;white-space:nowrap;direction:ltr;unicode-bidi:isolate;}',
-      '.loyalty-referring-friend-get-info-description .appstle-amount::before{content:"A";font-family:"MHE-Riyal-Sign" !important;font-weight:700;line-height:1;}',
-      '.loyalty-referrals-friend-get-info-description .appstle-amount::before{content:"A";font-family:"MHE-Riyal-Sign" !important;font-weight:700;line-height:1;}',
-      '.loyalty-home-refer-help-text .appstle-amount{display:inline-block;white-space:nowrap;direction:ltr;unicode-bidi:isolate;}',
-      '.loyalty-home-refer-help-text .appstle-amount::before{content:"A";font-family:"MHE-Riyal-Sign" !important;font-weight:700;line-height:1;}',
-
-      '.loyalty-home-faq-title{white-space:nowrap;}',
-
-      '.loyalty-referral-claim-gift-button{background-color:#005339 !important;color:#ffffff !important;border-radius:50px !important;border:2px solid #005339 !important;font-family:"Gilroy Extra Bold","DM Sans",sans-serif !important;font-size:16px !important;font-weight:700 !important;text-transform:uppercase !important;letter-spacing:0 !important;line-height:21px !important;padding:10px 28px !important;transition:color .5s cubic-bezier(.25,.46,.45,.94),background .5s cubic-bezier(.25,.46,.45,.94),border .5s cubic-bezier(.25,.46,.45,.94) !important;}',
-      '.loyalty-referral-claim-gift-button:hover{background-color:#ffffff !important;color:#005339 !important;border:2px solid #005339 !important;}',
-
-      'button{border-radius:50px !important;}',
-      '.loyalty-cart-widget-rewards-btn{border-radius:50px !important;}'
-    ].join('');
-
-    var IFRAME_CSS_RTL = [
-      '.loyalty-referring-friend-get-info-description{direction:rtl;text-align:right;}',
-      '.loyalty-referrals-friend-get-info-description{direction:rtl;text-align:right;}',
-
-      'body{direction:rtl;text-align:right;}',
-
-      '.al-fixed.al-inset-0{direction:ltr !important;flex-direction:row !important;}',
-
-      '.al-referral-you-get-block{direction:rtl;}',
-      '.al-referral-they-get-block{direction:rtl;}',
-      '.loyalty-referring-friend-get-left-icon{margin-right:0 !important;margin-left:0.75rem !important;}',
-      '.loyalty-referrals-friend-get-left-icon{margin-right:0 !important;margin-left:0.75rem !important;}',
-      '.loyalty-referring-friend-get-info-container{text-align:right;}',
-      '.loyalty-referrals-friend-get-info-container{text-align:right;}',
-      '.al-mr-3{margin-right:0 !important;}',
-
-      '[data-testid="nav-faq"]{flex-direction:row-reverse;gap:6px;}',
-      '[data-testid="nav-faq"] .al-ml-1{margin-left:0;}',
-      '[data-testid="nav-faq"] svg{width:1.25rem !important;height:1.25rem !important;flex-shrink:0;}',
-
-      '.loyalty-home-info-container{direction:rtl;text-align:right;}',
-      '.loyalty-home-welcome-title{text-align:right !important;}',
-      '.loyalty-home-loyalty-title{text-align:right !important;}',
-      '.loyalty-home-community-title{text-align:right !important;}',
-      '.loyalty-home-card,.loyalty-home-earn-title,.loyalty-home-earn-description{direction:rtl;text-align:right !important;}',
-      '.al-overflow-y-auto,.al-flex-col:not(.al-fixed){direction:rtl;}',
-      '.loyalty-home-refer-help-text{direction:rtl;text-align:right;}',
-      '.ways-to-redeem-arrow-icon{transform:rotate(180deg);}',
-      '.al-fixed.al-inset-0.al-h-16{flex-direction:row-reverse !important;overflow:hidden !important;}',
-      '.al-fixed.al-inset-0.al-h-16 .loyalty-header-text{text-align:right !important;min-width:0 !important;overflow:hidden !important;}',
-      '.al-fixed.al-inset-0.al-h-16 .al-mr-8{margin-right:0 !important;margin-left:0 !important;}',
-      '.al-back-icon{transform:scaleX(-1);}',
-      '.al-w-16:has(.al-back-icon){width:auto !important;}',
-      '.al-fixed.al-inset-0.al-h-16 .al-w-16.al-mr-8{width:auto !important;}'
-    ].join('');
-
-    function injectCss(iDoc) {
-      var isRtl = document.documentElement.dir === 'rtl' || document.documentElement.lang === 'ar';
-      var css = IFRAME_CSS_BASE + (isRtl ? IFRAME_CSS_RTL : '');
-      var existing = iDoc.getElementById('appstle-bi-styles');
-      if (existing) { existing.textContent = css; return; }
-      var s = iDoc.createElement('style');
-      s.id = 'appstle-bi-styles';
-      s.textContent = css;
-      (iDoc.head || iDoc.documentElement).appendChild(s);
-    }
-
-    function processDoc(doc) {
-      doc.querySelectorAll(SELECTORS).forEach(function (el) {
-        var text = (el.textContent || "").replace(/\s+/g, " ").trim();
-        if (!text.includes("ريال")) return;
-        text = text.replace(/ريال/g, "").replace(/\s+/g, " ").trim();
-        var m = text.match(/(\d{1,3}(?:,\d{3})*(?:\.\d+)?|\d+(?:\.\d+)?)/);
-        if (!m) return;
-        var amount = m[1];
-        el.innerHTML = text.replace(amount, '<span class="appstle-amount">' + amount + "</span>");
-        el.classList.add("has-riyal");
+      // Group items by their top offset value
+      var groups = {};
+      items.forEach(function(item) {
+        var top = parseInt(item.style.top) || 0;
+        if (!groups[top]) groups[top] = [];
+        groups[top].push(item);
       });
 
-      doc.querySelectorAll('.loyalty-home-refer-help-text:not(.has-riyal)').forEach(function (el) {
-        if (!el.innerHTML.includes('\u0631\u064a\u0627\u0644')) return;
-        var newHtml = el.innerHTML.replace(
-          /<span class="riyal-font"><\/span>(\d{1,3}(?:,\d{3})*(?:\.\d+)?|\d+(?:\.\d+)?)([^<\u0631]*)\u0631\u064a\u0627\u0644/g,
-          '<span class="appstle-amount">$1</span>$2'
-        );
-        if (newHtml !== el.innerHTML) {
-          el.innerHTML = newHtml;
-          el.classList.add('has-riyal');
-        }
-      });
+      Object.keys(groups).forEach(function(top) {
+        var group = groups[top];
 
-      doc.querySelectorAll('.al-loyalty-money-sign:not(.has-riyal-font)').forEach(function (el) {
-        el.textContent = 'A';
-        el.style.fontFamily = '"MHE-Riyal-Sign"';
-        el.style.fontWeight = '700';
-        el.style.setProperty('font-size', '20px', 'important');
-        el.style.marginRight = '4px';
-        el.classList.add('has-riyal-font');
-      });
+        // Reset so we measure natural heights
+        group.forEach(function(item) {
+          var summary = item.querySelector('.blog-summary');
+          var title   = item.querySelector('.blog-title');
+          if (summary) summary.style.height = '';
+          if (title)   title.style.height   = '';
+        });
 
-      doc.querySelectorAll('.al-loyalty-money-value').forEach(function (el) {
-        el.style.setProperty('font-size', '20px', 'important');
-      });
-    }
+        // Measure
+        var maxSummary = 0;
+        var maxTitle   = 0;
+        group.forEach(function(item) {
+          var summary = item.querySelector('.blog-summary');
+          var title   = item.querySelector('.blog-title');
+          if (summary) maxSummary = Math.max(maxSummary, summary.offsetHeight);
+          if (title)   maxTitle   = Math.max(maxTitle,   title.offsetHeight);
+        });
 
-    var observedIframes = new WeakSet();
-
-    function attachToIframe(iframe) {
-      if (observedIframes.has(iframe)) return;
-      observedIframes.add(iframe);
-
-      function runInIframe() {
-        try {
-          var iDoc = iframe.contentDocument || iframe.contentWindow.document;
-          if (!iDoc || !iDoc.body) return;
-          injectCss(iDoc);
-          processDoc(iDoc);
-          var iObs = new MutationObserver(function () { injectCss(iDoc); processDoc(iDoc); });
-          iObs.observe(iDoc.body, { childList: true, subtree: true });
-        } catch (e) {}
-      }
-
-      runInIframe();
-      iframe.addEventListener("load", runInIframe);
-    }
-
-    function scanAll() {
-      processDoc(document);
-      document.querySelectorAll("iframe").forEach(function (f) { attachToIframe(f); });
-    }
-
-    scanAll();
-
-    var debounceTimer;
-    var mainObserver = new MutationObserver(function (mutations) {
-      mutations.forEach(function (m) {
-        m.addedNodes.forEach(function (node) {
-          if (node.nodeType !== 1) return;
-          if (node.tagName === "IFRAME") attachToIframe(node);
-          node.querySelectorAll && node.querySelectorAll("iframe").forEach(function (f) { attachToIframe(f); });
+        // Apply
+        group.forEach(function(item) {
+          var summary = item.querySelector('.blog-summary');
+          var title   = item.querySelector('.blog-title');
+          if (summary && maxSummary) summary.style.height = maxSummary + 'px';
+          if (title   && maxTitle)   title.style.height   = maxTitle   + 'px';
         });
       });
-      clearTimeout(debounceTimer);
-      debounceTimer = setTimeout(function () { processDoc(document); }, 150);
     });
-    mainObserver.observe(document.body, { childList: true, subtree: true });
   }
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initAppstleRiyalFormatter);
+  function initBlogRowEqualizer() {
+    if (!document.querySelector('.blog-row')) return;
+
+    equalizeBlogRowHeights();
+
+    // Re-run after all images have loaded (masonry recalculates after images)
+    window.addEventListener('load', equalizeBlogRowHeights);
+
+    // Re-run on resize (debounced)
+    var resizeTimer;
+    window.addEventListener('resize', function() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(equalizeBlogRowHeights, 200);
+    });
+
+    // Watch for masonry repositioning items (style attribute changes on items)
+    var blogRows = document.querySelectorAll('.blog-row');
+    blogRows.forEach(function(row) {
+      var masonryObserver = new MutationObserver(function() {
+        clearTimeout(masonryObserver._timer);
+        masonryObserver._timer = setTimeout(equalizeBlogRowHeights, 50);
+      });
+      masonryObserver.observe(row, { attributes: true, attributeFilter: ['style'], subtree: true });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initBlogRowEqualizer);
   } else {
-    initAppstleRiyalFormatter();
+    initBlogRowEqualizer();
   }
