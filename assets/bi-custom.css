@@ -1132,8 +1132,10 @@ input[type="checkbox"][required] {
 }
 
 
-.shopify-pc__banner__btn-accept,
-.shopify-pc__banner__btn-decline{
+.shopify-pc__banner__btn-accept:hover,
+.shopify-pc__banner__btn-accept:focus,
+.shopify-pc__banner__btn-decline:hover,
+.shopify-pc__banner__btn-decline:focus {
     color: #005339 !important;
     background: #fff7e5 !important;
     border-color: #005339 !important;
