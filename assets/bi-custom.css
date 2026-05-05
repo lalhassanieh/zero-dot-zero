@@ -1117,3 +1117,27 @@ input[type="checkbox"][required] {
     margin: 0;
     pointer-events: none;
 }
+
+
+
+#shopify-pc__prefs__header-accept:hover,
+#shopify-pc__prefs__header-accept:focus,
+#shopify-pc__prefs__header-decline:hover,
+#shopify-pc__prefs__header-decline:focus{
+    color: #005339;
+    background: #fff7e5;
+    border-color: #005339;
+    background-origin: border-box;
+}
+
+#shopify-pc__prefs__header-accept,
+#shopify-pc__prefs__header-decline,
+#shopify-pc__prefs__header-save {
+    border-radius: 30px;
+}
+
+
+#shopify-pc__prefs__header-save:hover,
+#shopify-pc__prefs__header-save:focus {
+    color: #005339;
+}
