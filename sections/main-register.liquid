@@ -152,6 +152,13 @@
                 <em>*</em>
               </label>
             </div>
+            <div class="accepts-marketing">
+              <input type="checkbox" name="customer[note]" id="age-verified" value="Age Verified: 18+" required>
+              <label class="form-label--checkbox" for="age-verified">
+                {{- 'customer.register.age_verified' | t -}}
+                <em>*</em>
+              </label>
+            </div>
             <div class="form-actions">
               {% if settings.enable_button_1_border_outside %}
                 <button class="button button--primary">

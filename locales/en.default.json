@@ -721,7 +721,8 @@
             "text": "Please register below to create an account",
             "subscribe": "Subscribe to email marketing",
             "accept_pdpl_1": "I give my explicit consent for the ",
-            "accept_pdpl_2": "collection, processing, and storage of my personal data"
+            "accept_pdpl_2": "collection, processing, and storage of my personal data",
+            "age_verified": "I confirm that I am 18 years old or above"
         },
         "reset_password": {
             "title": "Reset account password",
