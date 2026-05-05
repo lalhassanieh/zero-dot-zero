@@ -499,7 +499,6 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
     text-align: right !important;
 }
 
-#shopify-pc__prefs__header-close,
 #shopify-pc__prefs__header-close {
     left: 16px !important;
     right: auto !important;
