@@ -1134,10 +1134,10 @@ input[type="checkbox"][required] {
 
 .shopify-pc__banner__btn-accept,
 .shopify-pc__banner__btn-decline{
-    color: #005339;
-    background: #fff7e5;
-    border-color: #005339;
-    background-origin: border-box;
+    color: #005339 !important;
+    background: #fff7e5 !important;
+    border-color: #005339 !important;
+    background-origin: border-box !important;
 }
 
 .shopify-pc__banner__btn-accept,
@@ -1145,7 +1145,7 @@ input[type="checkbox"][required] {
 #shopify-pc__prefs__header-accept,
 #shopify-pc__prefs__header-decline,
 #shopify-pc__prefs__header-save {
-    border-radius: 30px;
+    border-radius: 30px !important;
 }
 
 #shopify-pc__prefs__header-save {
