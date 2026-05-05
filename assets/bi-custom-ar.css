@@ -497,5 +497,12 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
 
 #shopify-pc__prefs__header-title {
     text-align: right !important;
-    margin-right: 15px;
+}
+
+#shopify-pc__prefs__header-close,
+#shopify-pc__prefs__header-close {
+    left: 16px !important;
+    right: auto !important;
+    inset-inline-start: 16px !important;
+    inset-inline-end: auto !important;
 }
