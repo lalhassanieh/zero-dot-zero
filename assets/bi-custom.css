@@ -1130,6 +1130,8 @@ input[type="checkbox"][required] {
     background-origin: border-box;
 }
 
+.shopify-pc__banner__btn-accept,
+.shopify-pc__banner__btn-decline,
 #shopify-pc__prefs__header-accept,
 #shopify-pc__prefs__header-decline,
 #shopify-pc__prefs__header-save {
