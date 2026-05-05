@@ -1138,9 +1138,13 @@ input[type="checkbox"][required] {
 
 #shopify-pc__prefs__header-save {
     background: #ffffff;
+    border-color: #005339;
+    color: #005339;
 }
 
 #shopify-pc__prefs__header-save:hover,
 #shopify-pc__prefs__header-save:focus {
-    color: #005339;
+    background: #005339;
+    border-color: #005339;
+    color: #ffffff;
 }
