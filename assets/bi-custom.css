@@ -1164,3 +1164,7 @@ input[type="checkbox"][required] {
     border-color: #005339;
     color: #ffffff;
 }
+
+.shopify-pc__prefs__header-actions button {
+    margin: 0 20px 0 20px !important;
+}
