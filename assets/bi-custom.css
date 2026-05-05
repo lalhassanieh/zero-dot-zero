@@ -1119,11 +1119,21 @@ input[type="checkbox"][required] {
 }
 
 
+/*Cookies Banner*/
 
 #shopify-pc__prefs__header-accept:hover,
 #shopify-pc__prefs__header-accept:focus,
 #shopify-pc__prefs__header-decline:hover,
 #shopify-pc__prefs__header-decline:focus{
+    color: #005339;
+    background: #fff7e5;
+    border-color: #005339;
+    background-origin: border-box;
+}
+
+
+.shopify-pc__banner__btn-accept,
+.shopify-pc__banner__btn-decline{
     color: #005339;
     background: #fff7e5;
     border-color: #005339;
