@@ -476,3 +476,20 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
 .ar-h2 h2.gp-g-heading-1 {
   --ta: right !important;
 }
+
+
+#shopify-pc__banner,
+#shopify-pc__banner .shopify-pc__banner__body {
+    direction: rtl !important;
+}
+
+#shopify-pc__banner .shopify-pc__banner__body,
+#shopify-pc__banner .shopify-pc__banner__body h2,
+#shopify-pc__banner .shopify-pc__banner__body p {
+    text-align: right !important;
+}
+
+#shopify-pc__banner .shopify-pc__banner__btns {
+    direction: rtl !important;
+    flex-direction: row-reverse;
+}
