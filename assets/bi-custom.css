@@ -1148,6 +1148,8 @@ input[type="checkbox"][required] {
 #shopify-pc__prefs__header-decline,
 #shopify-pc__prefs__header-save {
     border-radius: 30px !important;
+    transition: .5s cubic-bezier(.25,.46,.45,.94);
+    transition-property: color, background, background-color, border;
 }
 
 #shopify-pc__prefs__header-save {
