@@ -1136,6 +1136,9 @@ input[type="checkbox"][required] {
     border-radius: 30px;
 }
 
+#shopify-pc__prefs__header-save {
+    background: #ffffff;
+}
 
 #shopify-pc__prefs__header-save:hover,
 #shopify-pc__prefs__header-save:focus {
