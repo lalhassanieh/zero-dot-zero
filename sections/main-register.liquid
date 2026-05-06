@@ -93,6 +93,24 @@
                 required
               >
             </div>
+            <div class="form-field" id="RegisterForm-birthdate-wrapper">
+              <label class="form-label" for="RegisterForm-birthdate">
+                {{ 'customer.register.birth_date' | t }}
+                <em>*</em>
+              </label>
+              <input
+                class="form-input"
+                type="date"
+                id="RegisterForm-birthdate"
+                required
+              >
+              <input type="hidden" name="customer[note]" id="RegisterForm-birthdate-note">
+              <span
+                id="age-error-msg"
+                data-message="{{ 'customer.register.age_error' | t | escape }}"
+                style="display:none;color:#e22120;font-size:13px;margin-top:4px;"
+              ></span>
+            </div>
             <div class="form-field{% if form.errors contains "email" %} form-field--error{% endif %}">
               <label class="form-label" for="RegisterForm-email">
                 {{ 'customer.register.you_email' | t }}
