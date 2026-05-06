@@ -152,12 +152,23 @@
                 <em>*</em>
               </label>
             </div>
-            <div class="accepts-marketing">
-              <input type="checkbox" name="customer[note]" id="age-verified" value="Age Verified: 18+" required>
-              <label class="form-label--checkbox" for="age-verified">
-                {{- 'customer.register.age_verified' | t -}}
+            <div class="form-field" id="RegisterForm-birthdate-wrapper">
+              <label class="form-label" for="RegisterForm-birthdate">
+                {{ 'customer.register.birth_date' | t }}
                 <em>*</em>
               </label>
+              <input
+                class="form-input"
+                type="date"
+                id="RegisterForm-birthdate"
+                required
+              >
+              <input type="hidden" name="customer[note]" id="RegisterForm-birthdate-note">
+              <span
+                id="age-error-msg"
+                data-message="{{ 'customer.register.age_error' | t | escape }}"
+                style="display:none;color:#e22120;font-size:13px;margin-top:4px;"
+              ></span>
             </div>
             <div class="form-actions">
               {% if settings.enable_button_1_border_outside %}
@@ -174,6 +185,56 @@
     </div>
   </div>
 </div>
+
+<script>
+(function () {
+  var birthdateInput = document.getElementById('RegisterForm-birthdate');
+  var birthdateNote  = document.getElementById('RegisterForm-birthdate-note');
+  var ageError       = document.getElementById('age-error-msg');
+  var form           = document.querySelector('.create-customer-form');
+  var submitBtn      = form && form.querySelector('.button--primary, input[type="submit"]');
+
+  var today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  // Cap the calendar at today
+  birthdateInput.setAttribute('max', today.toISOString().split('T')[0]);
+
+  function calcAge(dateStr) {
+    var birth = new Date(dateStr);
+    var age   = today.getFullYear() - birth.getFullYear();
+    var m     = today.getMonth() - birth.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birth.getDate())) age--;
+    return age;
+  }
+
+  function setBlocked(blocked) {
+    ageError.style.display = blocked ? 'block' : 'none';
+    if (blocked) ageError.textContent = ageError.dataset.message;
+    if (submitBtn) {
+      submitBtn.disabled          = blocked;
+      submitBtn.style.opacity     = blocked ? '0.5' : '';
+      submitBtn.style.cursor      = blocked ? 'not-allowed' : '';
+    }
+  }
+
+  birthdateInput.addEventListener('change', function () {
+    if (!this.value) return;
+    var age     = calcAge(this.value);
+    var blocked = age < 18;
+    birthdateNote.value = 'Birth Date: ' + this.value;
+    setBlocked(blocked);
+  });
+
+  form && form.addEventListener('submit', function (e) {
+    if (!birthdateInput.value || calcAge(birthdateInput.value) < 18) {
+      e.preventDefault();
+      setBlocked(true);
+      birthdateInput.focus();
+    }
+  });
+})();
+</script>
 
 <style>
   @media (min-width: 1025px) {
