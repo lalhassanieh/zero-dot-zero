@@ -94,16 +94,32 @@
               >
             </div>
             <div class="form-field" id="RegisterForm-birthdate-wrapper">
-              <label class="form-label" for="RegisterForm-birthdate">
+              <label class="form-label">
                 {{ 'customer.register.birth_date' | t }}
                 <em>*</em>
               </label>
-              <input
-                class="form-input"
-                type="date"
-                id="RegisterForm-birthdate"
-                required
-              >
+              <div class="bd-picker" id="bd-picker">
+                <div class="bd-input-wrap">
+                  <input
+                    type="text"
+                    class="form-input bd-display"
+                    id="bd-display"
+                    readonly
+                    autocomplete="off"
+                  >
+                  <span class="bd-cal-icon" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                  </span>
+                </div>
+                <div class="bd-dropdown" id="bd-dropdown">
+                  <div class="bd-header">
+                    <button type="button" class="bd-nav" id="bd-prev">&#8249;</button>
+                    <button type="button" class="bd-title" id="bd-title"></button>
+                    <button type="button" class="bd-nav" id="bd-next">&#8250;</button>
+                  </div>
+                  <div class="bd-body" id="bd-body"></div>
+                </div>
+              </div>
               <input type="hidden" name="customer[note]" id="RegisterForm-birthdate-note">
               <span
                 id="age-error-msg"
@@ -170,24 +186,6 @@
                 <em>*</em>
               </label>
             </div>
-            <div class="form-field" id="RegisterForm-birthdate-wrapper">
-              <label class="form-label" for="RegisterForm-birthdate">
-                {{ 'customer.register.birth_date' | t }}
-                <em>*</em>
-              </label>
-              <input
-                class="form-input"
-                type="date"
-                id="RegisterForm-birthdate"
-                required
-              >
-              <input type="hidden" name="customer[note]" id="RegisterForm-birthdate-note">
-              <span
-                id="age-error-msg"
-                data-message="{{ 'customer.register.age_error' | t | escape }}"
-                style="display:none;color:#e22120;font-size:13px;margin-top:4px;"
-              ></span>
-            </div>
             <div class="form-actions">
               {% if settings.enable_button_1_border_outside %}
                 <button class="button button--primary">
@@ -206,23 +204,146 @@
 
 <script>
 (function () {
-  var birthdateInput = document.getElementById('RegisterForm-birthdate');
-  var birthdateNote  = document.getElementById('RegisterForm-birthdate-note');
-  var ageError       = document.getElementById('age-error-msg');
-  var form           = document.querySelector('.create-customer-form');
-  var submitBtn      = form && form.querySelector('.button--primary, input[type="submit"]');
-
-  var today = new Date();
+  var today       = new Date();
   today.setHours(0, 0, 0, 0);
+  var currentYear = today.getFullYear();
+  var lang        = document.documentElement.lang || 'en';
 
-  // Cap the calendar at today
-  birthdateInput.setAttribute('max', today.toISOString().split('T')[0]);
+  var picker    = document.getElementById('bd-picker');
+  var displayEl = document.getElementById('bd-display');
+  var dropdown  = document.getElementById('bd-dropdown');
+  var titleBtn  = document.getElementById('bd-title');
+  var prevBtn   = document.getElementById('bd-prev');
+  var nextBtn   = document.getElementById('bd-next');
+  var bodyEl    = document.getElementById('bd-body');
+  var noteEl    = document.getElementById('RegisterForm-birthdate-note');
+  var ageError  = document.getElementById('age-error-msg');
+  var form      = document.querySelector('.create-customer-form');
+  var submitBtn = form && form.querySelector('.button--primary, input[type="submit"]');
 
-  function calcAge(dateStr) {
-    var birth = new Date(dateStr);
-    var age   = today.getFullYear() - birth.getFullYear();
-    var m     = today.getMonth() - birth.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birth.getDate())) age--;
+  var monthNames = Array.from({length: 12}, function(_, i) {
+    return new Intl.DateTimeFormat(lang, {month: 'long'}).format(new Date(2000, i, 1));
+  });
+  var dayNames = Array.from({length: 7}, function(_, i) {
+    return new Intl.DateTimeFormat(lang, {weekday: 'short'}).format(new Date(2000, 0, 2 + i));
+  });
+
+  var YEARS_PER_PAGE = 20;
+  var mode      = 'days';
+  var viewYear  = currentYear - 25;
+  var viewMonth = 0;
+  var yearPage  = 1;
+  var selected  = null;
+
+  displayEl.addEventListener('click', function () {
+    dropdown.classList.toggle('bd-open');
+    if (dropdown.classList.contains('bd-open')) render();
+  });
+
+  document.addEventListener('click', function (e) {
+    if (!picker.contains(e.target)) dropdown.classList.remove('bd-open');
+  });
+
+  prevBtn.addEventListener('click', function () {
+    if (mode === 'days') {
+      viewMonth--;
+      if (viewMonth < 0) { viewMonth = 11; viewYear--; }
+    } else {
+      yearPage++;
+    }
+    render();
+  });
+
+  nextBtn.addEventListener('click', function () {
+    if (mode === 'days') {
+      viewMonth++;
+      if (viewMonth > 11) { viewMonth = 0; viewYear++; }
+    } else {
+      if (yearPage > 0) yearPage--;
+    }
+    render();
+  });
+
+  titleBtn.addEventListener('click', function () {
+    mode = (mode === 'days') ? 'years' : 'days';
+    if (mode === 'years') yearPage = Math.floor((currentYear - viewYear) / YEARS_PER_PAGE);
+    render();
+  });
+
+  function render() {
+    mode === 'days' ? renderDays() : renderYears();
+  }
+
+  function renderDays() {
+    titleBtn.textContent = monthNames[viewMonth] + ' ' + viewYear;
+    bodyEl.className = 'bd-body bd-days';
+    bodyEl.innerHTML = '';
+
+    dayNames.forEach(function (n) {
+      var s = document.createElement('span');
+      s.className = 'bd-wday';
+      s.textContent = n;
+      bodyEl.appendChild(s);
+    });
+
+    var firstDay = new Date(viewYear, viewMonth, 1).getDay();
+    for (var i = 0; i < firstDay; i++) bodyEl.appendChild(document.createElement('span'));
+
+    var daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+    for (var d = 1; d <= daysInMonth; d++) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.textContent = d;
+      var isFuture = new Date(viewYear, viewMonth, d) > today;
+      var isToday  = d === today.getDate() && viewMonth === today.getMonth() && viewYear === currentYear;
+      var isSel    = selected && selected.year === viewYear && selected.month === viewMonth && selected.day === d;
+      btn.className = 'bd-day' + (isToday ? ' bd-today' : '') + (isSel ? ' bd-sel' : '') + (isFuture ? ' bd-dim' : '');
+      if (isFuture) btn.disabled = true;
+      (function (day) {
+        btn.addEventListener('click', function () { selectDate(viewYear, viewMonth, day); });
+      })(d);
+      bodyEl.appendChild(btn);
+    }
+  }
+
+  function renderYears() {
+    var endY   = currentYear - yearPage * YEARS_PER_PAGE;
+    var startY = endY - YEARS_PER_PAGE + 1;
+    titleBtn.textContent = startY + ' – ' + endY;
+    bodyEl.className = 'bd-body bd-years';
+    bodyEl.innerHTML = '';
+
+    for (var y = endY; y >= startY; y--) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.textContent = y;
+      btn.className = 'bd-yr' + (y === viewYear ? ' bd-sel' : '');
+      (function (year) {
+        btn.addEventListener('click', function () {
+          viewYear = year;
+          mode = 'days';
+          render();
+        });
+      })(y);
+      bodyEl.appendChild(btn);
+    }
+  }
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  function selectDate(year, month, day) {
+    selected = {year: year, month: month, day: day};
+    displayEl.value = new Intl.DateTimeFormat(lang, {year: 'numeric', month: 'long', day: 'numeric'}).format(new Date(year, month, day));
+    noteEl.value    = 'Birth Date: ' + year + '-' + pad(month + 1) + '-' + pad(day);
+    var age = calcAge(year, month, day);
+    setBlocked(age < 18);
+    dropdown.classList.remove('bd-open');
+  }
+
+  function calcAge(year, month, day) {
+    var age = today.getFullYear() - year;
+    var md  = today.getMonth() - month;
+    if (md < 0 || (md === 0 && today.getDate() < day)) age--;
     return age;
   }
 
@@ -230,31 +351,116 @@
     ageError.style.display = blocked ? 'block' : 'none';
     if (blocked) ageError.textContent = ageError.dataset.message;
     if (submitBtn) {
-      submitBtn.disabled          = blocked;
-      submitBtn.style.opacity     = blocked ? '0.5' : '';
-      submitBtn.style.cursor      = blocked ? 'not-allowed' : '';
+      submitBtn.disabled      = blocked;
+      submitBtn.style.opacity = blocked ? '0.5' : '';
+      submitBtn.style.cursor  = blocked ? 'not-allowed' : '';
     }
   }
 
-  birthdateInput.addEventListener('change', function () {
-    if (!this.value) return;
-    var age     = calcAge(this.value);
-    var blocked = age < 18;
-    birthdateNote.value = 'Birth Date: ' + this.value;
-    setBlocked(blocked);
-  });
-
   form && form.addEventListener('submit', function (e) {
-    if (!birthdateInput.value || calcAge(birthdateInput.value) < 18) {
+    if (!selected) {
+      e.preventDefault();
+      dropdown.classList.add('bd-open');
+      render();
+      displayEl.focus();
+      return;
+    }
+    if (calcAge(selected.year, selected.month, selected.day) < 18) {
       e.preventDefault();
       setBlocked(true);
-      birthdateInput.focus();
     }
   });
 })();
 </script>
 
 <style>
+  /* ── Birth Date Custom Picker ── */
+  .bd-picker { position: relative; max-width: 450px; }
+  .bd-input-wrap { position: relative; cursor: pointer; }
+  .bd-display {
+    cursor: pointer !important;
+    padding-right: 38px !important;
+    caret-color: transparent;
+  }
+  [dir="rtl"] .bd-display { padding-right: 0 !important; padding-left: 38px !important; }
+  .bd-cal-icon {
+    position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+    color: var(--form-input-placeholder); pointer-events: none;
+    display: flex; align-items: center;
+  }
+  [dir="rtl"] .bd-cal-icon { right: auto; left: 12px; }
+  .bd-dropdown {
+    display: none;
+    position: absolute; top: calc(100% + 6px); left: 0;
+    width: 300px;
+    background: var(--form-input-bg, #fff);
+    border: 1px solid var(--form-input-border);
+    border-radius: 10px;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.13);
+    z-index: 1000; overflow: hidden;
+  }
+  [dir="rtl"] .bd-dropdown { left: auto; right: 0; }
+  .bd-dropdown.bd-open { display: block; }
+  .bd-header {
+    display: flex; align-items: center; gap: 4px;
+    padding: 10px; border-bottom: 1px solid var(--form-input-border);
+  }
+  .bd-nav {
+    background: none; border: none; cursor: pointer;
+    width: 32px; height: 32px; border-radius: 6px;
+    font-size: 22px; line-height: 1; color: var(--color-text);
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.15s; flex-shrink: 0;
+  }
+  .bd-nav:hover { background: rgba(0,0,0,0.07); }
+  .bd-title {
+    flex: 1; background: none; border: none; cursor: pointer;
+    font-size: 14px; font-weight: 600; color: var(--color-text);
+    text-align: center; padding: 6px 8px; border-radius: 6px;
+    transition: background 0.15s;
+  }
+  .bd-title:hover { background: rgba(0,0,0,0.07); }
+  /* Day grid */
+  .bd-days {
+    display: grid; grid-template-columns: repeat(7, 1fr);
+    gap: 1px; padding: 10px 8px 14px;
+  }
+  .bd-wday {
+    text-align: center; font-size: 11px; font-weight: 600;
+    color: var(--form-input-placeholder); padding: 4px 0 6px;
+  }
+  .bd-day {
+    background: none; border: none; cursor: pointer;
+    font-size: 13px; color: var(--color-text);
+    border-radius: 50%; width: 32px; height: 32px; margin: 1px auto;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.12s, color 0.12s;
+  }
+  .bd-day:hover:not(:disabled) { background: rgba(0,0,0,0.07); }
+  .bd-day.bd-today { font-weight: 700; color: var(--color-base-accent-1, #111); }
+  .bd-day.bd-sel {
+    background: var(--color-base-accent-1, #111) !important;
+    color: var(--color-base-accent-text, #fff) !important;
+  }
+  .bd-day.bd-dim { color: var(--form-input-placeholder); cursor: not-allowed; opacity: 0.35; }
+  /* Year grid */
+  .bd-years {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 4px; padding: 12px 10px;
+  }
+  .bd-yr {
+    background: none; border: none; cursor: pointer;
+    font-size: 13px; color: var(--color-text);
+    padding: 8px 4px; border-radius: 6px; text-align: center;
+    transition: background 0.12s, color 0.12s;
+  }
+  .bd-yr:hover { background: rgba(0,0,0,0.07); }
+  .bd-yr.bd-sel {
+    background: var(--color-base-accent-1, #111);
+    color: var(--color-base-accent-text, #fff);
+    font-weight: 600;
+  }
+
   @media (min-width: 1025px) {
     {%- if container == 'fullwidth' -%}
         .section-block-{{section.id}} .container-full {padding-left: {{ padding_full_width | append: 'px' }};padding-right: {{ padding_full_width | append: 'px' }}}
