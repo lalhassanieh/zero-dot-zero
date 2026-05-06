@@ -1177,6 +1177,9 @@ input[type="checkbox"][required] {
     cursor: pointer !important;
     padding-right: 42px !important;
     caret-color: transparent;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .bd-display::placeholder {
     color: #005339;
@@ -1194,7 +1197,7 @@ input[type="checkbox"][required] {
 }
 .bd-dropdown {
     display: none;
-    position: absolute; top: calc(100% + 6px); left: 0;
+    position: absolute; top: calc(100% + 6px); right: 0; left: auto;
     width: 260px;
     background: var(--form-input-bg, #fff);
     border: 1px solid var(--form-input-border);
