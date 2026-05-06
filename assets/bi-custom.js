@@ -385,3 +385,175 @@
   } else {
     initBlogRowEqualizer();
   }
+
+
+/* ── Birth Date Picker ── */
+function initBirthdatePicker() {
+  if (!document.getElementById('bd-picker')) return;
+
+  var today       = new Date();
+  today.setHours(0, 0, 0, 0);
+  var currentYear = today.getFullYear();
+  var lang        = document.documentElement.lang || 'en';
+
+  var picker    = document.getElementById('bd-picker');
+  var displayEl = document.getElementById('bd-display');
+  var dropdown  = document.getElementById('bd-dropdown');
+  var titleBtn  = document.getElementById('bd-title');
+  var prevBtn   = document.getElementById('bd-prev');
+  var nextBtn   = document.getElementById('bd-next');
+  var bodyEl    = document.getElementById('bd-body');
+  var noteEl    = document.getElementById('RegisterForm-birthdate-note');
+  var ageError  = document.getElementById('age-error-msg');
+  var form      = document.querySelector('.create-customer-form');
+  var submitBtn = form && form.querySelector('.button--primary, input[type="submit"]');
+
+  var monthNames = Array.from({length: 12}, function(_, i) {
+    return new Intl.DateTimeFormat(lang, {month: 'long'}).format(new Date(2000, i, 1));
+  });
+  var dayNames = Array.from({length: 7}, function(_, i) {
+    return new Intl.DateTimeFormat(lang, {weekday: 'short'}).format(new Date(2000, 0, 2 + i));
+  });
+
+  var YEARS_PER_PAGE = 20;
+  var mode      = 'days';
+  var viewYear  = currentYear - 25;
+  var viewMonth = 0;
+  var yearPage  = 1;
+  var selected  = null;
+
+  displayEl.addEventListener('click', function () {
+    dropdown.classList.toggle('bd-open');
+    if (dropdown.classList.contains('bd-open')) render();
+  });
+
+  document.addEventListener('click', function (e) {
+    if (!picker.contains(e.target)) dropdown.classList.remove('bd-open');
+  });
+
+  prevBtn.addEventListener('click', function () {
+    if (mode === 'days') {
+      viewMonth--;
+      if (viewMonth < 0) { viewMonth = 11; viewYear--; }
+    } else {
+      yearPage++;
+    }
+    render();
+  });
+
+  nextBtn.addEventListener('click', function () {
+    if (mode === 'days') {
+      viewMonth++;
+      if (viewMonth > 11) { viewMonth = 0; viewYear++; }
+    } else {
+      if (yearPage > 0) yearPage--;
+    }
+    render();
+  });
+
+  titleBtn.addEventListener('click', function () {
+    mode = (mode === 'days') ? 'years' : 'days';
+    if (mode === 'years') yearPage = Math.floor((currentYear - viewYear) / YEARS_PER_PAGE);
+    render();
+  });
+
+  function render() { mode === 'days' ? renderDays() : renderYears(); }
+
+  function renderDays() {
+    titleBtn.textContent = monthNames[viewMonth] + ' ' + viewYear;
+    bodyEl.className = 'bd-body bd-days';
+    bodyEl.innerHTML = '';
+
+    dayNames.forEach(function (n) {
+      var s = document.createElement('span');
+      s.className = 'bd-wday';
+      s.textContent = n;
+      bodyEl.appendChild(s);
+    });
+
+    var firstDay = new Date(viewYear, viewMonth, 1).getDay();
+    for (var i = 0; i < firstDay; i++) bodyEl.appendChild(document.createElement('span'));
+
+    var daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+    for (var d = 1; d <= daysInMonth; d++) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.textContent = d;
+      var isFuture = new Date(viewYear, viewMonth, d) > today;
+      var isToday  = d === today.getDate() && viewMonth === today.getMonth() && viewYear === currentYear;
+      var isSel    = selected && selected.year === viewYear && selected.month === viewMonth && selected.day === d;
+      btn.className = 'bd-day' + (isToday ? ' bd-today' : '') + (isSel ? ' bd-sel' : '') + (isFuture ? ' bd-dim' : '');
+      if (isFuture) btn.disabled = true;
+      (function (day) {
+        btn.addEventListener('click', function () { selectDate(viewYear, viewMonth, day); });
+      })(d);
+      bodyEl.appendChild(btn);
+    }
+  }
+
+  function renderYears() {
+    var endY   = currentYear - yearPage * YEARS_PER_PAGE;
+    var startY = endY - YEARS_PER_PAGE + 1;
+    titleBtn.textContent = startY + ' – ' + endY;
+    bodyEl.className = 'bd-body bd-years';
+    bodyEl.innerHTML = '';
+
+    for (var y = endY; y >= startY; y--) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.textContent = y;
+      btn.className = 'bd-yr' + (y === viewYear ? ' bd-sel' : '');
+      (function (year) {
+        btn.addEventListener('click', function () { viewYear = year; mode = 'days'; render(); });
+      })(y);
+      bodyEl.appendChild(btn);
+    }
+  }
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  function selectDate(year, month, day) {
+    selected = {year: year, month: month, day: day};
+    displayEl.value = pad(day) + '/' + pad(month + 1) + '/' + year;
+    noteEl.value    = 'Birth Date: ' + year + '-' + pad(month + 1) + '-' + pad(day);
+    setBlocked(calcAge(year, month, day) < 18);
+    dropdown.classList.remove('bd-open');
+  }
+
+  function calcAge(year, month, day) {
+    var age = today.getFullYear() - year;
+    var md  = today.getMonth() - month;
+    if (md < 0 || (md === 0 && today.getDate() < day)) age--;
+    return age;
+  }
+
+  function setBlocked(blocked) {
+    ageError.style.display = blocked ? 'block' : 'none';
+    if (blocked) ageError.textContent = ageError.dataset.message;
+    if (submitBtn) {
+      submitBtn.disabled      = blocked;
+      submitBtn.style.opacity = blocked ? '0.5' : '';
+      submitBtn.style.cursor  = blocked ? 'not-allowed' : '';
+    }
+  }
+
+  form && form.addEventListener('submit', function (e) {
+    if (!selected) {
+      e.preventDefault();
+      dropdown.classList.add('bd-open');
+      render();
+      displayEl.focus();
+      return;
+    }
+    if (calcAge(selected.year, selected.month, selected.day) < 18) {
+      e.preventDefault();
+      setBlocked(true);
+    }
+  });
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initBirthdatePicker);
+} else {
+  initBirthdatePicker();
+}
