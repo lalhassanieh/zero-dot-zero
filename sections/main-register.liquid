@@ -9,6 +9,7 @@
 {% endcomment %}
 
 {{ 'customer.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'bi-custom.js' | asset_url }}" defer></script>
 {%- liquid
   assign container = section.settings.container
   assign padding_full_width = section.settings.padding_full_width
@@ -94,16 +95,31 @@
               >
             </div>
             <div class="form-field" id="RegisterForm-birthdate-wrapper">
-              <label class="form-label" for="RegisterForm-birthdate">
+              <label class="form-label">
                 {{ 'customer.register.birth_date' | t }}
                 <em>*</em>
               </label>
-              <input
-                class="form-input"
-                type="date"
-                id="RegisterForm-birthdate"
-                required
-              >
+              <div class="bd-picker" id="bd-picker">
+                <div class="bd-input-wrap">
+                  <input
+                    type="text"
+                    class="form-input bd-display"
+                    id="bd-display"
+                    readonly
+                    autocomplete="off"
+                    placeholder="dd/mm/yyyy"
+                  >
+                  <span class="bd-cal-icon" aria-hidden="true"></span>
+                </div>
+                <div class="bd-dropdown" id="bd-dropdown">
+                  <div class="bd-header">
+                    <button type="button" class="bd-nav" id="bd-prev">&#8249;</button>
+                    <button type="button" class="bd-title" id="bd-title"></button>
+                    <button type="button" class="bd-nav" id="bd-next">&#8250;</button>
+                  </div>
+                  <div class="bd-body" id="bd-body"></div>
+                </div>
+              </div>
               <input type="hidden" name="customer[note]" id="RegisterForm-birthdate-note">
               <span
                 id="age-error-msg"
@@ -185,56 +201,6 @@
     </div>
   </div>
 </div>
-
-<script>
-(function () {
-  var birthdateInput = document.getElementById('RegisterForm-birthdate');
-  var birthdateNote  = document.getElementById('RegisterForm-birthdate-note');
-  var ageError       = document.getElementById('age-error-msg');
-  var form           = document.querySelector('.create-customer-form');
-  var submitBtn      = form && form.querySelector('.button--primary, input[type="submit"]');
-
-  var today = new Date();
-  today.setHours(0, 0, 0, 0);
-
-  // Cap the calendar at today
-  birthdateInput.setAttribute('max', today.toISOString().split('T')[0]);
-
-  function calcAge(dateStr) {
-    var birth = new Date(dateStr);
-    var age   = today.getFullYear() - birth.getFullYear();
-    var m     = today.getMonth() - birth.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birth.getDate())) age--;
-    return age;
-  }
-
-  function setBlocked(blocked) {
-    ageError.style.display = blocked ? 'block' : 'none';
-    if (blocked) ageError.textContent = ageError.dataset.message;
-    if (submitBtn) {
-      submitBtn.disabled          = blocked;
-      submitBtn.style.opacity     = blocked ? '0.5' : '';
-      submitBtn.style.cursor      = blocked ? 'not-allowed' : '';
-    }
-  }
-
-  birthdateInput.addEventListener('change', function () {
-    if (!this.value) return;
-    var age     = calcAge(this.value);
-    var blocked = age < 18;
-    birthdateNote.value = 'Birth Date: ' + this.value;
-    setBlocked(blocked);
-  });
-
-  form && form.addEventListener('submit', function (e) {
-    if (!birthdateInput.value || calcAge(birthdateInput.value) < 18) {
-      e.preventDefault();
-      setBlocked(true);
-      birthdateInput.focus();
-    }
-  });
-})();
-</script>
 
 <style>
   @media (min-width: 1025px) {
