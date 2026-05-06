@@ -429,7 +429,9 @@ function initBirthdatePicker() {
   });
 
   document.addEventListener('click', function (e) {
-    if (!picker.contains(e.target)) dropdown.classList.remove('bd-open');
+    var path = e.composedPath ? e.composedPath() : [];
+    var insidePicker = path.indexOf(picker) !== -1 || picker.contains(e.target);
+    if (!insidePicker) dropdown.classList.remove('bd-open');
   });
 
   prevBtn.addEventListener('click', function () {
@@ -505,7 +507,7 @@ function initBirthdatePicker() {
       btn.textContent = y;
       btn.className = 'bd-yr' + (y === viewYear ? ' bd-sel' : '');
       (function (year) {
-        btn.addEventListener('click', function () { viewYear = year; mode = 'days'; render(); });
+        btn.addEventListener('click', function (e) { e.stopPropagation(); viewYear = year; mode = 'days'; render(); });
       })(y);
       bodyEl.appendChild(btn);
     }
