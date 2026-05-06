@@ -1171,7 +1171,8 @@ input[type="checkbox"][required] {
 
 /* ── Birth Date Custom Picker ── */
 .bd-picker { position: relative; max-width: 450px; }
-.bd-input-wrap { position: relative; cursor: pointer; }
+.bd-input-wrap { position: relative; cursor: pointer; user-select: none; }
+.bd-input-wrap * { cursor: pointer; }
 .bd-display {
     cursor: pointer !important;
     padding-right: 42px !important;
