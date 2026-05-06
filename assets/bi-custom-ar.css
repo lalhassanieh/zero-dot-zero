@@ -509,3 +509,18 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
 .shopify-pc__prefs__options p{
     margin-right: 43px;
 }
+
+
+/* ── Birth Date Picker – Arabic RTL ── */
+.bd-display {
+    padding-right: 0 !important;
+    padding-left: 42px !important;
+}
+.bd-cal-icon {
+    right: auto !important;
+    left: 12px !important;
+}
+.bd-dropdown {
+    left: auto !important;
+    right: 0 !important;
+}
