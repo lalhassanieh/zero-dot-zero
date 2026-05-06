@@ -1169,3 +1169,86 @@ input[type="checkbox"][required] {
     margin: 5px 20px 5px 20px !important;
 }
 
+
+/* ── Birth Date Custom Picker ── */
+.bd-picker { position: relative; max-width: 450px; }
+.bd-input-wrap { position: relative; cursor: pointer; }
+.bd-display {
+    cursor: pointer !important;
+    padding-right: 42px !important;
+    caret-color: transparent;
+}
+.bd-cal-icon {
+    position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+    color: var(--form-input-placeholder); pointer-events: none;
+    display: flex; align-items: center;
+}
+.bd-dropdown {
+    display: none;
+    position: absolute; top: calc(100% + 6px); left: 0;
+    width: 260px;
+    background: var(--form-input-bg, #fff);
+    border: 1px solid var(--form-input-border);
+    border-radius: 10px;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.13);
+    z-index: 1000; overflow: hidden;
+}
+.bd-dropdown.bd-open { display: block; }
+.bd-header {
+    display: flex; align-items: center; gap: 4px;
+    padding: 10px; border-bottom: 1px solid var(--form-input-border);
+}
+.bd-nav {
+    background: none; border: none; cursor: pointer;
+    width: 32px; height: 32px; border-radius: 6px;
+    font-size: 22px; line-height: 1; color: var(--color-text);
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.15s; flex-shrink: 0;
+}
+.bd-nav:hover { background: rgba(0,0,0,0.07); }
+.bd-title {
+    flex: 1; background: none; border: none; cursor: pointer;
+    font-size: 14px; font-weight: 600; color: var(--color-text);
+    text-align: center; padding: 6px 8px; border-radius: 6px;
+    transition: background 0.15s;
+}
+.bd-title:hover { background: rgba(0,0,0,0.07); }
+.bd-days {
+    display: grid; grid-template-columns: repeat(7, 1fr);
+    gap: 1px; padding: 10px 8px 14px;
+}
+.bd-wday {
+    text-align: center; font-size: 11px; font-weight: 600;
+    color: var(--form-input-placeholder); padding: 4px 0 6px;
+}
+.bd-day {
+    background: none; border: none; cursor: pointer;
+    font-size: 13px; color: var(--color-text);
+    border-radius: 50%; width: 32px; height: 32px; margin: 1px auto;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.12s, color 0.12s;
+}
+.bd-day:hover:not(:disabled) { background: rgba(0,0,0,0.07); }
+.bd-day.bd-today { font-weight: 700; color: var(--color-base-accent-1, #111); }
+.bd-day.bd-sel {
+    background: var(--color-base-accent-1, #111) !important;
+    color: var(--color-base-accent-text, #fff) !important;
+}
+.bd-day.bd-dim { color: var(--form-input-placeholder); cursor: not-allowed; opacity: 0.35; }
+.bd-years {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 4px; padding: 12px 10px;
+}
+.bd-yr {
+    background: none; border: none; cursor: pointer;
+    font-size: 13px; color: var(--color-text);
+    padding: 8px 4px; border-radius: 6px; text-align: center;
+    transition: background 0.12s, color 0.12s;
+}
+.bd-yr:hover { background: rgba(0,0,0,0.07); }
+.bd-yr.bd-sel {
+    background: var(--color-base-accent-1, #111);
+    color: var(--color-base-accent-text, #fff);
+    font-weight: 600;
+}
+
