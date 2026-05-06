@@ -423,7 +423,7 @@ function initBirthdatePicker() {
   var yearPage  = 1;
   var selected  = null;
 
-  displayEl.placeholder = isAr ? 'يي/شش/سسسس' : 'dd/mm/yyyy';
+  displayEl.placeholder = isAr ? 'يوم/شهر/سنة' : 'dd/mm/yyyy';
 
   var inputWrap = picker.querySelector('.bd-input-wrap');
   inputWrap.addEventListener('click', function () {
