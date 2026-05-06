@@ -521,6 +521,12 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
     left: 12px !important;
 }
 .bd-dropdown {
-    left: auto !important;
-    right: 0 !important;
+    right: auto !important;
+    left: 0 !important;
+}
+.bd-display::placeholder {
+    direction: ltr;
+    text-align: right;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
