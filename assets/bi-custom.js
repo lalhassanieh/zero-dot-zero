@@ -417,7 +417,7 @@ function initBirthdatePicker() {
 
   var YEARS_PER_PAGE = 20;
   var mode      = 'days';
-  var viewYear  = currentYear - 25;
+  var viewYear  = currentYear - 18;
   var viewMonth = 0;
   var yearPage  = 1;
   var selected  = null;
