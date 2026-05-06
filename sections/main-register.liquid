@@ -9,7 +9,6 @@
 {% endcomment %}
 
 {{ 'customer.css' | asset_url | stylesheet_tag }}
-<script src="{{ 'bi-custom.js' | asset_url }}" defer></script>
 {%- liquid
   assign container = section.settings.container
   assign padding_full_width = section.settings.padding_full_width
