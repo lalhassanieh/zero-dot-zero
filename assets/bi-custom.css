@@ -1247,6 +1247,22 @@ input[type="checkbox"][required] {
     color: var(--color-base-accent-text, #fff) !important;
 }
 .bd-day.bd-dim { color: var(--form-input-placeholder); cursor: not-allowed; opacity: 0.35; }
+.bd-months {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 4px; padding: 12px 10px;
+}
+.bd-mon {
+    background: none; border: none; cursor: pointer;
+    font-size: 13px; color: var(--color-text);
+    padding: 10px 4px; border-radius: 6px; text-align: center;
+    transition: background 0.12s, color 0.12s;
+}
+.bd-mon:hover { background: rgba(0,0,0,0.07); }
+.bd-mon.bd-sel {
+    background: var(--color-base-accent-1, #111);
+    color: var(--color-base-accent-text, #fff);
+    font-weight: 600;
+}
 .bd-years {
     display: grid; grid-template-columns: repeat(4, 1fr);
     gap: 4px; padding: 12px 10px;
