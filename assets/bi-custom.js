@@ -395,6 +395,7 @@ function initBirthdatePicker() {
   today.setHours(0, 0, 0, 0);
   var currentYear = today.getFullYear();
   var lang        = document.documentElement.lang || 'en';
+  var isAr        = lang === 'ar';
 
   var picker    = document.getElementById('bd-picker');
   var displayEl = document.getElementById('bd-display');
@@ -421,6 +422,8 @@ function initBirthdatePicker() {
   var viewMonth = 0;
   var yearPage  = 1;
   var selected  = null;
+
+  displayEl.placeholder = isAr ? 'يي/شش/سسسس' : 'dd/mm/yyyy';
 
   var inputWrap = picker.querySelector('.bd-input-wrap');
   inputWrap.addEventListener('click', function () {
