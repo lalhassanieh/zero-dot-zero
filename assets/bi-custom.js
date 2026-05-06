@@ -438,6 +438,8 @@ function initBirthdatePicker() {
     if (mode === 'days') {
       viewMonth--;
       if (viewMonth < 0) { viewMonth = 11; viewYear--; }
+    } else if (mode === 'months') {
+      viewYear--;
     } else {
       yearPage++;
     }
@@ -448,6 +450,8 @@ function initBirthdatePicker() {
     if (mode === 'days') {
       viewMonth++;
       if (viewMonth > 11) { viewMonth = 0; viewYear++; }
+    } else if (mode === 'months') {
+      viewYear++;
     } else {
       if (yearPage > 0) yearPage--;
     }
@@ -455,12 +459,22 @@ function initBirthdatePicker() {
   });
 
   titleBtn.addEventListener('click', function () {
-    mode = (mode === 'days') ? 'years' : 'days';
-    if (mode === 'years') yearPage = Math.floor((currentYear - viewYear) / YEARS_PER_PAGE);
+    if (mode === 'days') {
+      mode = 'months';
+    } else if (mode === 'months') {
+      mode = 'years';
+      yearPage = Math.floor((currentYear - viewYear) / YEARS_PER_PAGE);
+    } else {
+      mode = 'months';
+    }
     render();
   });
 
-  function render() { mode === 'days' ? renderDays() : renderYears(); }
+  function render() {
+    if (mode === 'days') renderDays();
+    else if (mode === 'months') renderMonths();
+    else renderYears();
+  }
 
   function renderDays() {
     titleBtn.textContent = monthNames[viewMonth] + ' ' + viewYear;
@@ -507,8 +521,25 @@ function initBirthdatePicker() {
       btn.textContent = y;
       btn.className = 'bd-yr' + (y === viewYear ? ' bd-sel' : '');
       (function (year) {
-        btn.addEventListener('click', function (e) { e.stopPropagation(); viewYear = year; mode = 'days'; render(); });
+        btn.addEventListener('click', function (e) { e.stopPropagation(); viewYear = year; mode = 'months'; render(); });
       })(y);
+      bodyEl.appendChild(btn);
+    }
+  }
+
+  function renderMonths() {
+    titleBtn.textContent = viewYear;
+    bodyEl.className = 'bd-body bd-months';
+    bodyEl.innerHTML = '';
+
+    for (var m = 0; m < 12; m++) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.textContent = new Intl.DateTimeFormat(lang, {month: 'short'}).format(new Date(2000, m, 1));
+      btn.className = 'bd-mon' + (m === viewMonth ? ' bd-sel' : '');
+      (function (month) {
+        btn.addEventListener('click', function (e) { e.stopPropagation(); viewMonth = month; mode = 'days'; render(); });
+      })(m);
       bodyEl.appendChild(btn);
     }
   }
