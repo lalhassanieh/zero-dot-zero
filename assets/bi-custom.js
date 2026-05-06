@@ -422,7 +422,8 @@ function initBirthdatePicker() {
   var yearPage  = 1;
   var selected  = null;
 
-  displayEl.addEventListener('click', function () {
+  var inputWrap = picker.querySelector('.bd-input-wrap');
+  inputWrap.addEventListener('click', function () {
     dropdown.classList.toggle('bd-open');
     if (dropdown.classList.contains('bd-open')) render();
   });
