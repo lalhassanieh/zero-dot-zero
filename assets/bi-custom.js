@@ -1,146 +1,100 @@
-(function() {
-    function initNewsletterBanner(root) {
-      if (!root) return;
-  
-      root.addEventListener('click', function (e) {
-        var btn = e.target.closest('[data-toggle-newsletter]');
-        if (!btn) return;
-  
-        var item = btn.closest('[data-banner-item]');
-        if (!item) return;
-  
-        var wrap = item.querySelector('[data-newsletter-wrap]');
-        if (!wrap) return;
-  
-        var isHidden = (wrap.style.display === 'none' || wrap.style.display === '');
-        wrap.style.display = isHidden ? 'block' : 'none';
-        btn.style.display = isHidden ? 'none' : 'inline-block';
-  
-        if (isHidden) {
-          var email = wrap.querySelector('input[type="email"]');
-          if (email) setTimeout(function(){ email.focus(); }, 50);
+(function () {
+
+  function domReady(fn) {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', fn);
+    } else {
+      fn();
+    }
+  }
+
+  /* ── Newsletter Banner ── */
+  function initNewsletterBanner(root) {
+    if (!root) return;
+
+    root.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-toggle-newsletter]');
+      if (!btn) return;
+      var item = btn.closest('[data-banner-item]');
+      if (!item) return;
+      var wrap = item.querySelector('[data-newsletter-wrap]');
+      if (!wrap) return;
+      var isHidden = (wrap.style.display === 'none' || wrap.style.display === '');
+      wrap.style.display = isHidden ? 'block' : 'none';
+      btn.style.display  = isHidden ? 'none' : 'inline-block';
+      if (isHidden) {
+        var email = wrap.querySelector('input[type="email"]');
+        if (email) setTimeout(function () { email.focus(); }, 50);
+      }
+    });
+
+    root.querySelectorAll('form[class*="ai-newsletter-form"]').forEach(function (form) {
+      form.addEventListener('submit', function () {
+        try {
+          var wrap           = form.closest('[data-newsletter-wrap]');
+          var item           = wrap ? wrap.closest('[data-banner-item]') : form.closest('[data-banner-item]');
+          var errorContainer = root.querySelector('[data-newsletter-errors]');
+          setTimeout(function () {
+            try {
+              var urlParams   = new URLSearchParams(window.location.search);
+              var formErrors  = form.querySelector('.note--error, .errors, .form-error');
+              var formSuccess = !!(
+                form.querySelector('.note--success') ||
+                form.classList.contains('form-success') ||
+                urlParams.get('customer_posted') === 'true'
+              );
+              if (!formErrors && formSuccess) {
+                form.style.display = 'none';
+                var successMsg = wrap
+                  ? wrap.querySelector('[data-newsletter-success]')
+                  : (item ? item.querySelector('[data-newsletter-success]') : null);
+                if (successMsg) {
+                  successMsg.removeAttribute('style');
+                  successMsg.style.cssText = 'display: block !important; margin-top: 16px;';
+                  successMsg.textContent   = "Thank you! You've been subscribed successfully.";
+                  successMsg.classList.add('show');
+                }
+                if (item) {
+                  var toggleBtn = item.querySelector('[data-toggle-newsletter]');
+                  if (toggleBtn) toggleBtn.style.display = 'none';
+                }
+              }
+            } catch (err) {
+              if (errorContainer) errorContainer.style.display = 'none';
+            }
+          }, 500);
+        } catch (err) {
+          var errorContainer = root.querySelector('[data-newsletter-errors]');
+          if (errorContainer) errorContainer.style.display = 'none';
         }
       });
-  
-      var forms = root.querySelectorAll('form[class*="ai-newsletter-form"]');
-      forms.forEach(function(form) {
-        form.addEventListener('submit', function(e) {
-          try {
-            var wrap = form.closest('[data-newsletter-wrap]');
-            var item = wrap ? wrap.closest('[data-banner-item]') : form.closest('[data-banner-item]');
-            var errorContainer = root.querySelector('[data-newsletter-errors]');
-  
-            setTimeout(function() {
-              try {
-                var urlParams = new URLSearchParams(window.location.search);
-                var customerPost = urlParams.get('customer_posted');
-                var formErrors = form.querySelector('.note--error, .errors, .form-error');
-                var formSuccess = !!(
-                  form.querySelector('.note--success') ||
-                  form.classList.contains('form-success') ||
-                  customerPost === 'true'
-                );
-                
-                if (formErrors) {
-                } else if (formSuccess) {
-                  form.style.display = 'none';
-                  var successMsg = wrap ? wrap.querySelector('[data-newsletter-success]') : (item ? item.querySelector('[data-newsletter-success]') : null);
-                  if (successMsg) {
-                    successMsg.removeAttribute('style');
-                    successMsg.style.cssText = 'display: block !important; margin-top: 16px;';
-                    successMsg.textContent = 'Thank you! You\'ve been subscribed successfully.';
-                    successMsg.classList.add('show');
-                  }
-                  if (item) {
-                    var toggleBtn = item.querySelector('[data-toggle-newsletter]');
-                    if (toggleBtn) {
-                      toggleBtn.style.display = 'none';
-                    }
-                  }
-                }
-              } catch(err) {
-                if (errorContainer) {
-                  errorContainer.style.display = 'none';
-                }
-              }
-            }, 500);
-          } catch(err) {
-            var errorContainer = root.querySelector('[data-newsletter-errors]');
-            if (errorContainer) {
-              errorContainer.style.display = 'none';
-            }
-          }
-        });
-      });
-  
-      if (window.location.search.indexOf('customer_posted=true') > -1) {
-        var wraps = root.querySelectorAll('[data-newsletter-wrap]');
-        wraps.forEach(function(wrap) {
-          var form = wrap.querySelector('form');
-          var successMsg = wrap.querySelector('[data-newsletter-success]');
-          if (form && successMsg) {
-            form.style.display = 'none';
-            successMsg.classList.add('show');
-            wrap.style.display = 'block';
-            var item = wrap.closest('[data-banner-item]');
-            if (item) {
-              var toggleBtn = item.querySelector('[data-toggle-newsletter]');
-              if (toggleBtn) {
-                toggleBtn.style.display = 'none';
-              }
-            }
-          }
-        });
-      }
-    }
-    
-  
-    var banners = document.querySelectorAll('[data-newsletter-banner]');
-    banners.forEach(function(banner) {
-      initNewsletterBanner(banner);
-    });
-  
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', function() {
-        var banners = document.querySelectorAll('[data-newsletter-banner]');
-        banners.forEach(function(banner) {
-          initNewsletterBanner(banner);
-        });
-      });
-    }
-
-    // Style asterisks in Globo Form paragraph headings
-    function styleGloboFormAsterisks() {
-      var headings = document.querySelectorAll('.globo-form.contact-form .globo-paragraph h4');
-      headings.forEach(function(heading) {
-        // Replace asterisk with wrapped version for red styling
-        heading.innerHTML = heading.innerHTML.replace(/\*/g, '<span class="required-asterisk">*</span>');
-      });
-    }
-
-    // Run on DOM ready
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', styleGloboFormAsterisks);
-    } else {
-      styleGloboFormAsterisks();
-    }
-
-    // Also run when Globo form is loaded dynamically
-    var observer = new MutationObserver(function(mutations) {
-      mutations.forEach(function(mutation) {
-        mutation.addedNodes.forEach(function(node) {
-          if (node.nodeType === 1 && (node.classList.contains('globo-form') || node.querySelector('.globo-form'))) {
-            styleGloboFormAsterisks();
-          }
-        });
-      });
     });
 
-    if (document.body) {
-      observer.observe(document.body, { childList: true, subtree: true });
+    if (window.location.search.indexOf('customer_posted=true') > -1) {
+      root.querySelectorAll('[data-newsletter-wrap]').forEach(function (wrap) {
+        var form       = wrap.querySelector('form');
+        var successMsg = wrap.querySelector('[data-newsletter-success]');
+        if (form && successMsg) {
+          form.style.display = 'none';
+          successMsg.classList.add('show');
+          wrap.style.display = 'block';
+          var item = wrap.closest('[data-banner-item]');
+          if (item) {
+            var toggleBtn = item.querySelector('[data-toggle-newsletter]');
+            if (toggleBtn) toggleBtn.style.display = 'none';
+          }
+        }
+      });
     }
-  })();
-  
+  }
+
+  /* ── Globo Form Asterisks ── */
+  function styleGloboFormAsterisks() {
+    document.querySelectorAll('.globo-form.contact-form .globo-paragraph h4').forEach(function (heading) {
+      heading.innerHTML = heading.innerHTML.replace(/\*/g, '<span class="required-asterisk">*</span>');
+    });
+  }
+
   // ── Appstle loyalty riyal formatter (commented out) ──
   // function initAppstleRiyalFormatter() {
   //   var SELECTORS = [
@@ -231,9 +185,9 @@
   //     });
   //
   //     doc.querySelectorAll('.loyalty-home-refer-help-text:not(.has-riyal)').forEach(function (el) {
-  //       if (!el.innerHTML.includes('\u0631\u064a\u0627\u0644')) return;
+  //       if (!el.innerHTML.includes('ريال')) return;
   //       var newHtml = el.innerHTML.replace(
-  //         /<span class="riyal-font"><\/span>(\d{1,3}(?:,\d{3})*(?:\.\d+)?|\d+(?:\.\d+)?)([^<\u0631]*)\u0631\u064a\u0627\u0644/g,
+  //         /<span class="riyal-font"><\/span>(\d{1,3}(?:,\d{3})*(?:\.\d+)?|\d+(?:\.\d+)?)([^<ر]*)ريال/g,
   //         '<span class="appstle-amount">$1</span>$2'
   //       );
   //       if (newHtml !== el.innerHTML) {
@@ -299,52 +253,35 @@
   //   mainObserver.observe(document.body, { childList: true, subtree: true });
   // }
   //
-  // if (document.readyState === "loading") {
-  //   document.addEventListener("DOMContentLoaded", initAppstleRiyalFormatter);
-  // } else {
-  //   initAppstleRiyalFormatter();
-  // }
+  // domReady(initAppstleRiyalFormatter);
 
-  // ── Blog masonry row height equalizer ──
-  // Groups masonry items by their `top` position (same top = same row),
-  // then sets .blog-summary and .blog-title to the tallest in each row.
+  /* ── Blog Row Equalizer ── */
   function equalizeBlogRowHeights() {
-    var rows = document.querySelectorAll('.blog-row');
-    rows.forEach(function(row) {
+    document.querySelectorAll('.blog-row').forEach(function (row) {
       var items = row.querySelectorAll('[data-masonry-item]');
       if (!items.length) return;
-
-      // Group items by their top offset value
       var groups = {};
-      items.forEach(function(item) {
+      items.forEach(function (item) {
         var top = parseInt(item.style.top) || 0;
         if (!groups[top]) groups[top] = [];
         groups[top].push(item);
       });
-
-      Object.keys(groups).forEach(function(top) {
+      Object.keys(groups).forEach(function (top) {
         var group = groups[top];
-
-        // Reset so we measure natural heights
-        group.forEach(function(item) {
+        group.forEach(function (item) {
           var summary = item.querySelector('.blog-summary');
           var title   = item.querySelector('.blog-title');
           if (summary) summary.style.height = '';
           if (title)   title.style.height   = '';
         });
-
-        // Measure
-        var maxSummary = 0;
-        var maxTitle   = 0;
-        group.forEach(function(item) {
+        var maxSummary = 0, maxTitle = 0;
+        group.forEach(function (item) {
           var summary = item.querySelector('.blog-summary');
           var title   = item.querySelector('.blog-title');
           if (summary) maxSummary = Math.max(maxSummary, summary.offsetHeight);
           if (title)   maxTitle   = Math.max(maxTitle,   title.offsetHeight);
         });
-
-        // Apply
-        group.forEach(function(item) {
+        group.forEach(function (item) {
           var summary = item.querySelector('.blog-summary');
           var title   = item.querySelector('.blog-title');
           if (summary && maxSummary) summary.style.height = maxSummary + 'px';
@@ -356,354 +293,335 @@
 
   function initBlogRowEqualizer() {
     if (!document.querySelector('.blog-row')) return;
-
     equalizeBlogRowHeights();
-
-    // Re-run after all images have loaded (masonry recalculates after images)
     window.addEventListener('load', equalizeBlogRowHeights);
-
-    // Re-run on resize (debounced)
     var resizeTimer;
-    window.addEventListener('resize', function() {
+    window.addEventListener('resize', function () {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(equalizeBlogRowHeights, 200);
     });
-
-    // Watch for masonry repositioning items (style attribute changes on items)
-    var blogRows = document.querySelectorAll('.blog-row');
-    blogRows.forEach(function(row) {
-      var masonryObserver = new MutationObserver(function() {
-        clearTimeout(masonryObserver._timer);
-        masonryObserver._timer = setTimeout(equalizeBlogRowHeights, 50);
+    document.querySelectorAll('.blog-row').forEach(function (row) {
+      var obs = new MutationObserver(function () {
+        clearTimeout(obs._timer);
+        obs._timer = setTimeout(equalizeBlogRowHeights, 50);
       });
-      masonryObserver.observe(row, { attributes: true, attributeFilter: ['style'], subtree: true });
+      obs.observe(row, { attributes: true, attributeFilter: ['style'], subtree: true });
     });
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initBlogRowEqualizer);
-  } else {
-    initBlogRowEqualizer();
-  }
+  /* ── Birth Date Picker ── */
+  function initBirthdatePicker() {
+    if (!document.getElementById('bd-picker')) return;
 
+    var today       = new Date();
+    today.setHours(0, 0, 0, 0);
+    var currentYear = today.getFullYear();
+    var lang        = document.documentElement.lang || 'en';
+    var isAr        = lang === 'ar';
 
-/* ── Birth Date Picker ── */
-function initBirthdatePicker() {
-  if (!document.getElementById('bd-picker')) return;
+    var picker    = document.getElementById('bd-picker');
+    var displayEl = document.getElementById('bd-display');
+    var dropdown  = document.getElementById('bd-dropdown');
+    var titleBtn  = document.getElementById('bd-title');
+    var prevBtn   = document.getElementById('bd-prev');
+    var nextBtn   = document.getElementById('bd-next');
+    var bodyEl    = document.getElementById('bd-body');
+    var noteEl    = document.getElementById('RegisterForm-birthdate-note');
+    var ageError  = document.getElementById('age-error-msg');
+    var form      = document.querySelector('.create-customer-form');
+    var submitBtn = form && form.querySelector('.button--primary, input[type="submit"]');
 
-  var today       = new Date();
-  today.setHours(0, 0, 0, 0);
-  var currentYear = today.getFullYear();
-  var lang        = document.documentElement.lang || 'en';
-  var isAr        = lang === 'ar';
-
-  var picker    = document.getElementById('bd-picker');
-  var displayEl = document.getElementById('bd-display');
-  var dropdown  = document.getElementById('bd-dropdown');
-  var titleBtn  = document.getElementById('bd-title');
-  var prevBtn   = document.getElementById('bd-prev');
-  var nextBtn   = document.getElementById('bd-next');
-  var bodyEl    = document.getElementById('bd-body');
-  var noteEl    = document.getElementById('RegisterForm-birthdate-note');
-  var ageError  = document.getElementById('age-error-msg');
-  var form      = document.querySelector('.create-customer-form');
-  var submitBtn = form && form.querySelector('.button--primary, input[type="submit"]');
-
-  var monthNames = Array.from({length: 12}, function(_, i) {
-    return new Intl.DateTimeFormat(lang, {month: 'long'}).format(new Date(2000, i, 1));
-  });
-  var dayNames = Array.from({length: 7}, function(_, i) {
-    return new Intl.DateTimeFormat(lang, {weekday: 'short'}).format(new Date(2000, 0, 2 + i));
-  });
-
-  var YEARS_PER_PAGE = 20;
-  var mode      = 'days';
-  var viewYear  = currentYear - 18;
-  var viewMonth = 0;
-  var yearPage  = 1;
-  var selected  = null;
-
-  displayEl.placeholder = isAr ? 'يوم/شهر/سنة' : 'dd/mm/yyyy';
-
-  var inputWrap = picker.querySelector('.bd-input-wrap');
-  inputWrap.addEventListener('click', function () {
-    dropdown.classList.toggle('bd-open');
-    if (dropdown.classList.contains('bd-open')) render();
-  });
-
-  document.addEventListener('click', function (e) {
-    var path = e.composedPath ? e.composedPath() : [];
-    var insidePicker = path.indexOf(picker) !== -1 || picker.contains(e.target);
-    if (!insidePicker) dropdown.classList.remove('bd-open');
-  });
-
-  prevBtn.addEventListener('click', function () {
-    if (mode === 'days') {
-      viewMonth--;
-      if (viewMonth < 0) { viewMonth = 11; viewYear--; }
-    } else if (mode === 'months') {
-      viewYear--;
-    } else {
-      yearPage++;
-    }
-    render();
-  });
-
-  nextBtn.addEventListener('click', function () {
-    if (mode === 'days') {
-      viewMonth++;
-      if (viewMonth > 11) { viewMonth = 0; viewYear++; }
-    } else if (mode === 'months') {
-      viewYear++;
-    } else {
-      if (yearPage > 0) yearPage--;
-    }
-    render();
-  });
-
-  titleBtn.addEventListener('click', function () {
-    if (mode === 'days') {
-      mode = 'months';
-    } else if (mode === 'months') {
-      mode = 'years';
-      yearPage = Math.floor((currentYear - viewYear) / YEARS_PER_PAGE);
-    } else {
-      mode = 'months';
-    }
-    render();
-  });
-
-  function render() {
-    if (mode === 'days') renderDays();
-    else if (mode === 'months') renderMonths();
-    else renderYears();
-  }
-
-  function renderDays() {
-    titleBtn.textContent = monthNames[viewMonth] + ' ' + viewYear;
-    bodyEl.className = 'bd-body bd-days';
-    bodyEl.innerHTML = '';
-
-    dayNames.forEach(function (n) {
-      var s = document.createElement('span');
-      s.className = 'bd-wday';
-      s.textContent = n;
-      bodyEl.appendChild(s);
+    var monthNames = Array.from({ length: 12 }, function (_, i) {
+      return new Intl.DateTimeFormat(lang, { month: 'long' }).format(new Date(2000, i, 1));
+    });
+    var dayNames = Array.from({ length: 7 }, function (_, i) {
+      return new Intl.DateTimeFormat(lang, { weekday: 'short' }).format(new Date(2000, 0, 2 + i));
     });
 
-    var firstDay = new Date(viewYear, viewMonth, 1).getDay();
-    for (var i = 0; i < firstDay; i++) bodyEl.appendChild(document.createElement('span'));
+    var YEARS_PER_PAGE = 20;
+    var mode      = 'days';
+    var viewYear  = currentYear - 18;
+    var viewMonth = 0;
+    var yearPage  = 1;
+    var selected  = null;
 
-    var daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
-    for (var d = 1; d <= daysInMonth; d++) {
-      var btn = document.createElement('button');
-      btn.type = 'button';
-      btn.textContent = d;
-      var isFuture = new Date(viewYear, viewMonth, d) > today;
-      var isToday  = d === today.getDate() && viewMonth === today.getMonth() && viewYear === currentYear;
-      var isSel    = selected && selected.year === viewYear && selected.month === viewMonth && selected.day === d;
-      btn.className = 'bd-day' + (isToday ? ' bd-today' : '') + (isSel ? ' bd-sel' : '') + (isFuture ? ' bd-dim' : '');
-      if (isFuture) btn.disabled = true;
-      (function (day) {
-        btn.addEventListener('click', function () { selectDate(viewYear, viewMonth, day); });
-      })(d);
-      bodyEl.appendChild(btn);
-    }
-  }
+    displayEl.placeholder = isAr ? 'يوم/شهر/سنة' : 'dd/mm/yyyy';
 
-  function renderYears() {
-    var endY   = currentYear - yearPage * YEARS_PER_PAGE;
-    var startY = endY - YEARS_PER_PAGE + 1;
-    titleBtn.textContent = startY + ' – ' + endY;
-    bodyEl.className = 'bd-body bd-years';
-    bodyEl.innerHTML = '';
+    picker.querySelector('.bd-input-wrap').addEventListener('click', function () {
+      dropdown.classList.toggle('bd-open');
+      if (dropdown.classList.contains('bd-open')) render();
+    });
 
-    for (var y = endY; y >= startY; y--) {
-      var btn = document.createElement('button');
-      btn.type = 'button';
-      btn.textContent = y;
-      btn.className = 'bd-yr' + (y === viewYear ? ' bd-sel' : '');
-      (function (year) {
-        btn.addEventListener('click', function (e) { e.stopPropagation(); viewYear = year; mode = 'months'; render(); });
-      })(y);
-      bodyEl.appendChild(btn);
-    }
-  }
+    document.addEventListener('click', function (e) {
+      var path = e.composedPath ? e.composedPath() : [];
+      if (path.indexOf(picker) === -1 && !picker.contains(e.target)) {
+        dropdown.classList.remove('bd-open');
+      }
+    });
 
-  function renderMonths() {
-    titleBtn.textContent = viewYear;
-    bodyEl.className = 'bd-body bd-months';
-    bodyEl.innerHTML = '';
-
-    for (var m = 0; m < 12; m++) {
-      var btn = document.createElement('button');
-      btn.type = 'button';
-      btn.textContent = new Intl.DateTimeFormat(lang, {month: 'short'}).format(new Date(2000, m, 1));
-      btn.className = 'bd-mon' + (m === viewMonth ? ' bd-sel' : '');
-      (function (month) {
-        btn.addEventListener('click', function (e) { e.stopPropagation(); viewMonth = month; mode = 'days'; render(); });
-      })(m);
-      bodyEl.appendChild(btn);
-    }
-  }
-
-  function pad(n) { return String(n).padStart(2, '0'); }
-
-  function selectDate(year, month, day) {
-    selected = {year: year, month: month, day: day};
-    displayEl.value = pad(day) + '/' + pad(month + 1) + '/' + year;
-    noteEl.value    = 'Birth Date: ' + year + '-' + pad(month + 1) + '-' + pad(day);
-    setBlocked(calcAge(year, month, day) < 18);
-    dropdown.classList.remove('bd-open');
-  }
-
-  function calcAge(year, month, day) {
-    var age = today.getFullYear() - year;
-    var md  = today.getMonth() - month;
-    if (md < 0 || (md === 0 && today.getDate() < day)) age--;
-    return age;
-  }
-
-  function setBlocked(blocked) {
-    ageError.style.display = blocked ? 'block' : 'none';
-    if (blocked) ageError.textContent = ageError.dataset.message;
-    if (submitBtn) {
-      submitBtn.disabled      = blocked;
-      submitBtn.style.opacity = blocked ? '0.5' : '';
-      submitBtn.style.cursor  = blocked ? 'not-allowed' : '';
-    }
-  }
-
-  form && form.addEventListener('submit', function (e) {
-    if (!selected) {
-      e.preventDefault();
-      dropdown.classList.add('bd-open');
+    prevBtn.addEventListener('click', function () {
+      if (mode === 'days') {
+        viewMonth--;
+        if (viewMonth < 0) { viewMonth = 11; viewYear--; }
+      } else if (mode === 'months') {
+        viewYear--;
+      } else {
+        yearPage++;
+      }
       render();
-      displayEl.focus();
-      return;
+    });
+
+    nextBtn.addEventListener('click', function () {
+      if (mode === 'days') {
+        viewMonth++;
+        if (viewMonth > 11) { viewMonth = 0; viewYear++; }
+      } else if (mode === 'months') {
+        viewYear++;
+      } else {
+        if (yearPage > 0) yearPage--;
+      }
+      render();
+    });
+
+    titleBtn.addEventListener('click', function () {
+      if (mode === 'days') {
+        mode = 'months';
+      } else if (mode === 'months') {
+        mode = 'years';
+        yearPage = Math.floor((currentYear - viewYear) / YEARS_PER_PAGE);
+      } else {
+        mode = 'months';
+      }
+      render();
+    });
+
+    function render() {
+      if (mode === 'days') renderDays();
+      else if (mode === 'months') renderMonths();
+      else renderYears();
     }
-    if (calcAge(selected.year, selected.month, selected.day) < 18) {
-      e.preventDefault();
-      setBlocked(true);
+
+    function renderDays() {
+      titleBtn.textContent = monthNames[viewMonth] + ' ' + viewYear;
+      bodyEl.className     = 'bd-body bd-days';
+      bodyEl.innerHTML     = '';
+      dayNames.forEach(function (n) {
+        var s = document.createElement('span');
+        s.className   = 'bd-wday';
+        s.textContent = n;
+        bodyEl.appendChild(s);
+      });
+      var firstDay    = new Date(viewYear, viewMonth, 1).getDay();
+      for (var i = 0; i < firstDay; i++) bodyEl.appendChild(document.createElement('span'));
+      var daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+      for (var d = 1; d <= daysInMonth; d++) {
+        var btn     = document.createElement('button');
+        btn.type    = 'button';
+        btn.textContent = d;
+        var isFuture = new Date(viewYear, viewMonth, d) > today;
+        var isToday  = d === today.getDate() && viewMonth === today.getMonth() && viewYear === currentYear;
+        var isSel    = selected && selected.year === viewYear && selected.month === viewMonth && selected.day === d;
+        btn.className = 'bd-day' + (isToday ? ' bd-today' : '') + (isSel ? ' bd-sel' : '') + (isFuture ? ' bd-dim' : '');
+        if (isFuture) btn.disabled = true;
+        (function (day) {
+          btn.addEventListener('click', function () { selectDate(viewYear, viewMonth, day); });
+        })(d);
+        bodyEl.appendChild(btn);
+      }
     }
-  });
-}
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initBirthdatePicker);
-} else {
-  initBirthdatePicker();
-}
+    function renderYears() {
+      var endY   = currentYear - yearPage * YEARS_PER_PAGE;
+      var startY = endY - YEARS_PER_PAGE + 1;
+      titleBtn.textContent = startY + ' – ' + endY;
+      bodyEl.className     = 'bd-body bd-years';
+      bodyEl.innerHTML     = '';
+      for (var y = endY; y >= startY; y--) {
+        var btn = document.createElement('button');
+        btn.type        = 'button';
+        btn.textContent = y;
+        btn.className   = 'bd-yr' + (y === viewYear ? ' bd-sel' : '');
+        (function (year) {
+          btn.addEventListener('click', function (e) { e.stopPropagation(); viewYear = year; mode = 'months'; render(); });
+        })(y);
+        bodyEl.appendChild(btn);
+      }
+    }
 
-/* ── Phone Number Picker ── */
-function initPhonePicker() {
-  var wrap = document.getElementById('phone-field-wrap');
-  if (!wrap || wrap.dataset.phonePickerInit) return;
-  wrap.dataset.phonePickerInit = '1';
+    function renderMonths() {
+      titleBtn.textContent = viewYear;
+      bodyEl.className     = 'bd-body bd-months';
+      bodyEl.innerHTML     = '';
+      for (var m = 0; m < 12; m++) {
+        var btn = document.createElement('button');
+        btn.type        = 'button';
+        btn.textContent = new Intl.DateTimeFormat(lang, { month: 'short' }).format(new Date(2000, m, 1));
+        btn.className   = 'bd-mon' + (m === viewMonth ? ' bd-sel' : '');
+        (function (month) {
+          btn.addEventListener('click', function (e) { e.stopPropagation(); viewMonth = month; mode = 'days'; render(); });
+        })(m);
+        bodyEl.appendChild(btn);
+      }
+    }
 
-  var form = document.querySelector('.create-customer-form');
-  if (!form) return;
+    function pad(n) { return String(n).padStart(2, '0'); }
 
-  var lang = document.documentElement.lang || 'en';
-  var isAr = lang === 'ar';
-  var FLAG_BASE = 'https://flagcdn.com/w20/';
+    function selectDate(year, month, day) {
+      selected        = { year: year, month: month, day: day };
+      displayEl.value = pad(day) + '/' + pad(month + 1) + '/' + year;
+      noteEl.value    = 'Birth Date: ' + year + '-' + pad(month + 1) + '-' + pad(day);
+      setBlocked(calcAge(year, month, day) < 18);
+      dropdown.classList.remove('bd-open');
+    }
 
-  var COUNTRIES = [
-    { code: 'BH', dial: '+973', nameEn: 'Bahrain',      nameAr: 'البحرين',  pattern: /^[36]\d{7}$/,   placeholder: '36XXXXXX'  },
-    { code: 'KW', dial: '+965', nameEn: 'Kuwait',        nameAr: 'الكويت',   pattern: /^[569]\d{7}$/,  placeholder: '5XXXXXXX'  },
-    { code: 'OM', dial: '+968', nameEn: 'Oman',          nameAr: 'عُمان',    pattern: /^[79]\d{7}$/,   placeholder: '9XXXXXXX'  },
-    { code: 'QA', dial: '+974', nameEn: 'Qatar',         nameAr: 'قطر',      pattern: /^[3-7]\d{7}$/,  placeholder: '5XXXXXXX'  },
-    { code: 'SA', dial: '+966', nameEn: 'Saudi Arabia',  nameAr: 'السعودية', pattern: /^5\d{8}$/,      placeholder: '5XXXXXXXX' },
-    { code: 'AE', dial: '+971', nameEn: 'UAE',           nameAr: 'الإمارات', pattern: /^5\d{8}$/,      placeholder: '5XXXXXXXX' }
-  ];
+    function calcAge(year, month, day) {
+      var age = today.getFullYear() - year;
+      var md  = today.getMonth() - month;
+      if (md < 0 || (md === 0 && today.getDate() < day)) age--;
+      return age;
+    }
 
-  var selected  = COUNTRIES.find(function(c) { return c.code === 'SA'; });
-  var flagEl    = document.getElementById('phone-flag');
-  var dialEl    = document.getElementById('phone-dialcode');
-  var btn       = document.getElementById('phone-country-btn');
-  var list      = document.getElementById('phone-country-list');
-  var input     = document.getElementById('RegisterForm-phone-input');
-  var hidden    = document.getElementById('RegisterForm-phone-hidden');
-  var errorSpan = document.getElementById('phone-error-msg');
+    function setBlocked(blocked) {
+      ageError.style.display = blocked ? 'block' : 'none';
+      if (blocked) ageError.textContent = ageError.dataset.message;
+      if (submitBtn) {
+        submitBtn.disabled      = blocked;
+        submitBtn.style.opacity = blocked ? '0.5' : '';
+        submitBtn.style.cursor  = blocked ? 'not-allowed' : '';
+      }
+    }
 
-  function flagImg(code, alt) {
-    return '<img src="' + FLAG_BASE + code.toLowerCase() + '.png" alt="' + alt + '" width="20" height="15">';
-  }
-
-  COUNTRIES.forEach(function(country) {
-    var li = document.createElement('li');
-    li.className = 'phone-country-item' + (country.code === selected.code ? ' selected' : '');
-    li.setAttribute('role', 'option');
-    li.setAttribute('data-code', country.code);
-    li.innerHTML =
-      '<span class="phone-item-flag">' + flagImg(country.code, country.nameEn) + '</span>' +
-      '<span class="phone-item-name">' + (isAr ? country.nameAr : country.nameEn) + '</span>' +
-      '<span class="phone-item-dial">' + country.dial + '</span>';
-    li.addEventListener('click', function() { selectCountry(country); });
-    list.appendChild(li);
-  });
-
-  function applyCountry(country) {
-    flagEl.innerHTML     = flagImg(country.code, country.nameEn);
-    dialEl.textContent   = country.dial;
-    input.placeholder    = country.placeholder;
-    Array.from(list.querySelectorAll('.phone-country-item')).forEach(function(el) {
-      el.classList.toggle('selected', el.getAttribute('data-code') === country.code);
+    form && form.addEventListener('submit', function (e) {
+      if (!selected) {
+        e.preventDefault();
+        dropdown.classList.add('bd-open');
+        render();
+        displayEl.focus();
+        return;
+      }
+      if (calcAge(selected.year, selected.month, selected.day) < 18) {
+        e.preventDefault();
+        setBlocked(true);
+      }
     });
   }
 
-  function selectCountry(country) {
-    selected = country;
-    applyCountry(country);
-    closeDropdown();
-    input.focus();
+  /* ── Phone Number Picker ── */
+  function initPhonePicker() {
+    var wrap = document.getElementById('phone-field-wrap');
+    if (!wrap || wrap.dataset.phonePickerInit) return;
+    wrap.dataset.phonePickerInit = '1';
+
+    var form = document.querySelector('.create-customer-form');
+    if (!form) return;
+
+    var lang      = document.documentElement.lang || 'en';
+    var isAr      = lang === 'ar';
+    var FLAG_BASE = 'https://flagcdn.com/w20/';
+
+    var COUNTRIES = [
+      { code: 'BH', dial: '+973', nameEn: 'Bahrain',      nameAr: 'البحرين',  pattern: /^[36]\d{7}$/,  placeholder: '36XXXXXX'  },
+      { code: 'KW', dial: '+965', nameEn: 'Kuwait',        nameAr: 'الكويت',   pattern: /^[569]\d{7}$/, placeholder: '5XXXXXXX'  },
+      { code: 'OM', dial: '+968', nameEn: 'Oman',          nameAr: 'عُمان',    pattern: /^[79]\d{7}$/,  placeholder: '9XXXXXXX'  },
+      { code: 'QA', dial: '+974', nameEn: 'Qatar',         nameAr: 'قطر',      pattern: /^[3-7]\d{7}$/, placeholder: '5XXXXXXX'  },
+      { code: 'SA', dial: '+966', nameEn: 'Saudi Arabia',  nameAr: 'السعودية', pattern: /^5\d{8}$/,     placeholder: '5XXXXXXXX' },
+      { code: 'AE', dial: '+971', nameEn: 'UAE',           nameAr: 'الإمارات', pattern: /^5\d{8}$/,     placeholder: '5XXXXXXXX' }
+    ];
+
+    var selected  = COUNTRIES.find(function (c) { return c.code === 'SA'; });
+    var flagEl    = document.getElementById('phone-flag');
+    var dialEl    = document.getElementById('phone-dialcode');
+    var btn       = document.getElementById('phone-country-btn');
+    var list      = document.getElementById('phone-country-list');
+    var input     = document.getElementById('RegisterForm-phone-input');
+    var hidden    = document.getElementById('RegisterForm-phone-hidden');
+    var errorSpan = document.getElementById('phone-error-msg');
+
+    function flagImg(code, alt) {
+      return '<img src="' + FLAG_BASE + code.toLowerCase() + '.png" alt="' + alt + '" width="20" height="15">';
+    }
+
+    COUNTRIES.forEach(function (country) {
+      var li = document.createElement('li');
+      li.className = 'phone-country-item' + (country.code === selected.code ? ' selected' : '');
+      li.setAttribute('role', 'option');
+      li.setAttribute('data-code', country.code);
+      li.innerHTML =
+        '<span class="phone-item-flag">' + flagImg(country.code, country.nameEn) + '</span>' +
+        '<span class="phone-item-name">' + (isAr ? country.nameAr : country.nameEn) + '</span>' +
+        '<span class="phone-item-dial">' + country.dial + '</span>';
+      li.addEventListener('click', function () { selectCountry(country); });
+      list.appendChild(li);
+    });
+
+    function applyCountry(country) {
+      flagEl.innerHTML   = flagImg(country.code, country.nameEn);
+      dialEl.textContent = country.dial;
+      input.placeholder  = country.placeholder;
+      list.querySelectorAll('.phone-country-item').forEach(function (el) {
+        el.classList.toggle('selected', el.getAttribute('data-code') === country.code);
+      });
+    }
+
+    function selectCountry(country) { selected = country; applyCountry(country); closeDropdown(); input.focus(); }
+    function openDropdown()  { list.classList.add('is-open');    btn.setAttribute('aria-expanded', 'true'); }
+    function closeDropdown() { list.classList.remove('is-open'); btn.setAttribute('aria-expanded', 'false'); }
+
+    applyCountry(selected);
+
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      list.classList.contains('is-open') ? closeDropdown() : openDropdown();
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!wrap.contains(e.target)) closeDropdown();
+    });
+
+    function showError(show) {
+      if (errorSpan) {
+        errorSpan.textContent   = show ? errorSpan.dataset.message : '';
+        errorSpan.style.display = show ? 'block' : 'none';
+      }
+      input.classList.toggle('error', show);
+      var fw = document.getElementById('RegisterForm-phone-wrapper');
+      if (fw) fw.classList.toggle('form-field--error', show);
+    }
+
+    input.addEventListener('input', function () {
+      if (errorSpan && errorSpan.style.display === 'block') {
+        if (selected.pattern.test(input.value.trim())) showError(false);
+      }
+    });
+
+    form.addEventListener('submit', function (e) {
+      var raw = input.value.trim();
+      if (!raw || !selected.pattern.test(raw)) { e.preventDefault(); showError(true); input.focus(); return; }
+      showError(false);
+      hidden.value = selected.dial + raw;
+    }, true);
   }
 
-  function openDropdown()  { list.classList.add('is-open');    btn.setAttribute('aria-expanded', 'true'); }
-  function closeDropdown() { list.classList.remove('is-open'); btn.setAttribute('aria-expanded', 'false'); }
+  /* ── Single initialization entry point ── */
+  domReady(function () {
+    document.querySelectorAll('[data-newsletter-banner]').forEach(initNewsletterBanner);
 
-  applyCountry(selected);
+    styleGloboFormAsterisks();
+    if (document.body) {
+      new MutationObserver(function (mutations) {
+        mutations.forEach(function (mutation) {
+          mutation.addedNodes.forEach(function (node) {
+            if (node.nodeType === 1 && (node.classList.contains('globo-form') || node.querySelector('.globo-form'))) {
+              styleGloboFormAsterisks();
+            }
+          });
+        });
+      }).observe(document.body, { childList: true, subtree: true });
+    }
 
-  btn.addEventListener('click', function(e) {
-    e.stopPropagation();
-    list.classList.contains('is-open') ? closeDropdown() : openDropdown();
+    initBlogRowEqualizer();
+    initBirthdatePicker();
+    initPhonePicker();
   });
 
-  document.addEventListener('click', function(e) {
-    if (!wrap.contains(e.target)) closeDropdown();
-  });
-
-  function showError(show) {
-    if (errorSpan) {
-      if (show) { errorSpan.textContent = errorSpan.dataset.message; errorSpan.style.display = 'block'; }
-      else { errorSpan.style.display = 'none'; }
-    }
-    input.classList.toggle('error', show);
-    var fw = document.getElementById('RegisterForm-phone-wrapper');
-    if (fw) fw.classList.toggle('form-field--error', show);
-  }
-
-  input.addEventListener('input', function() {
-    if (errorSpan && errorSpan.style.display === 'block') {
-      if (selected.pattern.test(input.value.trim())) showError(false);
-    }
-  });
-
-  form.addEventListener('submit', function(e) {
-    var raw = input.value.trim();
-    if (!raw || !selected.pattern.test(raw)) {
-      e.preventDefault();
-      showError(true);
-      input.focus();
-      return;
-    }
-    showError(false);
-    hidden.value = selected.dial + raw;
-  }, true);
-}
-
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initPhonePicker);
-} else {
-  initPhonePicker();
-}
+})();
