@@ -530,27 +530,31 @@
 
     var selectEl  = document.getElementById('phone-country-select');
     var flagEl    = document.getElementById('phone-flag');
+    var dialEl    = document.getElementById('phone-dialcode');
     var input     = document.getElementById('RegisterForm-phone-input');
     var hidden    = document.getElementById('RegisterForm-phone-hidden');
     var errorSpan = document.getElementById('phone-error-msg');
-    var selected  = COUNTRIES.find(function (c) { return c.code === 'SA'; });
+    var selected  = COUNTRIES.find(function (c) { return c.code === (selectEl ? selectEl.value : 'SA'); }) || COUNTRIES[4];
 
     function flagImg(code, alt) {
       return '<img src="' + FLAG_BASE + code.toLowerCase() + '.png" alt="' + alt + '" width="20" height="15">';
     }
 
-    function applyCountry(country) {
-      selected          = country;
-      flagEl.innerHTML  = flagImg(country.code, country.nameEn);
-      input.placeholder = country.placeholder;
+    // matches both <input type="submit"> and <button> without explicit type (Shopify theme uses class only)
+    function getSubmitBtn() {
+      return form.querySelector('input[type="submit"], button.button--primary, button[type="submit"]');
     }
 
-    applyCountry(selected);
+    function updateSubmitState() {
+      var submitBtn = getSubmitBtn();
+      if (submitBtn) submitBtn.disabled = !selected.pattern.test(input.value.trim());
+    }
 
-    selectEl.addEventListener('change', function () {
-      var country = COUNTRIES.find(function (c) { return c.code === selectEl.value; });
-      if (country) { applyCountry(country); input.focus(); }
-    });
+    // keep hidden input in sync in real-time so value is set even if submit handler is skipped
+    function syncHidden() {
+      var raw = input.value.trim();
+      hidden.value = selected.pattern.test(raw) ? selected.dial + raw : '';
+    }
 
     function showError(show) {
       if (errorSpan) {
@@ -562,17 +566,38 @@
       if (fw) fw.classList.toggle('form-field--error', show);
     }
 
+    function applyCountry(country) {
+      selected           = country;
+      flagEl.innerHTML   = flagImg(country.code, country.nameEn);
+      dialEl.textContent = country.dial;
+      input.placeholder  = country.placeholder;
+      syncHidden();
+      updateSubmitState();
+      var raw = input.value.trim();
+      if (raw) showError(!selected.pattern.test(raw));
+      else showError(false);
+    }
+
+    applyCountry(selected);
+
+    selectEl.addEventListener('change', function () {
+      var country = COUNTRIES.find(function (c) { return c.code === selectEl.value; });
+      if (country) { applyCountry(country); input.focus(); }
+    });
+
     input.addEventListener('input', function () {
-      if (errorSpan && errorSpan.style.display === 'block') {
-        if (selected.pattern.test(input.value.trim())) showError(false);
-      }
+      syncHidden();
+      updateSubmitState();
+      var raw = input.value.trim();
+      if (raw) showError(!selected.pattern.test(raw));
+      else showError(false);
     });
 
     form.addEventListener('submit', function (e) {
       var raw = input.value.trim();
       if (!raw || !selected.pattern.test(raw)) { e.preventDefault(); showError(true); input.focus(); return; }
       showError(false);
-      hidden.value = selected.dial + raw;
+      syncHidden(); // ensure value is final even if not caught by input event
     }, true);
   }
 
