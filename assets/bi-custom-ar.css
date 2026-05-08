@@ -565,12 +565,3 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
     text-align: right;
 }
 
-/* Password eye button RTL */
-.password-field-wrap .form-input {
-    padding-right: 0 !important;
-    padding-left: 44px !important;
-}
-.password-toggle-btn {
-    right: auto;
-    left: 12px;
-}

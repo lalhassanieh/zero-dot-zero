@@ -1404,34 +1404,3 @@ input[type="checkbox"][required] {
 }
 .field-error-msg[hidden] { display: none; }
 
-
-/* Password field with eye toggle */
-.password-field-wrap {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-.password-field-wrap .form-input {
-    flex: 1;
-    padding-right: 44px !important;
-}
-.password-toggle-btn {
-    position: absolute;
-    right: 12px;
-    z-index: 1;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 4px;
-    color: #005339;
-    display: flex;
-    align-items: center;
-    line-height: 1;
-}
-.password-toggle-btn:focus-visible {
-    outline: 2px solid #005339;
-    border-radius: 3px;
-    outline-offset: 2px;
-}
-.eye-icon { display: block; }
-.password-toggle-btn svg { pointer-events: none; }

@@ -809,61 +809,6 @@
     }, true);
   }
 
-  /* ── Password toggle (eye icon) ── */
-  function initPasswordToggles() {
-    document.querySelectorAll('.password-toggle-btn').forEach(function (btn) {
-      if (btn.dataset.pwToggleInit) return;
-      btn.dataset.pwToggleInit = '1';
-      btn.addEventListener('click', function () {
-        var targetEl = document.getElementById(btn.dataset.target);
-        if (!targetEl) return;
-        var isPassword = targetEl.type === 'password';
-        targetEl.type = isPassword ? 'text' : 'password';
-        var showIcon = btn.querySelector('.eye-show');
-        var hideIcon = btn.querySelector('.eye-hide');
-        if (showIcon) showIcon.hidden = isPassword;
-        if (hideIcon) hideIcon.hidden = !isPassword;
-      });
-    });
-  }
-
-  /* ── Confirm password validation ── */
-  function initConfirmPassword() {
-    var form = document.querySelector('.create-customer-form');
-    if (!form) return;
-    var pwInput      = document.getElementById('RegisterForm-password');
-    var confirmInput = document.getElementById('RegisterForm-confirm-password');
-    var errorSpan    = document.getElementById('confirm-password-error');
-    if (!pwInput || !confirmInput) return;
-
-    function showMismatch(show) {
-      if (errorSpan) {
-        errorSpan.textContent   = show ? errorSpan.dataset.message : '';
-        errorSpan.style.display = show ? 'block' : 'none';
-      }
-      confirmInput.classList.toggle('error', show);
-      var wrapper = document.getElementById('RegisterForm-confirm-password-wrapper');
-      if (wrapper) wrapper.classList.toggle('form-field--error', show);
-    }
-
-    confirmInput.addEventListener('input', function () {
-      if (confirmInput.value) showMismatch(confirmInput.value !== pwInput.value);
-      else showMismatch(false);
-    });
-
-    pwInput.addEventListener('input', function () {
-      if (confirmInput.value) showMismatch(confirmInput.value !== pwInput.value);
-    });
-
-    form.addEventListener('submit', function (e) {
-      if (confirmInput.value !== pwInput.value) {
-        e.preventDefault();
-        showMismatch(true);
-        confirmInput.focus();
-      }
-    }, true);
-  }
-
   /* ── Initialization — each function is independent ── */
   domReady(function () {
     document.querySelectorAll('[data-newsletter-banner]').forEach(initNewsletterBanner);
@@ -884,7 +829,5 @@
   domReady(initBlogRowEqualizer);
   domReady(initBirthdatePicker);
   domReady(initPhonePicker);
-  domReady(initPasswordToggles);
-  domReady(initConfirmPassword);
 
 })();
