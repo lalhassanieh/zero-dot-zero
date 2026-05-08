@@ -531,3 +531,12 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
     text-overflow: ellipsis;
     font-size: 1em;
 }
+
+/* PDPL checkbox – ensure text wraps and link is bold */
+#accepts-pdpl + .form-label--checkbox {
+    white-space: normal;
+    line-height: 1.6;
+}
+#accepts-pdpl + .form-label--checkbox a {
+    font-weight: 700;
+}
