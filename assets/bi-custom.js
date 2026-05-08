@@ -549,6 +549,43 @@
         setBlocked(false);
       }
     });
+
+    // Automatically format input as dd/mm/yyyy while typing
+    displayEl.addEventListener('input', function () {
+      var raw = displayEl.value.replace(/\D/g, ''); // Remove non-numeric characters
+      if (raw.length > 8) raw = raw.slice(0, 8); // Limit to 8 digits
+
+      var formatted = raw;
+      if (raw.length > 4) {
+        formatted = raw.slice(0, 2) + '/' + raw.slice(2, 4) + '/' + raw.slice(4);
+      } else if (raw.length > 2) {
+        formatted = raw.slice(0, 2) + '/' + raw.slice(2);
+      }
+
+      displayEl.value = formatted;
+
+      if (raw.length === 8) {
+        var day = parseInt(raw.slice(0, 2), 10);
+        var month = parseInt(raw.slice(2, 4), 10) - 1;
+        var year = parseInt(raw.slice(4), 10);
+        var isValid = !isNaN(day) && !isNaN(month) && !isNaN(year) && day >= 1 && day <= 31 && month >= 0 && month <= 11 && year > 1900 && year <= currentYear;
+        var dateObj = new Date(year, month, day);
+        // Check for valid date (e.g., not 31/02/2020)
+        if (isValid && dateObj.getDate() === day && dateObj.getMonth() === month && dateObj.getFullYear() === year && dateObj <= today) {
+          selected = { year: year, month: month, day: day };
+          noteEl.value = 'Birth Date: ' + year + '-' + pad(month + 1) + '-' + pad(day);
+          setBlocked(calcAge(year, month, day) < 18);
+        } else {
+          selected = null;
+          noteEl.value = '';
+          setBlocked(false);
+        }
+      } else {
+        selected = null;
+        noteEl.value = '';
+        setBlocked(false);
+      }
+    });
   }
 
   /* ── Phone Number Picker ── */
