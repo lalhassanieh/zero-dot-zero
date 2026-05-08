@@ -596,6 +596,18 @@
         viewYear = year; // Update picker view year
         viewMonth = month; // Update picker view month
         render(); // Update picker UI
+
+        // Highlight the selected day
+        setTimeout(function () {
+          var dayButtons = bodyEl.querySelectorAll('.bd-day');
+          dayButtons.forEach(function (btn) {
+            if (parseInt(btn.textContent, 10) === day) {
+              btn.classList.add('bd-sel');
+            } else {
+              btn.classList.remove('bd-sel');
+            }
+          });
+        }, 0);
       } else {
         selected = null;
         noteEl.value = '';
