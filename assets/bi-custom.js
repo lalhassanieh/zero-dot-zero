@@ -827,7 +827,6 @@
      submits, even if someone enables the button via dev-tools. */
   function initFormGatekeeper() {
     var form = document.querySelector('.create-customer-form');
-    console.log('[Gatekeeper] init — form found:', !!form);
     if (!form) return;
 
     function allValid() {
@@ -835,7 +834,6 @@
       var phone = checkPhoneValid();
       var bd    = checkBirthdateValid();
       var pw    = checkPasswordMatch();
-      console.log('[Gatekeeper] allValid — phone:', phone, '| birthdate:', bd, '| password match:', pw);
       if (!phone) {
         ok = false;
         setFieldError(
@@ -867,28 +865,21 @@
     var submitBtn = form.querySelector('input[type="submit"], button.button--primary, button[type="submit"]');
     if (submitBtn) {
       submitBtn.addEventListener('click', function (e) {
-        console.log('[Gatekeeper] button click intercepted');
         if (!allValid()) {
           e.preventDefault();
           e.stopImmediatePropagation();
-          console.log('[Gatekeeper] BLOCKED at click');
-        } else {
-          console.log('[Gatekeeper] click ALLOWED');
         }
       }, true); // capture phase — fires before Shopify's reCAPTCHA click handler
     }
 
     // Layer 2: submit event (catches Enter-key submissions and non-reCAPTCHA paths)
     form.addEventListener('submit', function (e) {
-      console.log('[Gatekeeper] submit event fired');
-      if (!allValid()) { e.preventDefault(); console.log('[Gatekeeper] BLOCKED'); return false; }
-      console.log('[Gatekeeper] ALLOWED');
+      if (!allValid()) { e.preventDefault(); return false; }
     }, true);
 
     // Layer 3: block programmatic form.submit() calls from browser console
     var nativeSubmit = HTMLFormElement.prototype.submit.bind(form);
     form.submit = function () {
-      console.log('[Gatekeeper] form.submit() called');
       if (allValid()) nativeSubmit();
     };
   }
