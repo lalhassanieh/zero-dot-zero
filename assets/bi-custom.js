@@ -861,14 +861,31 @@
       return ok;
     }
 
-    // Block normal button-click submission
+    // Layer 1: intercept button click before Shopify reCAPTCHA gets it
+    // Shopify reCAPTCHA bypasses the submit event by calling HTMLFormElement.prototype.submit.call()
+    // directly after its own click handler — so we must block at the click level first.
+    var submitBtn = form.querySelector('input[type="submit"], button.button--primary, button[type="submit"]');
+    if (submitBtn) {
+      submitBtn.addEventListener('click', function (e) {
+        console.log('[Gatekeeper] button click intercepted');
+        if (!allValid()) {
+          e.preventDefault();
+          e.stopImmediatePropagation();
+          console.log('[Gatekeeper] BLOCKED at click');
+        } else {
+          console.log('[Gatekeeper] click ALLOWED');
+        }
+      }, true); // capture phase — fires before Shopify's reCAPTCHA click handler
+    }
+
+    // Layer 2: submit event (catches Enter-key submissions and non-reCAPTCHA paths)
     form.addEventListener('submit', function (e) {
       console.log('[Gatekeeper] submit event fired');
       if (!allValid()) { e.preventDefault(); console.log('[Gatekeeper] BLOCKED'); return false; }
       console.log('[Gatekeeper] ALLOWED');
-    }, true); // capture phase — fires before all other submit handlers
+    }, true);
 
-    // Block programmatic form.submit() calls (e.g. from browser console)
+    // Layer 3: block programmatic form.submit() calls from browser console
     var nativeSubmit = HTMLFormElement.prototype.submit.bind(form);
     form.submit = function () {
       console.log('[Gatekeeper] form.submit() called');
