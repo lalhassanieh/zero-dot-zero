@@ -540,3 +540,9 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
 #accepts-pdpl + .form-label--checkbox a {
     font-weight: 700;
 }
+
+#shopify-section-template--19396941250804__main p,
+#shopify-section-template--19396941250804__main li {
+    color: #000 !important;
+    font-family: "Gilroy Light";
+}
