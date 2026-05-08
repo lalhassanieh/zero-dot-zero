@@ -799,6 +799,13 @@
       showError(false);
       syncHidden();
       updateSubmitState();
+      // append phone to customer[note] alongside the birthdate line
+      var noteEl = document.getElementById('RegisterForm-birthdate-note');
+      if (noteEl) {
+        var base = noteEl.value.replace(/\nPhone:.*$/m, '').replace(/^Phone:.*$/m, '').trim();
+        var phoneLine = 'Phone: ' + selected.dial + raw;
+        noteEl.value = base ? base + '\n' + phoneLine : phoneLine;
+      }
     }, true);
   }
 
