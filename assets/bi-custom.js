@@ -485,15 +485,23 @@
       ageError.style.display = blocked ? 'block' : 'none';
       if (blocked) ageError.textContent = ageError.dataset.message;
       if (submitBtn) {
-        submitBtn.disabled      = blocked;
-        submitBtn.style.opacity = blocked ? '0.5' : '';
-        submitBtn.style.cursor  = blocked ? 'not-allowed' : '';
+        if (blocked) {
+          submitBtn.disabled = true;
+          submitBtn.style.opacity = '0.5';
+          submitBtn.style.cursor = 'not-allowed';
+        } else {
+          submitBtn.disabled = false;
+          submitBtn.style.opacity = '';
+          submitBtn.style.cursor = '';
+        }
       }
     }
 
     form && form.addEventListener('submit', function (e) {
-      if (!selected) {
+      if (!selected || !displayEl.value) {
         e.preventDefault();
+        ageError.style.display = 'block';
+        ageError.textContent = ageError.dataset.message || 'This field is required.';
         dropdown.classList.add('bd-open');
         render();
         displayEl.focus();
@@ -502,7 +510,10 @@
       if (calcAge(selected.year, selected.month, selected.day) < 18) {
         e.preventDefault();
         setBlocked(true);
+        return;
       }
+      // If valid, ensure button is enabled
+      setBlocked(false);
     });
   }
 
@@ -543,7 +554,9 @@
     }
 
     function getSubmitBtn() {
-      return form.querySelector('input[type="submit"], button.button--primary, button[type="submit"]');
+      // Prefer input[type=submit], but also support button.button--primary
+      var btn = form.querySelector('input[type="submit"], button.button--primary, button[type="submit"]');
+      return btn;
     }
 
     function syncHidden() {
@@ -554,18 +567,29 @@
     function updateSubmitState() {
       var submitBtn = getSubmitBtn();
       if (submitBtn) {
-        const isValid = selected.pattern.test(input.value.trim());
-        submitBtn.disabled = !isValid;
+        const raw = input.value.trim();
+        const isEmpty = !raw;
+        const isValid = selected.pattern.test(raw);
+        // Only disable if not empty and invalid
+        if (submitBtn.tagName === 'INPUT') {
+          submitBtn.disabled = (!isEmpty && !isValid);
+        } else if (submitBtn.tagName === 'BUTTON') {
+          submitBtn.setAttribute('aria-disabled', (!isEmpty && !isValid) ? 'true' : 'false');
+          submitBtn.style.pointerEvents = (!isEmpty && !isValid) ? 'none' : '';
+          submitBtn.style.opacity = (!isEmpty && !isValid) ? '0.5' : '';
+        }
         // Defensive: Remove any previous click handler to avoid duplicate bindings
         submitBtn.removeEventListener('click', preventIfDisabled, true);
-        if (!isValid) {
+        if (!isEmpty && !isValid) {
           submitBtn.addEventListener('click', preventIfDisabled, true);
         }
       }
     }
 
     function preventIfDisabled(e) {
-      if (e.currentTarget.disabled) {
+      var btn = e.currentTarget;
+      var isDisabled = btn.disabled || btn.getAttribute('aria-disabled') === 'true' || btn.style.pointerEvents === 'none';
+      if (isDisabled) {
         e.preventDefault();
         e.stopImmediatePropagation();
         return false;

@@ -100,19 +100,12 @@
               </label>
               <div class="phone-field-wrap" id="phone-field-wrap">
                 <div class="phone-select-wrap">
-                  <div class="phone-trigger" id="phone-trigger">
+                  <button type="button" class="phone-country-btn" id="phone-country-btn" aria-haspopup="listbox" aria-expanded="false">
                     <span class="phone-flag" id="phone-flag"></span>
                     <span class="phone-dialcode" id="phone-dialcode"></span>
                     <span class="phone-caret" aria-hidden="true"></span>
-                  </div>
-                  <select class="phone-country-select" id="phone-country-select">
-                    <option value="BH">Bahrain +973</option>
-                    <option value="KW">Kuwait +965</option>
-                    <option value="OM">Oman +968</option>
-                    <option value="QA">Qatar +974</option>
-                    <option value="SA" selected>Saudi Arabia +966</option>
-                    <option value="AE">UAE +971</option>
-                  </select>
+                  </button>
+                  <ul class="phone-country-list" id="phone-country-list" role="listbox" hidden></ul>
                 </div>
                 <input
                   type="tel"
@@ -121,6 +114,8 @@
                   autocomplete="tel-national"
                   placeholder=""
                   inputmode="numeric"
+                  required
+                  aria-required="true"
                 >
               </div>
               <input type="hidden" name="customer[phone]" id="RegisterForm-phone-hidden">
@@ -145,6 +140,8 @@
                     readonly
                     autocomplete="off"
                     placeholder="dd/mm/yyyy"
+                    required
+                    aria-required="true"
                   >
                   <span class="bd-cal-icon" aria-hidden="true"></span>
                 </div>
