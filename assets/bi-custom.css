@@ -1292,6 +1292,7 @@ input[type="checkbox"][required] {
 }
 
 
+
 /* Phone Number Field */
 .phone-field-wrap {
     display: flex;
@@ -1299,7 +1300,6 @@ input[type="checkbox"][required] {
     border: 1px solid var(--form-input-border);
     border-radius: var(--btn-1-border-radius);
     background-color: var(--form-input-bg);
-    position: relative;
 }
 .phone-field-wrap .form-input {
     border: none !important;
@@ -1308,61 +1308,27 @@ input[type="checkbox"][required] {
     flex: 1;
     min-width: 0;
 }
-.phone-country-btn {
+.phone-select-wrap {
     display: flex;
     align-items: center;
     gap: 6px;
-    padding: 0 12px;
-    background: transparent;
-    border: none;
+    padding: 0 10px;
     border-right: 1px solid var(--form-input-border);
-    cursor: pointer;
-    white-space: nowrap;
-    font-family: var(--font-body-family);
-    font-size: var(--font-body-size);
-    color: var(--color-text);
     flex-shrink: 0;
 }
-.phone-flag {
-    font-size: 20px;
-    line-height: 1;
-}
-.phone-caret {
-    font-size: 10px;
-    opacity: 0.5;
-}
-.phone-country-list {
-    position: absolute;
-    top: calc(100% + 4px);
-    left: 0;
-    background: var(--color-background, #fff);
-    border: 1px solid var(--form-input-border);
-    border-radius: var(--btn-1-border-radius);
-    z-index: 300;
-    min-width: 220px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
-    list-style: none;
-    margin: 0;
-    padding: 4px 0;
-}
-.phone-country-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 16px;
+.phone-flag { line-height: 1; }
+.phone-flag img { display: block; }
+.phone-country-select {
+    background: transparent;
+    border: none;
+    outline: none;
     cursor: pointer;
-    transition: background 0.12s;
     font-family: var(--font-body-family);
     font-size: var(--font-body-size);
     color: var(--color-text);
+    padding: 0;
+    max-width: 120px;
 }
-.phone-country-item:hover,
-.phone-country-item.selected {
-    background: var(--form-input-border);
-}
-.phone-item-flag { font-size: 20px; line-height: 1; }
-.phone-item-name { flex: 1; }
-.phone-item-dial { opacity: 0.6; }
 .field-error-msg {
     display: block;
     color: #e22120;
