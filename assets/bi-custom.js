@@ -593,6 +593,8 @@
         selected = { year: year, month: month, day: day };
         noteEl.value = 'Birth Date: ' + year + '-' + pad(month + 1) + '-' + pad(day);
         setBlocked(calcAge(year, month, day) < 18);
+        viewYear = year; // Update picker view year
+        viewMonth = month; // Update picker view month
         render(); // Update picker UI
       } else {
         selected = null;
