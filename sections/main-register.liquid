@@ -9,6 +9,7 @@
 {% endcomment %}
 
 {{ 'customer.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'bi-custom.js' | asset_url }}" defer></script>
 {%- liquid
   assign container = section.settings.container
   assign padding_full_width = section.settings.padding_full_width
@@ -92,6 +93,35 @@
                 aria-required="true"
                 required
               >
+            </div>
+            <div class="form-field" id="RegisterForm-phone-wrapper">
+              <label class="form-label" for="RegisterForm-phone-input">
+                {{ 'customer.register.phone' | t }}
+                <em>*</em>
+              </label>
+              <div class="phone-field-wrap" id="phone-field-wrap">
+                <button type="button" class="phone-country-btn" id="phone-country-btn" aria-expanded="false">
+                  <span class="phone-flag" id="phone-flag"></span>
+                  <span class="phone-dialcode" id="phone-dialcode"></span>
+                  <span class="phone-caret">&#9660;</span>
+                </button>
+                <ul class="phone-country-list" id="phone-country-list" role="listbox" hidden></ul>
+                <input
+                  type="tel"
+                  class="form-input phone-number-input"
+                  id="RegisterForm-phone-input"
+                  autocomplete="tel-national"
+                  placeholder=""
+                  inputmode="numeric"
+                >
+              </div>
+              <input type="hidden" name="customer[phone]" id="RegisterForm-phone-hidden">
+              <span
+                id="phone-error-msg"
+                class="field-error-msg"
+                data-message="{{ 'customer.register.phone_error' | t | escape }}"
+                hidden
+              ></span>
             </div>
             <div class="form-field" id="RegisterForm-birthdate-wrapper">
               <label class="form-label">
