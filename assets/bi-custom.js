@@ -550,7 +550,7 @@
       }
     });
 
-    // Automatically format input as dd/mm/yyyy while typing
+    // Automatically format input as dd/mm/yyyy while typing and update picker on Enter
     displayEl.addEventListener('input', function () {
       var raw = displayEl.value.replace(/\D/g, ''); // Remove non-numeric characters
       if (raw.length > 8) raw = raw.slice(0, 8); // Limit to 8 digits
@@ -565,27 +565,41 @@
       displayEl.value = formatted;
 
       if (raw.length === 8) {
-        var day = parseInt(raw.slice(0, 2), 10);
-        var month = parseInt(raw.slice(2, 4), 10) - 1;
-        var year = parseInt(raw.slice(4), 10);
-        var isValid = !isNaN(day) && !isNaN(month) && !isNaN(year) && day >= 1 && day <= 31 && month >= 0 && month <= 11 && year > 1900 && year <= currentYear;
-        var dateObj = new Date(year, month, day);
-        // Check for valid date (e.g., not 31/02/2020)
-        if (isValid && dateObj.getDate() === day && dateObj.getMonth() === month && dateObj.getFullYear() === year && dateObj <= today) {
-          selected = { year: year, month: month, day: day };
-          noteEl.value = 'Birth Date: ' + year + '-' + pad(month + 1) + '-' + pad(day);
-          setBlocked(calcAge(year, month, day) < 18);
-        } else {
-          selected = null;
-          noteEl.value = '';
-          setBlocked(false);
-        }
+        updatePickerFromInput(raw);
       } else {
         selected = null;
         noteEl.value = '';
         setBlocked(false);
       }
     });
+
+    displayEl.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.keyCode === 13) {
+        var raw = displayEl.value.replace(/\D/g, '');
+        if (raw.length === 8) {
+          updatePickerFromInput(raw);
+        }
+      }
+    });
+
+    function updatePickerFromInput(raw) {
+      var day = parseInt(raw.slice(0, 2), 10);
+      var month = parseInt(raw.slice(2, 4), 10) - 1;
+      var year = parseInt(raw.slice(4), 10);
+      var isValid = !isNaN(day) && !isNaN(month) && !isNaN(year) && day >= 1 && day <= 31 && month >= 0 && month <= 11 && year > 1900 && year <= currentYear;
+      var dateObj = new Date(year, month, day);
+      // Check for valid date (e.g., not 31/02/2020)
+      if (isValid && dateObj.getDate() === day && dateObj.getMonth() === month && dateObj.getFullYear() === year && dateObj <= today) {
+        selected = { year: year, month: month, day: day };
+        noteEl.value = 'Birth Date: ' + year + '-' + pad(month + 1) + '-' + pad(day);
+        setBlocked(calcAge(year, month, day) < 18);
+        render(); // Update picker UI
+      } else {
+        selected = null;
+        noteEl.value = '';
+        setBlocked(false);
+      }
+    }
   }
 
   /* ── Phone Number Picker ── */
