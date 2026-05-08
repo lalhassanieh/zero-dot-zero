@@ -553,7 +553,23 @@
 
     function updateSubmitState() {
       var submitBtn = getSubmitBtn();
-      if (submitBtn) submitBtn.disabled = !selected.pattern.test(input.value.trim());
+      if (submitBtn) {
+        const isValid = selected.pattern.test(input.value.trim());
+        submitBtn.disabled = !isValid;
+        // Defensive: Remove any previous click handler to avoid duplicate bindings
+        submitBtn.removeEventListener('click', preventIfDisabled, true);
+        if (!isValid) {
+          submitBtn.addEventListener('click', preventIfDisabled, true);
+        }
+      }
+    }
+
+    function preventIfDisabled(e) {
+      if (e.currentTarget.disabled) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        return false;
+      }
     }
 
     function showError(show) {
@@ -637,9 +653,16 @@
 
     form.addEventListener('submit', function (e) {
       var raw = input.value.trim();
-      if (!raw || !selected.pattern.test(raw)) { e.preventDefault(); showError(true); input.focus(); return; }
+      if (!raw || !selected.pattern.test(raw)) {
+        e.preventDefault();
+        showError(true);
+        input.focus();
+        updateSubmitState();
+        return;
+      }
       showError(false);
       syncHidden();
+      updateSubmitState();
     }, true);
   }
 
