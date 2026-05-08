@@ -594,3 +594,108 @@ if (document.readyState === 'loading') {
 } else {
   initBirthdatePicker();
 }
+
+/* ── Phone Number Picker ── */
+function initPhonePicker() {
+  var form = document.querySelector('.create-customer-form');
+  if (!form || !document.getElementById('phone-field-wrap')) return;
+
+  var lang = document.documentElement.lang || 'en';
+  var isAr = lang === 'ar';
+
+  var COUNTRIES = [
+    { code: 'BH', dial: '+973', nameEn: 'Bahrain',       nameAr: 'البحرين',    flag: '🇧🇭', pattern: /^[36]\d{7}$/, placeholder: '36XXXXXX' },
+    { code: 'KW', dial: '+965', nameEn: 'Kuwait',         nameAr: 'الكويت',     flag: '🇰🇼', pattern: /^[569]\d{7}$/, placeholder: '5XXXXXXX' },
+    { code: 'OM', dial: '+968', nameEn: 'Oman',           nameAr: 'عُمان',      flag: '🇴🇲', pattern: /^[79]\d{7}$/, placeholder: '9XXXXXXX' },
+    { code: 'QA', dial: '+974', nameEn: 'Qatar',          nameAr: 'قطر',        flag: '🇶🇦', pattern: /^[3-7]\d{7}$/, placeholder: '5XXXXXXX' },
+    { code: 'SA', dial: '+966', nameEn: 'Saudi Arabia',   nameAr: 'السعودية',   flag: '🇸🇦', pattern: /^5\d{8}$/, placeholder: '5XXXXXXXX' },
+    { code: 'AE', dial: '+971', nameEn: 'UAE',            nameAr: 'الإمارات',   flag: '🇦🇪', pattern: /^5\d{8}$/, placeholder: '5XXXXXXXX' }
+  ];
+
+  var selected  = COUNTRIES.find(function(c) { return c.code === 'SA'; });
+  var wrap      = document.getElementById('phone-field-wrap');
+  var flagEl    = document.getElementById('phone-flag');
+  var dialEl    = document.getElementById('phone-dialcode');
+  var btn       = document.getElementById('phone-country-btn');
+  var list      = document.getElementById('phone-country-list');
+  var input     = document.getElementById('RegisterForm-phone-input');
+  var hidden    = document.getElementById('RegisterForm-phone-hidden');
+  var errorSpan = document.getElementById('phone-error-msg');
+
+  COUNTRIES.forEach(function(country) {
+    var li = document.createElement('li');
+    li.className = 'phone-country-item' + (country.code === selected.code ? ' selected' : '');
+    li.setAttribute('role', 'option');
+    li.setAttribute('data-code', country.code);
+    li.innerHTML =
+      '<span class="phone-item-flag">' + country.flag + '</span>' +
+      '<span class="phone-item-name">' + (isAr ? country.nameAr : country.nameEn) + '</span>' +
+      '<span class="phone-item-dial">' + country.dial + '</span>';
+    li.addEventListener('click', function() { selectCountry(country); });
+    list.appendChild(li);
+  });
+
+  function applyCountry(country) {
+    flagEl.textContent   = country.flag;
+    dialEl.textContent   = country.dial;
+    input.placeholder    = country.placeholder;
+    Array.from(list.querySelectorAll('.phone-country-item')).forEach(function(el) {
+      el.classList.toggle('selected', el.getAttribute('data-code') === country.code);
+    });
+  }
+
+  function selectCountry(country) {
+    selected = country;
+    applyCountry(country);
+    closeDropdown();
+    input.focus();
+  }
+
+  function openDropdown()  { list.hidden = false; btn.setAttribute('aria-expanded', 'true'); }
+  function closeDropdown() { list.hidden = true;  btn.setAttribute('aria-expanded', 'false'); }
+
+  applyCountry(selected);
+
+  btn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    list.hidden ? openDropdown() : closeDropdown();
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!wrap.contains(e.target)) closeDropdown();
+  });
+
+  function showError(show) {
+    if (errorSpan) {
+      errorSpan.hidden = !show;
+      if (show) errorSpan.textContent = errorSpan.dataset.message;
+    }
+    input.classList.toggle('error', show);
+    var fw = document.getElementById('RegisterForm-phone-wrapper');
+    if (fw) fw.classList.toggle('form-field--error', show);
+  }
+
+  input.addEventListener('input', function() {
+    if (errorSpan && !errorSpan.hidden) {
+      if (selected.pattern.test(input.value.trim())) showError(false);
+    }
+  });
+
+  form.addEventListener('submit', function(e) {
+    var raw = input.value.trim();
+    if (!raw || !selected.pattern.test(raw)) {
+      e.preventDefault();
+      showError(true);
+      input.focus();
+      return;
+    }
+    showError(false);
+    hidden.value = selected.dial + raw;
+  }, true);
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initPhonePicker);
+} else {
+  initPhonePicker();
+}
