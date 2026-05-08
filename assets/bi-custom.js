@@ -597,8 +597,12 @@ if (document.readyState === 'loading') {
 
 /* ── Phone Number Picker ── */
 function initPhonePicker() {
+  var wrap = document.getElementById('phone-field-wrap');
+  if (!wrap || wrap.dataset.phonePickerInit) return;
+  wrap.dataset.phonePickerInit = '1';
+
   var form = document.querySelector('.create-customer-form');
-  if (!form || !document.getElementById('phone-field-wrap')) return;
+  if (!form) return;
 
   var lang = document.documentElement.lang || 'en';
   var isAr = lang === 'ar';
@@ -606,15 +610,14 @@ function initPhonePicker() {
 
   var COUNTRIES = [
     { code: 'BH', dial: '+973', nameEn: 'Bahrain',      nameAr: 'البحرين',  pattern: /^[36]\d{7}$/,   placeholder: '36XXXXXX'  },
-    { code: 'KW', dial: '+965', nameEn: 'Kuwait',        nameAr: 'الكويت',        pattern: /^[569]\d{7}$/,  placeholder: '5XXXXXXX'  },
-    { code: 'OM', dial: '+968', nameEn: 'Oman',          nameAr: 'عُمان',              pattern: /^[79]\d{7}$/,   placeholder: '9XXXXXXX'  },
-    { code: 'QA', dial: '+974', nameEn: 'Qatar',         nameAr: 'قطر',                          pattern: /^[3-7]\d{7}$/,  placeholder: '5XXXXXXX'  },
-    { code: 'SA', dial: '+966', nameEn: 'Saudi Arabia',  nameAr: 'السعودية', pattern: /^5\d{8}$/, placeholder: '5XXXXXXXX' },
-    { code: 'AE', dial: '+971', nameEn: 'UAE',           nameAr: 'الإمارات', pattern: /^5\d{8}$/,  placeholder: '5XXXXXXXX' }
+    { code: 'KW', dial: '+965', nameEn: 'Kuwait',        nameAr: 'الكويت',   pattern: /^[569]\d{7}$/,  placeholder: '5XXXXXXX'  },
+    { code: 'OM', dial: '+968', nameEn: 'Oman',          nameAr: 'عُمان',    pattern: /^[79]\d{7}$/,   placeholder: '9XXXXXXX'  },
+    { code: 'QA', dial: '+974', nameEn: 'Qatar',         nameAr: 'قطر',      pattern: /^[3-7]\d{7}$/,  placeholder: '5XXXXXXX'  },
+    { code: 'SA', dial: '+966', nameEn: 'Saudi Arabia',  nameAr: 'السعودية', pattern: /^5\d{8}$/,      placeholder: '5XXXXXXXX' },
+    { code: 'AE', dial: '+971', nameEn: 'UAE',           nameAr: 'الإمارات', pattern: /^5\d{8}$/,      placeholder: '5XXXXXXXX' }
   ];
 
   var selected  = COUNTRIES.find(function(c) { return c.code === 'SA'; });
-  var wrap      = document.getElementById('phone-field-wrap');
   var flagEl    = document.getElementById('phone-flag');
   var dialEl    = document.getElementById('phone-dialcode');
   var btn       = document.getElementById('phone-country-btn');
