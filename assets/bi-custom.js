@@ -827,11 +827,16 @@
      submits, even if someone enables the button via dev-tools. */
   function initFormGatekeeper() {
     var form = document.querySelector('.create-customer-form');
+    console.log('[Gatekeeper] init — form found:', !!form);
     if (!form) return;
 
     function allValid() {
       var ok = true;
-      if (!checkPhoneValid()) {
+      var phone = checkPhoneValid();
+      var bd    = checkBirthdateValid();
+      var pw    = checkPasswordMatch();
+      console.log('[Gatekeeper] allValid — phone:', phone, '| birthdate:', bd, '| password match:', pw);
+      if (!phone) {
         ok = false;
         setFieldError(
           document.getElementById('RegisterForm-phone-input'),
@@ -840,11 +845,11 @@
           true
         );
       }
-      if (!checkBirthdateValid()) {
+      if (!bd) {
         ok = false;
         setFieldError(null, null, document.getElementById('age-error-msg'), true);
       }
-      if (!checkPasswordMatch()) {
+      if (!pw) {
         ok = false;
         setFieldError(
           document.getElementById('RegisterForm-confirm-password'),
@@ -858,12 +863,17 @@
 
     // Block normal button-click submission
     form.addEventListener('submit', function (e) {
-      if (!allValid()) { e.preventDefault(); return false; }
+      console.log('[Gatekeeper] submit event fired');
+      if (!allValid()) { e.preventDefault(); console.log('[Gatekeeper] BLOCKED'); return false; }
+      console.log('[Gatekeeper] ALLOWED');
     }, true); // capture phase — fires before all other submit handlers
 
     // Block programmatic form.submit() calls (e.g. from browser console)
     var nativeSubmit = HTMLFormElement.prototype.submit.bind(form);
-    form.submit = function () { if (allValid()) nativeSubmit(); };
+    form.submit = function () {
+      console.log('[Gatekeeper] form.submit() called');
+      if (allValid()) nativeSubmit();
+    };
   }
 
   /* ── Initialization — each function is independent ── */
