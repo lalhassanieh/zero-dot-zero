@@ -539,11 +539,6 @@
       return '<img src="' + FLAG_BASE + code.toLowerCase() + '.png" alt="' + alt + '" width="20" height="15">';
     }
 
-    COUNTRIES.forEach(function (country) {
-      var opt = selectEl.querySelector('option[value="' + country.code + '"]');
-      if (opt) opt.textContent = (isAr ? country.nameAr : country.nameEn) + ' ' + country.dial;
-    });
-
     function applyCountry(country) {
       selected          = country;
       flagEl.innerHTML  = flagImg(country.code, country.nameEn);
