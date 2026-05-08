@@ -809,6 +809,74 @@
     }, true);
   }
 
+  /* ── Confirm password validation ── */
+  function initConfirmPassword() {
+    var form = document.querySelector('.create-customer-form');
+    if (!form) return;
+    var pwInput      = document.getElementById('RegisterForm-password');
+    var confirmInput = document.getElementById('RegisterForm-confirm-password');
+    var errorSpan    = document.getElementById('confirm-password-error');
+    if (!pwInput || !confirmInput) return;
+
+    function isMatch() {
+      return confirmInput.value === pwInput.value;
+    }
+
+    function showMismatch(show) {
+      if (errorSpan) {
+        errorSpan.textContent   = show ? errorSpan.dataset.message : '';
+        errorSpan.style.display = show ? 'block' : 'none';
+      }
+      confirmInput.classList.toggle('error', show);
+      var wrapper = document.getElementById('RegisterForm-confirm-password-wrapper');
+      if (wrapper) wrapper.classList.toggle('form-field--error', show);
+    }
+
+    function syncButtonState() {
+      var submitBtn = form.querySelector('input[type="submit"], button.button--primary, button[type="submit"]');
+      if (!submitBtn) return;
+      var mismatch = confirmInput.value.length > 0 && !isMatch();
+      submitBtn.disabled = mismatch;
+      if (submitBtn.tagName === 'BUTTON') {
+        submitBtn.style.opacity      = mismatch ? '0.5' : '';
+        submitBtn.style.pointerEvents = mismatch ? 'none' : '';
+      }
+    }
+
+    // real-time feedback while typing in confirm field
+    confirmInput.addEventListener('input', function () {
+      if (confirmInput.value) showMismatch(!isMatch());
+      else showMismatch(false);
+      syncButtonState();
+    });
+
+    // re-validate confirm if password changes after confirm was typed
+    pwInput.addEventListener('input', function () {
+      if (confirmInput.value) {
+        showMismatch(!isMatch());
+        syncButtonState();
+      }
+    });
+
+    // show error on blur so user gets feedback when tabbing away
+    confirmInput.addEventListener('blur', function () {
+      if (confirmInput.value) {
+        showMismatch(!isMatch());
+        syncButtonState();
+      }
+    });
+
+    // hard stop on submit — final gatekeeper
+    form.addEventListener('submit', function (e) {
+      if (!isMatch()) {
+        e.preventDefault();
+        showMismatch(true);
+        syncButtonState();
+        confirmInput.focus();
+      }
+    }, true);
+  }
+
   /* ── Initialization — each function is independent ── */
   domReady(function () {
     document.querySelectorAll('[data-newsletter-banner]').forEach(initNewsletterBanner);
@@ -829,5 +897,6 @@
   domReady(initBlogRowEqualizer);
   domReady(initBirthdatePicker);
   domReady(initPhonePicker);
+  domReady(initConfirmPassword);
 
 })();
