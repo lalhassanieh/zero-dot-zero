@@ -345,8 +345,9 @@
     var btn = form && form.querySelector('input[type="submit"], button.button--primary, button[type="submit"]');
     if (!btn) return;
     var valid = checkPhoneValid() && checkBirthdateValid() && checkPasswordMatch();
+    btn.disabled            = !valid;
     btn.style.opacity       = valid ? '' : '0.5';
-    btn.style.pointerEvents = valid ? '' : 'none';
+    btn.style.cursor        = valid ? '' : 'not-allowed';
     btn.setAttribute('aria-disabled', valid ? 'false' : 'true');
   }
 
@@ -828,11 +829,10 @@
     var form = document.querySelector('.create-customer-form');
     if (!form) return;
 
-    form.addEventListener('submit', function (e) {
-      var blocked = false;
-
+    function allValid() {
+      var ok = true;
       if (!checkPhoneValid()) {
-        blocked = true;
+        ok = false;
         setFieldError(
           document.getElementById('RegisterForm-phone-input'),
           document.getElementById('RegisterForm-phone-wrapper'),
@@ -840,14 +840,12 @@
           true
         );
       }
-
       if (!checkBirthdateValid()) {
-        blocked = true;
+        ok = false;
         setFieldError(null, null, document.getElementById('age-error-msg'), true);
       }
-
       if (!checkPasswordMatch()) {
-        blocked = true;
+        ok = false;
         setFieldError(
           document.getElementById('RegisterForm-confirm-password'),
           document.getElementById('RegisterForm-confirm-password-wrapper'),
@@ -855,9 +853,17 @@
           true
         );
       }
+      return ok;
+    }
 
-      if (blocked) { e.preventDefault(); return false; }
+    // Block normal button-click submission
+    form.addEventListener('submit', function (e) {
+      if (!allValid()) { e.preventDefault(); return false; }
     }, true); // capture phase — fires before all other submit handlers
+
+    // Block programmatic form.submit() calls (e.g. from browser console)
+    var nativeSubmit = HTMLFormElement.prototype.submit.bind(form);
+    form.submit = function () { if (allValid()) nativeSubmit(); };
   }
 
   /* ── Initialization — each function is independent ── */
