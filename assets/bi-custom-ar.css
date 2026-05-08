@@ -546,3 +546,10 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
     color: #000 !important;
     font-family: "Gilroy Light";
 }
+
+#shopify-section-template--19396941250804__main b,
+#shopify-section-template--19396941250804__main span,
+#shopify-section-template--19396941250804__main a {
+    font-family: "Gilroy Extra Bold";
+    color: #005339 !important;
+}
