@@ -345,7 +345,7 @@
     var yearPage  = 1;
     var selected  = null;
 
-    displayEl.placeholder = isAr ? 'يوم/شهر/سنة' : 'dd/mm/yyyy';
+    displayEl.placeholder = isAr ? 'يوم/شهر/ سنة' : 'dd/mm/yyyy';
 
     picker.querySelector('.bd-input-wrap').addEventListener('click', function () {
       dropdown.classList.toggle('bd-open');
@@ -521,6 +521,32 @@
     displayEl.addEventListener('input', function () {
       if (!displayEl.value) {
         selected = null;
+        noteEl.value = '';
+        setBlocked(false);
+        return;
+      }
+      // Parse dd/mm/yyyy
+      var m = displayEl.value.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+      if (m) {
+        var day = parseInt(m[1], 10);
+        var month = parseInt(m[2], 10) - 1;
+        var year = parseInt(m[3], 10);
+        var isValid = !isNaN(day) && !isNaN(month) && !isNaN(year) && day >= 1 && day <= 31 && month >= 0 && month <= 11 && year > 1900 && year <= currentYear;
+        var dateObj = new Date(year, month, day);
+        // Check for valid date (e.g., not 31/02/2020)
+        if (isValid && dateObj.getDate() === day && dateObj.getMonth() === month && dateObj.getFullYear() === year && dateObj <= today) {
+          selected = { year: year, month: month, day: day };
+          noteEl.value = 'Birth Date: ' + year + '-' + pad(month + 1) + '-' + pad(day);
+          setBlocked(calcAge(year, month, day) < 18);
+        } else {
+          selected = null;
+          noteEl.value = '';
+          setBlocked(false);
+        }
+      } else {
+        selected = null;
+        noteEl.value = '';
+        setBlocked(false);
       }
     });
   }
