@@ -341,6 +341,11 @@ input[type=checkbox]+.form-label--checkbox:before {
     right: 0;
 }
 
+input[type=checkbox]+.form-label--checkbox:after {
+    left: auto;
+    right: 3px;
+}
+
 .login-page .login-item .login-text {
   text-align: right !important;
 }
