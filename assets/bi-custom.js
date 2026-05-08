@@ -309,6 +309,47 @@
     });
   }
 
+  /* ── Shared register-form helpers ── */
+
+  function setFieldError(inputEl, wrapEl, errEl, show) {
+    if (errEl) { errEl.textContent = show ? (errEl.dataset.message || '') : ''; errEl.style.display = show ? 'block' : 'none'; }
+    if (inputEl) inputEl.classList.toggle('error', !!show);
+    if (wrapEl)  wrapEl.classList.toggle('form-field--error', !!show);
+  }
+
+  function checkPhoneValid() {
+    var h = document.getElementById('RegisterForm-phone-hidden');
+    return !!(h && h.value);
+  }
+
+  function checkBirthdateValid() {
+    var noteEl = document.getElementById('RegisterForm-birthdate-note');
+    if (!noteEl || !noteEl.value) return false;
+    var m = noteEl.value.match(/Birth Date: (\d{4})-(\d{2})-(\d{2})/);
+    if (!m) return false;
+    var y = parseInt(m[1]), mo = parseInt(m[2]) - 1, d = parseInt(m[3]);
+    var now = new Date(); now.setHours(0, 0, 0, 0);
+    var age = now.getFullYear() - y;
+    var diff = now.getMonth() - mo;
+    if (diff < 0 || (diff === 0 && now.getDate() < d)) age--;
+    return age >= 18;
+  }
+
+  function checkPasswordMatch() {
+    var pw = document.getElementById('RegisterForm-password');
+    var cf = document.getElementById('RegisterForm-confirm-password');
+    return !!(pw && cf && pw.value === cf.value);
+  }
+
+  function refreshSubmitButton(form) {
+    var btn = form && form.querySelector('input[type="submit"], button.button--primary, button[type="submit"]');
+    if (!btn) return;
+    var valid = checkPhoneValid() && checkBirthdateValid() && checkPasswordMatch();
+    btn.style.opacity       = valid ? '' : '0.5';
+    btn.style.pointerEvents = valid ? '' : 'none';
+    btn.setAttribute('aria-disabled', valid ? 'false' : 'true');
+  }
+
   /* ── Birth Date Picker ── */
   function initBirthdatePicker() {
     if (!document.getElementById('bd-picker')) return;
@@ -329,7 +370,6 @@
     var noteEl    = document.getElementById('RegisterForm-birthdate-note');
     var ageError  = document.getElementById('age-error-msg');
     var form      = document.querySelector('.create-customer-form');
-    var submitBtn = form && form.querySelector('.button--primary, input[type="submit"]');
 
     var monthNames = Array.from({ length: 12 }, function (_, i) {
       return new Intl.DateTimeFormat(lang, { month: 'long' }).format(new Date(2000, i, 1));
@@ -494,40 +534,20 @@
     }
 
     function setBlocked(blocked) {
-      ageError.style.display = blocked ? 'block' : 'none';
-      if (blocked) ageError.textContent = ageError.dataset.message;
-      if (submitBtn) {
-        if (blocked) {
-          submitBtn.disabled = true;
-          submitBtn.style.opacity = '0.5';
-          submitBtn.style.cursor = 'not-allowed';
-        } else {
-          submitBtn.disabled = false;
-          submitBtn.style.opacity = '';
-          submitBtn.style.cursor = '';
-        }
-      }
+      setFieldError(null, null, ageError, blocked);
+      refreshSubmitButton(form);
     }
 
-    form && form.addEventListener('submit', function (e) {
-      // Always block if no value or no selection
+    form && form.addEventListener('submit', function () {
       if (!displayEl.value || !selected) {
-        e.preventDefault();
         ageError.style.display = 'block';
         ageError.textContent = ageError.dataset.message || 'This field is required.';
         dropdown.classList.add('bd-open');
         render();
         displayEl.focus();
-        return false;
-      }
-      // Block if under 18
-      if (calcAge(selected.year, selected.month, selected.day) < 18) {
-        e.preventDefault();
+      } else if (calcAge(selected.year, selected.month, selected.day) < 18) {
         setBlocked(true);
-        return false;
       }
-      // If valid, ensure button is enabled
-      setBlocked(false);
     });
     // Defensive: block submit if user tries to type or clear the field manually
     displayEl.addEventListener('input', function () {
@@ -665,57 +685,13 @@
       return '<img src="' + FLAG_BASE + code.toLowerCase() + '.png" alt="' + alt + '" width="20" height="15">';
     }
 
-    function getSubmitBtn() {
-      // Prefer input[type=submit], but also support button.button--primary
-      var btn = form.querySelector('input[type="submit"], button.button--primary, button[type="submit"]');
-      return btn;
-    }
-
     function syncHidden() {
       var raw = input.value.trim();
       hidden.value = selected.pattern.test(raw) ? selected.dial + raw : '';
     }
 
-    function updateSubmitState() {
-      var submitBtn = getSubmitBtn();
-      if (submitBtn) {
-        const raw = input.value.trim();
-        const isEmpty = !raw;
-        const isValid = selected.pattern.test(raw);
-        // Only disable if not empty and invalid
-        if (submitBtn.tagName === 'INPUT') {
-          submitBtn.disabled = (!isEmpty && !isValid);
-        } else if (submitBtn.tagName === 'BUTTON') {
-          submitBtn.setAttribute('aria-disabled', (!isEmpty && !isValid) ? 'true' : 'false');
-          submitBtn.style.pointerEvents = (!isEmpty && !isValid) ? 'none' : '';
-          submitBtn.style.opacity = (!isEmpty && !isValid) ? '0.5' : '';
-        }
-        // Defensive: Remove any previous click handler to avoid duplicate bindings
-        submitBtn.removeEventListener('click', preventIfDisabled, true);
-        if (!isEmpty && !isValid) {
-          submitBtn.addEventListener('click', preventIfDisabled, true);
-        }
-      }
-    }
-
-    function preventIfDisabled(e) {
-      var btn = e.currentTarget;
-      var isDisabled = btn.disabled || btn.getAttribute('aria-disabled') === 'true' || btn.style.pointerEvents === 'none';
-      if (isDisabled) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        return false;
-      }
-    }
-
     function showError(show) {
-      if (errorSpan) {
-        errorSpan.textContent   = show ? errorSpan.dataset.message : '';
-        errorSpan.style.display = show ? 'block' : 'none';
-      }
-      input.classList.toggle('error', show);
-      var fw = document.getElementById('RegisterForm-phone-wrapper');
-      if (fw) fw.classList.toggle('form-field--error', show);
+      setFieldError(input, document.getElementById('RegisterForm-phone-wrapper'), errorSpan, show);
     }
 
     function applyCountry(country) {
@@ -727,7 +703,7 @@
         li.classList.toggle('is-active', li.dataset.code === country.code);
       });
       syncHidden();
-      updateSubmitState();
+      refreshSubmitButton(form);
       var raw = input.value.trim();
       if (raw) showError(!selected.pattern.test(raw));
       else showError(false);
@@ -781,32 +757,28 @@
 
     input.addEventListener('input', function () {
       syncHidden();
-      updateSubmitState();
+      refreshSubmitButton(form);
       var raw = input.value.trim();
       if (raw) showError(!selected.pattern.test(raw));
       else showError(false);
     });
 
-    form.addEventListener('submit', function (e) {
+    // Note-appending side-effect only — gatekeeper handles blocking
+    form.addEventListener('submit', function () {
       var raw = input.value.trim();
       if (!raw || !selected.pattern.test(raw)) {
-        e.preventDefault();
         showError(true);
         input.focus();
-        updateSubmitState();
         return;
       }
       showError(false);
       syncHidden();
-      updateSubmitState();
-      // append phone to customer[note] alongside the birthdate line
       var noteEl = document.getElementById('RegisterForm-birthdate-note');
       if (noteEl) {
         var base = noteEl.value.replace(/\nPhone:.*$/m, '').replace(/^Phone:.*$/m, '').trim();
-        var phoneLine = 'Phone: ' + selected.dial + raw;
-        noteEl.value = base ? base + '\n' + phoneLine : phoneLine;
+        noteEl.value = (base ? base + '\n' : '') + 'Phone: ' + selected.dial + raw;
       }
-    }, true);
+    });
   }
 
   /* ── Confirm password validation ── */
@@ -818,63 +790,74 @@
     var errorSpan    = document.getElementById('confirm-password-error');
     if (!pwInput || !confirmInput) return;
 
-    function isMatch() {
-      return confirmInput.value === pwInput.value;
-    }
+    function isMatch() { return confirmInput.value === pwInput.value; }
 
     function showMismatch(show) {
-      if (errorSpan) {
-        errorSpan.textContent   = show ? errorSpan.dataset.message : '';
-        errorSpan.style.display = show ? 'block' : 'none';
-      }
-      confirmInput.classList.toggle('error', show);
-      var wrapper = document.getElementById('RegisterForm-confirm-password-wrapper');
-      if (wrapper) wrapper.classList.toggle('form-field--error', show);
+      setFieldError(
+        confirmInput,
+        document.getElementById('RegisterForm-confirm-password-wrapper'),
+        errorSpan,
+        show
+      );
     }
 
-    function syncButtonState() {
-      var submitBtn = form.querySelector('input[type="submit"], button.button--primary, button[type="submit"]');
-      if (!submitBtn) return;
-      var mismatch = confirmInput.value.length > 0 && !isMatch();
-      submitBtn.disabled = mismatch;
-      if (submitBtn.tagName === 'BUTTON') {
-        submitBtn.style.opacity      = mismatch ? '0.5' : '';
-        submitBtn.style.pointerEvents = mismatch ? 'none' : '';
-      }
-    }
-
-    // real-time feedback while typing in confirm field
     confirmInput.addEventListener('input', function () {
-      if (confirmInput.value) showMismatch(!isMatch());
-      else showMismatch(false);
-      syncButtonState();
+      showMismatch(confirmInput.value ? !isMatch() : false);
+      refreshSubmitButton(form);
     });
 
-    // re-validate confirm if password changes after confirm was typed
     pwInput.addEventListener('input', function () {
-      if (confirmInput.value) {
-        showMismatch(!isMatch());
-        syncButtonState();
-      }
+      if (confirmInput.value) { showMismatch(!isMatch()); refreshSubmitButton(form); }
     });
 
-    // show error on blur so user gets feedback when tabbing away
     confirmInput.addEventListener('blur', function () {
-      if (confirmInput.value) {
-        showMismatch(!isMatch());
-        syncButtonState();
-      }
+      if (confirmInput.value) showMismatch(!isMatch());
     });
 
-    // hard stop on submit — final gatekeeper
+    // UX focus only — gatekeeper handles blocking
+    form.addEventListener('submit', function () {
+      if (!isMatch()) { showMismatch(true); confirmInput.focus(); }
+    });
+  }
+
+  /* ── Form Submit Gatekeeper ── */
+  /* Single authoritative capture-phase handler — fires before every other submit
+     handler regardless of button state. If any validation fails the form never
+     submits, even if someone enables the button via dev-tools. */
+  function initFormGatekeeper() {
+    var form = document.querySelector('.create-customer-form');
+    if (!form) return;
+
     form.addEventListener('submit', function (e) {
-      if (!isMatch()) {
-        e.preventDefault();
-        showMismatch(true);
-        syncButtonState();
-        confirmInput.focus();
+      var blocked = false;
+
+      if (!checkPhoneValid()) {
+        blocked = true;
+        setFieldError(
+          document.getElementById('RegisterForm-phone-input'),
+          document.getElementById('RegisterForm-phone-wrapper'),
+          document.getElementById('phone-error-msg'),
+          true
+        );
       }
-    }, true);
+
+      if (!checkBirthdateValid()) {
+        blocked = true;
+        setFieldError(null, null, document.getElementById('age-error-msg'), true);
+      }
+
+      if (!checkPasswordMatch()) {
+        blocked = true;
+        setFieldError(
+          document.getElementById('RegisterForm-confirm-password'),
+          document.getElementById('RegisterForm-confirm-password-wrapper'),
+          document.getElementById('confirm-password-error'),
+          true
+        );
+      }
+
+      if (blocked) { e.preventDefault(); return false; }
+    }, true); // capture phase — fires before all other submit handlers
   }
 
   /* ── Initialization — each function is independent ── */
@@ -896,6 +879,7 @@
 
   domReady(initBlogRowEqualizer);
   domReady(initBirthdatePicker);
+  domReady(initFormGatekeeper);  // must run before initPhonePicker / initConfirmPassword so it's the first capture handler
   domReady(initPhonePicker);
   domReady(initConfirmPassword);
 
