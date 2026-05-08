@@ -597,17 +597,18 @@
         viewMonth = month; // Update picker view month
         render(); // Update picker UI
 
-        // Highlight the selected day
+        // Highlight the selected day after rendering
         setTimeout(function () {
           var dayButtons = bodyEl.querySelectorAll('.bd-day');
           dayButtons.forEach(function (btn) {
-            if (parseInt(btn.textContent, 10) === day) {
+            var btnDay = parseInt(btn.textContent, 10);
+            if (btnDay === day && !btn.disabled) {
               btn.classList.add('bd-sel');
             } else {
               btn.classList.remove('bd-sel');
             }
           });
-        }, 0);
+        }, 50); // Delay to ensure rendering is complete
       } else {
         selected = null;
         noteEl.value = '';
