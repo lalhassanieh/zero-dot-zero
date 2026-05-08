@@ -347,9 +347,21 @@
 
     displayEl.placeholder = isAr ? 'يوم/شهر/ سنة' : 'dd/mm/yyyy';
 
+    // Allow typing even when the picker is open and remove placeholder on focus
+    displayEl.addEventListener('focus', function () {
+      displayEl.placeholder = ''; // Remove placeholder on focus
+    });
+
+    displayEl.addEventListener('blur', function () {
+      if (!displayEl.value) {
+        displayEl.placeholder = isAr ? 'يوم/شهر/ سنة' : 'dd/mm/yyyy'; // Restore placeholder if empty
+      }
+    });
+
     picker.querySelector('.bd-input-wrap').addEventListener('click', function () {
       dropdown.classList.toggle('bd-open');
       if (dropdown.classList.contains('bd-open')) render();
+      displayEl.focus(); // Ensure typing is possible even when picker is open
     });
 
     document.addEventListener('click', function (e) {
