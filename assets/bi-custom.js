@@ -498,22 +498,30 @@
     }
 
     form && form.addEventListener('submit', function (e) {
-      if (!selected || !displayEl.value) {
+      // Always block if no value or no selection
+      if (!displayEl.value || !selected) {
         e.preventDefault();
         ageError.style.display = 'block';
         ageError.textContent = ageError.dataset.message || 'This field is required.';
         dropdown.classList.add('bd-open');
         render();
         displayEl.focus();
-        return;
+        return false;
       }
+      // Block if under 18
       if (calcAge(selected.year, selected.month, selected.day) < 18) {
         e.preventDefault();
         setBlocked(true);
-        return;
+        return false;
       }
       // If valid, ensure button is enabled
       setBlocked(false);
+    });
+    // Defensive: block submit if user tries to type or clear the field manually
+    displayEl.addEventListener('input', function () {
+      if (!displayEl.value) {
+        selected = null;
+      }
     });
   }
 
