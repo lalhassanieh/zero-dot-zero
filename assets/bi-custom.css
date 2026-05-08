@@ -1278,6 +1278,16 @@ input[type="checkbox"][required] {
     font-weight: 600;
 }
 
+/* Highlighted day in the date picker */
+.bd-day.bd-sel {
+  background-color: #007bff; /* Blue background */
+  color: #fff; /* White text */
+  border-radius: 50%; /* Circular highlight */
+  font-weight: bold;
+}
+
+
+
 /* Address Page*/
 .address-new {
     display: flex;
