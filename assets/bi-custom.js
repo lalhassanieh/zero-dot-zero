@@ -528,54 +528,33 @@
       { code: 'AE', dial: '+971', nameEn: 'UAE',           nameAr: 'الإمارات', pattern: /^5\d{8}$/,     placeholder: '5XXXXXXXX' }
     ];
 
-    var selected  = COUNTRIES.find(function (c) { return c.code === 'SA'; });
+    var selectEl  = document.getElementById('phone-country-select');
     var flagEl    = document.getElementById('phone-flag');
-    var dialEl    = document.getElementById('phone-dialcode');
-    var btn       = document.getElementById('phone-country-btn');
-    var list      = document.getElementById('phone-country-list');
     var input     = document.getElementById('RegisterForm-phone-input');
     var hidden    = document.getElementById('RegisterForm-phone-hidden');
     var errorSpan = document.getElementById('phone-error-msg');
+    var selected  = COUNTRIES.find(function (c) { return c.code === 'SA'; });
 
     function flagImg(code, alt) {
       return '<img src="' + FLAG_BASE + code.toLowerCase() + '.png" alt="' + alt + '" width="20" height="15">';
     }
 
     COUNTRIES.forEach(function (country) {
-      var li = document.createElement('li');
-      li.className = 'phone-country-item' + (country.code === selected.code ? ' selected' : '');
-      li.setAttribute('role', 'option');
-      li.setAttribute('data-code', country.code);
-      li.innerHTML =
-        '<span class="phone-item-flag">' + flagImg(country.code, country.nameEn) + '</span>' +
-        '<span class="phone-item-name">' + (isAr ? country.nameAr : country.nameEn) + '</span>' +
-        '<span class="phone-item-dial">' + country.dial + '</span>';
-      li.addEventListener('click', function () { selectCountry(country); });
-      list.appendChild(li);
+      var opt = selectEl.querySelector('option[value="' + country.code + '"]');
+      if (opt) opt.textContent = (isAr ? country.nameAr : country.nameEn) + ' ' + country.dial;
     });
 
     function applyCountry(country) {
-      flagEl.innerHTML   = flagImg(country.code, country.nameEn);
-      dialEl.textContent = country.dial;
-      input.placeholder  = country.placeholder;
-      list.querySelectorAll('.phone-country-item').forEach(function (el) {
-        el.classList.toggle('selected', el.getAttribute('data-code') === country.code);
-      });
+      selected          = country;
+      flagEl.innerHTML  = flagImg(country.code, country.nameEn);
+      input.placeholder = country.placeholder;
     }
-
-    function selectCountry(country) { selected = country; applyCountry(country); closeDropdown(); input.focus(); }
-    function openDropdown()  { list.classList.add('is-open');    btn.setAttribute('aria-expanded', 'true'); }
-    function closeDropdown() { list.classList.remove('is-open'); btn.setAttribute('aria-expanded', 'false'); }
 
     applyCountry(selected);
 
-    btn.addEventListener('click', function (e) {
-      e.stopPropagation();
-      list.classList.contains('is-open') ? closeDropdown() : openDropdown();
-    });
-
-    document.addEventListener('click', function (e) {
-      if (!wrap.contains(e.target)) closeDropdown();
+    selectEl.addEventListener('change', function () {
+      var country = COUNTRIES.find(function (c) { return c.code === selectEl.value; });
+      if (country) { applyCountry(country); input.focus(); }
     });
 
     function showError(show) {

@@ -99,12 +99,17 @@
                 <em>*</em>
               </label>
               <div class="phone-field-wrap" id="phone-field-wrap">
-                <button type="button" class="phone-country-btn" id="phone-country-btn" aria-expanded="false">
+                <div class="phone-select-wrap">
                   <span class="phone-flag" id="phone-flag"></span>
-                  <span class="phone-dialcode" id="phone-dialcode"></span>
-                  <span class="phone-caret">&#9660;</span>
-                </button>
-                <ul class="phone-country-list" id="phone-country-list" role="listbox" hidden></ul>
+                  <select class="phone-country-select" id="phone-country-select">
+                    <option value="BH">+973</option>
+                    <option value="KW">+965</option>
+                    <option value="OM">+968</option>
+                    <option value="QA">+974</option>
+                    <option value="SA" selected>+966</option>
+                    <option value="AE">+971</option>
+                  </select>
+                </div>
                 <input
                   type="tel"
                   class="form-input phone-number-input"
