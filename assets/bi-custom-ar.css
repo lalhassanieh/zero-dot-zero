@@ -550,3 +550,18 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
     direction: ltr !important;
     unicode-bidi: embed;
 }
+
+
+/* Phone field RTL */
+.phone-country-btn {
+    border-right: none;
+    border-left: 1px solid var(--form-input-border);
+}
+.phone-country-list {
+    left: auto;
+    right: 0;
+}
+.phone-item-dial {
+    margin-left: 0;
+    margin-right: auto;
+}
