@@ -602,14 +602,15 @@ function initPhonePicker() {
 
   var lang = document.documentElement.lang || 'en';
   var isAr = lang === 'ar';
+  var FLAG_BASE = 'https://flagcdn.com/w20/';
 
   var COUNTRIES = [
-    { code: 'BH', dial: '+973', nameEn: 'Bahrain',       nameAr: 'البحرين',    flag: '🇧🇭', pattern: /^[36]\d{7}$/, placeholder: '36XXXXXX' },
-    { code: 'KW', dial: '+965', nameEn: 'Kuwait',         nameAr: 'الكويت',     flag: '🇰🇼', pattern: /^[569]\d{7}$/, placeholder: '5XXXXXXX' },
-    { code: 'OM', dial: '+968', nameEn: 'Oman',           nameAr: 'عُمان',      flag: '🇴🇲', pattern: /^[79]\d{7}$/, placeholder: '9XXXXXXX' },
-    { code: 'QA', dial: '+974', nameEn: 'Qatar',          nameAr: 'قطر',        flag: '🇶🇦', pattern: /^[3-7]\d{7}$/, placeholder: '5XXXXXXX' },
-    { code: 'SA', dial: '+966', nameEn: 'Saudi Arabia',   nameAr: 'السعودية',   flag: '🇸🇦', pattern: /^5\d{8}$/, placeholder: '5XXXXXXXX' },
-    { code: 'AE', dial: '+971', nameEn: 'UAE',            nameAr: 'الإمارات',   flag: '🇦🇪', pattern: /^5\d{8}$/, placeholder: '5XXXXXXXX' }
+    { code: 'BH', dial: '+973', nameEn: 'Bahrain',      nameAr: 'البحرين',  pattern: /^[36]\d{7}$/,   placeholder: '36XXXXXX'  },
+    { code: 'KW', dial: '+965', nameEn: 'Kuwait',        nameAr: 'الكويت',        pattern: /^[569]\d{7}$/,  placeholder: '5XXXXXXX'  },
+    { code: 'OM', dial: '+968', nameEn: 'Oman',          nameAr: 'عُمان',              pattern: /^[79]\d{7}$/,   placeholder: '9XXXXXXX'  },
+    { code: 'QA', dial: '+974', nameEn: 'Qatar',         nameAr: 'قطر',                          pattern: /^[3-7]\d{7}$/,  placeholder: '5XXXXXXX'  },
+    { code: 'SA', dial: '+966', nameEn: 'Saudi Arabia',  nameAr: 'السعودية', pattern: /^5\d{8}$/, placeholder: '5XXXXXXXX' },
+    { code: 'AE', dial: '+971', nameEn: 'UAE',           nameAr: 'الإمارات', pattern: /^5\d{8}$/,  placeholder: '5XXXXXXXX' }
   ];
 
   var selected  = COUNTRIES.find(function(c) { return c.code === 'SA'; });
@@ -622,13 +623,17 @@ function initPhonePicker() {
   var hidden    = document.getElementById('RegisterForm-phone-hidden');
   var errorSpan = document.getElementById('phone-error-msg');
 
+  function flagImg(code, alt) {
+    return '<img src="' + FLAG_BASE + code.toLowerCase() + '.png" alt="' + alt + '" width="20" height="15">';
+  }
+
   COUNTRIES.forEach(function(country) {
     var li = document.createElement('li');
     li.className = 'phone-country-item' + (country.code === selected.code ? ' selected' : '');
     li.setAttribute('role', 'option');
     li.setAttribute('data-code', country.code);
     li.innerHTML =
-      '<span class="phone-item-flag">' + country.flag + '</span>' +
+      '<span class="phone-item-flag">' + flagImg(country.code, country.nameEn) + '</span>' +
       '<span class="phone-item-name">' + (isAr ? country.nameAr : country.nameEn) + '</span>' +
       '<span class="phone-item-dial">' + country.dial + '</span>';
     li.addEventListener('click', function() { selectCountry(country); });
@@ -636,7 +641,7 @@ function initPhonePicker() {
   });
 
   function applyCountry(country) {
-    flagEl.textContent   = country.flag;
+    flagEl.innerHTML     = flagImg(country.code, country.nameEn);
     dialEl.textContent   = country.dial;
     input.placeholder    = country.placeholder;
     Array.from(list.querySelectorAll('.phone-country-item')).forEach(function(el) {
@@ -651,14 +656,14 @@ function initPhonePicker() {
     input.focus();
   }
 
-  function openDropdown()  { list.hidden = false; btn.setAttribute('aria-expanded', 'true'); }
-  function closeDropdown() { list.hidden = true;  btn.setAttribute('aria-expanded', 'false'); }
+  function openDropdown()  { list.classList.add('is-open');    btn.setAttribute('aria-expanded', 'true'); }
+  function closeDropdown() { list.classList.remove('is-open'); btn.setAttribute('aria-expanded', 'false'); }
 
   applyCountry(selected);
 
   btn.addEventListener('click', function(e) {
     e.stopPropagation();
-    list.hidden ? openDropdown() : closeDropdown();
+    list.classList.contains('is-open') ? closeDropdown() : openDropdown();
   });
 
   document.addEventListener('click', function(e) {
@@ -667,8 +672,8 @@ function initPhonePicker() {
 
   function showError(show) {
     if (errorSpan) {
-      errorSpan.hidden = !show;
-      if (show) errorSpan.textContent = errorSpan.dataset.message;
+      if (show) { errorSpan.textContent = errorSpan.dataset.message; errorSpan.style.display = 'block'; }
+      else { errorSpan.style.display = 'none'; }
     }
     input.classList.toggle('error', show);
     var fw = document.getElementById('RegisterForm-phone-wrapper');
@@ -676,7 +681,7 @@ function initPhonePicker() {
   }
 
   input.addEventListener('input', function() {
-    if (errorSpan && !errorSpan.hidden) {
+    if (errorSpan && errorSpan.style.display === 'block') {
       if (selected.pattern.test(input.value.trim())) showError(false);
     }
   });
