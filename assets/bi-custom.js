@@ -528,32 +528,32 @@
       { code: 'AE', dial: '+971', nameEn: 'UAE',           nameAr: 'الإمارات', pattern: /^5\d{8}$/,     placeholder: '5XXXXXXXX' }
     ];
 
-    var selectEl  = document.getElementById('phone-country-select');
+    var btn       = document.getElementById('phone-country-btn');
     var flagEl    = document.getElementById('phone-flag');
     var dialEl    = document.getElementById('phone-dialcode');
+    var list      = document.getElementById('phone-country-list');
     var input     = document.getElementById('RegisterForm-phone-input');
     var hidden    = document.getElementById('RegisterForm-phone-hidden');
     var errorSpan = document.getElementById('phone-error-msg');
-    var selected  = COUNTRIES.find(function (c) { return c.code === (selectEl ? selectEl.value : 'SA'); }) || COUNTRIES[4];
+    var selected  = COUNTRIES[4]; // SA default
+    var isOpen    = false;
 
     function flagImg(code, alt) {
       return '<img src="' + FLAG_BASE + code.toLowerCase() + '.png" alt="' + alt + '" width="20" height="15">';
     }
 
-    // matches both <input type="submit"> and <button> without explicit type (Shopify theme uses class only)
     function getSubmitBtn() {
       return form.querySelector('input[type="submit"], button.button--primary, button[type="submit"]');
+    }
+
+    function syncHidden() {
+      var raw = input.value.trim();
+      hidden.value = selected.pattern.test(raw) ? selected.dial + raw : '';
     }
 
     function updateSubmitState() {
       var submitBtn = getSubmitBtn();
       if (submitBtn) submitBtn.disabled = !selected.pattern.test(input.value.trim());
-    }
-
-    // keep hidden input in sync in real-time so value is set even if submit handler is skipped
-    function syncHidden() {
-      var raw = input.value.trim();
-      hidden.value = selected.pattern.test(raw) ? selected.dial + raw : '';
     }
 
     function showError(show) {
@@ -571,6 +571,9 @@
       flagEl.innerHTML   = flagImg(country.code, country.nameEn);
       dialEl.textContent = country.dial;
       input.placeholder  = country.placeholder;
+      list.querySelectorAll('.phone-country-item').forEach(function (li) {
+        li.classList.toggle('is-active', li.dataset.code === country.code);
+      });
       syncHidden();
       updateSubmitState();
       var raw = input.value.trim();
@@ -578,11 +581,50 @@
       else showError(false);
     }
 
+    function openDropdown() {
+      isOpen = true;
+      list.hidden = false;
+      btn.setAttribute('aria-expanded', 'true');
+    }
+
+    function closeDropdown() {
+      isOpen = false;
+      list.hidden = true;
+      btn.setAttribute('aria-expanded', 'false');
+    }
+
+    // build list items from COUNTRIES
+    COUNTRIES.forEach(function (country) {
+      var li = document.createElement('li');
+      li.className    = 'phone-country-item';
+      li.dataset.code = country.code;
+      li.setAttribute('role', 'option');
+      var name = isAr ? country.nameAr : country.nameEn;
+      li.innerHTML = flagImg(country.code, country.nameEn)
+        + '<span class="phone-item-name">' + name + '</span>'
+        + '<span class="phone-item-dial">' + country.dial + '</span>';
+      li.addEventListener('click', function () {
+        var c = COUNTRIES.find(function (x) { return x.code === li.dataset.code; });
+        if (c) { applyCountry(c); input.focus(); }
+        closeDropdown();
+      });
+      list.appendChild(li);
+    });
+
     applyCountry(selected);
 
-    selectEl.addEventListener('change', function () {
-      var country = COUNTRIES.find(function (c) { return c.code === selectEl.value; });
-      if (country) { applyCountry(country); input.focus(); }
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      isOpen ? closeDropdown() : openDropdown();
+    });
+
+    // clicks inside the list must not bubble to the document close-listener
+    list.addEventListener('click', function (e) { e.stopPropagation(); });
+
+    document.addEventListener('click', function () { if (isOpen) closeDropdown(); });
+
+    document.addEventListener('keydown', function (e) {
+      if (isOpen && (e.key === 'Escape' || e.keyCode === 27)) closeDropdown();
     });
 
     input.addEventListener('input', function () {
@@ -597,7 +639,7 @@
       var raw = input.value.trim();
       if (!raw || !selected.pattern.test(raw)) { e.preventDefault(); showError(true); input.focus(); return; }
       showError(false);
-      syncHidden(); // ensure value is final even if not caught by input event
+      syncHidden();
     }, true);
   }
 
