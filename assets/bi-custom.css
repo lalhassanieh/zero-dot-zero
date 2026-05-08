@@ -1280,10 +1280,11 @@ input[type="checkbox"][required] {
 
 /* Highlighted day in the date picker */
 .bd-day.bd-sel {
-  background-color: #007bff; /* Blue background */
+  background-color: #005339; /* Green background */
   color: #fff; /* White text */
   border-radius: 50%; /* Circular highlight */
   font-weight: bold;
+  box-shadow: 0 0 0 4px #80c7a0; /* Light green circle around the number */
 }
 
 
