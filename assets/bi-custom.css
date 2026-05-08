@@ -1283,9 +1283,10 @@ input[type="checkbox"][required] {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-.address-new > button {
-    margin-left: auto;
-    margin-right: auto;
+    padding-top: 30px;
 }
 
+.address-new > button {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
