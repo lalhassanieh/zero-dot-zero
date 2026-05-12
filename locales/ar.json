@@ -3054,7 +3054,6 @@
       },
       "localized_fields": {
         "additional_information": {
-          "tax_credential_cl": "شبق",
           "tax_email_it": "PEC (اختياري)",
           "tax_credential_type_mx": "النظام المالي",
           "shipping_credential_cn": "رقم هوية المقيم"
