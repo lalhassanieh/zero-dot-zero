@@ -87,13 +87,9 @@
       {%- if logo != blank -%}
         <div class="image_logo" style="--margin-bottom: {{ logo_margin_bottom }}">
           {%- assign logo_height = logo.width | divided_by: logo.aspect_ratio | round -%}
-          {%- if block.settings.logo_link != blank -%}
-            <a href="{{ block.settings.logo_link }}">
-          {%- endif -%}
-          <img data-srcset="{{ logo | img_url: '420x' }}" class="lazyload" alt="{{ logo.alt | default: shop.name | escape }}" width="{{ logo.width }}" height="{{ logo_height }}">
-          {%- if block.settings.logo_link != blank -%}
-            </a>
-          {%- endif -%}
+          <a href="{{ routes.root_url }}">
+            <img data-srcset="{{ logo | img_url: '420x' }}" class="lazyload" alt="{{ logo.alt | default: shop.name | escape }}" width="{{ logo.width }}" height="{{ logo_height }}">
+          </a>
         </div>
       {%- endif -%}
       <div class="rte">
