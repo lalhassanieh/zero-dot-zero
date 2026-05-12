@@ -2811,7 +2811,8 @@
         "must_use_available_delivery_address": "يجب اختيار عنوان التوصيل من بين عناوين التوصيل المتاحة.",
         "address_zip_invalid_for_country": "يرجى إدخال رمز بريدي صالح لـ %{country}",
         "address_zip_invalid_for_province": "يرجى إدخال رمز بريدي صالح لـ %{province}",
-        "address_zip_invalid_for_country_and_province": "يرجى إدخال رمز بريدي صالح لـ %{province}، %{country}"
+        "address_zip_invalid_for_country_and_province": "يرجى إدخال رمز بريدي صالح لـ %{province}، %{country}",
+        "reduction_code_discount_not_found": "يرجى إدخال رمز خصم صالح."
       },
       "error_page": {
         "terminal": {
