@@ -2808,7 +2808,10 @@
         "vaulting_agreement_blank": "يجب حفظ طريقة الدفع الخاصة بك لأن دفع المبلغ المتبقي من هذا الطلب مستحق لاحقًا.",
         "shipping_method_invalid_phone_number": "قم بتحديث رقم الهاتف في عنوان التسليم الخاص بك للاطلاع على طرق الشحن المتاحة.",
         "invalid_delivery_address_reference_handle": "لم يتم العثور على أي عنوان توصيل متاح.",
-        "must_use_available_delivery_address": "يجب اختيار عنوان التوصيل من بين عناوين التوصيل المتاحة."
+        "must_use_available_delivery_address": "يجب اختيار عنوان التوصيل من بين عناوين التوصيل المتاحة.",
+        "address_zip_invalid_for_country": "يرجى إدخال رمز بريدي صالح لـ %{country}",
+        "address_zip_invalid_for_province": "يرجى إدخال رمز بريدي صالح لـ %{province}",
+        "address_zip_invalid_for_country_and_province": "يرجى إدخال رمز بريدي صالح لـ %{province}، %{country}"
       },
       "error_page": {
         "terminal": {
