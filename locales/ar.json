@@ -2814,7 +2814,9 @@
         "address_zip_invalid_for_country_and_province": "يرجى إدخال رمز بريدي صالح لـ %{province}، %{country}",
         "reduction_code_discount_not_found": "يرجى إدخال رمز خصم صالح.",
         "shipping_line_phone_invalid": "يرجى إدخال رقم هاتف صالح.",
-        "phone_blank": "يرجى إدخال رقم هاتف."
+        "phone_blank": "يرجى إدخال رقم هاتف.",
+        "address_phone_blank": "يرجى إدخال رقم هاتف صالح.",
+        "address_phone_invalid": "يرجى إدخال رقم هاتف صالح."
       },
       "error_page": {
         "terminal": {
