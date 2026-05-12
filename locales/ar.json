@@ -1295,11 +1295,6 @@
         "klarna_label": "كلارنا",
         "ideal_label": "مثالي",
         "bank_picker_label": "بنك",
-        "blik_label": "بليك",
-        "twint_label": "توأم",
-        "swish_label": "حفيف",
-        "vipps_label": "فيبس",
-        "usdc_label": "مقاطعة الولايات المتحدة",
         "pending_payment": {
           "multibanco": {
             "entity": "كيان",
