@@ -4300,22 +4300,13 @@
       }
     },
     "payment_method_brands": {
-      "visa": "فيزا",
-      "mastercard": "ماستر كارد",
-      "americanexpress": "أمريكان إكسبريس",
       "discover": "يكتشف",
       "dinersclub": "داينرز كلوب",
-      "elo": "إيلو",
-      "visaelectron": "فيزا إلكترون",
-      "maestro": "مايسترو",
       "dankort": "دانكورت",
       "hipercard": "بطاقة هيبركارد",
       "unionpay": "يونيون باي",
       "laser": "الليزر",
       "shoppay": "تسوق وادفع",
-      "applepay": "أبل باي",
-      "googlepay": "جوجل باي",
-      "paypal": "باي بال",
       "storecredit": "رصيد المتجر",
       "bogus": "مزيف"
     },
