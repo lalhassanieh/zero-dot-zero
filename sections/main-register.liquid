@@ -220,7 +220,7 @@
               <span
                 id="confirm-password-error"
                 class="field-error-msg"
-                data-message="{% if request.locale.iso_code == 'ar' %}ÙÙÙØ§Øª Ø§ÙÙØ±ÙØ± ØºÙØ± ÙØªØ·Ø§Ø¨ÙØ©{% else %}Passwords do not match{% endif %}"
+                data-message="{{ 'customer.register.confirm_password_error' | t | escape }}"
                 style="display:none"
               ></span>
             </div>
