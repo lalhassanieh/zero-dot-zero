@@ -20,7 +20,7 @@
             "custom_width": "20",
             "heading": "",
             "logo": "shopify://shop_images/Layer_1_4.svg",
-            "logo_link": "https://zero-dot-zero.myshopify.com/",
+            "logo_link_to_home": true,
             "logo_margin_bottom": 28,
             "subtext": "",
             "address_icon": "point_icon",
