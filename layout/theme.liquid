@@ -23,7 +23,15 @@
             <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
         {%- endif -%}
         <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
-        <title>{{ page_title }} {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%} {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%} {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}</title>
+        {%- if request.locale.iso_code == 'ar' -%}
+          {%- assign arabic_shop_name = 'زيرو زيرو' -%}
+          {%- assign page_title_out = page_title | replace: shop.name, arabic_shop_name -%}
+          {%- assign shop_name_out = arabic_shop_name -%}
+        {%- else -%}
+          {%- assign page_title_out = page_title -%}
+          {%- assign shop_name_out = shop.name -%}
+        {%- endif -%}
+        <title>{{ page_title_out }} {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%} {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%} {%- unless page_title contains shop.name %} &ndash; {{ shop_name_out }}{% endunless -%}</title>
 
         {%- if page_description -%}
             <meta name="description" content="{{ page_description | escape }}">
