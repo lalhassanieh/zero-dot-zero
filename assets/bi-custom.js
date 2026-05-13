@@ -664,12 +664,12 @@
     var FLAG_BASE = 'https://flagcdn.com/w20/';
 
     var COUNTRIES = [
-      { code: 'BH', dial: '+973', nameEn: 'Bahrain',      nameAr: 'البحرين',  pattern: /^[36]\d{7}$/,  placeholder: '36XXXXXX'  },
-      { code: 'KW', dial: '+965', nameEn: 'Kuwait',        nameAr: 'الكويت',   pattern: /^[569]\d{7}$/, placeholder: '5XXXXXXX'  },
-      { code: 'OM', dial: '+968', nameEn: 'Oman',          nameAr: 'عُمان',    pattern: /^[79]\d{7}$/,  placeholder: '9XXXXXXX'  },
-      { code: 'QA', dial: '+974', nameEn: 'Qatar',         nameAr: 'قطر',      pattern: /^[3-7]\d{7}$/, placeholder: '5XXXXXXX'  },
-      { code: 'SA', dial: '+966', nameEn: 'Saudi Arabia',  nameAr: 'السعودية', pattern: /^5\d{8}$/,     placeholder: '5XXXXXXXX' },
-      { code: 'AE', dial: '+971', nameEn: 'UAE',           nameAr: 'الإمارات', pattern: /^5\d{8}$/,     placeholder: '5XXXXXXXX' }
+      { code: 'BH', dial: '+973', nameEn: 'Bahrain',      nameAr: 'البحرين',  pattern: /^3\d{7}$/,            placeholder: '3X XXX XXX'  },
+      { code: 'KW', dial: '+965', nameEn: 'Kuwait',        nameAr: 'الكويت',   pattern: /^[569]\d{7}$/,        placeholder: '5X XXX XXX'  },
+      { code: 'OM', dial: '+968', nameEn: 'Oman',          nameAr: 'عُمان',    pattern: /^9\d{7}$/,            placeholder: '9X XXX XXX'  },
+      { code: 'QA', dial: '+974', nameEn: 'Qatar',         nameAr: 'قطر',      pattern: /^[3-7]\d{7}$/,           placeholder: '5X XXX XXX' },
+      { code: 'SA', dial: '+966', nameEn: 'Saudi Arabia',  nameAr: 'السعودية', pattern: /^0?5[03456789]\d{7}$/, placeholder: '5X XXX XXXX' },
+      { code: 'AE', dial: '+971', nameEn: 'UAE',           nameAr: 'الإمارات', pattern: /^5[02-8]\d{7}$/,      placeholder: '5X XXX XXXX' }
     ];
 
     var btn       = document.getElementById('phone-country-btn');
