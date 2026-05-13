@@ -1312,10 +1312,16 @@ input[type="checkbox"][required] {
 }
 .phone-field-wrap .form-input {
     border: none !important;
-    border-radius: 0 !important;
+    border-radius: 0 var(--btn-1-border-radius) var(--btn-1-border-radius) 0 !important;
     background: transparent !important;
     flex: 1;
     min-width: 0;
+}
+.phone-field-wrap .form-input:-webkit-autofill,
+.phone-field-wrap .form-input:-webkit-autofill:hover,
+.phone-field-wrap .form-input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 100px var(--form-input-bg, #fff) inset !important;
+    box-shadow: 0 0 0 100px var(--form-input-bg, #fff) inset !important;
 }
 .phone-select-wrap {
     position: relative;
@@ -1324,6 +1330,7 @@ input[type="checkbox"][required] {
     border-right: 1px solid var(--form-input-border);
     flex-shrink: 0;
 }
+
 /* Trigger button — shows flag + dial code + caret */
 .phone-country-btn {
     display: flex;
@@ -1396,6 +1403,7 @@ input[type="checkbox"][required] {
     opacity: 0.6;
     direction: ltr;
 }
+
 .field-error-msg {
     display: block;
     color: #e22120;
@@ -1403,4 +1411,3 @@ input[type="checkbox"][required] {
     margin-top: 4px;
 }
 .field-error-msg[hidden] { display: none; }
-
