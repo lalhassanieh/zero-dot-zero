@@ -565,3 +565,15 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
     text-align: right;
 }
 
+
+/* ── Address form RTL ── */
+.addresses-page .form-input,
+.addresses-page .select__select {
+    direction: rtl;
+    text-align: right;
+}
+.addresses-page .select__select {
+    background-position: left 9px center;
+    padding-right: 1.5rem;
+    padding-left: 3.6rem;
+}
