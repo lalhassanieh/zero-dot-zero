@@ -207,30 +207,32 @@
                           {{ 'customer.register.text' | t }}
                       </div>
                       {%- form 'create_customer', class: 'create-customer-form' -%}
-                          {%- if form.errors -%}
+                          {%- assign register_has_field_errors = false -%}
+                          {%- for field in form.errors -%}
+                              {%- if field != 'form' -%}{%- assign register_has_field_errors = true -%}{%- endif -%}
+                          {%- endfor -%}
+                          {%- if register_has_field_errors -%}
                               <div class="form-message" role="alert">
                                   <div class="alertBox alertBox--error">
                                       <div class="alertBox-message">
                                           <ul>
                                               {%- for field in form.errors -%}
-                                                  <li>
-                                                      {%- if field == 'form' -%}
-                                                          {{ form.errors.messages[field] }}
-                                                      {%- else -%}
-                                                        <a href="#RegisterForm-{{ field }}" class="link link-underline">
-                                                          <span class="text">
-                                                              {{ form.errors.translated_fields[field] | capitalize }}
-                                                              {{ form.errors.messages[field] }}
-                                                          </span>
-                                                        </a>
-                                                      {%- endif -%}
-                                                  </li>
+                                                  {%- if field != 'form' -%}
+                                                      <li>
+                                                          <a href="#RegisterForm-{{ field }}" class="link link-underline">
+                                                              <span class="text">
+                                                                  {{ form.errors.translated_fields[field] | capitalize }}
+                                                                  {{ form.errors.messages[field] }}
+                                                              </span>
+                                                          </a>
+                                                      </li>
+                                                  {%- endif -%}
                                               {%- endfor -%}
                                           </ul>
                                       </div>
                                   </div>
                               </div>
-                          {% endif %}
+                          {%- endif -%}
                           <div class="form-field{% if form.errors contains "first_name" %} form-field--error{% endif %}">
                               <label class="form-label" for="RegisterForm-FirstName">
                                   {{ 'customer.register.first_name' | t }}<em>*</em>
