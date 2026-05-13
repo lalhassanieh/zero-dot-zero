@@ -17,6 +17,7 @@
     assign container = section.settings.container
     assign padding_full_width = section.settings.padding_full_width
 -%}
+{% assign pdpl_url = pages['data-collection-and-processing'].url %}
 
 <div class="account-page login-page section-block-{{section.id}}">
   <div class="{% if container == '1170' %}container-1170{% elsif container == '1770' %}container-1770{% elsif container == 'fullwidth'%}container-full{% else %}container{% endif %}">
@@ -262,8 +263,7 @@
                           </div>
                           <div class="form-field{% if form.errors contains "email" %} form-field--error{% endif %}">
                               <label class="form-label" for="RegisterForm-email">
-                                  {{ 'customer.register.you_email' | t }}
-                                  <em>*</em>
+                                  {{ 'customer.register.you_email' | t }}<em>*</em>
                               </label>      
                               <input class="form-input form-input-placeholder{% if form.errors contains "email" %} error{% endif %}"
                                   type="email"
@@ -284,8 +284,7 @@
                           </div>
                           <div class="form-field{% if form.errors contains "password" %} form-field--error{% endif %}">
                               <label class="form-label" for="password">
-                                  {{ 'customer.register.you_password' | t }}
-                                  <em>*</em>
+                                  {{ 'customer.register.you_password' | t }}<em>*</em>
                               </label>      
                               <input class="form-input form-input-placeholder{% if form.errors contains "password" %} error{% endif %}"
                                   type="password"
@@ -299,6 +298,104 @@
                                   placeholder=""
                                   required
                               >
+                          </div>
+                          <div class="form-field" id="RegisterForm-phone-wrapper">
+                              <label class="form-label" for="RegisterForm-phone-input">
+                                  {{ 'customer.register.phone' | t }}<em>*</em>
+                              </label>
+                              <div class="phone-field-wrap" id="phone-field-wrap">
+                                  <div class="phone-select-wrap">
+                                      <button type="button" class="phone-country-btn" id="phone-country-btn" aria-haspopup="listbox" aria-expanded="false">
+                                          <span class="phone-flag" id="phone-flag"></span>
+                                          <span class="phone-dialcode" id="phone-dialcode"></span>
+                                          <span class="phone-caret" aria-hidden="true"></span>
+                                      </button>
+                                      <ul class="phone-country-list" id="phone-country-list" role="listbox" hidden></ul>
+                                  </div>
+                                  <input
+                                      type="tel"
+                                      class="form-input phone-number-input"
+                                      id="RegisterForm-phone-input"
+                                      autocomplete="tel-national"
+                                      placeholder=""
+                                      inputmode="numeric"
+                                      required
+                                      aria-required="true"
+                                  >
+                              </div>
+                              <input type="hidden" name="customer[phone]" id="RegisterForm-phone-hidden">
+                              <span
+                                  id="phone-error-msg"
+                                  class="field-error-msg"
+                                  data-message="{{ 'customer.register.phone_error' | t | escape }}"
+                                  hidden
+                              ></span>
+                          </div>
+                          <div class="form-field" id="RegisterForm-birthdate-wrapper">
+                              <label class="form-label">
+                                  {{ 'customer.register.birth_date' | t }}<em>*</em>
+                              </label>
+                              <div class="bd-picker" id="bd-picker">
+                                  <div class="bd-input-wrap">
+                                      <input
+                                          type="text"
+                                          class="form-input bd-display"
+                                          id="bd-display"
+                                          autocomplete="off"
+                                          placeholder="dd/mm/yyyy"
+                                          required
+                                          aria-required="true"
+                                      >
+                                      <span class="bd-cal-icon" aria-hidden="true"></span>
+                                  </div>
+                                  <div class="bd-dropdown" id="bd-dropdown">
+                                      <div class="bd-header">
+                                          <button type="button" class="bd-nav" id="bd-prev">&#8249;</button>
+                                          <button type="button" class="bd-title" id="bd-title"></button>
+                                          <button type="button" class="bd-nav" id="bd-next">&#8250;</button>
+                                      </div>
+                                      <div class="bd-body" id="bd-body"></div>
+                                  </div>
+                              </div>
+                              <input type="hidden" name="customer[note]" id="RegisterForm-birthdate-note">
+                              <span
+                                  id="age-error-msg"
+                                  data-message="{{ 'customer.register.age_error' | t | escape }}"
+                                  style="display:none;color:#e22120;font-size:13px;margin-top:4px;"
+                              ></span>
+                          </div>
+                          <div class="form-field" id="RegisterForm-confirm-password-wrapper">
+                              <label class="form-label" for="RegisterForm-confirm-password">
+                                  {{ 'customer.reset_password.password_confirm' | t }}<em>*</em>
+                              </label>
+                              <input
+                                  class="form-input form-input-placeholder"
+                                  type="password"
+                                  id="RegisterForm-confirm-password"
+                                  placeholder=""
+                                  aria-required="true"
+                                  required
+                              >
+                              <span
+                                  id="confirm-password-error"
+                                  class="field-error-msg"
+                                  data-message="{{ 'customer.register.confirm_password_error' | t | escape }}"
+                                  style="display:none"
+                              ></span>
+                          </div>
+                          <div class="accepts-marketing">
+                              <input type="hidden" name="customer[accepts_marketing]" value="false">
+                              <input type="checkbox" name="customer[accepts_marketing]" id="accepts-marketing">
+                              <label class="form-label--checkbox" for="accepts-marketing">
+                                  {{- 'customer.register.subscribe' | t -}}
+                              </label>
+                          </div>
+                          <div class="accepts-marketing">
+                              <input type="checkbox" name="customer[accepts_pdpl]" id="accepts-pdpl" value="true" required>
+                              <label class="form-label--checkbox" for="accepts-pdpl">
+                                  {{- 'customer.register.accept_pdpl_1' | t }} <a href="{{ pdpl_url }}" target="_blank">{{- 'customer.register.accept_pdpl_2' | t -}}</a>
+                                  <em>*</em>
+                              </label>
                           </div>
                           <div class="form-actions">
                               {% if settings.enable_button_1_border_outside %}
