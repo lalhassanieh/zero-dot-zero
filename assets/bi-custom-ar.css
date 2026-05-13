@@ -551,6 +551,7 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
     unicode-bidi: embed;
 }
 
+
 /* Phone field RTL */
 .phone-select-wrap {
     border-right: none;
@@ -558,6 +559,10 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
 }
 .phone-field-wrap .form-input {
     border-radius: var(--btn-1-border-radius) 0 0 var(--btn-1-border-radius) !important;
+}
+.addresses-page .phone-number-input {
+    direction: ltr;
+    text-align: left;
 }
 .phone-country-list {
     left: auto;
@@ -578,3 +583,4 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
     padding-right: 1.5rem;
     padding-left: 3.6rem;
 }
+
