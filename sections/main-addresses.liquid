@@ -71,7 +71,18 @@
                                                 </div>
                                                 <div class="form-field">
                                                     <label class="form-label" for="AddressCityNew">{{ 'customer.addresses.city' | t }}</label>
-                                                    <input class="form-input form-input-placeholder" type="text" id="AddressCityNew" name="address[city]" value="{{ form.city }}" autocomplete="address-level2" placeholder="{{ 'customer.addresses.city' | t }}">
+                                                    <select class="form-input" id="AddressCityNew" name="address[city]" autocomplete="address-level2">
+                                                        <option value="" disabled {% unless form.city != blank %}selected{% endunless %}>{{ 'customer.addresses.city' | t }}</option>
+                                                        {%- if request.locale.iso_code == 'ar' -%}
+                                                        <option value="Jeddah" {% if form.city == 'Jeddah' %}selected{% endif %}>جدة</option>
+                                                        <option value="Riyadh" {% if form.city == 'Riyadh' %}selected{% endif %}>رياض</option>
+                                                        <option value="Dammam" {% if form.city == 'Dammam' %}selected{% endif %}>دمام</option>
+                                                        {%- else -%}
+                                                        <option value="Jeddah" {% if form.city == 'Jeddah' %}selected{% endif %}>Jeddah</option>
+                                                        <option value="Riyadh" {% if form.city == 'Riyadh' %}selected{% endif %}>Riyadh</option>
+                                                        <option value="Dammam" {% if form.city == 'Dammam' %}selected{% endif %}>Dammam</option>
+                                                        {%- endif -%}
+                                                    </select>
                                                 </div>
                                                 <div class="form-field">
                                                     <label class="form-label" for="AddressCountryNew">{{ 'customer.addresses.country' | t }}</label>
@@ -223,7 +234,18 @@
                                             </div>
                                             <div class="form-field">
                                                 <label class="form-label" for="AddressCity_{{ form.id }}">{{ 'customer.addresses.city' | t }}</label>
-                                                <input class="form-input form-input-placeholder" type="text" id="AddressCity_{{ form.id }}" name="address[city]" value="{{ form.city }}" autocomplete="address-level2" placeholder="{{ 'customer.addresses.city' | t }}">
+                                                <select class="form-input" id="AddressCity_{{ form.id }}" name="address[city]" autocomplete="address-level2">
+                                                    <option value="" disabled {% unless form.city != blank %}selected{% endunless %}>{{ 'customer.addresses.city' | t }}</option>
+                                                    {%- if request.locale.iso_code == 'ar' -%}
+                                                    <option value="Jeddah" {% if form.city == 'Jeddah' %}selected{% endif %}>جدة</option>
+                                                    <option value="Riyadh" {% if form.city == 'Riyadh' %}selected{% endif %}>رياض</option>
+                                                    <option value="Dammam" {% if form.city == 'Dammam' %}selected{% endif %}>دمام</option>
+                                                    {%- else -%}
+                                                    <option value="Jeddah" {% if form.city == 'Jeddah' %}selected{% endif %}>Jeddah</option>
+                                                    <option value="Riyadh" {% if form.city == 'Riyadh' %}selected{% endif %}>Riyadh</option>
+                                                    <option value="Dammam" {% if form.city == 'Dammam' %}selected{% endif %}>Dammam</option>
+                                                    {%- endif -%}
+                                                </select>
                                             </div>
                                             <div class="form-field">
                                                 <label class="form-label" for="AddressCountry_{{ form.id }}">
