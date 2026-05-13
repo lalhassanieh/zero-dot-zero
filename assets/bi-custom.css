@@ -1317,12 +1317,7 @@ input[type="checkbox"][required] {
     flex: 1;
     min-width: 0;
 }
-.phone-field-wrap .form-input:-webkit-autofill,
-.phone-field-wrap .form-input:-webkit-autofill:hover,
-.phone-field-wrap .form-input:-webkit-autofill:focus {
-    -webkit-box-shadow: 0 0 0 100px var(--form-input-bg, #fff) inset !important;
-    box-shadow: 0 0 0 100px var(--form-input-bg, #fff) inset !important;
-}
+
 .phone-select-wrap {
     position: relative;
     display: flex;
