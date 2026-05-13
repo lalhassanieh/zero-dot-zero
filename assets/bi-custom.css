@@ -1357,7 +1357,6 @@ input[type="checkbox"][required] {
 }
 .phone-number-input {
     direction: ltr !important;
-    text-align: left !important;
 }
 .phone-flag { line-height: 1; }
 .phone-flag img { display: block; }
