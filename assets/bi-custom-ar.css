@@ -560,7 +560,6 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
 .phone-field-wrap .form-input {
     border-radius: var(--btn-1-border-radius) 0 0 var(--btn-1-border-radius) !important;
 }
-
 .phone-country-list {
     left: auto;
     right: 0;
@@ -570,6 +569,7 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
 }
 
 /* ── Address form RTL ── */
+.addresses-page .form-input,
 .addresses-page .select__select {
     direction: rtl;
     text-align: right;
@@ -579,4 +579,3 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
     padding-right: 1.5rem;
     padding-left: 3.6rem;
 }
-
