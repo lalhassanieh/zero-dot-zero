@@ -822,15 +822,9 @@
 
   /* ── Phone Number Pickers (address forms) ── */
   function initAddressPhonePickers() {
-    console.log('[PP] initAddressPhonePickers called');
-    if (!document.querySelector('.addresses-page')) {
-      console.log('[PP] guard failed: .addresses-page not found');
-      return;
-    }
+    if (!document.querySelector('.addresses-page')) return;
     var wraps = document.querySelectorAll('.addresses-page .phone-field-wrap');
-    console.log('[PP] found phone-field-wrap elements:', wraps.length);
-    wraps.forEach(function(wrap, i) {
-      console.log('[PP] initializing picker #' + i, wrap);
+    wraps.forEach(function(wrap) {
       _ppInit(wrap, { preventSubmit: true });
     });
   }
