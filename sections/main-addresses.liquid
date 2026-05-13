@@ -123,7 +123,19 @@
                                                 </div>
                                                 <div class="form-field">
                                                     <label class="form-label" for="AddressPhoneNew">{{ 'customer.addresses.phone' | t }}</label>
-                                                    <input class="form-input form-input-placeholder" type="tel" id="AddressPhoneNew" name="address[phone]" value="{{ form.phone }}" autocomplete="tel" pattern="^(\+?966|00966)?0?5[03456789]\d{7}$" title="Saudi mobile: 0501234567, 0531234567 … 0591234567 or +966501234567" placeholder="{{ 'customer.addresses.phone' | t }}">
+                                                    <div class="phone-field-wrap">
+                                                        <div class="phone-select-wrap">
+                                                            <button type="button" class="phone-country-btn" aria-haspopup="listbox" aria-expanded="false">
+                                                                <span class="phone-flag"></span>
+                                                                <span class="phone-dialcode"></span>
+                                                                <span class="phone-caret" aria-hidden="true"></span>
+                                                            </button>
+                                                            <ul class="phone-country-list" role="listbox" hidden></ul>
+                                                        </div>
+                                                        <input type="tel" class="form-input phone-number-input" id="AddressPhoneNew" autocomplete="tel-national" inputmode="numeric" placeholder="">
+                                                    </div>
+                                                    <input type="hidden" name="address[phone]" value="{{ form.phone }}">
+                                                    <span class="field-error-msg" data-message="{{ 'customer.register.phone_error' | t | escape }}" hidden></span>
                                                 </div>
                                                 <div class="form-field form-field--full">
                                                     {{ form.set_as_default_checkbox }}
@@ -298,7 +310,19 @@
                                                 <label class="form-label" for="AddressPhone_{{ form.id }}">
                                                     {{ 'customer.addresses.phone' | t }}
                                                 </label>
-                                                <input class="form-input form-input-placeholder" type="tel" id="AddressPhone_{{ form.id }}"  name="address[phone]" value="{{ form.phone }}" autocomplete="tel" pattern="^(\+?966|00966)?0?5[03456789]\d{7}$" title="Saudi mobile: 0501234567, 0531234567 … 0591234567 or +966501234567" placeholder="{{ 'customer.addresses.phone' | t }}">
+                                                <div class="phone-field-wrap">
+                                                    <div class="phone-select-wrap">
+                                                        <button type="button" class="phone-country-btn" aria-haspopup="listbox" aria-expanded="false">
+                                                            <span class="phone-flag"></span>
+                                                            <span class="phone-dialcode"></span>
+                                                            <span class="phone-caret" aria-hidden="true"></span>
+                                                        </button>
+                                                        <ul class="phone-country-list" role="listbox" hidden></ul>
+                                                    </div>
+                                                    <input type="tel" class="form-input phone-number-input" id="AddressPhone_{{ form.id }}" autocomplete="tel-national" inputmode="numeric" placeholder="">
+                                                </div>
+                                                <input type="hidden" name="address[phone]" value="{{ form.phone }}">
+                                                <span class="field-error-msg" data-message="{{ 'customer.register.phone_error' | t | escape }}" hidden></span>
                                             </div>
                                             <div class="form-field form-field--full">
                                                 {{ form.set_as_default_checkbox }}
