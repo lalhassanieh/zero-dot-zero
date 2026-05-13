@@ -1305,6 +1305,7 @@ input[type="checkbox"][required] {
 
 
 
+
 /* Phone Number Field */
 .phone-field-wrap {
     display: flex;
@@ -1353,6 +1354,10 @@ input[type="checkbox"][required] {
 .phone-country-btn:focus-visible {
     outline: 2px solid currentColor;
     outline-offset: -2px;
+}
+.phone-number-input {
+    direction: ltr;
+    text-align: left;
 }
 .phone-flag { line-height: 1; }
 .phone-flag img { display: block; }
@@ -1435,4 +1440,3 @@ input[type="checkbox"][required] {
     margin-top: 4px;
 }
 .field-error-msg[hidden] { display: none; }
-

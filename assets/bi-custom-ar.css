@@ -560,10 +560,7 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
 .phone-field-wrap .form-input {
     border-radius: var(--btn-1-border-radius) 0 0 var(--btn-1-border-radius) !important;
 }
-.addresses-page .phone-number-input {
-    direction: ltr;
-    text-align: left;
-}
+
 .phone-country-list {
     left: auto;
     right: 0;
