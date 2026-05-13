@@ -686,8 +686,22 @@
       return '<img src="' + FLAG_BASE + code.toLowerCase() + '.png" alt="' + alt + '" width="20" height="15">';
     }
 
+    function formatPhone(digits, placeholder) {
+      var groups    = placeholder.split(' ').map(function(g) { return g.length; });
+      var maxDigits = groups.reduce(function(a, b) { return a + b; }, 0);
+      var capped    = digits.slice(0, maxDigits);
+      var result = '', pos = 0;
+      for (var i = 0; i < groups.length; i++) {
+        if (pos >= capped.length) break;
+        if (i > 0) result += ' ';
+        result += capped.slice(pos, pos + groups[i]);
+        pos += groups[i];
+      }
+      return result;
+    }
+
     function syncHidden() {
-      var raw = input.value.trim();
+      var raw = input.value.replace(/\D/g, '');
       hidden.value = selected.pattern.test(raw) ? selected.dial + raw : '';
     }
 
@@ -703,9 +717,10 @@
       list.querySelectorAll('.phone-country-item').forEach(function (li) {
         li.classList.toggle('is-active', li.dataset.code === country.code);
       });
+      var raw = input.value.replace(/\D/g, '');
+      input.value = raw ? formatPhone(raw, country.placeholder) : '';
       syncHidden();
       refreshSubmitButton(form);
-      var raw = input.value.trim();
       if (raw) showError(!selected.pattern.test(raw));
       else showError(false);
     }
@@ -757,16 +772,29 @@
     });
 
     input.addEventListener('input', function () {
+      var cursorPos          = input.selectionStart;
+      var oldVal             = input.value;
+      var digitsBeforeCursor = oldVal.slice(0, cursorPos).replace(/\D/g, '').length;
+      var raw                = oldVal.replace(/\D/g, '');
+      var formatted          = formatPhone(raw, selected.placeholder);
+      input.value            = formatted;
+      // restore cursor: count forward through formatted until we've passed digitsBeforeCursor digits
+      var newCursor = 0, digitCount = 0;
+      for (var i = 0; i < formatted.length; i++) {
+        if (digitCount === digitsBeforeCursor) break;
+        if (/\d/.test(formatted[i])) digitCount++;
+        newCursor = i + 1;
+      }
+      input.setSelectionRange(newCursor, newCursor);
       syncHidden();
       refreshSubmitButton(form);
-      var raw = input.value.trim();
       if (raw) showError(!selected.pattern.test(raw));
       else showError(false);
     });
 
     // Note-appending side-effect only — gatekeeper handles blocking
     form.addEventListener('submit', function () {
-      var raw = input.value.trim();
+      var raw = input.value.replace(/\D/g, '');
       if (!raw || !selected.pattern.test(raw)) {
         showError(true);
         input.focus();
@@ -903,7 +931,7 @@
 
   domReady(initBlogRowEqualizer);
   domReady(initBirthdatePicker);
-  domReady(initFormGatekeeper);  // must run before initPhonePicker / initConfirmPassword so it's the first capture handler
+  domReady(initFormGatekeeper); 
   domReady(initPhonePicker);
   domReady(initConfirmPassword);
 
