@@ -757,9 +757,10 @@
 
     applyCountry(selected);
 
-    btn.addEventListener('click', function(e) { e.stopPropagation(); isOpen ? closeDropdown() : openDropdown(); });
-    list.addEventListener('click', function(e) { e.stopPropagation(); });
-    document.addEventListener('click', function() { if (isOpen) closeDropdown(); });
+    btn.addEventListener('click', function() { isOpen ? closeDropdown() : openDropdown(); });
+    document.addEventListener('click', function(e) {
+      if (isOpen && !wrap.contains(e.target)) closeDropdown();
+    }, true);
     document.addEventListener('keydown', function(e) {
       if (isOpen && (e.key === 'Escape' || e.keyCode === 27)) closeDropdown();
     });
