@@ -570,7 +570,6 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
 }
 
 /* ── Address form RTL ── */
-.addresses-page .form-input,
 .addresses-page .select__select {
     direction: rtl;
     text-align: right;
