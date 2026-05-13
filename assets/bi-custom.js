@@ -650,135 +650,127 @@
     }
   }
 
-  /* ── Phone Number Picker ── */
-  function initPhonePicker() {
-    var wrap = document.getElementById('phone-field-wrap');
-    if (!wrap || wrap.dataset.phonePickerInit) return;
-    wrap.dataset.phonePickerInit = '1';
+  /* ── Phone picker shared data & helpers ── */
+  var _ppLang  = document.documentElement.lang || 'en';
+  var _ppIsAr  = _ppLang === 'ar';
+  var _ppFlags = 'https://flagcdn.com/w20/';
+  var _ppList  = [
+    { code: 'BH', dial: '+973', nameEn: 'Bahrain',      nameAr: 'البحرين',  pattern: /^3\d{7}$/,             placeholder: '3X XXX XXX'  },
+    { code: 'KW', dial: '+965', nameEn: 'Kuwait',        nameAr: 'الكويت',   pattern: /^[569]\d{7}$/,         placeholder: '5X XXX XXX'  },
+    { code: 'OM', dial: '+968', nameEn: 'Oman',          nameAr: 'عُمان',    pattern: /^9\d{7}$/,             placeholder: '9X XXX XXX'  },
+    { code: 'QA', dial: '+974', nameEn: 'Qatar',         nameAr: 'قطر',      pattern: /^[3-7]\d{7}$/,         placeholder: '5X XXX XXX'  },
+    { code: 'SA', dial: '+966', nameEn: 'Saudi Arabia',  nameAr: 'السعودية', pattern: /^0?5[03456789]\d{7}$/, placeholder: '5X XXX XXXX' },
+    { code: 'AE', dial: '+971', nameEn: 'UAE',           nameAr: 'الإمارات', pattern: /^5[02-8]\d{7}$/,       placeholder: '5X XXX XXXX' }
+  ];
 
-    var form = document.querySelector('.create-customer-form');
-    if (!form) return;
+  function _ppFlag(code, alt) {
+    return '<img src="' + _ppFlags + code.toLowerCase() + '.png" alt="' + alt + '" width="20" height="15">';
+  }
 
-    var lang      = document.documentElement.lang || 'en';
-    var isAr      = lang === 'ar';
-    var FLAG_BASE = 'https://flagcdn.com/w20/';
+  function _ppFmt(digits, placeholder) {
+    var groups    = placeholder.split(' ').map(function(g) { return g.length; });
+    var maxDigits = groups.reduce(function(a, b) { return a + b; }, 0);
+    var capped    = digits.slice(0, maxDigits);
+    var result = '', pos = 0;
+    for (var i = 0; i < groups.length; i++) {
+      if (pos >= capped.length) break;
+      if (i > 0) result += ' ';
+      result += capped.slice(pos, pos + groups[i]);
+      pos += groups[i];
+    }
+    return result;
+  }
 
-    var COUNTRIES = [
-      { code: 'BH', dial: '+973', nameEn: 'Bahrain',      nameAr: 'البحرين',  pattern: /^3\d{7}$/,            placeholder: '3X XXX XXX'  },
-      { code: 'KW', dial: '+965', nameEn: 'Kuwait',        nameAr: 'الكويت',   pattern: /^[569]\d{7}$/,        placeholder: '5X XXX XXX'  },
-      { code: 'OM', dial: '+968', nameEn: 'Oman',          nameAr: 'عُمان',    pattern: /^9\d{7}$/,            placeholder: '9X XXX XXX'  },
-      { code: 'QA', dial: '+974', nameEn: 'Qatar',         nameAr: 'قطر',      pattern: /^[3-7]\d{7}$/,           placeholder: '5X XXX XXX' },
-      { code: 'SA', dial: '+966', nameEn: 'Saudi Arabia',  nameAr: 'السعودية', pattern: /^0?5[03456789]\d{7}$/, placeholder: '5X XXX XXXX' },
-      { code: 'AE', dial: '+971', nameEn: 'UAE',           nameAr: 'الإمارات', pattern: /^5[02-8]\d{7}$/,      placeholder: '5X XXX XXXX' }
-    ];
+  /* ── Generic phone picker factory ── */
+  function _ppInit(wrap, opts) {
+    if (!wrap || wrap.dataset.ppInit) return;
+    wrap.dataset.ppInit = '1';
 
-    var btn       = document.getElementById('phone-country-btn');
-    var flagEl    = document.getElementById('phone-flag');
-    var dialEl    = document.getElementById('phone-dialcode');
-    var list      = document.getElementById('phone-country-list');
-    var input     = document.getElementById('RegisterForm-phone-input');
-    var hidden    = document.getElementById('RegisterForm-phone-hidden');
-    var errorSpan = document.getElementById('phone-error-msg');
-    var selected  = COUNTRIES[4]; // SA default
+    var btn       = wrap.querySelector('.phone-country-btn');
+    var flagEl    = wrap.querySelector('.phone-flag');
+    var dialEl    = wrap.querySelector('.phone-dialcode');
+    var list      = wrap.querySelector('.phone-country-list');
+    var input     = wrap.querySelector('.phone-number-input');
+    var fieldWrap = wrap.closest('.form-field');
+    var hidden    = fieldWrap ? fieldWrap.querySelector('input[type="hidden"]') : null;
+    var errorSpan = fieldWrap ? fieldWrap.querySelector('.field-error-msg') : null;
+    var form      = opts.form || wrap.closest('form');
+    var selected  = _ppList[4]; // SA default
     var isOpen    = false;
 
-    function flagImg(code, alt) {
-      return '<img src="' + FLAG_BASE + code.toLowerCase() + '.png" alt="' + alt + '" width="20" height="15">';
-    }
-
-    function formatPhone(digits, placeholder) {
-      var groups    = placeholder.split(' ').map(function(g) { return g.length; });
-      var maxDigits = groups.reduce(function(a, b) { return a + b; }, 0);
-      var capped    = digits.slice(0, maxDigits);
-      var result = '', pos = 0;
-      for (var i = 0; i < groups.length; i++) {
-        if (pos >= capped.length) break;
-        if (i > 0) result += ' ';
-        result += capped.slice(pos, pos + groups[i]);
-        pos += groups[i];
-      }
-      return result;
-    }
-
     function syncHidden() {
+      if (!hidden) return;
       var raw = input.value.replace(/\D/g, '');
       hidden.value = selected.pattern.test(raw) ? selected.dial + raw : '';
     }
 
     function showError(show) {
-      setFieldError(input, document.getElementById('RegisterForm-phone-wrapper'), errorSpan, show);
+      if (errorSpan) { errorSpan.textContent = show ? (errorSpan.dataset.message || '') : ''; errorSpan.hidden = !show; }
+      input.classList.toggle('error', !!show);
+      if (fieldWrap) fieldWrap.classList.toggle('form-field--error', !!show);
     }
 
     function applyCountry(country) {
       selected           = country;
-      flagEl.innerHTML   = flagImg(country.code, country.nameEn);
+      flagEl.innerHTML   = _ppFlag(country.code, country.nameEn);
       dialEl.textContent = country.dial;
       input.placeholder  = country.placeholder;
-      list.querySelectorAll('.phone-country-item').forEach(function (li) {
+      list.querySelectorAll('.phone-country-item').forEach(function(li) {
         li.classList.toggle('is-active', li.dataset.code === country.code);
       });
       var raw = input.value.replace(/\D/g, '');
-      input.value = raw ? formatPhone(raw, country.placeholder) : '';
+      input.value = raw ? _ppFmt(raw, country.placeholder) : '';
       syncHidden();
-      refreshSubmitButton(form);
+      if (opts.refreshFn) opts.refreshFn();
       if (raw) showError(!selected.pattern.test(raw));
       else showError(false);
     }
 
-    function openDropdown() {
-      isOpen = true;
-      list.hidden = false;
-      btn.setAttribute('aria-expanded', 'true');
-    }
+    function openDropdown()  { isOpen = true;  list.hidden = false; btn.setAttribute('aria-expanded', 'true');  }
+    function closeDropdown() { isOpen = false; list.hidden = true;  btn.setAttribute('aria-expanded', 'false'); }
 
-    function closeDropdown() {
-      isOpen = false;
-      list.hidden = true;
-      btn.setAttribute('aria-expanded', 'false');
-    }
-
-    // build list items from COUNTRIES
-    COUNTRIES.forEach(function (country) {
+    _ppList.forEach(function(country) {
       var li = document.createElement('li');
       li.className    = 'phone-country-item';
       li.dataset.code = country.code;
       li.setAttribute('role', 'option');
-      var name = isAr ? country.nameAr : country.nameEn;
-      li.innerHTML = flagImg(country.code, country.nameEn)
+      var name = _ppIsAr ? country.nameAr : country.nameEn;
+      li.innerHTML = _ppFlag(country.code, country.nameEn)
         + '<span class="phone-item-name">' + name + '</span>'
         + '<span class="phone-item-dial">' + country.dial + '</span>';
-      li.addEventListener('click', function () {
-        var c = COUNTRIES.find(function (x) { return x.code === li.dataset.code; });
+      li.addEventListener('click', function() {
+        var c = _ppList.find(function(x) { return x.code === li.dataset.code; });
         if (c) { applyCountry(c); input.focus(); }
         closeDropdown();
       });
       list.appendChild(li);
     });
 
+    // Pre-populate from existing saved value (address edit forms)
+    if (hidden && hidden.value) {
+      var pre = _ppList.find(function(c) { return hidden.value.startsWith(c.dial); });
+      if (pre) {
+        selected    = pre;
+        input.value = _ppFmt(hidden.value.slice(pre.dial.length).replace(/\D/g, ''), pre.placeholder);
+      }
+    }
+
     applyCountry(selected);
 
-    btn.addEventListener('click', function (e) {
-      e.stopPropagation();
-      isOpen ? closeDropdown() : openDropdown();
-    });
-
-    // clicks inside the list must not bubble to the document close-listener
-    list.addEventListener('click', function (e) { e.stopPropagation(); });
-
-    document.addEventListener('click', function () { if (isOpen) closeDropdown(); });
-
-    document.addEventListener('keydown', function (e) {
+    btn.addEventListener('click', function(e) { e.stopPropagation(); isOpen ? closeDropdown() : openDropdown(); });
+    list.addEventListener('click', function(e) { e.stopPropagation(); });
+    document.addEventListener('click', function() { if (isOpen) closeDropdown(); });
+    document.addEventListener('keydown', function(e) {
       if (isOpen && (e.key === 'Escape' || e.keyCode === 27)) closeDropdown();
     });
 
-    input.addEventListener('input', function () {
+    input.addEventListener('input', function() {
       var cursorPos          = input.selectionStart;
       var oldVal             = input.value;
       var digitsBeforeCursor = oldVal.slice(0, cursorPos).replace(/\D/g, '').length;
       var raw                = oldVal.replace(/\D/g, '');
-      var formatted          = formatPhone(raw, selected.placeholder);
+      var formatted          = _ppFmt(raw, selected.placeholder);
       input.value            = formatted;
-      // restore cursor: count forward through formatted until we've passed digitsBeforeCursor digits
       var newCursor = 0, digitCount = 0;
       for (var i = 0; i < formatted.length; i++) {
         if (digitCount === digitsBeforeCursor) break;
@@ -787,26 +779,51 @@
       }
       input.setSelectionRange(newCursor, newCursor);
       syncHidden();
-      refreshSubmitButton(form);
+      if (opts.refreshFn) opts.refreshFn();
       if (raw) showError(!selected.pattern.test(raw));
       else showError(false);
     });
 
-    // Note-appending side-effect only — gatekeeper handles blocking
-    form.addEventListener('submit', function () {
-      var raw = input.value.replace(/\D/g, '');
-      if (!raw || !selected.pattern.test(raw)) {
-        showError(true);
-        input.focus();
-        return;
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        var raw = input.value.replace(/\D/g, '');
+        if (!raw || !selected.pattern.test(raw)) {
+          if (opts.preventSubmit) e.preventDefault();
+          showError(true);
+          input.focus();
+          return;
+        }
+        showError(false);
+        syncHidden();
+        if (opts.onSubmit) opts.onSubmit(selected.dial, raw);
+      });
+    }
+  }
+
+  /* ── Phone Number Picker (register form) ── */
+  function initPhonePicker() {
+    var wrap = document.getElementById('phone-field-wrap');
+    if (!wrap) return;
+    var form = document.querySelector('.create-customer-form');
+    if (!form) return;
+    _ppInit(wrap, {
+      form: form,
+      refreshFn: function() { refreshSubmitButton(form); },
+      onSubmit: function(dial, raw) {
+        var noteEl = document.getElementById('RegisterForm-birthdate-note');
+        if (noteEl) {
+          var base = noteEl.value.replace(/\nPhone:.*$/m, '').replace(/^Phone:.*$/m, '').trim();
+          noteEl.value = (base ? base + '\n' : '') + 'Phone: ' + dial + raw;
+        }
       }
-      showError(false);
-      syncHidden();
-      var noteEl = document.getElementById('RegisterForm-birthdate-note');
-      if (noteEl) {
-        var base = noteEl.value.replace(/\nPhone:.*$/m, '').replace(/^Phone:.*$/m, '').trim();
-        noteEl.value = (base ? base + '\n' : '') + 'Phone: ' + selected.dial + raw;
-      }
+    });
+  }
+
+  /* ── Phone Number Pickers (address forms) ── */
+  function initAddressPhonePickers() {
+    if (!document.querySelector('.addresses-page')) return;
+    document.querySelectorAll('.addresses-page .phone-field-wrap').forEach(function(wrap) {
+      _ppInit(wrap, { preventSubmit: true });
     });
   }
 
@@ -931,8 +948,9 @@
 
   domReady(initBlogRowEqualizer);
   domReady(initBirthdatePicker);
-  domReady(initFormGatekeeper); 
+  domReady(initFormGatekeeper);  // must run before initPhonePicker / initConfirmPassword so it's the first capture handler
   domReady(initPhonePicker);
   domReady(initConfirmPassword);
+  domReady(initAddressPhonePickers);
 
 })();
