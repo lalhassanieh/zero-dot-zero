@@ -1301,6 +1301,10 @@ input[type="checkbox"][required] {
     margin-left: auto !important;
     margin-right: auto !important;
 }
+
+
+
+
 /* Phone Number Field */
 .phone-field-wrap {
     display: flex;
@@ -1377,23 +1381,7 @@ input[type="checkbox"][required] {
     display: block;
 }
 .phone-country-list[hidden] { display: none !important; }
-/* customer.css ".addresses ul { display: flex; flex-wrap: wrap }" (0-1-1) hits our dropdown.
-   0-2-0 beats it without needing !important, so hidden's !important still wins. */
-.addresses .phone-country-list {
-    display: block;
-    margin-left: 0;
-    margin-right: 0;
-}
-.addresses .phone-country-list[hidden] { display: none !important; }
-.addresses .phone-country-list > li {
-    width: auto;
-    padding-left: 0;
-    padding-right: 0;
-}
-/* Constrain phone field wrap to match other address form fields */
-.addresses-page .phone-field-wrap {
-    max-width: 450px;
-}
+
 .phone-country-item {
     display: flex;
     align-items: center;
