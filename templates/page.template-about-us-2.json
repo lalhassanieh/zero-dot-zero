@@ -134,7 +134,7 @@
         ".halo-banner.image-banner,#halo-image-banner-template--19396941644020__16474839872eb210cf .item--smallImg-st3 .flex-box__banner::after,.halo-banner-wrapper .flex-box__banner {background: transparent !important;}"
       ],
       "settings": {
-        "use_metaobject_background": false,
+        "use_metaobject_background": true,
         "section_block_id": "about-hero-1",
         "id_section": "",
         "container": "fullwidth",
@@ -256,7 +256,7 @@
         ".halo-banner.image-banner {background: transparent !important;}"
       ],
       "settings": {
-        "use_metaobject_background": false,
+        "use_metaobject_background": true,
         "section_block_id": "about-hero-2",
         "id_section": "",
         "container": "fullwidth",
@@ -378,7 +378,7 @@
         ".halo-banner.image-banner {background: transparent !important;}"
       ],
       "settings": {
-        "use_metaobject_background": false,
+        "use_metaobject_background": true,
         "section_block_id": "about-hero-3",
         "id_section": "",
         "container": "fullwidth",
