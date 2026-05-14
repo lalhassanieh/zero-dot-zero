@@ -118,7 +118,6 @@
         },
         "image_db3xma": {
           "type": "image",
-          "disabled": true,
           "settings": {
             "use_metaobject_slide": false,
             "slide_id": "",
