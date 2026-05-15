@@ -18,7 +18,7 @@
 {%- assign _section_id = section.settings.section_id | strip -%}
 {%- if section.settings.use_metaobject_products and _section_id.size > 0 and all_blocks != blank -%}
   {%- for block_item in all_blocks -%}
-    {%- if block_item.system.type == 'product_block' and block_item.section_id == _section_id -%}
+    {%- if block_item.system.type == 'product_block' and block_item.section_id != blank and block_item.section_id == _section_id -%}
       {%- assign metaobject_product_block = block_item -%}
       {%- assign use_metaobject_products = true -%}
       {%- break -%}
