@@ -62,25 +62,25 @@
                         assign use_metaobject = false
 
                         if block.settings.use_metaobject_slide
-                            assign slide_heading = blank
-                            assign slide_heading_mb = blank
-                            assign slide_heading_top = blank
-                            assign slide_heading_bottom = blank
-                            assign slide_sub_heading = blank
-                            assign slide_sub_heading_mb = blank
-                            assign slide_description = blank
-                            assign slide_description_mb = blank
-                            assign slide_button_text = blank
-                            assign slide_button_text_2 = blank
-                            assign slide_link = blank
-                            assign slide_link_2 = blank
-                            assign slide_image = blank
-                            assign slide_image_mb = blank
-                            assign slide_video_source = blank
-                            assign slide_youtube_id = blank
-                            assign slide_youtube_id_mb = blank
-                            assign slide_mp4_url = blank
-                            assign slide_mp4_url_mb = blank
+                            assign slide_heading = nil
+                            assign slide_heading_mb = nil
+                            assign slide_heading_top = nil
+                            assign slide_heading_bottom = nil
+                            assign slide_sub_heading = nil
+                            assign slide_sub_heading_mb = nil
+                            assign slide_description = nil
+                            assign slide_description_mb = nil
+                            assign slide_button_text = nil
+                            assign slide_button_text_2 = nil
+                            assign slide_link = nil
+                            assign slide_link_2 = nil
+                            assign slide_image = nil
+                            assign slide_image_mb = nil
+                            assign slide_video_source = nil
+                            assign slide_youtube_id = nil
+                            assign slide_youtube_id_mb = nil
+                            assign slide_mp4_url = nil
+                            assign slide_mp4_url_mb = nil
                         else
                             assign slide_heading = block.settings.heading
                             assign slide_heading_mb = block.settings.heading_mb
@@ -294,7 +294,11 @@
                                 </div>
                             {% endif %}
                         {%- endif -%}
-                        {%- if slide_heading != blank or slide_description != blank or slide_button_text != blank or section.settings.dots_shape == 'line' -%}
+                        {%- assign show_line_dots = false -%}
+                        {%- if block.settings.use_metaobject_slide == false and section.settings.dots_shape == 'line' -%}
+                            {%- assign show_line_dots = true -%}
+                        {%- endif -%}
+                        {%- if slide_heading != blank or slide_heading_top != blank or slide_heading_bottom != blank or slide_sub_heading != blank or slide_description != blank or slide_button_text != blank or show_line_dots -%}
                             <div class="slide-content content-box--absolute content-box--{{ block.settings.alignment }} text-{{ block.settings.text_alignment }}{% if block.settings.text_alignment_mb != blank %} text-mb-{{ block.settings.text_alignment_mb }}{% endif %} {% if block.settings.enable_custom_position %}custom_position{% endif %} {% if block.settings.enable_position_outside_image %}enable_position_outside_image{% endif %}{% if block.settings.sub_heading_font == 'font_1' %} sub_heading_font_1{% endif %}" {% if block.settings.enable_custom_position %}style="--horizontal_position: {{ block.settings.custom_horizontal }}%;--vertical_position: {{ block.settings.custom_vertical }}%;--minus_horizontal_position: -{{ block.settings.custom_horizontal }}%;--minus_vertical_position: -{{ block.settings.custom_vertical }}%"{% endif %}>
                             {%- if block.settings.profile_name != blank or block.settings.profile_title != blank or block.settings.profile_picture != blank -%}
                                 <div class="slide-content__person slide-testimonial{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
