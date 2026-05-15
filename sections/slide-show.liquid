@@ -81,92 +81,87 @@
                         assign slide_mp4_url_mb = block.settings.video_mp4_link_mb
                         assign use_metaobject = false
                         
-                        # Override with metaobject content if enabled - match by order field position
-                        if block.settings.use_metaobject_slide and all_blocks.size > 0
-                            assign target_slide_index = forloop.index0
-                            assign slide_counter = 0
+                        # Override with metaobject content if enabled - requires slide_id, respects order field for sequence
+                        if block.settings.use_metaobject_slide and block.settings.slide_id != blank and all_blocks.size > 0
                             for meta_slide in sorted_meta_slides
-                                if meta_slide.system.type == 'slide_show'
-                                    if slide_counter == target_slide_index
-                                        assign use_metaobject = true
+                                if meta_slide.system.type == 'slide_show' and meta_slide.slide_id == block.settings.slide_id
+                                    assign use_metaobject = true
 
-                                        # Desktop text content (top/bottom headings)
-                                        if meta_slide.heading_desktop_top != blank
-                                            assign slide_heading_top = meta_slide.heading_desktop_top
-                                        endif
-                                        if meta_slide.heading_desktop_bottom != blank
-                                            assign slide_heading_bottom = meta_slide.heading_desktop_bottom
-                                        endif
-                                        if meta_slide.subheading_desktop != blank
-                                            assign slide_sub_heading = meta_slide.subheading_desktop
-                                        endif
-                                        if meta_slide.description_desktop != blank
-                                            assign slide_description = meta_slide.description_desktop
-                                        endif
-
-                                        # Mobile text content
-                                        if meta_slide.heading_mobile != blank
-                                            assign slide_heading_mb = meta_slide.heading_mobile
-                                        endif
-                                        if meta_slide.subheading_mobile != blank
-                                            assign slide_sub_heading_mb = meta_slide.subheading_mobile
-                                        endif
-                                        if meta_slide.description_mobile != blank
-                                            assign slide_description_mb = meta_slide.description_mobile
-                                        endif
-
-                                        # Images
-                                        if meta_slide.image_desktop.value != blank
-                                            assign slide_image = meta_slide.image_desktop.value
-                                        endif
-                                        if meta_slide.image_mobile.value != blank
-                                            assign slide_image_mb = meta_slide.image_mobile.value
-                                        endif
-
-                                        # Video
-                                        if meta_slide.video_source != blank
-                                            assign slide_video_source = meta_slide.video_source
-                                        endif
-                                        if meta_slide.youtube_id_desktop != blank
-                                            assign slide_youtube_id = meta_slide.youtube_id_desktop
-                                        endif
-                                        if meta_slide.youtube_id_mobile != blank
-                                            assign slide_youtube_id_mb = meta_slide.youtube_id_mobile
-                                        endif
-                                        if meta_slide.mp4_url_desktop != blank
-                                            assign slide_mp4_url = meta_slide.mp4_url_desktop
-                                        endif
-                                        if meta_slide.mp4_url_mobile != blank
-                                            assign slide_mp4_url_mb = meta_slide.mp4_url_mobile
-                                        endif
-
-                                        # First button
-                                        if meta_slide.first_button_label != blank
-                                            assign slide_button_text = meta_slide.first_button_label
-                                        endif
-                                        if meta_slide.first_button_page.value != blank
-                                            assign slide_link = meta_slide.first_button_page.value.url
-                                        elsif meta_slide.first_button_collection.value != blank
-                                            assign slide_link = meta_slide.first_button_collection.value.url
-                                        elsif meta_slide.first_button_url != blank
-                                            assign slide_link = meta_slide.first_button_url
-                                        endif
-
-                                        # Second button
-                                        if meta_slide.second_button_label != blank
-                                            assign slide_button_text_2 = meta_slide.second_button_label
-                                        endif
-                                        if meta_slide.second_button_page.value != blank
-                                            assign slide_link_2 = meta_slide.second_button_page.value.url
-                                        elsif meta_slide.second_button_collection.value != blank
-                                            assign slide_link_2 = meta_slide.second_button_collection.value.url
-                                        elsif meta_slide.second_button_url != blank
-                                            assign slide_link_2 = meta_slide.second_button_url
-                                        endif
-
-                                        break
+                                    # Desktop text content (top/bottom headings)
+                                    if meta_slide.heading_desktop_top != blank
+                                        assign slide_heading_top = meta_slide.heading_desktop_top
                                     endif
-                                    assign slide_counter = slide_counter | plus: 1
+                                    if meta_slide.heading_desktop_bottom != blank
+                                        assign slide_heading_bottom = meta_slide.heading_desktop_bottom
+                                    endif
+                                    if meta_slide.subheading_desktop != blank
+                                        assign slide_sub_heading = meta_slide.subheading_desktop
+                                    endif
+                                    if meta_slide.description_desktop != blank
+                                        assign slide_description = meta_slide.description_desktop
+                                    endif
+
+                                    # Mobile text content
+                                    if meta_slide.heading_mobile != blank
+                                        assign slide_heading_mb = meta_slide.heading_mobile
+                                    endif
+                                    if meta_slide.subheading_mobile != blank
+                                        assign slide_sub_heading_mb = meta_slide.subheading_mobile
+                                    endif
+                                    if meta_slide.description_mobile != blank
+                                        assign slide_description_mb = meta_slide.description_mobile
+                                    endif
+
+                                    # Images
+                                    if meta_slide.image_desktop.value != blank
+                                        assign slide_image = meta_slide.image_desktop.value
+                                    endif
+                                    if meta_slide.image_mobile.value != blank
+                                        assign slide_image_mb = meta_slide.image_mobile.value
+                                    endif
+
+                                    # Video
+                                    if meta_slide.video_source != blank
+                                        assign slide_video_source = meta_slide.video_source
+                                    endif
+                                    if meta_slide.youtube_id_desktop != blank
+                                        assign slide_youtube_id = meta_slide.youtube_id_desktop
+                                    endif
+                                    if meta_slide.youtube_id_mobile != blank
+                                        assign slide_youtube_id_mb = meta_slide.youtube_id_mobile
+                                    endif
+                                    if meta_slide.mp4_url_desktop != blank
+                                        assign slide_mp4_url = meta_slide.mp4_url_desktop
+                                    endif
+                                    if meta_slide.mp4_url_mobile != blank
+                                        assign slide_mp4_url_mb = meta_slide.mp4_url_mobile
+                                    endif
+
+                                    # First button
+                                    if meta_slide.first_button_label != blank
+                                        assign slide_button_text = meta_slide.first_button_label
+                                    endif
+                                    if meta_slide.first_button_page.value != blank
+                                        assign slide_link = meta_slide.first_button_page.value.url
+                                    elsif meta_slide.first_button_collection.value != blank
+                                        assign slide_link = meta_slide.first_button_collection.value.url
+                                    elsif meta_slide.first_button_url != blank
+                                        assign slide_link = meta_slide.first_button_url
+                                    endif
+
+                                    # Second button
+                                    if meta_slide.second_button_label != blank
+                                        assign slide_button_text_2 = meta_slide.second_button_label
+                                    endif
+                                    if meta_slide.second_button_page.value != blank
+                                        assign slide_link_2 = meta_slide.second_button_page.value.url
+                                    elsif meta_slide.second_button_collection.value != blank
+                                        assign slide_link_2 = meta_slide.second_button_collection.value.url
+                                    elsif meta_slide.second_button_url != blank
+                                        assign slide_link_2 = meta_slide.second_button_url
+                                    endif
+
+                                    break
                                 endif
                             endfor
                         endif
