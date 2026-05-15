@@ -15,9 +15,9 @@
 {%- endif -%}
 
 {%- comment -%} Find product_block in blocks list {%- endcomment -%}
-{%- if section.settings.use_metaobject_products and all_blocks != blank -%}
+{%- if section.settings.use_metaobject_products and section.settings.section_id != blank and all_blocks != blank -%}
   {%- for block_item in all_blocks -%}
-    {%- if block_item.system.type == 'product_block' -%}
+    {%- if block_item.system.type == 'product_block' and block_item.section_id == section.settings.section_id -%}
       {%- assign metaobject_product_block = block_item -%}
       {%- assign use_metaobject_products = true -%}
       {%- break -%}
@@ -876,6 +876,13 @@
         "id": "use_metaobject_products",
         "label": "Use metaobject products",
         "default": false
+    },
+    {
+        "type": "text",
+        "id": "section_id",
+        "label": "Section ID",
+        "info": "Unique identifier to match a metaobject product_block entry (e.g., 'products-1'). Must match the 'section_id' field in your metaobject.",
+        "placeholder": "e.g., products-1"
     },
     {
         "type": "select",
