@@ -572,21 +572,6 @@ h5,
     margin: 13px 6px 0 0 !important;
 }
 
-.card__badge .badge.new-badge {
-  width: 60px;
-  height: 60px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  line-height: 1.1;
-  word-spacing: 100vw;   /* Forces "New" and "Drop" on separate lines */
-}
-
-.card__badge .badge.new-badge p {
-  margin: 0;
-  word-spacing: 100vw;
-}
 
 .custom-featured-products .halo-productBadges .badge.new-badge {
     background-size: 45px 55px;
