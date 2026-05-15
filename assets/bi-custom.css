@@ -1442,23 +1442,3 @@ input[type="checkbox"][required] {
 .field-error-msg[hidden] { display: none; }
 
 
-/* Apply working badge style to collection cards (match product page) */
-.card__badge.halo-productBadges .badge.new-badge {
-  background-image: url(/cdn/shop/files/new-drop-badge.svg?v=1746707085);
-  background-repeat: no-repeat;
-  background-size: 67px 71px;
-  height: 76px;
-  width: 84px;
-  font-family: Gilroy Extra Bold;
-  position: absolute;
-  right: -12px;
-}
-
-/* Make "NEW DROP" wrap to 2 lines on BOTH product page and card */
-.halo-productBadges .badge.new-badge p {
-  margin: 0;
-  padding: 0;
-  line-height: 1.1;
-  text-align: center;
-  word-spacing: 9999px;
-}
