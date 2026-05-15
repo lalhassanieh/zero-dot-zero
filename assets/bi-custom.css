@@ -571,7 +571,10 @@ h5,
 .halo-productBadges .badge.new-badge p {
     margin: 13px 6px 0 0 !important;
 }
-
+.badge.new-badge p {
+  word-spacing: 100vw;
+  line-height: 1.1;
+}
 .custom-featured-products .halo-productBadges .badge.new-badge {
     background-size: 45px 55px;
     right: -35px !important;
