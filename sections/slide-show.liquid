@@ -58,8 +58,8 @@
             <div class="slideshow{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--fade-in{% endif %}{% if show_dot_with_image %} show-dot-with-image{% endif %}" data-auto-video="{{ section.settings.auto_playvideo }}" {% if section.blocks.size > 1 %}data-init-slideshow data-arrows="{{arrow}}" data-dots="{{dots}}" data-autoplay="{{ autoplay }}" data-autoplay-speed="{{ autoplaySpeed }}" data-fade="{{ fade }}" {% endif %} data-dot-with-image="{% if show_dot_with_image %}true{% else %}false{% endif %}">
             {%- for block in section.blocks -%}
                 {%- if block.type == 'image' or block.type == 'video' -%}
-                    {%- liquid 
-                        # Assign default values from block settings (common to both image and video)
+                    {%- liquid
+                        assign use_metaobject = false
                         assign slide_heading = block.settings.heading
                         assign slide_heading_mb = block.settings.heading_mb
                         assign slide_heading_top = block.settings.heading_top
@@ -79,7 +79,6 @@
                         assign slide_youtube_id_mb = block.settings.video_link_mb
                         assign slide_mp4_url = block.settings.video_mp4_link
                         assign slide_mp4_url_mb = block.settings.video_mp4_link_mb
-                        assign use_metaobject = false
                         
                         # Override with metaobject content if enabled - requires slide_id, respects order field for sequence
                         if block.settings.use_metaobject_slide and block.settings.slide_id != blank and all_blocks.size > 0
@@ -201,6 +200,7 @@
                             assign lookbook_pos_3 = block.settings.lookbook_pos_3
                         -%}
                     {%- endif -%}
+                {%- unless block.settings.use_metaobject_slide and use_metaobject == false -%}
                 <div class="item slide-block-{{block.id}}" id="block-{{block.id}}" data-index="{{forloop.index}}" data-style="{{ lookbook_style }}" data-show-lookbook-container{% if block.settings.image_for_dot != blank %} data-dot-img="{{ block.settings.image_for_dot | img_url: 'master' }}"{% endif %}>
                         {%- if block.type == 'image' -%}
                             {%- if check_lookbook -%}
@@ -613,6 +613,7 @@
                         </div>
                         {%- endif -%}
                     </div>
+                {%- endunless -%}
                 {%- endif -%}
             {%- endfor -%}
             </div>
