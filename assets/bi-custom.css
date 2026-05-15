@@ -1442,22 +1442,6 @@ input[type="checkbox"][required] {
 .field-error-msg[hidden] { display: none; }
 
 
-/* Match product page badge on collection cards */
-.card__badge.halo-productBadges .badge.new-badge {
-  background-image: url(/cdn/shop/files/new-drop-badge.svg?v=1746707085);
-  background-repeat: no-repeat;
-  background-size: 67px 71px;
-  height: 76px;
-  width: 84px;
-  font-family: Gilroy Extra Bold;
-  position: absolute;
-  right: -12px;
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
-  padding: 0 !important;
-}
-
 /* Force "NEW DROP" to wrap on 2 lines and center properly */
 .halo-productBadges .badge.new-badge p {
   margin: 0;
