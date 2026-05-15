@@ -55,8 +55,30 @@
                     </div>
                 </div>
             {%- endif -%}
+            {%- liquid
+                assign ordered_ids = ''
+                for meta_slide in sorted_meta_slides
+                    for block in section.blocks
+                        if block.type == 'image' or block.type == 'video'
+                            if block.settings.use_metaobject_slide and block.settings.slide_id == meta_slide.slide_id
+                                assign ordered_ids = ordered_ids | append: block.id | append: ','
+                                break
+                            endif
+                        endif
+                    endfor
+                endfor
+                for block in section.blocks
+                    if block.type == 'image' or block.type == 'video'
+                        if block.settings.use_metaobject_slide == false
+                            assign ordered_ids = ordered_ids | append: block.id | append: ','
+                        endif
+                    endif
+                endfor
+                assign ordered_ids_arr = ordered_ids | split: ',' | compact
+            -%}
             <div class="slideshow{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--fade-in{% endif %}{% if show_dot_with_image %} show-dot-with-image{% endif %}" data-auto-video="{{ section.settings.auto_playvideo }}" {% if section.blocks.size > 1 %}data-init-slideshow data-arrows="{{arrow}}" data-dots="{{dots}}" data-autoplay="{{ autoplay }}" data-autoplay-speed="{{ autoplaySpeed }}" data-fade="{{ fade }}" {% endif %} data-dot-with-image="{% if show_dot_with_image %}true{% else %}false{% endif %}">
-            {%- for block in section.blocks -%}
+            {%- for target_id in ordered_ids_arr -%}
+            {%- for block in section.blocks -%}{%- if block.id == target_id -%}
                 {%- if block.type == 'image' or block.type == 'video' -%}
                     {%- liquid
                         assign use_metaobject = false
@@ -596,6 +618,7 @@
                     </div>
                 {%- endif -%}
                 {%- endif -%}
+            {%- break -%}{%- endif -%}{%- endfor -%}
             {%- endfor -%}
             </div>
             {%- if section.settings.enable_banner -%}
