@@ -724,11 +724,12 @@
                                 assign product_limit = 0
                                 assign column = section.settings.product_block_per_row
                                 assign column_num = column | plus: 0
+                                assign partial_row = products_to_display | modulo: column_num
                                 if infinite_scroll
                                     assign product_limit = limit
                                 endif
                             -%}
-                            <div class="products-grid column-{{ column }}{% if products_to_display < column_num %} products-grid--centered{% endif %}{% if swipe %} slider slider--tablet grid grid--peek{% endif %}" data-products-to-show="{{ limit }}">
+                            <div class="products-grid column-{{ column }}{% if partial_row != 0 %} products-grid--centered{% endif %}{% if swipe %} slider slider--tablet grid grid--peek{% endif %}" data-products-to-show="{{ limit }}">
                         {%- elsif layout == 'slider' -%}
                             {%- liquid
                                 assign column = section.settings.product_block_show
