@@ -551,23 +551,6 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
     unicode-bidi: embed;
 }
 
-
-/* Phone field RTL */
-.phone-select-wrap {
-    border-right: none;
-    border-left: 1px solid var(--form-input-border);
-}
-.phone-field-wrap .form-input {
-    border-radius: var(--btn-1-border-radius) 0 0 var(--btn-1-border-radius) !important;
-}
-.phone-country-list {
-    left: auto;
-    right: 0;
-}
-.phone-item-name {
-    text-align: right;
-}
-
 /* ── Address form RTL ── */
 .addresses-page .form-input,
 .addresses-page .select__select {
