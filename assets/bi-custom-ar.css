@@ -581,10 +581,18 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
 }
 
 /* Riyal symbol – keep on the left like English */
-.riyal-font {
-    direction: ltr !important;
-}
 .price-item {
     direction: ltr !important;
     unicode-bidi: embed !important;
+}
+
+.riyal-font {
+    direction: ltr !important;
+}
+/* Use physical right property so symbol position is direction-independent */
+.riyal-font::after,
+.field__currency.format-currency::after {
+    inset-inline-end: unset !important;
+    right: 6px !important;
+    left: auto !important;
 }
