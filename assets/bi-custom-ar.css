@@ -581,11 +581,13 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
 }
 
 /* Price – keep currency symbol on the left like English */
-.price-item,
+.price dl,
+.price dl div,
 .price dd,
-.card-price .price,
+.price-item,
 .previewCartTotals-value,
+.cart-item__price .price,
 .cart-item-price .price {
-    direction: ltr;
-    unicode-bidi: embed;
+    direction: ltr !important;
+    unicode-bidi: embed !important;
 }
