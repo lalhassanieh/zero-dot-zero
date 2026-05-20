@@ -415,6 +415,22 @@
   </div>
 </div>
 
+<script>
+  (function () {
+    var localeMatch = window.location.pathname.match(/^\/([\w-]+)\//);
+    var locale = localeMatch ? localeMatch[1] : null;
+    if (locale && locale !== 'account') {
+      var recoverForm = document.querySelector('#recover form');
+      if (recoverForm) {
+        var action = recoverForm.getAttribute('action');
+        if (action && action.indexOf('/' + locale + '/') === -1) {
+          recoverForm.setAttribute('action', '/' + locale + action);
+        }
+      }
+    }
+  })();
+</script>
+
 <style>
   @media (min-width: 1025px) {
     {%- if container == 'fullwidth' -%}
