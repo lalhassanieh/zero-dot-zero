@@ -511,11 +511,11 @@
             margin-top: 40px;
         }
     }
+    .section-block-{{section.id}} .products-grid.products-grid--centered {text-align: center !important;margin-left: 0 !important;margin-right: 0 !important}
+    .section-block-{{section.id}} .products-grid.products-grid--centered .product {text-align: left;display: inline-block}
     @media (min-width: 551px){
         .section-block-{{section.id}} .products-grid {margin-left: calc(var(--grid-gap) * (-1));margin-right: calc(var(--grid-gap) * (-1)); z-index: 1}
         .section-block-{{section.id}} .products-grid .product {padding-right: var(--grid-gap);padding-left: var(--grid-gap);margin: 0 0 calc(var(--grid-gap) * 2) !important}
-        .section-block-{{section.id}} .products-grid.products-grid--centered {text-align: center;margin-left: 0;margin-right: 0}
-        .section-block-{{section.id}} .products-grid.products-grid--centered .product {text-align: left}
     }
     @media (min-width: 1025px) {
         .section-block-{{section.id}} .products-carousel .product {padding-right: var(--grid-gap);padding-left: var(--grid-gap)}
@@ -723,11 +723,12 @@
                             {%- liquid
                                 assign product_limit = 0
                                 assign column = section.settings.product_block_per_row
+                                assign column_num = column | plus: 0
                                 if infinite_scroll
                                     assign product_limit = limit
                                 endif
                             -%}
-                            <div class="products-grid column-{{ column }}{% if products_to_display < column %} products-grid--centered{% endif %}{% if swipe %} slider slider--tablet grid grid--peek{% endif %}" data-products-to-show="{{ limit }}">
+                            <div class="products-grid column-{{ column }}{% if products_to_display < column_num %} products-grid--centered{% endif %}{% if swipe %} slider slider--tablet grid grid--peek{% endif %}" data-products-to-show="{{ limit }}">
                         {%- elsif layout == 'slider' -%}
                             {%- liquid
                                 assign column = section.settings.product_block_show
