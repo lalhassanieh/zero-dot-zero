@@ -556,6 +556,11 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
     direction: ltr;
 }
 
+.phone-number-input {
+    text-align: left !important;
+    direction: ltr !important;
+}
+
 /* ── Address form RTL ── */
 .addresses-page .form-input,
 .addresses-page .select__select {
