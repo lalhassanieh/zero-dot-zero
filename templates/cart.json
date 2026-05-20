@@ -33,7 +33,7 @@
         "cart_countdown_product": "",
         "show_trust_image": true,
         "continue_button_action": "1",
-        "custom_button_link": "shopify://collections/collection-home-1-1",
+        "custom_button_link": "shopify://collections",
         "mg_top_desktop": 0,
         "mg_top_tablet": 0,
         "mg_top_mobile": 0,
