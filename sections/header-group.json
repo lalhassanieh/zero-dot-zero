@@ -46,7 +46,7 @@
         "group_2_Aw4RU8"
       ],
       "custom_css": [
-        ".header-minimal .announcement-text .riyal-font {display: inline-flex; align-items: center; position: relative; /* margin-inline: 4px;*/}",
+        ".header-minimal .announcement-text .riyal-font {display: inline-flex; align-items: center; position: relative; margin-left: 4px;}",
         ".header-minimal .announcement-text .riyal-font::after {position: static; transform: none; line-height: 1;}"
       ],
       "name": "Header - Minimal",
