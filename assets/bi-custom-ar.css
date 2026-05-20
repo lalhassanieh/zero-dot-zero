@@ -579,3 +579,10 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
     padding-right: 1.5rem;
     padding-left: 3.6rem;
 }
+
+
+/* Login page – RTL padding override */
+.login-page .login-rowLeft {
+    padding-right: 0 !important;
+    padding-left: 60px !important;
+}
