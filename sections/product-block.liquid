@@ -514,7 +514,6 @@
     @media (min-width: 551px){
         .section-block-{{section.id}} .products-grid {margin-left: calc(var(--grid-gap) * (-1));margin-right: calc(var(--grid-gap) * (-1)); z-index: 1}
         .section-block-{{section.id}} .products-grid .product {padding-right: var(--grid-gap);padding-left: var(--grid-gap);margin: 0 0 calc(var(--grid-gap) * 2) !important}
-        .section-block-{{section.id}} .products-grid.products-grid--centered {text-align: center}
     }
     @media (min-width: 1025px) {
         .section-block-{{section.id}} .products-carousel .product {padding-right: var(--grid-gap);padding-left: var(--grid-gap)}
@@ -726,7 +725,7 @@
                                     assign product_limit = limit
                                 endif
                             -%}
-                            <div class="products-grid column-{{ column }}{% if products_to_display < column %} products-grid--centered{% endif %}{% if swipe %} slider slider--tablet grid grid--peek{% endif %}" data-products-to-show="{{ limit }}">
+                            <div class="products-grid column-{{ column }}{% if swipe %} slider slider--tablet grid grid--peek{% endif %}" data-products-to-show="{{ limit }}">
                         {%- elsif layout == 'slider' -%}
                             {%- liquid
                                 assign column = section.settings.product_block_show
