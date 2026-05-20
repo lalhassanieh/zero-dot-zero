@@ -588,3 +588,8 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
     direction: ltr !important;
     unicode-bidi: embed !important;
 }
+
+
+.footer-block__list-payment ul li {
+    margin-right: 0px !important;
+}
