@@ -62,13 +62,13 @@ h5,
 .riyal-font::after,
 .field__currency.format-currency:after {
     position: absolute;
-    top: 50%;
+    top: 55%;
     content: "\0041";
     inset-inline-end: 6px;
     font-family: 'MHE-Riyal-Sign' !important;
     font-weight: 700;
     transform: translateY(-50%);
-    font-size: 18px;
+    font-size: 20px;
 }
 
 .field__currency.format-currency:after {
