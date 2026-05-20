@@ -1490,6 +1490,7 @@
       "name": "t:sections.brand.presets.name",
       "settings": {
         "use_metaobject_brands": true,
+        "section_id": "brand-slider-1",
         "container": "1770",
         "padding_full_width": 0,
         "brands_block_style": "style_1",
