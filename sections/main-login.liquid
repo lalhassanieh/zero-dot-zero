@@ -415,6 +415,45 @@
   </div>
 </div>
 
+<script>
+  (function () {
+    function initLoginToggle() {
+      var recoverEl = document.getElementById('recover');
+      var loginEl   = document.getElementById('login');
+      if (!recoverEl || !loginEl) return;
+
+      document.querySelectorAll('a.forget-password').forEach(function (link) {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          recoverEl.style.display = 'block';
+          loginEl.style.display   = 'none';
+          window.location.hash    = 'recover';
+        });
+      });
+
+      document.querySelectorAll('a.cancel').forEach(function (link) {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          recoverEl.style.display = 'none';
+          loginEl.style.display   = 'block';
+          history.pushState('', document.title, window.location.pathname + window.location.search);
+        });
+      });
+
+      if (window.location.hash === '#recover') {
+        recoverEl.style.display = 'block';
+        loginEl.style.display   = 'none';
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initLoginToggle);
+    } else {
+      initLoginToggle();
+    }
+  })();
+</script>
+
 <style>
   @media (min-width: 1025px) {
     {%- if container == 'fullwidth' -%}
