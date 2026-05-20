@@ -591,5 +591,5 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
 
 
 .footer-block__list-payment ul li {
-    margin-right: 0px !important;
+    margin-right: 5px !important;
 }
