@@ -68,7 +68,7 @@ h5,
     font-family: 'MHE-Riyal-Sign' !important;
     font-weight: 700;
     transform: translateY(-50%);
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .field__currency.format-currency:after {
