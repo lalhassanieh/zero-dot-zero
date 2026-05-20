@@ -107,7 +107,7 @@
             "show_payment_master": true,
             "show_payment_maestro": false,
             "show_payment_american_express": false,
-            "show_payment_apple_pay": false,
+            "show_payment_apple_pay": true,
             "show_payment_bitcoin": false,
             "show_payment_dankort": false,
             "show_payment_diners_club": false,
