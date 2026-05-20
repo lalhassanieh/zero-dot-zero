@@ -110,7 +110,7 @@
       "note_placeholder": "تعليمات خاصة للبائع...",
       "secure_text": "ضمان التسوق الآمن",
       "save": "يحفظ",
-      "cancel": "يلغي",
+      "cancel": "إلغاء",
       "gift_cart_add": "يضيف",
       "gift_cart_adding": "جارٍ الإضافة...",
       "add_a_gift_wrap": "أضف غلاف هدية",
@@ -240,8 +240,8 @@
       "on_sale": "أُوكَازيُون",
       "product_variants": "متغيرات المنتج",
       "details": "تفاصيل",
-      "submit": "يُقدِّم",
-      "cancel": "يلغي",
+      "submit": "تأكيد",
+      "cancel": "إلغاء",
       "select_variant": "حدد الخيارات",
       "more_sizes": "المزيد من الأحجام المتاحة",
       "measurements": "القياسات",
@@ -410,7 +410,7 @@
       "form": {
         "name": "اسم",
         "email": "بريد إلكتروني",
-        "phone": "رقم التليفون",
+        "phone": "رقم الجوال",
         "comment": "تعليق",
         "send": "أرسل",
         "post_success": "شكرا لاتصالك بنا. ",
@@ -588,7 +588,7 @@
       "remove_all_single_item_confirmation": "هل تريد إزالة عنصر واحد من سلة التسوق الخاصة بك؟",
       "remove_all_items_confirmation": "إزالة الكل {{ quantity }} العناصر من سلة التسوق الخاصة بك؟",
       "remove_all": "إزالة الكل",
-      "cancel": "يلغي",
+      "cancel": "إلغاء",
       "min_error": "هذا البند لديه الحد الأدنى من {{ min }}",
       "max_error": "هذا البند لديه الحد الأقصى {{ max }}",
       "step_error": "يمكنك فقط إضافة هذا العنصر بزيادات {{ step }}"
@@ -607,13 +607,13 @@
   "customer": {
     "account": {
       "welcome": "أهلاً، {{ name }}",
-      "title": "حساب",
+      "title": " الحساب الشخصي",
       "my_account": "حسابي",
       "details": "تفاصيل الحساب",
       "view_addresses": "عرض العناوين",
       "return": "العودة إلى تفاصيل الحساب"
     },
-    "account_fallback": "حساب",
+    "account_fallback": " الحساب الشخصي",
     "activate_account": {
       "title": "تفعيل الحساب",
       "subtext": "قم بإنشاء كلمة المرور الخاصة بك لتفعيل حسابك.",
@@ -637,17 +637,17 @@
       "country": "البلد/المنطقة",
       "province": "مقاطعة",
       "zip": "الرمز البريدي/الرمز البريدي",
-      "phone": "هاتف",
+      "phone": "رقم الجوال",
       "set_default": "تعيين كعنوان افتراضي",
       "add": "أضف عنوانًا",
       "update": "تحديث العنوان",
-      "cancel": "يلغي",
+      "cancel": "إلغاء",
       "edit": "يحرر",
       "delete": "يزيل",
       "delete_confirm": "هل أنت متأكد من رغبتك في حذف هذا العنوان؟",
       "none": "قم بتعيين عنواني منزلك وعملك، إذا لم تقم بذلك بالفعل."
     },
-    "forgot_password": "نسيت كلمة السر؟",
+    "forgot_password": "نسيت كلمة المرور؟",
     "log_in": "تسجيل الدخول",
     "sign_in": "تسجيل الدخول",
     "or": "أو",
@@ -656,7 +656,7 @@
     "hello": "مرحبًا",
     "my_account": "حسابي",
     "login_page": {
-      "cancel": "يلغي",
+      "cancel": "إلغاء",
       "create_account": "إنشاء حساب",
       "email": "عنوان البريد الإلكتروني",
       "forgot_password": "فقدت كلمة المرور الخاصة بك؟",
@@ -665,8 +665,8 @@
       "password": "كلمة المرور",
       "title": "تسجيل الدخول",
       "sign_in": "تسجيل الدخول",
-      "submit": "يُقدِّم",
-      "register": "يسجل",
+      "submit": "تأكيد",
+      "register": "إنشاء حساب جديد",
       "text": "الرجاء إدخال البريد الإلكتروني وكلمة المرور أدناه للوصول إلى حسابك"
     },
     "order": {
@@ -726,7 +726,7 @@
       "age_verified": "أؤكد أن عمري 18 سنة أو أكثر",
       "birth_date": "تاريخ الميلاد",
       "age_error": "يجب أن يكون عمرك 18 سنة أو أكثر للتسجيل.",
-      "phone_error": "يرجى إدخال رقم هاتف صحيح للدولة المختارة",
+      "phone_error": "يرجى إدخال رقم جوال صحيح للدولة المختارة",
       "confirm_password_error": "كلمات المرور غير متطابقة"
     },
     "reset_password": {
@@ -835,7 +835,7 @@
       "text": "اسأل خبيرًا",
       "name": "اسمك",
       "mail": "البريد الخاص بك",
-      "phone": "هاتفك",
+      "phone": "رقم الجوال",
       "message": "ما الذي يمكنني مساعدتك به اليوم؟",
       "submit": "أرسل السؤال",
       "success": "شكرًا لك. ",
@@ -998,7 +998,7 @@
             "personal_order_not_allowed": "لا يُسمح بالطلبات الشخصية في هذا المتجر.",
             "lost_access_to_company": "فقد العميل إمكانية الوصول إلى أي شركة.",
             "contact_info_does_not_match_customer_account": "يجب أن تتطابق معلومات الاتصال مع الحساب الذي قمت بتسجيل الدخول إليه.",
-            "phone_number_does_not_match_expected_pattern": "رقم الهاتف المحدد لا يتطابق مع النمط المتوقع.",
+            "phone_number_does_not_match_expected_pattern": "رقم الجوال المحدد لا يتطابق مع النمط المتوقع.",
             "email_required": "يلزم تقديم بريد إلكتروني عند شراء البضائع باستخدام الاشتراك.",
             "email_domain_is_invalid": "لا يمكن حل هذا النطاق المحدد.",
             "missing_contact_method": "طريقة اتصال صالحة مفقودة.",
@@ -1313,20 +1313,20 @@
         },
         "saved_credit_cards_modal": {
           "done": "منتهي",
-          "cancel": "يلغي"
+          "cancel": "إلغاء"
         },
         "add_credit_card_modal": {
           "save": "يحفظ",
-          "cancel": "يلغي"
+          "cancel": "إلغاء"
         },
         "delete_credit_card_modal": {
-          "cancel": "يلغي",
+          "cancel": "إلغاء",
           "delete": "يمسح",
           "confirmation": "هل أنت متأكد من رغبتك في حذف {{brandName}} الذي ينتهي بـ {{lastDigits}} ؟"
         },
         "edit_credit_card_modal": {
           "done": "منتهي",
-          "cancel": "يلغي",
+          "cancel": "إلغاء",
           "fields": {
             "default": "تعيين كافتراضي",
             "expiry": "تاريخ انتهاء الصلاحية"
@@ -1417,7 +1417,7 @@
         "no_taxes_banner_content": "لن تُفرض ضرائب على هذا الطلب. بمجرد استلامك للدفع، لا يمكن إضافة الضرائب.",
         "no_working_method_error": "لا يقبل هذا المتجر الدفع حاليًا. يُرجى تحديث هذه الصفحة أو العودة لاحقًا.",
         "shipping_rate_updated": "تم تحديث طرق الشحن المتاحة. يرجى التأكد من اختيارك قبل إتمام عملية الشراء.",
-        "billing_address_invalid_phone": "قم بتحديث رقم الهاتف في عنوان الفواتير الخاص بك لـ {{label}} {{last_digits}} للمتابعة.",
+        "billing_address_invalid_phone": "قم بتحديث رقم الجوال في عنوان الفواتير الخاص بك لـ {{label}} {{last_digits}} للمتابعة.",
         "simulated_express_checkout": "المحافظ غير متاحة في معاينة المحرر بسبب منطقتك أو متصفحك",
         "expired_cards_info": {
           "one": "يوجد عدد %{count} من البطاقات المنتهية الصلاحية، والتي يمكنك عرضها وتعديلها في حسابك.",
@@ -1481,7 +1481,7 @@
         "cancelled_description": "تم إلغاء طلبك بتاريخ %{date}. تواصل معنا إذا كانت لديك أي أسئلة.",
         "order_number_label": "رقم الطلب",
         "customer_validation_error": "أدخل بريدًا إلكترونيًا أو رقم طلب صحيحًا.",
-        "customer_validation_error_phone": "أدخل رقم هاتف أو رقم طلب صحيح.",
+        "customer_validation_error_phone": "أدخل رقم جوال أو رقم طلب صحيح.",
         "login": "تسجيل الدخول",
         "unfulfilled_items_title": "الاستعداد للشحن",
         "unfulfilled_items_description": "نقوم حاليًا بتجهيز هذه المنتجات للشحن.",
@@ -1510,15 +1510,15 @@
         "delivery_information_label": "معلومات التوصيل:",
         "gift_card_sent_confirmation": "تم إرسال بطاقات الهدايا",
         "qr_code": {
-          "send_link_to_phone": "أو أرسل رابطًا إلى هاتفك",
-          "title": "تتبع الموقع على هاتفك"
+          "send_link_to_phone": "أو أرسل رابطًا إلى رقم الجوال",
+          "title": "تتبع الموقع على رقم الجوال"
         },
         "shop_qr_with_sms_upsell": {
           "qr_code": {
-            "title": "امسح ضوئيًا باستخدام هاتفك"
+            "title": "امسح ضوئيًا باستخدام رقم الجوال"
           },
           "sms": {
-            "title": "أو أرسل رابطًا إلى هاتفك"
+            "title": "أو أرسل رابطًا إلى رقم الجوال"
           }
         },
         "view_business_customer_account": "عرض الحساب",
@@ -1829,7 +1829,7 @@
         "address_form": {
           "add_address": "إضافة عنوان",
           "save": "يحفظ",
-          "cancel": "يلغي",
+          "cancel": "إلغاء",
           "edit": "تعديل العنوان",
           "update": "حفظ التغييرات",
           "generic_error": "حدثت مشكلة أثناء حفظ عنوانك. يرجى المحاولة مرة أخرى.",
@@ -1905,9 +1905,9 @@
         "estimated_time_range": "الوقت المقدر %{min_time}–%{max_time}",
         "default_description": "يتم الشحن خلال يوم عمل واحد",
         "unbranded_default_description": "جاهز للشحن",
-        "shipping_line_phone_label": "رقم الهاتف المحمول (مطلوب)",
+        "shipping_line_phone_label": "رقم الجوال (مطلوب)",
         "shipping_line_phone": "قد يستخدم مندوب التوصيل هذا الرقم للاتصال بك.",
-        "shipping_line_delivery_phone_label": "رقم الهاتف المحمول",
+        "shipping_line_delivery_phone_label": "رقم الجوال",
         "shipping_line_delivery_phone": "قد يتم التواصل معك لإطلاعك على آخر المستجدات المتعلقة بتسليم طلبك.",
         "optional_shipping_line_delivery_instructions_label": "تعليمات التوصيل (اختياري)",
         "shipping_line_delivery_instructions": "أدخل المعلومات الضرورية مثل رموز الأبواب أو تعليمات التسليم.",
@@ -2207,10 +2207,10 @@
           "disclaimer": {
             "privacy_policy": "سياسة الخصوصية",
             "terms_of_service": "شروط الخدمة",
-            "description_html": "بالتسجيل عبر الرسائل النصية، فإنك توافق على تلقي رسائل تسويقية آلية دورية، بما في ذلك تذكيرات سلة التسوق، على رقم الهاتف المُقدّم. الموافقة ليست شرطًا للشراء. أرسل \"إيقاف\" لإلغاء الاشتراك. أرسل \"مساعدة\" للمساعدة. يختلف عدد الرسائل. قد تُطبق رسوم الرسائل والبيانات. اطلع على سياسة الخصوصية وشروط الخدمة.",
+            "description_html": "بالتسجيل عبر الرسائل النصية، فإنك توافق على تلقي رسائل تسويقية آلية دورية، بما في ذلك تذكيرات سلة التسوق، على رقم الجوال المُقدّم. الموافقة ليست شرطًا للشراء. أرسل \"إيقاف\" لإلغاء الاشتراك. أرسل \"مساعدة\" للمساعدة. يختلف عدد الرسائل. قد تُطبق رسوم الرسائل والبيانات. اطلع على سياسة الخصوصية وشروط الخدمة.",
             "description_transactional_html": "قد تتلقى رسائل نصية لتأكيد طلبك وتحديثات الشحن. أرسل \"إيقاف\" لإلغاء الاشتراك. أرسل \"مساعدة\" للمساعدة. يختلف عدد الرسائل. قد تُطبق رسوم الرسائل والبيانات. اطلع على سياسة الخصوصية وشروط الخدمة."
           },
-          "mobile_phone_number": "رقم الهاتف المحمول",
+          "mobile_phone_number": "رقم الجوال",
           "get_offers_by_text": "احصل على العروض عبر الرسائل النصية"
         },
         "unsubscribe": {
@@ -2516,8 +2516,8 @@
             "billing_zone": "أدخل عنوان فوترة صالحًا (الولاية/المقاطعة)",
             "emirate": "أدخل إمارة صالحة",
             "postal_code": "أدخل رمزًا بريديًا صحيحًا",
-            "phone": "أدخل رقم هاتف صحيح",
-            "billing_phone": "أدخل عنوان فوترة صحيحًا ورقم هاتف",
+            "phone": "أدخل رقم جوال صحيح",
+            "billing_phone": "أدخل عنوان فوترة صحيحًا ورقم جوال",
             "reduction_code": "أدخل رمز خصم صالح أو بطاقة هدية",
             "billing_must_match_shipping": "يجب أن يتطابق عنوان الشحن",
             "billing_zip": "أدخل عنوان فوترة صحيحًا / الرمز البريدي"
@@ -2537,7 +2537,7 @@
             "country": "اختر بلدًا/منطقة",
             "zip": "أدخل الرمز البريدي",
             "billing_zip": "أدخل الرمز البريدي لعنوان الفاتورة",
-            "phone": "أدخل رقم الهاتف",
+            "phone": "أدخل رقم الجوال",
             "contact_info": "أدخل معلومات الاتصال"
           },
           "formatting": {
@@ -2552,7 +2552,7 @@
         "scrim": {
           "continue_purchase_in_window": "أكمل عملية الشراء في نافذة {{walletName}}",
           "and_return_to_checkout": "ثم العودة إلى صفحة الدفع",
-          "cancel": "يلغي"
+          "cancel": "إلغاء"
         },
         "return_to_store": "العودة إلى المتجر",
         "return_to_checkout": "العودة إلى صفحة الدفع",
@@ -2716,7 +2716,7 @@
           "close": "يغلق",
           "expand": "عرض المزيد",
           "processing": "يعالج…",
-          "submit": "يُقدِّم"
+          "submit": "تأكيد"
         }
       },
       "billing": {
@@ -2733,7 +2733,7 @@
         "address_form": {
           "add_address": "إضافة عنوان",
           "save": "يحفظ",
-          "cancel": "يلغي"
+          "cancel": "إلغاء"
         }
       },
       "company_location": {
@@ -2749,11 +2749,11 @@
         "free_label": "مجاني"
       },
       "field_errors": {
-        "handle_phone_invalid": "أدخل رقم هاتف صحيح",
+        "handle_phone_invalid": "أدخل رقم جوال صحيح",
         "handle_email_invalid": "أدخل بريدًا إلكترونيًا صحيحًا",
         "email_invalid": "أدخل بريدًا إلكترونيًا صحيحًا",
-        "email_or_phone_blank": "أدخل بريدًا إلكترونيًا أو رقم هاتف",
-        "email_or_phone_invalid": "أدخل بريدًا إلكترونيًا أو رقم هاتف جوال صحيحًا",
+        "email_or_phone_blank": "أدخل بريدًا إلكترونيًا أو رقم جوال",
+        "email_or_phone_invalid": "أدخل بريدًا إلكترونيًا أو رقم جوال صحيحًا",
         "address_first_name_blank": "أدخل الاسم الأول",
         "address_first_name_too_long": "الاسم الأول طويل جدًا (الحد الأقصى 255 حرفًا)",
         "address_first_name_contains_emojis": "لا يمكن أن يحتوي الاسم الأول على رموز تعبيرية",
@@ -2790,7 +2790,7 @@
         "address_generic_blank": "حقل مطلوب",
         "email_blank": "أدخل بريدًا إلكترونيًا",
         "address_company_contains_html_tags": "لا يمكن أن تحتوي الشركة على وسوم HTML.",
-        "address_phone_contains_emojis": "لا يمكن أن يحتوي رقم الهاتف على رموز تعبيرية",
+        "address_phone_contains_emojis": "لا يمكن أن يحتوي رقم الجوال على رموز تعبيرية",
         "credit_card_month_invalid": "أدخل شهر انتهاء الصلاحية الصحيح",
         "credit_card_start_month_invalid": "أدخل شهر بدء صلاحية البطاقة",
         "credit_card_start_year_invalid": "أدخل سنة بدء صلاحية البطاقة",
@@ -2807,17 +2807,17 @@
         "purchase_options_agreement_blank": "لإتمام عملية الشراء، يرجى الموافقة على شروط الشراء المؤجل أو المتكرر.",
         "physical_gift_card_invalid_quantity": "يجب أن تتطابق كمية بنود بطاقات الهدايا المادية مع عدد رموز بطاقات الهدايا.",
         "vaulting_agreement_blank": "يجب حفظ طريقة الدفع الخاصة بك لأن دفع المبلغ المتبقي من هذا الطلب مستحق لاحقًا.",
-        "shipping_method_invalid_phone_number": "قم بتحديث رقم الهاتف في عنوان التسليم الخاص بك للاطلاع على طرق الشحن المتاحة.",
+        "shipping_method_invalid_phone_number": "قم بتحديث رقم الجوال في عنوان التسليم الخاص بك للاطلاع على طرق الشحن المتاحة.",
         "invalid_delivery_address_reference_handle": "لم يتم العثور على أي عنوان توصيل متاح.",
         "must_use_available_delivery_address": "يجب اختيار عنوان التوصيل من بين عناوين التوصيل المتاحة.",
         "address_zip_invalid_for_country": "يرجى إدخال رمز بريدي صالح لـ %{country}",
         "address_zip_invalid_for_province": "يرجى إدخال رمز بريدي صالح لـ %{province}",
         "address_zip_invalid_for_country_and_province": "يرجى إدخال رمز بريدي صالح لـ %{province}، %{country}",
         "reduction_code_discount_not_found": "يرجى إدخال رمز خصم صالح.",
-        "shipping_line_phone_invalid": "يرجى إدخال رقم هاتف صالح.",
-        "phone_blank": "يرجى إدخال رقم هاتف.",
-        "address_phone_blank": "يرجى إدخال رقم هاتف صالح.",
-        "address_phone_invalid": "يرجى إدخال رقم هاتف صالح."
+        "shipping_line_phone_invalid": "يرجى إدخال رقم جوال صالح.",
+        "phone_blank": "يرجى إدخال رقم جوال.",
+        "address_phone_blank": "يرجى إدخال رقم جوال صالح.",
+        "address_phone_invalid": "يرجى إدخال رقم جوال صالح."
       },
       "error_page": {
         "terminal": {
@@ -2904,7 +2904,7 @@
         },
         "toggle_location": "تغيير الموقع",
         "or": "أو",
-        "cancel": "يلغي",
+        "cancel": "إلغاء",
         "your_location": "موقعك",
         "search_button": "ابحث عن المتاجر",
         "no_stores_found": "لم يتم العثور على متاجر",
@@ -2972,8 +2972,8 @@
         "email_label": "بريد إلكتروني",
         "email_rollup_accessibility_label": "خيارات البريد الإلكتروني",
         "email_placeholder": "بريد إلكتروني",
-        "email_or_phone_label": "البريد الإلكتروني أو رقم الهاتف المحمول",
-        "email_or_phone_placeholder": "البريد الإلكتروني أو رقم الهاتف المحمول",
+        "email_or_phone_label": "البريد الإلكتروني أو رقم الجوال",
+        "email_or_phone_placeholder": "البريد الإلكتروني أو رقم الجوال",
         "stored_addresses_label": "العناوين المحفوظة",
         "available_addresses_label": "العناوين المتاحة",
         "new_address_label": "استخدم عنوانًا جديدًا",
@@ -3003,11 +3003,11 @@
         "prefecture_label": "المحافظة",
         "emirate_label": "إمارة",
         "emirate_placeholder": "إمارة",
-        "phone_label": "هاتف",
-        "phone_placeholder": "هاتف",
+        "phone_label": "رقم الجوال",
+        "phone_placeholder": "رقم الجوال",
         "state_and_territory_label": "الولاية/الإقليم",
         "state_and_territory_placeholder": "الولاية/الإقليم",
-        "optional_phone_label": "الهاتف (اختياري)",
+        "optional_phone_label": "رقم الجوال (اختياري)",
         "change_location_link_label": "تغيير الموقع",
         "civic_number_warning": "أضف رقم المنزل إن وجد",
         "different_shipping_address_text": "استخدم عنوانًا لمرة واحدة لهذا الطلب",
@@ -3629,7 +3629,7 @@
       "purchase_order_number": {
         "add_accessibility_label": "أضف رقم أمر الشراء",
         "add_modal_title": "أضف رقم أمر الشراء",
-        "cancel": "يلغي",
+        "cancel": "إلغاء",
         "close_modal_accessibility_label": "إغلاق نافذة رقم أمر الشراء",
         "discard": "ينبذ",
         "discard_changes_modal_title": "هل تريد تجاهل التغييرات؟",
@@ -3650,7 +3650,7 @@
         "contact_list_title": "الناس",
         "contact_name": "اسم",
         "contact_permissions": "الأذونات",
-        "contact_phone_number": "رقم التليفون",
+        "contact_phone_number": "رقم الجوال",
         "location_picker_label": "اسم الموقع",
         "location_picker_accessibility_label": "اسم الموقع: {{locationName}}",
         "net_payment_terms_description": "{{name}} : المدفوعات المستحقة خلال {{numberOfDays}} يومًا",
@@ -3774,8 +3774,8 @@
       "refunded_amount": "تم استرداد المبلغ",
       "request_return_failed": "حدثت مشكلة أثناء معالجة طلبك. يرجى المحاولة مرة أخرى.",
       "login_card": {
-        "resend_link_and_login": "لعرض تفاصيل طلبك، قم بتسجيل الدخول أو أرسل رابطًا جديدًا إلى البريد الإلكتروني أو رقم الهاتف المستخدم عند إتمام عملية الشراء.",
-        "resend_link_only": "للاطلاع على تفاصيل طلبك، أرسل رابطًا جديدًا إلى البريد الإلكتروني أو رقم الهاتف المستخدم عند إتمام عملية الشراء.",
+        "resend_link_and_login": "لعرض تفاصيل طلبك، قم بتسجيل الدخول أو أرسل رابطًا جديدًا إلى البريد الإلكتروني أو رقم الجوال المستخدم عند إتمام عملية الشراء.",
+        "resend_link_only": "للاطلاع على تفاصيل طلبك، أرسل رابطًا جديدًا إلى البريد الإلكتروني أو رقم الجوال المستخدم عند إتمام عملية الشراء.",
         "log_in": "تسجيل الدخول",
         "resend_link": "أرسل رابطًا جديدًا",
         "link_expired": "انتهت صلاحية الرابط"
@@ -3822,7 +3822,7 @@
       "shop_order_tracking": {
         "download_shop_to_track": "قم بتنزيل تطبيق المتجر لتتبع الشحنة",
         "track_order_with_shop": "تتبع طلبك مع المتجر",
-        "title_header": "امسح ضوئيًا باستخدام هاتفك",
+        "title_header": "امسح ضوئيًا باستخدام رقم الجوال",
         "real_time_delivery_updates": "سيرسل لك المتجر تحديثات فورية عن عملية التسليم بمجرد شحن طلبك."
       },
       "edit_summary": {
@@ -3991,7 +3991,7 @@
       "contact_email_subject": "الاتصال من متجر {{shopName}} عبر الإنترنت",
       "contact_link": "معلومات الاتصال",
       "delete_confirmation": {
-        "cancel": "يلغي",
+        "cancel": "إلغاء",
         "delete": "يمسح"
       },
       "dismiss_toast": "رفض",
@@ -4029,7 +4029,7 @@
       "loading_accessibility_message": "جارٍ تحميل معلومات الحساب",
       "loading_finished_accessibility_message": "تم تحميل معلومات الحساب",
       "profile_card": {
-        "cancel": "يلغي",
+        "cancel": "إلغاء",
         "cancel_accessibility_label": "إلغاء تعديل الملف الشخصي",
         "edit": "يحرر",
         "edit_accessibility_label": "تعديل الملف الشخصي",
@@ -4039,7 +4039,7 @@
         "last_name": "اسم العائلة",
         "email": "بريد إلكتروني",
         "no_name_provided_accessibility_label": "لم يتم إضافة أي اسم",
-        "phone_number_help_text": "لا يمكن تعديل رقم الهاتف",
+        "phone_number_help_text": "لا يمكن تعديل رقم الجوال",
         "save": "يحفظ",
         "save_accessibility_label": "حفظ الملف الشخصي",
         "errors": {
@@ -4323,7 +4323,7 @@
       "closeNotification": "يغلق",
       "expandNotification": "عرض المزيد",
       "closeModal": "يغلق",
-      "submit": "يُقدِّم",
+      "submit": "تأكيد",
       "processing": "يعالج…",
       "increase": "زيادة {{type}}",
       "decrease": "انخفاض {{type}}",
@@ -4429,7 +4429,7 @@
         "no_payment_methods_available": "لا تتوفر طرق دفع",
         "select_new_payment_method": "اختر طريقة دفع جديدة",
         "current_method": "حاضِر",
-        "cancel": "يلغي",
+        "cancel": "إلغاء",
         "save": "يحفظ",
         "success": "تم تحديث طريقة الدفع",
         "use_new_payment_method": "+ استخدام طريقة دفع جديدة"
@@ -4466,7 +4466,7 @@
       "auto_complete_close_accessibility_label": "إغلاق الاقتراحات",
       "auto_complete_title": "اقتراحات",
       "billing_address": "استخدم كعنوان للفواتير",
-      "cancel": "يلغي",
+      "cancel": "إلغاء",
       "cancel_accessibility_label": "إلغاء تعديل العنوان {{address}}",
       "creation_success_notification": "تمت إضافة العنوان",
       "default_address": "هذا هو عنواني الافتراضي",
