@@ -1535,7 +1535,7 @@
 	}
 
 	body.layout_rtl .footer-block__list-payment ul li {
-		/*margin-left: 13px;*/
+		margin-left: 13px;
 		margin-right: 0;
 	}
 
