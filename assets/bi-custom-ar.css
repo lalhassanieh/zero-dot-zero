@@ -589,5 +589,6 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
 .cart-item__price .price,
 .cart-item-price .price {
     direction: ltr !important;
-    unicode-bidi: embed !important;
+    unicode-bidi: bidi-override !important;
+    word-spacing: 4px;
 }
