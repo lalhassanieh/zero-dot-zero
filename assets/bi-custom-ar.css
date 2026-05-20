@@ -579,3 +579,13 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
     padding-right: 0 !important;
     padding-left: 60px !important;
 }
+
+/* Price – keep currency symbol on the left like English */
+.price-item,
+.price dd,
+.card-price .price,
+.previewCartTotals-value,
+.cart-item-price .price {
+    direction: ltr;
+    unicode-bidi: embed;
+}
