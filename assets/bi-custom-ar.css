@@ -551,6 +551,11 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
     unicode-bidi: embed;
 }
 
+/* Phone field – force LTR (country code left, number left-to-right) */
+.phone-field-wrap {
+    direction: ltr;
+}
+
 /* ── Address form RTL ── */
 .addresses-page .form-input,
 .addresses-page .select__select {
