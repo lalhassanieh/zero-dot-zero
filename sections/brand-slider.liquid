@@ -14,10 +14,11 @@
   {%- assign all_blocks = page_content_source.blocks.value -%}
 {%- endif -%}
 
-{%- comment -%} Find brand_slider in blocks list {%- endcomment -%}
-{%- if section.settings.use_metaobject_brands and all_blocks != blank -%}
+{%- comment -%} Find brand_slider in blocks list by section_id {%- endcomment -%}
+{%- assign _section_id = section.settings.section_id | strip -%}
+{%- if section.settings.use_metaobject_brands and _section_id.size > 0 and all_blocks != blank -%}
   {%- for block_item in all_blocks -%}
-    {%- if block_item.system.type == 'brand_slider' and block_item.brands != blank -%}
+    {%- if block_item.system.type == 'brand_slider' and block_item.section_id != blank and block_item.section_id == _section_id -%}
       {%- assign metaobject_brands = block_item.brands.value -%}
       {%- assign use_metaobject_brands = true -%}
       {%- break -%}
@@ -673,6 +674,12 @@
         "label": "Use metaobject brands",
         "default": false,
         "info": "Enable to render brands from metaobject (type: brand_slider). Uses 'brands' field containing content_block items."
+    },
+    {
+        "type": "text",
+        "id": "section_id",
+        "label": "Section ID",
+        "info": "Must match the 'section_id' field of the brand_slider metaobject entry (e.g., 'brands-1')."
     },
     {
         "type": "header",
