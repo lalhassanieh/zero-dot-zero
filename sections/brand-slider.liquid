@@ -204,7 +204,7 @@
 
     {%- endif -%}
         .section-block-{{ section.id }} .brands-block .slick-dotted {margin-bottom: 40px}
-    {%- if section.blocks.size > 0 or use_metaobject_brands -%}
+    {%- if use_metaobject_brands or section.blocks.size > 0 -%}
         .section-block-{{section.id}} .halo-item .text {display: block;text-align: center;margin-top: -5px;visibility: visible !important;font-size: {{ section.settings.fontsize_text | append: 'px' }};font-weight: {{ section.settings.font_weight_title }};margin-bottom: {{ section.settings.margin_bottom_title | append: 'px' }};font-style: var(--font-heading-style)}
         .section-block-{{section.id}} .halo-item:hover .text{text-decoration: underline;text-underline-offset: 0.3rem}
         .section-block-{{section.id}} .halo-item .description{display: block;text-align: center;}
@@ -370,7 +370,7 @@
                 .section-block-{{section.id}} .halo-block-header .title-wrap{margin-bottom: {{ mg_bottom_title_mb | append: 'px' }};}
             {%- endif -%}
         {%- endunless-%}
-        {%- if section.blocks.size > 0 or use_metaobject_brands -%}
+        {%- if use_metaobject_brands or section.blocks.size > 0 -%}
         .section-block-{{section.id}} .halo-item .text {font-size: {{ section.settings.fontsize_text_mb | append: 'px' }} !important}
         {%- endif -%}
     }
@@ -418,7 +418,7 @@
     }
 </style>
 
-{%- if section.blocks.size > 0 or use_metaobject_brands -%}
+{%- if use_metaobject_brands or section.blocks.size > 0 -%}
     <div class="brand-slider section-block-{{section.id}}" id="brands-{{section.id}}" {% if section.settings.brand_layout == 'slider' %}data-loader-script="{{ 'halo.slide-brand.js' | asset_url }}"{% endif %}>
         <div class="brands-block {% if section.settings.brand_layout == 'grid' %}brands-grid{% else %}brands-slider{% endif %}{% if section.settings.brands_block_style == 'style_2' %} brand_style_2{% elsif section.settings.brands_block_style == 'style_3' %} brand_style_3{% elsif section.settings.brands_block_style == 'style_4' %} brand_style_4{% endif %}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
             <div class="{% if section.settings.brand_layout == 'infinite' %}container-full{% else %}{% if section.settings.container == 'fullwidth' %}container-full{% elsif section.settings.container == '1170' %}container-1170{% elsif section.settings.container == '1470' %}container-1470{% elsif section.settings.container == '1770' %}container-1770{% else %}container{% endif %}{% endif %}">
