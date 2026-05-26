@@ -655,12 +655,13 @@
   var _ppIsAr  = _ppLang === 'ar';
   var _ppFlags = 'https://flagcdn.com/w20/';
   var _ppList  = [
-    { code: 'BH', dial: '+973', nameEn: 'Bahrain',      nameAr: 'البحرين',  pattern: /^3\d{7}$/,             placeholder: '3X XXX XXX'  },
-    { code: 'KW', dial: '+965', nameEn: 'Kuwait',        nameAr: 'الكويت',   pattern: /^[569]\d{7}$/,         placeholder: '5X XXX XXX'  },
-    { code: 'OM', dial: '+968', nameEn: 'Oman',          nameAr: 'عُمان',    pattern: /^9\d{7}$/,             placeholder: '9X XXX XXX'  },
-    { code: 'QA', dial: '+974', nameEn: 'Qatar',         nameAr: 'قطر',      pattern: /^[3-7]\d{7}$/,         placeholder: '5X XXX XXX'  },
+    // TODO: Re-enable other GCC countries when multi-country support is needed
+    // { code: 'BH', dial: '+973', nameEn: 'Bahrain',      nameAr: 'البحرين',  pattern: /^3\d{7}$/,             placeholder: '3X XXX XXX'  },
+    // { code: 'KW', dial: '+965', nameEn: 'Kuwait',        nameAr: 'الكويت',   pattern: /^[569]\d{7}$/,         placeholder: '5X XXX XXX'  },
+    // { code: 'OM', dial: '+968', nameEn: 'Oman',          nameAr: 'عُمان',    pattern: /^9\d{7}$/,             placeholder: '9X XXX XXX'  },
+    // { code: 'QA', dial: '+974', nameEn: 'Qatar',         nameAr: 'قطر',      pattern: /^[3-7]\d{7}$/,         placeholder: '5X XXX XXX'  },
     { code: 'SA', dial: '+966', nameEn: 'Saudi Arabia',  nameAr: 'السعودية', pattern: /^0?5[03456789]\d{7}$/, placeholder: '5X XXX XXXX' },
-    { code: 'AE', dial: '+971', nameEn: 'UAE',           nameAr: 'الإمارات', pattern: /^5[02-8]\d{7}$/,       placeholder: '5X XXX XXXX' }
+    // { code: 'AE', dial: '+971', nameEn: 'UAE',           nameAr: 'الإمارات', pattern: /^5[02-8]\d{7}$/,       placeholder: '5X XXX XXXX' }
   ];
 
   function _ppFlag(code, alt) {
@@ -695,7 +696,7 @@
     var hidden    = fieldWrap ? fieldWrap.querySelector('input[type="hidden"]') : null;
     var errorSpan = fieldWrap ? fieldWrap.querySelector('.field-error-msg') : null;
     var form      = opts.form || wrap.closest('form');
-    var selected  = _ppList[4]; // SA default
+    var selected  = _ppList[0]; // SA default
     var isOpen    = false;
 
     function syncHidden() {
