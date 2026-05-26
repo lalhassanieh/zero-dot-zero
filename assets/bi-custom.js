@@ -830,6 +830,60 @@
     });
   }
 
+  /* ── ZIP / Postal Code validation (addresses page) ── */
+  function initZipValidation() {
+    if (!document.querySelector('.addresses-page')) return;
+    var ZIP_PATTERN = /^[0-9]{5}$/;
+
+    function initZipInput(input, errorSpan, wrapper) {
+      if (!input || !errorSpan) return;
+
+      function showError(show) {
+        errorSpan.hidden = !show;
+        if (wrapper) wrapper.classList.toggle('form-field--error', show);
+        input.classList.toggle('error', show);
+      }
+
+      input.addEventListener('input', function() {
+        var val = input.value.replace(/\D/g, '').slice(0, 5);
+        if (input.value !== val) input.value = val;
+        if (val.length === 5) showError(!ZIP_PATTERN.test(val));
+        else showError(false);
+      });
+
+      input.addEventListener('blur', function() {
+        if (input.value) showError(!ZIP_PATTERN.test(input.value));
+      });
+
+      var form = input.closest('form');
+      if (form) {
+        form.addEventListener('submit', function(e) {
+          if (input.value && !ZIP_PATTERN.test(input.value)) {
+            e.preventDefault();
+            showError(true);
+            input.focus();
+          }
+        });
+      }
+    }
+
+    initZipInput(
+      document.getElementById('AddressZipNew'),
+      document.getElementById('AddressZipNew-error'),
+      document.getElementById('AddressZipNew-wrapper')
+    );
+
+    document.querySelectorAll('[id^="AddressZip_"]').forEach(function(input) {
+      if (input.tagName !== 'INPUT') return;
+      var id = input.id.replace('AddressZip_', '');
+      initZipInput(
+        input,
+        document.getElementById('AddressZip_' + id + '-error'),
+        document.getElementById('AddressZip_' + id + '-wrapper')
+      );
+    });
+  }
+
   /* ── Confirm password validation ── */
   function initConfirmPassword() {
     var form = document.querySelector('.create-customer-form');
@@ -955,5 +1009,6 @@
   domReady(initPhonePicker);
   domReady(initConfirmPassword);
   domReady(initAddressPhonePickers);
+  domReady(initZipValidation);
 
 })();
