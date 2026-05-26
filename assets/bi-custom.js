@@ -837,6 +837,11 @@
 
     function initZipInput(input, errorSpan, wrapper) {
       if (!input || !errorSpan) return;
+      var hasInteracted = false;
+
+      function isInvalid() {
+        return input.value.length > 0 && !ZIP_PATTERN.test(input.value);
+      }
 
       function showError(show) {
         errorSpan.hidden = !show;
@@ -845,25 +850,25 @@
       }
 
       input.addEventListener('input', function() {
-        var val = input.value.replace(/\D/g, '').slice(0, 5);
-        if (input.value !== val) input.value = val;
-        if (val.length === 5) showError(!ZIP_PATTERN.test(val));
-        else showError(false);
+        hasInteracted = true;
+        showError(isInvalid());
       });
 
       input.addEventListener('blur', function() {
-        if (input.value) showError(!ZIP_PATTERN.test(input.value));
+        if (input.value) { hasInteracted = true; showError(isInvalid()); }
       });
 
       var form = input.closest('form');
       if (form) {
         form.addEventListener('submit', function(e) {
-          if (input.value && !ZIP_PATTERN.test(input.value)) {
+          if (isInvalid()) {
             e.preventDefault();
+            e.stopImmediatePropagation();
+            hasInteracted = true;
             showError(true);
             input.focus();
           }
-        });
+        }, true);
       }
     }
 
