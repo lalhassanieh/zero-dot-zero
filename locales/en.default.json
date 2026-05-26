@@ -637,6 +637,8 @@
             "country": "Country\/region",
             "province": "Province",
             "zip": "Postal\/ZIP code",
+            "zip_hint": "Enter a valid 5-digit Saudi postal code.",
+            "zip_error": "Please enter a valid 5-digit Saudi postal code.",
             "phone": "Phone",
             "set_default": "Set as default address",
             "add": "Add address",
