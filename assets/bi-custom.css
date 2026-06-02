@@ -1102,13 +1102,19 @@ padding: 50px 0;
 
 .product__text .riyal-font,
 .halo-popup-title .riyal-font,
-.product-customInformation__popup .riyal-font,
-.money-subtotal .riyal-font {
+.product-customInformation__popup .riyal-font {
   display: inline-flex;
   align-items: center;
   position: relative;
   margin-inline: 4px;
 }
+
+.money-subtotal .riyal-font {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+}
+
 
 .product__text .riyal-font::after,
 .halo-popup-title .riyal-font::after,
