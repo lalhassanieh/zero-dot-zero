@@ -602,3 +602,7 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
     line-height: 1 !important;
     font-family: "Avenir Arabic", sans-serif !important;
 }
+
+.productView-stickyCart.style-1 .sticky-actions .quantity__group {
+    margin: 0 0 0 15px !important;
+}
