@@ -169,14 +169,14 @@ h5,
     font-family: 'Gilroy Extra Bold';
 }
 
-.card-information__wrapper.text-left .card__heading {
+.card-information__wrapper.text-left .card-price {
     justify-content: center;
     padding-top: 5px;
 }
 
-.card-information__wrapper.text-left .card-price {
+.card-information__wrapper.text-left .card__heading{
+    display: flex;
     justify-content: center;
-    padding-top: 5px;
 }
 
 .add-sparkles h2 {
