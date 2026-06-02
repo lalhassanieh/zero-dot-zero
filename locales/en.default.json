@@ -10,7 +10,8 @@
 {
     "general": {
         "breadcrumb": {
-            "home": "Home"
+            "home": "Home",
+            "products": "Products"
         },
         "common": {
             "close": "Close",
