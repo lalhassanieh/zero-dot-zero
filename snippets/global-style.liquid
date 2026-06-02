@@ -1,4 +1,5 @@
 {{ 'base.css' | asset_url | stylesheet_tag }}
+{{ 'bi-custom.css' | asset_url | stylesheet_tag }}
 
 {%- if settings.use_custom_css -%}
 	{{ 'custom.css' | asset_url | stylesheet_tag }}
