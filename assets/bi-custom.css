@@ -1102,7 +1102,8 @@ padding: 50px 0;
 
 .product__text .riyal-font,
 .halo-popup-title .riyal-font,
-.product-customInformation__popup .riyal-font {
+.product-customInformation__popup .riyal-font,
+.money-subtotal .riyal-font {
   display: inline-flex;
   align-items: center;
   position: relative;
@@ -1111,7 +1112,8 @@ padding: 50px 0;
 
 .product__text .riyal-font::after,
 .halo-popup-title .riyal-font::after,
-.product-customInformation__popup .riyal-font::after {
+.product-customInformation__popup .riyal-font::after,
+.money-subtotal .riyal-font::after {
   position: static;
   transform: none;
   line-height: 1;
