@@ -1125,7 +1125,7 @@ padding: 50px 0;
   line-height: 1;
 }
 
-.riyal-font--popup::after {
+#halo-product-custom-information .halo-popup-title {
   font-size: 17px;
 }
 
