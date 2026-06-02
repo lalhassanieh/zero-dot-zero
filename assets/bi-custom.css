@@ -75,6 +75,11 @@ h5,
     font-size: 18px !important;
 }
 
+.product-customInformation .price-item,
+.product-customInformation .riyal-font {
+  font-size: 14px;
+}
+
 
 .field__currency.format-currency:after {
     right: -23px;
