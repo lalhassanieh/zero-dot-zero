@@ -148,7 +148,7 @@
         "f1b31d90-1e43-4948-9fe3-97ba43f6fb34": {
           "type": "buy_buttons",
           "settings": {
-            "show_dynamic_checkout": true,
+            "show_dynamic_checkout": false,
             "show_gift_card_recipient": false,
             "atc_animation": "horizontal-shaking",
             "atc_color": "#005339",
