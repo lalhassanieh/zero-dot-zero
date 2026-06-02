@@ -4981,7 +4981,7 @@
                     infinite: true,
                     nextArrow: window.arrows.icon_next,
                     prevArrow: window.arrows.icon_prev,
-                    rtl: false,
+                    rtl: window.rtl_slick,
                     responsive: [
                         {
                             breakpoint: 1600,

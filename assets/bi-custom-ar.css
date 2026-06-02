@@ -666,8 +666,3 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
     }
 }
 
-/* Fix Slick fade+RTL bug: inactive slides get left:-Npx making them invisible when active */
-.productView-nav.slick-initialized .slick-slide {
-    left: 0 !important;
-    right: 0 !important;
-}
