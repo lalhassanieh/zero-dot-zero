@@ -666,3 +666,10 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
     }
 }
 
+/* Thumbnail strip: visually reverse to RTL (first image on right) */
+.productView-for .slick-list {
+    transform: scaleX(-1);
+}
+.productView-for .slick-slide {
+    transform: scaleX(-1);
+}
