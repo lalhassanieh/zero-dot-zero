@@ -606,3 +606,10 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
 .productView-stickyCart.style-1 .sticky-actions .quantity__group {
     margin: 0 0 0 15px !important;
 }
+
+.sticky-price .money-subtotal {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  direction: ltr;
+}
