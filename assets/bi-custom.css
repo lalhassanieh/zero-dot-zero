@@ -89,7 +89,8 @@ h5,
   position: static;
   transform: none;
   line-height: 1;
-  font-size: 12px;
+  margin-inline: 1px; 
+  font-size: 14px;
 }
 
 
