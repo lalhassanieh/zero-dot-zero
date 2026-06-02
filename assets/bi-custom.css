@@ -1129,6 +1129,10 @@ padding: 50px 0;
   font-size: 17px;
 }
 
+.sticky-price{
+    padding-top:10px;
+}
+
 /* Fix address buttons to show full text instead of truncating */
 .account-content [data-address] .address-button {
     width: auto;
