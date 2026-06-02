@@ -14,7 +14,7 @@
               </div>
             {%- when 'group_3' -%}
               <div class="announcement-text" style="color: {{ block.settings.announcement_text_color  }}">
-                {{ 'sections.header.header_top.announcement_text_html' | t }}
+                {{ block.settings.announcement_text }}
               </div>
             {%- when 'group_2' -%}
               <div
@@ -237,10 +237,10 @@
       "limit": 1,
       "settings": [
         {
-          "type": "text",
+          "type": "html",
           "id": "announcement_text",
           "label": "t:sections.header.settings.header_top.announcement_text",
-          "default": "Free Delivery All Around KSA"
+          "default": "t:sections.header.header_top.announcement_text_html"
         },
         {
           "type": "color",
