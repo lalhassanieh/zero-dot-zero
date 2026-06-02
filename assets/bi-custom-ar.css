@@ -613,3 +613,33 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
   gap: 4px;
   direction: ltr;
 }
+
+/* Badge: move to left side and flip SVG bubble tail */
+.halo-productBadges--right {
+    right: auto;
+    left: var(--badge-postion-left-right);
+    align-items: flex-start;
+}
+
+.halo-productBadges .badge.new-badge {
+    right: auto;
+    left: -12px;
+    transform: scaleX(-1);
+}
+
+.halo-productBadges .badge.new-badge p {
+    transform: scaleX(-1);
+    margin: 13px 0 0 6px !important;
+}
+
+.custom-featured-products .halo-productBadges .badge.new-badge {
+    right: unset !important;
+    left: -35px !important;
+}
+
+@media (max-width: 767px) {
+    .halo-productBadges .badge.new-badge {
+        right: unset !important;
+        left: -25px !important;
+    }
+}
