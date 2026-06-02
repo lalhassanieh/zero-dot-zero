@@ -45,6 +45,7 @@ class ProductTabs extends HTMLElement {
         setTimeout(() => {
             if (window.innerWidth > 550) {
                 const $thisContent = document.getElementById('tab-description-mobile');
+                if (!$thisContent) return;
                 const tabHeight = $thisContent.offsetHeight;
                 const maxHeight = parseInt($thisContent.querySelector('.tab-showMore')?.dataset.desMax);
                 if (tabHeight < maxHeight) {
