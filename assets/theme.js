@@ -4874,13 +4874,18 @@
                                 }
                             ]
                         }); 
-                        if (window.rtl_slick) {
-                            sliderNav.on('init afterChange', function(e, slick) {
-                                $(slick.$slides).css({left: '', right: ''});
-                                $(slick.$slides.eq(slick.currentSlide)).css({left: '0', right: '0'});
+                          if (window.rtl_slick) {
+                            // setFade (RTL) positions every slide at right:-N*slideWidth regardless of which
+                            // is current, then sets opacity:1 on the current slide â leaving it off-screen.
+                            // Hook setPosition (fires synchronously right after setFade) to re-center it.
+                            sliderNav.on('setPosition', function(e, slick) {
+                                if (slick.options.fade) {
+                                    $(slick.$slides).css({right: ''});
+                                    $(slick.$slides.eq(slick.currentSlide)).css({right: '0', left: '0'});
+                                }
                             });
-                            // Slick RTL+fade positions inactive slides off-screen via right:-N*slideWidth.
-                            // Move the incoming slide to center BEFORE the fade starts so it's visible.
+                            // Also re-center the incoming slide before its opacity animation so the
+                            // fade-in is visible even on the very first navigation away from slide 0.
                             sliderNav.on('beforeChange', function(e, slick, currentSlide, nextSlide) {
                                 $(slick.$slides.eq(nextSlide)).css({right: '0', left: '0'});
                             });
