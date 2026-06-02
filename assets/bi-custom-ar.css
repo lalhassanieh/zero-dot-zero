@@ -659,4 +659,9 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
         right: unset !important;
         left: -25px !important;
     }
+
+    
+    .halo-productBadges .badge.new-badge p {
+        margin: 15px 9px 0 0 !important;
+    }
 }
