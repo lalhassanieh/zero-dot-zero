@@ -180,7 +180,7 @@
     "show_quick_view_mb": false,
     "product_quick_view_type": "icon",
     "group_quickview_wishlist": "right",
-    "product_content_text_align": "left",
+    "product_content_text_align": "center",
     "show_badge": true,
     "badge_postion": "right",
     "sale_badge_type": "text",
