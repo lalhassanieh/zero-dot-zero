@@ -178,6 +178,10 @@ h5,
     text-align: center !important;
 }
 
+body.layout_rtl .card-information__wrapper .card__heading {
+    text-align: center !important;
+}
+
 .add-sparkles h2 {
     display: inline-block;
     font-family: 'Gilroy Extra Bold' !important;
