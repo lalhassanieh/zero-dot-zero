@@ -4879,6 +4879,11 @@
                                 $(slick.$slides).css({left: '', right: ''});
                                 $(slick.$slides.eq(slick.currentSlide)).css({left: '0', right: '0'});
                             });
+                            // Slick RTL+fade positions inactive slides off-screen via right:-N*slideWidth.
+                            // Move the incoming slide to center BEFORE the fade starts so it's visible.
+                            sliderNav.on('beforeChange', function(e, slick, currentSlide, nextSlide) {
+                                $(slick.$slides.eq(nextSlide)).css({right: '0', left: '0'});
+                            });
                         }
                         checkNav = sliderNav;
                     }
