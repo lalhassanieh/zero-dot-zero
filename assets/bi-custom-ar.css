@@ -575,10 +575,6 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
     padding-left: 3.6rem;
 }
 
-body.layout_rtl .card-information__wrapper .card__heading {
-    text-align: center !important;
-}
-
 /* Login page – RTL padding override */
 .login-page .login-rowLeft {
     padding-right: 0 !important;
