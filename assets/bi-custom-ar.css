@@ -614,16 +614,16 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
   direction: ltr;
 }
 
-/* Fix product image padding: layout_rtl.css has-sidebar rule incorrectly restores padding-right */
+/* Fix product image section padding for RTL */
 @media (min-width: 768px) {
-    .product-details.has-sidebar .halo-productView-left {
+    .halo-productView-left {
         padding-right: 0 !important;
         padding-left: 30px !important;
     }
 }
 
 @media (min-width: 1200px) {
-    .product-details.has-sidebar .halo-productView-left {
+    .halo-productView-left {
         padding-right: 0 !important;
         padding-left: 60px !important;
     }
