@@ -4874,6 +4874,12 @@
                                 }
                             ]
                         }); 
+                        if (window.rtl_slick) {
+                            sliderNav.on('init afterChange', function(e, slick) {
+                                $(slick.$slides).css({left: '', right: ''});
+                                $(slick.$slides.eq(slick.currentSlide)).css({left: '0', right: '0'});
+                            });
+                        }
                         checkNav = sliderNav;
                     }
                     else {
