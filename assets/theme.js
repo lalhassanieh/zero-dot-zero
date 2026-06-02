@@ -4864,7 +4864,7 @@
                             asNavFor: checkFor,
                             nextArrow: window.arrows.icon_next,
                             prevArrow: window.arrows.icon_prev,
-                            rtl: window.rtl_slick,
+                            rtl: false,
                             responsive: [
                                 {
                                     breakpoint: 768,
