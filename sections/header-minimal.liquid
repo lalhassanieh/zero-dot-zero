@@ -14,11 +14,7 @@
               </div>
             {%- when 'group_3' -%}
               <div class="announcement-text" style="color: {{ block.settings.announcement_text_color  }}">
-                {%- if block.settings.use_custom_text -%}
-                  {{ block.settings.announcement_text }}
-                {%- else -%}
-                  {{ 'sections.header.header_top.announcement_text_html' | t }}
-                {%- endif -%}
+                {{ block.settings.announcement_text }}
               </div>
             {%- when 'group_2' -%}
               <div
@@ -242,14 +238,7 @@
       "settings": [
         {
           "type": "paragraph",
-          "content": "To update this text per language (EN\/AR), edit the key 'sections.header.header_top.announcement_text_html' via the Translate & Adapt app."
-        },
-        {
-          "type": "checkbox",
-          "id": "use_custom_text",
-          "label": "Use custom text (overrides locale)",
-          "info": "When enabled, the field below is used instead of the locale translation.",
-          "default": false
+          "content": "To translate this text into Arabic, use the Translate & Adapt app in the Shopify admin."
         },
         {
           "type": "html",
