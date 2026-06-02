@@ -174,10 +174,6 @@ h5,
     padding-top: 5px;
 }
 
-.card-information__wrapper.text-left .card__heading {
-    text-align: center;
-}
-
 .add-sparkles h2 {
     display: inline-block;
     font-family: 'Gilroy Extra Bold' !important;
