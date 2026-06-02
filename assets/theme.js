@@ -4864,7 +4864,7 @@
                             asNavFor: checkFor,
                             nextArrow: window.arrows.icon_next,
                             prevArrow: window.arrows.icon_prev,
-                            rtl: false,
+                            rtl: window.rtl_slick,
                             responsive: [
                                 {
                                     breakpoint: 768,
@@ -4943,7 +4943,7 @@
                         infinite: true,
                         nextArrow: window.arrows.icon_next,
                         prevArrow: window.arrows.icon_prev,
-                        rtl: false,
+                        rtl: window.rtl_slick,
                         responsive: [
                             {
                                 breakpoint: 1600,
@@ -4981,7 +4981,7 @@
                     infinite: true,
                     nextArrow: window.arrows.icon_next,
                     prevArrow: window.arrows.icon_prev,
-                    rtl: window.rtl_slick,
+                    rtl: false,
                     responsive: [
                         {
                             breakpoint: 1600,
