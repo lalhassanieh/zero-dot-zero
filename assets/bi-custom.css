@@ -83,13 +83,13 @@ h5,
   display: inline-flex;
   align-items: center;
   position: relative;
+  margin-inline: 1px !important;
 }
 
 .riyal-font--product::after {
   position: static;
   transform: none;
-  line-height: 1;
-  margin-inline: 1px !important; 
+  line-height: 1; 
   font-size: 15px;
 }
 
