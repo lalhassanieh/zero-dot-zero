@@ -700,8 +700,8 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
 
 /*Homepage*/
 .container-1770 {
-    padding-left: 50px;
-    padding-right: 50px;
+    padding-left: 50px !important;
+    padding-right: 50px !important;
 }
 
 .halo-banner-wrapper .flex-box__banner .content-box {
