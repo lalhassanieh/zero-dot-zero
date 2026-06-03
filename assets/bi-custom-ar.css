@@ -697,3 +697,12 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
 .facets-horizontal .facets__list--refined li {
     margin: 0 0 10px 10px !important;
 }
+
+
+
+/*Homepage*/
+
+.container-1770 {
+    padding-left: 100px;
+    padding-right: 100px;
+}
