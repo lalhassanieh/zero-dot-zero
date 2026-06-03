@@ -1491,6 +1491,7 @@ input[type="checkbox"][required] {
   white-space: normal !important;
 }
 
+
 /*Filter riyal font*/
 .riyal-font--filter::after {
   font-size: 18px;
