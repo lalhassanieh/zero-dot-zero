@@ -75,10 +75,20 @@
             <ul class="facets__list--refined list-unstyled" role="list">
               {%- for filter in results.filters -%}
                 {%- for value in filter.active_values -%}
+                  {%- liquid
+                    assign active_value_label = value.label | escape
+                    if filter.param_name == 'filter.p.product_type'
+                      assign pt_t_key = 'sections.collection_template.product_type_translations.' | append: value.value | handleize
+                      assign pt_t = pt_t_key | t
+                      unless pt_t contains 'translation missing'
+                        assign active_value_label = pt_t
+                      endunless
+                    endif
+                  -%}
                   <li>
                     <facet-remove
                       ><a class="active-facets__button js-facet-remove" href="{{ value.url_to_remove }}"
-                        ><span class="text">{{ value.label | escape }}</span><span class="close"></span></a
+                        ><span class="text">{{ active_value_label }}</span><span class="close"></span></a
                     ></facet-remove>
                   </li>
                 {%- endfor -%}
@@ -88,17 +98,9 @@
                       <facet-remove>
                         <a class="active-facets__button js-facet-remove" href="{{ filter.url_to_remove }}">
                           <span class="text">
-                            {%- if filter.min_value.value -%}
-                              {{ filter.min_value.value | money -}}
-                            {%- else -%}
-                              {{- 0 | money }}
-                            {%- endif -%}
+                            <span dir="ltr">{%- if filter.min_value.value -%}{{ filter.min_value.value | money }}{%- else -%}{{ 0 | money }}{%- endif -%}</span>
                             <span class="separate"> - </span>
-                            {%- if filter.max_value.value -%}
-                              {{ filter.max_value.value | money -}}
-                            {%- else -%}
-                              {{- filter.range_max | money }}
-                            {%- endif -%}
+                            <span dir="ltr">{%- if filter.max_value.value -%}{{ filter.max_value.value | money }}{%- else -%}{{ filter.range_max | money }}{%- endif -%}</span>
                           </span>
                           <span class="close"></span>
                         </a>
@@ -138,6 +140,15 @@
                 {%- liquid
                   assign filterLabel = filter.label | escape
                   assign filterLabelAll = section.settings.filter_label_all | default: 'More filters'
+
+                  if filter.param_name contains 'product.category'
+                    continue
+                  endif
+
+                  assign filterDisplayLabel = filterLabel
+                  if filter.param_name == 'filter.p.product_type'
+                    assign filterDisplayLabel = 'sections.collection_template.category_filter_label' | t
+                  endif
 
                   if filterLabel == filterLabelAll
                     assign filter_hidden_tag_list = section.settings.filter_hidden_tag_list | escape | append: ',' | prepend: ','
