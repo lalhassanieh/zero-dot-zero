@@ -1492,7 +1492,3 @@ input[type="checkbox"][required] {
 }
 
 /*Filter riyal font*/
-.riyal-font--filter {
-    font-size: 18px;
-    letter-spacing: -0.03em;
-}
