@@ -316,6 +316,14 @@ class CollectionFiltersForm extends HTMLElement {
 
         document.getElementById('CollectionProductGrid').querySelector('.collection').innerHTML = innerHTML;
 
+        // Force-load all lazy images immediately after DOM replacement so cached images
+        // appear without the yellow loading-effect flash (no viewport intersection wait).
+        if (window.lazySizes) {
+            document.getElementById('CollectionProductGrid').querySelectorAll('img.lazyload').forEach(function(img) {
+                lazySizes.loader.unveil(img);
+            });
+        }
+
         const resultsCount = new DOMParser()
             .parseFromString(html, 'text/html')
             .getElementById('CollectionProductGrid')
