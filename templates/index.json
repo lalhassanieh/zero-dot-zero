@@ -2174,7 +2174,9 @@
         "paragraph_CxVCEp",
         "image_GtaWTr"
       ],
-      "custom_css": [],
+      "custom_css": [
+        "@media only screen and (max-width: 1025px) {.faq-container {padding-left: 15px; padding-right: 15px; }}"
+      ],
       "name": "t:sections.faqs.presets.name",
       "settings": {
         "use_metaobject_content": true,
