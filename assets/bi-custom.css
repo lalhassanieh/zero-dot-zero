@@ -1492,3 +1492,15 @@ input[type="checkbox"][required] {
 }
 
 /*Filter riyal font*/
+.riyal-font--filter {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+}
+
+.riyal-font--filter::after {
+  position: static;
+  transform: none;
+  line-height: 1;
+  font-size: 18px;
+}
