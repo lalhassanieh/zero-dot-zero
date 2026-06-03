@@ -314,6 +314,8 @@ class CollectionFiltersForm extends HTMLElement {
 
         document.getElementById('CollectionProductGrid').querySelector('.collection').innerHTML = innerHTML;
 
+        if (window.lazySizes) lazySizes.update();
+
         const resultsCount = new DOMParser()
             .parseFromString(html, 'text/html')
             .getElementById('CollectionProductGrid')
