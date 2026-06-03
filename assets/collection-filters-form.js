@@ -240,8 +240,10 @@ class CollectionFiltersForm extends HTMLElement {
                 CollectionFiltersForm.filterData = [...CollectionFiltersForm.filterData, { html, url }];
                 CollectionFiltersForm.renderFilters(html, event);
                 CollectionFiltersForm.renderProductGrid(html);
+            })
+            .catch(() => {
+                document.body.classList.remove('has-halo-loader');
             });
-
     }
 
     static renderSectionFromCache(filterDataUrl, section, event) {
