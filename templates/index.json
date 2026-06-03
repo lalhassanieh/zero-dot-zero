@@ -2338,7 +2338,7 @@
         "small_img_DaJk6x"
       ],
       "custom_css": [
-        ".halo-banner-wrapper {padding-left: 50px !important; padding-right: 50px !important;}"
+        "@media (min-width: 1025px) {.container-1770 {padding-left: 50px !important; padding-right: 50px !important; }}"
       ],
       "name": "t:sections.image-banner.presets.name",
       "settings": {
