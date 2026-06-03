@@ -1494,4 +1494,5 @@ input[type="checkbox"][required] {
 /*Filter riyal font*/
 .riyal-font--filter::after {
   font-size: 18px;
+  inset-inline-end: 3px !important;
 }
