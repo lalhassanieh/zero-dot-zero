@@ -675,3 +675,12 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
 .productView-for .slick-slide {
     direction: ltr;
 }
+
+/* Visually reverse the thumbnail strip to RTL order (first image on the right).
+   Flip the whole list container, then counter-flip each slide so images aren't mirrored. */
+.productView-for .slick-list {
+    transform: scaleX(-1);
+}
+.productView-for .slick-slide {
+    transform: scaleX(-1);
+}
