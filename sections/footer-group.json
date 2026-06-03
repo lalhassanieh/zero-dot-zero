@@ -135,6 +135,9 @@
         "2265e00a-3824-4d57-af37-fa00fa88a555",
         "41adb6e5-e71d-422b-a1e1-d2034c83869c"
       ],
+      "custom_css": [
+        ".footer .container-full {padding-left: 100px; padding-right: 100px; }"
+      ],
       "settings": {
         "container": "full",
         "padding_full_width": 60,
