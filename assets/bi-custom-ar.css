@@ -666,9 +666,7 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
     }
 }
 
-/* Slick uses overflow:hidden + left-offset positioning. With direction:rtl inherited from
-   body*, browsers shift the overflow:hidden viewport to the right side of the track, making
-   all slides invisible. Reset to ltr so Slick's internal layout is unaffected. */
+/* Slick Sldier in Product Details*/
 .productView-nav .slick-list,
 .productView-nav .slick-track,
 .productView-nav .slick-slide,
