@@ -686,14 +686,14 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
 
 /*Filters in collection page*/
 .facets__list--refined {
-    text-align: right;
+    text-align: right !important;
 }
 .facets__list--refined li {
-    margin: 0 0 5px 5px;
+    margin: 0 0 5px 5px !important;
 }
 .facets__list--refined li:last-child {
-    margin-left: 0;
+    margin-left: 0 !important;
 }
 .facets-horizontal .facets__list--refined li {
-    margin: 0 0 10px 10px;
+    margin: 0 0 10px 10px !important;
 }
