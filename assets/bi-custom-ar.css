@@ -683,3 +683,18 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
 .productView-for .slick-slide {
     transform: scaleX(-1);
 }
+
+/*Filters in collection page*/
+/* Active filter tags (refined list) — RTL fixes */
+.facets__list--refined {
+    text-align: right;
+}
+.facets__list--refined li {
+    margin: 0 0 5px 5px;
+}
+.facets__list--refined li:last-child {
+    margin-left: 0;
+}
+.facets-horizontal .facets__list--refined li {
+    margin: 0 0 10px 10px;
+}
