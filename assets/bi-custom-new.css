@@ -17,6 +17,7 @@
 }
 .flex-box__banner.row-reverse .content-box.text-left{
     margin-left: 0;
+    padding-left: 40px;
 }
 .slide-content .slide-button{
     padding-inline-end: 50px;    
@@ -134,7 +135,9 @@
      margin-top: 0; 
     padding-left: 0;
 }
-
+.flex-box__banner.row-reverse .content-box.text-left {
+    padding-left: 0;
+}
 .halo-banner-wrapper .item--smallImg .flex-box__banner .banner-content {
     margin-left: 0;
 }
