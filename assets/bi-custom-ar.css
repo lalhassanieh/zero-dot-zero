@@ -706,3 +706,7 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
     padding-left: 50px;
     padding-right: 50px;
 }
+
+.halo-banner-wrapper .flex-box__banner .content-box {
+  padding: 30px 15px 0px 15px;
+}
