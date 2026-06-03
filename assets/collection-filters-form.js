@@ -316,13 +316,27 @@ class CollectionFiltersForm extends HTMLElement {
 
         document.getElementById('CollectionProductGrid').querySelector('.collection').innerHTML = innerHTML;
 
-        // Force-load all lazy images immediately after DOM replacement so cached images
-        // appear without the yellow loading-effect flash (no viewport intersection wait).
-        if (window.lazySizes) {
-            document.getElementById('CollectionProductGrid').querySelectorAll('img.lazyload').forEach(function(img) {
-                lazySizes.loader.unveil(img);
-            });
-        }
+        // The theme's MutationObserver (initLazyloadObserver) was watching the old
+        // #main-collection-product-grid <ul> that just got replaced — it's now detached.
+        // Re-wire the lazyloaded → ajax-loaded bridge for all newly injected cards.
+        document.getElementById('CollectionProductGrid').querySelectorAll('.media--loading-effect img').forEach(function(img) {
+            if (img.classList.contains('lazyloaded')) {
+                var card = img.closest('.card');
+                if (card) card.classList.add('ajax-loaded');
+            } else {
+                var obs = new MutationObserver(function(mutations) {
+                    mutations.forEach(function(mutation) {
+                        if (mutation.type === 'attributes' && mutation.target.classList.contains('lazyloaded')) {
+                            var card = mutation.target.closest('.card');
+                            if (card) card.classList.add('ajax-loaded');
+                            obs.disconnect();
+                        }
+                    });
+                });
+                obs.observe(img, { attributes: true });
+                if (window.lazySizes) lazySizes.loader.unveil(img);
+            }
+        });
 
         const resultsCount = new DOMParser()
             .parseFromString(html, 'text/html')
