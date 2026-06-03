@@ -373,6 +373,10 @@ class CollectionFiltersForm extends HTMLElement {
         $('.productListing .card .swatch-label.is-active').trigger('click');
 
         window.sharedFunctions?.swapHoverVideoProductCard();
+
+        if (typeof initializeScrollAnimationTrigger === 'function') {
+            initializeScrollAnimationTrigger(document.getElementById('CollectionProductGrid'));
+        }
     }
 
     static checkNeedToConvertCurrency() {
@@ -467,10 +471,9 @@ class CollectionFiltersForm extends HTMLElement {
             const activeFacetsElement = html.querySelector(selector);
             if (!activeFacetsElement) return;
 
-            var refineBlock = document.querySelector(selector);
-            refineBlock = activeFacetsElement.innerHTML;
+            document.querySelector(selector).innerHTML = activeFacetsElement.innerHTML;
 
-            if (document.querySelector(selector).querySelector('li')) {
+            if (activeFacetsElement.querySelector('li')) {
                 document.querySelector(selector).style.display = "block";
             } else {
                 document.querySelector(selector).style.display = "none";
