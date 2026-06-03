@@ -248,16 +248,16 @@
         }
         #halo-image-banner-template--19396943118580__image_banner_mUejpe .container-full ,
         #CartSection-template--19396943020276__main .cart-container.container-full {
-            padding-left: 20px!important;
-            padding-right: 20px!important;
+            padding-left: 15px!important;
+            padding-right: 15px!important;
         }
         .faqs-images-wrapper {
             margin-top: 40px;
-        }
+        }/*
         .halo-banner-wrapper {
             padding-left: 30px;
             padding-right: 30px;
-        }
+        }*/
         #shopify-section-template--19396943118580__image_banner_N4xP8B .halo-banner-wrapper .image {
             display: none;
         }
