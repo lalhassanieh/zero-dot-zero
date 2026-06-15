@@ -93,7 +93,16 @@ h5,
   font-size: 15px;
 }
 
-
+/* Empty span pattern (used by money_format): symbol must flow inline, not overlap */
+.riyal-font:empty {
+    display: inline-flex;
+    align-items: center;
+}
+.riyal-font:empty::after {
+    position: static;
+    transform: none;
+    line-height: 1;
+}
 
 .field__currency.format-currency:after {
     right: -23px;
