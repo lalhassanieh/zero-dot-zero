@@ -272,10 +272,16 @@
                 <div class="short-description test34">
                   {{ article.metafields.custom.short_description_recipe }}
                 </div>
+                {%- if article.metafields.custom.yields != blank or article.metafields.custom.preparation_time != blank -%}
                 <div class="details">
+                  {%- if article.metafields.custom.yields != blank -%}
                   <div><span>{{ 'blogs.article.yields' | t }}:</span>{{ article.metafields.custom.yields }}</div>
+                  {%- endif -%}
+                  {%- if article.metafields.custom.preparation_time != blank -%}
                   <div><span>{{ 'blogs.article.preparation_time' | t }}:</span>{{ article.metafields.custom.preparation_time }}</div>
+                  {%- endif -%}
                 </div>
+                {%- endif -%}
                 {%- if show_author or show_date or blog.comments_enabled? -%}
                   <div class="info">
                     {%- if show_author -%}
