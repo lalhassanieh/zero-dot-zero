@@ -599,7 +599,6 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
 .previewCartItem-price .riyal-font,
 .previewCartTotals-value .riyal-font,
 [data-saved-discount-value] .riyal-font {
-    display: inline-flex;
     align-items: center;
 }
 .previewCartItem-price .riyal-font::after,
