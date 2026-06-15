@@ -732,3 +732,8 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
     direction: rtl;
     text-align: right;
 }
+
+.popup-toolDown label svg {
+    margin-left: 9px;
+    margin-right: 0;
+}
