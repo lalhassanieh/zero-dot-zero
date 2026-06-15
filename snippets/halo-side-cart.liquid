@@ -353,8 +353,8 @@
             {% if settings.show_cart_discount %}
                 <div class="popup-toolDown" id="popup-tool-discount">
                     <coupon-code class="discount-code-field"> 
-                        <label for="coupon-code">{% render 'icon-cart-discount' %}{{ settings.coupon_title }}</label> 
-                        <p>{{ settings.coupon_content }}</p>
+                        <label for="coupon-code">{% render 'icon-cart-discount' %}{{ 'general.cart.coupon_title' | t }}</label>
+                        <p>{{ 'general.cart.coupon_code_text' | t }}</p>
                         <input autocomplete="off" type="text" name="discount" id="coupon-code" class="field__input" /> 
                         <button type="button" title="{{ 'general.cart.save' | t }}" class="button button-1" data-update-coupon>{{ 'general.cart.save' | t }}</button>
                     </coupon-code>
