@@ -595,6 +595,22 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
     margin-right: 13px !important;
 }
 
+/* Preview cart: symbol must flow inline (not absolute) so it stays left of the number */
+.previewCartItem-price .riyal-font,
+.previewCartTotals-value .riyal-font,
+[data-saved-discount-value] .riyal-font {
+    display: inline-flex;
+    align-items: center;
+}
+.previewCartItem-price .riyal-font::after,
+.previewCartTotals-value .riyal-font::after,
+[data-saved-discount-value] .riyal-font::after {
+    position: static !important;
+    transform: none !important;
+    line-height: 1;
+}
+
+
 
 /*Product Description in Product Details page*/
 
