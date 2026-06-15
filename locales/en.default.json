@@ -119,6 +119,7 @@
             "subtotal": "Subtotal",
             "shipping": "Get shipping estimate:",
             "coupon_code": "Coupon code",
+            "coupon_title": "Add A Coupon",
             "total": "Total:",
             "coupon_code_text": "Coupon code will be applied on the checkout page",
             "estimate_shipping": "Estimate shipping rates",
