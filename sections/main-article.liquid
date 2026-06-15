@@ -273,8 +273,8 @@
                   {{ article.metafields.custom.short_description_recipe }}
                 </div>
                 <div class="details">
-                  <div><span>Yields:</span>{{ article.metafields.custom.yields }}</div>
-                  <div><span>Preparation Time:</span>{{ article.metafields.custom.preparation_time }}</div>
+                  <div><span>{{ 'blogs.article.yields' | t }}:</span>{{ article.metafields.custom.yields }}</div>
+                  <div><span>{{ 'blogs.article.preparation_time' | t }}:</span>{{ article.metafields.custom.preparation_time }}</div>
                 </div>
                 {%- if show_author or show_date or blog.comments_enabled? -%}
                   <div class="info">
