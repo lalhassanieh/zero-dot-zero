@@ -99,7 +99,7 @@ h5,
 .discount-code-field label,
 .discount-code-field p,
 .discount-code-field .field__input {
-    font-family: var(--font-body-family);
+    font-family: var(--font-body-family) !important;
 }
 
 .field__currency.format-currency:after {
