@@ -93,7 +93,14 @@ h5,
   font-size: 15px;
 }
 
-
+/* Cart note & coupon: use theme font in all languages */
+.cart__note label,
+.cart__note .field__input,
+.discount-code-field label,
+.discount-code-field p,
+.discount-code-field .field__input {
+    font-family: var(--font-body-family);
+}
 
 .field__currency.format-currency:after {
     right: -23px;
