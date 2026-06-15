@@ -198,6 +198,8 @@
       "read_more_title": "اقرأ المزيد: {{ title }}",
       "read_more": "عرض التفاصيل",
       "read_more_recipe": "عرض الوصفة",
+      "yields": "الكمية",
+      "preparation_time": "وقت التحضير",
       "author": "{{ author }}",
       "comments": {
         "one": "{{ count }} تعليق",
