@@ -258,7 +258,7 @@ h5,
 .fluid-width-video-wrapper::before {
     content: "";
     position: absolute;
-    /*background: linear-gradient(0deg, rgba(0, 0, 0, 0.50) 0%, rgba(0, 0, 0, 0.50) 100%);*/
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.50) 0%, rgba(0, 0, 0, 0.50) 100%);
     top: 0;
     left: 0;
     bottom: 0;
