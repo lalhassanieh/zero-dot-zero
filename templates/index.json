@@ -21,7 +21,7 @@
             "image_slide_mb": "shopify://shop_images/Hero_Section_Mob_432x432_-_Tanqueray.jpg",
             "alignment": "left",
             "enable_custom_position": true,
-            "custom_horizontal": "5",
+            "custom_horizontal": "10",
             "custom_vertical": "50",
             "enable_position_outside_image": false,
             "enable_border_line": false,
