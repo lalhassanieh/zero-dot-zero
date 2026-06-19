@@ -96,6 +96,8 @@
                             assign slide_button_text_2 = nil
                             assign slide_link = nil
                             assign slide_link_2 = nil
+                            assign slide_button_text_desktop = nil
+                            assign slide_button_text_2_desktop = nil
                             assign slide_image = nil
                             assign slide_image_mb = nil
                             assign slide_video_source = nil
@@ -123,6 +125,8 @@
                             assign slide_youtube_id_mb = block.settings.video_link_mb
                             assign slide_mp4_url = block.settings.video_mp4_link
                             assign slide_mp4_url_mb = block.settings.video_mp4_link_mb
+                            assign slide_button_text_desktop = nil
+                            assign slide_button_text_2_desktop = nil
                         endif
 
                         if block.settings.use_metaobject_slide and block.settings.slide_id != blank and all_blocks.size > 0
@@ -159,6 +163,8 @@
                                     else
                                         assign slide_link_2 = meta_slide.second_button_url
                                     endif
+                                    assign slide_button_text_desktop = meta_slide.first_button_label_desktop
+                                    assign slide_button_text_2_desktop = meta_slide.second_button_label_desktop
                                     break
                                 endif
                             endfor
@@ -320,7 +326,7 @@
                         {%- if block.settings.use_metaobject_slide == false and section.settings.dots_shape == 'line' -%}
                             {%- assign show_line_dots = true -%}
                         {%- endif -%}
-                        {%- if slide_heading != blank or slide_heading_top != blank or slide_heading_bottom != blank or slide_sub_heading != blank or slide_description != blank or slide_button_text != blank or show_line_dots -%}
+                        {%- if slide_heading != blank or slide_heading_top != blank or slide_heading_bottom != blank or slide_sub_heading != blank or slide_description != blank or slide_button_text != blank or slide_button_text_desktop != blank or slide_button_text_2_desktop != blank or show_line_dots -%}
                             <div class="slide-content content-box--absolute content-box--{{ block.settings.alignment }} text-{{ block.settings.text_alignment }}{% if block.settings.text_alignment_mb != blank %} text-mb-{{ block.settings.text_alignment_mb }}{% endif %} {% if block.settings.enable_custom_position %}custom_position{% endif %} {% if block.settings.enable_position_outside_image %}enable_position_outside_image{% endif %}{% if block.settings.sub_heading_font == 'font_1' %} sub_heading_font_1{% endif %}" {% if block.settings.enable_custom_position %}style="--horizontal_position: {{ block.settings.custom_horizontal }}%;--vertical_position: {{ block.settings.custom_vertical }}%;--minus_horizontal_position: -{{ block.settings.custom_horizontal }}%;--minus_vertical_position: -{{ block.settings.custom_vertical }}%"{% endif %}>
                             {%- if block.settings.profile_name != blank or block.settings.profile_title != blank or block.settings.profile_picture != blank -%}
                                 <div class="slide-content__person slide-testimonial{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
@@ -415,6 +421,42 @@
                             {%- endif -%}
 
                             {%- if slide_button_text != blank and slide_button_text_2 != blank -%}
+                            </div>
+                            {%- endif -%}
+
+                            {%- if slide_button_text_desktop != blank or slide_button_text_2_desktop != blank -%}
+                            <div class="slide-pc">
+                                {%- if slide_button_text_desktop != blank and slide_button_text_2_desktop != blank -%}
+                                <div class="grouped_btn--slider{% if block.settings.use_contrasting_colors %} contrasting_colors{% endif %}">
+                                {%- endif -%}
+                                {%- if slide_button_text_desktop != blank -%}
+                                    {% if settings.banner_animation == 'effect_fade_up' %}
+                                    <div class="scroll-trigger animate--slide-in" style="--animation-order: 3;">
+                                    {% endif %}
+                                        <a {% if slide_link == blank %} role="link" aria-disabled="true"{% else %} href="{{ slide_link }}"{% endif %} class="slide-button button{% if block.settings.button_style == 'button_2' %} button_2{% elsif block.settings.button_style == 'button_3'%} button_3{% endif %}{% if slide_description == blank %} no-des{% endif %}">
+                                        {%- if block.settings.enable_icon_button -%}
+                                        <svg style="width: 14px;height: 14px;position: relative;top: -2px;margin-right: 5px;" class="icon icon-chevron-right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M 7.75 1.34375 L 6.25 2.65625 L 14.65625 12 L 6.25 21.34375 L 7.75 22.65625 L 16.75 12.65625 L 17.34375 12 L 16.75 11.34375 Z"></path></svg>
+                                        {%- endif -%} {{ slide_button_text_desktop }}</a>
+                                    {% if settings.banner_animation == 'effect_fade_up' %}
+                                    </div>
+                                    {% endif %}
+                                {%- endif -%}
+                                {%- if slide_button_text_2_desktop != blank -%}
+                                    {% if settings.banner_animation == 'effect_fade_up' %}
+                                    <div class="scroll-trigger animate--slide-in" style="--animation-order: 3;">
+                                    {% endif %}
+                                        <a {% if slide_link_2 == blank %} role="link" aria-disabled="true"{% else %} href="{{ slide_link_2 }}"{% endif %} class="slide-button button{% if block.settings.button_style == 'button_2' %} button_2{% elsif block.settings.button_style == 'button_3'%} button_3{% endif %}{% if slide_description == blank %} no-des{% endif %}">
+                                        {%- if block.settings.enable_icon_button -%}
+                                            <svg style="width: 14px;height: 14px;position: relative;top: -2px;margin-right: 5px;" class="icon icon-chevron-right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M 7.75 1.34375 L 6.25 2.65625 L 14.65625 12 L 6.25 21.34375 L 7.75 22.65625 L 16.75 12.65625 L 17.34375 12 L 16.75 11.34375 Z"></path></svg>
+                                        {%- endif -%}
+                                        {{ slide_button_text_2_desktop }}</a>
+                                    {% if settings.banner_animation == 'effect_fade_up' %}
+                                    </div>
+                                    {% endif %}
+                                {%- endif -%}
+                                {%- if slide_button_text_desktop != blank and slide_button_text_2_desktop != blank -%}
+                                </div>
+                                {%- endif -%}
                             </div>
                             {%- endif -%}
 
