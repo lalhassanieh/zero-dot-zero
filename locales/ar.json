@@ -4045,7 +4045,8 @@
         "errors": {
           "name_cannot_contain_url": "لا يمكن أن يحتوي {{fieldName}} على عنوان URL",
           "name_cannot_contain_html_tags": "لا يمكن أن يحتوي {{fieldName}} على وسوم HTML",
-          "invalid_email_format": "أدخل بريدًا إلكترونيًا صحيحًا"
+          "invalid_email_format": "أدخل بريدًا إلكترونيًا صحيحًا",
+          "email_cant_be_blank": "لا يمكن ترك البريد الإلكتروني فارغًا"
         }
       },
       "verify_new_email_modal": {
