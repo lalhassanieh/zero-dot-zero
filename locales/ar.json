@@ -2817,7 +2817,7 @@
         "shipping_line_phone_invalid": "يرجى إدخال رقم جوال صالح.",
         "phone_blank": "يرجى إدخال رقم جوال.",
         "address_phone_blank": "يرجى إدخال رقم جوال صالح.",
-        "address_phone_invalid": "يرجى إدخال رقم جوال صالح."
+        "address_phone_invalid": "يرجى إدخال رقم هاتف صحيح."
       },
       "error_page": {
         "terminal": {
