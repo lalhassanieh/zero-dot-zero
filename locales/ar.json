@@ -3294,7 +3294,10 @@
       "customer": {
         "subscribe_error": "خطأ في الاشتراك",
         "no_account_found": "لم يتم العثور على حساب مرتبط بهذا البريد الإلكتروني.",
-        "unsubscribe_error": "خطأ في إلغاء الاشتراك"
+        "unsubscribe_error": "خطأ في إلغاء الاشتراك",
+        "password_reset_error": "خطأ في إعادة تعيين كلمة المرور",
+        "invalid_credentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة.",
+        "denylisted_reset_password": "تعذّر الوصول إلى حسابك لأن كلمة المرور الحالية غير آمنة. ستتلقى بريدًا إلكترونيًا لتحديث كلمة المرور الخاصة بك."
       }
     },
     "challenge": {
@@ -3480,7 +3483,8 @@
       "invalid_expiry_year": "سنة انتهاء الصلاحية غير صالحة",
       "invalid_format": "التنسيق غير صالح",
       "gift_card_currency_mismatch": "بطاقة هديتك بعملة %{gift_card_currency}. تواصل معنا لإعادة إصدارها بعملة %{checkout_currency}.",
-      "reset_password_html": "هذا البريد الإلكتروني مسجل مسبقًا. إذا كان الحساب لك، يمكنك <a href=\"/account/login#recover\">استعادة كلمة المرور</a>"
+      "reset_password_html": "هذا البريد الإلكتروني مسجل مسبقًا. إذا كان الحساب لك، يمكنك <a href=\"/account/login#recover\">استعادة كلمة المرور</a>",
+      "verify_email": "لقد أرسلنا بريدًا إلكترونيًا إلى %{customer_email}، يرجى النقر على الرابط المرفق لتأكيد عنوان بريدك الإلكتروني."
     },
     "collections": {
       "sorting": {
