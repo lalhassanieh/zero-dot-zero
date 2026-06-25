@@ -800,7 +800,7 @@ dd.price__compare {
 }
 
 .article-image-holder {
-    width: 33.333%;
+    width: 36%;
     position: sticky;
     top: 20px;
     align-self: flex-start;
@@ -813,8 +813,9 @@ dd.price__compare {
 }
 
 .article-main-content {
-    width: 66.666%;
+    width: 64%;
 }
+
 
 @media (min-width: 992px) {
     .featured-product .productView-top {
