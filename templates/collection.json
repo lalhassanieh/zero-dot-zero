@@ -12,50 +12,24 @@
     "banner": {
       "type": "main-collection-banner",
       "blocks": {
-        "description_U8YxzD": {
-          "type": "description",
+        "image_GWjrcT": {
+          "type": "image",
           "settings": {
-            "show_collection_description": true,
-            "show_read_more_read_less": false,
-            "collection_description_position": "relative",
-            "collection_description_align_tb": "center",
-            "collection_description_align": "left",
-            "maxwidth_collection_description": 40,
-            "collection_description_color": "#232323",
-            "collection_description_bg": "#ffffff",
-            "collection_description_bg_gradient": "",
-            "show_sub_collection": false,
-            "sub_collection_layout": "grid",
-            "maxheight_sub_collection": 90,
-            "sub_collection_description_position": "relative",
-            "sub_collection_type": "all",
-            "colors_bg": "#fafafa",
-            "colors_bg_gradient": "",
-            "all_sub_collection_padding_top": 10,
-            "all_sub_collection_padding_bottom": 10,
-            "sub_collection_title": "Jump To",
-            "sub_collection_title_color": "#000000",
-            "fontsize_sub_collection": 12,
-            "fontweight_sub_collection": "500",
-            "sub_collection_text_transform": "uppercase",
-            "show_sub_collection_image": false,
-            "sub_collection_padding_top": 10,
-            "sub_collection_padding_bottom": 10,
-            "sub_collection_grid_gap": 15,
-            "color_sub_collection": "#ffffff",
-            "sub_collection_background": "#232323",
-            "sub_collection_background_gradient": "",
-            "sub_collection_border": "#232323",
-            "sub_collection_color_hover": "#232323",
-            "sub_collection_background_hover": "#ffffff",
-            "sub_collection_background_gradient_hover": "",
-            "sub_collection_border_hover": "#232323",
-            "sub_collection_mg_top": 0
+            "show_image_parallax": false,
+            "show_bg_overlay": false,
+            "type": "custom",
+            "bg_overlay": "#000000",
+            "use_metafield_banner": true,
+            "banner_metafield_namespace": "custom",
+            "banner_metafield_key": "collection_banner",
+            "banner_metafield_key_mobile": "collection_banner_mobile",
+            "banner_height": 0,
+            "banner_height_mobile": 0
           }
         }
       },
       "block_order": [
-        "description_U8YxzD"
+        "image_GWjrcT"
       ],
       "custom_css": [
         "#HeaderCollectionSection-template--19396942495988__banner .collection-description {max-width: 100%;}",
