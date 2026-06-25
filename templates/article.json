@@ -251,6 +251,19 @@
             "fontsize_content": 12,
             "margin_bottom": 40
           }
+        },
+        "video_tTAbrQ": {
+          "type": "video",
+          "settings": {
+            "title": "",
+            "metafield_namespace": "custom",
+            "metafield_key": "recipe_video",
+            "autoplay": true,
+            "loop": true,
+            "mute": true,
+            "controls": true,
+            "margin_bottom": 40
+          }
         }
       },
       "block_order": [
@@ -263,7 +276,8 @@
         "9ffcbc70-f507-4049-874d-4e9915e05726",
         "ce82dddb-aa2f-428e-bd37-3e033250c238",
         "73becaeb-c487-4f3b-93aa-39f4bef40c07",
-        "df6f199c-e8b4-46e7-8d3f-12e6302e295c"
+        "df6f199c-e8b4-46e7-8d3f-12e6302e295c",
+        "video_tTAbrQ"
       ],
       "settings": {
         "container": "1170",
@@ -314,9 +328,145 @@
         "mg_bottom_tablet": 0,
         "mg_bottom_mobile": 0
       }
+    },
+    "featured_product_Uwdrdh": {
+      "type": "featured-product",
+      "blocks": {
+        "title_iPc7iG": {
+          "type": "title",
+          "settings": {
+            "fontsize_text": 27,
+            "fontsize_text_mb": 20,
+            "color_title": "#000000",
+            "spacing_top": 0,
+            "spacing_bottom": 17
+          }
+        },
+        "short_description_9knGhM": {
+          "type": "short_description",
+          "settings": {
+            "show_short_description": true,
+            "word_number": "30",
+            "fontsize_text": 18,
+            "color_text": "#232323",
+            "spacing_top": 0,
+            "spacing_bottom": 28
+          }
+        },
+        "price_ejNUMa": {
+          "type": "price",
+          "settings": {
+            "fontsize_text": 20,
+            "price_style": "1",
+            "sale_color": "#F12D1C",
+            "show_short_desc": false,
+            "short_desc_color": "#005339",
+            "short_desc_fontsize": 16,
+            "short_desc_font": "Gilroy Light",
+            "short_desc_weight": "300",
+            "spacing_top": 0,
+            "spacing_bottom": 15
+          }
+        },
+        "buy_buttons_9tNRe9": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "fontsize_text": 14,
+            "checkbox_color": "#ffffff",
+            "checkbox_border_color": "#494a4d",
+            "color_qty_label": "#ffffff",
+            "color_qty_icon": "#5a5a5a",
+            "color_qty_input": "#f2f5ff",
+            "bg_color_qty_input": "rgba(0,0,0,0)",
+            "wishlist_color": "#747474",
+            "wishlist_border_color": "#121212",
+            "wishlist_bg_color": "#121212",
+            "wishlist_color_hover": "#ffffff",
+            "wishlist_border_color_hover": "#3faeea",
+            "wishlist_bg_color_hover": "#3faeea",
+            "atc_animation": "horizontal-shaking",
+            "atc_color": "#005339",
+            "atc_border_color": "#005339",
+            "atc_bg_color": "#FFFFFF",
+            "atc_bg_color_gradient": "",
+            "atc_color_hover": "#ffffff",
+            "atc_border_color_hover": "rgba(0,0,0,0)",
+            "atc_bg_color_hover": "rgba(0,0,0,0)",
+            "atc_bg_color_gradient_hover": "",
+            "bin_color": "#ffffff",
+            "bin_border_color": "rgba(0,0,0,0)",
+            "bin_bg_color": "rgba(0,0,0,0)",
+            "bin_bg_color_gradient": "",
+            "bin_color_hover": "#ffffff",
+            "bin_border_color_hover": "rgba(0,0,0,0)",
+            "bin_bg_color_hover": "rgba(0,0,0,0)",
+            "bin_bg_color_hover_gradient": "",
+            "spacing_top": 15,
+            "spacing_bottom": 15
+          }
+        }
+      },
+      "block_order": [
+        "title_iPc7iG",
+        "short_description_9knGhM",
+        "price_ejNUMa",
+        "buy_buttons_9tNRe9"
+      ],
+      "name": "t:sections.product_block.settings.header__2.feature_product",
+      "settings": {
+        "id_section": "",
+        "container": "container",
+        "padding_full_width": 0,
+        "show_sticky_info": false,
+        "bg_color_product": "#FFFFFF",
+        "title": "Bring This Blend to Your Table",
+        "color_title": "#005339",
+        "fontsize_title": 35,
+        "fontsize_title_mb": 20,
+        "margin_bottom_title": 60,
+        "margin_bottom_title_mb": 20,
+        "des": "",
+        "color_des": "#ffffff",
+        "fontsize_des": 16,
+        "margin_bottom_des": 45,
+        "margin_bottom_des_mb": 30,
+        "title_align": "center",
+        "title_align_mb": "center",
+        "featured_product": "",
+        "use_article_metafield": true,
+        "metafield_namespace": "custom",
+        "metafield_key": "related_product",
+        "main_image_arrows_desktop": true,
+        "main_image_counter_mobile": true,
+        "main_image_layout": "1",
+        "main_image_position": "left",
+        "main_image_bg_color": "#FFFFFF",
+        "main_image_column_width": 34,
+        "right_column_padding": 65,
+        "thumnail_layout": "4",
+        "show_thumbnail_mobile": false,
+        "thumbnail_to_show": 5,
+        "thumbnail_active_color": "#e11ecb",
+        "thumbnail_arrow_color_mb": "#ffffff",
+        "thumbnail_image_bg_color": "#121212",
+        "media_fit": "unset",
+        "product_image_ratio": "adapt",
+        "portrait_aspect_ratio": 100,
+        "product_image_popup": "fancybox",
+        "video_layout": "thumbnail",
+        "show_badge": true,
+        "mg_top_desktop": 60,
+        "mg_top_tablet": 50,
+        "mg_top_mobile": 40,
+        "mg_bottom_desktop": 50,
+        "mg_bottom_tablet": 30,
+        "mg_bottom_mobile": 30
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "featured_product_Uwdrdh"
   ]
 }
