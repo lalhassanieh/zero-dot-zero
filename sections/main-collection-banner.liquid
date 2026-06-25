@@ -27,13 +27,34 @@
             assign image_block_type = block.settings.type
             assign show_bg_overlay = block.settings.show_bg_overlay
             assign bg_overlay = block.settings.bg_overlay
-            if collection.image
-                assign image = collection.image
-            else
-                assign image = block.settings.image
+
+            assign mf_banner = ''
+            assign mf_banner_mobile = ''
+            if block.settings.use_metafield_banner
+                assign banner_ns = block.settings.banner_metafield_namespace | default: 'custom'
+                assign banner_key = block.settings.banner_metafield_key
+                assign mf_banner = collection.metafields[banner_ns][banner_key].value
+                if block.settings.banner_metafield_key_mobile != blank
+                    assign mf_banner_mobile = collection.metafields[banner_ns][block.settings.banner_metafield_key_mobile].value
+                endif
             endif
-            
-            assign image_mobile = block.settings.image_mobile
+
+            if mf_banner != blank
+                assign image = mf_banner
+            elsif block.settings.image != blank
+                assign image = block.settings.image
+            else
+                assign image = collection.image
+            endif
+
+            if mf_banner_mobile != blank
+                assign image_mobile = mf_banner_mobile
+            else
+                assign image_mobile = block.settings.image_mobile
+            endif
+
+            assign banner_height = block.settings.banner_height
+            assign banner_height_mobile = block.settings.banner_height_mobile
 
             assign show_image_parallax = block.settings.show_image_parallax
         endfor
@@ -338,6 +359,31 @@
     #HeaderCollectionSection-{{ section.id }} .collection-banner--overlay .image:before{background-color: {{ bg_overlay | color_modify: 'alpha', 0.3 }}}
     {%- endif -%}
 {%- endif -%}
+
+    {%- if banner_height > 0 -%}
+        #HeaderCollectionSection-{{ section.id }} .collection-banner .image {
+            padding-top: 0 !important;
+            height: {{ banner_height }}px;
+        }
+        #HeaderCollectionSection-{{ section.id }} .collection-banner .image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    {%- endif -%}
+    {%- if banner_height_mobile > 0 -%}
+        @media (max-width: 767px) {
+            #HeaderCollectionSection-{{ section.id }} .collection-banner .image {
+                padding-top: 0 !important;
+                height: {{ banner_height_mobile }}px;
+            }
+            #HeaderCollectionSection-{{ section.id }} .collection-banner .image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+    {%- endif -%}
 
     #HeaderCollectionSection-{{ section.id }} .collection-description{max-width: {{ maxwidth_collection_description | append: '%' }};
         {%- if collection_description_align == 'right' -%}
@@ -671,6 +717,62 @@
                         "id": "bg_overlay",
                         "label": "t:sections.main-header-collection.blocks.image.settings.general.label__6",
                         "default": "#000000"
+                    },
+                    {
+                        "type": "header",
+                        "content": "Per-collection banner (metafield)"
+                    },
+                    {
+                        "type": "checkbox",
+                        "id": "use_metafield_banner",
+                        "label": "Use banner from collection metafield",
+                        "info": "When on, each collection's banner comes from the metafield below. Falls back to the collection image / block image when empty.",
+                        "default": false
+                    },
+                    {
+                        "type": "text",
+                        "id": "banner_metafield_namespace",
+                        "label": "Metafield namespace",
+                        "default": "custom"
+                    },
+                    {
+                        "type": "text",
+                        "id": "banner_metafield_key",
+                        "label": "Metafield key (desktop)",
+                        "default": "collection_banner"
+                    },
+                    {
+                        "type": "text",
+                        "id": "banner_metafield_key_mobile",
+                        "label": "Metafield key (mobile)",
+                        "info": "Leave empty to reuse the desktop banner on mobile.",
+                        "default": "collection_banner_mobile"
+                    },
+                    {
+                        "type": "header",
+                        "content": "Banner height"
+                    },
+                    {
+                        "type": "range",
+                        "id": "banner_height",
+                        "label": "Banner height (desktop)",
+                        "info": "Set to 0 to keep the image's natural ratio.",
+                        "min": 0,
+                        "max": 800,
+                        "step": 10,
+                        "unit": "px",
+                        "default": 0
+                    },
+                    {
+                        "type": "range",
+                        "id": "banner_height_mobile",
+                        "label": "Banner height (mobile)",
+                        "info": "Set to 0 to keep the image's natural ratio.",
+                        "min": 0,
+                        "max": 600,
+                        "step": 10,
+                        "unit": "px",
+                        "default": 0
                     }
                 ]
             },
