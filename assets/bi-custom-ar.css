@@ -713,6 +713,18 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
     margin: 0 0 10px 10px !important;
 }
 
+/* Main article: mirror image/content columns for Arabic */
+@media (min-width: 992px) {
+    .article-header__holder {
+        flex-direction: row-reverse;
+    }
+}
+
+.article-header__holder .details span {
+    padding-right: 0;
+    padding-left: 4px;
+}
+
 /*Homepage*/
 .container-1770 {
     padding-left: 50px !important;
