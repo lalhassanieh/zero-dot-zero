@@ -718,6 +718,10 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
     padding-left: 4px;
 }
 
+.article-image-holder {
+  margin-left: 20px;
+}
+
 /*Homepage*/
 .container-1770 {
     padding-left: 50px !important;
