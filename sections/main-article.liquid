@@ -265,6 +265,7 @@
                   </div>
                 {%- endif -%}
               </div>
+              <div class="article-main-content">
               <div class="article-heading text-left test34">
                 <h3 class="title">
                   {{ article.title }}
@@ -303,9 +304,7 @@
                   </div>
                 {%- endif -%}
               </div>
-            </div>
-          </div>
-          <div class="article-body">
+              <div class="article-body">
             <div class="article-content halo-text-format{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
               {{ article.content }}
             </div>
@@ -688,6 +687,37 @@
                     position: position
                   %}
                 {% endif %}
+              {%- elsif block.type == 'video' -%}
+                {%- liquid
+                  assign video_ns = block.settings.metafield_namespace | default: 'custom'
+                  assign video_key = block.settings.metafield_key
+                  assign video_mf = article.metafields[video_ns][video_key]
+                -%}
+                {%- if video_mf != blank and video_mf.value != blank -%}
+                  <div
+                    class="article-video-block{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}"
+                    style="--video-margin-bottom: {{ block.settings.margin_bottom | append: 'px' }};"
+                  >
+                    {%- if block.settings.title != blank -%}
+                      <div class="article-video-block__header text-left">
+                        <h3 class="title"><span class="text">{{ block.settings.title }}</span></h3>
+                      </div>
+                    {%- endif -%}
+                    <div class="article-video-block__media">
+                      {{
+                        video_mf.value
+                        | video_tag:
+                          image_size: '1100x',
+                          autoplay: block.settings.autoplay,
+                          loop: block.settings.loop,
+                          muted: block.settings.mute,
+                          controls: block.settings.controls,
+                          playsinline: true,
+                          class: 'article-video-block__player'
+                      }}
+                    </div>
+                  </div>
+                {%- endif -%}
               {%- endif -%}
             {%- endfor -%}
             {%- if show_tags -%}
@@ -716,6 +746,9 @@
                 {% render 'halo-share', product: article %}
               </div>
             {%- endif -%}
+          </div>
+              </div>
+            </div>
           </div>
         </div>
         {%- if show_next_prev -%}
@@ -3397,6 +3430,68 @@
           "id": "margin_bottom",
           "label": "t:sections.main-sidebar.blocks.block_quote.settings.general.margin_bottom",
           "unit": "t:sections.layout.fontsize.fontsize_title.unit",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 40
+        }
+      ]
+    },
+    {
+      "type": "video",
+      "name": "Video",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Plays a video stored in an article metafield (type: Video). Set the namespace and key below to match the metafield you created on the article."
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading"
+        },
+        {
+          "type": "text",
+          "id": "metafield_namespace",
+          "label": "Metafield namespace",
+          "default": "custom"
+        },
+        {
+          "type": "text",
+          "id": "metafield_key",
+          "label": "Metafield key",
+          "default": "recipe_video"
+        },
+        {
+          "type": "checkbox",
+          "id": "autoplay",
+          "label": "Autoplay",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "loop",
+          "label": "Loop",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "mute",
+          "label": "Mute",
+          "default": false,
+          "info": "Required for autoplay to work in most browsers."
+        },
+        {
+          "type": "checkbox",
+          "id": "controls",
+          "label": "Show controls",
+          "default": true
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Bottom spacing",
+          "unit": "px",
           "min": 0,
           "max": 100,
           "step": 1,
