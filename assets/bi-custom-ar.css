@@ -719,8 +719,13 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
 }
 
 .article-image-holder {
-  margin-right: 0px !important;
+  margin-right: 0px;
   margin-left: 20px;
+}
+
+.halo-article-content .halo-text-format ul,
+.halo-article-content .halo-text-format ol {
+    margin: 0 25px 0 0;
 }
 
 /*Homepage*/
