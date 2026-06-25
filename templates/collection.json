@@ -23,7 +23,7 @@
             "banner_metafield_namespace": "custom",
             "banner_metafield_key": "collection_banner",
             "banner_metafield_key_mobile": "collection_banner_mobile",
-            "banner_height": 0,
+            "banner_height": 300,
             "banner_height_mobile": 0
           }
         }
