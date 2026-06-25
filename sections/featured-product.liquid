@@ -9,6 +9,14 @@
 
 {%- liquid
   assign product = all_products[section.settings.featured_product]
+  if section.settings.use_article_metafield
+    assign mf_ns = section.settings.metafield_namespace | default: 'custom'
+    assign mf_key = section.settings.metafield_key
+    assign mf_product = article.metafields[mf_ns][mf_key].value
+    if mf_product != blank
+      assign product = mf_product
+    endif
+  endif
   assign bg_color_product = section.settings.bg_color_product
   assign color_title = section.settings.color_title
   assign fontsize_title = section.settings.fontsize_title
@@ -86,6 +94,8 @@
   endif
 -%}
 
+{%- if product != blank -%}
+
 {%- if first_3d_model -%}
   <link
     rel="stylesheet"
@@ -159,6 +169,24 @@
 
   #ProductSection-{{ section.id }} .productView-thumbnail .productView-thumbnail-link {
       background: {{ thumbnail_image_bg_color }};
+  }
+
+  {%- if section.settings.main_image_column_width > 0 and section.settings.main_image_column_width != 50 -%}
+  {%- assign right_col_width = 100 | minus: section.settings.main_image_column_width -%}
+  @media (min-width: 1025px) {
+      #ProductSection-{{ section.id }} .productView-top .halo-productView-left {
+          width: {{ section.settings.main_image_column_width }}% !important;
+      }
+      #ProductSection-{{ section.id }} .productView-top .halo-productView-right {
+          width: {{ right_col_width }}% !important;
+      }
+  }
+  {%- endif -%}
+
+  @media (min-width: 1200px) {
+      #ProductSection-{{ section.id }} .productView-top .halo-productView-right {
+          padding-left: {{ section.settings.right_column_padding }}px;
+      }
   }
 
   @media (max-width: 1024px) {
@@ -280,7 +308,7 @@
                 %}
               {%- endif -%}
 
-              {%- if section.settings.featured_product == blank -%}
+              {%- if product == blank -%}
                 <div class="productView-nav">
                   <div class="productView-image product-media-container">
                     {{ 'product-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
@@ -562,7 +590,7 @@
               {%- endif -%}
             </div>
             {%- if thumnail_layout != '4' -%}
-              <div class="productView-thumbnail-wrapper{% unless show_thumbnail_mobile %} is-hidden-mobile{% endunless %}{% if section.settings.featured_product == blank %} productView-thumbnail-wrapper-placeholder{% endif %}">
+              <div class="productView-thumbnail-wrapper{% unless show_thumbnail_mobile %} is-hidden-mobile{% endunless %}{% if product == blank %} productView-thumbnail-wrapper-placeholder{% endif %}">
                 <div class="productView-for clearfix" data-max-thumbnail-to-show="{{ max_thumbnail_to_show }}">
                   {%- for media in product.media -%}
                     {%- case media.media_type -%}
@@ -639,7 +667,7 @@
                         </div>
                     {%- endcase -%}
                   {%- endfor -%}
-                  {%- if section.settings.featured_product == blank -%}
+                  {%- if product == blank -%}
                     <div
                       class="productView-thumbnail productView-thumbnail-placeholder{% if show_variant_image_group %} filter-{{ media.alt | handle }}{% endif %}"
                       data-media-id="{{ section.id }}-{{ media.id }}"
@@ -656,7 +684,7 @@
             {%- endif -%}
           </div>
         </div>
-        <div class="halo-productView-right productView-details clearfix{% if section.settings.featured_product == blank %} product-placeholder{% endif %}">
+        <div class="halo-productView-right productView-details clearfix{% if product == blank %} product-placeholder{% endif %}">
           <div class="productView-product clearfix">
             {%- for block in section.blocks -%}
               {%- liquid
@@ -734,7 +762,7 @@
                       --spacing-bottom: {{ spacing_bottom | append: 'px' }}
                     "
                   >
-                    {%- if section.settings.featured_product != blank -%}
+                    {%- if product != blank -%}
                       {% render 'product-short-description',
                         block: block,
                         product: product,
@@ -778,7 +806,14 @@
                       </div>
                     {%- endif -%}
                   </div>
-                  <div class="featured-product-short-desc">{{ product.metafields.custom.short_description }}</div>
+                  {%- if block.settings.show_short_desc and product.metafields.custom.short_description != blank -%}
+                    <div
+                      class="featured-product-short-desc"
+                      style="color: {{ block.settings.short_desc_color }}; font-size: {{ block.settings.short_desc_fontsize | append: 'px' }};{% if block.settings.short_desc_font != 'default' %} font-family: '{{ block.settings.short_desc_font }}';{% endif %} font-weight: {{ block.settings.short_desc_weight }};"
+                    >
+                      {{ product.metafields.custom.short_description }}
+                    </div>
+                  {%- endif -%}
                 {%- when 'variant_picker' -%}
                   <div
                     class="productView-moreItem{% if block.settings.variant_picker_style == '2' %} style-2{% if block.settings.enable_border_top %} has-border-top{% endif %}{% if block.settings.enable_border_bottom %} has-border-bottom{% endif %}{% endif %}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}"
@@ -1055,7 +1090,7 @@
                       --color-border-checkbox-hover: {{ block.settings.checkbox_border_color }}
                     "
                   >
-                    {%- if section.settings.featured_product != blank -%}
+                    {%- if product != blank -%}
                       {% render 'product-button',
                         block: block,
                         product: product,
@@ -1125,6 +1160,8 @@
 <script type="application/ld+json">
   {{ product | structured_data }}
 </script>
+
+{%- endif -%}
 
 {% schema %}
 {
@@ -1333,6 +1370,25 @@
       "label": "t:sections.product-bundle.settings.header__3.content"
     },
     {
+      "type": "checkbox",
+      "id": "use_article_metafield",
+      "label": "Use product from article metafield",
+      "info": "On a blog post, pulls the product from the article metafield below. Falls back to the product picked above when empty.",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "metafield_namespace",
+      "label": "Metafield namespace",
+      "default": "custom"
+    },
+    {
+      "type": "text",
+      "id": "metafield_key",
+      "label": "Metafield key",
+      "default": "related_product"
+    },
+    {
       "type": "header",
       "content": "t:sections.main-product.settings.general.main_image"
     },
@@ -1385,6 +1441,28 @@
       "id": "main_image_bg_color",
       "label": "t:settings_schema.colors.settings.colors_name.background_image",
       "default": "#121212"
+    },
+    {
+      "type": "range",
+      "id": "main_image_column_width",
+      "label": "Image column width",
+      "info": "Desktop width of the image column. The details/right side takes the rest. 50 = equal split.",
+      "min": 20,
+      "max": 50,
+      "step": 1,
+      "unit": "%",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "right_column_padding",
+      "label": "Right column left padding",
+      "info": "Space between the image and the details column (desktop â¥1200px).",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 95
     },
     {
       "type": "header",
@@ -1903,6 +1981,57 @@
           "label": "t:sections.feature_product.sale_price",
           "info": "t:sections.feature_product.info_2",
           "default": "#F12D1C"
+        },
+        {
+          "type": "header",
+          "content": "Short description (metafield)"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_short_desc",
+          "label": "Show short description",
+          "info": "Reads the product's custom.short_description metafield.",
+          "default": true
+        },
+        {
+          "type": "color",
+          "id": "short_desc_color",
+          "label": "Short description color",
+          "default": "#005339"
+        },
+        {
+          "type": "range",
+          "id": "short_desc_fontsize",
+          "label": "Short description font size",
+          "min": 8,
+          "max": 40,
+          "step": 1,
+          "unit": "px",
+          "default": 16
+        },
+        {
+          "type": "select",
+          "id": "short_desc_font",
+          "label": "Short description font",
+          "default": "Gilroy Light",
+          "options": [
+            { "value": "default", "label": "Theme default" },
+            { "value": "Gilroy Light", "label": "Gilroy Light" },
+            { "value": "Gilroy Extra Bold", "label": "Gilroy Extra Bold" }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "short_desc_weight",
+          "label": "Short description font weight",
+          "default": "300",
+          "options": [
+            { "value": "300", "label": "Light (300)" },
+            { "value": "400", "label": "Regular (400)" },
+            { "value": "500", "label": "Medium (500)" },
+            { "value": "600", "label": "Semibold (600)" },
+            { "value": "700", "label": "Bold (700)" }
+          ]
         },
         {
           "type": "header",
