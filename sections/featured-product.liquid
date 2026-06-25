@@ -185,11 +185,6 @@
 
   {%- assign fp_lang = request.locale.iso_code | slice: 0, 2 -%}
   {%- if fp_lang == 'ar' -%}
-  @media (min-width: 1025px) {
-      #ProductSection-{{ section.id }} .productView-top {
-          flex-direction: row-reverse;
-      }
-  }
   @media (min-width: 1200px) {
       #ProductSection-{{ section.id }} .productView-top .halo-productView-right {
           padding-left: 0 !important;
