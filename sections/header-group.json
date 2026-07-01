@@ -23,7 +23,7 @@
         "group_3_68GmHA": {
           "type": "group_3",
           "settings": {
-            "announcement_text": "Free Delivery for Orders Above <span class=\"price-item price-item--regular\"><span class=\"riyal-font riyal-font--header\"></span> 100</span> Delivery within 24 hours\n<br>\n<div style=\"text-align:center;\">\n🚚 Currently delivering to Jeddah, Riyadh &amp; Dammam. More cities coming soon.\n</div>",
+            "announcement_text": "Free Delivery for Orders Above <span class=\"price-item price-item--regular\"><span class=\"riyal-font riyal-font--header\"></span> 100</span> Delivery within 24 hours\n<br>\n<span style=\"display:block;text-align:center;\">\n🚚 Currently delivering to Jeddah, Riyadh &amp; Dammam. More cities coming soon.\n</span>",
             "announcement_text_color": "#ffffff"
           }
         },
