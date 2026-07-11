@@ -286,17 +286,16 @@
             "spacing_bottom": 14
           }
         },
-        "36addb13-cd73-4713-a15c-7d846c4724e7": {
-          "type": "custom_information",
+        "payment_icons_dw6ceG": {
+          "type": "payment_icons",
           "settings": {
-            "icon": "<img src=\"https://cdn.shopify.com/s/files/1/0742/2669/6436/files/cards_transparent.png?v=1782110540\" alt=\"Cards\">",
-            "color_icon": "#232323",
-            "text": "",
-            "color_title": "#232323",
-            "text_description": "",
-            "color_des": "#999999",
-            "fontsize_text": 12,
-            "content_popup": "",
+            "title": "",
+            "image_1": "shopify://shop_images/Visa.svg",
+            "image_2": "shopify://shop_images/Mastercard.svg",
+            "image_3": "shopify://shop_images/pay.svg",
+            "icon_height": 45,
+            "icon_gap": 0,
+            "alignment": "left",
             "spacing_top": 0,
             "spacing_bottom": 0
           }
@@ -342,7 +341,7 @@
         "19ab1d9f-74b2-4c76-bf2e-1bc749e5c2a3",
         "a86220cf-8641-4e06-87d3-b5ffa195501b",
         "058d88b7-6cce-4aae-a5c4-b8193bbdfa7f",
-        "36addb13-cd73-4713-a15c-7d846c4724e7",
+        "payment_icons_dw6ceG",
         "9630b233-8164-4dad-ab64-8830bedf328a"
       ],
       "custom_css": [],
