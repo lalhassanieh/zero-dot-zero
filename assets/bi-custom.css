@@ -1589,3 +1589,28 @@ input[type="checkbox"][required] {
         justify-content: center;
     }
 }
+
+/* Product page — payment icons block */
+.product-paymentIcons__title {
+    margin-bottom: 8px;
+}
+.product-paymentIcons__list {
+    display: flex;
+    align-items: center;
+    gap: var(--payment-icon-gap, 8px);
+}
+.product-paymentIcons.text-center .product-paymentIcons__list {
+    justify-content: center;
+}
+.product-paymentIcons.text-right .product-paymentIcons__list {
+    justify-content: flex-end;
+}
+.product-paymentIcons__item {
+    display: block;
+    flex-shrink: 0;
+}
+.product-paymentIcons__item img {
+    display: block;
+    height: var(--payment-icon-height, 24px);
+    width: auto;
+}
