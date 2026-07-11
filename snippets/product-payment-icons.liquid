@@ -1,0 +1,30 @@
+{%- liquid
+    assign title = block.settings.title
+    assign icon_height = block.settings.icon_height
+    assign icon_gap = block.settings.icon_gap
+    assign alignment = block.settings.alignment
+-%}
+<div class="product-paymentIcons text-{{ alignment }}" {{ block.shopify_attributes }}
+    style="--payment-icon-height: {{ icon_height | append: 'px' }};
+    --payment-icon-gap: {{ icon_gap | append: 'px' }};"
+>
+    {%- if title != blank -%}
+        <div class="product-paymentIcons__title">{{ title }}</div>
+    {%- endif -%}
+    <div class="product-paymentIcons__list">
+        {%- for i in (1..5) -%}
+            {%- assign image_key = 'image_' | append: i -%}
+            {%- assign image = block.settings[image_key] -%}
+            {%- if image != blank -%}
+                <span class="product-paymentIcons__item">
+                    <img src="{{ image | image_url: width: 200 }}"
+                        alt="{{ image.alt | escape }}"
+                        width="{{ image.width }}"
+                        height="{{ image.height }}"
+                        loading="lazy"
+                    >
+                </span>
+            {%- endif -%}
+        {%- endfor -%}
+    </div>
+</div>
