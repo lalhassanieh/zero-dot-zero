@@ -1271,6 +1271,7 @@
 
 {%- comment -%} Slider styles + product-switch behavior (arrows / dots / autoplay) {%- endcomment -%}
 <style>
+  /* Let the switch arrows sit in the outer margin without being clipped. */
   #ProductSection-{{ section.id }} .fp-slider { position: relative; }
   #ProductSection-{{ section.id }} .fp-viewport { position: relative; }
   #ProductSection-{{ section.id }} .fp-live { transition: opacity .3s ease; }
@@ -1291,9 +1292,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 56px;
-    height: 40px;
-    padding: 0;
+    padding: 8px 10px;
     border: 0;
     border-radius: 4px;
     background: #fff7e5;
@@ -1302,10 +1301,28 @@
     transition: background .2s ease, opacity .2s ease;
   }
   #ProductSection-{{ section.id }} .fp-nav:hover { background: #f5ead0; }
-  #ProductSection-{{ section.id }} .fp-nav svg { width: 31px; height: 10px; display: block; }
+  #ProductSection-{{ section.id }} .fp-nav svg { width: 63px; height: 34px; display: block; }
   #ProductSection-{{ section.id }} .fp-nav--prev svg { transform: rotate(180deg); }
-  #ProductSection-{{ section.id }} .fp-nav--prev { left: 0; }
-  #ProductSection-{{ section.id }} .fp-nav--next { right: 0; }
+  /* Desktop: push the product-switch arrows into the outer gutter so they never
+     overlap the image's own next/prev arrows. */
+  #ProductSection-{{ section.id }} .fp-nav--prev { left: -64px; }
+  #ProductSection-{{ section.id }} .fp-nav--next { right: -64px; }
+
+  @media (max-width: 1300px) {
+    #ProductSection-{{ section.id }} .fp-nav--prev { left: -18px; }
+    #ProductSection-{{ section.id }} .fp-nav--next { right: -18px; }
+  }
+  /* Mobile: the image is full width, so move the switch arrows below it (by the dots)
+     to keep the image's own arrows tappable. */
+  @media (max-width: 767px) {
+    #ProductSection-{{ section.id }} .fp-nav {
+      top: auto;
+      bottom: 0;
+      transform: none;
+    }
+    #ProductSection-{{ section.id }} .fp-nav--prev { left: 8px; }
+    #ProductSection-{{ section.id }} .fp-nav--next { right: 8px; }
+  }
 
   #ProductSection-{{ section.id }} .fp-dots {
     display: flex;
@@ -1369,34 +1386,41 @@
       var target = ((i % count) + count) % count;
       if (target === index || switching) return;
       switching = true;
-      // Freeze the current height so the swap can't collapse/jump the page.
+
+      // Freeze the current height and fade the old product out (still occupying its space).
       if (viewport) {
-        viewport.style.height = live.offsetHeight + 'px';
+        viewport.style.height = viewport.offsetHeight + 'px';
         viewport.style.overflow = 'hidden';
       }
       slider.classList.add('is-switching');
+
+      // After the fade-out completes, swap while invisible so the raw reflow isn't seen.
       setTimeout(function () {
         index = target;
         live.innerHTML = slides[index];
         dots.forEach(function (d, di) { d.classList.toggle('is-active', di === index); });
         reinit();
+        if (window.jQuery) {
+          try { window.jQuery(live).find('.productView-nav, .productView-for').slick('setPosition'); } catch (e) {}
+        }
+        // Two frames for the new layout to settle, then animate height + fade back in.
         requestAnimationFrame(function () {
-          slider.classList.remove('is-switching');
-          switching = false;
-          if (window.jQuery) {
-            try { window.jQuery(live).find('.productView-nav, .productView-for').slick('setPosition'); } catch (e) {}
-          }
-          // Smoothly animate from the frozen height to the new product's height, then release.
-          if (viewport) {
-            var newH = live.scrollHeight;
-            viewport.style.transition = 'height .3s ease';
-            viewport.style.height = newH + 'px';
+          requestAnimationFrame(function () {
+            var endH = live.scrollHeight;
+            if (viewport) {
+              viewport.style.transition = 'height .4s ease';
+              viewport.style.height = endH + 'px';
+            }
+            slider.classList.remove('is-switching');
             setTimeout(function () {
-              viewport.style.transition = '';
-              viewport.style.height = '';
-              viewport.style.overflow = '';
-            }, 330);
-          }
+              if (viewport) {
+                viewport.style.transition = '';
+                viewport.style.height = '';
+                viewport.style.overflow = '';
+              }
+              switching = false;
+            }, 430);
+          });
         });
       }, 300);
     }
