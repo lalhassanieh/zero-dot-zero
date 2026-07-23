@@ -120,6 +120,8 @@
   endif
 -%}
 
+<!-- FP-DEBUG use_mf={{ section.settings.use_article_metafield }} | ns={{ mf_ns }} | single_key={{ section.settings.metafield_key }} | single_blank={% if mf_single == blank %}Y{% else %}N{% endif %} | single_val_blank={% if mf_single.value == blank %}Y{% else %}N{% endif %} | single_type={{ mf_single.type }} | list_key={{ section.settings.metafield_key_multiple }} | list_blank={% if mf_list == blank %}Y{% else %}N{% endif %} | count={{ fp_handles.size }} | first={{ fp_handles.first }} | product_blank={% if product == blank %}Y{% else %}N{% endif %} -->
+
 {%- if fp_handles.size > 0 and product != blank -%}
 
 {%- if first_3d_model -%}
