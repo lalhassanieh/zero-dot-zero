@@ -1288,8 +1288,8 @@
     display: none;
   }
 
-  /* Keep the theme's original column alignment (top-aligned). Centering the columns here
-     was what collapsed the image, so we leave this as the theme default. */
+  /* Top-align the image & details columns so the text does NOT re-center (and drop down)
+     when the image finishes loading and gets taller. */
   #ProductSection-{{ section.id }} .productView-top { align-items: flex-start; }
 
   /* Switch controls sit in one centered row BELOW the product ( â¹  â¢ â¢ â¢  âº ),
@@ -1397,64 +1397,6 @@
       }
     }
 
-    // Force lazysizes to load the injected product's images NOW. The gallery slick measures
-    // slide/track height at init time; if the images are still unloaded (height ~0) its
-    // arrows end up sized/positioned against a collapsed track and never show on hover.
-    function eagerLoadImages() {
-      var imgs = live.querySelectorAll('img.lazyload, img[data-srcset], img[data-src]');
-      for (var i = 0; i < imgs.length; i++) {
-        var img = imgs[i];
-        if (img.getAttribute('data-srcset') && !img.getAttribute('srcset')) {
-          img.setAttribute('srcset', img.getAttribute('data-srcset'));
-        }
-        if (img.getAttribute('data-src') && !img.getAttribute('src')) {
-          img.setAttribute('src', img.getAttribute('data-src'));
-        }
-        img.classList.remove('lazyload');
-        img.classList.add('lazyloaded');
-      }
-    }
-
-    // Tell slick to recompute its track/arrow geometry for the currently live product.
-    function refreshGallery() {
-      if (window.jQuery) {
-        try { window.jQuery(live).find('.productView-nav, .productView-for').slick('setPosition'); } catch (e) {}
-      }
-      try { window.dispatchEvent(new Event('resize')); } catch (e) {}
-      applyLock(live.scrollHeight);
-    }
-
-    // After the gallery is (re)initialized, keep re-positioning it as the images finish
-    // loading so the hover arrows land in the right place and stay interactive.
-    function settleGallery() {
-      refreshGallery();
-      var imgs = live.querySelectorAll('img');
-      for (var i = 0; i < imgs.length; i++) {
-        var img = imgs[i];
-        if (img.complete && img.naturalHeight) continue;
-        img.addEventListener('load', refreshGallery, { once: true });
-        img.addEventListener('lazyloaded', refreshGallery, { once: true });
-      }
-      setTimeout(refreshGallery, 400);
-      setTimeout(refreshGallery, 1000);
-    }
-
-    // Wait until the injected product's MAIN (featured) image has actually loaded and has
-    // real height. This is the key fix: with media_fit "unset" the image reserves no height,
-    // so if slick initializes before the image loads it measures a zero-height slide â the
-    // picture collapses and the hover next/prev arrows get positioned against an empty box
-    // and never appear. Initializing only after the image has height avoids both problems.
-    function whenFeaturedImageReady(cb) {
-      var img = live.querySelector('.productView-nav .productView-image img') || live.querySelector('img');
-      if (!img || (img.complete && img.naturalHeight)) { cb(); return; }
-      var done = false;
-      function fire() { if (done) return; done = true; cb(); }
-      img.addEventListener('load', fire, { once: true });
-      img.addEventListener('lazyloaded', fire, { once: true });
-      img.addEventListener('error', fire, { once: true });
-      setTimeout(fire, 1500); // fallback so a slow/failed image never leaves the slider stuck
-    }
-
     function go(i) {
       if (count <= 1) return;
       var target = ((i % count) + count) % count;
@@ -1462,19 +1404,25 @@
       switching = true;
       slider.classList.add('is-switching'); // fade the current product out
 
-      // After the fade-out, swap the markup in while it's invisible, reveal it, kick the
-      // images to load, and only initialize the gallery once the featured image has real
-      // height â otherwise slick collapses the image and its hover arrows never show.
+      // After the fade-out, swap the markup in while it's invisible, then reveal it and
+      // initialize the new product's gallery WHILE VISIBLE (slick lays out its image
+      // arrows/thumbnails reliably only when the element isn't opacity:0).
       setTimeout(function () {
         index = target;
         live.innerHTML = slides[index];
         dots.forEach(function (d, di) { d.classList.toggle('is-active', di === index); });
-        slider.classList.remove('is-switching'); // reveal so widths/heights are real
-        eagerLoadImages();                        // start the image download immediately
-        whenFeaturedImageReady(function () {
-          reinit();        // init the gallery now that the image has height â arrows lay out
-          settleGallery(); // keep re-positioning as the remaining images settle
+        requestAnimationFrame(function () {
+          slider.classList.remove('is-switching'); // now visible
+          reinit();                                 // init the gallery/variants while visible
+          if (window.jQuery) {
+            try { window.jQuery(live).find('.productView-nav, .productView-for').slick('setPosition'); } catch (e) {}
+          }
+          // Nudge slick to (re)draw its arrows/track for the freshly shown product.
+          try { window.dispatchEvent(new Event('resize')); } catch (e) {}
           switching = false;
+          applyLock(live.scrollHeight); // grow the lock if this product ends up taller than measured
+          // The image reserves no height until it loads; re-check after so the lock stays correct.
+          setTimeout(function () { applyLock(live.scrollHeight); }, 800);
         });
       }, 300);
     }
