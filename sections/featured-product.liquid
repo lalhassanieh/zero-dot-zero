@@ -1288,9 +1288,15 @@
     display: none;
   }
 
-  /* Top-align the image & details columns so the text does NOT re-center (and drop down)
-     when the image finishes loading and gets taller. */
-  #ProductSection-{{ section.id }} .productView-top { align-items: flex-start; }
+  /* Stretch both columns to the same (tallest = image) height, then vertically center the
+     details column's content within it â so the title / description / price / button sit in
+     the middle of the image, not pinned to the top. */
+  #ProductSection-{{ section.id }} .productView-top { align-items: stretch; }
+  #ProductSection-{{ section.id }} .productView-top .halo-productView-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 
   /* Switch controls sit in one centered row BELOW the product ( â¹  â¢ â¢ â¢  âº ),
      so they never overlap the image's own next/prev arrows. The arrows reuse the
@@ -1397,6 +1403,48 @@
       }
     }
 
+    // Force lazysizes to load the injected product's images NOW. The gallery slick measures
+    // slide/track height at init time; if the images are still unloaded (height ~0) its
+    // arrows end up sized/positioned against a collapsed track and never show on hover.
+    function eagerLoadImages() {
+      var imgs = live.querySelectorAll('img.lazyload, img[data-srcset], img[data-src]');
+      for (var i = 0; i < imgs.length; i++) {
+        var img = imgs[i];
+        if (img.getAttribute('data-srcset') && !img.getAttribute('srcset')) {
+          img.setAttribute('srcset', img.getAttribute('data-srcset'));
+        }
+        if (img.getAttribute('data-src') && !img.getAttribute('src')) {
+          img.setAttribute('src', img.getAttribute('data-src'));
+        }
+        img.classList.remove('lazyload');
+        img.classList.add('lazyloaded');
+      }
+    }
+
+    // Tell slick to recompute its track/arrow geometry for the currently live product.
+    function refreshGallery() {
+      if (window.jQuery) {
+        try { window.jQuery(live).find('.productView-nav, .productView-for').slick('setPosition'); } catch (e) {}
+      }
+      try { window.dispatchEvent(new Event('resize')); } catch (e) {}
+      applyLock(live.scrollHeight);
+    }
+
+    // After the gallery is (re)initialized, keep re-positioning it as the images finish
+    // loading so the hover arrows land in the right place and stay interactive.
+    function settleGallery() {
+      refreshGallery();
+      var imgs = live.querySelectorAll('img');
+      for (var i = 0; i < imgs.length; i++) {
+        var img = imgs[i];
+        if (img.complete && img.naturalHeight) continue;
+        img.addEventListener('load', refreshGallery, { once: true });
+        img.addEventListener('lazyloaded', refreshGallery, { once: true });
+      }
+      setTimeout(refreshGallery, 400);
+      setTimeout(refreshGallery, 1000);
+    }
+
     function go(i) {
       if (count <= 1) return;
       var target = ((i % count) + count) % count;
@@ -1406,23 +1454,18 @@
 
       // After the fade-out, swap the markup in while it's invisible, then reveal it and
       // initialize the new product's gallery WHILE VISIBLE (slick lays out its image
-      // arrows/thumbnails reliably only when the element isn't opacity:0).
+      // arrows/thumbnails reliably only when the element isn't opacity:0 and its images
+      // actually have height).
       setTimeout(function () {
         index = target;
         live.innerHTML = slides[index];
         dots.forEach(function (d, di) { d.classList.toggle('is-active', di === index); });
+        slider.classList.remove('is-switching'); // reveal so widths/heights are real
+        eagerLoadImages();                        // give the images height before slick measures
         requestAnimationFrame(function () {
-          slider.classList.remove('is-switching'); // now visible
-          reinit();                                 // init the gallery/variants while visible
-          if (window.jQuery) {
-            try { window.jQuery(live).find('.productView-nav, .productView-for').slick('setPosition'); } catch (e) {}
-          }
-          // Nudge slick to (re)draw its arrows/track for the freshly shown product.
-          try { window.dispatchEvent(new Event('resize')); } catch (e) {}
+          reinit();        // init the gallery/variants while visible, with loaded images
+          settleGallery(); // and re-position its arrows as the images settle
           switching = false;
-          applyLock(live.scrollHeight); // grow the lock if this product ends up taller than measured
-          // The image reserves no height until it loads; re-check after so the lock stays correct.
-          setTimeout(function () { applyLock(live.scrollHeight); }, 800);
         });
       }, 300);
     }
