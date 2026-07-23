@@ -415,15 +415,7 @@
                           class="productView-img-container product-single__media"
                           data-media-id="{{ media.id }}"
                           {% if media_fit == 'unset' %}
-                            {%- comment -%}
-                              In the multi-product slider, reserve the image box up front using the
-                              media's own aspect ratio. With fit "unset" the theme leaves the box with
-                              no reserved height, so an injected (not-yet-loaded) image measures as
-                              zero and slick collapses the slide + mis-positions its hover arrows.
-                              Baking the ratio into the markup means the box has height the instant it
-                              is injected â no dependence on image-load timing â which also lets the
-                              details column center cleanly against a stable image height.
-                            {%- endcomment -%}
+                            {%- comment -%} Reserve the box from the media's own ratio so an injected image can't collapse the slide. {%- endcomment -%}
                             {% if fp_handles.size > 1 %}
                               style="aspect-ratio: {{ media.aspect_ratio | default: 1 }};"
                             {% endif %}
@@ -1301,18 +1293,8 @@
     display: none;
   }
 
-  /* The image box now reserves its height up front (see the aspect-ratio baked onto
-     .fp-reserve .productView-img-container below), so the image no longer collapses or
-     re-centers on load and the details column can safely center against a stable height. */
-  #ProductSection-{{ section.id }} .productView-top { align-items: center; }
-
-  /* Reserved image box for the multi-product slider.
-     With media_fit "unset" the theme zeroes the box height and lets the <img> flow at its
-     natural size, so an injected image with no height yet collapses the slide. Inside
-     .fp-reserve we honor the inline aspect-ratio on the container and make the media/img
-     fill that box, giving every slide real height the instant it is injected â before the
-     image has loaded. object-fit: contain matches the box to the image's own ratio, so
-     nothing is cropped. */
+  /* Reserve the image box from its own aspect ratio so an injected (unloaded) image can't
+     collapse the slide, and fill that box with the media/img. */
   #ProductSection-{{ section.id }} .fp-reserve .productView-image.fit-unset .productView-img-container {
     padding-bottom: 0 !important;
     height: auto;
@@ -1336,10 +1318,18 @@
     object-fit: contain;
     object-position: center;
   }
-  /* fit-unset makes slick's track a flex row that vertically centers its slides; with the
-     reserved box we want each slide to fill the track so the absolute image lands correctly. */
   #ProductSection-{{ section.id }} .fp-reserve .productView-nav.image-fit-unset .slick-track {
     align-items: stretch;
+  }
+
+  /* Vertically center the details column and its content against the image. */
+  @media (min-width: 768px) {
+    #ProductSection-{{ section.id }} .productView-top { align-items: stretch; }
+    #ProductSection-{{ section.id }} .halo-productView-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
   }
 
   /* Switch controls sit in one centered row BELOW the product ( â¹  â¢ â¢ â¢  âº ),
