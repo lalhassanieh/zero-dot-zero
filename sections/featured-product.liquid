@@ -1325,11 +1325,8 @@
       justify-content: center;
     }
   }
-
-  /* Switch controls sit in one centered row below the product, clear of the image's own arrows. */
-  #ProductSection-{{ section.id }} .fp-controls {
+ #ProductSection-{{ section.id }} .fp-controls {
     display: flex;
-    direction: ltr; /* prev-left / next-right in every language (incl. RTL) */
     align-items: center;
     justify-content: center;
     gap: 20px;
@@ -1341,10 +1338,7 @@
     transform: none;
     z-index: 5;
   }
-  /* Each glyph matches its function: prev points left, next points right (base path points right). */
-  #ProductSection-{{ section.id }} .fp-nav--prev svg { transform: rotate(180deg) !important; }
-  #ProductSection-{{ section.id }} .fp-nav--next svg { transform: rotate(0deg) !important; }
-
+  
   #ProductSection-{{ section.id }} .fp-dots {
     display: flex;
     gap: 8px;
