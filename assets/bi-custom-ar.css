@@ -753,3 +753,13 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
     margin-right: 0;
 }
 
+/* Featured-product related-slider switch arrows (RTL only).
+   Scoped to .fp-nav so it never touches other .slick-arrow buttons.
+   RTL flows right-to-left, so previous ends up on the RIGHT pointing right,
+   next on the LEFT pointing left. */
+.fp-nav.fp-nav--prev svg {
+    transform: rotate(0deg) !important;
+}
+.fp-nav.fp-nav--next svg {
+    transform: rotate(180deg) !important;
+}
