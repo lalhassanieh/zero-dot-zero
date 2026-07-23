@@ -1329,6 +1329,7 @@
   /* Switch controls sit in one centered row below the product, clear of the image's own arrows. */
   #ProductSection-{{ section.id }} .fp-controls {
     display: flex;
+    direction: ltr; /* keep prev-left / next-right order even on RTL pages */
     align-items: center;
     justify-content: center;
     gap: 20px;
@@ -1340,9 +1341,9 @@
     transform: none;
     z-index: 5;
   }
-  /* dir=rtl reverses the controls (prev right, next left) which makes the arrows point inward.
-     Reverse the flex order back so RTL matches LTR: prev on the left, next on the right. */
-  body.layout_rtl #ProductSection-{{ section.id }} .fp-controls { flex-direction: row-reverse; }
+  /* Force the glyph direction so neither the theme's slick rotation nor RTL can flip them. */
+  #ProductSection-{{ section.id }} .fp-nav--prev svg { transform: rotate(180deg) !important; }
+  #ProductSection-{{ section.id }} .fp-nav--next svg { transform: rotate(0deg) !important; }
 
   #ProductSection-{{ section.id }} .fp-dots {
     display: flex;
