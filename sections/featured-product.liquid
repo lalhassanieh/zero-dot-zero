@@ -8,15 +8,41 @@
 {{ 'component-featured-product.css' | asset_url | stylesheet_tag }}
 
 {%- liquid
-  assign product = all_products[section.settings.featured_product]
+  # Build the list of product handles to show in the slider.
+  # Priority: the SINGLE metafield (related_product) wins when it is set, showing just that product.
+  # If the single one is empty, use the LIST metafield (related_products) to show a multi-product slider.
+  # Falls back to the manually picked featured_product when both are empty.
+  assign fp_handles = '' | split: ','
   if section.settings.use_article_metafield
     assign mf_ns = section.settings.metafield_namespace | default: 'custom'
-    assign mf_key = section.settings.metafield_key
-    assign mf_product = article.metafields[mf_ns][mf_key].value
-    if mf_product != blank
-      assign product = mf_product
+    assign mf_single = article.metafields[mf_ns][section.settings.metafield_key]
+    assign mf_list = article.metafields[mf_ns][section.settings.metafield_key_multiple]
+
+    assign mf_active = null
+    if mf_single != blank and mf_single.value != blank
+      assign mf_active = mf_single
+    elsif mf_list != blank and mf_list.value != blank
+      assign mf_active = mf_list
+    endif
+
+    if mf_active != blank
+      assign fp_str = ''
+      if mf_active.type contains 'list'
+        for mf_p in mf_active.value
+          if mf_p.handle != blank
+            assign fp_str = fp_str | append: mf_p.handle | append: ','
+          endif
+        endfor
+      else
+        assign fp_str = mf_active.value.handle | append: ','
+      endif
+      assign fp_handles = fp_str | split: ','
     endif
   endif
+  if fp_handles.size == 0 and section.settings.featured_product != blank
+    assign fp_handles = section.settings.featured_product.handle | append: ',' | split: ','
+  endif
+  assign product = all_products[fp_handles.first]
   assign bg_color_product = section.settings.bg_color_product
   assign color_title = section.settings.color_title
   assign fontsize_title = section.settings.fontsize_title
@@ -94,7 +120,7 @@
   endif
 -%}
 
-{%- if product != blank -%}
+{%- if fp_handles.size > 0 and product != blank -%}
 
 {%- if first_3d_model -%}
   <link
@@ -185,6 +211,11 @@
 
   {%- assign fp_lang = request.locale.iso_code | slice: 0, 2 -%}
   {%- if fp_lang == 'ar' -%}
+  @media (min-width: 1025px) {
+      #ProductSection-{{ section.id }} .productView-top {
+          flex-direction: row-reverse;
+      }
+  }
   @media (min-width: 1200px) {
       #ProductSection-{{ section.id }} .productView-top .halo-productView-right {
           padding-left: 0 !important;
@@ -249,17 +280,15 @@
 </style>
 
 <script>
-  window.product_inven_array_{{ product.id }} = {
-      {% for variant in product.variants %}
-          '{{ variant.id }}': '{{ variant.inventory_quantity }}',
-      {%endfor%}
-  };
-
-  window.selling_array_{{ product.id }} = {
-      {% for variant in product.variants %}
-          '{{ variant.id }}': '{{ variant.inventory_policy }}',
-      {%endfor%}
-  };
+  {%- for fp_h in fp_handles -%}
+    {%- assign fp_p = all_products[fp_h] -%}
+    window.product_inven_array_{{ fp_p.id }} = {
+        {% for variant in fp_p.variants %}'{{ variant.id }}': '{{ variant.inventory_quantity }}',{% endfor %}
+    };
+    window.selling_array_{{ fp_p.id }} = {
+        {% for variant in fp_p.variants %}'{{ variant.id }}': '{{ variant.inventory_policy }}',{% endfor %}
+    };
+  {%- endfor -%}
 
   window.subtotal = {
       show: false
@@ -271,6 +300,14 @@
       window.variant_image_group = 'false';
   {% endif %}
 </script>
+
+{%- comment -%} Structured data for every product in the slider {%- endcomment -%}
+{%- for fp_h in fp_handles -%}
+  {%- assign fp_p = all_products[fp_h] -%}
+  <script type="application/ld+json">
+    {{ fp_p | structured_data }}
+  </script>
+{%- endfor -%}
 
 {%- if product_image_popup == 'fancybox' -%}
   <link rel="stylesheet" href="{{ 'component-fancybox.css' | asset_url }}" media="print" onload="this.media='all'">
@@ -305,6 +342,33 @@
         {% endif %}
       </div>
     {% endif %}
+    <div
+      class="fp-slider{% if fp_handles.size > 1 %} fp-slider--multi{% endif %}"
+      data-fp-slider
+      data-fp-count="{{ fp_handles.size }}"
+      data-fp-autoplay="{{ section.settings.fp_slider_autoplay }}"
+      data-fp-speed="{{ section.settings.fp_slider_speed | default: 5 | times: 1000 }}"
+    >
+      <div class="fp-viewport" data-fp-viewport>
+        {%- for fp_h in fp_handles -%}
+          {%- liquid
+            assign product = all_products[fp_h]
+            assign current_variant = product.selected_or_first_available_variant
+            assign variant_count = product.variants | size
+            assign featured_media_aspect_ratio = product.featured_media.aspect_ratio
+            if featured_media_aspect_ratio == null
+              assign featured_media_aspect_ratio = 1
+            endif
+            assign first_3d_model = product.media | where: 'media_type', 'model' | first
+            if show_hot_stock
+              assign product_max_stock = settings.hot_stock_limit | plus: 0
+            endif
+          -%}
+          {%- if forloop.first -%}
+            <div class="fp-live" data-fp-live>
+          {%- else -%}
+            <template data-fp-tpl>
+          {%- endif -%}
     <div
       class="halo-block-content productView halo-productView layout-{{ thumnail_layout }} positionMainImage--{{ main_image_position }}{% if product.media.size == 0 %} productView-no-media{% endif %}{% if show_sticky_info %} productView-sticky{% endif %}"
       data-product-handle="{{ product.handle }}"
@@ -1156,11 +1220,42 @@
         </div>
       </div>
     </div>
+          {%- if forloop.first -%}
+            </div>
+          {%- else -%}
+            </template>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+      {%- if fp_handles.size > 1 -%}
+        {%- if section.settings.fp_slider_arrows -%}
+          <button type="button" class="fp-nav fp-nav--prev" data-fp-prev aria-label="{{ 'general.pagination.previous' | t }}">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button type="button" class="fp-nav fp-nav--next" data-fp-next aria-label="{{ 'general.pagination.next' | t }}">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" aria-hidden="true"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        {%- endif -%}
+        {%- if section.settings.fp_slider_dots -%}
+          <div class="fp-dots" data-fp-dots>
+            {%- for fp_h in fp_handles -%}
+              <button type="button" class="fp-dot{% if forloop.first %} is-active{% endif %}" data-fp-dot data-fp-index="{{ forloop.index0 }}" aria-label="{{ forloop.index }}"></button>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      {%- endif -%}
+    </div>
   </div>
 </div>
 {%- if section.settings.id_section != blank -%}
   </div>
 {%- endif -%}
+
+{%- comment -%} The loop above left `product` on the last item; restore it to the first for the trailing includes. {%- endcomment -%}
+{%- liquid
+  assign product = all_products[fp_handles.first]
+  assign first_3d_model = product.media | where: 'media_type', 'model' | first
+-%}
 
 <script src="{{ 'variants.js' | asset_url }}" defer="defer"></script>
 {%- if first_3d_model -%}
@@ -1174,8 +1269,132 @@
   <script src="{{ 'fancybox.js' | asset_url }}" defer="defer"></script>
 {%- endif -%}
 
-<script type="application/ld+json">
-  {{ product | structured_data }}
+{%- comment -%} Slider styles + product-switch behavior (arrows / dots / autoplay) {%- endcomment -%}
+<style>
+  #ProductSection-{{ section.id }} .fp-slider { position: relative; }
+  #ProductSection-{{ section.id }} .fp-viewport { position: relative; }
+  #ProductSection-{{ section.id }} .fp-live { transition: opacity .3s ease; }
+  #ProductSection-{{ section.id }} .fp-slider.is-switching .fp-live { opacity: 0; }
+
+  #ProductSection-{{ section.id }} .fp-nav {
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    z-index: 5;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 1px solid rgba(0, 0, 0, .12);
+    border-radius: 50%;
+    background: #fff;
+    color: #232323;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .08);
+    transition: background .2s ease, color .2s ease, box-shadow .2s ease;
+  }
+  #ProductSection-{{ section.id }} .fp-nav:hover { background: #232323; color: #fff; }
+  #ProductSection-{{ section.id }} .fp-nav--prev { left: -8px; }
+  #ProductSection-{{ section.id }} .fp-nav--next { right: -8px; }
+
+  #ProductSection-{{ section.id }} .fp-dots {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 22px;
+  }
+  #ProductSection-{{ section.id }} .fp-dot {
+    width: 10px;
+    height: 10px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, .2);
+    cursor: pointer;
+    transition: background .2s ease, transform .2s ease;
+  }
+  #ProductSection-{{ section.id }} .fp-dot.is-active { background: #232323; transform: scale(1.25); }
+
+  @media (max-width: 1024px) {
+    #ProductSection-{{ section.id }} .fp-nav--prev { left: 2px; }
+    #ProductSection-{{ section.id }} .fp-nav--next { right: 2px; }
+  }
+</style>
+
+<script>
+  (function () {
+    var root = document.getElementById('ProductSection-{{ section.id }}');
+    if (!root) return;
+    var slider = root.querySelector('[data-fp-slider]');
+    if (!slider) return;
+
+    var live = slider.querySelector('[data-fp-live]');
+    var templates = slider.querySelectorAll('[data-fp-tpl]');
+    var dots = slider.querySelectorAll('[data-fp-dot]');
+    var prevBtn = slider.querySelector('[data-fp-prev]');
+    var nextBtn = slider.querySelector('[data-fp-next]');
+    if (!live || templates.length === 0) return;
+
+    // Slide 0 is already live/server-rendered; cache its markup, then collect the rest from templates.
+    var slides = [live.innerHTML];
+    templates.forEach(function (tpl) { slides.push(tpl.innerHTML); });
+
+    var count = slides.length;
+    var index = 0;
+    var switching = false;
+
+    var autoplay = slider.getAttribute('data-fp-autoplay') === 'true';
+    var speed = parseInt(slider.getAttribute('data-fp-speed'), 10) || 5000;
+    var timer = null;
+
+    function reinit() {
+      // Re-run the theme's product-view init for the freshly injected product.
+      if (window.halo && window.jQuery) {
+        try {
+          var $scope = window.jQuery(live).find('.halo-productView');
+          if ($scope.length) window.halo.initProductView($scope);
+        } catch (e) {}
+      }
+    }
+
+    function go(i) {
+      if (count <= 1) return;
+      var target = ((i % count) + count) % count;
+      if (target === index || switching) return;
+      switching = true;
+      slider.classList.add('is-switching');
+      setTimeout(function () {
+        index = target;
+        live.innerHTML = slides[index];
+        dots.forEach(function (d, di) { d.classList.toggle('is-active', di === index); });
+        reinit();
+        // allow layout to settle, then fade back in
+        requestAnimationFrame(function () {
+          slider.classList.remove('is-switching');
+          switching = false;
+          if (window.jQuery) {
+            try { window.jQuery(live).find('.productView-nav, .productView-for').slick('setPosition'); } catch (e) {}
+          }
+        });
+      }, 300);
+    }
+
+    function stop() { if (timer) { clearInterval(timer); timer = null; } }
+    function start() { if (autoplay && count > 1) { stop(); timer = setInterval(function () { go(index + 1); }, speed); } }
+    function restart() { stop(); start(); }
+
+    if (prevBtn) prevBtn.addEventListener('click', function () { go(index - 1); restart(); });
+    if (nextBtn) nextBtn.addEventListener('click', function () { go(index + 1); restart(); });
+    dots.forEach(function (d, di) { d.addEventListener('click', function () { go(di); restart(); }); });
+
+    slider.addEventListener('mouseenter', stop);
+    slider.addEventListener('mouseleave', start);
+
+    start();
+  })();
 </script>
 
 {%- endif -%}
@@ -1389,8 +1608,8 @@
     {
       "type": "checkbox",
       "id": "use_article_metafield",
-      "label": "Use product from article metafield",
-      "info": "On a blog post, pulls the product from the article metafield below. Falls back to the product picked above when empty.",
+      "label": "Use product(s) from article metafield",
+      "info": "On a blog/recipe post, pulls the product(s) from the article metafield below. Supports a single product OR a list of products (shown as a switchable slider). Falls back to the product picked above when empty.",
       "default": false
     },
     {
@@ -1402,8 +1621,52 @@
     {
       "type": "text",
       "id": "metafield_key",
-      "label": "Metafield key",
+      "label": "Single product metafield key",
+      "info": "The single-product field (e.g. related_product). When an article has this filled, ONLY this product shows. Clear it on the article to use the multiple list instead.",
       "default": "related_product"
+    },
+    {
+      "type": "text",
+      "id": "metafield_key_multiple",
+      "label": "Multiple products metafield key",
+      "info": "The list-of-products field (e.g. related_products, Product reference + list of values). Used only when the single field above is empty on the article. Shows a switchable slider.",
+      "default": "related_products"
+    },
+    {
+      "type": "header",
+      "content": "Related products slider"
+    },
+    {
+      "type": "paragraph",
+      "content": "Applies when the multiple-products list holds more than one product. Each slide is the full product view; arrows / dots switch between products."
+    },
+    {
+      "type": "checkbox",
+      "id": "fp_slider_arrows",
+      "label": "Show switch arrows",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "fp_slider_dots",
+      "label": "Show dots",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "fp_slider_autoplay",
+      "label": "Auto-rotate products",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "fp_slider_speed",
+      "label": "Auto-rotate speed",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "unit": "s",
+      "default": 5
     },
     {
       "type": "header",
