@@ -1229,11 +1229,11 @@
       </div>
       {%- if fp_handles.size > 1 -%}
         {%- if section.settings.fp_slider_arrows -%}
-          <button type="button" class="fp-nav fp-nav--prev" data-fp-prev aria-label="{{ 'general.pagination.previous' | t }}">
-            <svg xmlns="http://www.w3.org/2000/svg" width="31" height="10" viewBox="0 0 31 10" fill="none" aria-hidden="true"><path d="M25.8012 0L24.8801 0.884979L28.5157 4.37815H0V5.62997H28.4961L24.8686 9.1147L25.7897 10L31 4.99464L25.8012 0Z" fill="currentColor"/></svg>
+          <button type="button" class="fp-nav fp-nav--prev slick-arrow slick-prev" data-fp-prev aria-label="{{ 'general.pagination.previous' | t }}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="31" height="10" viewBox="0 0 31 10" fill="none" aria-hidden="true"><path d="M25.8012 0L24.8801 0.884979L28.5157 4.37815H0V5.62997H28.4961L24.8686 9.1147L25.7897 10L31 4.99464L25.8012 0Z" fill="#1E3C32"/></svg>
           </button>
-          <button type="button" class="fp-nav fp-nav--next" data-fp-next aria-label="{{ 'general.pagination.next' | t }}">
-            <svg xmlns="http://www.w3.org/2000/svg" width="31" height="10" viewBox="0 0 31 10" fill="none" aria-hidden="true"><path d="M25.8012 0L24.8801 0.884979L28.5157 4.37815H0V5.62997H28.4961L24.8686 9.1147L25.7897 10L31 4.99464L25.8012 0Z" fill="currentColor"/></svg>
+          <button type="button" class="fp-nav fp-nav--next slick-arrow slick-next" data-fp-next aria-label="{{ 'general.pagination.next' | t }}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="31" height="10" viewBox="0 0 31 10" fill="none" aria-hidden="true"><path d="M25.8012 0L24.8801 0.884979L28.5157 4.37815H0V5.62997H28.4961L24.8686 9.1147L25.7897 10L31 4.99464L25.8012 0Z" fill="#1E3C32"/></svg>
           </button>
         {%- endif -%}
         {%- if section.settings.fp_slider_dots -%}
@@ -1284,27 +1284,10 @@
     display: none;
   }
 
-  #ProductSection-{{ section.id }} .fp-nav {
-    position: absolute;
-    top: 40%;
-    transform: translateY(-50%);
-    z-index: 5;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 8px 10px;
-    border: 0;
-    border-radius: 4px;
-    background: #fff7e5;
-    color: #1E3C32;
-    cursor: pointer;
-    transition: background .2s ease, opacity .2s ease;
-  }
-  #ProductSection-{{ section.id }} .fp-nav:hover { background: #f5ead0; }
-  #ProductSection-{{ section.id }} .fp-nav svg { width: 34px; height: auto; display: block; }
-  #ProductSection-{{ section.id }} .fp-nav--prev svg { transform: rotate(180deg); }
-  /* Desktop: push the product-switch arrows into the outer gutter so they never
-     overlap the image's own next/prev arrows. */
+  /* The arrows reuse the theme's .slick-arrow styling (box, colors, icon) so they match
+     the site's carousels. We only override their position to sit in the outer gutter,
+     clear of the image's own next/prev arrows. */
+  #ProductSection-{{ section.id }} .fp-nav { z-index: 5; }
   #ProductSection-{{ section.id }} .fp-nav--prev { left: -64px; }
   #ProductSection-{{ section.id }} .fp-nav--next { right: -64px; }
 
