@@ -1291,14 +1291,17 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 12px;
+    width: 56px;
+    height: 40px;
+    padding: 0;
     border: 0;
-    background: transparent;
+    border-radius: 4px;
+    background: #fff7e5;
     color: #1E3C32;
     cursor: pointer;
-    transition: opacity .2s ease;
+    transition: background .2s ease, opacity .2s ease;
   }
-  #ProductSection-{{ section.id }} .fp-nav:hover { opacity: .55; }
+  #ProductSection-{{ section.id }} .fp-nav:hover { background: #f5ead0; }
   #ProductSection-{{ section.id }} .fp-nav svg { width: 31px; height: 10px; display: block; }
   #ProductSection-{{ section.id }} .fp-nav--prev svg { transform: rotate(180deg); }
   #ProductSection-{{ section.id }} .fp-nav--prev { left: 0; }
@@ -1366,24 +1369,33 @@
       var target = ((i % count) + count) % count;
       if (target === index || switching) return;
       switching = true;
-      // Lock the current height so the swap can't collapse and jump the page.
-      if (viewport) viewport.style.minHeight = live.offsetHeight + 'px';
+      // Freeze the current height so the swap can't collapse/jump the page.
+      if (viewport) {
+        viewport.style.height = live.offsetHeight + 'px';
+        viewport.style.overflow = 'hidden';
+      }
       slider.classList.add('is-switching');
       setTimeout(function () {
         index = target;
         live.innerHTML = slides[index];
         dots.forEach(function (d, di) { d.classList.toggle('is-active', di === index); });
         reinit();
-        // allow layout to settle, then fade back in
         requestAnimationFrame(function () {
           slider.classList.remove('is-switching');
           switching = false;
           if (window.jQuery) {
             try { window.jQuery(live).find('.productView-nav, .productView-for').slick('setPosition'); } catch (e) {}
           }
-          // Release the locked height once the new product has settled.
+          // Smoothly animate from the frozen height to the new product's height, then release.
           if (viewport) {
-            setTimeout(function () { viewport.style.minHeight = ''; }, 450);
+            var newH = live.scrollHeight;
+            viewport.style.transition = 'height .3s ease';
+            viewport.style.height = newH + 'px';
+            setTimeout(function () {
+              viewport.style.transition = '';
+              viewport.style.height = '';
+              viewport.style.overflow = '';
+            }, 330);
           }
         });
       }, 300);
