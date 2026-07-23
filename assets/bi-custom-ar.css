@@ -752,3 +752,9 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
     margin-left: 9px;
     margin-right: 0;
 }
+
+
+/* Featured-product related-slider switch arrows: mirror so previous sits on the RIGHT
+    (points right) and next on the LEFT (points left), native for RTL. */
+body.layout_rtl .fp-nav--prev svg { transform: rotate(0deg) !important; }
+body.layout_rtl .fp-nav--next svg { transform: rotate(180deg) !important; }
