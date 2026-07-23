@@ -120,8 +120,6 @@
   endif
 -%}
 
-<!-- FP-DEBUG use_mf={{ section.settings.use_article_metafield }} | ns={{ mf_ns }} | single_key={{ section.settings.metafield_key }} | single_blank={% if mf_single == blank %}Y{% else %}N{% endif %} | single_val_blank={% if mf_single.value == blank %}Y{% else %}N{% endif %} | single_type={{ mf_single.type }} | list_key={{ section.settings.metafield_key_multiple }} | list_blank={% if mf_list == blank %}Y{% else %}N{% endif %} | count={{ fp_handles.size }} | first={{ fp_handles.first }} | product_blank={% if product == blank %}Y{% else %}N{% endif %} -->
-
 {%- if fp_handles.size > 0 and product != blank -%}
 
 {%- if first_3d_model -%}
@@ -1232,10 +1230,10 @@
       {%- if fp_handles.size > 1 -%}
         {%- if section.settings.fp_slider_arrows -%}
           <button type="button" class="fp-nav fp-nav--prev" data-fp-prev aria-label="{{ 'general.pagination.previous' | t }}">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="31" height="10" viewBox="0 0 31 10" fill="none" aria-hidden="true"><path d="M25.8012 0L24.8801 0.884979L28.5157 4.37815H0V5.62997H28.4961L24.8686 9.1147L25.7897 10L31 4.99464L25.8012 0Z" fill="currentColor"/></svg>
           </button>
           <button type="button" class="fp-nav fp-nav--next" data-fp-next aria-label="{{ 'general.pagination.next' | t }}">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" aria-hidden="true"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="31" height="10" viewBox="0 0 31 10" fill="none" aria-hidden="true"><path d="M25.8012 0L24.8801 0.884979L28.5157 4.37815H0V5.62997H28.4961L24.8686 9.1147L25.7897 10L31 4.99464L25.8012 0Z" fill="currentColor"/></svg>
           </button>
         {%- endif -%}
         {%- if section.settings.fp_slider_dots -%}
@@ -1278,6 +1276,13 @@
   #ProductSection-{{ section.id }} .fp-live { transition: opacity .3s ease; }
   #ProductSection-{{ section.id }} .fp-slider.is-switching .fp-live { opacity: 0; }
 
+  /* Prevent the "jump": before the gallery slider initializes, keep only the first
+     image / thumbnail visible so the injected product doesn't flash as a tall stack. */
+  #ProductSection-{{ section.id }} .productView-nav:not(.slick-initialized) > .productView-image:not(:first-child),
+  #ProductSection-{{ section.id }} .productView-for:not(.slick-initialized) > .productView-thumbnail:not(:first-child) {
+    display: none;
+  }
+
   #ProductSection-{{ section.id }} .fp-nav {
     position: absolute;
     top: 40%;
@@ -1286,20 +1291,18 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 44px;
-    height: 44px;
-    padding: 0;
-    border: 1px solid rgba(0, 0, 0, .12);
-    border-radius: 50%;
-    background: #fff;
-    color: #232323;
+    padding: 12px;
+    border: 0;
+    background: transparent;
+    color: #1E3C32;
     cursor: pointer;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, .08);
-    transition: background .2s ease, color .2s ease, box-shadow .2s ease;
+    transition: opacity .2s ease;
   }
-  #ProductSection-{{ section.id }} .fp-nav:hover { background: #232323; color: #fff; }
-  #ProductSection-{{ section.id }} .fp-nav--prev { left: -8px; }
-  #ProductSection-{{ section.id }} .fp-nav--next { right: -8px; }
+  #ProductSection-{{ section.id }} .fp-nav:hover { opacity: .55; }
+  #ProductSection-{{ section.id }} .fp-nav svg { width: 31px; height: 10px; display: block; }
+  #ProductSection-{{ section.id }} .fp-nav--prev svg { transform: rotate(180deg); }
+  #ProductSection-{{ section.id }} .fp-nav--prev { left: 0; }
+  #ProductSection-{{ section.id }} .fp-nav--next { right: 0; }
 
   #ProductSection-{{ section.id }} .fp-dots {
     display: flex;
@@ -1314,16 +1317,11 @@
     padding: 0;
     border: 0;
     border-radius: 50%;
-    background: rgba(0, 0, 0, .2);
+    background: rgba(30, 60, 50, .25);
     cursor: pointer;
     transition: background .2s ease, transform .2s ease;
   }
-  #ProductSection-{{ section.id }} .fp-dot.is-active { background: #232323; transform: scale(1.25); }
-
-  @media (max-width: 1024px) {
-    #ProductSection-{{ section.id }} .fp-nav--prev { left: 2px; }
-    #ProductSection-{{ section.id }} .fp-nav--next { right: 2px; }
-  }
+  #ProductSection-{{ section.id }} .fp-dot.is-active { background: #1E3C32; transform: scale(1.25); }
 </style>
 
 <script>
@@ -1334,6 +1332,7 @@
     if (!slider) return;
 
     var live = slider.querySelector('[data-fp-live]');
+    var viewport = slider.querySelector('[data-fp-viewport]');
     var templates = slider.querySelectorAll('[data-fp-tpl]');
     var dots = slider.querySelectorAll('[data-fp-dot]');
     var prevBtn = slider.querySelector('[data-fp-prev]');
@@ -1367,6 +1366,8 @@
       var target = ((i % count) + count) % count;
       if (target === index || switching) return;
       switching = true;
+      // Lock the current height so the swap can't collapse and jump the page.
+      if (viewport) viewport.style.minHeight = live.offsetHeight + 'px';
       slider.classList.add('is-switching');
       setTimeout(function () {
         index = target;
@@ -1379,6 +1380,10 @@
           switching = false;
           if (window.jQuery) {
             try { window.jQuery(live).find('.productView-nav, .productView-for').slick('setPosition'); } catch (e) {}
+          }
+          // Release the locked height once the new product has settled.
+          if (viewport) {
+            setTimeout(function () { viewport.style.minHeight = ''; }, 450);
           }
         });
       }, 300);
