@@ -1341,11 +1341,10 @@
   /* LTR glyphs: prev points left, next points right (base path points right). */
   #ProductSection-{{ section.id }} .fp-nav--prev svg { transform: rotate(180deg) !important; }
   #ProductSection-{{ section.id }} .fp-nav--next svg { transform: rotate(0deg) !important; }
-  /* RTL: the row flows right-to-left, so flip glyphs to keep them pointing outward
-     (prev → on the right, next ← on the left, which also makes the left arrow "next"). */
-  body.layout_rtl #ProductSection-{{ section.id }} .fp-nav--prev svg { transform: rotate(0deg) !important; }
-  body.layout_rtl #ProductSection-{{ section.id }} .fp-nav--next svg { transform: rotate(180deg) !important; }
-
+  
+  /* Each glyph matches its function: prev points left, next points right (base path points right). */
+  #ProductSection-{{ section.id }} .fp-nav--prev svg { transform: rotate(180deg) !important; }
+  #ProductSection-{{ section.id }} .fp-nav--next svg { transform: rotate(0deg) !important; }
   
   #ProductSection-{{ section.id }} .fp-dots {
     display: flex;
