@@ -1288,6 +1288,10 @@
     display: none;
   }
 
+  /* Top-align the image & details columns so the text does NOT re-center (and drop down)
+     when the image finishes loading and gets taller. */
+  #ProductSection-{{ section.id }} .productView-top { align-items: flex-start; }
+
   /* Switch controls sit in one centered row BELOW the product ( â¹  â¢ â¢ â¢  âº ),
      so they never overlap the image's own next/prev arrows. The arrows reuse the
      theme's .slick-arrow styling (box, colors, icon) to match the site's carousels. */
@@ -1383,23 +1387,6 @@
       if (live) applyLock(live.scrollHeight);
     }
 
-    var FPLOG = '[FP-{{ section.id }}]';
-    // Track the vertical position of the text column + a couple of text elements so we can
-    // see if/when they shift after the image loads.
-    function textPos(tag) {
-      var vp = viewport ? viewport.getBoundingClientRect().top : 0;
-      var right = live.querySelector('.halo-productView-right');
-      var img = live.querySelector('.productView-nav');
-      var title = live.querySelector('.productView-moreItem');
-      var price = live.querySelector('.productView-price');
-      function topOf(el) { return el ? Math.round(el.getBoundingClientRect().top - vp) : 'n/a'; }
-      console.log(FPLOG, tag,
-        '| detailsCol top', topOf(right),
-        '| firstText top', topOf(title),
-        '| price top', topOf(price),
-        '| imgHeight', img ? Math.round(img.getBoundingClientRect().height) : 'n/a');
-    }
-
     function reinit() {
       // Re-run the theme's product-view init for the freshly injected product.
       if (window.halo && window.jQuery) {
@@ -1424,7 +1411,6 @@
         index = target;
         live.innerHTML = slides[index];
         dots.forEach(function (d, di) { d.classList.toggle('is-active', di === index); });
-        textPos('swapped in ' + index);
         requestAnimationFrame(function () {
           slider.classList.remove('is-switching'); // now visible
           reinit();                                 // init the gallery/variants while visible
@@ -1435,9 +1421,8 @@
           try { window.dispatchEvent(new Event('resize')); } catch (e) {}
           switching = false;
           applyLock(live.scrollHeight); // grow the lock if this product ends up taller than measured
-          textPos('after reinit ' + index);
-          setTimeout(function () { applyLock(live.scrollHeight); textPos('+300ms ' + index); }, 300);
-          setTimeout(function () { applyLock(live.scrollHeight); textPos('+800ms(img loaded?) ' + index); }, 800);
+          // The image reserves no height until it loads; re-check after so the lock stays correct.
+          setTimeout(function () { applyLock(live.scrollHeight); }, 800);
         });
       }, 300);
     }
