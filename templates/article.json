@@ -372,6 +372,7 @@
           "type": "buy_buttons",
           "settings": {
             "show_dynamic_checkout": true,
+            "hide_buy_it_now": true,
             "fontsize_text": 14,
             "checkbox_color": "#ffffff",
             "checkbox_border_color": "#494a4d",
