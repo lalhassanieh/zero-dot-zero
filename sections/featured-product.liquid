@@ -1325,7 +1325,9 @@
       justify-content: center;
     }
   }
- #ProductSection-{{ section.id }} .fp-controls {
+
+  /* Switch controls sit in one centered row below the product, clear of the image's own arrows. */
+  #ProductSection-{{ section.id }} .fp-controls {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1338,7 +1340,9 @@
     transform: none;
     z-index: 5;
   }
-  
+  /* Arrow glyphs come from the theme's base .slick-arrow rules (prev â / next â).
+     The RTL mirror lives in layout_rtl.css (.fp-nav--prev / --next svg). */
+
   #ProductSection-{{ section.id }} .fp-dots {
     display: flex;
     gap: 8px;
