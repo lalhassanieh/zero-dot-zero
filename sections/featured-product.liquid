@@ -1427,13 +1427,47 @@
       if (live) applyLock(live.scrollHeight);
     }
 
-    function reinit() {
-      // Re-run the theme's product-view init for the freshly injected product.
-      if (window.halo && window.jQuery) {
+    // Initialize the freshly injected product's gallery. We try the theme's own init first
+    // (it wires up the image slider, thumbnails, fancybox, zoom and variant groups), then
+    // VERIFY the main image actually became a slick slider. If it didn't â the theme init
+    // can silently throw on the injected markup, leaving the nav raw with NO hover arrows â
+    // we initialize the main image directly with the theme's arrow config as a fallback so
+    // the next/prev hover arrows always come back after a switch.
+    function initGallery() {
+      if (!window.jQuery) return;
+      var $pv = window.jQuery(live).find('.halo-productView');
+      var $nav = $pv.find('.productView-nav');
+      if (!$nav.length) return;
+
+      if (window.halo && typeof window.halo.initProductView === 'function' && !$nav.hasClass('slick-initialized')) {
+        try { window.halo.initProductView($pv); } catch (e) {}
+      }
+
+      if (!$nav.hasClass('slick-initialized') && window.arrows) {
         try {
-          var $scope = window.jQuery(live).find('.halo-productView');
-          if ($scope.length) window.halo.initProductView($scope);
+          $nav.slick({
+            fade: true,
+            dots: false,
+            arrows: $nav.data('arrows-desk'),
+            infinite: true,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            nextArrow: window.arrows.icon_next,
+            prevArrow: window.arrows.icon_prev,
+            rtl: window.rtl_slick
+          });
         } catch (e) {}
+      }
+
+      // Re-measure the track/arrows once the images finish loading so the arrows land in the
+      // right place (the reserved aspect-ratio boxes keep height stable meanwhile).
+      try { $nav.slick('setPosition'); } catch (e) {}
+      var imgs = live.querySelectorAll('.productView-nav img');
+      for (var i = 0; i < imgs.length; i++) {
+        var img = imgs[i];
+        if (img.complete && img.naturalHeight) continue;
+        img.addEventListener('load', function () { try { $nav.slick('setPosition'); } catch (e) {} }, { once: true });
+        img.addEventListener('lazyloaded', function () { try { $nav.slick('setPosition'); } catch (e) {} }, { once: true });
       }
     }
 
@@ -1452,16 +1486,10 @@
         live.innerHTML = slides[index];
         dots.forEach(function (d, di) { d.classList.toggle('is-active', di === index); });
         requestAnimationFrame(function () {
-          slider.classList.remove('is-switching'); // now visible
-          reinit();                                 // init the gallery/variants while visible
-          if (window.jQuery) {
-            try { window.jQuery(live).find('.productView-nav, .productView-for').slick('setPosition'); } catch (e) {}
-          }
-          // Nudge slick to (re)draw its arrows/track for the freshly shown product.
-          try { window.dispatchEvent(new Event('resize')); } catch (e) {}
+          slider.classList.remove('is-switching'); // reveal, then init while visible
+          initGallery();
           switching = false;
           applyLock(live.scrollHeight); // grow the lock if this product ends up taller than measured
-          // The image reserves no height until it loads; re-check after so the lock stays correct.
           setTimeout(function () { applyLock(live.scrollHeight); }, 800);
         });
       }, 300);
