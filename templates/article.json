@@ -441,7 +441,7 @@
         "fp_slider_arrows": true,
         "fp_slider_dots": true,
         "fp_slider_autoplay": true,
-        "fp_slider_speed": 8,
+        "fp_slider_speed": 6,
         "main_image_arrows_desktop": true,
         "main_image_counter_mobile": true,
         "main_image_layout": "1",
