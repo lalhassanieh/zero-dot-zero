@@ -1340,10 +1340,9 @@
     transform: none;
     z-index: 5;
   }
-  /* RTL reverses the controls' flex order (prev goes right, next goes left); flip the arrow
-     glyphs so they still point outward (â next on the left, â prev on the right). */
-  body.layout_rtl #ProductSection-{{ section.id }} .fp-nav--prev svg { transform: rotate(0deg); }
-  body.layout_rtl #ProductSection-{{ section.id }} .fp-nav--next svg { transform: rotate(180deg); }
+  /* dir=rtl reverses the controls (prev right, next left) which makes the arrows point inward.
+     Reverse the flex order back so RTL matches LTR: prev on the left, next on the right. */
+  body.layout_rtl #ProductSection-{{ section.id }} .fp-controls { flex-direction: row-reverse; }
 
   #ProductSection-{{ section.id }} .fp-dots {
     display: flex;
