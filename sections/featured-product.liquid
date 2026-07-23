@@ -1288,15 +1288,9 @@
     display: none;
   }
 
-  /* Stretch both columns to the same (tallest = image) height, then vertically center the
-     details column's content within it â so the title / description / price / button sit in
-     the middle of the image, not pinned to the top. */
-  #ProductSection-{{ section.id }} .productView-top { align-items: stretch; }
-  #ProductSection-{{ section.id }} .productView-top .halo-productView-right {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
+  /* Vertically center the details column against the image (without stretching the image
+     column, which would collapse the picture). */
+  #ProductSection-{{ section.id }} .productView-top { align-items: center; }
 
   /* Switch controls sit in one centered row BELOW the product ( â¹  â¢ â¢ â¢  âº ),
      so they never overlap the image's own next/prev arrows. The arrows reuse the
