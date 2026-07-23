@@ -17,6 +17,7 @@
     assign bin_border_color_hover = block.settings.bin_border_color_hover
     assign bin_bg_color_hover = block.settings.bin_bg_color_hover
     assign bin_bg_color_hover_gradient = block.settings.bin_bg_color_hover_gradient
+    assign hide_buy_it_now = block.settings.hide_buy_it_now
     assign gift_card_recipient_feature_active = false
       if block.settings.show_gift_card_recipient and product.gift_card?
         assign gift_card_recipient_feature_active = true
@@ -250,7 +251,16 @@
                         {%- endif -%}
                     </div>
                 </div>
-                {%- if show_dynamic_checkout or show_dynamic_checkout_sticky_atc_always_mb -%}
+                {%- liquid
+                    assign show_bin_checkout = false
+                    if show_dynamic_checkout or show_dynamic_checkout_sticky_atc_always_mb
+                        assign show_bin_checkout = true
+                    endif
+                    if hide_buy_it_now
+                        assign show_bin_checkout = false
+                    endif
+                -%}
+                {%- if show_bin_checkout -%}
                     <div class="productView-groupBottom{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
                         {%- if settings.show_global_checkbox -%}
                             <div class="productView-groupItem">
