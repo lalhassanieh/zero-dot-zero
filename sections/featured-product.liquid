@@ -1228,21 +1228,25 @@
         {%- endfor -%}
       </div>
       {%- if fp_handles.size > 1 -%}
-        {%- if section.settings.fp_slider_arrows -%}
-          <button type="button" class="fp-nav fp-nav--prev slick-arrow slick-prev" data-fp-prev aria-label="{{ 'general.pagination.previous' | t }}">
-            <svg xmlns="http://www.w3.org/2000/svg" width="31" height="10" viewBox="0 0 31 10" fill="none" aria-hidden="true"><path d="M25.8012 0L24.8801 0.884979L28.5157 4.37815H0V5.62997H28.4961L24.8686 9.1147L25.7897 10L31 4.99464L25.8012 0Z" fill="#1E3C32"/></svg>
-          </button>
-          <button type="button" class="fp-nav fp-nav--next slick-arrow slick-next" data-fp-next aria-label="{{ 'general.pagination.next' | t }}">
-            <svg xmlns="http://www.w3.org/2000/svg" width="31" height="10" viewBox="0 0 31 10" fill="none" aria-hidden="true"><path d="M25.8012 0L24.8801 0.884979L28.5157 4.37815H0V5.62997H28.4961L24.8686 9.1147L25.7897 10L31 4.99464L25.8012 0Z" fill="#1E3C32"/></svg>
-          </button>
-        {%- endif -%}
-        {%- if section.settings.fp_slider_dots -%}
-          <div class="fp-dots" data-fp-dots>
-            {%- for fp_h in fp_handles -%}
-              <button type="button" class="fp-dot{% if forloop.first %} is-active{% endif %}" data-fp-dot data-fp-index="{{ forloop.index0 }}" aria-label="{{ forloop.index }}"></button>
-            {%- endfor -%}
-          </div>
-        {%- endif -%}
+        <div class="fp-controls">
+          {%- if section.settings.fp_slider_arrows -%}
+            <button type="button" class="fp-nav fp-nav--prev slick-arrow slick-prev" data-fp-prev aria-label="{{ 'general.pagination.previous' | t }}">
+              <svg xmlns="http://www.w3.org/2000/svg" width="31" height="10" viewBox="0 0 31 10" fill="none" aria-hidden="true"><path d="M25.8012 0L24.8801 0.884979L28.5157 4.37815H0V5.62997H28.4961L24.8686 9.1147L25.7897 10L31 4.99464L25.8012 0Z" fill="#1E3C32"/></svg>
+            </button>
+          {%- endif -%}
+          {%- if section.settings.fp_slider_dots -%}
+            <div class="fp-dots" data-fp-dots>
+              {%- for fp_h in fp_handles -%}
+                <button type="button" class="fp-dot{% if forloop.first %} is-active{% endif %}" data-fp-dot data-fp-index="{{ forloop.index0 }}" aria-label="{{ forloop.index }}"></button>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+          {%- if section.settings.fp_slider_arrows -%}
+            <button type="button" class="fp-nav fp-nav--next slick-arrow slick-next" data-fp-next aria-label="{{ 'general.pagination.next' | t }}">
+              <svg xmlns="http://www.w3.org/2000/svg" width="31" height="10" viewBox="0 0 31 10" fill="none" aria-hidden="true"><path d="M25.8012 0L24.8801 0.884979L28.5157 4.37815H0V5.62997H28.4961L24.8686 9.1147L25.7897 10L31 4.99464L25.8012 0Z" fill="#1E3C32"/></svg>
+            </button>
+          {%- endif -%}
+        </div>
       {%- endif -%}
     </div>
   </div>
@@ -1284,27 +1288,21 @@
     display: none;
   }
 
-  /* The arrows reuse the theme's .slick-arrow styling (box, colors, icon) so they match
-     the site's carousels. We only override their position to sit in the outer gutter,
-     clear of the image's own next/prev arrows. */
-  #ProductSection-{{ section.id }} .fp-nav { z-index: 5; }
-  #ProductSection-{{ section.id }} .fp-nav--prev { left: -64px; }
-  #ProductSection-{{ section.id }} .fp-nav--next { right: -64px; }
-
-  @media (max-width: 1300px) {
-    #ProductSection-{{ section.id }} .fp-nav--prev { left: -18px; }
-    #ProductSection-{{ section.id }} .fp-nav--next { right: -18px; }
+  /* Switch controls sit in one centered row BELOW the product ( â¹  â¢ â¢ â¢  âº ),
+     so they never overlap the image's own next/prev arrows. The arrows reuse the
+     theme's .slick-arrow styling (box, colors, icon) to match the site's carousels. */
+  #ProductSection-{{ section.id }} .fp-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 24px;
   }
-  /* Mobile: the image is full width, so move the switch arrows below it (by the dots)
-     to keep the image's own arrows tappable. */
-  @media (max-width: 767px) {
-    #ProductSection-{{ section.id }} .fp-nav {
-      top: auto;
-      bottom: 0;
-      transform: none;
-    }
-    #ProductSection-{{ section.id }} .fp-nav--prev { left: 8px; }
-    #ProductSection-{{ section.id }} .fp-nav--next { right: 8px; }
+  #ProductSection-{{ section.id }} .fp-nav.slick-arrow {
+    position: static;
+    top: auto;
+    transform: none;
+    z-index: 5;
   }
 
   #ProductSection-{{ section.id }} .fp-dots {
@@ -1312,11 +1310,11 @@
     gap: 8px;
     justify-content: center;
     align-items: center;
-    margin-top: 22px;
+    margin-top: 0;
   }
   #ProductSection-{{ section.id }} .fp-dot {
-    width: 10px;
-    height: 10px;
+    width: 7px;
+    height: 7px;
     padding: 0;
     border: 0;
     border-radius: 50%;
@@ -1354,8 +1352,16 @@
     var speed = parseInt(slider.getAttribute('data-fp-speed'), 10) || 5000;
     var timer = null;
 
-    // Measure every product off-screen (at the real width) and lock the viewport to the
-    // TALLEST one, so switching products never changes the section height -> footer stays put.
+    // Lock the viewport to the TALLEST product so switching never changes the section
+    // height (footer stays put). The lock only ever GROWS, never shrinks, so a shorter
+    // product can't collapse it and a mis-measured taller one can't be clipped.
+    var lockedH = 0;
+    function applyLock(h) {
+      if (h > lockedH) {
+        lockedH = h;
+        if (viewport) viewport.style.minHeight = lockedH + 'px';
+      }
+    }
     function lockHeight() {
       if (!viewport) return;
       var w = viewport.clientWidth;
@@ -1371,7 +1377,10 @@
       }
       probe.innerHTML = '';
       viewport.removeChild(probe);
-      if (max > 0) viewport.style.minHeight = max + 'px';
+      applyLock(max);
+      // Also account for the currently-rendered product in case the live layout (after slick
+      // init) is a touch taller than the static measurement.
+      if (live) applyLock(live.scrollHeight);
     }
 
     function reinit() {
@@ -1404,6 +1413,7 @@
         requestAnimationFrame(function () {
           slider.classList.remove('is-switching');
           switching = false;
+          applyLock(live.scrollHeight); // grow the lock if this product is taller than measured
         });
       }, 300);
     }
@@ -1419,8 +1429,11 @@
     slider.addEventListener('mouseenter', stop);
     slider.addEventListener('mouseleave', start);
 
-    // Lock height after layout settles, again after full load (images), and on resize.
+    // Lock height after layout settles, again after the gallery slick initializes,
+    // after full load (images), and on resize.
     requestAnimationFrame(function () { requestAnimationFrame(lockHeight); });
+    setTimeout(lockHeight, 700);
+    setTimeout(lockHeight, 1500);
     window.addEventListener('load', lockHeight);
     var resizeT;
     window.addEventListener('resize', function () { clearTimeout(resizeT); resizeT = setTimeout(lockHeight, 250); });
