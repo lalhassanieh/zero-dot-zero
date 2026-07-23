@@ -1354,6 +1354,26 @@
     var speed = parseInt(slider.getAttribute('data-fp-speed'), 10) || 5000;
     var timer = null;
 
+    // Measure every product off-screen (at the real width) and lock the viewport to the
+    // TALLEST one, so switching products never changes the section height -> footer stays put.
+    function lockHeight() {
+      if (!viewport) return;
+      var w = viewport.clientWidth;
+      if (!w) return;
+      var probe = document.createElement('div');
+      probe.className = 'fp-live';
+      probe.style.cssText = 'position:absolute;left:0;top:0;visibility:hidden;pointer-events:none;z-index:-1;width:' + w + 'px';
+      viewport.appendChild(probe);
+      var max = 0;
+      for (var i = 0; i < slides.length; i++) {
+        probe.innerHTML = slides[i];
+        if (probe.offsetHeight > max) max = probe.offsetHeight;
+      }
+      probe.innerHTML = '';
+      viewport.removeChild(probe);
+      if (max > 0) viewport.style.minHeight = max + 'px';
+    }
+
     function reinit() {
       // Re-run the theme's product-view init for the freshly injected product.
       if (window.halo && window.jQuery) {
@@ -1369,15 +1389,10 @@
       var target = ((i % count) + count) % count;
       if (target === index || switching) return;
       switching = true;
+      slider.classList.add('is-switching'); // fade the current product out
 
-      // Freeze the current height and fade the old product out (still occupying its space).
-      if (viewport) {
-        viewport.style.height = viewport.offsetHeight + 'px';
-        viewport.style.overflow = 'hidden';
-      }
-      slider.classList.add('is-switching');
-
-      // After the fade-out completes, swap while invisible so the raw reflow isn't seen.
+      // After the fade-out, swap while invisible then fade the new one in.
+      // The viewport height is fixed (min-height), so nothing below moves.
       setTimeout(function () {
         index = target;
         live.innerHTML = slides[index];
@@ -1386,24 +1401,9 @@
         if (window.jQuery) {
           try { window.jQuery(live).find('.productView-nav, .productView-for').slick('setPosition'); } catch (e) {}
         }
-        // Two frames for the new layout to settle, then animate height + fade back in.
         requestAnimationFrame(function () {
-          requestAnimationFrame(function () {
-            var endH = live.scrollHeight;
-            if (viewport) {
-              viewport.style.transition = 'height .4s ease';
-              viewport.style.height = endH + 'px';
-            }
-            slider.classList.remove('is-switching');
-            setTimeout(function () {
-              if (viewport) {
-                viewport.style.transition = '';
-                viewport.style.height = '';
-                viewport.style.overflow = '';
-              }
-              switching = false;
-            }, 430);
-          });
+          slider.classList.remove('is-switching');
+          switching = false;
         });
       }, 300);
     }
@@ -1418,6 +1418,12 @@
 
     slider.addEventListener('mouseenter', stop);
     slider.addEventListener('mouseleave', start);
+
+    // Lock height after layout settles, again after full load (images), and on resize.
+    requestAnimationFrame(function () { requestAnimationFrame(lockHeight); });
+    window.addEventListener('load', lockHeight);
+    var resizeT;
+    window.addEventListener('resize', function () { clearTimeout(resizeT); resizeT = setTimeout(lockHeight, 250); });
 
     start();
   })();
