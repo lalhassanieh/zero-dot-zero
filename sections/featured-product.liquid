@@ -1434,15 +1434,15 @@
     // we initialize the main image directly with the theme's arrow config as a fallback so
     // the next/prev hover arrows always come back after a switch.
     function initGallery() {
-      if (!window.jQuery) return;
+      if (!window.jQuery || !window.jQuery.fn || !window.jQuery.fn.slick) return;
       var $pv = window.jQuery(live).find('.halo-productView');
       var $nav = $pv.find('.productView-nav');
       if (!$nav.length) return;
 
-      if (window.halo && typeof window.halo.initProductView === 'function' && !$nav.hasClass('slick-initialized')) {
-        try { window.halo.initProductView($pv); } catch (e) {}
-      }
-
+      // 1) Guarantee the main image becomes a slick slider FIRST, using the theme's own arrow
+      //    icons/config. Doing this before the theme's full init means nothing the theme might
+      //    throw on (fancybox, zoom, variant groups, video) can stop the hover next/prev arrows
+      //    from being created â the raw-nav-after-switch bug.
       if (!$nav.hasClass('slick-initialized') && window.arrows) {
         try {
           $nav.slick({
@@ -1459,8 +1459,15 @@
         } catch (e) {}
       }
 
-      // Re-measure the track/arrows once the images finish loading so the arrows land in the
-      // right place (the reserved aspect-ratio boxes keep height stable meanwhile).
+      // 2) Let the theme wire up the extras (fancybox, zoom, variant groups). Its gallery init
+      //    sees the main slider already initialized and skips it, so there's no double-init.
+      //    Wrapped so any throw here can't undo step 1.
+      if (window.halo && typeof window.halo.initProductView === 'function') {
+        try { window.halo.initProductView($pv); } catch (e) {}
+      }
+
+      // 3) Re-measure the track/arrows once the images finish loading so the arrows land in the
+      //    right place (the reserved aspect-ratio boxes keep height stable meanwhile).
       try { $nav.slick('setPosition'); } catch (e) {}
       var imgs = live.querySelectorAll('.productView-nav img');
       for (var i = 0; i < imgs.length; i++) {
