@@ -211,11 +211,7 @@
 
   {%- assign fp_lang = request.locale.iso_code | slice: 0, 2 -%}
   {%- if fp_lang == 'ar' -%}
-  @media (min-width: 1025px) {
-      #ProductSection-{{ section.id }} .productView-top {
-          flex-direction: row-reverse;
-      }
-  }
+  {%- comment -%} RTL mirrors the row via the theme's direction:rtl; no flex-direction override (that would double-reverse). Just flip the gap to the details column's right edge. {%- endcomment -%}
   @media (min-width: 1200px) {
       #ProductSection-{{ section.id }} .productView-top .halo-productView-right {
           padding-left: 0 !important;
