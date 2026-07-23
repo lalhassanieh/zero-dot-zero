@@ -1355,39 +1355,31 @@
     // Lock the viewport to the TALLEST product so switching never changes the section
     // height (footer stays put). The lock only ever GROWS, never shrinks, so a shorter
     // product can't collapse it and a mis-measured taller one can't be clipped.
-    var FPLOG = '[FP-{{ section.id }}]';
     var lockedH = 0;
     function applyLock(h) {
       if (h > lockedH) {
-        console.log(FPLOG, 'applyLock GROW', lockedH, '->', h);
         lockedH = h;
         if (viewport) viewport.style.minHeight = lockedH + 'px';
-      } else {
-        console.log(FPLOG, 'applyLock ignore', h, '(locked stays', lockedH + ')');
       }
     }
     function lockHeight() {
-      if (!viewport) { console.log(FPLOG, 'lockHeight: no viewport'); return; }
+      if (!viewport) return;
       var w = viewport.clientWidth;
-      if (!w) { console.log(FPLOG, 'lockHeight: width 0, skip'); return; }
+      if (!w) return;
       var probe = document.createElement('div');
       probe.className = 'fp-live';
       probe.style.cssText = 'position:absolute;left:0;top:0;visibility:hidden;pointer-events:none;z-index:-1;width:' + w + 'px';
       viewport.appendChild(probe);
       var max = 0;
-      var perSlide = [];
       for (var i = 0; i < slides.length; i++) {
         probe.innerHTML = slides[i];
-        var h = probe.offsetHeight;
-        perSlide.push(h);
-        if (h > max) max = h;
+        if (probe.offsetHeight > max) max = probe.offsetHeight;
       }
       probe.innerHTML = '';
       viewport.removeChild(probe);
-      console.log(FPLOG, 'lockHeight measured @width', w, '-> per-slide', perSlide, 'max', max, '| live.scrollHeight', live ? live.scrollHeight : 'n/a', '| viewport.offsetHeight', viewport.offsetHeight);
       applyLock(max);
       // Also account for the currently-rendered product in case the live layout (after slick
-      // init) is a touch taller than the static measurement.
+      // init / image load) is taller than the static measurement.
       if (live) applyLock(live.scrollHeight);
     }
 
@@ -1406,7 +1398,6 @@
       var target = ((i % count) + count) % count;
       if (target === index || switching) return;
       switching = true;
-      console.log(FPLOG, 'GO', index, '->', target, '| before: viewport.offsetHeight', viewport.offsetHeight, 'minHeight', viewport.style.minHeight, 'live.scrollHeight', live.scrollHeight);
       slider.classList.add('is-switching'); // fade the current product out
 
       // After the fade-out, swap the markup in while it's invisible, then reveal it and
@@ -1416,7 +1407,6 @@
         index = target;
         live.innerHTML = slides[index];
         dots.forEach(function (d, di) { d.classList.toggle('is-active', di === index); });
-        console.log(FPLOG, 'swapped in', index, '| live.scrollHeight now', live.scrollHeight, '| viewport.offsetHeight', viewport.offsetHeight);
         requestAnimationFrame(function () {
           slider.classList.remove('is-switching'); // now visible
           reinit();                                 // init the gallery/variants while visible
@@ -1426,12 +1416,10 @@
           // Nudge slick to (re)draw its arrows/track for the freshly shown product.
           try { window.dispatchEvent(new Event('resize')); } catch (e) {}
           switching = false;
-          applyLock(live.scrollHeight); // grow the lock if this product is taller than measured
-          console.log(FPLOG, 'after settle', index, '| live.scrollHeight', live.scrollHeight, '| viewport.offsetHeight', viewport.offsetHeight, 'minHeight', viewport.style.minHeight);
-          // Late check â slick/images can change height a beat later.
-          setTimeout(function () {
-            console.log(FPLOG, 'late(+500ms)', index, '| live.scrollHeight', live.scrollHeight, '| viewport.offsetHeight', viewport.offsetHeight, 'minHeight', viewport.style.minHeight);
-          }, 500);
+          applyLock(live.scrollHeight); // grow the lock if this product ends up taller than measured
+          // The image reserves no height until it loads; re-check briefly after so the lock
+          // accounts for the final (image-loaded) height too.
+          setTimeout(function () { applyLock(live.scrollHeight); }, 600);
         });
       }, 300);
     }
