@@ -1286,15 +1286,13 @@
   #ProductSection-{{ section.id }} .fp-live { transition: opacity .3s ease; }
   #ProductSection-{{ section.id }} .fp-slider.is-switching .fp-live { opacity: 0; }
 
-  /* Prevent the "jump": before the gallery slider initializes, keep only the first
-     image / thumbnail visible so the injected product doesn't flash as a tall stack. */
+  /* Before slick init, keep only the first image/thumbnail visible so the injected product doesn't flash as a stack. */
   #ProductSection-{{ section.id }} .productView-nav:not(.slick-initialized) > .productView-image:not(:first-child),
   #ProductSection-{{ section.id }} .productView-for:not(.slick-initialized) > .productView-thumbnail:not(:first-child) {
     display: none;
   }
 
-  /* Reserve the image box from its own aspect ratio so an injected (unloaded) image can't
-     collapse the slide, and fill that box with the media/img. */
+  /* Reserve the image box from its own aspect ratio so an unloaded injected image can't collapse the slide. */
   #ProductSection-{{ section.id }} .fp-reserve .productView-image.fit-unset .productView-img-container {
     padding-bottom: 0 !important;
     height: auto;
@@ -1332,9 +1330,7 @@
     }
   }
 
-  /* Switch controls sit in one centered row BELOW the product ( â¹  â¢ â¢ â¢  âº ),
-     so they never overlap the image's own next/prev arrows. The arrows reuse the
-     theme's .slick-arrow styling (box, colors, icon) to match the site's carousels. */
+  /* Switch controls sit in one centered row below the product, clear of the image's own arrows. */
   #ProductSection-{{ section.id }} .fp-controls {
     display: flex;
     align-items: center;
@@ -1396,9 +1392,7 @@
     var speed = parseInt(slider.getAttribute('data-fp-speed'), 10) || 5000;
     var timer = null;
 
-    // Lock the viewport to the TALLEST product so switching never changes the section
-    // height (footer stays put). The lock only ever GROWS, never shrinks, so a shorter
-    // product can't collapse it and a mis-measured taller one can't be clipped.
+    // Lock the viewport to the tallest product so switching never changes section height (grows only).
     var lockedH = 0;
     function applyLock(h) {
       if (h > lockedH) {
@@ -1422,27 +1416,18 @@
       probe.innerHTML = '';
       viewport.removeChild(probe);
       applyLock(max);
-      // Also account for the currently-rendered product in case the live layout (after slick
-      // init / image load) is taller than the static measurement.
+      // Also account for the currently-rendered product if its live layout is taller.
       if (live) applyLock(live.scrollHeight);
     }
 
-    // Initialize the freshly injected product's gallery. We try the theme's own init first
-    // (it wires up the image slider, thumbnails, fancybox, zoom and variant groups), then
-    // VERIFY the main image actually became a slick slider. If it didn't â the theme init
-    // can silently throw on the injected markup, leaving the nav raw with NO hover arrows â
-    // we initialize the main image directly with the theme's arrow config as a fallback so
-    // the next/prev hover arrows always come back after a switch.
+    // Init the injected product's gallery: slick the main image FIRST (guarantees the hover arrows), then let the theme add extras.
     function initGallery() {
       if (!window.jQuery || !window.jQuery.fn || !window.jQuery.fn.slick) return;
       var $pv = window.jQuery(live).find('.halo-productView');
       var $nav = $pv.find('.productView-nav');
       if (!$nav.length) return;
 
-      // 1) Guarantee the main image becomes a slick slider FIRST, using the theme's own arrow
-      //    icons/config. Doing this before the theme's full init means nothing the theme might
-      //    throw on (fancybox, zoom, variant groups, video) can stop the hover next/prev arrows
-      //    from being created â the raw-nav-after-switch bug.
+      // 1) Slick the main image first, before anything the theme init could throw on.
       if (!$nav.hasClass('slick-initialized') && window.arrows) {
         try {
           $nav.slick({
@@ -1459,15 +1444,12 @@
         } catch (e) {}
       }
 
-      // 2) Let the theme wire up the extras (fancybox, zoom, variant groups). Its gallery init
-      //    sees the main slider already initialized and skips it, so there's no double-init.
-      //    Wrapped so any throw here can't undo step 1.
+      // 2) Let the theme add extras (fancybox, zoom, variant groups); it skips the already-slicked main image.
       if (window.halo && typeof window.halo.initProductView === 'function') {
         try { window.halo.initProductView($pv); } catch (e) {}
       }
 
-      // 3) Re-measure the track/arrows once the images finish loading so the arrows land in the
-      //    right place (the reserved aspect-ratio boxes keep height stable meanwhile).
+      // 3) Re-measure track/arrows as images load so the arrows land in the right place.
       try { $nav.slick('setPosition'); } catch (e) {}
       var imgs = live.querySelectorAll('.productView-nav img');
       for (var i = 0; i < imgs.length; i++) {
@@ -1485,9 +1467,7 @@
       switching = true;
       slider.classList.add('is-switching'); // fade the current product out
 
-      // After the fade-out, swap the markup in while it's invisible, then reveal it and
-      // initialize the new product's gallery WHILE VISIBLE (slick lays out its image
-      // arrows/thumbnails reliably only when the element isn't opacity:0).
+      // After the fade-out, swap markup while invisible, then reveal and init the gallery while visible.
       setTimeout(function () {
         index = target;
         live.innerHTML = slides[index];
@@ -1513,8 +1493,7 @@
     slider.addEventListener('mouseenter', stop);
     slider.addEventListener('mouseleave', start);
 
-    // Lock height after layout settles, again after the gallery slick initializes,
-    // after full load (images), and on resize.
+    // Lock height after layout settles, after full load, and on resize.
     requestAnimationFrame(function () { requestAnimationFrame(lockHeight); });
     setTimeout(lockHeight, 700);
     setTimeout(lockHeight, 1500);
