@@ -9,8 +9,9 @@
 
 {%- liquid
   # Build the list of product handles to show in the slider.
-  # Priority: the SINGLE metafield (related_product) wins when it is set, showing just that product.
-  # If the single one is empty, use the LIST metafield (related_products) to show a multi-product slider.
+  # Priority: the LIST metafield (related_products) wins when it is set, showing a multi-product slider â
+  # even if the single related_product is also filled.
+  # If the list is empty, use the SINGLE metafield (related_product) to show just that product.
   # Falls back to the manually picked featured_product when both are empty.
   assign fp_handles = '' | split: ','
   if section.settings.use_article_metafield
@@ -19,10 +20,10 @@
     assign mf_list = article.metafields[mf_ns][section.settings.metafield_key_multiple]
 
     assign mf_active = null
-    if mf_single != blank and mf_single.value != blank
-      assign mf_active = mf_single
-    elsif mf_list != blank and mf_list.value != blank
+    if mf_list != blank and mf_list.value != blank
       assign mf_active = mf_list
+    elsif mf_single != blank and mf_single.value != blank
+      assign mf_active = mf_single
     endif
 
     if mf_active != blank
@@ -1728,14 +1729,14 @@
       "type": "text",
       "id": "metafield_key",
       "label": "Single product metafield key",
-      "info": "The single-product field (e.g. related_product). When an article has this filled, ONLY this product shows. Clear it on the article to use the multiple list instead.",
+      "info": "The single-product field (e.g. related_product). Used only as a fallback â it shows just this one product when the multiple-products list below is empty on the article.",
       "default": "related_product"
     },
     {
       "type": "text",
       "id": "metafield_key_multiple",
       "label": "Multiple products metafield key",
-      "info": "The list-of-products field (e.g. related_products, Product reference + list of values). Used only when the single field above is empty on the article. Shows a switchable slider.",
+      "info": "The list-of-products field (e.g. related_products, Product reference + list of values). Takes priority: whenever it holds one or more products, the switchable slider shows them â even if the single field above is also filled.",
       "default": "related_products"
     },
     {
