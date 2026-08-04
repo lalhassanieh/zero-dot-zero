@@ -161,7 +161,7 @@
         "max_item_per_filter": 10,
         "filter_label_all": "",
         "filter_hidden_tag_list": "",
-        "show_toolbar": true,
+        "show_toolbar": false,
         "show_sorting": true,
         "show_item_per_page": true,
         "show_view_as": true,
