@@ -177,13 +177,19 @@ h5,
 }
 
 .card-information__wrapper.text-left .card-price {
-    justify-content: center;
+    justify-content: flex-start;
     padding-top: 5px;
 }
 
 .card-information__wrapper.text-left .card__heading{
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+}
+
+/* .card-title / .price are centred globally for sliders; honour text-left cards */
+.card-information__wrapper.text-left .card-title,
+.card-information__wrapper.text-left .price {
+    text-align: left;
 }
 
 .add-sparkles h2 {
