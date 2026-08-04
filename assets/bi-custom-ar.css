@@ -783,3 +783,7 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
     margin-right: 28px;
   }
 }
+
+.toolbar .toolbar-item .toolbar-icon + .toolbar-icon {
+  margin-right: 5px;
+}
