@@ -186,6 +186,14 @@ h5,
     justify-content: center;
 }
 
+.card-information .card-summary {
+    color: #000000;
+    font-size: 17px;
+    line-height: 1;
+    font-family: 'Gilroy Light';
+    font-weight: 300;
+    padding-top: 8px;
+}
 
 .add-sparkles h2 {
     display: inline-block;
