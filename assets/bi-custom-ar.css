@@ -777,3 +777,9 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
         margin-left: 8px;
     }
 }
+
+@media (min-width: 551px) {
+  .toolbar .toolbar-col .toolbar-item + .toolbar-item {
+    margin-right: 28px;
+  }
+}
