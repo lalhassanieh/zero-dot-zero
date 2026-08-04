@@ -100,7 +100,7 @@
 .productList .card-action,
 .productList .card-vendor,
 .productList .text-size {
-    text-align: left !important;
+    text-align: left;
 }
 
 .productList .card-information__wrapper .card-information__group .card-vendor,
@@ -237,7 +237,7 @@ body.product-card-layout-05 .productList .product-item.quickshop-popup-show .car
 .productList .card-swatch.text-center .swatch,
 .productList .card .card-information__wrapper.text-center .price--on-sale .price__sale.show_saved_price,
 .product-card-layout-05 .productList .card-information__group {
-    justify-content: flex-start !important;
+    justify-content: flex-start;
     text-align: left;
 }
 
