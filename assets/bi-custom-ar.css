@@ -763,3 +763,17 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
 .fp-nav.fp-nav--next svg {
     transform: rotate(180deg) !important;
 }
+
+@media (min-width: 1025px) {
+    toolbar-item.toolbar .toolbar-label {
+        margin-right: 0;
+        margin-left: 15px;
+    }
+}
+
+/* Narrow-desktop band uses the tighter 8px gap. */
+@media (min-width: 1025px) and (max-width: 1350px) {
+    toolbar-item.toolbar .toolbar-label {
+        margin-left: 8px;
+    }
+}
