@@ -2,22 +2,38 @@ const SCROLL_ANIMATION_TRIGGER_CLASSNAME = 'scroll-trigger';
 const SCROLL_ANIMATION_OFFSCREEN_CLASSNAME = 'scroll-trigger--offscreen';
 const SCROLL_ZOOM_IN_TRIGGER_CLASSNAME = 'animate--zoom-in';
 const SCROLL_ANIMATION_CANCEL_CLASSNAME = 'scroll-trigger--cancel';
+// Cap the cascade so a large reveal batch can't leave later items at opacity 0 for seconds.
+const SCROLL_ANIMATION_MAX_CASCADE = 8;
+
+function revealScrollTrigger(elementTarget, observer, cascadeIndex) {
+  if (elementTarget.classList.contains(SCROLL_ANIMATION_OFFSCREEN_CLASSNAME)) {
+    elementTarget.classList.remove(SCROLL_ANIMATION_OFFSCREEN_CLASSNAME);
+    if (elementTarget.hasAttribute('data-cascade'))
+        elementTarget.style.setProperty('--animation-order', Math.min(cascadeIndex, SCROLL_ANIMATION_MAX_CASCADE));
+  }
+  observer.unobserve(elementTarget);
+}
 
 // Scroll in animation logic
 function onIntersection(elements, observer) {
   elements.forEach((element, index) => {
+    const elementTarget = element.target;
+
     if (element.isIntersecting) {
-      const elementTarget = element.target;
-      if (elementTarget.classList.contains(SCROLL_ANIMATION_OFFSCREEN_CLASSNAME)) {
-        elementTarget.classList.remove(SCROLL_ANIMATION_OFFSCREEN_CLASSNAME);
-        if (elementTarget.hasAttribute('data-cascade'))
-            elementTarget.style.setProperty('--animation-order', index);
-      }
-      observer.unobserve(elementTarget);
-    } else {
-      element.target.classList.add(SCROLL_ANIMATION_OFFSCREEN_CLASSNAME);
-      element.target.classList.remove(SCROLL_ANIMATION_CANCEL_CLASSNAME);
+      revealScrollTrigger(elementTarget, observer, index);
+      return;
     }
+
+    // Element sits entirely above the viewport, i.e. already scrolled past. Reveal it instead
+    // of hiding it — scrolling down can never make it intersect, so it would stay invisible.
+    const viewportTop = element.rootBounds ? element.rootBounds.top : 0;
+    if (element.boundingClientRect.bottom <= viewportTop) {
+      revealScrollTrigger(elementTarget, observer, 0);
+      return;
+    }
+
+    elementTarget.classList.add(SCROLL_ANIMATION_OFFSCREEN_CLASSNAME);
+    elementTarget.classList.remove(SCROLL_ANIMATION_CANCEL_CLASSNAME);
   });
 }
 
