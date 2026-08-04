@@ -190,9 +190,9 @@ h5,
 
 
 .productList .card-action__group .card-action .button {
-    bottom: 0;
-    margin-left: auto;
-    margin-right: auto;
+    bottom: 0 ;
+    margin-left: auto !important;
+    margin-right: auto !important;
     max-width: 210px;
 }
 
