@@ -188,6 +188,9 @@ h5,
     text-align: center !important;
 }
 
+.productList .card {
+    align-items: center !important;
+}
 
 .productList .card-action__group .card-action .button {
     bottom: 0 ;
