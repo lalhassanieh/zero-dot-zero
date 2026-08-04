@@ -786,5 +786,5 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
 
 .toolbar .toolbar-item .toolbar-icon + .toolbar-icon {
   margin-right: 5px;
-  margin-left: 0px;
+  margin-left: 0px !important;
 }
