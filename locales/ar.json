@@ -3492,6 +3492,8 @@
     },
     "collections": {
       "sorting": {
+        "manual": "المميزة",
+        "relevance": "الأكثر صلة",
         "date_ascending": "التاريخ، من الأقدم إلى الأحدث",
         "date_descending": "التاريخ، من الأحدث إلى الأقدم",
         "az": "أبجديًا، AZ",
