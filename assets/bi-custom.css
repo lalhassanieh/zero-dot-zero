@@ -186,10 +186,6 @@ h5,
     justify-content: center;
 }
 
-.card-information__wrapper.text-left .card-title,
-.card-information__wrapper.text-left .price {
-    text-align: left;
-}
 
 .add-sparkles h2 {
     display: inline-block;
