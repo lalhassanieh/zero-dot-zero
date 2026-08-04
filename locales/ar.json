@@ -551,7 +551,7 @@
       "title": "مجموعة",
       "to": "ل",
       "use_fewer_filters_html": "استخدم عددًا أقل من المرشحات أو <a class=\"{{ class }}\" href=\"{{ link }}\">مسح الكل</a>",
-      "view_as": "عرض ك",
+      "view_as": "طريقة العرض",
       "image": "الصور",
       "product": "منتج",
       "price": "سعر",
