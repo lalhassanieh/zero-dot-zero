@@ -1705,4 +1705,5 @@ input[type="number"].filter__price::-webkit-inner-spin-button {
 
 input[type="number"].filter__price {
     -moz-appearance: textfield;
+    appearance: textfield;
 }
