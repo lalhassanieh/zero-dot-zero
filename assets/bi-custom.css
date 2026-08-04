@@ -1615,7 +1615,6 @@ input[type="checkbox"][required] {
     width: auto;
 }
 
-
 /* Narrow desktops: keep view-as, items-per-page and sort-by on a single row */
 @media (min-width: 1025px) and (max-width: 1350px) {
     .toolbar-wrapper:not(.toolbar-mobile) {
