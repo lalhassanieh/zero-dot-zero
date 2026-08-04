@@ -1693,3 +1693,16 @@ input[type="checkbox"][required] {
         right: 11px;
     }
 }
+
+input[type="number"].filter__price::-webkit-outer-spin-button,
+input[type="number"].filter__price::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    display: none;
+    width: 0;
+    margin: 0;
+}
+
+input[type="number"].filter__price {
+    -moz-appearance: textfield;
+}
