@@ -176,12 +176,12 @@ h5,
     font-family: 'Gilroy Extra Bold';
 }
 
-.card-information__wrapper.text-center .card-price {
+.card-information__wrapper .card-price {
     justify-content: center;
     padding-top: 5px;
 }
 
-.card-information__wrapper.text-center .card__heading{
+.card-information__wrapper .card__heading{
     display: flex;
     justify-content: center;
 }
