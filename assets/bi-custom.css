@@ -1614,3 +1614,48 @@ input[type="checkbox"][required] {
     height: var(--payment-icon-height, 24px);
     width: auto;
 }
+
+
+/* Narrow desktops: keep view-as, items-per-page and sort-by on a single row */
+@media (min-width: 1025px) and (max-width: 1350px) {
+    .toolbar-wrapper:not(.toolbar-mobile) {
+        flex-wrap: nowrap;
+        column-gap: 20px;
+    }
+
+    .toolbar .toolbar-col {
+        white-space: nowrap;
+    }
+
+    .toolbar .toolbar-label {
+        margin: 0 8px 0 0;
+    }
+
+    body.layout_rtl .toolbar .toolbar-label {
+        margin: 0 0 0 8px;
+    }
+
+    .toolbar .toolbar-col .toolbar-item+.toolbar-item {
+        margin-left: 16px;
+    }
+
+    body.layout_rtl .toolbar .toolbar-col .toolbar-item+.toolbar-item {
+        margin-left: 0;
+        margin-right: 16px;
+    }
+
+    .toolbar .toolbar-dropdown .label-tab {
+        min-width: 74px;
+        max-width: 124px;
+        padding-left: 12px;
+        padding-right: 30px;
+    }
+
+    .toolbar .toolbar-dropdown.filter-sortby .label-tab {
+        min-width: 116px;
+    }
+
+    .toolbar .toolbar-dropdown .label-tab .icon-dropdown {
+        right: 11px;
+    }
+}
