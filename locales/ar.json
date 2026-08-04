@@ -3492,7 +3492,7 @@
     "collections": {
       "sorting": {
         "manual": "المميزة",
-        "relevance": "الأكثر صلة",
+        "most_relevant": "الأكثر صلة",
         "best_selling": "الأكثر مبيعًا",
         "date_ascending": "التاريخ، من الأقدم إلى الأحدث",
         "date_descending": "التاريخ، من الأحدث إلى الأقدم",
