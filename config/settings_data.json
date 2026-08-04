@@ -345,7 +345,7 @@
     "product_wishlist_color_added": "#ffffff",
     "product_wishlist_bg_added": "#005339",
     "product_action_color": "#fff",
-    "product_action_border": "#fff",
+    "product_action_border": "#005339",
     "product_action_bg": "#005339",
     "product_action_color_hover": "#005339",
     "product_action_border_hover": "#005339",
