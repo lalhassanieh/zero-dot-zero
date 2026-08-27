@@ -444,7 +444,7 @@
     "app_button_bg_hover": "#FFF7E5",
     "app_button_text_hover": "#005339",
     "app_button_border_hover": "#005339",
-    "app_button_icon_size": 36,
+    "app_button_icon_size": 30,
     "app_button_border_width": 2,
     "show_review": false,
     "checkout_logo_image": "shopify://shop_images/Home-6-Logo-Parallax.png",
