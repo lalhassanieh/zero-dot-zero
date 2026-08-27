@@ -438,6 +438,8 @@
     "app_ios_url": "https://apps.apple.com/us/app/zero-zero-drystore/id6759644937",
     "app_android_url": "https://play.google.com/store/apps/details?id=com.zerodotzero.shopify.app",
     "app_logo": "shopify://shop_images/Logo_en.png",
+    "app_logo_width": 180,
+    "app_page_bg": "#FFF7E5",
     "show_review": false,
     "checkout_logo_image": "shopify://shop_images/Home-6-Logo-Parallax.png",
     "share_product_type": "addthis",
