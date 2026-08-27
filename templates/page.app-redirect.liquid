@@ -18,6 +18,14 @@
 {%- assign text_color = settings.app_text_color  | default: '#005339' -%}
 {%- assign btn_bg     = settings.app_button_bg   | default: '#005339' -%}
 {%- assign btn_fg     = settings.app_button_text | default: '#ffffff' -%}
+{%- assign btn_border = settings.app_button_border | default: '#005339' -%}
+
+{%- assign btn_bg_hover     = settings.app_button_bg_hover     | default: '#00341f' -%}
+{%- assign btn_fg_hover     = settings.app_button_text_hover   | default: '#ffffff' -%}
+{%- assign btn_border_hover = settings.app_button_border_hover | default: '#00341f' -%}
+
+{%- assign btn_border_width = settings.app_button_border_width | default: 1 -%}
+{%- assign icon_size  = settings.app_button_icon_size | default: 26 -%}
 {%- assign btn_radius = settings.app_button_radius | default: 45 -%}
 {%- assign btn_layout = settings.app_button_layout | default: 'auto' -%}
 {%- assign logo_width = settings.app_logo_width  | default: 140 -%}
@@ -88,7 +96,13 @@
       --fg: {{ text_color }};
       --btn-bg: {{ btn_bg }};
       --btn-fg: {{ btn_fg }};
+      --btn-border: {{ btn_border }};
+      --btn-bg-hover: {{ btn_bg_hover }};
+      --btn-fg-hover: {{ btn_fg_hover }};
+      --btn-border-hover: {{ btn_border_hover }};
+      --btn-border-width: {{ btn_border_width }}px;
       --btn-radius: {{ btn_radius }}px;
+      --icon-size: {{ icon_size }}px;
       --muted: rgba(16, 20, 19, .58);
       --line: rgba(16, 20, 19, .14);
     }
@@ -140,19 +154,24 @@
       max-width: 260px;
       display: flex; align-items: center; justify-content: center; gap: 12px;
       padding: 14px 18px;
-      border: 1px solid transparent;
+      border: var(--btn-border-width) solid var(--btn-border);
       border-radius: var(--btn-radius);
       background: var(--btn-bg);
       color: var(--btn-fg);
       text-decoration: none;
-      box-shadow: 0 6px 18px -10px rgba(0, 0, 0, .55);
-      transition: transform .12s ease, box-shadow .12s ease, opacity .12s ease;
+      transition: transform .12s ease, opacity .12s ease,
+                  background-color .18s ease, color .18s ease, border-color .18s ease;
     }
     #stores.layout-stacked .btn { flex: 0 0 auto; width: 100%; max-width: 320px; }
-    .btn:hover { transform: translateY(-1px); box-shadow: 0 12px 24px -10px rgba(0, 0, 0, .6); }
+    .btn:hover {
+      transform: translateY(-1px);
+      background: var(--btn-bg-hover);
+      color: var(--btn-fg-hover);
+      border-color: var(--btn-border-hover);
+    }
     .btn:active { transform: translateY(0) scale(.99); opacity: .92; }
     .btn:focus-visible { outline: 2px solid var(--btn-bg); outline-offset: 3px; }
-    .btn svg { width: 26px; height: 26px; flex: 0 0 26px; }
+    .btn svg { width: var(--icon-size); height: var(--icon-size); flex: 0 0 var(--icon-size); }
     .btn .label { text-align: start; line-height: 1.15; }
     .btn .label small { display: block; font-size: 10px; letter-spacing: .06em; text-transform: uppercase; opacity: .8; }
     .btn .label strong { display: block; font-size: 17px; font-weight: 600; letter-spacing: -.01em; }
