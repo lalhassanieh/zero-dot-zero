@@ -1,0 +1,408 @@
+{% layout none %}
+{%- comment -%}
+  ============================================================================
+  SMART APP DOWNLOAD / REDIRECT PAGE
+  ----------------------------------------------------------------------------
+  Detects the visitor's device and sends them straight to the right app store.
+  Anything it cannot identify (desktop, bots, no JS) gets the fallback page
+  below with both store buttons.
+
+  SETUP - no code editing required
+    1. Online Store > Pages > Add page   (e.g. title "Get the App")
+    2. Theme template  ->  select "app-redirect"
+    3. Customize > Theme settings > App download page
+       -> paste the store links, pick the logo, colours and button layout.
+    4. Share  https://your-store.com/pages/<handle>  on social, or point your
+       QR code at it.
+
+  The theme editor never auto-redirects, so you can safely style the page
+  in the customizer.
+
+  TEST / DEBUG URLS
+    ?noredirect=1   show the fallback page without redirecting
+    ?to=ios         force a target (also: android, desktop)
+    ?qr=1           printable QR code of this page
+
+  TRACKING
+    Any ?src= / ?utm_source= / ?utm_medium= / ?utm_campaign= on the incoming
+    link is forwarded to the store: Google Play gets a `referrer` value,
+    the App Store gets a `ct` campaign token. The built-in QR uses ?src=qr.
+  ============================================================================
+{%- endcomment -%}
+
+{%- comment -%}
+  Everything below is edited in the theme customizer - nothing here needs code:
+  Online Store > Customize > Theme settings > App download page
+{%- endcomment -%}
+
+{%- assign ios_url        = settings.app_ios_url -%}
+{%- assign android_url    = settings.app_android_url -%}
+{%- assign desktop_url    = settings.app_desktop_url -%}
+
+{%- assign auto_redirect = true -%}
+{%- if settings.app_auto_redirect == false -%}{%- assign auto_redirect = false -%}{%- endif -%}
+{%- assign redirect_delay = settings.app_redirect_delay | default: 250 -%}
+{%- assign reveal_after   = settings.app_reveal_after | default: 2500 -%}
+
+{%- assign page_bg    = settings.app_page_bg     | default: '#ffffff' -%}
+{%- assign text_color = settings.app_text_color  | default: '#005339' -%}
+{%- assign btn_bg     = settings.app_button_bg   | default: '#005339' -%}
+{%- assign btn_fg     = settings.app_button_text | default: '#ffffff' -%}
+{%- assign btn_radius = settings.app_button_radius | default: 12 -%}
+{%- assign btn_layout = settings.app_button_layout | default: 'auto' -%}
+{%- assign logo_width = settings.app_logo_width  | default: 140 -%}
+
+{%- assign logo_url = '' -%}
+{%- if settings.app_logo != blank -%}
+  {%- assign logo_url = settings.app_logo | image_url: width: 640 -%}
+{%- elsif shop.brand.logo != blank -%}
+  {%- assign logo_url = shop.brand.logo | image_url: width: 640 -%}
+{%- endif -%}
+{%- assign share_image = logo_url -%}
+
+{%- assign lang = request.locale.iso_code | slice: 0, 2 -%}
+{%- if lang == 'ar' -%}
+  {%- assign page_dir   = 'rtl' -%}
+  {%- assign t_heading  = 'حمّل التطبيق' -%}
+  {%- assign t_sub      = 'اختر متجرك لتنزيل التطبيق' -%}
+  {%- assign t_status   = 'جارٍ تحويلك إلى المتجر…' -%}
+  {%- assign t_hint     = 'إذا لم يحدث شيء، اضغط أحد الأزرار بالأعلى.' -%}
+  {%- assign t_hint_app = 'أنت تتصفح داخل تطبيق. افتح الرابط في المتصفح إذا لم يفتح المتجر.' -%}
+  {%- assign t_ios_1    = 'حمّله من' -%}
+  {%- assign t_ios_2    = 'App Store' -%}
+  {%- assign t_and_1    = 'احصل عليه من' -%}
+  {%- assign t_and_2    = 'Google Play' -%}
+  {%- assign t_qr       = 'امسح الرمز لتحميل التطبيق' -%}
+{%- else -%}
+  {%- assign page_dir   = 'ltr' -%}
+  {%- assign t_heading  = 'Get the app' -%}
+  {%- assign t_sub      = 'Choose your store to download' -%}
+  {%- assign t_status   = 'Taking you to the store…' -%}
+  {%- assign t_hint     = 'If nothing happens, tap one of the buttons above.' -%}
+  {%- assign t_hint_app = 'You are browsing inside an app. Open this link in your browser if the store does not open.' -%}
+  {%- assign t_ios_1    = 'Download on the' -%}
+  {%- assign t_ios_2    = 'App Store' -%}
+  {%- assign t_and_1    = 'Get it on' -%}
+  {%- assign t_and_2    = 'Google Play' -%}
+  {%- assign t_qr       = 'Scan to download the app' -%}
+{%- endif -%}
+
+{%- if page.title != blank -%}{%- assign t_heading = page.title -%}{%- endif -%}
+{%- if page.content != blank -%}{%- assign t_sub = page.content | strip_html | strip -%}{%- endif -%}
+
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}" dir="{{ page_dir }}" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, follow">
+  <meta name="theme-color" content="{{ page_bg }}">
+  <title>{{ t_heading }} · {{ shop.name }}</title>
+  <meta name="description" content="{{ t_sub | escape }}">
+  <link rel="canonical" href="{{ canonical_url }}">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ shop.name | escape }}">
+  <meta property="og:title" content="{{ t_heading | escape }}">
+  <meta property="og:description" content="{{ t_sub | escape }}">
+  <meta property="og:url" content="{{ canonical_url }}">
+  {%- if share_image != blank %}
+  <meta property="og:image" content="{{ share_image }}">
+  {%- endif %}
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ t_heading | escape }}">
+  <meta name="twitter:description" content="{{ t_sub | escape }}">
+  {%- if share_image != blank %}
+  <meta name="twitter:image" content="{{ share_image }}">
+  {%- endif %}
+
+  <style>
+    :root {
+      --bg: {{ page_bg }};
+      --fg: {{ text_color }};
+      --btn-bg: {{ btn_bg }};
+      --btn-fg: {{ btn_fg }};
+      --btn-radius: {{ btn_radius }}px;
+      --muted: rgba(16, 20, 19, .58);
+      --line: rgba(16, 20, 19, .14);
+    }
+    @supports (color: color-mix(in srgb, red 50%, blue)) {
+      :root {
+        --muted: color-mix(in srgb, var(--fg) 62%, var(--bg));
+        --line:  color-mix(in srgb, var(--fg) 16%, var(--bg));
+      }
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 20px calc(32px + env(safe-area-inset-bottom));
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-align: center;
+    }
+    .card { width: 100%; max-width: 480px; margin: 0 auto; }
+    .logo { max-width: {{ logo_width }}px; max-height: 110px; width: auto; height: auto; margin: 0 auto 24px; display: block; }
+    h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; font-weight: 700; letter-spacing: -.01em; }
+    .sub { margin: 0 0 28px; font-size: 15px; line-height: 1.55; color: var(--muted); }
+
+    #status { display: none; align-items: center; justify-content: center; gap: 10px; font-size: 15px; color: var(--muted); min-height: 56px; }
+    .spinner {
+      width: 18px; height: 18px; flex: 0 0 18px; border-radius: 50%;
+      border: 2px solid var(--line); border-top-color: var(--btn-bg);
+      animation: spin .7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @media (prefers-reduced-motion: reduce) { .spinner { animation-duration: 2s; } }
+
+    /* ---------- store buttons ---------- */
+    #stores {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: stretch;
+      justify-content: center;
+      gap: 12px;
+    }
+    #stores.layout-stacked { flex-direction: column; align-items: center; }
+    .btn {
+      flex: 1 1 205px;
+      max-width: 260px;
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      padding: 14px 18px;
+      border: 1px solid transparent;
+      border-radius: var(--btn-radius);
+      background: var(--btn-bg);
+      color: var(--btn-fg);
+      text-decoration: none;
+      box-shadow: 0 6px 18px -10px rgba(0, 0, 0, .55);
+      transition: transform .12s ease, box-shadow .12s ease, opacity .12s ease;
+    }
+    #stores.layout-stacked .btn { flex: 0 0 auto; width: 100%; max-width: 320px; }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 12px 24px -10px rgba(0, 0, 0, .6); }
+    .btn:active { transform: translateY(0) scale(.99); opacity: .92; }
+    .btn:focus-visible { outline: 2px solid var(--btn-bg); outline-offset: 3px; }
+    .btn svg { width: 26px; height: 26px; flex: 0 0 26px; }
+    .btn .label { text-align: start; line-height: 1.15; }
+    .btn .label small { display: block; font-size: 10px; letter-spacing: .06em; text-transform: uppercase; opacity: .8; }
+    .btn .label strong { display: block; font-size: 17px; font-weight: 600; letter-spacing: -.01em; }
+    [dir="rtl"] .btn .label { text-align: right; }
+
+    .setup-note {
+      margin: 0; padding: 16px; border: 1px dashed var(--line); border-radius: 12px;
+      font-size: 13px; line-height: 1.6; color: var(--muted);
+    }
+
+    #hint { display: none; margin: 20px 0 0; font-size: 13px; line-height: 1.5; color: var(--muted); }
+
+    /* --- state machine --- */
+    .js #stores, .js #hint { display: none; }
+    .js.state-redirecting #status { display: flex; }
+    .js.state-choose #stores { display: flex; }
+    .js.state-choose #hint { display: block; }
+    .js.state-qr #stores, .js.state-qr #hint, .js.state-qr #status { display: none; }
+
+    #qr { display: none; }
+    .state-qr #qr { display: block; }
+    .state-qr .sub { display: none; }
+    #qr-box { display: inline-block; padding: 16px; background: #fff; border-radius: 16px; border: 1px solid var(--line); line-height: 0; }
+    #qr-box img, #qr-box canvas { display: block; width: 280px; height: 280px; }
+    #qr-caption { margin: 18px 0 6px; font-size: 15px; font-weight: 600; }
+    #qr-url { margin: 0; font-size: 12px; color: var(--muted); word-break: break-all; }
+
+    @media print {
+      body { background: #fff; color: #000; }
+      #qr-box { border: 0; }
+    }
+  </style>
+
+  <script>
+    (function () {
+      var D = document.documentElement;
+      D.className = 'js';
+
+      var CFG = {
+        ios:     {{ ios_url | json }},
+        android: {{ android_url | json }},
+        desktop: {{ desktop_url | json }},
+        auto:    {{ auto_redirect | json }},
+        delay:   {{ redirect_delay | json }},
+        reveal:  {{ reveal_after | json }},
+        hintApp: {{ t_hint_app | json }},
+        qrLib:   {{ 'vendor/qrcode.js' | shopify_asset_url | json }},
+        design:  {{ request.design_mode | json }}
+      };
+
+      /* ---------- query string ---------- */
+      var qs = {};
+      try {
+        var parts = location.search.replace(/^\?/, '').split('&');
+        for (var i = 0; i < parts.length; i++) {
+          if (!parts[i]) continue;
+          var eq = parts[i].indexOf('=');
+          var k = eq < 0 ? parts[i] : parts[i].slice(0, eq);
+          var v = eq < 0 ? '' : parts[i].slice(eq + 1).replace(/\+/g, ' ');
+          qs[decodeURIComponent(k).toLowerCase()] = decodeURIComponent(v);
+        }
+      } catch (e) {}
+
+      /* ---------- device detection ---------- */
+      var ua = navigator.userAgent || navigator.vendor || '';
+      var plat = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || '';
+      var touch = navigator.maxTouchPoints || 0;
+
+      function isIOS() {
+        if (/iPad|iPhone|iPod/i.test(ua) && !window.MSStream) return true;
+        /* iPadOS 13+ reports itself as macOS - a Mac with a touchscreen is an iPad */
+        if (/Mac/i.test(plat) && touch > 1) return true;
+        return false;
+      }
+      function isAndroid() { return /Android/i.test(ua) || /Android/i.test(plat); }
+      function isInApp()   { return /FBAN|FBAV|FB_IAB|Instagram|TikTok|BytedanceWebview|Snapchat|Line\/|Twitter|LinkedInApp|Pinterest|WhatsApp|MicroMessenger/i.test(ua); }
+
+      function platform() {
+        var forced = (qs.to || '').toLowerCase();
+        if (forced) return forced;
+        if (isIOS()) return 'ios';
+        if (isAndroid()) return 'android';
+        return 'desktop';
+      }
+
+      /* ---------- campaign passthrough ---------- */
+      function decorate(url, p) {
+        if (!url) return '';
+        var src  = qs.src || qs.utm_source || '';
+        var med  = qs.utm_medium || '';
+        var camp = qs.utm_campaign || qs.campaign || '';
+        if (!src && !camp && !med) return url;
+        var sep = url.indexOf('?') > -1 ? '&' : '?';
+        if (p === 'android') {
+          var ref = [];
+          if (src)  ref.push('utm_source=' + src);
+          if (med)  ref.push('utm_medium=' + med);
+          if (camp) ref.push('utm_campaign=' + camp);
+          return url + sep + 'referrer=' + encodeURIComponent(ref.join('&'));
+        }
+        if (p === 'ios') {
+          return url + sep + 'ct=' + encodeURIComponent(camp || src) + '&mt=8';
+        }
+        return url;
+      }
+
+      function onReady(fn) {
+        if (document.readyState !== 'loading') fn();
+        else document.addEventListener('DOMContentLoaded', fn);
+      }
+
+      var p = platform();
+      var url = decorate(CFG[p] || '', p);
+
+      /* ---------- QR mode ---------- */
+      if (qs.qr === '1' || qs.qr === 'true') {
+        D.className = 'js state-qr';
+        onReady(function () {
+          var clean = location.origin + location.pathname + '?src=qr';
+          var label = document.getElementById('qr-url');
+          if (label) label.textContent = clean;
+          var s = document.createElement('script');
+          s.src = CFG.qrLib;
+          s.onload = function () {
+            new QRCode(document.getElementById('qr-box'), {
+              text: clean, width: 560, height: 560,
+              correctLevel: QRCode.CorrectLevel.M
+            });
+          };
+          document.head.appendChild(s);
+        });
+        return;
+      }
+
+      /* ---------- fallback UI ---------- */
+      function showChoices() {
+        D.className = 'js state-choose';
+        onReady(function () {
+          var stores = document.getElementById('stores');
+          var mine = document.getElementById('btn-' + p);
+          if (stores && mine && stores.firstChild !== mine) stores.insertBefore(mine, stores.firstChild);
+          if (isInApp()) {
+            var hint = document.getElementById('hint');
+            if (hint) hint.textContent = CFG.hintApp;
+          }
+        });
+      }
+
+      /* ---------- redirect ---------- */
+      /* never redirect inside the theme editor - it would navigate the preview away */
+      if (url && CFG.auto && !CFG.design && qs.noredirect !== '1') {
+        D.className = 'js state-redirecting';
+        setTimeout(function () {
+          try { location.replace(url); } catch (e) { location.href = url; }
+        }, CFG.delay);
+        /* if the store never opened (blocked webview, no app), offer the buttons */
+        setTimeout(showChoices, CFG.reveal);
+      } else {
+        showChoices();
+      }
+    })();
+  </script>
+</head>
+
+<body>
+  <main class="card">
+    {%- if logo_url != blank %}
+      <img class="logo" src="{{ logo_url }}" alt="{{ shop.name | escape }}" width="140" height="90">
+    {%- endif %}
+
+    <h1>{{ t_heading }}</h1>
+    <p class="sub">{{ t_sub }}</p>
+
+    <div id="status" role="status" aria-live="polite">
+      <span class="spinner" aria-hidden="true"></span>
+      <span>{{ t_status }}</span>
+    </div>
+
+    <div id="stores" class="layout-{{ btn_layout }}">
+      {%- if ios_url != blank %}
+      <a class="btn" id="btn-ios" href="{{ ios_url }}" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.53 4.08zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+        <span class="label"><small>{{ t_ios_1 }}</small><strong>{{ t_ios_2 }}</strong></span>
+      </a>
+      {%- endif %}
+
+      {%- if android_url != blank %}
+      <a class="btn" id="btn-android" href="{{ android_url }}" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="#00D2FF" d="M3.66 1.75a1.5 1.5 0 0 0-.41 1.05v18.4c0 .4.15.76.41 1.03l.06.06 10.3-10.23v-.12L3.72 1.7z"/>
+          <path fill="#FFCE00" d="M17.42 15.52l-3.4-3.46v-.12l3.4-3.44.08.04 4.07 2.31c1.16.66 1.16 1.74 0 2.4l-4.07 2.32z"/>
+          <path fill="#FF3A44" d="M17.5 15.48L14.02 12 3.66 22.23a1.21 1.21 0 0 0 1.53.05z"/>
+          <path fill="#00C853" d="M17.5 8.52L5.19 1.72a1.21 1.21 0 0 0-1.53.03L14.02 12z"/>
+        </svg>
+        <span class="label"><small>{{ t_and_1 }}</small><strong>{{ t_and_2 }}</strong></span>
+      </a>
+      {%- endif %}
+    </div>
+
+    <p id="hint">{{ t_hint }}</p>
+
+    {%- if request.design_mode and ios_url == blank and android_url == blank %}
+      <p class="setup-note">
+        No store links yet. Add them in <strong>Theme settings &rsaquo; App download page</strong> and the buttons will appear here.
+      </p>
+    {%- endif %}
+
+    <div id="qr">
+      <div id="qr-box"></div>
+      <p id="qr-caption">{{ t_qr }}</p>
+      <p id="qr-url"></p>
+    </div>
+  </main>
+
+  <noscript>
+    <style>#stores { display: flex !important; } #status { display: none !important; }</style>
+  </noscript>
+</body>
+</html>
