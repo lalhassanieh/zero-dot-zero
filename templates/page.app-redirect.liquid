@@ -1,34 +1,4 @@
 {% layout none %}
-{%- comment -%}
-  ============================================================================
-  SMART APP DOWNLOAD / REDIRECT PAGE
-  ----------------------------------------------------------------------------
-  Detects the visitor's device and sends them straight to the right app store.
-  Anything it cannot identify (desktop, bots, no JS) gets the fallback page
-  below with both store buttons.
-
-  SETUP - no code editing required
-    1. Online Store > Pages > Add page   (e.g. title "Get the App")
-    2. Theme template  ->  select "app-redirect"
-    3. Customize > Theme settings > App download page
-       -> paste the store links, pick the logo, colours and button layout.
-    4. Share  https://your-store.com/pages/<handle>  on social, or point your
-       QR code at it.
-
-  The theme editor never auto-redirects, so you can safely style the page
-  in the customizer.
-
-  TEST / DEBUG URLS
-    ?noredirect=1   show the fallback page without redirecting
-    ?to=ios         force a target (also: android, desktop)
-    ?qr=1           printable QR code of this page
-
-  TRACKING
-    Any ?src= / ?utm_source= / ?utm_medium= / ?utm_campaign= on the incoming
-    link is forwarded to the store: Google Play gets a `referrer` value,
-    the App Store gets a `ct` campaign token. The built-in QR uses ?src=qr.
-  ============================================================================
-{%- endcomment -%}
 
 {%- comment -%}
   Everything below is edited in the theme customizer - nothing here needs code:
@@ -48,7 +18,7 @@
 {%- assign text_color = settings.app_text_color  | default: '#005339' -%}
 {%- assign btn_bg     = settings.app_button_bg   | default: '#005339' -%}
 {%- assign btn_fg     = settings.app_button_text | default: '#ffffff' -%}
-{%- assign btn_radius = settings.app_button_radius | default: 12 -%}
+{%- assign btn_radius = settings.app_button_radius | default: 45 -%}
 {%- assign btn_layout = settings.app_button_layout | default: 'auto' -%}
 {%- assign logo_width = settings.app_logo_width  | default: 140 -%}
 
@@ -66,8 +36,6 @@
   {%- assign t_heading  = 'حمّل التطبيق' -%}
   {%- assign t_sub      = 'اختر متجرك لتنزيل التطبيق' -%}
   {%- assign t_status   = 'جارٍ تحويلك إلى المتجر…' -%}
-  {%- assign t_hint     = 'إذا لم يحدث شيء، اضغط أحد الأزرار بالأعلى.' -%}
-  {%- assign t_hint_app = 'أنت تتصفح داخل تطبيق. افتح الرابط في المتصفح إذا لم يفتح المتجر.' -%}
   {%- assign t_ios_1    = 'حمّله من' -%}
   {%- assign t_ios_2    = 'App Store' -%}
   {%- assign t_and_1    = 'احصل عليه من' -%}
@@ -78,8 +46,6 @@
   {%- assign t_heading  = 'Get the app' -%}
   {%- assign t_sub      = 'Choose your store to download' -%}
   {%- assign t_status   = 'Taking you to the store…' -%}
-  {%- assign t_hint     = 'If nothing happens, tap one of the buttons above.' -%}
-  {%- assign t_hint_app = 'You are browsing inside an app. Open this link in your browser if the store does not open.' -%}
   {%- assign t_ios_1    = 'Download on the' -%}
   {%- assign t_ios_2    = 'App Store' -%}
   {%- assign t_and_1    = 'Get it on' -%}
@@ -197,14 +163,11 @@
       font-size: 13px; line-height: 1.6; color: var(--muted);
     }
 
-    #hint { display: none; margin: 20px 0 0; font-size: 13px; line-height: 1.5; color: var(--muted); }
-
     /* --- state machine --- */
-    .js #stores, .js #hint { display: none; }
+    .js #stores { display: none; }
     .js.state-redirecting #status { display: flex; }
     .js.state-choose #stores { display: flex; }
-    .js.state-choose #hint { display: block; }
-    .js.state-qr #stores, .js.state-qr #hint, .js.state-qr #status { display: none; }
+    .js.state-qr #stores, .js.state-qr #status { display: none; }
 
     #qr { display: none; }
     .state-qr #qr { display: block; }
@@ -232,7 +195,6 @@
         auto:    {{ auto_redirect | json }},
         delay:   {{ redirect_delay | json }},
         reveal:  {{ reveal_after | json }},
-        hintApp: {{ t_hint_app | json }},
         qrLib:   {{ 'vendor/qrcode.js' | shopify_asset_url | json }},
         design:  {{ request.design_mode | json }}
       };
@@ -262,7 +224,6 @@
         return false;
       }
       function isAndroid() { return /Android/i.test(ua) || /Android/i.test(plat); }
-      function isInApp()   { return /FBAN|FBAV|FB_IAB|Instagram|TikTok|BytedanceWebview|Snapchat|Line\/|Twitter|LinkedInApp|Pinterest|WhatsApp|MicroMessenger/i.test(ua); }
 
       function platform() {
         var forced = (qs.to || '').toLowerCase();
@@ -328,10 +289,6 @@
           var stores = document.getElementById('stores');
           var mine = document.getElementById('btn-' + p);
           if (stores && mine && stores.firstChild !== mine) stores.insertBefore(mine, stores.firstChild);
-          if (isInApp()) {
-            var hint = document.getElementById('hint');
-            if (hint) hint.textContent = CFG.hintApp;
-          }
         });
       }
 
@@ -385,8 +342,6 @@
       </a>
       {%- endif %}
     </div>
-
-    <p id="hint">{{ t_hint }}</p>
 
     {%- if request.design_mode and ios_url == blank and android_url == blank %}
       <p class="setup-note">
