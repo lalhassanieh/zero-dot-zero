@@ -9069,12 +9069,6 @@
       },
       {
         "type": "text",
-        "id": "app_huawei_url",
-        "label": "Huawei AppGallery link",
-        "info": "Optional. Leave blank to send Huawei devices to Google Play."
-      },
-      {
-        "type": "text",
         "id": "app_desktop_url",
         "label": "Desktop redirect",
         "info": "Optional. Leave blank to show desktop visitors the download page instead of redirecting them."
