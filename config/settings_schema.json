@@ -5118,8 +5118,8 @@
             "label": "Cuba"
           },
           {
-            "value": "Curaçao",
-            "label": "Curaçao"
+            "value": "CuraÃ§ao",
+            "label": "CuraÃ§ao"
           },
           {
             "value": "Cyprus",
@@ -5130,8 +5130,8 @@
             "label": "Czech Republic"
           },
           {
-            "value": "Côte d'Ivoire",
-            "label": "Côte d'Ivoire"
+            "value": "CÃ´te d'Ivoire",
+            "label": "CÃ´te d'Ivoire"
           },
           {
             "value": "Denmark",
@@ -5610,8 +5610,8 @@
             "label": "Rwanda"
           },
           {
-            "value": "Saint Barthélemy",
-            "label": "Saint Barthélemy"
+            "value": "Saint BarthÃ©lemy",
+            "label": "Saint BarthÃ©lemy"
           },
           {
             "value": "Saint Helena",
@@ -9041,6 +9041,144 @@
         "id": "preloading_screen_bg",
         "label": "t:settings_schema.colors.settings.colors_name.background_color",
         "default": "#fff"
+      }
+    ]
+  },
+  {
+    "name": "App download page",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Settings for the \"app-redirect\" page template. Create a page (Online Store > Pages), set its theme template to app-redirect, then share that page URL on social media or point your QR code at it."
+      },
+      {
+        "type": "header",
+        "content": "Store links"
+      },
+      {
+        "type": "text",
+        "id": "app_ios_url",
+        "label": "App Store link (iPhone / iPad)",
+        "info": "Example: https:\/\/apps.apple.com\/app\/id123456789"
+      },
+      {
+        "type": "text",
+        "id": "app_android_url",
+        "label": "Google Play link (Android)",
+        "info": "Example: https:\/\/play.google.com\/store\/apps\/details?id=com.yourcompany.app"
+      },
+      {
+        "type": "text",
+        "id": "app_huawei_url",
+        "label": "Huawei AppGallery link",
+        "info": "Optional. Leave blank to send Huawei devices to Google Play."
+      },
+      {
+        "type": "text",
+        "id": "app_desktop_url",
+        "label": "Desktop redirect",
+        "info": "Optional. Leave blank to show desktop visitors the download page instead of redirecting them."
+      },
+      {
+        "type": "header",
+        "content": "Redirect behaviour"
+      },
+      {
+        "type": "checkbox",
+        "id": "app_auto_redirect",
+        "label": "Redirect automatically",
+        "default": true,
+        "info": "Turn off to always show the download page with both buttons."
+      },
+      {
+        "type": "range",
+        "id": "app_redirect_delay",
+        "label": "Delay before redirecting",
+        "min": 0,
+        "max": 1500,
+        "step": 50,
+        "unit": "ms",
+        "default": 250
+      },
+      {
+        "type": "range",
+        "id": "app_reveal_after",
+        "label": "Show buttons if the store did not open",
+        "min": 1000,
+        "max": 8000,
+        "step": 500,
+        "unit": "ms",
+        "default": 2500,
+        "info": "Safety net for in-app browsers (Instagram, TikTok) that block the redirect."
+      },
+      {
+        "type": "header",
+        "content": "Appearance"
+      },
+      {
+        "type": "image_picker",
+        "id": "app_logo",
+        "label": "Logo"
+      },
+      {
+        "type": "range",
+        "id": "app_logo_width",
+        "label": "Logo width",
+        "min": 60,
+        "max": 320,
+        "step": 10,
+        "unit": "px",
+        "default": 140
+      },
+      {
+        "type": "color",
+        "id": "app_page_bg",
+        "label": "Page background",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "app_text_color",
+        "label": "Text colour",
+        "default": "#005339"
+      },
+      {
+        "type": "color",
+        "id": "app_button_bg",
+        "label": "Button background",
+        "default": "#005339"
+      },
+      {
+        "type": "color",
+        "id": "app_button_text",
+        "label": "Button text",
+        "default": "#ffffff"
+      },
+      {
+        "type": "range",
+        "id": "app_button_radius",
+        "label": "Button corner radius",
+        "min": 0,
+        "max": 40,
+        "step": 2,
+        "unit": "px",
+        "default": 12
+      },
+      {
+        "type": "select",
+        "id": "app_button_layout",
+        "label": "Button layout",
+        "options": [
+          {
+            "value": "auto",
+            "label": "Side by side (stacks on small screens)"
+          },
+          {
+            "value": "stacked",
+            "label": "Always stacked"
+          }
+        ],
+        "default": "auto"
       }
     ]
   }
