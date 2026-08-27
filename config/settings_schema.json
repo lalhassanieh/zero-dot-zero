@@ -9149,6 +9149,58 @@
         "default": "#ffffff"
       },
       {
+        "type": "color",
+        "id": "app_button_border",
+        "label": "Button border",
+        "default": "#005339"
+      },
+      {
+        "type": "header",
+        "content": "Button hover"
+      },
+      {
+        "type": "color",
+        "id": "app_button_bg_hover",
+        "label": "Background on hover",
+        "default": "#00341f"
+      },
+      {
+        "type": "color",
+        "id": "app_button_text_hover",
+        "label": "Text on hover",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "app_button_border_hover",
+        "label": "Border on hover",
+        "default": "#00341f"
+      },
+      {
+        "type": "header",
+        "content": "Button size"
+      },
+      {
+        "type": "range",
+        "id": "app_button_icon_size",
+        "label": "Store icon size",
+        "min": 14,
+        "max": 48,
+        "step": 1,
+        "unit": "px",
+        "default": 26
+      },
+      {
+        "type": "range",
+        "id": "app_button_border_width",
+        "label": "Button border width",
+        "min": 0,
+        "max": 6,
+        "step": 1,
+        "unit": "px",
+        "default": 1
+      },
+      {
         "type": "range",
         "id": "app_button_radius",
         "label": "Button corner radius",
