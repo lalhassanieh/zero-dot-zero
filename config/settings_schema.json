@@ -9118,6 +9118,13 @@
         "content": "Appearance"
       },
       {
+        "type": "checkbox",
+        "id": "app_show_logo",
+        "label": "Show logo",
+        "default": true,
+        "info": "Turn off on the app-redirect-full template, where the theme header already shows your logo."
+      },
+      {
         "type": "image_picker",
         "id": "app_logo",
         "label": "Logo"
@@ -9136,7 +9143,8 @@
         "type": "color",
         "id": "app_page_bg",
         "label": "Page background",
-        "default": "#ffffff"
+        "default": "#ffffff",
+        "info": "Applies to the app-redirect template only. On app-redirect-full the theme's own page background is used."
       },
       {
         "type": "color",
