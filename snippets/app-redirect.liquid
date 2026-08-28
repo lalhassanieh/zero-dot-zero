@@ -1,0 +1,397 @@
+{%- comment -%}
+  ============================================================================
+  APP REDIRECT - shared core
+  ----------------------------------------------------------------------------
+  Rendered by both templates:
+    page.app-redirect.liquid       standalone, no header/footer  (fastest)
+    page.app-redirect-full.liquid  inside the normal theme layout
+
+  Usage:
+    {% render 'app-redirect', standalone: true %}
+
+  Everything is configured in Theme settings > App download page.
+  Classes and ids are prefixed "ar-" / "app-redirect" so nothing collides
+  with the theme's own CSS when it runs inside the full layout.
+  ============================================================================
+{%- endcomment -%}
+
+{%- assign ios_url     = settings.app_ios_url -%}
+{%- assign android_url = settings.app_android_url -%}
+{%- assign desktop_url = settings.app_desktop_url -%}
+
+{%- assign auto_redirect = true -%}
+{%- if settings.app_auto_redirect == false -%}{%- assign auto_redirect = false -%}{%- endif -%}
+{%- assign redirect_delay = settings.app_redirect_delay | default: 250 -%}
+{%- assign reveal_after   = settings.app_reveal_after | default: 2500 -%}
+
+{%- assign page_bg    = settings.app_page_bg     | default: '#ffffff' -%}
+{%- assign text_color = settings.app_text_color  | default: '#005339' -%}
+{%- assign btn_bg     = settings.app_button_bg   | default: '#005339' -%}
+{%- assign btn_fg     = settings.app_button_text | default: '#ffffff' -%}
+{%- assign btn_border = settings.app_button_border | default: '#005339' -%}
+
+{%- assign btn_bg_hover     = settings.app_button_bg_hover     | default: '#00341f' -%}
+{%- assign btn_fg_hover     = settings.app_button_text_hover   | default: '#ffffff' -%}
+{%- assign btn_border_hover = settings.app_button_border_hover | default: '#00341f' -%}
+
+{%- assign btn_border_width = settings.app_button_border_width | default: 1 -%}
+{%- assign icon_size  = settings.app_button_icon_size | default: 26 -%}
+{%- assign label_size = settings.app_button_label_size | default: 13 -%}
+{%- assign title_size = settings.app_button_title_size | default: 20 -%}
+{%- assign btn_radius = settings.app_button_radius | default: 45 -%}
+{%- assign btn_layout = settings.app_button_layout | default: 'auto' -%}
+{%- assign logo_width = settings.app_logo_width  | default: 140 -%}
+
+{%- assign logo_url = '' -%}
+{%- if settings.app_logo != blank -%}
+  {%- assign logo_url = settings.app_logo | image_url: width: 640 -%}
+{%- elsif shop.brand.logo != blank -%}
+  {%- assign logo_url = shop.brand.logo | image_url: width: 640 -%}
+{%- endif -%}
+
+{%- assign lang = request.locale.iso_code | slice: 0, 2 -%}
+{%- if lang == 'ar' -%}
+  {%- assign t_heading = 'حمّل التطبيق' -%}
+  {%- assign t_sub     = 'اختر متجرك لتنزيل التطبيق' -%}
+  {%- assign t_status  = 'جارٍ تحويلك إلى المتجر…' -%}
+  {%- assign t_ios_1   = 'حمّله من' -%}
+  {%- assign t_and_1   = 'احصل عليه من' -%}
+  {%- assign t_qr      = 'امسح الرمز لتحميل التطبيق' -%}
+{%- else -%}
+  {%- assign t_heading = 'Get the app' -%}
+  {%- assign t_sub     = 'Choose your store to download' -%}
+  {%- assign t_status  = 'Taking you to the store…' -%}
+  {%- assign t_ios_1   = 'Download on the' -%}
+  {%- assign t_and_1   = 'Get it on' -%}
+  {%- assign t_qr      = 'Scan to download the app' -%}
+{%- endif -%}
+
+{%- if page.title != blank -%}{%- assign t_heading = page.title -%}{%- endif -%}
+{%- if page.content != blank -%}{%- assign t_sub = page.content | strip_html | strip -%}{%- endif -%}
+
+<style>
+  .app-redirect {
+    --ar-bg: {{ page_bg }};
+    --ar-fg: {{ text_color }};
+    --ar-btn-bg: {{ btn_bg }};
+    --ar-btn-fg: {{ btn_fg }};
+    --ar-btn-border: {{ btn_border }};
+    --ar-btn-bg-hover: {{ btn_bg_hover }};
+    --ar-btn-fg-hover: {{ btn_fg_hover }};
+    --ar-btn-border-hover: {{ btn_border_hover }};
+    --ar-btn-border-width: {{ btn_border_width }}px;
+    --ar-btn-radius: {{ btn_radius }}px;
+    --ar-icon-size: {{ icon_size }}px;
+    --ar-label-size: {{ label_size }}px;
+    --ar-title-size: {{ title_size }}px;
+    --ar-muted: rgba(16, 20, 19, .58);
+    --ar-line: rgba(16, 20, 19, .14);
+  }
+  @supports (color: color-mix(in srgb, red 50%, blue)) {
+    .app-redirect {
+      --ar-muted: color-mix(in srgb, var(--ar-fg) 62%, var(--ar-bg));
+      --ar-line:  color-mix(in srgb, var(--ar-fg) 16%, var(--ar-bg));
+    }
+  }
+
+  {%- if standalone %}
+  /* standalone document: centre the card in the viewport */
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 20px calc(32px + env(safe-area-inset-bottom));
+    background: var(--ar-bg, #fff);
+    -webkit-font-smoothing: antialiased;
+  }
+  {%- else %}
+  /* inside the theme layout: behave like a normal section */
+  .app-redirect { padding: 64px 20px; background: var(--ar-bg); }
+  {%- endif %}
+
+  .app-redirect * { box-sizing: border-box; }
+  .app-redirect {
+    width: 100%;
+    max-width: {% if standalone %}480px{% else %}520px{% endif %};
+    margin: 0 auto;
+    color: var(--ar-fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    text-align: center;
+  }
+  .app-redirect .ar-logo {
+    max-width: {{ logo_width }}px; max-height: 110px;
+    width: auto; height: auto; margin: 0 auto 24px; display: block;
+  }
+  .app-redirect .ar-title {
+    margin: 0 0 8px; font-size: 26px; line-height: 1.25; font-weight: 700;
+    letter-spacing: -.01em; color: var(--ar-fg); text-transform: none;
+  }
+  .app-redirect .ar-sub {
+    margin: 0 0 28px; font-size: 15px; line-height: 1.55; color: var(--ar-muted);
+  }
+
+  .app-redirect .ar-status {
+    display: none; align-items: center; justify-content: center; gap: 10px;
+    font-size: 15px; color: var(--ar-muted); min-height: 56px;
+  }
+  .app-redirect .ar-spinner {
+    width: 18px; height: 18px; flex: 0 0 18px; border-radius: 50%;
+    border: 2px solid var(--ar-line); border-top-color: var(--ar-btn-bg);
+    animation: ar-spin .7s linear infinite;
+  }
+  @keyframes ar-spin { to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) { .app-redirect .ar-spinner { animation-duration: 2s; } }
+
+  /* ---------- store buttons ---------- */
+  .app-redirect .ar-stores {
+    display: flex; flex-wrap: wrap; align-items: stretch; justify-content: center; gap: 12px;
+  }
+  .app-redirect .ar-stores.ar-layout-stacked { flex-direction: column; align-items: center; }
+  .app-redirect .ar-btn {
+    flex: 1 1 205px;
+    max-width: 260px;
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+    padding: 14px 18px;
+    border: var(--ar-btn-border-width) solid var(--ar-btn-border);
+    border-radius: var(--ar-btn-radius);
+    background: var(--ar-btn-bg);
+    color: var(--ar-btn-fg);
+    text-decoration: none;
+    transition: transform .12s ease, opacity .12s ease,
+                background-color .18s ease, color .18s ease, border-color .18s ease;
+  }
+  .app-redirect .ar-stores.ar-layout-stacked .ar-btn { flex: 0 0 auto; width: 100%; max-width: 320px; }
+  .app-redirect .ar-btn:hover {
+    transform: translateY(-1px);
+    background: var(--ar-btn-bg-hover);
+    color: var(--ar-btn-fg-hover);
+    border-color: var(--ar-btn-border-hover);
+  }
+  .app-redirect .ar-btn:active { transform: translateY(0) scale(.99); opacity: .92; }
+  .app-redirect .ar-btn:focus-visible { outline: 2px solid var(--ar-btn-bg); outline-offset: 3px; }
+  .app-redirect .ar-btn svg {
+    width: var(--ar-icon-size); height: var(--ar-icon-size); flex: 0 0 var(--ar-icon-size);
+  }
+  .app-redirect .ar-label { text-align: start; line-height: 1.2; }
+  .app-redirect .ar-label small {
+    display: block; font-size: var(--ar-label-size); letter-spacing: .06em;
+    text-transform: uppercase; opacity: .85;
+  }
+  .app-redirect .ar-label strong {
+    display: block; font-size: var(--ar-title-size); font-weight: 600; letter-spacing: -.01em;
+  }
+  /* Arabic is cursive - letter-spacing pulls the joined letters apart, and
+     uppercase does nothing. Both off in RTL. */
+  [dir="rtl"] .app-redirect .ar-label { text-align: right; }
+  [dir="rtl"] .app-redirect .ar-label small { letter-spacing: normal; text-transform: none; }
+  [dir="rtl"] .app-redirect .ar-label strong { letter-spacing: normal; }
+
+  .app-redirect .ar-setup-note {
+    margin: 20px 0 0; padding: 16px; border: 1px dashed var(--ar-line); border-radius: 12px;
+    font-size: 13px; line-height: 1.6; color: var(--ar-muted);
+  }
+
+  /* ---------- state machine (classes land on <html>) ---------- */
+  .ar-js .app-redirect .ar-stores { display: none; }
+  .ar-js.ar-state-choose .app-redirect .ar-stores { display: flex; }
+  .ar-js.ar-state-redirecting .app-redirect .ar-status { display: flex; }
+  .ar-js.ar-state-qr .app-redirect .ar-stores,
+  .ar-js.ar-state-qr .app-redirect .ar-status,
+  .ar-js.ar-state-qr .app-redirect .ar-sub { display: none; }
+
+  .app-redirect .ar-qr { display: none; }
+  .ar-js.ar-state-qr .app-redirect .ar-qr { display: block; }
+  .app-redirect .ar-qr-box {
+    display: inline-block; padding: 16px; background: #fff; border-radius: 16px;
+    border: 1px solid var(--ar-line); line-height: 0;
+  }
+  .app-redirect .ar-qr-box img, .app-redirect .ar-qr-box canvas {
+    display: block; width: 280px; height: 280px;
+  }
+  .app-redirect .ar-qr-caption { margin: 18px 0 6px; font-size: 15px; font-weight: 600; }
+  .app-redirect .ar-qr-url { margin: 0; font-size: 12px; color: var(--ar-muted); word-break: break-all; }
+
+  @media print {
+    .app-redirect { background: #fff; color: #000; }
+    .app-redirect .ar-qr-box { border: 0; }
+  }
+</style>
+
+<script>
+  (function () {
+    var D = document.documentElement;
+    /* classList, never className - the theme layout puts its own classes on <html> */
+    D.classList.add('ar-js');
+
+    var CFG = {
+      ios:     {{ ios_url | json }},
+      android: {{ android_url | json }},
+      desktop: {{ desktop_url | json }},
+      auto:    {{ auto_redirect | json }},
+      delay:   {{ redirect_delay | json }},
+      reveal:  {{ reveal_after | json }},
+      qrLib:   {{ 'vendor/qrcode.js' | shopify_asset_url | json }},
+      design:  {{ request.design_mode | json }}
+    };
+
+    function setState(s) {
+      D.classList.remove('ar-state-redirecting', 'ar-state-choose', 'ar-state-qr');
+      if (s) D.classList.add('ar-state-' + s);
+    }
+
+    /* ---------- query string ---------- */
+    var qs = {};
+    try {
+      var parts = location.search.replace(/^\?/, '').split('&');
+      for (var i = 0; i < parts.length; i++) {
+        if (!parts[i]) continue;
+        var eq = parts[i].indexOf('=');
+        var k = eq < 0 ? parts[i] : parts[i].slice(0, eq);
+        var v = eq < 0 ? '' : parts[i].slice(eq + 1).replace(/\+/g, ' ');
+        qs[decodeURIComponent(k).toLowerCase()] = decodeURIComponent(v);
+      }
+    } catch (e) {}
+
+    /* ---------- device detection ---------- */
+    var ua = navigator.userAgent || navigator.vendor || '';
+    var plat = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || '';
+    var touch = navigator.maxTouchPoints || 0;
+
+    function isIOS() {
+      if (/iPad|iPhone|iPod/i.test(ua) && !window.MSStream) return true;
+      /* iPadOS 13+ reports itself as macOS - a Mac with a touchscreen is an iPad */
+      if (/Mac/i.test(plat) && touch > 1) return true;
+      return false;
+    }
+    function isAndroid() { return /Android/i.test(ua) || /Android/i.test(plat); }
+
+    function platform() {
+      var forced = (qs.to || '').toLowerCase();
+      if (forced) return forced;
+      if (isIOS()) return 'ios';
+      if (isAndroid()) return 'android';
+      return 'desktop';
+    }
+
+    /* ---------- campaign passthrough ---------- */
+    function decorate(url, p) {
+      if (!url) return '';
+      var src  = qs.src || qs.utm_source || '';
+      var med  = qs.utm_medium || '';
+      var camp = qs.utm_campaign || qs.campaign || '';
+      if (!src && !camp && !med) return url;
+      var sep = url.indexOf('?') > -1 ? '&' : '?';
+      if (p === 'android') {
+        var ref = [];
+        if (src)  ref.push('utm_source=' + src);
+        if (med)  ref.push('utm_medium=' + med);
+        if (camp) ref.push('utm_campaign=' + camp);
+        return url + sep + 'referrer=' + encodeURIComponent(ref.join('&'));
+      }
+      if (p === 'ios') {
+        return url + sep + 'ct=' + encodeURIComponent(camp || src) + '&mt=8';
+      }
+      return url;
+    }
+
+    function onReady(fn) {
+      if (document.readyState !== 'loading') fn();
+      else document.addEventListener('DOMContentLoaded', fn);
+    }
+
+    var p = platform();
+    var url = decorate(CFG[p] || '', p);
+
+    /* ---------- QR mode ---------- */
+    if (qs.qr === '1' || qs.qr === 'true') {
+      setState('qr');
+      onReady(function () {
+        var clean = location.origin + location.pathname + '?src=qr';
+        var label = document.getElementById('ar-qr-url');
+        if (label) label.textContent = clean;
+        var s = document.createElement('script');
+        s.src = CFG.qrLib;
+        s.onload = function () {
+          new QRCode(document.getElementById('ar-qr-box'), {
+            text: clean, width: 560, height: 560,
+            correctLevel: QRCode.CorrectLevel.M
+          });
+        };
+        document.head.appendChild(s);
+      });
+      return;
+    }
+
+    /* ---------- fallback UI ---------- */
+    function showChoices() {
+      setState('choose');
+      onReady(function () {
+        var stores = document.getElementById('ar-stores');
+        var mine = document.getElementById('ar-btn-' + p);
+        if (stores && mine && stores.firstChild !== mine) stores.insertBefore(mine, stores.firstChild);
+      });
+    }
+
+    /* ---------- redirect ---------- */
+    /* never redirect inside the theme editor - it would navigate the preview away */
+    if (url && CFG.auto && !CFG.design && qs.noredirect !== '1') {
+      setState('redirecting');
+      setTimeout(function () {
+        try { location.replace(url); } catch (e) { location.href = url; }
+      }, CFG.delay);
+      /* if the store never opened (blocked webview, no app), offer the buttons */
+      setTimeout(showChoices, CFG.reveal);
+    } else {
+      showChoices();
+    }
+  })();
+</script>
+
+<div class="app-redirect">
+  {%- if logo_url != blank %}
+    <img class="ar-logo" src="{{ logo_url }}" alt="{{ shop.name | escape }}" width="140" height="90">
+  {%- endif %}
+
+  <h1 class="ar-title">{{ t_heading }}</h1>
+  <p class="ar-sub">{{ t_sub }}</p>
+
+  <div class="ar-status" role="status" aria-live="polite">
+    <span class="ar-spinner" aria-hidden="true"></span>
+    <span>{{ t_status }}</span>
+  </div>
+
+  <div class="ar-stores ar-layout-{{ btn_layout }}" id="ar-stores">
+    {%- if ios_url != blank %}
+    <a class="ar-btn" id="ar-btn-ios" href="{{ ios_url }}" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.53 4.08zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+      <span class="ar-label"><small>{{ t_ios_1 }}</small><strong>App Store</strong></span>
+    </a>
+    {%- endif %}
+
+    {%- if android_url != blank %}
+    <a class="ar-btn" id="ar-btn-android" href="{{ android_url }}" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path fill="#00D2FF" d="M3.66 1.75a1.5 1.5 0 0 0-.41 1.05v18.4c0 .4.15.76.41 1.03l.06.06 10.3-10.23v-.12L3.72 1.7z"/>
+        <path fill="#FFCE00" d="M17.42 15.52l-3.4-3.46v-.12l3.4-3.44.08.04 4.07 2.31c1.16.66 1.16 1.74 0 2.4l-4.07 2.32z"/>
+        <path fill="#FF3A44" d="M17.5 15.48L14.02 12 3.66 22.23a1.21 1.21 0 0 0 1.53.05z"/>
+        <path fill="#00C853" d="M17.5 8.52L5.19 1.72a1.21 1.21 0 0 0-1.53.03L14.02 12z"/>
+      </svg>
+      <span class="ar-label"><small>{{ t_and_1 }}</small><strong>Google Play</strong></span>
+    </a>
+    {%- endif %}
+  </div>
+
+  {%- if request.design_mode and ios_url == blank and android_url == blank %}
+    <p class="ar-setup-note">
+      No store links yet. Add them in <strong>Theme settings &rsaquo; App download page</strong> and the buttons will appear here.
+    </p>
+  {%- endif %}
+
+  <div class="ar-qr">
+    <div class="ar-qr-box" id="ar-qr-box"></div>
+    <p class="ar-qr-caption">{{ t_qr }}</p>
+    <p class="ar-qr-url" id="ar-qr-url"></p>
+  </div>
+</div>
