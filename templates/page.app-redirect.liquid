@@ -2,6 +2,34 @@
 {%- comment -%}
   ============================================================================
   SMART APP DOWNLOAD / REDIRECT PAGE - standalone (recommended)
+  ----------------------------------------------------------------------------
+  No header, no footer, none of the theme's CSS or JS. The page is a single
+  self-contained document, so the redirect fires in roughly 100ms instead of
+  waiting on ~38 theme assets.
+
+  Want the normal header and footer instead? Set the page's theme template to
+  "app-redirect-full". Same settings, same buttons, just slower to redirect.
+
+  SETUP - no code editing required
+    1. Online Store > Pages > Add page   (e.g. title "Get the App")
+    2. Theme template  ->  select "app-redirect"
+    3. Customize > Theme settings > App download page
+       -> paste the store links, pick the logo, colours and button layout.
+    4. Share  https://your-store.com/pages/<handle>  on social, or point your
+       QR code at it.
+
+  The theme editor never auto-redirects, so you can safely style the page
+  in the customizer.
+
+  TEST / DEBUG URLS
+    ?noredirect=1   show the fallback page without redirecting
+    ?to=ios         force a target (also: android, desktop)
+    ?qr=1           printable QR code of this page
+
+  TRACKING
+    Any ?src= / ?utm_source= / ?utm_medium= / ?utm_campaign= on the incoming
+    link is forwarded to the store: Google Play gets a `referrer` value,
+    the App Store gets a `ct` campaign token. The built-in QR uses ?src=qr.
   ============================================================================
 {%- endcomment -%}
 
