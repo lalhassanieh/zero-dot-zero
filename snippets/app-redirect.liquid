@@ -49,13 +49,11 @@
 {%- assign logo_width = settings.app_logo_width  | default: 140 -%}
 
 {%- comment -%}
-  Logo visibility: on by default, turned off by the "Show logo" setting, and
-  force-hidden by a caller passing show_logo: false (the full-layout template
-  does this, because the theme header already shows the logo).
+  Logo visibility is the merchant's call on both templates - the "Show logo"
+  setting is the only thing that controls it.
 {%- endcomment -%}
 {%- assign logo_visible = true -%}
 {%- if settings.app_show_logo == false -%}{%- assign logo_visible = false -%}{%- endif -%}
-{%- if show_logo == false -%}{%- assign logo_visible = false -%}{%- endif -%}
 
 {%- assign logo_url = '' -%}
 {%- if settings.app_logo != blank -%}
