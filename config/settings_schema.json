@@ -9049,7 +9049,15 @@
     "settings": [
       {
         "type": "paragraph",
-        "content": "Settings for the \"app-redirect\" page template. Create a page (Online Store > Pages), set its theme template to app-redirect, then share that page URL on social media or point your QR code at it."
+        "content": "Create a page (Online Store > Pages), then pick its Theme template. These settings drive both templates."
+      },
+      {
+        "type": "paragraph",
+        "content": "app-redirect â no header or footer. Redirects in about 100ms. Use this for QR codes and social links."
+      },
+      {
+        "type": "paragraph",
+        "content": "app-redirect-full â normal header and footer. Looks like the rest of the site, but the theme loads first so the redirect is seconds slower."
       },
       {
         "type": "header",
@@ -9189,6 +9197,28 @@
         "step": 1,
         "unit": "px",
         "default": 26
+      },
+      {
+        "type": "range",
+        "id": "app_button_label_size",
+        "label": "Button small text size",
+        "info": "The top line â \"Get it on\" \/ \"Download on the\".",
+        "min": 9,
+        "max": 22,
+        "step": 1,
+        "unit": "px",
+        "default": 13
+      },
+      {
+        "type": "range",
+        "id": "app_button_title_size",
+        "label": "Button store name size",
+        "info": "The bottom line â \"Google Play\" \/ \"App Store\".",
+        "min": 12,
+        "max": 32,
+        "step": 1,
+        "unit": "px",
+        "default": 20
       },
       {
         "type": "range",
