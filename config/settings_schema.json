@@ -9194,6 +9194,26 @@
       },
       {
         "type": "header",
+        "content": "Button colours on app-redirect-full"
+      },
+      {
+        "type": "paragraph",
+        "content": "The full-layout page sits on the theme's own background, so its buttons often need different colours from the standalone page. Everything else (border, text, radius, sizes) is shared."
+      },
+      {
+        "type": "color",
+        "id": "app_button_bg_full",
+        "label": "Button background",
+        "default": "#005339"
+      },
+      {
+        "type": "color",
+        "id": "app_button_bg_hover_full",
+        "label": "Background on hover",
+        "default": "#00341f"
+      },
+      {
+        "type": "header",
         "content": "Button size"
       },
       {
