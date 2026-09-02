@@ -663,7 +663,7 @@
         "slideshow_background": "#fff7e5",
         "slideshow_background_gradient": "",
         "border_radius": 0,
-        "autoplay": false,
+        "autoplay": true,
         "slideshow_speed": "5000",
         "slideshow_transition": "true",
         "dots": "shape",
