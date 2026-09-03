@@ -1707,3 +1707,73 @@ input[type="number"].filter__price {
     -moz-appearance: textfield;
     appearance: textfield;
 }
+
+
+/* ── Locked country field (Saudi Arabia only) ───────────────────────────── */
+.country-locked select[disabled],
+.country-locked select[aria-disabled="true"] {
+    cursor: not-allowed;
+    opacity: 1;
+    pointer-events: none;
+    /* Prevent the browser from greying out the text */
+    color: inherit;
+    -webkit-text-fill-color: inherit;
+    background-color: var(--color-background, #fff);
+}
+
+/* Remove the dropdown arrow on disabled selects so it doesn't imply interactivity */
+.country-locked select[disabled]::-ms-expand,
+.country-locked select[aria-disabled="true"]::-ms-expand {
+    display: none;
+}
+
+/* ── Appstle loyalty referral – riyal sign ── */
+.loyalty-referring-friend-get-info-description .appstle-amount,
+.loyalty-referrals-friend-get-info-description .appstle-amount {
+    display: inline-block;
+    white-space: nowrap;
+    direction: ltr;
+    unicode-bidi: isolate;
+}
+
+.loyalty-referring-friend-get-info-description .appstle-amount::before,
+.loyalty-referrals-friend-get-info-description .appstle-amount::before {
+    content: "\0041\00A0";
+    font-family: 'MHE-Riyal-Sign' !important;
+    font-weight: 700;
+    line-height: 1;
+}
+
+/* ── Appstle loyalty – RTL + button radius ── */
+.al-referral-you-get-block,
+.al-referral-they-get-block {
+    direction: rtl;
+}
+
+.al-referral-you-get-container,
+.al-referral-they-get-container {
+    flex-direction: row-reverse;
+}
+
+.loyalty-referring-friend-get-info-container,
+.loyalty-referrals-friend-get-info-container {
+    text-align: right;
+}
+
+.al-mr-3 {
+    margin-right: 0;
+    margin-left: 0.75rem;
+}
+
+button,
+.loyalty-cart-widget-rewards-btn {
+    border-radius: 50px !important;
+}
+
+.loyalty-social-media-title {
+    font-family: 'Gilroy Light' !important;
+}
+
+.loyalty-social-media-title .al-font-bold {
+    font-family: 'Gilroy Extra Bold' !important;
+}
