@@ -109,6 +109,24 @@
       'url("https://zero-dot-zero.myshopify.com/cdn/shop/t/2/assets/MHERiyalSign-Regular.ttf") format("truetype");',
       'font-weight:normal;font-style:normal;}',
 
+      // The widget's own CSS already asks for "Gilroy Extra Bold" / "Gilroy Light",
+      // but an iframe does not inherit the parent document's @font-face rules, so
+      // without these the names resolve to nothing and fall back to DM Sans.
+      '@font-face{font-family:"Gilroy Extra Bold";',
+      'src:url("https://zero-dot-zero.myshopify.com/cdn/shop/t/2/assets/Gilroy-ExtraBold.woff2") format("woff2"),',
+      'url("https://zero-dot-zero.myshopify.com/cdn/shop/t/2/assets/Gilroy-ExtraBold.woff") format("woff");',
+      'font-weight:bold;font-style:normal;font-display:swap;}',
+
+      '@font-face{font-family:"Gilroy Light";',
+      'src:url("https://zero-dot-zero.myshopify.com/cdn/shop/t/2/assets/Gilroy-Light.woff2") format("woff2"),',
+      'url("https://zero-dot-zero.myshopify.com/cdn/shop/t/2/assets/Gilroy-Light.woff") format("woff");',
+      'font-weight:300;font-style:normal;font-display:swap;}',
+
+      // Mirrors the theme's own heading rule in bi-custom.css. A declaration that
+      // matches the heading directly beats the inherited "Gilroy Light" coming from
+      // .appstle-loyalty, so body copy stays Light and only headings go Extra Bold.
+      'body,h1,h2,h3,h4,h5{font-family:"Gilroy Extra Bold" !important;}',
+
       '.loyalty-referring-friend-get-info-description .appstle-amount{display:inline-block;white-space:nowrap;direction:ltr;unicode-bidi:isolate;}',
       '.loyalty-referrals-friend-get-info-description .appstle-amount{display:inline-block;white-space:nowrap;direction:ltr;unicode-bidi:isolate;}',
       '.loyalty-referring-friend-get-info-description .appstle-amount::before{content:"A";font-family:"MHE-Riyal-Sign" !important;font-weight:700;line-height:1;}',
@@ -126,6 +144,37 @@
     ].join('');
 
     var IFRAME_CSS_RTL = [
+      // Arabic face, mirroring assets/bi-custom-ar.css. Same reason as the Gilroy
+      // block above: the iframe inherits no @font-face from the parent document.
+      // Only the three weights that resolve are declared here — the theme also
+      // declares a 300/Light weight, but AvenirArabic-Light.woff2 is not in the
+      // theme assets (404), so it is deliberately omitted rather than copied.
+      '@font-face{font-family:"Avenir Arabic";',
+      'src:url("https://cdn.shopify.com/s/files/1/0742/2669/6436/files/AvenirArabic-Book.woff2") format("woff2"),',
+      'url("https://cdn.shopify.com/s/files/1/0742/2669/6436/files/AvenirArabic-Book.woff") format("woff");',
+      'font-weight:normal;font-style:normal;font-display:swap;}',
+
+      '@font-face{font-family:"Avenir Arabic";',
+      'src:url("https://cdn.shopify.com/s/files/1/0742/2669/6436/files/AvenirArabic-Medium.woff2") format("woff2"),',
+      'url("https://cdn.shopify.com/s/files/1/0742/2669/6436/files/AvenirArabic-Medium.woff") format("woff");',
+      'font-weight:500;font-style:normal;font-display:swap;}',
+
+      '@font-face{font-family:"Avenir Arabic";',
+      'src:url("https://cdn.shopify.com/s/files/1/0742/2669/6436/files/AvenirArabic-Black.woff2") format("woff2"),',
+      'url("https://cdn.shopify.com/s/files/1/0742/2669/6436/files/AvenirArabic-Black.woff") format("woff");',
+      'font-weight:900;font-style:normal;font-display:swap;}',
+
+      // Overrides the Gilroy rules in IFRAME_CSS_BASE, which is safe because this
+      // string is concatenated after it and the specificity is equal.
+      // Deliberately NOT using the theme's "body *" selector: the riyal sign is set
+      // via a plain inline style on .al-loyalty-money-sign, and a "body *" rule with
+      // !important would outrank it and replace the glyph with an Avenir "A".
+      'body,h1,h2,h3,h4,h5,',
+      '.appstle-loyalty,.appstle-loyalty .al-font-bold,',
+      '.loyalty-login-button,.loyalty-signup-button,',
+      '.loyalty-referral-claim-gift-button,.loyalty-cart-widget-rewards-btn,',
+      '.loyalty-social-media-title{font-family:"Avenir Arabic",sans-serif !important;}',
+
       '.loyalty-referring-friend-get-info-description{direction:rtl;text-align:right;}',
       '.loyalty-referrals-friend-get-info-description{direction:rtl;text-align:right;}',
 
