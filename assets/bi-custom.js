@@ -164,16 +164,26 @@
       'url("https://cdn.shopify.com/s/files/1/0742/2669/6436/files/AvenirArabic-Black.woff") format("woff");',
       'font-weight:900;font-style:normal;font-display:swap;}',
 
-      // Overrides the Gilroy rules in IFRAME_CSS_BASE, which is safe because this
-      // string is concatenated after it and the specificity is equal.
-      // Deliberately NOT using the theme's "body *" selector: the riyal sign is set
-      // via a plain inline style on .al-loyalty-money-sign, and a "body *" rule with
-      // !important would outrank it and replace the glyph with an Avenir "A".
-      'body,h1,h2,h3,h4,h5,',
-      '.appstle-loyalty,.appstle-loyalty .al-font-bold,',
-      '.loyalty-login-button,.loyalty-signup-button,',
-      '.loyalty-referral-claim-gift-button,.loyalty-cart-widget-rewards-btn,',
-      '.loyalty-social-media-title{font-family:"Avenir Arabic",sans-serif !important;}',
+      // Overrides the Gilroy rules in IFRAME_CSS_BASE.
+      //
+      // Specificity here is load-bearing. Appstle injects its own <style> inside the
+      // widget BODY while this block is appended to the iframe HEAD, so at equal
+      // specificity Appstle's rule wins on source order. Its two relevant rules are
+      // ".appstle-loyalty" (0,1,0) and ".appstle-loyalty .al-font-bold" (0,2,0), both
+      // !important. The selector below scores (0,2,1) and so beats both outright,
+      // without depending on which <style> element comes last.
+      //
+      // The descendant "*" is what reaches the FAQ route: every element there is a
+      // div/span/summary/p — the heading is a div with role="heading", not a real h2 —
+      // so element selectors like h1-h5 never match it and it only ever inherited.
+      //
+      // ":not(.al-loyalty-money-sign)" keeps the riyal glyph: processDoc() sets that
+      // font through a plain inline style, which a bare "*" rule with !important would
+      // outrank, replacing the currency glyph with an Avenir "A".
+      'body{font-family:"Avenir Arabic",sans-serif !important;}',
+      'body .appstle-loyalty,',
+      'body .appstle-loyalty *:not(.al-loyalty-money-sign)',
+      '{font-family:"Avenir Arabic",sans-serif !important;}',
 
       '.loyalty-referring-friend-get-info-description{direction:rtl;text-align:right;}',
       '.loyalty-referrals-friend-get-info-description{direction:rtl;text-align:right;}',
