@@ -140,7 +140,17 @@
       '.loyalty-referral-claim-gift-button:hover{background-color:#ffffff !important;color:#005339 !important;border:2px solid #005339 !important;}',
 
       'button{border-radius:50px !important;}',
-      '.loyalty-cart-widget-rewards-btn{border-radius:50px !important;}'
+      '.loyalty-cart-widget-rewards-btn{border-radius:50px !important;}',
+
+      // Sonner toast ("تم النسخ" / "Copied"). Brand green for both languages, and a
+      // width cap: the library hard-codes --width:356px, which overflows the widget
+      // iframe on narrow screens and leaves the toast visibly clipped.
+      '[data-sonner-toaster],.al-toast-container{--width:min(356px,calc(100vw - 2rem)) !important;max-width:calc(100vw - 2rem) !important;}',
+      '.al-toast,[data-sonner-toast]{max-width:100% !important;}',
+      '.al-toast-title,.al-toast-content{color:#005339 !important;}',
+      // The tick is a knockout in a filled circle, and the svg uses fill="currentColor",
+      // so setting colour recolours the circle and leaves the check shape showing through.
+      '.al-toast-icon,.al-toast-icon svg{color:#005339 !important;fill:#005339 !important;}'
     ].join('');
 
     var IFRAME_CSS_RTL = [
@@ -217,7 +227,15 @@
       '.al-fixed.al-inset-0.al-h-16 .al-mr-8{margin-right:0 !important;margin-left:0 !important;}',
       '.al-back-icon{transform:scaleX(-1);}',
       '.al-w-16:has(.al-back-icon){width:auto !important;}',
-      '.al-fixed.al-inset-0.al-h-16 .al-w-16.al-mr-8{width:auto !important;}'
+      '.al-fixed.al-inset-0.al-h-16 .al-w-16.al-mr-8{width:auto !important;}',
+
+      // Sonner renders its container as <ol dir="ltr">. A dir attribute re-establishes
+      // direction for its whole subtree, so the toast stayed LTR inside the RTL widget
+      // (tick on the left of the text) no matter what the ancestors were set to.
+      // The attribute selector is needed — a plain .al-toast-container rule loses to it.
+      '[data-sonner-toaster][dir="ltr"],.al-toast-container[dir="ltr"]{direction:rtl !important;}',
+      '.al-toast,[data-sonner-toast]{direction:rtl !important;}',
+      '.al-toast-title,.al-toast-content{text-align:right !important;}'
     ].join('');
 
     function injectCss(iDoc) {
