@@ -707,7 +707,8 @@
         margin: 0;
     }
 
-    .menu-lv-item.has-megamenu:hover > .menu-dropdown{
+    .menu-lv-item.has-megamenu:hover > .menu-dropdown,
+    .menu-lv-item.has-megamenu.menu-hover-open > .menu-dropdown{
         display: block !important;
         opacity: 1;
         visibility: visible;

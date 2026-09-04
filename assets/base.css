@@ -6854,7 +6854,8 @@ summary::-webkit-details-marker {
             border-bottom: 1px solid transparent;
         }
 
-        .menu-lv-item:hover > .header__submenu, .menu-lv-item.menu-lv-2.dropdown:hover .site-nav-list-dropdown > .header__submenu{
+        .menu-lv-item:hover > .header__submenu, .menu-lv-item.menu-lv-2.dropdown:hover .site-nav-list-dropdown > .header__submenu,
+        .menu-lv-item.menu-hover-open > .header__submenu, .menu-lv-item.menu-lv-2.dropdown.menu-hover-open .site-nav-list-dropdown > .header__submenu{
             display: block;
             opacity: 1;
             visibility: visible;
