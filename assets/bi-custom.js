@@ -341,7 +341,7 @@
   function initMenuHoverDelay() {
     if (window.innerWidth < 1025) return;
 
-    var closeDelay = 400;
+    var closeDelay = 600;
 
     document.querySelectorAll('.menu-lv-item.dropdown').forEach(function (item) {
       if (item.dataset.hoverDelayBound) return;

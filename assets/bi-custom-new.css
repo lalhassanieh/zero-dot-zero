@@ -310,7 +310,9 @@
 
 /* Main menu hover grace period: keeps mega/dropdown menus open briefly after
    mouseleave (see initMenuHoverDelay in bi-custom.js) so crossing the gap
-   between the nav link and the dropdown panel doesn't close it prematurely. */
+   between the nav link and the dropdown panel doesn't close it prematurely.
+   The closed state below also gives the megamenu a fade+slide transition on
+   the way out — it previously just cut instantly to visibility:hidden. */
 @media screen and (min-width: 1025px) {
     .menu-lv-item:hover > .header__submenu,
     .menu-lv-item.menu-lv-2.dropdown:hover .site-nav-list-dropdown > .header__submenu,
@@ -323,6 +325,17 @@
         transform: translateY(0);
     }
 
+    /* Closed state: adds the transition itself, with visibility/pointer-events
+       delayed until after the fade finishes so the panel doesn't go dead-clickable
+       mid-fade. Lower specificity than the open rule below, so while open the
+       open rule's zero-delay transition wins; once neither :hover nor
+       .menu-hover-open match, this delayed version takes back over. */
+    .menu-lv-item.has-megamenu > .menu-dropdown {
+        transform: translateY(-10px);
+        transition: opacity .45s ease, transform .45s ease,
+            visibility 0s linear .45s, pointer-events 0s linear .45s;
+    }
+
     .menu-lv-item.has-megamenu:hover > .menu-dropdown,
     .menu-lv-item.has-megamenu.menu-hover-open > .menu-dropdown {
         display: block !important;
@@ -330,5 +343,7 @@
         visibility: visible;
         pointer-events: auto;
         transform: translateY(0);
+        transition: opacity .3s ease, transform .3s ease,
+            visibility 0s linear 0s, pointer-events 0s linear 0s;
     }
 }
