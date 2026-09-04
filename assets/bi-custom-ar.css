@@ -830,3 +830,18 @@ input[type="checkbox"][required] {
 #appstle-loyalty-button {
     direction: ltr;
 }
+
+/* Appstle anchors the widget with its own `.appstle-loyalty-right { right: 40px }`, which
+   is fine for the floating launcher but leaves the opened panel 40px short of the right
+   edge on a phone — the panel measures 363px inside a 403px viewport. English shows it
+   edge to edge, so drop the inset for anything carrying that class except the launcher
+   itself, which stays where it is. */
+@media (max-width: 767px) {
+    .appstle-loyalty-right:not(#appstle-loyalty-button),
+    #appstleLoyaltyWidget {
+        right: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+}
