@@ -344,8 +344,8 @@
        .menu-hover-open match, this delayed version takes back over. */
     .menu-lv-item.has-megamenu > .menu-dropdown {
         transform: translateY(-10px);
-        transition: opacity .45s ease, transform .45s ease,
-            visibility 0s linear .45s, pointer-events 0s linear .45s;
+        transition: opacity .6s ease, transform .6s ease,
+            visibility 0s linear .6s, pointer-events 0s linear .6s;
     }
 
     .menu-lv-item.has-megamenu:hover > .menu-dropdown,
