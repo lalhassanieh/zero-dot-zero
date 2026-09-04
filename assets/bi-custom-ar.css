@@ -188,10 +188,14 @@ li.list-social__item:last-child {
 .faqs .faqs-item .card-header .title {
     text-align: right;
 }
-.section-block-template--19396943118580__faqs_RfB3pw .halo-block-header.text-left .text,
-.section-block-template--19396941644020__faqs_7F3bQ4 .halo-block-header.text-left .text {
-    padding-left: 5rem!important;
-    padding-right: 0!important;
+/* Desktop-only inset for the FAQ heading. Under 767px it stacked with the container
+   padding below and left the heading visibly off-centre. */
+@media (min-width: 768px) {
+    .section-block-template--19396943118580__faqs_RfB3pw .halo-block-header.text-left .text,
+    .section-block-template--19396941644020__faqs_7F3bQ4 .halo-block-header.text-left .text {
+        padding-left: 5rem!important;
+        padding-right: 0!important;
+    }
 }
 #halo-image-banner-template--19396943118580__image_banner_N4xP8B .banner-button {
     max-width: max-content!important;
@@ -217,9 +221,17 @@ font-weight: 600;
 #halo-image-banner-template--19396943118580__image_banner_mUejpe .banner-button {
     width: 150px;
 }
-#shopify-section-template--19396943118580__faqs_RfB3pw .faq-container,
 .contact-text-content {
     padding-right: 100px!important;
+}
+
+/* Desktop-only. bi-custom-new.css drops .faq-container to 20px/30px below 767px, but this
+   id selector (1,1,0) plus !important used to win there too, leaving 20px on the left
+   against 100px on the right — the whole FAQ block sat off-centre on Arabic mobile. */
+@media (min-width: 768px) {
+    #shopify-section-template--19396943118580__faqs_RfB3pw .faq-container {
+        padding-right: 100px!important;
+    }
 }
 .custom-service-block.service_block_style_3 .policies-content {
     text-align: right;
@@ -272,12 +284,10 @@ font-weight: 600;
     margin-right: 0 !important;
      margin-left: 10px !important;
 }
-/*
 .productView .price__regular {
     padding-left: 0 !important;
      padding-right: 22px !important;
 }
-*/
 .productView-wishlist {
     margin: 0 15px 0!important;
 }
@@ -342,46 +352,15 @@ input[type=checkbox]+.form-label--checkbox:before {
     left: auto;
     right: 0;
 }
-
 input[type=checkbox]+.form-label--checkbox:after {
     left: auto;
     right: 3px;
 }
 
 .login-page .login-item .login-text {
-  text-align: right !important;
+  text-align: right;
 }
 
-/* Login page - Form actions spacing */
-.login-page .form-actions {
-    gap: 15px;
-}
-
-.login-page .form-actions .button {
-    width: 100%;
-}
-/* Phone input - force LTR for numbers */
-input[type="tel"],
-#RegisterForm-phone,
-#CustomerPhone {
-    direction: ltr;
-}
-
-.accepts-marketing {
-    position: relative;
-}
-
-input[type="checkbox"][required] {
-    display: block !important;
-    opacity: 0;
-    position: absolute;
-    right: 0;
-    top: 2px;
-    width: 18px;
-    height: 18px;
-    margin: 0;
-    pointer-events: none;
-}
 .float-r {
     float: left;
 }
@@ -464,59 +443,42 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
     display: inline-block;
 }
 
-.ar-h2[style*="--left:"] {
-  left: auto !important;              
-  right: var(--left) !important;          
+/* Phone input - force LTR for numbers */
+input[type="tel"],
+#RegisterForm-phone,
+#CustomerPhone {
+    direction: ltr;
 }
 
-.ar-h2 [style*="--left:"] {
-  left: auto !important;
-  right: var(--left) !important;
+/* Login page - Form actions spacing */
+.login-page .form-actions {
+    gap: 15px;
 }
 
-.ar-h2 h2 {
-  direction: rtl !important;
-  unicode-bidi: isolate-override !important;
-  text-align: right !important;
+.login-page .form-actions .button {
+    width: 100%;
 }
 
-.ar-h2 h2.gp-g-heading-1 {
-  --ta: right !important;
+/* Make required checkboxes focusable for validation */
+.accepts-marketing {
+    position: relative;
 }
 
-
-#shopify-pc__banner,
-#shopify-pc__banner .shopify-pc__banner__body {
-    direction: rtl !important;
+input[type="checkbox"][required] {
+    display: block !important;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 2px;
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    pointer-events: none;
 }
 
-#shopify-pc__banner .shopify-pc__banner__body,
-#shopify-pc__banner .shopify-pc__banner__body h2,
-#shopify-pc__banner .shopify-pc__banner__body p {
-    text-align: right !important;
+.loyalty-social-media-title {
+    font-family: "Avenir Arabic" !important;
 }
-
-.shopify-pc__prefs__scrollable h3,
-.shopify-pc__prefs__scrollable p {
-    text-align: right !important;
-    direction: rtl !important;
-}
-
-#shopify-pc__prefs__header-title {
-    text-align: right !important;
-}
-
-#shopify-pc__prefs__header-close {
-    left: 16px !important;
-    right: auto !important;
-    inset-inline-start: 16px !important;
-    inset-inline-end: auto !important;
-}
-
-.shopify-pc__prefs__options p{
-    margin-right: 43px;
-}
-
 
 /* ── Birth Date Picker – Arabic RTL ── */
 .bd-display {
@@ -548,6 +510,25 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
     font-weight: 700;
 }
 
+#shopify-section-template--19396941250804__main p,
+#shopify-section-template--19396941250804__main li {
+    color: #000 !important;
+    font-family: "Gilroy Light";
+}
+
+/* Login page – RTL padding override */
+.login-page .login-rowLeft {
+    padding-right: 0 !important;
+    padding-left: 60px !important;
+}
+
+#shopify-section-template--19396941250804__main b,
+#shopify-section-template--19396941250804__main span,
+#shopify-section-template--19396941250804__main a {
+    font-family: "Gilroy Extra Bold";
+    color: #005339 !important;
+}
+
 [dir="ltr"] {
     direction: ltr !important;
     unicode-bidi: embed;
@@ -557,10 +538,54 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
 .phone-field-wrap {
     direction: ltr;
 }
-
 .phone-number-input {
     text-align: left !important;
     direction: ltr !important;
+}
+
+/* Riyal symbol – force LTR price layout so riyal-font span stays left */
+.price-item {
+    direction: ltr !important;
+    unicode-bidi: embed !important;
+}
+.riyal-font {
+    direction: ltr !important;
+}
+/* Use physical right property so symbol position is direction-independent */
+.riyal-font::after,
+.field__currency.format-currency::after {
+    inset-inline-end: unset !important;
+    right: 6px !important;
+    left: auto !important;
+}
+
+/* Preview cart: symbol must flow inline (not absolute) so it stays left of the number */
+.previewCartItem-price .riyal-font,
+.previewCartTotals-value .riyal-font,
+[data-saved-discount-value] .riyal-font {
+    display: inline-flex;
+    align-items: center;
+}
+.previewCartItem-price .riyal-font::after,
+.previewCartTotals-value .riyal-font::after,
+[data-saved-discount-value] .riyal-font::after {
+    position: static !important;
+    transform: none !important;
+    line-height: 1;
+}
+
+/* ── Cart note & coupon RTL ── */
+.cart__note label,
+.cart__note .field__input,
+.discount-code-field label,
+.discount-code-field p,
+.discount-code-field .field__input {
+    direction: rtl;
+    text-align: right;
+}
+.popup-toolDown label svg {
+    margin-left: 9px;
+    margin-right: 0;
 }
 
 /* ── Address form RTL ── */
@@ -575,58 +600,25 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
     padding-left: 3.6rem;
 }
 
-/* Login page – RTL padding override */
-.login-page .login-rowLeft {
-    padding-right: 0 !important;
-    padding-left: 60px !important;
+/* Slick uses overflow:hidden + left-offset positioning. With direction:rtl inherited from
+   body*, browsers shift the overflow:hidden viewport to the right side of the track, making
+   all slides invisible. Reset to ltr so Slick's internal layout is unaffected. */
+.productView-nav .slick-list,
+.productView-nav .slick-track,
+.productView-nav .slick-slide,
+.productView-for .slick-list,
+.productView-for .slick-track,
+.productView-for .slick-slide {
+    direction: ltr;
 }
 
-/* Riyal symbol – keep on the left like English */
-.riyal-font {
-    direction: ltr !important;
+/* Visually reverse the thumbnail strip to RTL order (first image on the right).
+   Flip the whole list container, then counter-flip each slide so images aren't mirrored. */
+.productView-for .slick-list {
+    transform: scaleX(-1);
 }
-.price-item {
-    direction: ltr !important;
-    unicode-bidi: embed !important;
-}
-
-
-.footer-block__list-payment ul li {
-    margin-right: 13px !important;
-}
-
-/* Preview cart: symbol must flow inline (not absolute) so it stays left of the number */
-.previewCartItem-price .riyal-font,
-.previewCartTotals-value .riyal-font,
-[data-saved-discount-value] .riyal-font {
-    align-items: center;
-}
-.previewCartItem-price .riyal-font::after,
-.previewCartTotals-value .riyal-font::after,
-[data-saved-discount-value] .riyal-font::after {
-    position: static !important;
-    transform: none !important;
-    line-height: 1;
-}
-
-
-
-/*Product Description in Product Details page*/
-
-.productView-details.halo-productView-right .productView-desc.halo-text-format {
-    line-height: 1 !important;
-    font-family: "Avenir Arabic", sans-serif !important;
-}
-
-.productView-stickyCart.style-1 .sticky-actions .quantity__group {
-    margin: 0 0 0 15px !important;
-}
-
-.sticky-price .money-subtotal {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  direction: ltr;
+.productView-for .slick-slide {
+    transform: scaleX(-1);
 }
 
 /* Fix product image section padding for RTL */
@@ -659,9 +651,8 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
 
 .halo-productBadges .badge.new-badge p {
     transform: scaleX(-1);
-    margin: 18px 6px 0 0 !important;
+    margin: 20px 6px 0 0 !important;
     font-weight: 700;
-    font-size: 14px;
 }
 
 .custom-featured-products .halo-productBadges .badge.new-badge {
@@ -674,32 +665,13 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
         right: unset !important;
         left: -25px !important;
     }
-
-    
     .halo-productBadges .badge.new-badge p {
         margin: 15px 9px 0 0 !important;
     }
 }
 
-/* Slick Sldier in Product Details*/
-.productView-nav .slick-list,
-.productView-nav .slick-track,
-.productView-nav .slick-slide,
-.productView-for .slick-list,
-.productView-for .slick-track,
-.productView-for .slick-slide {
-    direction: ltr;
-}
-
-/* Flip Thumbnails (first image on the right). */
-.productView-for .slick-list {
-    transform: scaleX(-1);
-}
-.productView-for .slick-slide {
-    transform: scaleX(-1);
-}
-
-/*Filters in collection page*/
+/* Active filter tags (refined list) — RTL fixes.
+   !important needed: component-filter.css loads after this file and overrides at equal specificity. */
 .facets__list--refined {
     text-align: right !important;
 }
@@ -713,44 +685,21 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
     margin: 0 0 10px 10px !important;
 }
 
+/* Main article: mirror image/content columns for Arabic */
+@media (min-width: 992px) {
+    .article-header__holder {
+        flex-direction: row-reverse;
+    }
+}
+
 .article-header__holder .details span {
     padding-right: 0;
     padding-left: 4px;
 }
 
-.article-image-holder {
-  margin-right: 0px !important;
-  margin-left: 20px;
-}
-
 .halo-article-content .halo-text-format ul,
 .halo-article-content .halo-text-format ol {
-    margin: 0 25px 0 0 !important;
-}
-
-/*Homepage*/
-.container-1770 {
-    padding-left: 50px !important;
-    padding-right: 50px !important;
-}
-
-.halo-banner-wrapper .flex-box__banner .content-box {
-  padding: 30px 0px 15px 15px !important;
-}
-
-/* ── Cart note & coupon RTL ── */
-.cart__note label,
-.cart__note .field__input,
-.discount-code-field label,
-.discount-code-field p,
-.discount-code-field .field__input {
-    direction: rtl;
-    text-align: right;
-}
-
-.popup-toolDown label svg {
-    margin-left: 9px;
-    margin-right: 0;
+    margin: 0 25px 0 0;
 }
 
 /* Featured-product related-slider switch arrows (RTL only).
@@ -764,6 +713,9 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
     transform: rotate(180deg) !important;
 }
 
+/* Toolbar labels ("ITEMS PER PAGE", "SORT BY") gap the control with margin-right in LTR.
+   Mirror it for Arabic. `toolbar-item.toolbar` (0,2,1) outranks component-toolbar.css's
+   `.toolbar .toolbar-label` (0,2,0), which loads after this file. */
 @media (min-width: 1025px) {
     toolbar-item.toolbar .toolbar-label {
         margin-right: 0;
@@ -778,13 +730,103 @@ input[type=checkbox]+.form-label--checkbox, input[type=radio]+.form-label--radio
     }
 }
 
-@media (min-width: 551px) {
-  .toolbar .toolbar-col .toolbar-item + .toolbar-item {
-    margin-right: 28px;
-  }
+/* ── Mobile sidebar menu – RTL ──
+   component-menu-mobile.css pins the drawer rows to `text-align: left` with
+   `.halo-sidebar_menu .site-nav-mobile:not(.menu-custom-mobile) .list-menu .menu-lv-item`,
+   which outranks the `.left, .text-left` reset near the top of this file, and it anchors
+   the caret to `right: 0`. Mirror both: labels to the right, caret on the left pointing
+   left (RTL "forward"). This file loads from header-navigation-basic, which renders after
+   header-mobile (the section that loads component-menu-mobile.css), so matching the
+   theme's specificity is enough — no !important needed. */
+.halo-sidebar_menu .site-nav-mobile:not(.menu-custom-mobile) .list-menu .menu-lv-item,
+.halo-sidebar_menu .menu-dropdown__wrapper .site-nav .site-nav-title,
+.halo-sidebar_menu .menu-dropdown__wrapper .wrapper-colunm-menu .site-nav-title a,
+.halo-sidebar_menu .site-nav-sub .list-unstyled li a {
+    text-align: right;
 }
 
-.toolbar .toolbar-item .toolbar-icon + .toolbar-icon {
-  margin-right: 5px;
-  margin-left: 0px !important;
+/* Caret column moves to the left edge; the chevron SVG points right in the markup, so
+   flip it. This also catches the panel back-arrow below, which needs the same flip. */
+.halo-sidebar_menu .site-nav-mobile .icon-dropdown {
+    right: auto;
+    left: 0;
+}
+
+.halo-sidebar_menu .site-nav-mobile .icon-dropdown svg {
+    transform: rotate(180deg);
+}
+
+/* Sub-panel header is the "back" control: it belongs on the right in RTL, and its
+   long-arrow-left is flipped to point right by the rule above. Needs (0,4,0) to outrank
+   the `left: 0` set just above. */
+.halo-sidebar_menu .site-nav-mobile .nav-title-mobile .icon-dropdown {
+    left: auto;
+    right: 6px;
+}
+
+/* Mega-menu banner column in the drawer (megamenu_style_4 is the menu in use). */
+@media (max-width: 1024px) {
+    .halo-sidebar_menu .megamenu_style_4 .site-nav-banner-item--right,
+    .halo-sidebar_menu .megamenu_style_4 .site-nav-banner-item--right .menu-dropdown__block--title {
+        text-align: right;
+    }
+}
+
+/* ── Slideshow / image-banner Slick sliders ──
+   Same direction:rtl overflow bug documented above for .productView-*. Slick lays the
+   track out for LTR (window.rtl_slick is false, because the theme's built-in RTL layout
+   setting is off and this file is what makes the site RTL), but `body *` at the top of
+   this file gives .slick-list direction:rtl, which moves the overflow:hidden viewport to
+   the right-hand end of the track and pushes every slide out of view. With adaptiveHeight
+   the list keeps its height, so the section reads as a tall empty box with working dots.
+   It only shows up once a second slide exists: slide-show.liquid emits
+   data-init-slideshow (and image-banner.liquid data-image-banner-slide) only when
+   section.blocks.size > 1, so a one-slide section never initialises Slick at all.
+   Descendants keep direction:rtl from `body *`, so slide text still reads right-to-left. */
+.slideshow .slick-list,
+.slideshow .slick-track,
+.slideshow .slick-slide {
+    direction: ltr;
+}
+
+/* ── Slider counter + prev/next arrows (.slider-action) ──
+   The theme's built-in RTL layout is off, so component-slider.css still points prev left
+   and next right. `body *` gives .slider-action direction:rtl, which puts prev (first in
+   the DOM) on the right and next on the left — so the two carets ended up aimed at each
+   other. Swap the two rotations: previous now sits on the right pointing right, next on
+   the left pointing left. The margin nudges swap sides with them. */
+.slider-action .slider-button--prev .icon {
+    margin-left: 0;
+    margin-right: -0.2rem;
+    transform: rotate(-90deg) translateX(0.15rem);
+}
+
+.slider-action .slider-button--next .icon {
+    margin-right: 0;
+    margin-left: -0.2rem;
+    transform: rotate(90deg) translateX(-0.15rem);
+}
+
+/* The 10px gap is set with margin-left on the second button, which RTL flow moves to the
+   outer edge and leaves the two circles touching. */
+.slider-action .slider-button + .slider-button {
+    margin-left: 0;
+    margin-right: 10px;
+}
+
+/* "1 / 4" is three separate spans; RTL flow reverses them into "4 / 1". */
+.slider-counter {
+    direction: ltr;
+}
+
+/* ── Appstle loyalty launcher + widget host ──
+   The widget's own RTL styling is injected into its iframe by bi-custom.js. These two
+   elements live in the theme's document instead, where the `body *` rule at the top of
+   this file flips them to RTL — #appstleLoyaltyWidget carries an inline overflow:auto,
+   so its scroll origin moves to the right edge and the panel and launcher end up
+   off-centre. Layout mechanics stay LTR; the label inside the button picks RTL back up
+   from `body *`, so the Arabic text is unaffected. */
+#appstleLoyaltyWidget,
+#appstle-loyalty-button {
+    direction: ltr;
 }
