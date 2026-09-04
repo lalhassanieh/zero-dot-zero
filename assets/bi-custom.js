@@ -150,7 +150,11 @@
       '.al-toast-title,.al-toast-content{color:#005339 !important;}',
       // The tick is a knockout in a filled circle, and the svg uses fill="currentColor",
       // so setting colour recolours the circle and leaves the check shape showing through.
-      '.al-toast-icon,.al-toast-icon svg{color:#005339 !important;fill:#005339 !important;}'
+      '.al-toast-icon,.al-toast-icon svg{color:#005339 !important;fill:#005339 !important;}',
+      // Close button to the right. Sonner defaults it to the top-LEFT corner via its own
+      // left/right/transform trio, so all three have to be reset or the old offset sticks.
+      '.al-toast-close-btn,[data-sonner-toast] [data-close-button]',
+      '{left:auto !important;right:0 !important;transform:translate(35%,-35%) !important;}'
     ].join('');
 
     var IFRAME_CSS_RTL = [
@@ -219,7 +223,15 @@
       '.loyalty-home-loyalty-title{text-align:right !important;}',
       '.loyalty-home-community-title{text-align:right !important;}',
       '.loyalty-home-card,.loyalty-home-earn-title,.loyalty-home-earn-description{direction:rtl;text-align:right !important;}',
-      '.al-overflow-y-auto,.al-flex-col:not(.al-fixed){direction:rtl;}',
+      // The scroll container has to stay LTR. It is overflow-x:hidden + overflow-y:auto,
+      // and direction:rtl moves an overflow box's scroll origin to its right edge, so the
+      // panel rendered inset from the right instead of filling the frame and the whole
+      // column sat off-centre. Same failure already handled for .productView-* and
+      // .slideshow in bi-custom-ar.css. Its children go straight back to RTL, so nothing
+      // inside changes reading direction — only the scroll mechanics.
+      '.al-overflow-y-auto{direction:ltr;}',
+      '.al-overflow-y-auto > *{direction:rtl;}',
+      '.al-flex-col:not(.al-fixed){direction:rtl;}',
       '.loyalty-home-refer-help-text{direction:rtl;text-align:right;}',
       '.ways-to-redeem-arrow-icon{transform:rotate(180deg);}',
       '.al-fixed.al-inset-0.al-h-16{flex-direction:row-reverse !important;overflow:hidden !important;}',
@@ -235,7 +247,18 @@
       // The attribute selector is needed — a plain .al-toast-container rule loses to it.
       '[data-sonner-toaster][dir="ltr"],.al-toast-container[dir="ltr"]{direction:rtl !important;}',
       '.al-toast,[data-sonner-toast]{direction:rtl !important;}',
-      '.al-toast-title,.al-toast-content{text-align:right !important;}'
+      '.al-toast-title,.al-toast-content{text-align:right !important;}',
+
+      // Gap between the tick and the label. Sonner spaces the icon with margin-right,
+      // a physical property that does not follow direction: once the row flips, the
+      // icon sits on the right and that margin points at the container edge instead of
+      // at the text, so the two end up touching. Move the gap to the other side.
+      '.al-toast-icon,[data-sonner-toast] [data-icon]',
+      '{margin-right:0 !important;margin-left:8px !important;}',
+
+      // Mirror of the base rule above, so the close button stays on the outer edge.
+      '.al-toast-close-btn,[data-sonner-toast] [data-close-button]',
+      '{right:auto !important;left:0 !important;transform:translate(-35%,-35%) !important;}'
     ].join('');
 
     function injectCss(iDoc) {
@@ -1115,9 +1138,6 @@
       }).observe(document.body, { childList: true, subtree: true });
     }
   });
-
-  domReady(initMenuHoverDelay);
-  window.addEventListener('resize', initMenuHoverDelay);
 
   domReady(initBlogRowEqualizer);
   domReady(initBirthdatePicker);
