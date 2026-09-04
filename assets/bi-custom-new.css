@@ -307,3 +307,28 @@
         margin-bottom: 30px;
     }
 }
+
+/* Main menu hover grace period: keeps mega/dropdown menus open briefly after
+   mouseleave (see initMenuHoverDelay in bi-custom.js) so crossing the gap
+   between the nav link and the dropdown panel doesn't close it prematurely. */
+@media screen and (min-width: 1025px) {
+    .menu-lv-item:hover > .header__submenu,
+    .menu-lv-item.menu-lv-2.dropdown:hover .site-nav-list-dropdown > .header__submenu,
+    .menu-lv-item.menu-hover-open > .header__submenu,
+    .menu-lv-item.menu-lv-2.dropdown.menu-hover-open .site-nav-list-dropdown > .header__submenu {
+        display: block;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+
+    .menu-lv-item.has-megamenu:hover > .menu-dropdown,
+    .menu-lv-item.has-megamenu.menu-hover-open > .menu-dropdown {
+        display: block !important;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+}

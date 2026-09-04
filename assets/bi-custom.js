@@ -332,6 +332,37 @@
 
   domReady(initAppstleRiyalFormatter);
 
+  /* ── Main Menu Hover Grace Period ── */
+  /* CSS alone hides the mega/dropdown menus the instant the cursor leaves the
+     trigger's hit area, so crossing the small gap between the "Shop" link and
+     the panel below it closes the menu before the user gets there. This keeps
+     the panel open for a short grace period after mouseleave, canceling the
+     close if the cursor re-enters (e.g. lands on the dropdown itself) in time. */
+  function initMenuHoverDelay() {
+    if (window.innerWidth < 1025) return;
+
+    var closeDelay = 400;
+
+    document.querySelectorAll('.menu-lv-item.dropdown').forEach(function (item) {
+      if (item.dataset.hoverDelayBound) return;
+      item.dataset.hoverDelayBound = 'true';
+
+      var closeTimer;
+
+      item.addEventListener('mouseenter', function () {
+        clearTimeout(closeTimer);
+        item.classList.add('menu-hover-open');
+      });
+
+      item.addEventListener('mouseleave', function () {
+        clearTimeout(closeTimer);
+        closeTimer = setTimeout(function () {
+          item.classList.remove('menu-hover-open');
+        }, closeDelay);
+      });
+    });
+  }
+
   /* ── Blog Row Equalizer ── */
   function equalizeBlogRowHeights() {
     document.querySelectorAll('.blog-row').forEach(function (row) {
@@ -1084,6 +1115,9 @@
       }).observe(document.body, { childList: true, subtree: true });
     }
   });
+
+  domReady(initMenuHoverDelay);
+  window.addEventListener('resize', initMenuHoverDelay);
 
   domReady(initBlogRowEqualizer);
   domReady(initBirthdatePicker);

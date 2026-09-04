@@ -95,7 +95,6 @@
             this.typingAnimation();
             this.spotlightproductSlider();
             this.doBeforeMegaMenuProductBlock();
-            this.initMenuHoverDelay();
 
             if ($('.lookbook-carousel').length) {
                 this.lookbookCarousel();
@@ -190,7 +189,6 @@
                 this.specialBannerSlider();
                 this.unsymmetricalSlider();
                 this.doBeforeMegaMenuProductBlock();
-                this.initMenuHoverDelay();
                 if (window.innerWidth > 1024) {
                     document.body.classList.remove('menu_open')
                 } else if (checkMenuMobile) {
@@ -1803,31 +1801,6 @@
                     }
                 });
             }
-        },
-
-        initMenuHoverDelay: function () {
-            if (window.innerWidth < 1025) return;
-
-            var closeDelay = 400;
-
-            document.querySelectorAll('.menu-lv-item.dropdown').forEach((item) => {
-                if (item.dataset.hoverDelayBound) return;
-                item.dataset.hoverDelayBound = 'true';
-
-                let closeTimer;
-
-                item.addEventListener('mouseenter', () => {
-                    clearTimeout(closeTimer);
-                    item.classList.add('menu-hover-open');
-                });
-
-                item.addEventListener('mouseleave', () => {
-                    clearTimeout(closeTimer);
-                    closeTimer = setTimeout(() => {
-                        item.classList.remove('menu-hover-open');
-                    }, closeDelay);
-                });
-            });
         },
 
 
