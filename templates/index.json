@@ -118,10 +118,9 @@
         },
         "image_db3xma": {
           "type": "image",
-          "disabled": true,
           "settings": {
             "use_metaobject_slide": true,
-            "slide_id": "home-test-banner-1",
+            "slide_id": "main-slide-show-2",
             "image_slide": "shopify://shop_images/Hero_Section_Web_1370x477_-_Tanqueray.jpg",
             "image_slide_mb": "shopify://shop_images/Hero_Section_Mob_432x432_-_Tanqueray.jpg",
             "alignment": "left",
