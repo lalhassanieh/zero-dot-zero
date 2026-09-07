@@ -960,10 +960,6 @@ padding: 50px 0;
         background-color: #FBF9F3 !important;
     }
 
-    .menu-lv-item.has-megamenu:hover>.menu-dropdown {
-        transform: translateY(7px) !important
-    }
-
     .menu-dropdown {
         box-shadow: unset !important;
         border-top:
