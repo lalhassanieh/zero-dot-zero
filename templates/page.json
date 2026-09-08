@@ -356,11 +356,44 @@
         "mg_bottom_tablet": 50,
         "mg_bottom_mobile": 50
       }
+    },
+    "blocks_D7PVVy": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_324eef5_bTXRLA": {
+          "type": "ai_gen_block_324eef5",
+          "settings": {
+            "use_metaobject_icons": false,
+            "title_1": "Quality",
+            "title_2": "Fast shipping",
+            "title_3": "Easy returns",
+            "title_4": "24/7 support",
+            "icon_size": 80,
+            "icon_color": "#ffffff",
+            "icon_background_color": "#000000",
+            "icon_border_radius": 40,
+            "title_color": "#000000",
+            "title_font_size": 18,
+            "title_font_weight": "600",
+            "column_gap": 30,
+            "icon_title_gap": 15,
+            "section_padding": 40,
+            "columns_mobile": "2"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_324eef5_bTXRLA"
+      ],
+      "name": "Icon columns",
+      "settings": {}
     }
   },
   "order": [
     "main",
     "spotlight_block_h3NCpB",
-    "product_tab_block_ExRnDH"
+    "product_tab_block_ExRnDH",
+    "blocks_D7PVVy"
   ]
 }
