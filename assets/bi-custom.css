@@ -960,14 +960,25 @@ padding: 50px 0;
         background-color: #FBF9F3 !important;
     }
 
-    .menu-lv-item.has-megamenu:hover>.menu-dropdown {
-        transform: translateY(7px) !important
-    }
-
     .menu-dropdown {
         box-shadow: unset !important;
         border-top:
             1px solid #DDD !important;
+    }
+
+    /* Keep the mega menu open while the pointer travels from the menu item to the panel.
+       component-megamenu.css opens it on :hover with no transition at all, so the moment
+       the pointer leaves the <li> it hides on the same frame — and the <li> is far
+       narrower than the full-width panel, so any diagonal move exits it. Delay only the
+       close; :hover still opens instantly via the transition-delay reset below.
+       pointer-events needs the same delay, otherwise the panel stops accepting the
+       pointer as soon as hover is lost and can never be re-entered while it lingers. */
+    .menu-lv-item.has-megamenu > .menu-dropdown {
+        transition: visibility 0s linear 260ms, pointer-events 0s linear 260ms;
+    }
+
+    .menu-lv-item.has-megamenu:hover > .menu-dropdown {
+        transition-delay: 0s;
     }
 
     .megamenu_style_4 .site-nav-banner {
