@@ -1,0 +1,118 @@
+{%- comment -%}
+  Row of icon/value/label items (e.g. "pH 7.9 - Balanced Hydration") that floats over the
+  bottom edge of the section above it, via a negative top margin.
+
+  Items can come from either this section's own blocks (added directly in the theme editor)
+  or from "Feature Stat" metaobject entries (system.type == 'brand_feature') in this page's
+  shared content list, when "Use metaobject content" is enabled below. All matching metaobject
+  entries are rendered, ordered by their "order" field - no matching ID is needed since every
+  entry of this type on the page is meant to show up here.
+{%- endcomment -%}
+
+{%- assign page_content_source = blank -%}
+{%- assign all_blocks = blank -%}
+{%- assign meta_items = '' | split: ',' -%}
+
+{%- if template.name == 'index' -%}
+    {%- assign page_content_source = shop.metafields.custom.homepage_content.value -%}
+{%- elsif page != blank -%}
+    {%- assign page_content_source = page.metafields.custom.page_content.value -%}
+{%- endif -%}
+
+{%- if page_content_source != blank and page_content_source.blocks != blank -%}
+    {%- assign all_blocks = page_content_source.blocks.value -%}
+{%- endif -%}
+
+{%- if section.settings.use_metaobject_content and all_blocks != blank -%}
+    {%- assign unsorted_items = '' | split: ',' -%}
+    {%- for block_item in all_blocks -%}
+        {%- if block_item.system.type == 'brand_feature' -%}
+            {%- assign unsorted_items = unsorted_items | concat: [block_item] -%}
+        {%- endif -%}
+    {%- endfor -%}
+    {%- assign meta_items = unsorted_items | sort: 'order' -%}
+{%- endif -%}
+
+<div
+    class="brand-feature-stats section-block-{{ section.id }}"
+    id="brand-feature-stats-{{ section.id }}"
+    style="
+        --brand-feature-stats-bg: {{ section.settings.card_bg_color }};
+        --brand-feature-stats-radius: {{ section.settings.card_border_radius }}px;
+        --brand-feature-stats-shadow: {% if section.settings.enable_shadow %}0 10px 30px rgba(0,0,0,0.12){% else %}none{% endif %};
+        --brand-feature-stats-overlap: {{ section.settings.overlap_desktop }}px;
+        --brand-feature-stats-overlap-mb: {{ section.settings.overlap_mobile }}px;
+        --brand-feature-stats-gap: {{ section.settings.item_gap }}px;
+        --brand-feature-stats-value-color: {{ section.settings.value_color }};
+        --brand-feature-stats-label-color: {{ section.settings.label_color }};
+    "
+>
+    <div class="{% if section.settings.container == '1170' %}container-1170{% elsif section.settings.container == '1470' %}container-1470{% elsif section.settings.container == 'fullwidth' %}container-full{% else %}container{% endif %}">
+        <div class="brand-feature-stats__card">
+            {%- if section.settings.use_metaobject_content -%}
+                {%- for item in meta_items -%}
+                    {%- render 'brand-feature-stat-item', icon_image: item.icon_image.value, value: item.value, label: item.label -%}
+                {%- endfor -%}
+            {%- else -%}
+                {%- for block in section.blocks -%}
+                    {%- if block.type == 'stat' -%}
+                        {%- render 'brand-feature-stat-item', icon_image: block.settings.icon_image, value: block.settings.value, label: block.settings.label -%}
+                    {%- endif -%}
+                {%- endfor -%}
+            {%- endif -%}
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Brand Feature Stats",
+    "class": "section-brand-feature-stats",
+    "settings": [
+        {
+            "type": "checkbox",
+            "id": "use_metaobject_content",
+            "label": "Use metaobject content",
+            "info": "When enabled, items come from 'Feature Stat' metaobject entries in this page's content list instead of the blocks below.",
+            "default": false
+        },
+        { "type": "header", "content": "Card" },
+        { "type": "select", "id": "container", "label": "Container width", "default": "container", "options": [
+            { "value": "container", "label": "Standard" },
+            { "value": "1170", "label": "1170px" },
+            { "value": "1470", "label": "1470px" },
+            { "value": "fullwidth", "label": "Full width" }
+        ]},
+        { "type": "color", "id": "card_bg_color", "label": "Card background", "default": "#d6ecf7" },
+        { "type": "range", "id": "card_border_radius", "label": "Card corner radius", "min": 0, "max": 60, "step": 2, "unit": "px", "default": 24 },
+        { "type": "checkbox", "id": "enable_shadow", "label": "Enable drop shadow", "default": true },
+        { "type": "range", "id": "overlap_desktop", "label": "Overlap over section above (desktop)", "min": 0, "max": 200, "step": 5, "unit": "px", "default": 60 },
+        { "type": "range", "id": "overlap_mobile", "label": "Overlap over section above (mobile)", "min": 0, "max": 150, "step": 5, "unit": "px", "default": 0 },
+        { "type": "range", "id": "item_gap", "label": "Gap between items", "min": 0, "max": 100, "step": 5, "unit": "px", "default": 40 },
+        { "type": "header", "content": "Text" },
+        { "type": "color", "id": "value_color", "label": "Value color", "default": "#0b2545" },
+        { "type": "color", "id": "label_color", "label": "Label color", "default": "#0b2545" }
+    ],
+    "blocks": [
+        {
+            "type": "stat",
+            "name": "Stat",
+            "settings": [
+                { "type": "image_picker", "id": "icon_image", "label": "Icon" },
+                { "type": "text", "id": "value", "label": "Value", "default": "pH 7.9" },
+                { "type": "text", "id": "label", "label": "Label", "default": "Balanced Hydration" }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Brand Feature Stats",
+            "blocks": [
+                { "type": "stat" },
+                { "type": "stat" },
+                { "type": "stat" }
+            ]
+        }
+    ]
+}
+{% endschema %}

@@ -1,0 +1,15 @@
+{%- comment -%}
+  Renders one icon/value/label item in the brand feature-stats row.
+  Accepts: icon_image, value, label
+{%- endcomment -%}
+<div class="brand-feature-stats__item">
+    {%- if icon_image != blank -%}
+        <img class="brand-feature-stats__icon" src="{{ icon_image | image_url: width: 160 }}" alt="{{ value | escape }}" width="80" height="80" loading="lazy">
+    {%- endif -%}
+    {%- if value != blank -%}
+        <div class="brand-feature-stats__value">{{ value }}</div>
+    {%- endif -%}
+    {%- if label != blank -%}
+        <div class="brand-feature-stats__label">{{ label }}</div>
+    {%- endif -%}
+</div>

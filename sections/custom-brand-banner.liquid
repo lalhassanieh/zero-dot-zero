@@ -1,0 +1,188 @@
+{%- comment -%}
+  Standalone hero banner for brand landing pages. Independent from image-banner.liquid
+  on purpose, so it can be changed without affecting any existing page that uses that section.
+
+  Content can come from either:
+  - this section's own settings (filled in directly in the theme editor), or
+  - a "Brand Banner" metaobject entry (system.type == 'brand_banner') living in this page's
+    shared content list (page.metafields.custom.page_content / shop.metafields.custom.homepage_content),
+    when "Use metaobject content" is enabled below.
+
+  There is only ever one banner per page, so this intentionally does not require typing in
+  any matching ID: it just takes the first brand_banner entry it finds in the page's content list.
+{%- endcomment -%}
+
+{%- assign page_content_source = blank -%}
+{%- assign all_blocks = blank -%}
+{%- assign meta_banner = blank -%}
+
+{%- if template.name == 'index' -%}
+    {%- assign page_content_source = shop.metafields.custom.homepage_content.value -%}
+{%- elsif page != blank -%}
+    {%- assign page_content_source = page.metafields.custom.page_content.value -%}
+{%- endif -%}
+
+{%- if page_content_source != blank and page_content_source.blocks != blank -%}
+    {%- assign all_blocks = page_content_source.blocks.value -%}
+{%- endif -%}
+
+{%- if section.settings.use_metaobject_content and all_blocks != blank -%}
+    {%- for block_item in all_blocks -%}
+        {%- if block_item.system.type == 'brand_banner' -%}
+            {%- assign meta_banner = block_item -%}
+            {%- break -%}
+        {%- endif -%}
+    {%- endfor -%}
+{%- endif -%}
+
+{%- liquid
+    if meta_banner != blank
+        assign bg_desktop = meta_banner.background_image_desktop.value
+        assign bg_mobile = meta_banner.background_image_mobile.value
+        assign logo_image = meta_banner.logo_image.value
+        assign heading = meta_banner.heading
+        assign subheading = meta_banner.subheading
+        assign button_label = meta_banner.button_label
+        assign button_link = meta_banner.button_link
+    else
+        assign bg_desktop = section.settings.background_image
+        assign bg_mobile = section.settings.background_image_mobile
+        assign logo_image = section.settings.logo_image
+        assign heading = section.settings.heading
+        assign subheading = section.settings.subheading
+        assign button_label = section.settings.button_label
+        assign button_link = section.settings.button_link
+    endif
+
+    assign container = section.settings.container
+    assign content_align = section.settings.content_align
+-%}
+
+<div
+    class="brand-banner section-block-{{ section.id }}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--fade-in{% endif %}"
+    id="brand-banner-{{ section.id }}"
+    style="
+        --brand-banner-height: {{ section.settings.height_desktop }}px;
+        --brand-banner-height-mb: {{ section.settings.height_mobile }}px;
+        --brand-banner-overlay-color: {{ section.settings.overlay_color }};
+        --brand-banner-overlay-opacity: {{ section.settings.overlay_opacity | times: 1.0 | divided_by: 100 }};
+        --brand-banner-heading-color: {{ section.settings.heading_color }};
+        --brand-banner-subheading-color: {{ section.settings.subheading_color }};
+        --brand-banner-button-color: {{ section.settings.button_text_color }};
+        --brand-banner-button-bg: {{ section.settings.button_bg_color }};
+        --brand-banner-button-bg-hover: {{ section.settings.button_bg_color_hover }};
+        --brand-banner-logo-width: {{ section.settings.logo_width }}px;
+        --brand-banner-logo-width-mb: {{ section.settings.logo_width_mobile }}px;
+    "
+>
+    <div class="brand-banner__media">
+        {%- if bg_desktop != blank -%}
+            <img
+                class="brand-banner__bg brand-banner__bg--desktop{% if bg_mobile != blank %} hide-on-mobile{% endif %}"
+                srcset="{{ bg_desktop | image_url: width: 750 }} 750w, {{ bg_desktop | image_url: width: 1100 }} 1100w, {{ bg_desktop | image_url: width: 1500 }} 1500w, {{ bg_desktop | image_url: width: 1920 }} 1920w"
+                src="{{ bg_desktop | image_url: width: 1920 }}"
+                alt=""
+                width="{{ bg_desktop.width }}"
+                height="{{ bg_desktop.height }}"
+            >
+        {%- else -%}
+            <div class="placeholder brand-banner__bg" style="--height_placeholder: {{ section.settings.height_desktop }}px;">
+                {{ 'hero-apparel-2' | placeholder_svg_tag: 'placeholder-svg' }}
+            </div>
+        {%- endif -%}
+        {%- if bg_mobile != blank -%}
+            <img
+                class="brand-banner__bg brand-banner__bg--mobile"
+                srcset="{{ bg_mobile | image_url: width: 480 }} 480w, {{ bg_mobile | image_url: width: 750 }} 750w"
+                src="{{ bg_mobile | image_url: width: 750 }}"
+                alt=""
+                width="{{ bg_mobile.width }}"
+                height="{{ bg_mobile.height }}"
+                loading="lazy"
+            >
+        {%- endif -%}
+        <div class="brand-banner__overlay"></div>
+    </div>
+    <div class="{% if container == '1170' %}container-1170{% elsif container == '1470' %}container-1470{% elsif container == '1770' %}container-1770{% elsif container == 'fullwidth' %}container-full{% else %}container{% endif %}">
+        <div class="brand-banner__content brand-banner__content--{{ content_align }}">
+            {%- if logo_image != blank -%}
+                <img class="brand-banner__logo" src="{{ logo_image | image_url: width: 600 }}" alt="{{ heading | escape }}" width="{{ logo_image.width }}" height="{{ logo_image.height }}">
+            {%- endif -%}
+            {%- if heading != blank -%}
+                <h1 class="brand-banner__heading">{{ heading }}</h1>
+            {%- endif -%}
+            {%- if subheading != blank -%}
+                <div class="brand-banner__subheading">{{ subheading | newline_to_br }}</div>
+            {%- endif -%}
+            {%- if button_label != blank -%}
+                <a class="brand-banner__button" {% if button_link == blank %}role="link" aria-disabled="true"{% else %}href="{{ button_link }}"{% endif %}>
+                    <span>{{ button_label }}</span>
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M 7.75 1.34375 L 6.25 2.65625 L 14.65625 12 L 6.25 21.34375 L 7.75 22.65625 L 16.75 12.65625 L 17.34375 12 L 16.75 11.34375 Z"></path></svg>
+                </a>
+            {%- endif -%}
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Brand Banner",
+    "class": "section-brand-banner",
+    "settings": [
+        {
+            "type": "checkbox",
+            "id": "use_metaobject_content",
+            "label": "Use metaobject content",
+            "info": "When enabled, this banner loads its content from a 'Brand Banner' metaobject entry in this page's content list, instead of the settings below.",
+            "default": false
+        },
+        { "type": "header", "content": "Background (used when metaobject content is off)" },
+        { "type": "image_picker", "id": "background_image", "label": "Background image (desktop)" },
+        { "type": "image_picker", "id": "background_image_mobile", "label": "Background image (mobile)" },
+        { "type": "range", "id": "overlay_opacity", "label": "Overlay opacity", "min": 0, "max": 80, "step": 5, "unit": "%", "default": 0 },
+        { "type": "color", "id": "overlay_color", "label": "Overlay color", "default": "#000000" },
+        { "type": "header", "content": "Logo" },
+        { "type": "image_picker", "id": "logo_image", "label": "Logo image" },
+        { "type": "range", "id": "logo_width", "label": "Logo width (desktop)", "min": 60, "max": 400, "step": 10, "unit": "px", "default": 200 },
+        { "type": "range", "id": "logo_width_mobile", "label": "Logo width (mobile)", "min": 60, "max": 300, "step": 10, "unit": "px", "default": 140 },
+        { "type": "header", "content": "Text" },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Direct from Nature" },
+        { "type": "textarea", "id": "subheading", "label": "Subheading" },
+        {
+            "type": "select",
+            "id": "content_align",
+            "label": "Content alignment",
+            "default": "left",
+            "options": [
+                { "value": "left", "label": "Left" },
+                { "value": "center", "label": "Center" }
+            ]
+        },
+        { "type": "color", "id": "heading_color", "label": "Heading color", "default": "#0b2545" },
+        { "type": "color", "id": "subheading_color", "label": "Subheading color", "default": "#0b2545" },
+        { "type": "header", "content": "Button" },
+        { "type": "text", "id": "button_label", "label": "Button label", "default": "Discover Our Water" },
+        { "type": "url", "id": "button_link", "label": "Button link" },
+        { "type": "color", "id": "button_text_color", "label": "Button text color", "default": "#ffffff" },
+        { "type": "color", "id": "button_bg_color", "label": "Button background", "default": "#0b2545" },
+        { "type": "color", "id": "button_bg_color_hover", "label": "Button background (hover)", "default": "#123a6b" },
+        { "type": "header", "content": "Layout" },
+        {
+            "type": "select",
+            "id": "container",
+            "label": "Container width",
+            "default": "fullwidth",
+            "options": [
+                { "value": "container", "label": "Standard" },
+                { "value": "1170", "label": "1170px" },
+                { "value": "1470", "label": "1470px" },
+                { "value": "1770", "label": "1770px" },
+                { "value": "fullwidth", "label": "Full width" }
+            ]
+        },
+        { "type": "range", "id": "height_desktop", "label": "Height (desktop)", "min": 300, "max": 900, "step": 10, "unit": "px", "default": 560 },
+        { "type": "range", "id": "height_mobile", "label": "Height (mobile)", "min": 300, "max": 800, "step": 10, "unit": "px", "default": 520 }
+    ],
+    "presets": [{ "name": "Brand Banner" }]
+}
+{% endschema %}

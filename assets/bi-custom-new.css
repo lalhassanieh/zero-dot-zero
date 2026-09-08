@@ -360,3 +360,235 @@
             visibility 0s linear 0s, pointer-events 0s linear 0s;
     }
 }
+
+/* ============================================================
+   Brand landing page sections (custom-brand-banner.liquid,
+   custom-brand-feature-stats.liquid, custom-brand-learn-more-cards.liquid)
+
+   Standalone sections built for multi-brand landing pages, independent
+   from image-banner.liquid/product-block.liquid so they can be changed
+   without touching those. Themeable values are passed in as CSS custom
+   properties from each section's inline style attribute (set from the
+   section's schema settings), so the rules below stay generic.
+   ============================================================ */
+
+/* --- Brand Banner --- */
+.brand-banner {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    height: var(--brand-banner-height, 560px);
+}
+.brand-banner__media,
+.brand-banner__bg,
+.brand-banner__overlay {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+.brand-banner__bg {
+    object-fit: cover;
+}
+.brand-banner__bg--mobile {
+    display: none;
+}
+.brand-banner__overlay {
+    background: var(--brand-banner-overlay-color, transparent);
+    opacity: var(--brand-banner-overlay-opacity, 0);
+    pointer-events: none;
+}
+.brand-banner .container,
+.brand-banner .container-full,
+.brand-banner .container-1170,
+.brand-banner .container-1470,
+.brand-banner .container-1770 {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+}
+.brand-banner__content {
+    display: flex;
+    flex-direction: column;
+    max-width: 520px;
+}
+.brand-banner__content--center {
+    margin: 0 auto;
+    align-items: center;
+    text-align: center;
+}
+.brand-banner__logo {
+    width: var(--brand-banner-logo-width, 200px);
+    height: auto;
+    margin-bottom: 24px;
+}
+.brand-banner__heading {
+    margin: 0 0 12px;
+    color: var(--brand-banner-heading-color, inherit);
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 800;
+    line-height: 1.15;
+}
+.brand-banner__subheading {
+    margin: 0 0 28px;
+    color: var(--brand-banner-subheading-color, inherit);
+    font-size: 16px;
+    line-height: 1.5;
+}
+.brand-banner__button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+    padding: 14px 26px;
+    border-radius: 999px;
+    color: var(--brand-banner-button-color, #fff);
+    background: var(--brand-banner-button-bg, #000);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+.brand-banner__button:hover {
+    background: var(--brand-banner-button-bg-hover, var(--brand-banner-button-bg, #000));
+}
+.brand-banner__button svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+}
+@media (max-width: 767px) {
+    .brand-banner {
+        height: var(--brand-banner-height-mb, 520px);
+    }
+    .brand-banner__bg--desktop.hide-on-mobile {
+        display: none;
+    }
+    .brand-banner__bg--mobile {
+        display: block;
+    }
+    .brand-banner__logo {
+        width: var(--brand-banner-logo-width-mb, 140px);
+    }
+}
+
+/* --- Brand Feature Stats --- */
+.brand-feature-stats {
+    position: relative;
+    z-index: 2;
+}
+.brand-feature-stats__card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: var(--brand-feature-stats-gap, 40px);
+    margin-top: calc(var(--brand-feature-stats-overlap, 0px) * -1);
+    padding: 32px 40px;
+    background: var(--brand-feature-stats-bg, #fff);
+    border-radius: var(--brand-feature-stats-radius, 24px);
+    box-shadow: var(--brand-feature-stats-shadow, none);
+}
+.brand-feature-stats__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 140px;
+}
+.brand-feature-stats__icon {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+.brand-feature-stats__value {
+    color: var(--brand-feature-stats-value-color, inherit);
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1.2;
+}
+.brand-feature-stats__label {
+    margin-top: 4px;
+    color: var(--brand-feature-stats-label-color, inherit);
+    font-size: 13px;
+    line-height: 1.3;
+}
+@media (max-width: 767px) {
+    .brand-feature-stats__card {
+        margin-top: calc(var(--brand-feature-stats-overlap-mb, 0px) * -1);
+        gap: calc(var(--brand-feature-stats-gap, 40px) / 2);
+        padding: 20px;
+    }
+    .brand-feature-stats__item {
+        max-width: 45%;
+    }
+}
+
+/* --- Brand Learn More Cards --- */
+.brand-learn-cards__heading {
+    margin: 0 0 24px;
+    font-size: 28px;
+    font-weight: 700;
+}
+.brand-learn-cards__grid {
+    display: grid;
+    grid-template-columns: repeat(var(--brand-learn-cards-columns, 3), 1fr);
+    gap: var(--brand-learn-cards-gap, 24px);
+}
+.brand-learn-cards__item {
+    border-radius: var(--brand-learn-cards-radius, 16px);
+    overflow: hidden;
+}
+.brand-learn-cards__link {
+    position: relative;
+    display: block;
+    color: inherit;
+    text-decoration: none;
+}
+.brand-learn-cards__image img {
+    transition: transform 0.4s ease;
+}
+.brand-learn-cards__link:hover .brand-learn-cards__image img {
+    transform: scale(1.05);
+}
+.brand-learn-cards__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, var(--brand-learn-cards-overlay, rgba(0, 0, 0, 0.4)), transparent 60%);
+    pointer-events: none;
+}
+.brand-learn-cards__content {
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 24px;
+    text-align: center;
+}
+.brand-learn-cards__title {
+    margin: 0 0 14px;
+    color: var(--brand-learn-cards-title-color, #fff);
+    font-size: 20px;
+    font-weight: 700;
+}
+.brand-learn-cards__button {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 22px;
+    border-radius: 999px;
+    color: var(--brand-learn-cards-button-color, #000);
+    background: var(--brand-learn-cards-button-bg, #fff);
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+@media (max-width: 767px) {
+    .brand-learn-cards__grid {
+        grid-template-columns: 1fr;
+    }
+}
