@@ -86,9 +86,7 @@
                 height="{{ bg_desktop.height }}"
             >
         {%- else -%}
-            <div class="placeholder brand-banner__bg" style="--height_placeholder: {{ section.settings.height_desktop }}px;">
-                {{ 'hero-apparel-2' | placeholder_svg_tag: 'placeholder-svg' }}
-            </div>
+            <div class="brand-banner__bg brand-banner__bg--placeholder"></div>
         {%- endif -%}
         {%- if bg_mobile != blank -%}
             <img
@@ -171,7 +169,7 @@
             "type": "select",
             "id": "container",
             "label": "Container width",
-            "default": "fullwidth",
+            "default": "container",
             "options": [
                 { "value": "container", "label": "Standard" },
                 { "value": "1170", "label": "1170px" },

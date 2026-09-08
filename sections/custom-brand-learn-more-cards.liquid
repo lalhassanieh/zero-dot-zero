@@ -49,17 +49,31 @@
         {%- if section.settings.heading != blank -%}
             <h2 class="brand-learn-cards__heading text-{{ section.settings.heading_align }}">{{ section.settings.heading }}</h2>
         {%- endif -%}
+        {%- liquid
+            assign card_blocks = section.blocks | where: 'type', 'card'
+            assign has_cards = false
+            if section.settings.use_metaobject_content and meta_cards.size > 0
+                assign has_cards = true
+            elsif section.settings.use_metaobject_content == false and card_blocks.size > 0
+                assign has_cards = true
+            endif
+        -%}
         <div class="brand-learn-cards__grid">
-            {%- if section.settings.use_metaobject_content -%}
-                {%- for card in meta_cards -%}
-                    {%- render 'brand-learn-more-card', image: card.image.value, title: card.title, button_label: card.button_label, link: card.link -%}
-                {%- endfor -%}
-            {%- else -%}
-                {%- for block in section.blocks -%}
-                    {%- if block.type == 'card' -%}
+            {%- if has_cards -%}
+                {%- if section.settings.use_metaobject_content -%}
+                    {%- for card in meta_cards -%}
+                        {%- render 'brand-learn-more-card', image: card.image.value, title: card.title, button_label: card.button_label, link: card.link -%}
+                    {%- endfor -%}
+                {%- else -%}
+                    {%- for block in card_blocks -%}
                         {%- render 'brand-learn-more-card', image: block.settings.image, title: block.settings.title, button_label: block.settings.button_label, link: block.settings.link -%}
-                    {%- endif -%}
-                {%- endfor -%}
+                    {%- endfor -%}
+                {%- endif -%}
+            {%- else -%}
+                {%- comment -%} Nothing configured yet - show sample content so the section isn't invisible {%- endcomment -%}
+                {%- render 'brand-learn-more-card', title: 'Mineral Water', button_label: 'Learn More' -%}
+                {%- render 'brand-learn-more-card', title: 'Sparkling Water', button_label: 'Learn More' -%}
+                {%- render 'brand-learn-more-card', title: 'Glass Bottle', button_label: 'Learn More' -%}
             {%- endif -%}
         </div>
     </div>

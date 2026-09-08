@@ -37,7 +37,9 @@
       assign collection = collection_obj.handle
     else
       assign collection = section.settings.product_block_collection
-      assign collection_obj = collections[collection]
+      if collection != blank
+        assign collection_obj = collections[collection]
+      endif
     endif
     assign limit = section.settings.product_block_limit
     assign layout = section.settings.product_block_layout
@@ -768,7 +770,7 @@
                                 {%- endif -%}
                             {%- endfor -%}
 
-                            {%- if collection_obj.all_products_count > 0 -%}
+                            {%- if collection_obj.handle != '' and collection_obj.all_products_count > 0 -%}
                                 {%- for product in collection_obj.products limit: limit -%}
                                     <div class="product{% if swipe == 'true' %} slider__slide grid__item{% endif %}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}"{% if settings.banner_animation == 'effect_fade_up' %} data-cascade style="--animation-order: {{ forloop.index }};"{% endif %}>
                                         {% render 'product-grid-layout',

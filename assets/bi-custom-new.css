@@ -391,6 +391,9 @@
 .brand-banner__bg {
     object-fit: cover;
 }
+.brand-banner__bg--placeholder {
+    background: linear-gradient(135deg, #dfe7ef, #c3d2e0);
+}
 .brand-banner__bg--mobile {
     display: none;
 }
@@ -550,6 +553,11 @@
 }
 .brand-learn-cards__image img {
     transition: transform 0.4s ease;
+}
+.brand-learn-cards__image-placeholder {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #e2e8f0, #cbd5e1);
 }
 .brand-learn-cards__link:hover .brand-learn-cards__image img {
     transform: scale(1.05);

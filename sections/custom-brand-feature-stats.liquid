@@ -48,17 +48,31 @@
     "
 >
     <div class="{% if section.settings.container == '1170' %}container-1170{% elsif section.settings.container == '1470' %}container-1470{% elsif section.settings.container == 'fullwidth' %}container-full{% else %}container{% endif %}">
+        {%- liquid
+            assign stat_blocks = section.blocks | where: 'type', 'stat'
+            assign has_items = false
+            if section.settings.use_metaobject_content and meta_items.size > 0
+                assign has_items = true
+            elsif section.settings.use_metaobject_content == false and stat_blocks.size > 0
+                assign has_items = true
+            endif
+        -%}
         <div class="brand-feature-stats__card">
-            {%- if section.settings.use_metaobject_content -%}
-                {%- for item in meta_items -%}
-                    {%- render 'brand-feature-stat-item', icon_image: item.icon_image.value, value: item.value, label: item.label -%}
-                {%- endfor -%}
-            {%- else -%}
-                {%- for block in section.blocks -%}
-                    {%- if block.type == 'stat' -%}
+            {%- if has_items -%}
+                {%- if section.settings.use_metaobject_content -%}
+                    {%- for item in meta_items -%}
+                        {%- render 'brand-feature-stat-item', icon_image: item.icon_image.value, value: item.value, label: item.label -%}
+                    {%- endfor -%}
+                {%- else -%}
+                    {%- for block in stat_blocks -%}
                         {%- render 'brand-feature-stat-item', icon_image: block.settings.icon_image, value: block.settings.value, label: block.settings.label -%}
-                    {%- endif -%}
-                {%- endfor -%}
+                    {%- endfor -%}
+                {%- endif -%}
+            {%- else -%}
+                {%- comment -%} Nothing configured yet - show sample content so the section isn't invisible {%- endcomment -%}
+                {%- render 'brand-feature-stat-item', value: 'pH 7.9', label: 'Balanced Hydration' -%}
+                {%- render 'brand-feature-stat-item', value: '0%', label: 'Additives' -%}
+                {%- render 'brand-feature-stat-item', value: '100%', label: 'Pure Spring Water' -%}
             {%- endif -%}
         </div>
     </div>
