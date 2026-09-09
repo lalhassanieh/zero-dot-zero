@@ -46,6 +46,15 @@
     assign infinite_scroll = section.settings.product_block_infinite_scroll
 
     assign block_title = section.settings.product_block_title
+    assign block_subheading = section.settings.product_block_subheading
+    if use_metaobject_products
+        if metaobject_product_block.heading != blank
+            assign block_title = metaobject_product_block.heading
+        endif
+        if metaobject_product_block.subheading != blank
+            assign block_subheading = metaobject_product_block.subheading
+        endif
+    endif
     assign block_title_align = section.settings.title_align
     assign block_title_align_mb = section.settings.title_align_mb
     assign image_ratio = settings.product_block_image_ratio
@@ -705,8 +714,8 @@
                 {%- if block_title != blank and section.settings.style_block_header != 'style3' and section.settings.style_block_header != 'style4' -%}
                     <div class="halo-block-header text-{{ block_title_align }} block-title--{{section.settings.style_block_header}}{% if section.settings.enable_border_title_style2 %} enable_border_title_style2{% endif %}{% if section.settings.view_all != blank %} viewAll--{{ section.settings.view_all_align }}{% endif %}{% if section.settings.style_countdown == 'style_2' %} countdown_style_2{% endif %}">
                         <h3 class="title{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}"><span class="text">{{ block_title }}</span></h3>
-                        {%- if section.settings.product_block_subheading != blank -%}
-                            <p class="product-block__subheading text-{{ section.settings.product_block_subheading_align }}">{{ section.settings.product_block_subheading }}</p>
+                        {%- if block_subheading != blank -%}
+                            <p class="product-block__subheading text-{{ section.settings.product_block_subheading_align }}">{{ block_subheading }}</p>
                         {%- endif -%}
                         {%- if countdown != blank -%}
                         <div class="product--countdown{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
