@@ -618,7 +618,7 @@
         }
     }
 </style>
-<div class="product-block section-block-{{section.id}}" style="--grid-gap: {{ grid_gap }}">
+<div class="product-block section-block-{{section.id}}"{% if _section_id != blank %} id="{{ _section_id }}"{% endif %} style="--grid-gap: {{ grid_gap }}">
     {%- if block_title != blank -%}
         {%- if section.settings.style_block_header == 'style3' or section.settings.style_block_header == 'style4' -%}
             <div class="xxx {% if container == '1170' %}container-1170{% elsif container == '1570' %}container-1570{% elsif container == '1770' %}container-1770{% elsif container == 'fullwidth'%}container-full{% else %}container{% endif %}">
