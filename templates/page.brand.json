@@ -88,7 +88,7 @@
       "type": "product-block",
       "settings": {
         "use_metaobject_products": true,
-        "section_id": "",
+        "section_id": "tannourine-products",
         "container": "container",
         "padding_full_width": 0,
         "disable_padding_content": false,
