@@ -3,15 +3,15 @@
   bottom edge of the section above it, via a negative top margin.
 
   Items can come from either this section's own blocks (added directly in the theme editor)
-  or from "Feature Stat" metaobject entries (system.type == 'brand_feature') in this page's
-  shared content list, when "Use metaobject content" is enabled below. All matching metaobject
-  entries are rendered, ordered by their "order" field - no matching ID is needed since every
-  entry of this type on the page is meant to show up here.
+  or from a single "Feature Stats Grid" metaobject entry (system.type == 'brand_feature_grid')
+  in this page's shared content list, when "Use metaobject content" is enabled below. That grid
+  entry has one field ("stats") which is an ordered list of references to individual "Feature
+  Stat" entries - reorder them by dragging within that list field, not with an "order" field.
 {%- endcomment -%}
 
 {%- assign page_content_source = blank -%}
 {%- assign all_blocks = blank -%}
-{%- assign meta_items = '' | split: ',' -%}
+{%- assign meta_items = blank -%}
 
 {%- if template.name == 'index' -%}
     {%- assign page_content_source = shop.metafields.custom.homepage_content.value -%}
@@ -24,13 +24,12 @@
 {%- endif -%}
 
 {%- if section.settings.use_metaobject_content and all_blocks != blank -%}
-    {%- assign unsorted_items = '' | split: ',' -%}
     {%- for block_item in all_blocks -%}
-        {%- if block_item.system.type == 'brand_feature' -%}
-            {%- assign unsorted_items = unsorted_items | concat: [block_item] -%}
+        {%- if block_item.system.type == 'brand_feature_grid' -%}
+            {%- assign meta_items = block_item.stats.value -%}
+            {%- break -%}
         {%- endif -%}
     {%- endfor -%}
-    {%- assign meta_items = unsorted_items | sort: 'order' -%}
 {%- endif -%}
 
 <div
@@ -48,31 +47,17 @@
     "
 >
     <div class="{% if section.settings.container == '1170' %}container-1170{% elsif section.settings.container == '1470' %}container-1470{% elsif section.settings.container == 'fullwidth' %}container-full{% else %}container{% endif %}">
-        {%- liquid
-            assign stat_blocks = section.blocks | where: 'type', 'stat'
-            assign has_items = false
-            if section.settings.use_metaobject_content and meta_items.size > 0
-                assign has_items = true
-            elsif section.settings.use_metaobject_content == false and stat_blocks.size > 0
-                assign has_items = true
-            endif
-        -%}
         <div class="brand-feature-stats__card">
-            {%- if has_items -%}
-                {%- if section.settings.use_metaobject_content -%}
-                    {%- for item in meta_items -%}
-                        {%- render 'brand-feature-stat-item', icon_image: item.icon_image.value, value: item.value, label: item.label -%}
-                    {%- endfor -%}
-                {%- else -%}
-                    {%- for block in stat_blocks -%}
-                        {%- render 'brand-feature-stat-item', icon_image: block.settings.icon_image, value: block.settings.value, label: block.settings.label -%}
-                    {%- endfor -%}
-                {%- endif -%}
+            {%- if section.settings.use_metaobject_content -%}
+                {%- for item in meta_items -%}
+                    {%- render 'brand-feature-stat-item', icon_image: item.icon_image.value, value: item.value, label: item.label -%}
+                {%- endfor -%}
             {%- else -%}
-                {%- comment -%} Nothing configured yet - show sample content so the section isn't invisible {%- endcomment -%}
-                {%- render 'brand-feature-stat-item', value: 'pH 7.9', label: 'Balanced Hydration' -%}
-                {%- render 'brand-feature-stat-item', value: '0%', label: 'Additives' -%}
-                {%- render 'brand-feature-stat-item', value: '100%', label: 'Pure Spring Water' -%}
+                {%- for block in section.blocks -%}
+                    {%- if block.type == 'stat' -%}
+                        {%- render 'brand-feature-stat-item', icon_image: block.settings.icon_image, value: block.settings.value, label: block.settings.label -%}
+                    {%- endif -%}
+                {%- endfor -%}
             {%- endif -%}
         </div>
     </div>
@@ -87,7 +72,7 @@
             "type": "checkbox",
             "id": "use_metaobject_content",
             "label": "Use metaobject content",
-            "info": "When enabled, items come from 'Feature Stat' metaobject entries in this page's content list instead of the blocks below.",
+            "info": "When enabled, items come from the 'stats' list on a 'Feature Stats Grid' metaobject entry in this page's content list, instead of the blocks below.",
             "default": false
         },
         { "type": "header", "content": "Card" },

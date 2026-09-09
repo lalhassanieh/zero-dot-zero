@@ -3,14 +3,15 @@
   line (Plastic Bottle / Glass Bottle / Sparkling).
 
   Cards can come from either this section's own blocks (added directly in the theme editor)
-  or from "Learn More Card" metaobject entries (system.type == 'brand_learn_card') in this
-  page's shared content list, when "Use metaobject content" is enabled below. All matching
-  metaobject entries are rendered, ordered by their "order" field.
+  or from a single "Learn More Cards Grid" metaobject entry (system.type == 'brand_learn_card_grid')
+  in this page's shared content list, when "Use metaobject content" is enabled below. That grid
+  entry has one field ("cards") which is an ordered list of references to individual "Learn More
+  Card" entries - reorder them by dragging within that list field, not with an "order" field.
 {%- endcomment -%}
 
 {%- assign page_content_source = blank -%}
 {%- assign all_blocks = blank -%}
-{%- assign meta_cards = '' | split: ',' -%}
+{%- assign meta_cards = blank -%}
 
 {%- if template.name == 'index' -%}
     {%- assign page_content_source = shop.metafields.custom.homepage_content.value -%}
@@ -23,13 +24,12 @@
 {%- endif -%}
 
 {%- if section.settings.use_metaobject_content and all_blocks != blank -%}
-    {%- assign unsorted_cards = '' | split: ',' -%}
     {%- for block_item in all_blocks -%}
-        {%- if block_item.system.type == 'brand_learn_card' -%}
-            {%- assign unsorted_cards = unsorted_cards | concat: [block_item] -%}
+        {%- if block_item.system.type == 'brand_learn_card_grid' -%}
+            {%- assign meta_cards = block_item.cards.value -%}
+            {%- break -%}
         {%- endif -%}
     {%- endfor -%}
-    {%- assign meta_cards = unsorted_cards | sort: 'order' -%}
 {%- endif -%}
 
 <div
@@ -49,31 +49,17 @@
         {%- if section.settings.heading != blank -%}
             <h2 class="brand-learn-cards__heading text-{{ section.settings.heading_align }}">{{ section.settings.heading }}</h2>
         {%- endif -%}
-        {%- liquid
-            assign card_blocks = section.blocks | where: 'type', 'card'
-            assign has_cards = false
-            if section.settings.use_metaobject_content and meta_cards.size > 0
-                assign has_cards = true
-            elsif section.settings.use_metaobject_content == false and card_blocks.size > 0
-                assign has_cards = true
-            endif
-        -%}
         <div class="brand-learn-cards__grid">
-            {%- if has_cards -%}
-                {%- if section.settings.use_metaobject_content -%}
-                    {%- for card in meta_cards -%}
-                        {%- render 'brand-learn-more-card', image: card.image.value, title: card.title, button_label: card.button_label, link: card.link -%}
-                    {%- endfor -%}
-                {%- else -%}
-                    {%- for block in card_blocks -%}
-                        {%- render 'brand-learn-more-card', image: block.settings.image, title: block.settings.title, button_label: block.settings.button_label, link: block.settings.link -%}
-                    {%- endfor -%}
-                {%- endif -%}
+            {%- if section.settings.use_metaobject_content -%}
+                {%- for card in meta_cards -%}
+                    {%- render 'brand-learn-more-card', image: card.image.value, title: card.title, button_label: card.button_label, link: card.link -%}
+                {%- endfor -%}
             {%- else -%}
-                {%- comment -%} Nothing configured yet - show sample content so the section isn't invisible {%- endcomment -%}
-                {%- render 'brand-learn-more-card', title: 'Mineral Water', button_label: 'Learn More' -%}
-                {%- render 'brand-learn-more-card', title: 'Sparkling Water', button_label: 'Learn More' -%}
-                {%- render 'brand-learn-more-card', title: 'Glass Bottle', button_label: 'Learn More' -%}
+                {%- for block in section.blocks -%}
+                    {%- if block.type == 'card' -%}
+                        {%- render 'brand-learn-more-card', image: block.settings.image, title: block.settings.title, button_label: block.settings.button_label, link: block.settings.link -%}
+                    {%- endif -%}
+                {%- endfor -%}
             {%- endif -%}
         </div>
     </div>
@@ -88,7 +74,7 @@
             "type": "checkbox",
             "id": "use_metaobject_content",
             "label": "Use metaobject content",
-            "info": "When enabled, cards come from 'Learn More Card' metaobject entries in this page's content list instead of the blocks below.",
+            "info": "When enabled, cards come from the 'cards' list on a 'Learn More Cards Grid' metaobject entry in this page's content list, instead of the blocks below.",
             "default": false
         },
         { "type": "header", "content": "Heading" },
