@@ -6,9 +6,9 @@
   and scrolls to that section instead of navigating away. Leaving it blank (the default) keeps
   the normal external/page link behavior.
 
-  The title always sits on a small built-in scrim (brand-learn-cards__title-scrim) so it stays
-  readable even over a bright/white image - that one isn't configurable. "enable_overlay" is the
-  separate, bigger top+bottom tint that IS configurable/removable in the section settings.
+  "enable_overlay" (default on) darkens the whole image at a low opacity so text stays legible
+  even over a bright/white photo. It's fully configurable/removable via the section settings
+  (color, gradient, or turned off entirely).
 {%- endcomment -%}
 {%- liquid
     assign final_link = link
@@ -29,7 +29,6 @@
             <div class="brand-learn-cards__overlay"></div>
         {%- endif -%}
         {%- if title != blank -%}
-            <div class="brand-learn-cards__title-scrim"></div>
             <div class="brand-learn-cards__title-wrap">
                 <h3 class="brand-learn-cards__title">{{ title }}</h3>
             </div>

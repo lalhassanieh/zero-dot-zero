@@ -61,7 +61,7 @@
         "columns": 3,
         "item_gap": 24,
         "card_border_radius": 16,
-        "overlay_color": "#00000066",
+        "overlay_color": "#00000040",
         "title_color": "#ffffff",
         "button_text_color": "#ffffff",
         "button_bg_color": "#285BAA",
