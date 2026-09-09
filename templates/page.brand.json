@@ -32,7 +32,7 @@
         "button_bg_color": "#285BAA",
         "button_bg_color_hover": "#204988",
         "container": "container",
-        "height_desktop": 560,
+        "height_desktop": 710,
         "height_mobile": 520
       }
     },
@@ -44,7 +44,7 @@
         "card_bg_color": "#DBEDFB",
         "card_border_radius": 24,
         "enable_shadow": true,
-        "overlap_desktop": 160,
+        "overlap_desktop": 136,
         "overlap_mobile": 0,
         "item_gap": 40,
         "value_color": "#0b2545",
@@ -93,8 +93,8 @@
         "product_block_title": "The Perfect Size for Every Moment",
         "enable_border_title": false,
         "enable_border_title_style2": true,
-        "fontsize_title": 36,
-        "fontsize_title_mb": 24,
+        "fontsize_title": 48,
+        "fontsize_title_mb": 30,
         "pd_top_title": 30,
         "mg_bottom_title": 32,
         "mg_bottom_title_mb": 22,
