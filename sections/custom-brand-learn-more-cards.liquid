@@ -44,7 +44,9 @@
     id="brand-learn-cards-{{ section.id }}"
     style="
         --brand-learn-cards-columns: {{ section.settings.columns }};
+        --brand-learn-cards-columns-mobile: {{ section.settings.columns_mobile }};
         --brand-learn-cards-gap: {{ section.settings.item_gap }}px;
+        --brand-learn-cards-gap-mobile: {{ section.settings.item_gap_mobile }}px;
         --brand-learn-cards-radius: {{ section.settings.card_border_radius }}px;
         --brand-learn-cards-overlay: {{ overlay_background }};
         --brand-learn-cards-title-color: {{ section.settings.title_color }};
@@ -103,17 +105,19 @@
             { "value": "fullwidth", "label": "Full width" }
         ]},
         { "type": "range", "id": "columns", "label": "Columns (desktop)", "min": 2, "max": 4, "step": 1, "default": 3 },
-        { "type": "range", "id": "item_gap", "label": "Gap between cards", "min": 0, "max": 60, "step": 2, "unit": "px", "default": 24 },
+        { "type": "range", "id": "columns_mobile", "label": "Columns (mobile)", "min": 1, "max": 3, "step": 1, "default": 1 },
+        { "type": "range", "id": "item_gap", "label": "Gap between cards (desktop)", "min": 0, "max": 60, "step": 2, "unit": "px", "default": 24 },
+        { "type": "range", "id": "item_gap_mobile", "label": "Gap between cards (mobile)", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 16 },
         { "type": "range", "id": "card_border_radius", "label": "Card corner radius", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 16 },
-        { "type": "range", "id": "card_height", "label": "Card image height (desktop)", "min": 200, "max": 700, "step": 10, "unit": "px", "default": 420 },
-        { "type": "range", "id": "card_height_mobile", "label": "Card image height (mobile)", "min": 200, "max": 600, "step": 10, "unit": "px", "default": 320 },
+        { "type": "range", "id": "card_height", "label": "Card image height (desktop)", "min": 200, "max": 700, "step": 10, "unit": "px", "default": 520 },
+        { "type": "range", "id": "card_height_mobile", "label": "Card image height (mobile)", "min": 200, "max": 600, "step": 10, "unit": "px", "default": 400 },
         { "type": "color", "id": "overlay_color", "label": "Image overlay color", "default": "#00000066" },
         { "type": "color_background", "id": "overlay_gradient", "label": "Image overlay gradient (optional, overrides color above)" },
         { "type": "header", "content": "Text & Button" },
         { "type": "color", "id": "title_color", "label": "Card title color", "default": "#ffffff" },
-        { "type": "color", "id": "button_text_color", "label": "Button text color", "default": "#0b2545" },
-        { "type": "color", "id": "button_bg_color", "label": "Button background", "default": "#ffffff" },
-        { "type": "color", "id": "button_bg_color_hover", "label": "Button background (hover)", "default": "#e5e5e5" },
+        { "type": "color", "id": "button_text_color", "label": "Button text color", "default": "#ffffff" },
+        { "type": "color", "id": "button_bg_color", "label": "Button background", "default": "#285BAA" },
+        { "type": "color", "id": "button_bg_color_hover", "label": "Button background (hover)", "default": "#204988" },
         { "type": "header", "content": "Spacing" },
         { "type": "range", "id": "padding_top", "label": "Padding top", "min": 0, "max": 150, "step": 5, "unit": "px", "default": 60 },
         { "type": "range", "id": "padding_bottom", "label": "Padding bottom", "min": 0, "max": 150, "step": 5, "unit": "px", "default": 60 }

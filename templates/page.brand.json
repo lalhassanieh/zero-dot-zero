@@ -63,8 +63,9 @@
         "card_border_radius": 16,
         "overlay_color": "#00000066",
         "title_color": "#ffffff",
-        "button_text_color": "#0b2545",
-        "button_bg_color": "#ffffff"
+        "button_text_color": "#ffffff",
+        "button_bg_color": "#285BAA",
+        "button_bg_color_hover": "#204988"
       }
     },
     "products": {

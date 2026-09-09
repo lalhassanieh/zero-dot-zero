@@ -477,6 +477,7 @@
     background: var(--brand-banner-button-bg-hover, var(--brand-banner-button-bg, #000));
 }
 .brand-banner__button-arrow {
+    display: block;
     width: 16px;
     height: 16px;
     flex-shrink: 0;
@@ -647,6 +648,7 @@
     background: var(--brand-learn-cards-button-bg-hover, var(--brand-learn-cards-button-bg, #fff));
 }
 .brand-learn-cards__button-arrow {
+    display: block;
     width: 14px;
     height: 14px;
     flex-shrink: 0;
@@ -658,10 +660,11 @@
 }
 @media (max-width: 767px) {
     .brand-learn-cards__grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(var(--brand-learn-cards-columns-mobile, 1), 1fr);
+        gap: var(--brand-learn-cards-gap-mobile, 16px);
     }
     .brand-learn-cards__image {
-        height: var(--brand-learn-cards-card-height-mb, 320px);
+        height: var(--brand-learn-cards-card-height-mb, 400px);
     }
 }
 
