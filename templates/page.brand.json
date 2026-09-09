@@ -41,7 +41,7 @@
       "settings": {
         "use_metaobject_content": true,
         "container": "container",
-        "card_bg_color": "#d6ecf7",
+        "card_bg_color": "#DBEDFB",
         "card_border_radius": 24,
         "enable_shadow": true,
         "overlap_desktop": 60,
@@ -83,7 +83,7 @@
         "enable_minus_mg_top": false,
         "minus_spacing_top": -100,
         "product_block_layout": "slider",
-        "product_bg": "#ffffff",
+        "product_bg": "#FEF7EC",
         "product_bg_gradient": "",
         "product_block_collection": "",
         "product_block_limit": 8,

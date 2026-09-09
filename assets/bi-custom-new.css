@@ -576,6 +576,7 @@
 .brand-learn-cards {
     padding-top: var(--brand-learn-cards-padding-top, 60px);
     padding-bottom: var(--brand-learn-cards-padding-bottom, 60px);
+    background: var(--brand-learn-cards-bg, transparent);
 }
 .brand-learn-cards__item {
     border-radius: var(--brand-learn-cards-radius, 16px);
@@ -621,19 +622,29 @@
     );
     pointer-events: none;
 }
-.brand-learn-cards__title-wrap {
+.brand-learn-cards__title-scrim {
     position: absolute;
     z-index: 1;
     top: 0;
     left: 0;
     right: 0;
-    padding: 22px 24px;
+    height: 45%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.45), transparent);
+    pointer-events: none;
+}
+.brand-learn-cards__title-wrap {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 32px 24px 22px;
     text-align: center;
 }
 .brand-learn-cards__title {
     margin: 0;
     color: var(--brand-learn-cards-title-color, #fff);
-    font-size: 22px;
+    font-size: 26px;
     font-weight: 700;
     line-height: 1.25;
 }

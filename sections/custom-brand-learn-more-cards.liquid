@@ -57,6 +57,7 @@
         --brand-learn-cards-card-height-mb: {{ section.settings.card_height_mobile }}px;
         --brand-learn-cards-padding-top: {{ section.settings.padding_top }}px;
         --brand-learn-cards-padding-bottom: {{ section.settings.padding_bottom }}px;
+        --brand-learn-cards-bg: {{ section.settings.background_color }};
     "
 >
     <div class="{% if section.settings.container == '1170' %}container-1170{% elsif section.settings.container == '1470' %}container-1470{% elsif section.settings.container == 'fullwidth' %}container-full{% else %}container{% endif %}">
@@ -66,12 +67,12 @@
         <div class="brand-learn-cards__grid">
             {%- if section.settings.use_metaobject_content -%}
                 {%- for card in meta_cards -%}
-                    {%- render 'brand-learn-more-card', image: card.image.value, title: card.name, button_label: card.button_label, link: card.link, scroll_target: card.scroll_target -%}
+                    {%- render 'brand-learn-more-card', image: card.image.value, title: card.name, button_label: card.button_label, link: card.link, scroll_target: card.scroll_target, enable_overlay: section.settings.enable_overlay -%}
                 {%- endfor -%}
             {%- else -%}
                 {%- for block in section.blocks -%}
                     {%- if block.type == 'card' -%}
-                        {%- render 'brand-learn-more-card', image: block.settings.image, title: block.settings.title, button_label: block.settings.button_label, link: block.settings.link, scroll_target: block.settings.scroll_target -%}
+                        {%- render 'brand-learn-more-card', image: block.settings.image, title: block.settings.title, button_label: block.settings.button_label, link: block.settings.link, scroll_target: block.settings.scroll_target, enable_overlay: section.settings.enable_overlay -%}
                     {%- endif -%}
                 {%- endfor -%}
             {%- endif -%}
@@ -98,6 +99,7 @@
             { "value": "center", "label": "Center" }
         ]},
         { "type": "header", "content": "Grid" },
+        { "type": "color", "id": "background_color", "label": "Section background color", "default": "#FEF7EC" },
         { "type": "select", "id": "container", "label": "Container width", "default": "container", "options": [
             { "value": "container", "label": "Standard" },
             { "value": "1170", "label": "1170px" },
@@ -111,6 +113,13 @@
         { "type": "range", "id": "card_border_radius", "label": "Card corner radius", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 16 },
         { "type": "range", "id": "card_height", "label": "Card image height (desktop)", "min": 200, "max": 700, "step": 10, "unit": "px", "default": 520 },
         { "type": "range", "id": "card_height_mobile", "label": "Card image height (mobile)", "min": 200, "max": 600, "step": 10, "unit": "px", "default": 400 },
+        {
+            "type": "checkbox",
+            "id": "enable_overlay",
+            "label": "Enable image overlay",
+            "info": "A subtle scrim behind the title is always there so it stays readable - this is a separate, stronger top+bottom tint you can turn off if you don't want it.",
+            "default": true
+        },
         { "type": "color", "id": "overlay_color", "label": "Image overlay color", "default": "#00000066" },
         { "type": "color_background", "id": "overlay_gradient", "label": "Image overlay gradient (optional, overrides color above)" },
         { "type": "header", "content": "Text & Button" },
