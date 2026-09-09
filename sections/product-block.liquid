@@ -705,6 +705,9 @@
                 {%- if block_title != blank and section.settings.style_block_header != 'style3' and section.settings.style_block_header != 'style4' -%}
                     <div class="halo-block-header text-{{ block_title_align }} block-title--{{section.settings.style_block_header}}{% if section.settings.enable_border_title_style2 %} enable_border_title_style2{% endif %}{% if section.settings.view_all != blank %} viewAll--{{ section.settings.view_all_align }}{% endif %}{% if section.settings.style_countdown == 'style_2' %} countdown_style_2{% endif %}">
                         <h3 class="title{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}"><span class="text">{{ block_title }}</span></h3>
+                        {%- if section.settings.product_block_subheading != blank -%}
+                            <p class="product-block__subheading text-{{ section.settings.product_block_subheading_align }}">{{ section.settings.product_block_subheading }}</p>
+                        {%- endif -%}
                         {%- if countdown != blank -%}
                         <div class="product--countdown{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
                             <div class="product-countdown-block countdown-{{ section.id }}" data-countdown data-countdown-value="{{ countdown }}"></div>
@@ -1095,6 +1098,23 @@
         "id": "product_block_title",
         "label": "t:sections.image-banner.blocks.image.settings.content.label__1",
         "default": "Trending Now"
+    },
+    {
+        "type": "text",
+        "id": "product_block_subheading",
+        "label": "Subheading (optional)",
+        "info": "Shown below the title, e.g. 'Discover our range'."
+    },
+    {
+        "type": "select",
+        "id": "product_block_subheading_align",
+        "label": "Subheading alignment",
+        "default": "left",
+        "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+        ]
     },
     {
         "type": "checkbox",
