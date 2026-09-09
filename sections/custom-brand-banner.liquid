@@ -94,6 +94,8 @@
         --brand-banner-button-bg-hover: {{ section.settings.button_bg_color_hover }};
         --brand-banner-logo-width: {{ section.settings.logo_width }}px;
         --brand-banner-logo-width-mb: {{ section.settings.logo_width_mobile }}px;
+        --brand-banner-content-shift: {{ section.settings.content_shift_up }}px;
+        --brand-banner-content-shift-mb: {{ section.settings.content_shift_up_mobile }}px;
     "
 >
     <picture class="brand-banner__media">
@@ -116,7 +118,7 @@
         {%- endif -%}
     </picture>
     {%- if section.settings.enable_overlay -%}
-        <div class="brand-banner__overlay"></div>
+        <div class="brand-banner__overlay"><span></span></div>
     {%- endif -%}
     <div class="{% if container == '1170' %}container-1170{% elsif container == '1470' %}container-1470{% elsif container == '1770' %}container-1770{% elsif container == 'fullwidth' %}container-full{% else %}container{% endif %}">
         <div class="brand-banner__content brand-banner__content--{{ content_align }}">
@@ -223,7 +225,28 @@
             "default": true
         },
         { "type": "range", "id": "height_desktop", "label": "Height (desktop, used when fixed height is on)", "min": 300, "max": 900, "step": 10, "unit": "px", "default": 560 },
-        { "type": "range", "id": "height_mobile", "label": "Height (mobile, used when fixed height is on)", "min": 300, "max": 800, "step": 10, "unit": "px", "default": 520 }
+        { "type": "range", "id": "height_mobile", "label": "Height (mobile, used when fixed height is on)", "min": 300, "max": 800, "step": 10, "unit": "px", "default": 520 },
+        {
+            "type": "range",
+            "id": "content_shift_up",
+            "label": "Shift content up (desktop)",
+            "info": "Nudges the heading/logo/button up from center, to leave clear room at the bottom of the banner for a section that overlaps it (like the feature stats row).",
+            "min": 0,
+            "max": 150,
+            "step": 5,
+            "unit": "px",
+            "default": 60
+        },
+        {
+            "type": "range",
+            "id": "content_shift_up_mobile",
+            "label": "Shift content up (mobile)",
+            "min": 0,
+            "max": 120,
+            "step": 5,
+            "unit": "px",
+            "default": 0
+        }
     ],
     "presets": [{ "name": "Brand Banner" }]
 }

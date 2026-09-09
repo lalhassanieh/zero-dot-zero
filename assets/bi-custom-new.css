@@ -433,9 +433,11 @@
     display: flex;
     flex-direction: column;
     max-width: 520px;
+    margin-bottom: var(--brand-banner-content-shift, 0px);
 }
 .brand-banner__content--center {
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
     align-items: center;
     text-align: center;
 }
@@ -497,15 +499,17 @@
     .brand-banner__logo {
         width: var(--brand-banner-logo-width-mb, 140px);
     }
+    .brand-banner__content {
+        margin-bottom: var(--brand-banner-content-shift-mb, 0px);
+    }
 }
 
 /* --- Brand Feature Stats --- */
 .brand-feature-stats {
     position: relative;
     z-index: 2;
+    display: flow-root;
     background: var(--brand-feature-stats-section-bg, transparent);
-    margin-top: calc(var(--brand-feature-stats-overlap, 0px) * -1);
-    padding-top: var(--brand-feature-stats-overlap, 0px);
 }
 .brand-feature-stats__card {
     display: flex;
@@ -513,6 +517,7 @@
     justify-content: center;
     align-items: stretch;
     gap: var(--brand-feature-stats-gap, 40px);
+    margin-top: calc(var(--brand-feature-stats-overlap, 0px) * -1);
     padding: 32px 40px;
     background: var(--brand-feature-stats-bg, #fff);
     border-radius: var(--brand-feature-stats-radius, 24px);
@@ -553,11 +558,8 @@
     line-height: 1.3;
 }
 @media (max-width: 767px) {
-    .brand-feature-stats {
-        margin-top: calc(var(--brand-feature-stats-overlap-mb, 0px) * -1);
-        padding-top: var(--brand-feature-stats-overlap-mb, 0px);
-    }
     .brand-feature-stats__card {
+        margin-top: calc(var(--brand-feature-stats-overlap-mb, 0px) * -1);
         gap: calc(var(--brand-feature-stats-gap, 40px) / 2);
         padding: 20px;
     }

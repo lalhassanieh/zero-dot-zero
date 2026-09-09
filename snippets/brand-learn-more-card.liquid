@@ -22,11 +22,11 @@
             {%- if image != blank -%}
                 <img srcset="{{ image | image_url: width: 375 }} 375w, {{ image | image_url: width: 750 }} 750w, {{ image | image_url: width: 1100 }} 1100w" src="{{ image | image_url: width: 750 }}" alt="{{ title | escape }}" width="{{ image.width }}" height="{{ image.height }}" loading="lazy">
             {%- else -%}
-                <div class="brand-learn-cards__image-placeholder"></div>
+                <div class="brand-learn-cards__image-placeholder"><span></span></div>
             {%- endif -%}
         </div>
         {%- if enable_overlay -%}
-            <div class="brand-learn-cards__overlay"></div>
+            <div class="brand-learn-cards__overlay"><span></span></div>
         {%- endif -%}
         {%- if title != blank -%}
             <div class="brand-learn-cards__title-wrap">
