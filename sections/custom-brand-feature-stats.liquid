@@ -3,10 +3,14 @@
   bottom edge of the section above it, via a negative top margin.
 
   Items can come from either this section's own blocks (added directly in the theme editor)
-  or from a single "Feature Stats Grid" metaobject entry (system.type == 'brand_feature_grid')
-  in this page's shared content list, when "Use metaobject content" is enabled below. That grid
-  entry has one field ("stats") which is an ordered list of references to individual "Feature
-  Stat" entries - reorder them by dragging within that list field, not with an "order" field.
+  or from a "Feature Stats Grid" metaobject entry (system.type == 'brand_feature_grid') in this
+  page's shared content list, when "Use metaobject content" is enabled below. That grid entry
+  has a "stats" field (an ordered list of references to individual "Feature Stat" entries -
+  reorder them by dragging within that list field, not with an "order" field) and a "section_id"
+  field. If this section's own "Section ID" setting is filled in, it must match that grid entry's
+  section_id exactly (same convention as product-block.liquid) - this lets a page have more than
+  one Feature Stats Grid, each tied to a different instance of this section. If "Section ID" is
+  left blank, the first brand_feature_grid entry found is used, no matching required.
 {%- endcomment -%}
 
 {%- assign page_content_source = blank -%}
@@ -23,11 +27,19 @@
     {%- assign all_blocks = page_content_source.blocks.value -%}
 {%- endif -%}
 
+{%- assign _section_id = section.settings.section_id | strip -%}
 {%- if section.settings.use_metaobject_content and all_blocks != blank -%}
     {%- for block_item in all_blocks -%}
         {%- if block_item.system.type == 'brand_feature_grid' -%}
-            {%- assign meta_items = block_item.stats.value -%}
-            {%- break -%}
+            {%- if _section_id != blank -%}
+                {%- if block_item.section_id == _section_id -%}
+                    {%- assign meta_items = block_item.stats.value -%}
+                    {%- break -%}
+                {%- endif -%}
+            {%- else -%}
+                {%- assign meta_items = block_item.stats.value -%}
+                {%- break -%}
+            {%- endif -%}
         {%- endif -%}
     {%- endfor -%}
 {%- endif -%}

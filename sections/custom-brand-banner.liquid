@@ -44,6 +44,7 @@
         assign subheading = meta_banner.sub_heading
         assign button_label = meta_banner.button_label
         assign button_link = meta_banner.button_link
+        assign button_scroll_target = meta_banner.scroll_target
     else
         assign bg_desktop = section.settings.background_image
         assign bg_mobile = section.settings.background_image_mobile
@@ -52,13 +53,16 @@
         assign subheading = section.settings.subheading
         assign button_label = section.settings.button_label
         assign button_link = section.settings.button_link
+        assign button_scroll_target = section.settings.button_scroll_target
     endif
 
     assign container = section.settings.container
     assign content_align = section.settings.content_align
 
-    if button_link == blank and section.settings.default_button_target != blank
-        assign button_link = '#shopify-section-' | append: section.settings.default_button_target
+    if button_scroll_target != blank
+        assign button_link = '#' | append: button_scroll_target
+    elsif button_link == blank and section.settings.default_button_target != blank
+        assign button_link = '#' | append: section.settings.default_button_target
     endif
 
     assign overlay_background = section.settings.overlay_color
@@ -191,14 +195,19 @@
             "type": "url",
             "id": "button_link",
             "label": "Button link",
-            "info": "Leave blank to scroll to the section named below instead. Set this to send the button to a different page/URL/section anchor."
+            "info": "Sends the button to another page/URL. Ignored if \"Scroll to section ID\" below is filled in."
+        },
+        {
+            "type": "text",
+            "id": "button_scroll_target",
+            "label": "Scroll to section ID (instead of Button link)",
+            "info": "Optional. If set, the button scrolls to that section on this same page instead of using the Button link above - type the exact value from that section's own \"Section ID\" setting, e.g. 'feature-stats' or 'learn-more'."
         },
         {
             "type": "text",
             "id": "default_button_target",
-            "label": "Default button target (used only when Button link above is empty)",
-            "info": "The section ID to scroll to when no link is set above. This must match the section's key in the page template - e.g. 'products' for the JSON key \"products\": {...} that holds the product grid.",
-            "default": "products"
+            "label": "Default button target (used only when both fields above are empty)",
+            "info": "The section ID to scroll to when nothing else is set. Must match that section's own \"Section ID\" setting - not the JSON template key."
         },
         { "type": "color", "id": "button_text_color", "label": "Button text color", "default": "#ffffff" },
         { "type": "color", "id": "button_bg_color", "label": "Button background", "default": "#285BAA" },

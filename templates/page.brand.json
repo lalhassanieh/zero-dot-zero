@@ -30,7 +30,7 @@
         "subheading_color": "#28356f",
         "button_label": "Discover Our Water",
         "button_link": "",
-        "default_button_target": "products",
+        "default_button_target": "tannourine-products",
         "button_text_color": "#ffffff",
         "button_bg_color": "#285baa",
         "button_bg_color_hover": "#204988",
