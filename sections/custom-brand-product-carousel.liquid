@@ -632,7 +632,11 @@
             </div>
         {%- endif -%}
     {%- endif -%}
-    <{% if swipe %}product-slider-component{% else %}div{% endif %} class="halo-block halo-product-block{% if collection_obj.all_products_count > 0 %} ajax-loaded{% endif %}" id="halo-product-block-{{ section.id }}" data-product-block data-limit="{{ limit }}" data-layout="{{ layout }}" sectionId="{{ section.id }}"{% if collection != blank %} data-collection="{{ collection }}" data-image-ratio="{{ image_ratio }}" data-swipe="{{ swipe }}"{% if countdown != blank %} hasCountdown=true{% endif %}{% endif %}>
+    {%- if swipe -%}
+    <product-slider-component class="halo-block halo-product-block{% if collection_obj.all_products_count > 0 %} ajax-loaded{% endif %}" id="halo-product-block-{{ section.id }}" data-product-block data-limit="{{ limit }}" data-layout="{{ layout }}" sectionId="{{ section.id }}"{% if collection != blank %} data-collection="{{ collection }}" data-image-ratio="{{ image_ratio }}" data-swipe="{{ swipe }}"{% if countdown != blank %} hasCountdown=true{% endif %}{% endif %}>
+    {%- else -%}
+    <div class="halo-block halo-product-block{% if collection_obj.all_products_count > 0 %} ajax-loaded{% endif %}" id="halo-product-block-{{ section.id }}" data-product-block data-limit="{{ limit }}" data-layout="{{ layout }}" sectionId="{{ section.id }}"{% if collection != blank %} data-collection="{{ collection }}" data-image-ratio="{{ image_ratio }}" data-swipe="{{ swipe }}"{% if countdown != blank %} hasCountdown=true{% endif %}{% endif %}>
+    {%- endif -%}
         <div class="{% if show_banner %}product-block-has__banner has__banner--{{ section.settings.position }}{% if section.settings.display_list_collection %} product-block-has__collections{% else %} product-block-no__collections{% if show_banner %} not-img{% endif %}{% endif %}{% if block_banner.settings.banner_height == 'auto' %} height_auto{% endif %}{% endif %}{% if container == '1170' %} container-1170{% elsif container == '1570' %} container-1570{% elsif container == '1770' %} container-1770{% elsif container == 'fullwidth'%} container-full{% else %} container layout-body--{{ settings.layout_body }}{% endif %}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}{% if section.settings.enable_image_mb %} enable_image_mb{% endif %}" style="--width-box-banner: {{ section.settings.width_banner | append: '%' }}" data-width-banner="{{ section.settings.width_banner }}">
             {%- if show_banner -%}
                 {%- liquid
@@ -868,7 +872,11 @@
                 </div>
             {%- endif -%}
         </div>
-    </{% if swipe %}product-slider-component{% else %}div{% endif %}>
+    {%- if swipe -%}
+    </product-slider-component>
+    {%- else -%}
+    </div>
+    {%- endif -%}
 </div>
 
 {% schema %}
