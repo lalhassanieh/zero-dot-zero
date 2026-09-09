@@ -527,7 +527,8 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    max-width: 140px;
+    flex: 0 0 140px;
+    width: 140px;
 }
 .brand-feature-stats__icon {
     width: 76px;
@@ -555,7 +556,8 @@
         padding: 20px;
     }
     .brand-feature-stats__item {
-        max-width: 45%;
+        flex: 0 0 45%;
+        width: 45%;
     }
 }
 
