@@ -22,14 +22,18 @@
             {%- endif -%}
         </div>
         <div class="brand-learn-cards__overlay"></div>
-        <div class="brand-learn-cards__content">
-            {%- if title != blank -%}<h3 class="brand-learn-cards__title">{{ title }}</h3>{%- endif -%}
-            {%- if button_label != blank -%}
+        {%- if title != blank -%}
+            <div class="brand-learn-cards__title-wrap">
+                <h3 class="brand-learn-cards__title">{{ title }}</h3>
+            </div>
+        {%- endif -%}
+        {%- if button_label != blank -%}
+            <div class="brand-learn-cards__button-wrap">
                 <span class="brand-learn-cards__button">
                     <span>{{ button_label }}</span>
                     <svg class="brand-learn-cards__button-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 4.5 12.44 5.56 18.13 11.25H4v1.5h14.13l-5.69 5.69 1.06 1.06L21 12Z"></path></svg>
                 </span>
-            {%- endif -%}
-        </div>
+            </div>
+        {%- endif -%}
     </a>
 </div>

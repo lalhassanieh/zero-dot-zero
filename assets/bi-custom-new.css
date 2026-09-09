@@ -612,10 +612,32 @@
 .brand-learn-cards__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, var(--brand-learn-cards-overlay, rgba(0, 0, 0, 0.4)), transparent 60%);
+    background: linear-gradient(
+        to bottom,
+        var(--brand-learn-cards-overlay, rgba(0, 0, 0, 0.4)),
+        transparent 30%,
+        transparent 70%,
+        var(--brand-learn-cards-overlay, rgba(0, 0, 0, 0.4))
+    );
     pointer-events: none;
 }
-.brand-learn-cards__content {
+.brand-learn-cards__title-wrap {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 22px 24px;
+    text-align: center;
+}
+.brand-learn-cards__title {
+    margin: 0;
+    color: var(--brand-learn-cards-title-color, #fff);
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.25;
+}
+.brand-learn-cards__button-wrap {
     position: absolute;
     z-index: 1;
     left: 0;
@@ -623,12 +645,6 @@
     bottom: 0;
     padding: 24px;
     text-align: center;
-}
-.brand-learn-cards__title {
-    margin: 0 0 14px;
-    color: var(--brand-learn-cards-title-color, #fff);
-    font-size: 20px;
-    font-weight: 700;
 }
 .brand-learn-cards__button {
     display: inline-flex;
