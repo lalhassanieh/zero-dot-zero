@@ -44,7 +44,7 @@
         "card_bg_color": "#DBEDFB",
         "card_border_radius": 24,
         "enable_shadow": true,
-        "overlap_desktop": 136,
+        "overlap_desktop": 120,
         "overlap_mobile": 0,
         "item_gap": 40,
         "value_color": "#0b2545",
