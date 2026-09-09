@@ -629,3 +629,9 @@
 .template-page-brand .page-width.page-width--narrow {
     display: none;
 }
+
+/* Smooth-scrolls when the brand banner button links to an in-page anchor
+   (e.g. #shopify-section-products) instead of jumping instantly. */
+html:has(body.template-page-brand) {
+    scroll-behavior: smooth;
+}

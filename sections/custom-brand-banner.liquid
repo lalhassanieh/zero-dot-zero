@@ -57,6 +57,10 @@
     assign container = section.settings.container
     assign content_align = section.settings.content_align
 
+    if button_link == blank and section.settings.default_button_target != blank
+        assign button_link = '#shopify-section-' | append: section.settings.default_button_target
+    endif
+
     assign overlay_background = section.settings.overlay_color
     if section.settings.overlay_gradient != blank
         assign overlay_background = section.settings.overlay_gradient
@@ -181,7 +185,19 @@
         { "type": "color", "id": "subheading_color", "label": "Subheading color", "default": "#28356F" },
         { "type": "header", "content": "Button" },
         { "type": "text", "id": "button_label", "label": "Button label", "default": "Discover Our Water" },
-        { "type": "url", "id": "button_link", "label": "Button link" },
+        {
+            "type": "url",
+            "id": "button_link",
+            "label": "Button link",
+            "info": "Leave blank to scroll to the section named below instead. Set this to send the button to a different page/URL/section anchor."
+        },
+        {
+            "type": "text",
+            "id": "default_button_target",
+            "label": "Default button target (used only when Button link above is empty)",
+            "info": "The section ID to scroll to when no link is set above. This must match the section's key in the page template - e.g. 'products' for the JSON key \"products\": {...} that holds the product grid.",
+            "default": "products"
+        },
         { "type": "color", "id": "button_text_color", "label": "Button text color", "default": "#ffffff" },
         { "type": "color", "id": "button_bg_color", "label": "Button background", "default": "#285BAA" },
         { "type": "color", "id": "button_bg_color_hover", "label": "Button background (hover)", "default": "#204988" },
