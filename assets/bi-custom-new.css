@@ -449,14 +449,14 @@
 .brand-banner__heading {
     margin: 0 0 12px;
     color: var(--brand-banner-heading-color, inherit);
-    font-size: clamp(28px, 4vw, 44px);
+    font-size: clamp(32px, 4.5vw, 52px);
     font-weight: 800;
     line-height: 1.15;
 }
 .brand-banner__subheading {
     margin: 0 0 28px;
     color: var(--brand-banner-subheading-color, inherit);
-    font-size: 16px;
+    font-size: 19px;
     line-height: 1.5;
 }
 .brand-banner__button {
@@ -698,4 +698,11 @@
    (e.g. #shopify-section-products) instead of jumping instantly. */
 html:has(body.template-page-brand) {
     scroll-behavior: smooth;
+}
+
+/* .wrapper-body's global 80px bottom padding (base.css) leaves a gap of plain
+   white space below the last section on every page - same override pattern
+   base.css already uses for .template-index, scoped to this template only. */
+.template-page-brand .wrapper-body {
+    padding-bottom: 0;
 }
