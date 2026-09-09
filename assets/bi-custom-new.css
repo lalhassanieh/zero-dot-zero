@@ -460,9 +460,9 @@
 .brand-banner__button {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
+    gap: 18px;
     width: fit-content;
-    padding: 14px 26px;
+    padding: 14px 18px 14px 26px;
     border-radius: 999px;
     color: var(--brand-banner-button-color, #fff);
     background: var(--brand-banner-button-bg, #000);
@@ -473,12 +473,18 @@
     transition: background-color 0.2s ease;
 }
 .brand-banner__button:hover {
+    color: var(--brand-banner-button-color, #fff);
     background: var(--brand-banner-button-bg-hover, var(--brand-banner-button-bg, #000));
 }
-.brand-banner__button svg {
-    width: 14px;
-    height: 14px;
+.brand-banner__button-arrow {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
     fill: currentColor;
+    transition: transform 0.2s ease;
+}
+.brand-banner__button:hover .brand-banner__button-arrow {
+    transform: translateX(-4px);
 }
 @media (max-width: 767px) {
     .brand-banner--fixed {

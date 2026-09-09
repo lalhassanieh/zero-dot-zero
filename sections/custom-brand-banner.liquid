@@ -128,7 +128,7 @@
             {%- if button_label != blank -%}
                 <a class="brand-banner__button" {% if button_link == blank %}role="link" aria-disabled="true"{% else %}href="{{ button_link }}"{% endif %}>
                     <span>{{ button_label }}</span>
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M 7.75 1.34375 L 6.25 2.65625 L 14.65625 12 L 6.25 21.34375 L 7.75 22.65625 L 16.75 12.65625 L 17.34375 12 L 16.75 11.34375 Z"></path></svg>
+                    <svg class="brand-banner__button-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 4.5 12.44 5.56 18.13 11.25H4v1.5h14.13l-5.69 5.69 1.06 1.06L21 12Z"></path></svg>
                 </a>
             {%- endif -%}
         </div>
@@ -177,14 +177,14 @@
                 { "value": "center", "label": "Center" }
             ]
         },
-        { "type": "color", "id": "heading_color", "label": "Heading color", "default": "#0b2545" },
-        { "type": "color", "id": "subheading_color", "label": "Subheading color", "default": "#0b2545" },
+        { "type": "color", "id": "heading_color", "label": "Heading color", "default": "#253376" },
+        { "type": "color", "id": "subheading_color", "label": "Subheading color", "default": "#28356F" },
         { "type": "header", "content": "Button" },
         { "type": "text", "id": "button_label", "label": "Button label", "default": "Discover Our Water" },
         { "type": "url", "id": "button_link", "label": "Button link" },
         { "type": "color", "id": "button_text_color", "label": "Button text color", "default": "#ffffff" },
-        { "type": "color", "id": "button_bg_color", "label": "Button background", "default": "#0b2545" },
-        { "type": "color", "id": "button_bg_color_hover", "label": "Button background (hover)", "default": "#123a6b" },
+        { "type": "color", "id": "button_bg_color", "label": "Button background", "default": "#285BAA" },
+        { "type": "color", "id": "button_bg_color_hover", "label": "Button background (hover)", "default": "#204988" },
         { "type": "header", "content": "Layout" },
         {
             "type": "select",
