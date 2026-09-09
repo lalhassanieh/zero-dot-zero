@@ -56,15 +56,32 @@
 
     assign container = section.settings.container
     assign content_align = section.settings.content_align
+
+    assign overlay_background = section.settings.overlay_color
+    if section.settings.overlay_gradient != blank
+        assign overlay_background = section.settings.overlay_gradient
+    endif
+
+    assign use_fixed_height = section.settings.use_fixed_height
+    assign aspect_desktop = 56.25
+    if bg_desktop != blank
+        assign aspect_desktop = 1 | divided_by: bg_desktop.aspect_ratio | times: 100
+    endif
+    assign aspect_mobile = aspect_desktop
+    if bg_mobile != blank
+        assign aspect_mobile = 1 | divided_by: bg_mobile.aspect_ratio | times: 100
+    endif
 -%}
 
 <div
-    class="brand-banner section-block-{{ section.id }}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--fade-in{% endif %}"
+    class="brand-banner {% if use_fixed_height %}brand-banner--fixed{% else %}brand-banner--natural{% endif %} section-block-{{ section.id }}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--fade-in{% endif %}"
     id="brand-banner-{{ section.id }}"
     style="
         --brand-banner-height: {{ section.settings.height_desktop }}px;
         --brand-banner-height-mb: {{ section.settings.height_mobile }}px;
-        --brand-banner-overlay-color: {{ section.settings.overlay_color }};
+        --brand-banner-aspect: {{ aspect_desktop }}%;
+        --brand-banner-aspect-mb: {{ aspect_mobile }}%;
+        --brand-banner-overlay-bg: {{ overlay_background }};
         --brand-banner-overlay-opacity: {{ section.settings.overlay_opacity | times: 1.0 | divided_by: 100 }};
         --brand-banner-heading-color: {{ section.settings.heading_color }};
         --brand-banner-subheading-color: {{ section.settings.subheading_color }};
@@ -94,7 +111,9 @@
             </div>
         {%- endif -%}
     </picture>
-    <div class="brand-banner__overlay"></div>
+    {%- if section.settings.enable_overlay -%}
+        <div class="brand-banner__overlay"></div>
+    {%- endif -%}
     <div class="{% if container == '1170' %}container-1170{% elsif container == '1470' %}container-1470{% elsif container == '1770' %}container-1770{% elsif container == 'fullwidth' %}container-full{% else %}container{% endif %}">
         <div class="brand-banner__content brand-banner__content--{{ content_align }}">
             {%- if logo_image != blank -%}
@@ -131,8 +150,16 @@
         { "type": "header", "content": "Background (used when metaobject content is off)" },
         { "type": "image_picker", "id": "background_image", "label": "Background image (desktop)" },
         { "type": "image_picker", "id": "background_image_mobile", "label": "Background image (mobile)" },
-        { "type": "range", "id": "overlay_opacity", "label": "Overlay opacity", "min": 0, "max": 80, "step": 5, "unit": "%", "default": 0 },
+        {
+            "type": "checkbox",
+            "id": "enable_overlay",
+            "label": "Enable overlay",
+            "info": "Adds a color or gradient layer over the background image, below the text and button. Off by default.",
+            "default": false
+        },
+        { "type": "range", "id": "overlay_opacity", "label": "Overlay opacity", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 40 },
         { "type": "color", "id": "overlay_color", "label": "Overlay color", "default": "#000000" },
+        { "type": "color_background", "id": "overlay_gradient", "label": "Overlay gradient (optional, overrides color above)" },
         { "type": "header", "content": "Logo" },
         { "type": "image_picker", "id": "logo_image", "label": "Logo image" },
         { "type": "range", "id": "logo_width", "label": "Logo width (desktop)", "min": 60, "max": 400, "step": 10, "unit": "px", "default": 200 },
@@ -172,8 +199,15 @@
                 { "value": "fullwidth", "label": "Full width" }
             ]
         },
-        { "type": "range", "id": "height_desktop", "label": "Height (desktop)", "min": 300, "max": 900, "step": 10, "unit": "px", "default": 560 },
-        { "type": "range", "id": "height_mobile", "label": "Height (mobile)", "min": 300, "max": 800, "step": 10, "unit": "px", "default": 520 }
+        {
+            "type": "checkbox",
+            "id": "use_fixed_height",
+            "label": "Use fixed height",
+            "info": "On (default): every brand banner is cropped to the same height below, so multiple brand pages stay visually consistent. Off: the banner takes whatever height matches the image's own aspect ratio instead, and the height settings below are ignored.",
+            "default": true
+        },
+        { "type": "range", "id": "height_desktop", "label": "Height (desktop, used when fixed height is on)", "min": 300, "max": 900, "step": 10, "unit": "px", "default": 560 },
+        { "type": "range", "id": "height_mobile", "label": "Height (mobile, used when fixed height is on)", "min": 300, "max": 800, "step": 10, "unit": "px", "default": 520 }
     ],
     "presets": [{ "name": "Brand Banner" }]
 }
