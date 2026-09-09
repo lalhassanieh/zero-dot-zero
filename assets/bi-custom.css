@@ -729,6 +729,10 @@ toolbar-item.toolbar {
     background-repeat: no-repeat;
 }
 
+.slide-content..content-box--absolute {
+    overflow-y: visible !important;
+}
+
 .halo-collection-content .bundle-badge {
     margin-right: 0;
     margin-top: 0;
