@@ -6763,28 +6763,29 @@
         ]
       },
       {
-        "type": "textarea",
+        "type": "text",
+        "id": "gdpr_cookie_consent_title",
+        "label": "Title",
+        "default": "We value your privacy"
+      },
+      {
+        "type": "richtext",
         "id": "gdpr_cookie_consent_content",
         "label": "t:settings_schema.general.settings.gdpr_cookie_consent.label__4",
-        "default": "The cookie settings on this website are set to \"allow all cookies\" to give you the very best experience. Please click Accept Cookies to continue to use the site."
-      },
-      {
-        "type": "text",
-        "id": "gdpr_cookie_consent_btn_1_text",
-        "label": "t:settings_schema.general.settings.gdpr_cookie_consent.label__5",
-        "default": "Privacy Policy"
-      },
-      {
-        "type": "text",
-        "id": "gdpr_cookie_consent_btn_1_link",
-        "label": "t:settings_schema.general.settings.gdpr_cookie_consent.label__7",
-        "info": "t:settings_schema.general.settings.gdpr_cookie_consent.info__2"
+        "info": "Use the link tool in this editor to make part of the text (e.g. \"Privacy Policy\") link directly to your policy page, instead of a separate button.",
+        "default": "<p>The cookie settings on this website are set to \"allow all cookies\" to give you the very best experience. Please click Accept Cookies to continue to use the site.</p>"
       },
       {
         "type": "text",
         "id": "gdpr_cookie_consent_btn_2_text",
-        "label": "t:settings_schema.general.settings.gdpr_cookie_consent.label__8",
-        "default": "Accept Cookies"
+        "label": "Accept button label",
+        "default": "Accept"
+      },
+      {
+        "type": "text",
+        "id": "gdpr_cookie_consent_btn_3_text",
+        "label": "Decline button label",
+        "default": "Decline"
       },
       {
         "type": "color",
@@ -6795,7 +6796,7 @@
       {
         "type": "color",
         "id": "gdpr_cookie_consent_color_privacy",
-        "label": "t:settings_schema.general.settings.gdpr_cookie_consent.color_privacy_policy",
+        "label": "Link color (within the text above)",
         "default": "#818181"
       },
       {

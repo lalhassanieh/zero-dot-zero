@@ -36,8 +36,16 @@ class CookieConsent extends HTMLElement {
 
 		this.querySelector('[data-accept-cookie]').addEventListener(
             'click',
-            this.setClosePopup.bind(this)
+            (event) => this.setClosePopup(event, 'accepted')
         );
+
+        const declineButton = this.querySelector('[data-decline-cookie]');
+        if (declineButton) {
+            declineButton.addEventListener(
+                'click',
+                (event) => this.setClosePopup(event, 'declined')
+            );
+        }
 	}
 
 	setCookie(cname, cvalue) {
@@ -65,10 +73,10 @@ class CookieConsent extends HTMLElement {
         document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
     }
 
-    setClosePopup(event) {
+    setClosePopup(event, value) {
         event.preventDefault();
-        
-        this.setCookie('cookie-consent', 'closed');
+
+        this.setCookie('cookie-consent', value || 'closed');
         this.cookie.remove();
 
         if(this.cookie.classList.contains('full-width')){
