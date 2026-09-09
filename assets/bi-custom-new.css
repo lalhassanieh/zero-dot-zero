@@ -716,3 +716,15 @@ html:has(body.template-page-brand) {
     font-weight: 600;
     line-height: 1.4;
 }
+
+/* The slideshow's heading/sub-heading/button each animate in via
+   transform: translateY(2rem) -> translateY(0) (fade-up-animation.css). A CSS
+   transform doesn't affect layout, but an untransformed element can still
+   briefly grow the nearest ancestor's *scrollable* area while it's offset -
+   .slideshow .item has no overflow rule at all, so that transient 2rem shift
+   was bubbling up to the page and flashing a scrollbar on load that vanished
+   once the animation settled. Clipping it here contains that without touching
+   the shared animation used across the rest of the theme. */
+.slideshow .item {
+    overflow: hidden;
+}
