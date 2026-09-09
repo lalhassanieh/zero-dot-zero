@@ -1,10 +1,20 @@
 {%- comment -%}
   Renders one card in the brand "learn more" cards grid.
-  Accepts: image, title, button_label, link
+  Accepts: image, title, button_label, link, scroll_target
+
+  scroll_target (optional) is a section ID on this same page - when set, it overrides "link"
+  and scrolls to that section instead of navigating away. Leaving it blank (the default) keeps
+  the normal external/page link behavior.
 {%- endcomment -%}
+{%- liquid
+    assign final_link = link
+    if scroll_target != blank
+        assign final_link = '#shopify-section-' | append: scroll_target
+    endif
+-%}
 <div class="brand-learn-cards__item">
-    <a class="brand-learn-cards__link" {% if link == blank %}role="link" aria-disabled="true"{% else %}href="{{ link }}"{% endif %}>
-        <div class="brand-learn-cards__image adaptive_height" style="padding-top: {% if image != blank %}{{ 1 | divided_by: image.aspect_ratio | times: 100 }}%{% else %}100%{% endif %}">
+    <a class="brand-learn-cards__link" {% if final_link == blank %}role="link" aria-disabled="true"{% else %}href="{{ final_link }}"{% endif %}>
+        <div class="brand-learn-cards__image">
             {%- if image != blank -%}
                 <img srcset="{{ image | image_url: width: 375 }} 375w, {{ image | image_url: width: 750 }} 750w, {{ image | image_url: width: 1100 }} 1100w" src="{{ image | image_url: width: 750 }}" alt="{{ title | escape }}" width="{{ image.width }}" height="{{ image.height }}" loading="lazy">
             {%- else -%}
@@ -14,7 +24,12 @@
         <div class="brand-learn-cards__overlay"></div>
         <div class="brand-learn-cards__content">
             {%- if title != blank -%}<h3 class="brand-learn-cards__title">{{ title }}</h3>{%- endif -%}
-            {%- if button_label != blank -%}<span class="brand-learn-cards__button">{{ button_label }}</span>{%- endif -%}
+            {%- if button_label != blank -%}
+                <span class="brand-learn-cards__button">
+                    <span>{{ button_label }}</span>
+                    <svg class="brand-learn-cards__button-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 4.5 12.44 5.56 18.13 11.25H4v1.5h14.13l-5.69 5.69 1.06 1.06L21 12Z"></path></svg>
+                </span>
+            {%- endif -%}
         </div>
     </a>
 </div>

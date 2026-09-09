@@ -32,6 +32,13 @@
     {%- endfor -%}
 {%- endif -%}
 
+{%- liquid
+    assign overlay_background = section.settings.overlay_color
+    if section.settings.overlay_gradient != blank
+        assign overlay_background = section.settings.overlay_gradient
+    endif
+-%}
+
 <div
     class="brand-learn-cards section-block-{{ section.id }}"
     id="brand-learn-cards-{{ section.id }}"
@@ -39,10 +46,15 @@
         --brand-learn-cards-columns: {{ section.settings.columns }};
         --brand-learn-cards-gap: {{ section.settings.item_gap }}px;
         --brand-learn-cards-radius: {{ section.settings.card_border_radius }}px;
-        --brand-learn-cards-overlay: {{ section.settings.overlay_color }};
+        --brand-learn-cards-overlay: {{ overlay_background }};
         --brand-learn-cards-title-color: {{ section.settings.title_color }};
         --brand-learn-cards-button-color: {{ section.settings.button_text_color }};
         --brand-learn-cards-button-bg: {{ section.settings.button_bg_color }};
+        --brand-learn-cards-button-bg-hover: {{ section.settings.button_bg_color_hover }};
+        --brand-learn-cards-card-height: {{ section.settings.card_height }}px;
+        --brand-learn-cards-card-height-mb: {{ section.settings.card_height_mobile }}px;
+        --brand-learn-cards-padding-top: {{ section.settings.padding_top }}px;
+        --brand-learn-cards-padding-bottom: {{ section.settings.padding_bottom }}px;
     "
 >
     <div class="{% if section.settings.container == '1170' %}container-1170{% elsif section.settings.container == '1470' %}container-1470{% elsif section.settings.container == 'fullwidth' %}container-full{% else %}container{% endif %}">
@@ -52,12 +64,12 @@
         <div class="brand-learn-cards__grid">
             {%- if section.settings.use_metaobject_content -%}
                 {%- for card in meta_cards -%}
-                    {%- render 'brand-learn-more-card', image: card.image.value, title: card.title, button_label: card.button_label, link: card.link -%}
+                    {%- render 'brand-learn-more-card', image: card.image.value, title: card.title, button_label: card.button_label, link: card.link, scroll_target: card.scroll_target -%}
                 {%- endfor -%}
             {%- else -%}
                 {%- for block in section.blocks -%}
                     {%- if block.type == 'card' -%}
-                        {%- render 'brand-learn-more-card', image: block.settings.image, title: block.settings.title, button_label: block.settings.button_label, link: block.settings.link -%}
+                        {%- render 'brand-learn-more-card', image: block.settings.image, title: block.settings.title, button_label: block.settings.button_label, link: block.settings.link, scroll_target: block.settings.scroll_target -%}
                     {%- endif -%}
                 {%- endfor -%}
             {%- endif -%}
@@ -93,11 +105,18 @@
         { "type": "range", "id": "columns", "label": "Columns (desktop)", "min": 2, "max": 4, "step": 1, "default": 3 },
         { "type": "range", "id": "item_gap", "label": "Gap between cards", "min": 0, "max": 60, "step": 2, "unit": "px", "default": 24 },
         { "type": "range", "id": "card_border_radius", "label": "Card corner radius", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 16 },
+        { "type": "range", "id": "card_height", "label": "Card image height (desktop)", "min": 200, "max": 700, "step": 10, "unit": "px", "default": 420 },
+        { "type": "range", "id": "card_height_mobile", "label": "Card image height (mobile)", "min": 200, "max": 600, "step": 10, "unit": "px", "default": 320 },
         { "type": "color", "id": "overlay_color", "label": "Image overlay color", "default": "#00000066" },
+        { "type": "color_background", "id": "overlay_gradient", "label": "Image overlay gradient (optional, overrides color above)" },
         { "type": "header", "content": "Text & Button" },
         { "type": "color", "id": "title_color", "label": "Card title color", "default": "#ffffff" },
         { "type": "color", "id": "button_text_color", "label": "Button text color", "default": "#0b2545" },
-        { "type": "color", "id": "button_bg_color", "label": "Button background", "default": "#ffffff" }
+        { "type": "color", "id": "button_bg_color", "label": "Button background", "default": "#ffffff" },
+        { "type": "color", "id": "button_bg_color_hover", "label": "Button background (hover)", "default": "#e5e5e5" },
+        { "type": "header", "content": "Spacing" },
+        { "type": "range", "id": "padding_top", "label": "Padding top", "min": 0, "max": 150, "step": 5, "unit": "px", "default": 60 },
+        { "type": "range", "id": "padding_bottom", "label": "Padding bottom", "min": 0, "max": 150, "step": 5, "unit": "px", "default": 60 }
     ],
     "blocks": [
         {
@@ -107,7 +126,18 @@
                 { "type": "image_picker", "id": "image", "label": "Image" },
                 { "type": "text", "id": "title", "label": "Title", "default": "Mineral Water" },
                 { "type": "text", "id": "button_label", "label": "Button label", "default": "Learn More" },
-                { "type": "url", "id": "link", "label": "Link" }
+                {
+                    "type": "url",
+                    "id": "link",
+                    "label": "Link",
+                    "info": "The default: sends the visitor to another page/URL. Leave blank if using the section ID option below instead."
+                },
+                {
+                    "type": "text",
+                    "id": "scroll_target",
+                    "label": "Or scroll to section (ID), instead of the link above",
+                    "info": "Optional. If set, overrides Link above and scrolls to that section's ID on this same page instead of navigating away."
+                }
             ]
         }
     ],
