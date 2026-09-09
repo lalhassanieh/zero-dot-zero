@@ -388,11 +388,11 @@
     width: 100%;
     height: 100%;
 }
+.brand-banner__media {
+    display: block;
+}
 .brand-banner__bg {
     object-fit: cover;
-}
-.brand-banner__bg--mobile {
-    display: none;
 }
 .brand-banner__overlay {
     background: var(--brand-banner-overlay-color, transparent);
@@ -462,12 +462,6 @@
 @media (max-width: 767px) {
     .brand-banner {
         height: var(--brand-banner-height-mb, 520px);
-    }
-    .brand-banner__bg--desktop.hide-on-mobile {
-        display: none;
-    }
-    .brand-banner__bg--mobile {
-        display: block;
     }
     .brand-banner__logo {
         width: var(--brand-banner-logo-width-mb, 140px);
@@ -596,4 +590,12 @@
     .brand-learn-cards__grid {
         grid-template-columns: 1fr;
     }
+}
+
+/* Hides the default page title/content block that main-page.liquid renders
+   for every page template unless its suffix contains "landing" - this page's
+   template is named "brand", not "*-landing", so it still renders that block
+   even though the page's own body/title isn't used on this fully custom layout. */
+.template-page-brand .page-width.page-width--narrow {
+    display: none;
 }

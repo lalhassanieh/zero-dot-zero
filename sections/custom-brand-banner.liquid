@@ -75,10 +75,13 @@
         --brand-banner-logo-width-mb: {{ section.settings.logo_width_mobile }}px;
     "
 >
-    <div class="brand-banner__media">
+    <picture class="brand-banner__media">
         {%- if bg_desktop != blank -%}
+            {%- if bg_mobile != blank -%}
+                <source media="(max-width: 767px)" srcset="{{ bg_mobile | image_url: width: 480 }} 480w, {{ bg_mobile | image_url: width: 750 }} 750w">
+            {%- endif -%}
             <img
-                class="brand-banner__bg brand-banner__bg--desktop{% if bg_mobile != blank %} hide-on-mobile{% endif %}"
+                class="brand-banner__bg"
                 srcset="{{ bg_desktop | image_url: width: 750 }} 750w, {{ bg_desktop | image_url: width: 1100 }} 1100w, {{ bg_desktop | image_url: width: 1500 }} 1500w, {{ bg_desktop | image_url: width: 1920 }} 1920w"
                 src="{{ bg_desktop | image_url: width: 1920 }}"
                 alt=""
@@ -90,19 +93,8 @@
                 {{ 'hero-apparel-2' | placeholder_svg_tag: 'placeholder-svg' }}
             </div>
         {%- endif -%}
-        {%- if bg_mobile != blank -%}
-            <img
-                class="brand-banner__bg brand-banner__bg--mobile"
-                srcset="{{ bg_mobile | image_url: width: 480 }} 480w, {{ bg_mobile | image_url: width: 750 }} 750w"
-                src="{{ bg_mobile | image_url: width: 750 }}"
-                alt=""
-                width="{{ bg_mobile.width }}"
-                height="{{ bg_mobile.height }}"
-                loading="lazy"
-            >
-        {%- endif -%}
-        <div class="brand-banner__overlay"></div>
-    </div>
+    </picture>
+    <div class="brand-banner__overlay"></div>
     <div class="{% if container == '1170' %}container-1170{% elsif container == '1470' %}container-1470{% elsif container == '1770' %}container-1770{% elsif container == 'fullwidth' %}container-full{% else %}container{% endif %}">
         <div class="brand-banner__content brand-banner__content--{{ content_align }}">
             {%- if logo_image != blank -%}
