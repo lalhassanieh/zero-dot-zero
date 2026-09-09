@@ -44,6 +44,7 @@
         --brand-feature-stats-gap: {{ section.settings.item_gap }}px;
         --brand-feature-stats-value-color: {{ section.settings.value_color }};
         --brand-feature-stats-label-color: {{ section.settings.label_color }};
+        --brand-feature-stats-section-bg: {{ section.settings.background_color }};
     "
 >
     <div class="{% if section.settings.container == '1170' %}container-1170{% elsif section.settings.container == '1470' %}container-1470{% elsif section.settings.container == 'fullwidth' %}container-full{% else %}container{% endif %}">
@@ -76,6 +77,7 @@
             "default": false
         },
         { "type": "header", "content": "Card" },
+        { "type": "color", "id": "background_color", "label": "Section background color", "default": "#FEF7EC" },
         { "type": "select", "id": "container", "label": "Container width", "default": "container", "options": [
             { "value": "container", "label": "Standard" },
             { "value": "1170", "label": "1170px" },

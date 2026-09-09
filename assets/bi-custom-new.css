@@ -503,6 +503,7 @@
 .brand-feature-stats {
     position: relative;
     z-index: 2;
+    background: var(--brand-feature-stats-section-bg, transparent);
 }
 .brand-feature-stats__card {
     display: flex;
@@ -628,8 +629,8 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 45%;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.45), transparent);
+    height: 55%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.35) 55%, transparent);
     pointer-events: none;
 }
 .brand-learn-cards__title-wrap {
