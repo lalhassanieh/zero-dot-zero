@@ -4450,6 +4450,18 @@ summary::-webkit-details-marker {
         margin-right: auto;
     }
 
+    /* content-box--absolute's own max-height:100%/overflow-y:auto (component-loading-banner.css)
+       resolves against a slide height that Slick's adaptiveHeight computes and mutates via JS
+       (needed here since fade:true stacks slides as position:absolute, so nothing else gives
+       the slideshow a height). Slick's first measurement on init can briefly land short before
+       it self-corrects, and during that window text taller than the wrong height flashes an
+       auto-scrollbar. Pin the cap to the viewport instead so it never depends on that JS value -
+       genuinely oversized text just clips instead of ever showing a scrollbar. */
+    .slideshow .content-box--absolute {
+        max-height: 90vh;
+        overflow-y: hidden;
+    }
+
     .slideshow .content-box--absolute:before {
         content: "";
         position: absolute;
