@@ -4476,6 +4476,18 @@ summary::-webkit-details-marker {
             padding-right: 20px !important;
             padding-top: 24px !important;
             padding-bottom: 24px !important;
+            /* Ignore each slide's own vertical/horizontal position setting on mobile (that's
+               a desktop-oriented value, e.g. vertically centered at 50%) and anchor every slide
+               to the same spot instead: centered horizontally, with its bottom edge held a fixed
+               distance above the dots (which sit ~34px + their own height up from the bottom -
+               see position_slick_dots/dot_mobile_size in this section's settings) so text/buttons
+               never crowd or overlap them, and every slide reads the same instead of each one
+               landing wherever its own desktop vertical-position % happens to fall on a phone. */
+            top: auto !important;
+            bottom: 80px !important;
+            left: 50% !important;
+            right: auto !important;
+            transform: translateX(-50%) !important;
         }
     }
 
