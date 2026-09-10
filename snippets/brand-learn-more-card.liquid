@@ -1,6 +1,7 @@
 {%- comment -%}
   Renders one card in the brand "learn more" cards grid.
-  Accepts: image, title, button_label, link, scroll_target, enable_overlay
+  Accepts: image, title, button_label, link, scroll_target, enable_overlay,
+  title_color, button_text_color, button_bg_color, button_bg_color_hover
 
   scroll_target (optional) is a section ID on this same page - when set, it overrides "link"
   and scrolls to that section instead of navigating away. Leaving it blank (the default) keeps
@@ -9,14 +10,32 @@
   "enable_overlay" (default on) darkens the whole image at a low opacity so text stays legible
   even over a bright/white photo. It's fully configurable/removable via the section settings
   (color, gradient, or turned off entirely).
+
+  title_color/button_text_color/button_bg_color/button_bg_color_hover (all optional) override
+  this one card's colors by re-declaring the section's CSS custom properties on just this item -
+  leave any of them blank to fall back to the section-wide color.
 {%- endcomment -%}
 {%- liquid
     assign final_link = link
     if scroll_target != blank
         assign final_link = '#shopify-section-' | append: scroll_target
     endif
+
+    assign card_style = ''
+    if title_color != blank
+        assign card_style = card_style | append: '--brand-learn-cards-title-color: ' | append: title_color | append: ';'
+    endif
+    if button_text_color != blank
+        assign card_style = card_style | append: '--brand-learn-cards-button-color: ' | append: button_text_color | append: ';'
+    endif
+    if button_bg_color != blank
+        assign card_style = card_style | append: '--brand-learn-cards-button-bg: ' | append: button_bg_color | append: ';'
+    endif
+    if button_bg_color_hover != blank
+        assign card_style = card_style | append: '--brand-learn-cards-button-bg-hover: ' | append: button_bg_color_hover | append: ';'
+    endif
 -%}
-<div class="brand-learn-cards__item">
+<div class="brand-learn-cards__item"{% if card_style != blank %} style="{{ card_style }}"{% endif %}>
     <a class="brand-learn-cards__link" {% if final_link == blank %}role="link" aria-disabled="true"{% else %}href="{{ final_link }}"{% endif %}>
         <div class="brand-learn-cards__image">
             {%- if image != blank -%}
