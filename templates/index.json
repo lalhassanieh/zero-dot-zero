@@ -123,7 +123,7 @@
             "slide_id": "main-slide-show-3",
             "image_slide": "shopify://shop_images/hero_1512_x_634.jpg",
             "alignment": "left",
-            "enable_custom_position": false,
+            "enable_custom_position": true,
             "custom_horizontal": "10",
             "custom_vertical": "50",
             "enable_position_outside_image": false,
