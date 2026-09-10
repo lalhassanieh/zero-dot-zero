@@ -345,7 +345,7 @@
         "slideshow_background_gradient": "",
         "border_radius": 0,
         "autoplay": true,
-        "slideshow_speed": "5000",
+        "slideshow_speed": "10000",
         "slideshow_transition": "true",
         "dots": "shape",
         "dots_color": "rgba(0,0,0,0)",
