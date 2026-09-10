@@ -89,6 +89,7 @@
     assign product_bg_gradient = section.settings.product_bg_gradient
     assign product_bg_image = section.settings.product_bg_image
 
+    assign color_subheading = section.settings.color_subheading
     assign color_title = section.settings.color_title
     assign border_color_title = section.settings.border_color_title
     assign pd_top_title = section.settings.pd_top_title
@@ -375,6 +376,7 @@
         {%- endif -%}
     }
     .section-block-{{section.id}} .halo-block-header .title svg {fill: {{ color_title }}}
+    .section-block-{{section.id}} .product-block__subheading {color: {{ color_subheading }}}
     .section-block-{{section.id}} .halo-block-header .title:before {background-color: {{ border_color_title }};
         {%- unless section.settings.enable_border_title -%}
             display: none;
@@ -1124,6 +1126,12 @@
             { "value": "center", "label": "Center" },
             { "value": "right", "label": "Right" }
         ]
+    },
+    {
+        "type": "color",
+        "id": "color_subheading",
+        "label": "Subheading color",
+        "default": "#232323"
     },
     {
         "type": "checkbox",
