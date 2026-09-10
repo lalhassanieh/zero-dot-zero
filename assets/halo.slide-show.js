@@ -182,6 +182,20 @@
                         });
                     };
 
+                    // adaptiveHeight (needed so fade-mode slides, which are all absolutely
+                    // positioned on top of each other, don't collapse the slideshow to 0px)
+                    // measures the current slide's height at Slick's own init/resize timing.
+                    // If a slide's image is still lazy-loading at that moment, Slick can grab
+                    // a too-small height and only correct it on its next internal pass a beat
+                    // later - in that gap, the text box's overflow-y:auto below can be taller
+                    // than the height Slick just set, so its scrollbar flashes on then off.
+                    // Recomputing as soon as each image actually loads closes that gap.
+                    self.on('lazyloaded', 'img', function () {
+                        if (self.hasClass('slick-initialized')) {
+                            self.slick('setPosition');
+                        }
+                    });
+
                     if (self.not('.slick-initialized')) {
                         if (self.data('dots') == 'none') {
                           var dots = false;
