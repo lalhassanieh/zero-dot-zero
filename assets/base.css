@@ -4462,6 +4462,23 @@ summary::-webkit-details-marker {
         overflow-y: hidden;
     }
 
+    @media (max-width: 767px) {
+        /* Each slide sets its own desktop-tuned width inline (e.g. 425px/680px, per the
+           section's "Content width" block setting) and, for "custom position" slides, its own
+           horizontal offset as a % of that width - both assume a wide desktop viewport. On a
+           ~375px phone the box was wider than the screen and silently clipped by Slick's
+           overflow:hidden slide list (text/buttons cut off at the edge, differently per slide).
+           A single fluid, capped width fixes every slide the same way: custom-position slides
+           shift back into frame automatically, since their offset is a % of this same width. */
+        .slideshow .slide-content {
+            width: min(90vw, 380px) !important;
+            padding-left: 20px !important;
+            padding-right: 20px !important;
+            padding-top: 24px !important;
+            padding-bottom: 24px !important;
+        }
+    }
+
     .slideshow .content-box--absolute:before {
         content: "";
         position: absolute;
