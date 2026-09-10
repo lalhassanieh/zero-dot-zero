@@ -30,6 +30,7 @@
         "subheading_color": "#28356f",
         "button_label": "Discover Our Water",
         "button_link": "",
+        "button_scroll_target": "",
         "default_button_target": "tannourine-products",
         "button_text_color": "#ffffff",
         "button_bg_color": "#285baa",
@@ -46,6 +47,7 @@
       "type": "custom-brand-feature-stats",
       "settings": {
         "use_metaobject_content": true,
+        "section_id": "",
         "background_color": "#fef7ec",
         "container": "container",
         "card_bg_color": "#dbedfb",
@@ -62,6 +64,7 @@
       "type": "custom-brand-learn-more-cards",
       "settings": {
         "use_metaobject_content": true,
+        "section_id": "",
         "heading": "",
         "heading_align": "center",
         "background_color": "#fef7ec",
@@ -109,6 +112,7 @@
         "product_block_title": "The Perfect Size for Every Moment",
         "product_block_subheading": "Discover our range",
         "product_block_subheading_align": "left",
+        "color_subheading": "#000000",
         "enable_border_title": false,
         "enable_border_title_style2": true,
         "fontsize_title": 48,
