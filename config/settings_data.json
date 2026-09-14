@@ -287,7 +287,7 @@
     "show_someone_purchase": false,
     "show_someone_purchase_mobile": false,
     "someone_purchase_position": "right",
-    "show_gdpr_cookie_consent": true,
+    "show_gdpr_cookie_consent": false,
     "gdpr_cookie_consent_type": "left",
     "gdpr_cookie_consent_title": "We value your privacy",
     "gdpr_cookie_consent_content": "<p>We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. By clicking \"Accept\" you consent to our use of cookies mentioned in our <a href=\"/policies/privacy-policy\">Privacy Policy</a>.</p>",
