@@ -120,8 +120,6 @@
           "settings": {
             "use_metaobject_slide": true,
             "slide_id": "main-slide-show-1",
-            "image_slide": "shopify://shop_images/Hero_Section_Web_1370x477_-_Tanqueray.jpg",
-            "image_slide_mb": "shopify://shop_images/Hero_Section_Mob_432x432_-_Tanqueray.jpg",
             "alignment": "left",
             "enable_custom_position": true,
             "custom_horizontal": "10",
