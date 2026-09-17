@@ -691,7 +691,7 @@
             "button_style": "style_1",
             "btn_text": "Discover the collection",
             "link": "shopify://collections/tannourine",
-            "button_1_width": 235,
+            "button_1_width": 250,
             "enable_button_custom_border": false,
             "button_color": "#fff",
             "button_border": "#232323",
