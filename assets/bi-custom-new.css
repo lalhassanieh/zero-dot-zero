@@ -679,6 +679,25 @@
 .brand-learn-cards__link:hover .brand-learn-cards__button-arrow {
     transform: translateX(-4px);
 }
+
+/* Arabic reads right-to-left, so the arrow has to point the other way. The theme
+   does not set dir="rtl" (settings.enable_layout_rtl is off) and styles Arabic through
+   a locale stylesheet instead, so this keys off <html lang>. The [dir="rtl"] selectors
+   are there in case that setting is ever switched on. */
+html[lang^="ar"] .brand-learn-cards__button-arrow,
+html[lang^="ar"] .brand-banner__button-arrow,
+[dir="rtl"] .brand-learn-cards__button-arrow,
+[dir="rtl"] .brand-banner__button-arrow {
+    transform: scaleX(-1);
+}
+/* scaleX mirrors the axis, so a POSITIVE translate reads as a leftward nudge here.
+   Repeating scaleX(-1) matters: transform replaces, it does not accumulate. */
+html[lang^="ar"] .brand-learn-cards__link:hover .brand-learn-cards__button-arrow,
+html[lang^="ar"] .brand-banner__button:hover .brand-banner__button-arrow,
+[dir="rtl"] .brand-learn-cards__link:hover .brand-learn-cards__button-arrow,
+[dir="rtl"] .brand-banner__button:hover .brand-banner__button-arrow {
+    transform: scaleX(-1) translateX(4px);
+}
 @media (max-width: 767px) {
     .brand-learn-cards__grid {
         grid-template-columns: repeat(var(--brand-learn-cards-columns-mobile, 1), 1fr);

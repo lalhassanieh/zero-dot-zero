@@ -40,7 +40,7 @@
         "height_desktop": 710,
         "height_mobile": 520,
         "content_shift_up": 60,
-        "content_shift_up_mobile": 0
+        "content_shift_up_mobile": 40
       }
     },
     "feature_stats": {
@@ -54,7 +54,7 @@
         "card_border_radius": 24,
         "enable_shadow": true,
         "overlap_desktop": 120,
-        "overlap_mobile": 0,
+        "overlap_mobile": 50,
         "item_gap": 40,
         "value_color": "#0b2545",
         "label_color": "#0b2545"
