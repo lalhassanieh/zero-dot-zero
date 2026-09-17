@@ -472,10 +472,11 @@
     text-transform: uppercase;
     letter-spacing: 0.02em;
     text-decoration: none;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 .brand-banner__button:hover {
-    color: var(--brand-banner-button-color, #fff);
+    /* Falls back to the non-hover colour, so leaving the hover field blank changes nothing. */
+    color: var(--brand-banner-button-color-hover, var(--brand-banner-button-color, #fff));
     background: var(--brand-banner-button-bg-hover, var(--brand-banner-button-bg, #000));
 }
 .brand-banner__button-arrow {
@@ -660,9 +661,11 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.02em;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 .brand-learn-cards__link:hover .brand-learn-cards__button {
+    /* Falls back to the non-hover colour, so leaving the hover field blank changes nothing. */
+    color: var(--brand-learn-cards-button-color-hover, var(--brand-learn-cards-button-color, #000));
     background: var(--brand-learn-cards-button-bg-hover, var(--brand-learn-cards-button-bg, #fff));
 }
 .brand-learn-cards__button-arrow {

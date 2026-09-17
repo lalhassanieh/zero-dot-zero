@@ -82,6 +82,7 @@
     assign banner_subheading_color = meta_banner.subheading_color | default: section.settings.subheading_color
     assign banner_button_text_color = meta_banner.button_label_color | default: section.settings.button_text_color
     assign banner_button_bg_color = meta_banner.button_bg_color | default: section.settings.button_bg_color
+    assign banner_button_text_hover = meta_banner.button_label_color_hover | default: section.settings.button_text_color_hover
     assign banner_button_bg_hover = meta_banner.button_bg_color_hover | default: section.settings.button_bg_color_hover
 
     if button_scroll_target != blank
@@ -120,6 +121,7 @@
         --brand-banner-subheading-color: {{ banner_subheading_color }};
         --brand-banner-button-color: {{ banner_button_text_color }};
         --brand-banner-button-bg: {{ banner_button_bg_color }};
+        --brand-banner-button-color-hover: {{ banner_button_text_hover }};
         --brand-banner-button-bg-hover: {{ banner_button_bg_hover }};
         --brand-banner-logo-width: {{ section.settings.logo_width }}px;
         --brand-banner-logo-width-mb: {{ section.settings.logo_width_mobile }}px;
@@ -236,6 +238,7 @@
         },
         { "type": "color", "id": "button_text_color", "label": "Button text color", "default": "#ffffff" },
         { "type": "color", "id": "button_bg_color", "label": "Button background", "default": "#285BAA" },
+        { "type": "color", "id": "button_text_color_hover", "label": "Button text color (hover)", "default": "#ffffff" },
         { "type": "color", "id": "button_bg_color_hover", "label": "Button background (hover)", "default": "#204988" },
         { "type": "header", "content": "Layout" },
         {

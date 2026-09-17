@@ -1,7 +1,7 @@
 {%- comment -%}
   Renders one card in the brand "learn more" cards grid.
   Accepts: image, title, button_label, card_collection, link, scroll_target, enable_overlay,
-  title_color, button_text_color, button_bg_color, button_bg_color_hover
+  title_color, button_text_color, button_text_color_hover, button_bg_color, button_bg_color_hover
 
   Where the card links to, highest priority first:
     1. card_collection - a Collection; the card goes to that collection's page.
@@ -36,6 +36,9 @@
     endif
     if button_bg_color != blank
         assign card_style = card_style | append: '--brand-learn-cards-button-bg: ' | append: button_bg_color | append: ';'
+    endif
+    if button_text_color_hover != blank
+        assign card_style = card_style | append: '--brand-learn-cards-button-color-hover: ' | append: button_text_color_hover | append: ';'
     endif
     if button_bg_color_hover != blank
         assign card_style = card_style | append: '--brand-learn-cards-button-bg-hover: ' | append: button_bg_color_hover | append: ';'

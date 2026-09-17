@@ -85,6 +85,7 @@
         --brand-learn-cards-title-color: {{ section.settings.title_color }};
         --brand-learn-cards-button-color: {{ section.settings.button_text_color }};
         --brand-learn-cards-button-bg: {{ section.settings.button_bg_color }};
+        --brand-learn-cards-button-color-hover: {{ section.settings.button_text_color_hover }};
         --brand-learn-cards-button-bg-hover: {{ section.settings.button_bg_color_hover }};
         --brand-learn-cards-card-height: {{ section.settings.card_height }}px;
         --brand-learn-cards-card-height-mb: {{ section.settings.card_height_mobile }}px;
@@ -119,14 +120,15 @@
                         assign card_title_color = card.title_color | default: override_block.settings.title_color
                         assign card_button_text_color = card.button_label_color | default: override_block.settings.button_text_color
                         assign card_button_bg_color = card.button_bg_color | default: override_block.settings.button_bg_color
+                        assign card_button_text_hover = card.button_label_color_hover | default: override_block.settings.button_text_color_hover
                         assign card_button_bg_hover = card.button_bg_color_hover | default: override_block.settings.button_bg_color_hover
                     -%}
-                    {%- render 'brand-learn-more-card', image: card.image.value, title: card_title, button_label: card.button_label, card_collection: card.collection.value, link: card.link, scroll_target: card.scroll_target, enable_overlay: section.settings.enable_overlay, title_color: card_title_color, button_text_color: card_button_text_color, button_bg_color: card_button_bg_color, button_bg_color_hover: card_button_bg_hover -%}
+                    {%- render 'brand-learn-more-card', image: card.image.value, title: card_title, button_label: card.button_label, card_collection: card.collection.value, link: card.link, scroll_target: card.scroll_target, enable_overlay: section.settings.enable_overlay, title_color: card_title_color, button_text_color: card_button_text_color, button_bg_color: card_button_bg_color, button_text_color_hover: card_button_text_hover, button_bg_color_hover: card_button_bg_hover -%}
                 {%- endfor -%}
             {%- else -%}
                 {%- for block in section.blocks -%}
                     {%- if block.type == 'card' -%}
-                        {%- render 'brand-learn-more-card', image: block.settings.image, title: block.settings.title, button_label: block.settings.button_label, card_collection: block.settings.collection, link: block.settings.link, scroll_target: block.settings.scroll_target, enable_overlay: section.settings.enable_overlay, title_color: block.settings.title_color, button_text_color: block.settings.button_text_color, button_bg_color: block.settings.button_bg_color, button_bg_color_hover: block.settings.button_bg_color_hover -%}
+                        {%- render 'brand-learn-more-card', image: block.settings.image, title: block.settings.title, button_label: block.settings.button_label, card_collection: block.settings.collection, link: block.settings.link, scroll_target: block.settings.scroll_target, enable_overlay: section.settings.enable_overlay, title_color: block.settings.title_color, button_text_color: block.settings.button_text_color, button_bg_color: block.settings.button_bg_color, button_text_color_hover: block.settings.button_text_color_hover, button_bg_color_hover: block.settings.button_bg_color_hover -%}
                     {%- endif -%}
                 {%- endfor -%}
             {%- endif -%}
@@ -180,6 +182,7 @@
         { "type": "color", "id": "title_color", "label": "Card title color", "default": "#ffffff" },
         { "type": "color", "id": "button_text_color", "label": "Button text color", "default": "#ffffff" },
         { "type": "color", "id": "button_bg_color", "label": "Button background", "default": "#285BAA" },
+        { "type": "color", "id": "button_text_color_hover", "label": "Button text color (hover)", "default": "#ffffff" },
         { "type": "color", "id": "button_bg_color_hover", "label": "Button background (hover)", "default": "#204988" },
         { "type": "header", "content": "Spacing" },
         { "type": "range", "id": "padding_top", "label": "Padding top", "min": 0, "max": 150, "step": 5, "unit": "px", "default": 60 },
@@ -226,6 +229,7 @@
                 { "type": "color", "id": "title_color", "label": "Title color", "info": "Leave blank to use the section's Card title color." },
                 { "type": "color", "id": "button_text_color", "label": "Button text color", "info": "Leave blank to use the section's Button text color." },
                 { "type": "color", "id": "button_bg_color", "label": "Button background", "info": "Leave blank to use the section's Button background." },
+                { "type": "color", "id": "button_text_color_hover", "label": "Button text color (hover)", "info": "Leave blank to use the section's Button text color (hover)." },
                 { "type": "color", "id": "button_bg_color_hover", "label": "Button background (hover)", "info": "Leave blank to use the section's Button background (hover)." }
             ]
         }
