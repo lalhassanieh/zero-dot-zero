@@ -759,3 +759,23 @@ html:has(body.template-collection-brand) {
 .slideshow .item {
     overflow: hidden;
 }
+
+/* Brand slider: the logos are wildly different shapes - a wide wordmark like
+   tannourine (300x88) next to a tall stacked lockup like Guinness 0.0 - and slick
+   floats its slides, so each one sat on the top edge and the row read as ragged.
+   Turning the track into a flex row makes every slide match the tallest, then each
+   slide centres its own logo. flex: 0 0 auto keeps the inline pixel widths slick
+   calculates, so the carousel maths is untouched. */
+.brand-slider .slick-track {
+    display: flex;
+    align-items: stretch;
+}
+.brand-slider .slick-track .halo-item {
+    flex: 0 0 auto;
+    height: auto;
+    display: flex;
+    align-items: center;
+}
+.brand-slider .slick-track .halo-item > .wrapper-content {
+    width: 100%;
+}
