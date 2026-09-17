@@ -6,12 +6,23 @@
 
 {%- if template.name == 'index' -%}
   {%- assign page_content_source = shop.metafields.custom.homepage_content.value -%}
+{%- elsif template.name == 'collection' and collection != blank -%}
+  {%- assign page_content_source = collection.metafields.custom.collection_content.value -%}
 {%- elsif page != blank -%}
   {%- assign page_content_source = page.metafields.custom.page_content.value -%}
 {%- endif -%}
 
-{%- if page_content_source != blank and page_content_source.blocks != blank -%}
-  {%- assign all_blocks = page_content_source.blocks.value -%}
+{%- if page_content_source != blank -%}
+  {%- comment -%}
+      Two shapes are supported. Pages and the homepage point at a single "content list"
+      metaobject and the entries live in its "blocks" field. A collection's metafield is
+      itself a list of entries, so there is no wrapper to unwrap - use it as-is.
+  {%- endcomment -%}
+  {%- if page_content_source.blocks != blank -%}
+    {%- assign all_blocks = page_content_source.blocks.value -%}
+  {%- else -%}
+    {%- assign all_blocks = page_content_source -%}
+  {%- endif -%}
 {%- endif -%}
 
 {%- comment -%} Find product_block in blocks list {%- endcomment -%}

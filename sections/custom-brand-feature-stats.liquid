@@ -11,20 +11,38 @@
   section_id exactly (same convention as product-block.liquid) - this lets a page have more than
   one Feature Stats Grid, each tied to a different instance of this section. If "Section ID" is
   left blank, the first brand_feature_grid entry found is used, no matching required.
+
+  Where the content list comes from - resolved by template, so each collection carries
+  its own content and two collections never share cards:
+    index      -> shop.metafields.custom.homepage_content
+    collection -> collection.metafields.custom.collection_content
+    page       -> page.metafields.custom.page_content
 {%- endcomment -%}
 
 {%- assign page_content_source = blank -%}
 {%- assign all_blocks = blank -%}
 {%- assign meta_items = blank -%}
+{%- assign meta_grid = blank -%}
 
 {%- if template.name == 'index' -%}
     {%- assign page_content_source = shop.metafields.custom.homepage_content.value -%}
+{%- elsif template.name == 'collection' and collection != blank -%}
+    {%- assign page_content_source = collection.metafields.custom.collection_content.value -%}
 {%- elsif page != blank -%}
     {%- assign page_content_source = page.metafields.custom.page_content.value -%}
 {%- endif -%}
 
-{%- if page_content_source != blank and page_content_source.blocks != blank -%}
-    {%- assign all_blocks = page_content_source.blocks.value -%}
+{%- if page_content_source != blank -%}
+    {%- comment -%}
+        Two shapes are supported. Pages and the homepage point at a single "content list"
+        metaobject and the entries live in its "blocks" field. A collection's metafield is
+        itself a list of entries, so there is no wrapper to unwrap - use it as-is.
+    {%- endcomment -%}
+    {%- if page_content_source.blocks != blank -%}
+        {%- assign all_blocks = page_content_source.blocks.value -%}
+    {%- else -%}
+        {%- assign all_blocks = page_content_source -%}
+    {%- endif -%}
 {%- endif -%}
 
 {%- assign _section_id = section.settings.section_id | strip -%}
@@ -33,10 +51,12 @@
         {%- if block_item.system.type == 'brand_feature_grid' -%}
             {%- if _section_id != blank -%}
                 {%- if block_item.section_id == _section_id -%}
+                    {%- assign meta_grid = block_item -%}
                     {%- assign meta_items = block_item.stats.value -%}
                     {%- break -%}
                 {%- endif -%}
             {%- else -%}
+                {%- assign meta_grid = block_item -%}
                 {%- assign meta_items = block_item.stats.value -%}
                 {%- break -%}
             {%- endif -%}
@@ -44,18 +64,27 @@
     {%- endfor -%}
 {%- endif -%}
 
+{%- liquid
+    # The grid entry lives in the collection's own metafield, so colours set there
+    # personalise a single collection. Section settings below stay the template-wide
+    # fallback for any field left blank.
+    assign stats_value_color = meta_grid.value_color | default: section.settings.value_color
+    assign stats_label_color = meta_grid.label_color | default: section.settings.label_color
+    assign stats_card_bg = meta_grid.card_bg_color | default: section.settings.card_bg_color
+-%}
+
 <div
     class="brand-feature-stats section-block-{{ section.id }}"
     id="{% if section.settings.section_id != blank %}{{ section.settings.section_id }}{% else %}brand-feature-stats-{{ section.id }}{% endif %}"
     style="
-        --brand-feature-stats-bg: {{ section.settings.card_bg_color }};
+        --brand-feature-stats-bg: {{ stats_card_bg }};
         --brand-feature-stats-radius: {{ section.settings.card_border_radius }}px;
         --brand-feature-stats-shadow: {% if section.settings.enable_shadow %}0 10px 30px rgba(0,0,0,0.12){% else %}none{% endif %};
         --brand-feature-stats-overlap: {{ section.settings.overlap_desktop }}px;
         --brand-feature-stats-overlap-mb: {{ section.settings.overlap_mobile }}px;
         --brand-feature-stats-gap: {{ section.settings.item_gap }}px;
-        --brand-feature-stats-value-color: {{ section.settings.value_color }};
-        --brand-feature-stats-label-color: {{ section.settings.label_color }};
+        --brand-feature-stats-value-color: {{ stats_value_color }};
+        --brand-feature-stats-label-color: {{ stats_label_color }};
         --brand-feature-stats-section-bg: {{ section.settings.background_color }};
     "
 >
@@ -63,7 +92,7 @@
         <div class="brand-feature-stats__card">
             {%- if section.settings.use_metaobject_content -%}
                 {%- for item in meta_items -%}
-                    {%- render 'brand-feature-stat-item', icon_image: item.icon_image.value, value: item.value, label: item.label -%}
+                    {%- render 'brand-feature-stat-item', icon_image: item.icon_image.value, value: item.value, label: item.label, value_color: item.value_color, label_color: item.label_color -%}
                 {%- endfor -%}
             {%- else -%}
                 {%- for block in section.blocks -%}
@@ -85,7 +114,7 @@
             "type": "checkbox",
             "id": "use_metaobject_content",
             "label": "Use metaobject content",
-            "info": "When enabled, items come from the 'stats' list on a 'Feature Stats Grid' metaobject entry in this page's content list, instead of the blocks below.",
+            "info": "When enabled, items come from the 'stats' list on a 'Feature Stats Grid' metaobject entry in this page's (or collection's) content list, instead of the blocks below.",
             "default": false
         },
         {
@@ -94,7 +123,7 @@
             "label": "Section ID",
             "info": "Optional. Sets this as the section's HTML id, so a button elsewhere (e.g. the banner's button) can link/scroll to it directly, e.g. '#your-id'."
         },
-        { "type": "header", "content": "Card" },
+        { "type": "header", "content": "Card", "info": "Template-wide: these apply to every collection using this template. To colour one collection only, set the matching colour fields on its metaobject entry - those win when filled in." },
         { "type": "color", "id": "background_color", "label": "Section background color", "default": "#FEF7EC" },
         { "type": "select", "id": "container", "label": "Container width", "default": "container", "options": [
             { "value": "container", "label": "Standard" },
@@ -108,7 +137,7 @@
         { "type": "range", "id": "overlap_desktop", "label": "Overlap over section above (desktop)", "min": 0, "max": 200, "step": 5, "unit": "px", "default": 60 },
         { "type": "range", "id": "overlap_mobile", "label": "Overlap over section above (mobile)", "min": 0, "max": 150, "step": 5, "unit": "px", "default": 0 },
         { "type": "range", "id": "item_gap", "label": "Gap between items", "min": 0, "max": 100, "step": 5, "unit": "px", "default": 40 },
-        { "type": "header", "content": "Text" },
+        { "type": "header", "content": "Text", "info": "Template-wide: these apply to every collection using this template. To colour one collection only, set the matching colour fields on its metaobject entry - those win when filled in." },
         { "type": "color", "id": "value_color", "label": "Value color", "default": "#0b2545" },
         { "type": "color", "id": "label_color", "label": "Label color", "default": "#0b2545" }
     ],

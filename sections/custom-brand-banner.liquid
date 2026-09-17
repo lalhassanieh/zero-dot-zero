@@ -5,11 +5,16 @@
   Content can come from either:
   - this section's own settings (filled in directly in the theme editor), or
   - a "Brand Banner" metaobject entry (system.type == 'brand_banner') living in this page's
-    shared content list (page.metafields.custom.page_content / shop.metafields.custom.homepage_content),
-    when "Use metaobject content" is enabled below.
+    shared content list, when "Use metaobject content" is enabled below.
 
   There is only ever one banner per page, so this intentionally does not require typing in
   any matching ID: it just takes the first brand_banner entry it finds in the page's content list.
+
+  Where the content list comes from - resolved by template, so each collection carries
+  its own content and two collections never share cards:
+    index      -> shop.metafields.custom.homepage_content
+    collection -> collection.metafields.custom.collection_content
+    page       -> page.metafields.custom.page_content
 {%- endcomment -%}
 
 {%- assign page_content_source = blank -%}
@@ -18,12 +23,23 @@
 
 {%- if template.name == 'index' -%}
     {%- assign page_content_source = shop.metafields.custom.homepage_content.value -%}
+{%- elsif template.name == 'collection' and collection != blank -%}
+    {%- assign page_content_source = collection.metafields.custom.collection_content.value -%}
 {%- elsif page != blank -%}
     {%- assign page_content_source = page.metafields.custom.page_content.value -%}
 {%- endif -%}
 
-{%- if page_content_source != blank and page_content_source.blocks != blank -%}
-    {%- assign all_blocks = page_content_source.blocks.value -%}
+{%- if page_content_source != blank -%}
+    {%- comment -%}
+        Two shapes are supported. Pages and the homepage point at a single "content list"
+        metaobject and the entries live in its "blocks" field. A collection's metafield is
+        itself a list of entries, so there is no wrapper to unwrap - use it as-is.
+    {%- endcomment -%}
+    {%- if page_content_source.blocks != blank -%}
+        {%- assign all_blocks = page_content_source.blocks.value -%}
+    {%- else -%}
+        {%- assign all_blocks = page_content_source -%}
+    {%- endif -%}
 {%- endif -%}
 
 {%- if section.settings.use_metaobject_content and all_blocks != blank -%}
@@ -59,6 +75,15 @@
     assign container = section.settings.container
     assign content_align = section.settings.content_align
 
+    # Colours come from the banner entry in this collection's own metafield when set,
+    # so two collections can look different on the same template. Section settings stay
+    # the template-wide fallback for anything left blank.
+    assign banner_heading_color = meta_banner.heading_color | default: section.settings.heading_color
+    assign banner_subheading_color = meta_banner.subheading_color | default: section.settings.subheading_color
+    assign banner_button_text_color = meta_banner.button_label_color | default: section.settings.button_text_color
+    assign banner_button_bg_color = meta_banner.button_bg_color | default: section.settings.button_bg_color
+    assign banner_button_bg_hover = meta_banner.button_bg_color_hover | default: section.settings.button_bg_color_hover
+
     if button_scroll_target != blank
         assign button_link = '#' | append: button_scroll_target
     elsif button_link == blank and section.settings.default_button_target != blank
@@ -91,11 +116,11 @@
         --brand-banner-aspect-mb: {{ aspect_mobile }}%;
         --brand-banner-overlay-bg: {{ overlay_background }};
         --brand-banner-overlay-opacity: {{ section.settings.overlay_opacity | times: 1.0 | divided_by: 100 }};
-        --brand-banner-heading-color: {{ section.settings.heading_color }};
-        --brand-banner-subheading-color: {{ section.settings.subheading_color }};
-        --brand-banner-button-color: {{ section.settings.button_text_color }};
-        --brand-banner-button-bg: {{ section.settings.button_bg_color }};
-        --brand-banner-button-bg-hover: {{ section.settings.button_bg_color_hover }};
+        --brand-banner-heading-color: {{ banner_heading_color }};
+        --brand-banner-subheading-color: {{ banner_subheading_color }};
+        --brand-banner-button-color: {{ banner_button_text_color }};
+        --brand-banner-button-bg: {{ banner_button_bg_color }};
+        --brand-banner-button-bg-hover: {{ banner_button_bg_hover }};
         --brand-banner-logo-width: {{ section.settings.logo_width }}px;
         --brand-banner-logo-width-mb: {{ section.settings.logo_width_mobile }}px;
         --brand-banner-content-shift: {{ section.settings.content_shift_up }}px;
@@ -154,7 +179,7 @@
             "type": "checkbox",
             "id": "use_metaobject_content",
             "label": "Use metaobject content",
-            "info": "When enabled, this banner loads its content from a 'Brand Banner' metaobject entry in this page's content list, instead of the settings below.",
+            "info": "When enabled, this banner loads its content from a 'Brand Banner' metaobject entry in this page's (or collection's) content list, instead of the settings below.",
             "default": false
         },
         { "type": "header", "content": "Background (used when metaobject content is off)" },
@@ -174,7 +199,7 @@
         { "type": "image_picker", "id": "logo_image", "label": "Logo image" },
         { "type": "range", "id": "logo_width", "label": "Logo width (desktop)", "min": 60, "max": 400, "step": 10, "unit": "px", "default": 200 },
         { "type": "range", "id": "logo_width_mobile", "label": "Logo width (mobile)", "min": 60, "max": 300, "step": 10, "unit": "px", "default": 140 },
-        { "type": "header", "content": "Text" },
+        { "type": "header", "content": "Text", "info": "Template-wide: these apply to every collection using this template. To colour one collection only, set the matching colour fields on its metaobject entry - those win when filled in." },
         { "type": "text", "id": "heading", "label": "Heading", "default": "Direct from Nature" },
         { "type": "textarea", "id": "subheading", "label": "Subheading" },
         {
@@ -189,7 +214,7 @@
         },
         { "type": "color", "id": "heading_color", "label": "Heading color", "default": "#253376" },
         { "type": "color", "id": "subheading_color", "label": "Subheading color", "default": "#28356F" },
-        { "type": "header", "content": "Button" },
+        { "type": "header", "content": "Button", "info": "Template-wide: these apply to every collection using this template. To colour one collection only, set the matching colour fields on its metaobject entry - those win when filled in." },
         { "type": "text", "id": "button_label", "label": "Button label", "default": "Discover Our Water" },
         {
             "type": "url",

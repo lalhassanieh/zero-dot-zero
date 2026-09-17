@@ -1,8 +1,21 @@
 {%- comment -%}
   Renders one icon/value/label item in the brand feature-stats row.
-  Accepts: icon_image, value, label
+  Accepts: icon_image, value, label, value_color, label_color
+
+  value_color/label_color (both optional) override this one item's colors by re-declaring
+  the section's CSS custom properties on just this item - leave either blank to fall
+  back to the section-wide color.
 {%- endcomment -%}
-<div class="brand-feature-stats__item">
+{%- liquid
+    assign item_style = ''
+    if value_color != blank
+        assign item_style = item_style | append: '--brand-feature-stats-value-color: ' | append: value_color | append: ';'
+    endif
+    if label_color != blank
+        assign item_style = item_style | append: '--brand-feature-stats-label-color: ' | append: label_color | append: ';'
+    endif
+-%}
+<div class="brand-feature-stats__item"{% if item_style != blank %} style="{{ item_style }}"{% endif %}>
     {%- if icon_image != blank -%}
         <img class="brand-feature-stats__icon" src="{{ icon_image | image_url: width: 160 }}" alt="{{ value | escape }}" width="80" height="80" loading="lazy">
     {%- endif -%}

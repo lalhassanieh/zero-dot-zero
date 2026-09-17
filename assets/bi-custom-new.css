@@ -695,15 +695,18 @@
 }
 
 /* Smooth-scrolls when the brand banner button links to an in-page anchor
-   (e.g. #shopify-section-products) instead of jumping instantly. */
-html:has(body.template-page-brand) {
+   (e.g. #shopify-section-products) instead of jumping instantly.
+   Covers both the brand page and the brand collection template. */
+html:has(body.template-page-brand),
+html:has(body.template-collection-brand) {
     scroll-behavior: smooth;
 }
 
 /* .wrapper-body's global 80px bottom padding (base.css) leaves a gap of plain
    white space below the last section on every page - same override pattern
    base.css already uses for .template-index, scoped to this template only. */
-.template-page-brand .wrapper-body {
+.template-page-brand .wrapper-body,
+.template-collection-brand .wrapper-body {
     padding-bottom: 0;
 }
 

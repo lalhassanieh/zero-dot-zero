@@ -18,6 +18,19 @@
   to the metaobject card with that matching handle - the grid still renders exactly one card per
   metaobject entry, no extras. When "Use metaobject content" is OFF, "card" blocks work the
   original way: each one is a real card (image/title/button/link) in the grid.
+
+  Each "Learn More Card" entry decides its own destination, highest priority first:
+    1. collection    - a Collection reference; the card goes to that collection's page.
+    2. scroll_target - a section ID on this same page.
+    3. link          - any URL.
+  So filling in "collection" makes "link" and "scroll_target" irrelevant for that card.
+  The theme-editor "card" blocks carry the same three options, in the same order.
+
+  Where the content list comes from - resolved by template, so each collection carries
+  its own content and two collections never share cards:
+    index      -> shop.metafields.custom.homepage_content
+    collection -> collection.metafields.custom.collection_content
+    page       -> page.metafields.custom.page_content
 {%- endcomment -%}
 
 {%- assign page_content_source = blank -%}
@@ -26,12 +39,23 @@
 
 {%- if template.name == 'index' -%}
     {%- assign page_content_source = shop.metafields.custom.homepage_content.value -%}
+{%- elsif template.name == 'collection' and collection != blank -%}
+    {%- assign page_content_source = collection.metafields.custom.collection_content.value -%}
 {%- elsif page != blank -%}
     {%- assign page_content_source = page.metafields.custom.page_content.value -%}
 {%- endif -%}
 
-{%- if page_content_source != blank and page_content_source.blocks != blank -%}
-    {%- assign all_blocks = page_content_source.blocks.value -%}
+{%- if page_content_source != blank -%}
+    {%- comment -%}
+        Two shapes are supported. Pages and the homepage point at a single "content list"
+        metaobject and the entries live in its "blocks" field. A collection's metafield is
+        itself a list of entries, so there is no wrapper to unwrap - use it as-is.
+    {%- endcomment -%}
+    {%- if page_content_source.blocks != blank -%}
+        {%- assign all_blocks = page_content_source.blocks.value -%}
+    {%- else -%}
+        {%- assign all_blocks = page_content_source -%}
+    {%- endif -%}
 {%- endif -%}
 
 {%- assign _section_id = section.settings.section_id | strip -%}
@@ -94,13 +118,25 @@
                                 break
                             endif
                         endfor
+                        # Colour comes from this card's own metaobject fields. A theme-editor
+                        # block targeting this card's handle is the fallback, kept so existing
+                        # brand-page setups keep working. Both blank falls through to the
+                        # section-wide CSS custom property, so nothing here has to be filled in.
+                        # The definition shows this field as "title", but the key is what Liquid
+                        # reads and keys are immutable - an entry created back when the field was
+                        # called "name" still answers to card.name. Read both so either shape works.
+                        assign card_title = card.title | default: card.name
+                        assign card_title_color = card.title_color | default: override_block.settings.title_color
+                        assign card_button_text_color = card.button_label_color | default: override_block.settings.button_text_color
+                        assign card_button_bg_color = card.button_bg_color | default: override_block.settings.button_bg_color
+                        assign card_button_bg_hover = card.button_bg_color_hover | default: override_block.settings.button_bg_color_hover
                     -%}
-                    {%- render 'brand-learn-more-card', image: card.image.value, title: card.name, button_label: card.button_label, link: card.link, scroll_target: card.scroll_target, enable_overlay: section.settings.enable_overlay, title_color: override_block.settings.title_color, button_text_color: override_block.settings.button_text_color, button_bg_color: override_block.settings.button_bg_color, button_bg_color_hover: override_block.settings.button_bg_color_hover -%}
+                    {%- render 'brand-learn-more-card', image: card.image.value, title: card_title, button_label: card.button_label, card_collection: card.collection.value, link: card.link, scroll_target: card.scroll_target, enable_overlay: section.settings.enable_overlay, title_color: card_title_color, button_text_color: card_button_text_color, button_bg_color: card_button_bg_color, button_bg_color_hover: card_button_bg_hover -%}
                 {%- endfor -%}
             {%- else -%}
                 {%- for block in section.blocks -%}
                     {%- if block.type == 'card' -%}
-                        {%- render 'brand-learn-more-card', image: block.settings.image, title: block.settings.title, button_label: block.settings.button_label, link: block.settings.link, scroll_target: block.settings.scroll_target, enable_overlay: section.settings.enable_overlay, title_color: block.settings.title_color, button_text_color: block.settings.button_text_color, button_bg_color: block.settings.button_bg_color, button_bg_color_hover: block.settings.button_bg_color_hover -%}
+                        {%- render 'brand-learn-more-card', image: block.settings.image, title: block.settings.title, button_label: block.settings.button_label, card_collection: block.settings.collection, link: block.settings.link, scroll_target: block.settings.scroll_target, enable_overlay: section.settings.enable_overlay, title_color: block.settings.title_color, button_text_color: block.settings.button_text_color, button_bg_color: block.settings.button_bg_color, button_bg_color_hover: block.settings.button_bg_color_hover -%}
                     {%- endif -%}
                 {%- endfor -%}
             {%- endif -%}
@@ -117,7 +153,7 @@
             "type": "checkbox",
             "id": "use_metaobject_content",
             "label": "Use metaobject content",
-            "info": "When enabled, cards come from the 'cards' list on a 'Learn More Cards Grid' metaobject entry in this page's content list, instead of the blocks below.",
+            "info": "When enabled, cards come from the 'cards' list on a 'Learn More Cards Grid' metaobject entry in this page's (or collection's) content list, instead of the blocks below.",
             "default": false
         },
         {
@@ -156,7 +192,7 @@
         },
         { "type": "color", "id": "overlay_color", "label": "Image overlay color", "default": "#00000040" },
         { "type": "color_background", "id": "overlay_gradient", "label": "Image overlay gradient (optional, overrides color above)" },
-        { "type": "header", "content": "Text & Button" },
+        { "type": "header", "content": "Text & Button", "info": "Template-wide defaults: these apply to every card on every collection using this template. To colour one card, fill in the colour fields on that \"Learn More Card\" metaobject entry - those win." },
         { "type": "color", "id": "title_color", "label": "Card title color", "default": "#ffffff" },
         { "type": "color", "id": "button_text_color", "label": "Button text color", "default": "#ffffff" },
         { "type": "color", "id": "button_bg_color", "label": "Button background", "default": "#285BAA" },
@@ -185,18 +221,24 @@
                 { "type": "text", "id": "title", "label": "Title", "default": "Mineral Water" },
                 { "type": "text", "id": "button_label", "label": "Button label", "default": "Learn More" },
                 {
+                    "type": "collection",
+                    "id": "collection",
+                    "label": "Collection",
+                    "info": "Highest priority: when set, the card links to this collection's page and both fields below are ignored."
+                },
+                {
                     "type": "url",
                     "id": "link",
                     "label": "Link",
-                    "info": "The default: sends the visitor to another page/URL. Leave blank if using the section ID option below instead."
+                    "info": "Used only when Collection above is empty. Sends the visitor to another page/URL. Leave blank if using the section ID option below instead."
                 },
                 {
                     "type": "text",
                     "id": "scroll_target",
                     "label": "Or scroll to section (ID), instead of the link above",
-                    "info": "Optional. If set, overrides Link above and scrolls to that section's ID on this same page instead of navigating away."
+                    "info": "Optional. Used only when Collection above is empty. If set, overrides Link and scrolls to that section's ID on this same page instead of navigating away."
                 },
-                { "type": "header", "content": "Color overrides (optional)" },
+                { "type": "header", "content": "Color overrides (optional)", "info": "Still template-wide - this targets one card by handle across every collection. For per-collection colours use the card entry's own colour fields instead." },
                 { "type": "color", "id": "title_color", "label": "Title color", "info": "Leave blank to use the section's Card title color." },
                 { "type": "color", "id": "button_text_color", "label": "Button text color", "info": "Leave blank to use the section's Button text color." },
                 { "type": "color", "id": "button_bg_color", "label": "Button background", "info": "Leave blank to use the section's Button background." },
