@@ -721,7 +721,7 @@
       "name": "t:sections.image-banner.presets.name",
       "settings": {
         "use_metaobject_background": true,
-        "section_block_id": "Home Page - secondary banner 4",
+        "section_block_id": "home-sc-banner-2",
         "id_section": "",
         "container": "fullwidth",
         "padding_full_width": 0,
