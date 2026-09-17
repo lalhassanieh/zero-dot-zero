@@ -746,7 +746,7 @@
         "color_des": "#202020",
         "fontsize_des": 16,
         "title_align": "left",
-        "style_bg": "none",
+        "style_bg": "for_img",
         "bg_color": "",
         "bg_color_gradient": "",
         "mg_top_desktop": 50,
