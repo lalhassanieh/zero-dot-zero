@@ -64,7 +64,7 @@
 
 <div
     class="brand-feature-stats section-block-{{ section.id }}"
-    id="{% if section.settings.section_id != blank %}{{ section.settings.section_id }}{% else %}brand-feature-stats-{{ section.id }}{% endif %}"
+    id="brand-feature-stats-{{ section.id }}"
     style="
         --brand-feature-stats-bg: {{ stats_card_bg }};
         --brand-feature-stats-radius: {{ section.settings.card_border_radius }}px;
@@ -105,12 +105,6 @@
             "label": "Use metaobject content",
             "info": "When enabled, items come from the 'stats' list on a 'Feature Stats Grid' metaobject entry in this page's (or collection's) content list, instead of the blocks below.",
             "default": false
-        },
-        {
-            "type": "text",
-            "id": "section_id",
-            "label": "Section ID",
-            "info": "Optional. Sets this as the section's HTML id, so a button elsewhere (e.g. the banner's button) can link/scroll to it directly, e.g. '#your-id'."
         },
         { "type": "header", "content": "Card", "info": "Template-wide: these apply to every collection using this template. To colour one collection only, set the matching colour fields on its metaobject entry - those win when filled in." },
         { "type": "color", "id": "background_color", "label": "Section background color", "default": "#FEF7EC" },
