@@ -201,7 +201,11 @@
         "mg_bottom_desktop": 40,
         "mg_bottom_tablet": 0,
         "mg_bottom_mobile": 0
-      }
+      },
+      "custom_css": [
+        ".collection-default {padding-left: 100px; padding-right: 100px;}",
+        "@media only screen and (max-width: 1025px) {.collection-default {padding-left: 15px; padding-right: 15px; }}"
+      ]
     },
     "product-recently-viewed": {
       "type": "product-recently-viewed",
