@@ -638,7 +638,7 @@
         "small_img_Aap7Dc": {
           "type": "smallImg",
           "settings": {
-            "use_metaobject_content": false,
+            "use_metaobject_content": true,
             "row_reverse": false,
             "image_width": "50",
             "image": "shopify://shop_images/Tannourine_Via_Tile_432_x_432_e9237022-1bc5-4946-ab9d-1e67f6fe22bd.jpg",
