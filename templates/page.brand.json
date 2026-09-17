@@ -47,7 +47,6 @@
       "type": "custom-brand-feature-stats",
       "settings": {
         "use_metaobject_content": true,
-        "section_id": "",
         "background_color": "#fef7ec",
         "container": "container",
         "card_bg_color": "#dbedfb",
@@ -64,7 +63,6 @@
       "type": "custom-brand-learn-more-cards",
       "settings": {
         "use_metaobject_content": true,
-        "section_id": "",
         "heading": "",
         "heading_align": "center",
         "background_color": "#fef7ec",
