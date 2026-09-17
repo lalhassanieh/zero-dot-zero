@@ -448,14 +448,14 @@
 }
 .brand-banner__heading {
     margin: 0 0 12px;
-    color: var(--brand-banner-heading-color, inherit);
+    color: var(--brand-banner-heading-color, var(--color-text, #005339));
     font-size: clamp(32px, 4.5vw, 52px);
     font-weight: 800;
     line-height: 1.15;
 }
 .brand-banner__subheading {
     margin: 0 0 28px;
-    color: var(--brand-banner-subheading-color, inherit);
+    color: var(--brand-banner-subheading-color, var(--color-text, #005339));
     font-size: 19px;
     line-height: 1.5;
 }
@@ -510,7 +510,7 @@
     position: relative;
     z-index: 2;
     display: flow-root;
-    background: var(--brand-feature-stats-section-bg, transparent);
+    background: var(--brand-feature-stats-section-bg, #FEF7EC);
 }
 .brand-feature-stats__card {
     display: flex;
@@ -584,7 +584,7 @@
 .brand-learn-cards {
     padding-top: var(--brand-learn-cards-padding-top, 60px);
     padding-bottom: var(--brand-learn-cards-padding-bottom, 60px);
-    background: var(--brand-learn-cards-bg, transparent);
+    background: var(--brand-learn-cards-bg, #FEF7EC);
 }
 .brand-learn-cards__item {
     border-radius: var(--brand-learn-cards-radius, 16px);
@@ -635,7 +635,7 @@
 }
 .brand-learn-cards__title {
     margin: 0;
-    color: var(--brand-learn-cards-title-color, #fff);
+    color: var(--brand-learn-cards-title-color, var(--color-text, #005339));
     font-size: 26px;
     font-weight: 700;
     line-height: 1.25;
