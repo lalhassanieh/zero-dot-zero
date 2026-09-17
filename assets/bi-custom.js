@@ -364,7 +364,8 @@
   function initMenuHoverDelay() {
     if (window.innerWidth < 1025) return;
 
-    var closeDelay = 800;
+    /* How long the panel stays open after the cursor leaves. */
+    var closeDelay = 3000;
 
     document.querySelectorAll('.menu-lv-item.dropdown').forEach(function (item) {
       if (item.dataset.hoverDelayBound) return;
