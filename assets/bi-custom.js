@@ -1147,5 +1147,6 @@
   domReady(initConfirmPassword);
   domReady(initAddressPhonePickers);
   domReady(initZipValidation);
+  domReady(initMenuHoverDelay);
 
 })();
