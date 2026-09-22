@@ -340,8 +340,10 @@ font-weight: 600;
     padding-left: 0;
 }
 .facets__price--box .filter__price {
-    padding: 12px 32px 12px 0!important;
-    text-align: right;
+    /* Mirrors the LTR rule: symbol sits on the right here, but the number is centred
+       the same way, so both languages read alike. */
+    padding: 12px 32px 12px 32px!important;
+    text-align: center;
 }
 .facets__item input[type=checkbox]+.form-label--checkbox {
     padding-right: 25px;

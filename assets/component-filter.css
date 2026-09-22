@@ -327,7 +327,6 @@
 .facets__price--box .field__currency {
     position: absolute;
     top: 50%;
-    left: 10px;
     transform: translateY(-50%);
     font-size: var(--font-size);
     font-weight: var(--font-weight-normal);
@@ -337,8 +336,11 @@
 }
 
 .facets__price--box .filter__price {
-    padding: 12px 0 12px 32px;
-    text-align: right;
+    /* The currency symbol is absolutely positioned over this input, so the left padding
+       clears it. Matching that padding on the right keeps the number optically centred
+       in the box rather than centred in what's left over after the symbol. */
+    padding: 12px 32px 12px 32px;
+    text-align: center;
 }
 
 .facets__price--box .filter__price[type=number]::-webkit-inner-spin-button,
