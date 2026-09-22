@@ -583,8 +583,12 @@ input[type="checkbox"][required] {
    siblings is decided by the PARENT's direction, not its own. So each container that
    holds a price becomes its own LTR run. In the discount line this also keeps the minus
    sign immediately after the symbol: "(<riyal> - 16.50)".
-   Targeting the inner span where there is one, to leave the row's own alignment alone. */
-.price,
+
+   Only ever target the element that directly holds the price text. `.price` is NOT on
+   this list: on a product page it is a block <div> wrapping a <dl> with regular/sale
+   rows, so flipping its direction re-lays-out the whole block instead of one number.
+   Its inner .price-item is covered by the rule above; the cart's flat
+   `span.price[data-item-final-price-display]` is covered by the attribute below. */
 .cart-item-value,
 .cart-total-value .text,
 .previewCartTotals-value .text,
@@ -592,7 +596,13 @@ input[type="checkbox"][required] {
 .money-subtotal,
 [data-saved-discount-value],
 [data-item-final-price-display],
-[data-item-price-with-quantity-display] {
+[data-item-price-with-quantity-display],
+/* The drawer drops its subtotal and total straight into the div with no inner span, so
+   those two need the data attribute. Do NOT reach for a bare .previewCartTotals-value -
+   the same class also carries the translated "taxes and shipping at checkout" sentence,
+   which must stay RTL. */
+[data-cart-subtotal],
+[data-cart-total-value] {
     direction: ltr !important;
     unicode-bidi: embed !important;
 }
