@@ -576,6 +576,27 @@ input[type="checkbox"][required] {
     direction: ltr !important;
     unicode-bidi: embed !important;
 }
+
+/* The money filter writes the price source-order as "<riyal span> 110.00", so inside an
+   RTL paragraph the inline boxes reverse and the symbol lands to the RIGHT of the digits.
+   Setting direction on .riyal-font itself can't fix that - a box's placement among its
+   siblings is decided by the PARENT's direction, not its own. So each container that
+   holds a price becomes its own LTR run. In the discount line this also keeps the minus
+   sign immediately after the symbol: "(<riyal> - 16.50)".
+   Targeting the inner span where there is one, to leave the row's own alignment alone. */
+.price,
+.cart-item-value,
+.cart-total-value .text,
+.previewCartTotals-value .text,
+.previewCartItem-price,
+.money-subtotal,
+[data-saved-discount-value],
+[data-item-final-price-display],
+[data-item-price-with-quantity-display] {
+    direction: ltr !important;
+    unicode-bidi: embed !important;
+}
+
 .riyal-font {
     direction: ltr !important;
 }
