@@ -637,7 +637,6 @@
       "blocks": {
         "small_img_Aap7Dc": {
           "type": "smallImg",
-          "disabled": true,
           "settings": {
             "use_metaobject_content": true,
             "row_reverse": false,
