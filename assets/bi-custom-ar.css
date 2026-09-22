@@ -510,6 +510,21 @@ input[type="checkbox"][required] {
     font-weight: 700;
 }
 
+/* Arabic copy blocks need their own base direction. The theme's RTL layout option is
+   off, so <html> never carries dir="rtl" and these paragraphs inherit an LTR base:
+   each Arabic word still reads right-to-left on its own, but the line as a whole is
+   laid out left-to-right, which throws the trailing full stop - and any Latin run,
+   like a brand name or a fragment still awaiting translation - to the wrong end.
+   text-align alone doesn't fix that; only direction sets the bidi base.
+   This file loads only when the locale is Arabic, so no language guard is needed. */
+.login-text,
+.login-page .login-item .login-text,
+.accepts-marketing .form-label--checkbox,
+#accepts-pdpl + .form-label--checkbox {
+    direction: rtl;
+    text-align: right;
+}
+
 #shopify-section-template--19396941250804__main p,
 #shopify-section-template--19396941250804__main li {
     color: #000 !important;

@@ -5,8 +5,10 @@
 
   Where the card links to, highest priority first:
     1. card_collection - a Collection; the card goes to that collection's page.
-    2. scroll_target   - a block_id on this same page (or the reserved word 'products',
-                         meaning the product listing); scrolls there instead of navigating away.
+    2. scroll_target   - one token naming something on this same page: a grid's block_id,
+                         a real element id, a section id, or the reserved word 'products'
+                         (the product listing). Scrolls there instead of navigating away;
+                         bi-custom.js does the lookup, so any of those kinds works.
     3. link            - any URL.
   All three blank renders a non-clickable card, same as before. It is named card_collection,
   not collection, so it cannot shadow the global collection object on a collection template.
@@ -20,11 +22,11 @@
   leave any of them blank to fall back to the section-wide color.
 {%- endcomment -%}
 {%- liquid
+    assign scroll_token = blank
     if card_collection != blank
         assign final_link = card_collection.url
-    elsif scroll_target == 'products'
-        assign final_link = '#main-collection-product-grid'
     elsif scroll_target != blank
+        assign scroll_token = scroll_target
         assign final_link = '#' | append: scroll_target
     else
         assign final_link = link
@@ -48,7 +50,7 @@
     endif
 -%}
 <div class="brand-learn-cards__item"{% if card_style != blank %} style="{{ card_style }}"{% endif %}>
-    <a class="brand-learn-cards__link" {% if final_link == blank %}role="link" aria-disabled="true"{% else %}href="{{ final_link }}"{% endif %}>
+    <a class="brand-learn-cards__link" {% if final_link == blank %}role="link" aria-disabled="true"{% else %}href="{{ final_link }}"{% endif %}{% if scroll_token != blank %} data-scroll-target="{{ scroll_token | escape }}"{% endif %}>
         <div class="brand-learn-cards__image">
             {%- if image != blank -%}
                 <img srcset="{{ image | image_url: width: 375 }} 375w, {{ image | image_url: width: 750 }} 750w, {{ image | image_url: width: 1100 }} 1100w" src="{{ image | image_url: width: 750 }}" alt="{{ title | escape }}" width="{{ image.width }}" height="{{ image.height }}" loading="lazy">

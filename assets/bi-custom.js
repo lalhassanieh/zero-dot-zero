@@ -1140,6 +1140,81 @@
     }
   });
 
+  /* ── Brand Section Scroll Targets ── */
+  /* Brand banner buttons and learn-more cards can point at another block on the same
+     page instead of navigating away. The target is written as one plain token in the
+     metaobject entry, and the token can be any of several things depending on what the
+     merchant is aiming at: a grid's block_id, a real element id, a section id from the
+     template, or the reserved word "products" for the page's product listing. Liquid
+     just emits href="#<token>" and data-scroll-target="<token>" - all the guessing
+     happens here, so one field covers every case and the merchant doesn't have to know
+     which kind of id they're holding.
+
+     The same token is read by the Flutter app, which looks it up in its own registry of
+     blocks keyed by block_id, with "products" reserved there too. */
+  function resolveScrollTarget(token) {
+    if (!token) return null;
+
+    /* CSS.escape guards tokens with characters that would break a selector. */
+    var safe = window.CSS && CSS.escape ? CSS.escape(token) : token.replace(/["\\]/g, '\\$&');
+
+    var candidates = [
+      '#' + safe,
+      '[data-block-id="' + token.replace(/["\\]/g, '\\$&') + '"]',
+      '#shopify-section-' + safe
+    ];
+
+    /* "products" has no id of its own. All six collection layout snippets (default,
+       express order, full width, masonry, right sidebar, banner adv) tag their wrapper
+       with data-section-type="collection", so that one hook covers whichever layout the
+       theme setting selects. The #shopify-section- ids below are only a safety net for a
+       template whose product-grid section is keyed differently. */
+    if (token === 'products') {
+      candidates = [
+        '[data-section-type="collection"]',
+        '#shopify-section-product-grid',
+        '#shopify-section-main-collection-product-grid'
+      ];
+    }
+
+    for (var i = 0; i < candidates.length; i++) {
+      var el;
+      try {
+        el = document.querySelector(candidates[i]);
+      } catch (e) {
+        el = null;  /* malformed selector from a hand-typed token - skip it */
+      }
+      if (el) return el;
+    }
+    return null;
+  }
+
+  function scrollToBlock(el) {
+    /* Sit clear of whichever sticky header is actually on screen at this width. */
+    var header = window.innerWidth > 1024
+      ? document.querySelector('sticky-header')
+      : document.querySelector('sticky-header-mobile') || document.querySelector('sticky-header');
+    var offset = header ? header.getBoundingClientRect().height : 0;
+    var top = el.getBoundingClientRect().top + window.pageYOffset - offset;
+
+    window.scrollTo({ top: top < 0 ? 0 : top, behavior: 'smooth' });
+  }
+
+  function initScrollTargets() {
+    document.addEventListener('click', function (e) {
+      var trigger = e.target.closest('[data-scroll-target]');
+      if (!trigger) return;
+
+      var el = resolveScrollTarget(trigger.dataset.scrollTarget);
+      /* Nothing matched: leave the browser to handle the href rather than swallowing
+         the click, so a token that happens to be a real anchor elsewhere still works. */
+      if (!el) return;
+
+      e.preventDefault();
+      scrollToBlock(el);
+    });
+  }
+
   domReady(initBlogRowEqualizer);
   domReady(initBirthdatePicker);
   domReady(initFormGatekeeper);  // must run before initPhonePicker / initConfirmPassword so it's the first capture handler
@@ -1148,5 +1223,6 @@
   domReady(initAddressPhonePickers);
   domReady(initZipValidation);
   domReady(initMenuHoverDelay);
+  domReady(initScrollTargets);
 
 })();

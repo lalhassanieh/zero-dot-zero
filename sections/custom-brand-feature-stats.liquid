@@ -64,7 +64,7 @@
 
 <div
     class="brand-feature-stats section-block-{{ section.id }}"
-    id="brand-feature-stats-{{ section.id }}"
+    id="{% if meta_grid.block_id != blank %}{{ meta_grid.block_id }}{% else %}brand-feature-stats-{{ section.id }}{% endif %}"{% if meta_grid.block_id != blank %} data-block-id="{{ meta_grid.block_id | escape }}"{% endif %}
     style="
         --brand-feature-stats-bg: {{ stats_card_bg }};
         --brand-feature-stats-radius: {{ section.settings.card_border_radius }}px;

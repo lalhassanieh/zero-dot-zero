@@ -19,16 +19,21 @@
 
   Each "Learn More Card" entry decides its own destination, highest priority first:
     1. collection    - a Collection reference; the card goes to that collection's page.
-    2. scroll_target - a section ID on this same page.
+    2. scroll_target - one token naming something on this same page (see below).
     3. link          - any URL.
   So filling in "collection" makes "link" and "scroll_target" irrelevant for that card.
   The theme-editor "card" blocks carry the same three options, in the same order.
 
-  The grid entry's "block_id" becomes this section's HTML id, so a button elsewhere
-  (the brand banner's, or another card's) can scroll to it by that same value. It is
-  deliberately content, not a theme setting: the Flutter app reads block_id over the
-  Storefront API and registers each block under it, so one value drives both platforms.
-  Left blank, the section falls back to a generated id that nothing can target.
+  A scroll_target token is resolved at click time by bi-custom.js, which tries the token
+  as an element id, then as a data-block-id, then as a section id (shopify-section-<token>),
+  so the merchant can type whichever of those they happen to have. The one reserved word is
+  'products', meaning "the product listing on this page", which has no id of its own.
+
+  The grid entry's "block_id" becomes this section's HTML id and its data-block-id, so a
+  button elsewhere (the brand banner's, or another card's) can scroll to it by that same
+  value. It is deliberately content, not a theme setting: the Flutter app reads block_id
+  over the Storefront API and registers each block under it, so one value drives both
+  platforms. Left blank, the section falls back to a generated id that nothing can target.
 
   Where the content list comes from - resolved by template, so each collection carries
   its own content and two collections never share cards:
@@ -82,7 +87,7 @@
 
 <div
     class="brand-learn-cards section-block-{{ section.id }}"
-    id="{% if meta_grid.block_id != blank %}{{ meta_grid.block_id }}{% else %}brand-learn-cards-{{ section.id }}{% endif %}"
+    id="{% if meta_grid.block_id != blank %}{{ meta_grid.block_id }}{% else %}brand-learn-cards-{{ section.id }}{% endif %}"{% if meta_grid.block_id != blank %} data-block-id="{{ meta_grid.block_id | escape }}"{% endif %}
     style="
         --brand-learn-cards-columns: {{ section.settings.columns }};
         --brand-learn-cards-columns-mobile: {{ section.settings.columns_mobile }};
@@ -226,8 +231,8 @@
                 {
                     "type": "text",
                     "id": "scroll_target",
-                    "label": "Or scroll to section (ID), instead of the link above",
-                    "info": "Optional. Used only when Collection above is empty. If set, overrides Link and scrolls to that section's ID on this same page instead of navigating away."
+                    "label": "Or scroll to a block on this page, instead of the link above",
+                    "info": "Optional. Used only when Collection above is empty. Accepts a grid's block_id, a real element id, a section id, or the reserved word 'products' for the product listing. If set, overrides Link and scrolls instead of navigating away."
                 },
                 { "type": "header", "content": "Color overrides (optional)", "info": "Still template-wide - this targets one card by handle across every collection. For per-collection colours use the card entry's own colour fields instead." },
                 { "type": "color", "id": "title_color", "label": "Title color", "info": "Leave blank to use the section's Card title color." },
