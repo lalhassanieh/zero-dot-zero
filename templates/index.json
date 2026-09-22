@@ -719,7 +719,6 @@
       "block_order": [
         "small_img_Aap7Dc"
       ],
-      "disabled": true,
       "name": "t:sections.image-banner.presets.name",
       "settings": {
         "use_metaobject_background": true,
