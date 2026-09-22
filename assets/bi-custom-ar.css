@@ -588,7 +588,12 @@ input[type="checkbox"][required] {
    this list: on a product page it is a block <div> wrapping a <dl> with regular/sale
    rows, so flipping its direction re-lays-out the whole block instead of one number.
    Its inner .price-item is covered by the rule above; the cart's flat
-   `span.price[data-item-final-price-display]` is covered by the attribute below. */
+   `span.price[data-item-final-price-display]` is covered by the attribute below.
+
+   The drawer drops its subtotal and total straight into the div with no inner span, so
+   those two are reached by data attribute. Do NOT reach for a bare
+   .previewCartTotals-value - the same class also carries the translated "taxes and
+   shipping at checkout" sentence, which must stay RTL. */
 .cart-item-value,
 .cart-total-value .text,
 .previewCartTotals-value .text,
@@ -597,10 +602,6 @@ input[type="checkbox"][required] {
 [data-saved-discount-value],
 [data-item-final-price-display],
 [data-item-price-with-quantity-display],
-/* The drawer drops its subtotal and total straight into the div with no inner span, so
-   those two need the data attribute. Do NOT reach for a bare .previewCartTotals-value -
-   the same class also carries the translated "taxes and shipping at checkout" sentence,
-   which must stay RTL. */
 [data-cart-subtotal],
 [data-cart-total-value] {
     direction: ltr !important;

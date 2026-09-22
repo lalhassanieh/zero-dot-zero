@@ -389,14 +389,18 @@
                                 {%- comment -%}
                                     The money filter wraps the currency symbol in its own span, so a
                                     minus written in front of it reads "- SAR 16.50". Move it past the
-                                    span instead, to "SAR - 16.50". If the shop's money format ever
-                                    stops emitting that span, fall back to a plain prefix rather than
-                                    silently dropping the sign.
+                                    span and onto the digits instead, giving "SAR -16.50". Consuming
+                                    the format's own space is what keeps the sign attached to the
+                                    number rather than floating between the two. Each fallback below
+                                    covers a money format that differs from the expected one, so the
+                                    sign is never silently dropped.
                                 {%- endcomment -%}
                                 {%- liquid
                                     assign discount_amount = discount.total_allocated_amount | money
-                                    if discount_amount contains '</span>'
-                                        assign discount_amount = discount_amount | replace: '</span>', '</span> -'
+                                    if discount_amount contains '</span> '
+                                        assign discount_amount = discount_amount | replace_first: '</span> ', '</span> -'
+                                    elsif discount_amount contains '</span>'
+                                        assign discount_amount = discount_amount | replace_first: '</span>', '</span> -'
                                     else
                                         assign discount_amount = discount_amount | prepend: '-'
                                     endif
