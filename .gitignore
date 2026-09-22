@@ -1,0 +1,4 @@
+# Scratch space for locale/theme dumps taken before a destructive edit.
+# Never synced to Shopify (it only reads the standard theme folders) and never
+# committed - the real history lives in git, e.g. `git show HEAD:locales/ar.json`.
+_locale-backup/

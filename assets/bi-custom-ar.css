@@ -522,7 +522,9 @@ input[type="checkbox"][required] {
 .accepts-marketing .form-label--checkbox,
 #accepts-pdpl + .form-label--checkbox {
     direction: rtl;
-    text-align: right;
+    /* !important because the theme's own .text-left / page-wrapper rules land later in
+       the cascade and would otherwise pull these blocks back to the left. */
+    text-align: right !important;
 }
 
 #shopify-section-template--19396941250804__main p,
