@@ -1,0 +1,28 @@
+{%- comment -%}
+    Renders one cart-level discount, e.g. "NEW15 (<riyal> -16.50)".
+
+    Accepts: discount - one entry from cart.cart_level_discount_applications.
+
+    The money filter wraps the currency symbol in its own span, so a minus written in
+    front of it reads "- SAR 16.50". Move it past the span and onto the digits instead,
+    giving "SAR -16.50". Consuming the format's own space is what keeps the sign attached
+    to the number rather than floating between the two. Each fallback below covers a
+    money format that differs from the expected one, so the sign is never silently
+    dropped.
+
+    This lives in a snippet because the cart page (main-cart.liquid) and the cart drawer
+    (halo-side-cart.liquid) both render it. It was inlined in both, and fixing one left
+    the other showing the old format.
+{%- endcomment -%}
+{%- liquid
+    assign discount_amount = discount.total_allocated_amount | money
+    if discount_amount contains '</span> '
+        assign discount_amount = discount_amount | replace_first: '</span> ', '</span> -'
+    elsif discount_amount contains '</span>'
+        assign discount_amount = discount_amount | replace_first: '</span>', '</span> -'
+    else
+        assign discount_amount = discount_amount | prepend: '-'
+    endif
+-%}
+{%- render 'icon-discount' -%}
+{{- discount.title }}&nbsp;({{ discount_amount }})

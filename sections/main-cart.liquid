@@ -534,9 +534,7 @@
                                             <span class="text" data-saved-discount-value>
                                                 {%- if cart.cart_level_discount_applications != blank -%}
                                                     {%- for discount in cart.cart_level_discount_applications -%}
-                                                        {%- render 'icon-discount' -%}
-                                                        {{ discount.title }}
-                                                        (-{{ discount.total_allocated_amount | money }})
+                                                        {%- render 'cart-discount-amount', discount: discount -%}
                                                     {%- endfor -%}
                                                 {%- else -%}
                                                     {{ cart.total_discount | money | prepend: '-' }}
