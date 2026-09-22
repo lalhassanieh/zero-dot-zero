@@ -386,8 +386,23 @@
                     <span class="text" data-saved-discount-value>
                         {%- if cart.cart_level_discount_applications != blank -%}
                             {%- for discount in cart.cart_level_discount_applications -%}
+                                {%- comment -%}
+                                    The money filter wraps the currency symbol in its own span, so a
+                                    minus written in front of it reads "- SAR 16.50". Move it past the
+                                    span instead, to "SAR - 16.50". If the shop's money format ever
+                                    stops emitting that span, fall back to a plain prefix rather than
+                                    silently dropping the sign.
+                                {%- endcomment -%}
+                                {%- liquid
+                                    assign discount_amount = discount.total_allocated_amount | money
+                                    if discount_amount contains '</span>'
+                                        assign discount_amount = discount_amount | replace: '</span>', '</span> -'
+                                    else
+                                        assign discount_amount = discount_amount | prepend: '-'
+                                    endif
+                                -%}
                                 {%- render 'icon-discount' -%}
-                                {{- discount.title }}&nbsp;(-{{ discount.total_allocated_amount | money }})
+                                {{- discount.title }}&nbsp;({{ discount_amount }})
                             {%- endfor -%}
                         {%- else -%}
                             {{ cart.total_discount | money | prepend: '-' }}

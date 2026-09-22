@@ -54,12 +54,34 @@ h5,
     font-family: 'Gilroy Light' !important;
 }
 
-.riyal-font,
+/* The riyal span that `| money` emits is always EMPTY - the glyph is purely its ::after.
+   Absolutely positioning that glyph over a zero-width span meant it painted on top of
+   whatever sat beside it, which is why prices read "110.<glyph>0" instead of
+   "<glyph> 110.00". Every context that showed a price had to be patched one at a time,
+   either by reserving padding or by re-flowing the span locally. Letting it flow as a
+   real inline character fixes all of them at once and needs no per-context rules.
+
+   .field__currency keeps the absolute treatment: it is deliberately overlaid on the
+   price-filter input, not sitting in running text. */
+.riyal-font {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    margin-inline: 2px;
+}
+
+.riyal-font::after {
+    content: "\0041";
+    font-family: 'MHE-Riyal-Sign' !important;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1;
+}
+
 .field__currency.format-currency {
     position: relative;
 }
 
-.riyal-font::after,
 .field__currency.format-currency:after {
     position: absolute;
     top: 55%;
@@ -77,27 +99,6 @@ h5,
 
 .product-customInformation .price-item {
   font-size: 14px;
-}
-
-/* Cart discount line - "NEW15 (-<riyal> 16.50)". The riyal span is empty and its glyph
-   is an absolutely positioned ::after, so the span occupies no width and the glyph lands
-   on top of the text either side of it. Inside running text like this it has to flow as a
-   real character and carry its own breathing room. bi-custom-ar.css does the same for
-   Arabic; this covers every other language. */
-[data-saved-discount-value] .riyal-font,
-.previewCartTotals-value .riyal-font,
-.previewCartItem-price .riyal-font {
-  display: inline-flex;
-  align-items: center;
-  margin-inline: 2px;
-}
-
-[data-saved-discount-value] .riyal-font::after,
-.previewCartTotals-value .riyal-font::after,
-.previewCartItem-price .riyal-font::after {
-  position: static;
-  transform: none;
-  line-height: 1;
 }
 
 /* Gap between the tag icon and the discount code next to it. */
@@ -832,10 +833,6 @@ dd.price__compare {
     color: #005339 !important
 }
 
-.haloCalculatorShipping .message .riyal-font {
-    padding-right: 24px;
-}
-
 .previewCartItem-change .before-discount-price {
     padding-right: 20px;
 }
@@ -859,14 +856,6 @@ dd.price__compare {
 
 .spotlight-products .card-action {
     bottom: 40px !important;
-}
-
-.active-facets__button .riyal-font {
-    padding-left: 17px;
-}
-
-.sidebarBlock-content .facets__list--refined .riyal-font {
-    padding-left: 26px;
 }
 
 .megamenu_style_4 .site-nav-banner .site-nav-banner--item {

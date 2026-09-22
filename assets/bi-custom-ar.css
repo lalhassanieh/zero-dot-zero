@@ -579,27 +579,13 @@ input[type="checkbox"][required] {
 .riyal-font {
     direction: ltr !important;
 }
-/* Use physical right property so symbol position is direction-independent */
-.riyal-font::after,
+/* Use physical right property so symbol position is direction-independent.
+   Only .field__currency is still absolutely positioned - .riyal-font now flows inline
+   from bi-custom.css, where physical offsets would have no effect anyway. */
 .field__currency.format-currency::after {
     inset-inline-end: unset !important;
     right: 6px !important;
     left: auto !important;
-}
-
-/* Preview cart: symbol must flow inline (not absolute) so it stays left of the number */
-.previewCartItem-price .riyal-font,
-.previewCartTotals-value .riyal-font,
-[data-saved-discount-value] .riyal-font {
-    display: inline-flex;
-    align-items: center;
-}
-.previewCartItem-price .riyal-font::after,
-.previewCartTotals-value .riyal-font::after,
-[data-saved-discount-value] .riyal-font::after {
-    position: static !important;
-    transform: none !important;
-    line-height: 1;
 }
 
 /* ── Cart note & coupon RTL ── */
