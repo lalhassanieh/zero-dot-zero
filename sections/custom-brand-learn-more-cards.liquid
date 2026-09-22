@@ -24,6 +24,12 @@
   So filling in "collection" makes "link" and "scroll_target" irrelevant for that card.
   The theme-editor "card" blocks carry the same three options, in the same order.
 
+  The grid entry's "block_id" becomes this section's HTML id, so a button elsewhere
+  (the brand banner's, or another card's) can scroll to it by that same value. It is
+  deliberately content, not a theme setting: the Flutter app reads block_id over the
+  Storefront API and registers each block under it, so one value drives both platforms.
+  Left blank, the section falls back to a generated id that nothing can target.
+
   Where the content list comes from - resolved by template, so each collection carries
   its own content and two collections never share cards:
     index      -> shop.metafields.custom.homepage_content
@@ -34,6 +40,7 @@
 {%- assign page_content_source = blank -%}
 {%- assign all_blocks = blank -%}
 {%- assign meta_cards = blank -%}
+{%- assign meta_grid = blank -%}
 
 {%- if template.name == 'index' -%}
     {%- assign page_content_source = shop.metafields.custom.homepage_content.value -%}
@@ -59,6 +66,7 @@
 {%- if section.settings.use_metaobject_content and all_blocks != blank -%}
     {%- for block_item in all_blocks -%}
         {%- if block_item.system.type == 'brand_learn_card_grid' -%}
+            {%- assign meta_grid = block_item -%}
             {%- assign meta_cards = block_item.cards.value -%}
             {%- break -%}
         {%- endif -%}
@@ -74,7 +82,7 @@
 
 <div
     class="brand-learn-cards section-block-{{ section.id }}"
-    id="brand-learn-cards-{{ section.id }}"
+    id="{% if meta_grid.block_id != blank %}{{ meta_grid.block_id }}{% else %}brand-learn-cards-{{ section.id }}{% endif %}"
     style="
         --brand-learn-cards-columns: {{ section.settings.columns }};
         --brand-learn-cards-columns-mobile: {{ section.settings.columns_mobile }};
@@ -113,17 +121,13 @@
                         # block targeting this card's handle is the fallback, kept so existing
                         # brand-page setups keep working. Both blank falls through to the
                         # section-wide CSS custom property, so nothing here has to be filled in.
-                        # The definition shows this field as "title", but the key is what Liquid
-                        # reads and keys are immutable - an entry created back when the field was
-                        # called "name" still answers to card.name. Read both so either shape works.
-                        assign card_title = card.title | default: card.name
                         assign card_title_color = card.title_color | default: override_block.settings.title_color
                         assign card_button_text_color = card.button_label_color | default: override_block.settings.button_text_color
                         assign card_button_bg_color = card.button_bg_color | default: override_block.settings.button_bg_color
                         assign card_button_text_hover = card.button_label_color_hover | default: override_block.settings.button_text_color_hover
                         assign card_button_bg_hover = card.button_bg_color_hover | default: override_block.settings.button_bg_color_hover
                     -%}
-                    {%- render 'brand-learn-more-card', image: card.image.value, title: card_title, button_label: card.button_label, card_collection: card.collection.value, link: card.link, scroll_target: card.scroll_target, enable_overlay: section.settings.enable_overlay, title_color: card_title_color, button_text_color: card_button_text_color, button_bg_color: card_button_bg_color, button_text_color_hover: card_button_text_hover, button_bg_color_hover: card_button_bg_hover -%}
+                    {%- render 'brand-learn-more-card', image: card.image.value, title: card.name, button_label: card.button_label, card_collection: card.collection.value, link: card.link, scroll_target: card.scroll_target, enable_overlay: section.settings.enable_overlay, title_color: card_title_color, button_text_color: card_button_text_color, button_bg_color: card_button_bg_color, button_text_color_hover: card_button_text_hover, button_bg_color_hover: card_button_bg_hover -%}
                 {%- endfor -%}
             {%- else -%}
                 {%- for block in section.blocks -%}

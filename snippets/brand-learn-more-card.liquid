@@ -1,11 +1,12 @@
 {%- comment -%}
   Renders one card in the brand "learn more" cards grid.
-  Accepts: image, title, button_label, card_collection, link, scroll_target, enable_overlay,
+  Accepts: image, title (multi-line; newlines render as <br>), button_label, card_collection, link, scroll_target, enable_overlay,
   title_color, button_text_color, button_text_color_hover, button_bg_color, button_bg_color_hover
 
   Where the card links to, highest priority first:
     1. card_collection - a Collection; the card goes to that collection's page.
-    2. scroll_target   - a section ID on this same page; scrolls there instead of navigating away.
+    2. scroll_target   - a block_id on this same page (or the reserved word 'products',
+                         meaning the product listing); scrolls there instead of navigating away.
     3. link            - any URL.
   All three blank renders a non-clickable card, same as before. It is named card_collection,
   not collection, so it cannot shadow the global collection object on a collection template.
@@ -21,8 +22,10 @@
 {%- liquid
     if card_collection != blank
         assign final_link = card_collection.url
+    elsif scroll_target == 'products'
+        assign final_link = '#main-collection-product-grid'
     elsif scroll_target != blank
-        assign final_link = '#shopify-section-' | append: scroll_target
+        assign final_link = '#' | append: scroll_target
     else
         assign final_link = link
     endif
@@ -58,7 +61,7 @@
         {%- endif -%}
         {%- if title != blank -%}
             <div class="brand-learn-cards__title-wrap">
-                <h3 class="brand-learn-cards__title">{{ title }}</h3>
+                <h3 class="brand-learn-cards__title">{{ title | newline_to_br }}</h3>
             </div>
         {%- endif -%}
         {%- if button_label != blank -%}

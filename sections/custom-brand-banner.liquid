@@ -85,10 +85,28 @@
     assign banner_button_text_hover = meta_banner.button_label_color_hover | default: section.settings.button_text_color_hover
     assign banner_button_bg_hover = meta_banner.button_bg_color_hover | default: section.settings.button_bg_color_hover
 
-    if button_scroll_target != blank
-        assign button_link = '#' | append: button_scroll_target
-    elsif button_link == blank and section.settings.default_button_target != blank
-        assign button_link = '#' | append: section.settings.default_button_target
+    # Key is show_button_mobile. The string compare matters: Liquid gives a boolean
+    # here, but the Storefront API returns "true"/"false" as strings, and a plain
+    # truthiness test on "false" would silently keep the button visible.
+    assign show_button_mobile = true
+    if meta_banner.show_button_mobile == false or meta_banner.show_button_mobile == 'false'
+        assign show_button_mobile = false
+    endif
+
+    # Scroll targets are block_ids, not HTML ids - the same value is read by the
+    # Flutter app, which registers each block under its block_id. 'products' is the
+    # one reserved word, meaning "the product listing on this page"; the app registers
+    # its product list under that same word.
+    assign _target = button_scroll_target
+    if _target == blank and button_link == blank
+        assign _target = section.settings.default_button_target
+    endif
+    if _target != blank
+        if _target == 'products'
+            assign button_link = '#main-collection-product-grid'
+        else
+            assign button_link = '#' | append: _target
+        endif
     endif
 
     assign overlay_background = section.settings.overlay_color
@@ -163,7 +181,7 @@
                 <div class="brand-banner__subheading">{{ subheading | newline_to_br }}</div>
             {%- endif -%}
             {%- if button_label != blank -%}
-                <a class="brand-banner__button" {% if button_link == blank %}role="link" aria-disabled="true"{% else %}href="{{ button_link }}"{% endif %}>
+                <a class="brand-banner__button{% unless show_button_mobile %} brand-banner__button--hide-mb{% endunless %}" {% if button_link == blank %}role="link" aria-disabled="true"{% else %}href="{{ button_link }}"{% endif %}>
                     <span>{{ button_label }}</span>
                     <svg class="brand-banner__button-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 4.5 12.44 5.56 18.13 11.25H4v1.5h14.13l-5.69 5.69 1.06 1.06L21 12Z"></path></svg>
                 </a>
@@ -227,14 +245,14 @@
         {
             "type": "text",
             "id": "button_scroll_target",
-            "label": "Scroll to section ID (instead of Button link)",
-            "info": "Optional. If set, the button scrolls to that section on this same page instead of using the Button link above - type the exact value from that section's own \"Section ID\" setting, e.g. 'feature-stats' or 'learn-more'."
+            "label": "Scroll to block ID (instead of Button link)",
+            "info": "Optional. A block_id from a block on this page, e.g. 'learn-more', or the reserved word 'products' for the product listing. Same value the mobile app uses, so set it on the metaobject entry rather than here where possible."
         },
         {
             "type": "text",
             "id": "default_button_target",
             "label": "Default button target (used only when both fields above are empty)",
-            "info": "The section ID to scroll to when nothing else is set. Must match that section's own \"Section ID\" setting - not the JSON template key."
+            "info": "A block_id, or 'products' for this page's product listing. Note the mobile app cannot read this - it lives in the template, not the metaobject - so the app reproduces the same fallback in code."
         },
         { "type": "color", "id": "button_text_color", "label": "Button text color", "default": "#ffffff" },
         { "type": "color", "id": "button_bg_color", "label": "Button background", "default": "#005339" },

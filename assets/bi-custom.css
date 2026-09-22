@@ -317,12 +317,21 @@ toolbar-item.toolbar {
     color: #005339;
 }
 
+/* The icon is masked rather than used as a background-image, so its colour comes
+   from background-color and can be driven by a variable. background-image cannot be
+   recoloured at all, which is why the hover state used to force white with a filter.
+   --btn-icon-color is set per slide from the metaobject; blank falls back to brand green. */
 .slide-button::after,
 .banner-button::after,
 .productView-groupTop .product-form__submit::after {
     content: "";
-    background-image: url("https://cdn.shopify.com/s/files/1/0742/2669/6436/files/button-icon.svg?v=1746020835");
-    background-repeat: no-repeat;
+    background-color: var(--btn-icon-color, #005339);
+    -webkit-mask-image: url("https://cdn.shopify.com/s/files/1/0742/2669/6436/files/button-icon.svg?v=1746020835");
+            mask-image: url("https://cdn.shopify.com/s/files/1/0742/2669/6436/files/button-icon.svg?v=1746020835");
+    -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+    -webkit-mask-size: 14px 17px;
+            mask-size: 14px 17px;
     position: absolute;
     right: 28px;
     top: 13px;
@@ -330,10 +339,12 @@ toolbar-item.toolbar {
     height: 17px;
 }
 
+/* Hover backgrounds go dark, so the icon defaults to white here - same result the
+   old brightness/invert filter produced, but overridable. */
 .slide-button:hover::after,
 .banner-button:hover::after,
 .productView-groupTop .product-form__submit:hover::after {
-    filter: brightness(0) invert(1);
+    background-color: var(--btn-icon-color-hover, #ffffff);
 }
 
 .spotlight-products .slide-button:hover,
@@ -727,6 +738,12 @@ toolbar-item.toolbar {
     background-position: top center;
     background-image: url("https://cdn.shopify.com/s/files/1/0742/2669/6436/files/logo-icon.svg?v=1746783115");
     background-repeat: no-repeat;
+}
+
+/* Per-slide opt-out: the "Show logo icon" field on that slide_show metaobject
+   entry is false, so the section adds this class. */
+.slide-content--no-logo {
+    background-image: none;
 }
 
 .slide-content..content-box--absolute {

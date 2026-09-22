@@ -503,6 +503,10 @@
     .brand-banner__content {
         margin-bottom: var(--brand-banner-content-shift-mb, 0px);
     }
+    /* "Show button on mobile" is off for this section. */
+    .brand-banner__button--hide-mb {
+        display: none;
+    }
 }
 
 /* --- Brand Feature Stats --- */

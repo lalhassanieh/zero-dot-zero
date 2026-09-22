@@ -82,6 +82,9 @@
                 {%- if block.type == 'image' or block.type == 'video' -%}
                     {%- liquid
                         assign use_metaobject = false
+                        assign slide_show_logo = true
+                        assign slide_icon_color = blank
+                        assign slide_icon_color_2 = blank
 
                         if block.settings.use_metaobject_slide
                             assign slide_heading = nil
@@ -164,6 +167,11 @@
                                         assign slide_link_2 = meta_slide.second_button_url
                                     endif
                                     assign slide_button_text_desktop = meta_slide.first_button_label_desktop
+                                    assign slide_icon_color = meta_slide.button_icon_color
+                                    assign slide_icon_color_2 = meta_slide.second_button_icon_color
+                                    if meta_slide.show_logo_icon == false or meta_slide.show_logo_icon == 'false'
+                                        assign slide_show_logo = false
+                                    endif
                                     assign slide_button_text_2_desktop = meta_slide.second_button_label_desktop
                                     break
                                 endif
@@ -327,7 +335,7 @@
                             {%- assign show_line_dots = true -%}
                         {%- endif -%}
                         {%- if slide_heading != blank or slide_heading_top != blank or slide_heading_bottom != blank or slide_sub_heading != blank or slide_description != blank or slide_button_text != blank or slide_button_text_desktop != blank or slide_button_text_2_desktop != blank or show_line_dots -%}
-                            <div class="slide-content content-box--absolute content-box--{{ block.settings.alignment }} text-{{ block.settings.text_alignment }}{% if block.settings.text_alignment_mb != blank %} text-mb-{{ block.settings.text_alignment_mb }}{% endif %} {% if block.settings.enable_custom_position %}custom_position{% endif %} {% if block.settings.enable_position_outside_image %}enable_position_outside_image{% endif %}{% if block.settings.sub_heading_font == 'font_1' %} sub_heading_font_1{% endif %}" {% if block.settings.enable_custom_position %}style="--horizontal_position: {{ block.settings.custom_horizontal }}%;--vertical_position: {{ block.settings.custom_vertical }}%;--minus_horizontal_position: -{{ block.settings.custom_horizontal }}%;--minus_vertical_position: -{{ block.settings.custom_vertical }}%"{% endif %}>
+                            <div class="slide-content{% unless slide_show_logo %} slide-content--no-logo{% endunless %} content-box--absolute content-box--{{ block.settings.alignment }} text-{{ block.settings.text_alignment }}{% if block.settings.text_alignment_mb != blank %} text-mb-{{ block.settings.text_alignment_mb }}{% endif %} {% if block.settings.enable_custom_position %}custom_position{% endif %} {% if block.settings.enable_position_outside_image %}enable_position_outside_image{% endif %}{% if block.settings.sub_heading_font == 'font_1' %} sub_heading_font_1{% endif %}" {% if block.settings.enable_custom_position %}style="--horizontal_position: {{ block.settings.custom_horizontal }}%;--vertical_position: {{ block.settings.custom_vertical }}%;--minus_horizontal_position: -{{ block.settings.custom_horizontal }}%;--minus_vertical_position: -{{ block.settings.custom_vertical }}%"{% endif %}>
                             {%- if block.settings.profile_name != blank or block.settings.profile_title != blank or block.settings.profile_picture != blank -%}
                                 <div class="slide-content__person slide-testimonial{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
                                     {%- if block.settings.profile_picture != blank -%}
@@ -477,6 +485,8 @@
                                     .slide-block-{{ block.id }} .slide-content .slide-button + .slide-button {margin-top: 10px}
                                 {%- endif -%}
                                 .slide-block-{{ block.id }} .slide-content .slide-button svg{fill: {{ block.settings.color_button }}}
+                                {%- if slide_icon_color != blank -%}.slide-block-{{ block.id }} .slide-content .slide-button {--btn-icon-color: {{ slide_icon_color }}}{%- endif -%}
+                                {%- if slide_icon_color_2 != blank -%}.slide-block-{{ block.id }} .slide-content .slide-button + .slide-button {--btn-icon-color: {{ slide_icon_color_2 }}}{%- endif -%}
                                 .slide-block-{{ block.id }} .slide-content .slide-button{min-width: {{ block.settings.min_width_banner_button | append: 'px' }}}
 
                                 {%- if block.settings.enable_button_link -%}
