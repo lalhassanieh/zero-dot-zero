@@ -637,6 +637,7 @@
       "blocks": {
         "small_img_Aap7Dc": {
           "type": "smallImg",
+          "disabled": true,
           "settings": {
             "use_metaobject_content": true,
             "row_reverse": false,
@@ -719,7 +720,6 @@
       "block_order": [
         "small_img_Aap7Dc"
       ],
-      "disabled": true,
       "name": "t:sections.image-banner.presets.name",
       "settings": {
         "use_metaobject_background": true,
