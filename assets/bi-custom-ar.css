@@ -776,6 +776,37 @@ toolbar-item.toolbar .toolbar-item .toolbar-icon + .toolbar-icon {
     }
 }
 
+/* Sort-by dropdown caret is absolutely pinned to the right edge, with the tab's padding
+   opened up on that same side to make room. Both have to move together for Arabic - move
+   only the caret and it lands on top of the label. Every selector here leads with the
+   element name so it outranks component-toolbar.css, which loads after this file. */
+toolbar-item.toolbar .toolbar-dropdown .label-tab {
+    padding: 7px 20px 7px 38px;
+}
+
+toolbar-item.toolbar .toolbar-dropdown .label-tab .icon-dropdown {
+    right: auto;
+    left: 15px;
+}
+
+@media (max-width: 1024px) {
+    toolbar-item.toolbar .toolbar-dropdown .label-tab {
+        padding: 4px 20px 4px 38px !important;
+    }
+
+    /* The compact mobile caret sits flush at 0 with a 13px gutter, not 15px/38px. */
+    toolbar-item.toolbar .toolbar-dropdown.filter-sortby .label-tab.hidden-on-desktop {
+        padding: 4px 0 4px 13px !important;
+    }
+
+    toolbar-item.toolbar .toolbar-dropdown .label-tab.hidden-on-desktop .icon-dropdown {
+        right: auto;
+        left: 0;
+        margin-left: 0;
+        margin-right: 3px;
+    }
+}
+
 /* ── Mobile sidebar menu – RTL ──
    component-menu-mobile.css pins the drawer rows to `text-align: left` with
    `.halo-sidebar_menu .site-nav-mobile:not(.menu-custom-mobile) .list-menu .menu-lv-item`,

@@ -387,8 +387,7 @@
                         {%- if cart.cart_level_discount_applications != blank -%}
                             {%- for discount in cart.cart_level_discount_applications -%}
                                 {%- render 'icon-discount' -%}
-                                {{ discount.title }}
-                                (-{{ discount.total_allocated_amount | money }})
+                                {{- discount.title }}&nbsp;(-{{ discount.total_allocated_amount | money }})
                             {%- endfor -%}
                         {%- else -%}
                             {{ cart.total_discount | money | prepend: '-' }}
