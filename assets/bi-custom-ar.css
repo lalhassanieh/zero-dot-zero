@@ -345,6 +345,15 @@ font-weight: 600;
     padding: 12px 32px 12px 32px!important;
     text-align: center;
 }
+
+/* component-filter.css pins the currency symbol to left:10px, which sits too close to
+   the edge once the Arabic input centres its number. Pushed in to sit beside it. */
+.facets__price--box .field__currency {
+    left: 40px !important;
+    /* The Arabic glyph's baseline sits slightly high against the Latin digits, so nudge
+       it down to line up optically rather than geometrically. */
+    top: 53% !important;
+}
 .facets__item input[type=checkbox]+.form-label--checkbox {
     padding-right: 25px;
     padding-left: 0 !important;
@@ -746,6 +755,24 @@ input[type="checkbox"][required] {
 @media (min-width: 1025px) and (max-width: 1350px) {
     toolbar-item.toolbar .toolbar-label {
         margin-left: 8px;
+    }
+}
+
+/* The "view as" icons gap themselves with margin-left in LTR, which puts the spacing on
+   the wrong side once the row runs right to left. Same specificity trick as the label
+   above: the element name lifts this to (0,4,1) over component-toolbar.css's (0,4,0),
+   which loads later from snippets/toolbar.liquid. */
+toolbar-item.toolbar .toolbar-item .toolbar-icon + .toolbar-icon {
+    margin-left: 0;
+    margin-right: 5px;
+}
+
+/* Same flip one level up: the gap between whole toolbar items (view-as, sort by, items
+   per page). Matches component-toolbar.css's own 551px breakpoint. */
+@media (min-width: 551px) {
+    toolbar-item.toolbar .toolbar-col .toolbar-item + .toolbar-item {
+        margin-left: 0;
+        margin-right: 28px;
     }
 }
 

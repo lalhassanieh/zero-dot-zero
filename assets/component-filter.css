@@ -327,6 +327,8 @@
 .facets__price--box .field__currency {
     position: absolute;
     top: 50%;
+    /* Arabic unpins this in bi-custom-ar.css - the symbol belongs on the other side there. */
+    left: 10px;
     transform: translateY(-50%);
     font-size: var(--font-size);
     font-weight: var(--font-weight-normal);
@@ -336,7 +338,7 @@
 }
 
 .facets__price--box .filter__price {
-    /* The currency symbol is absolutely positioned over this input, so the left padding
+    /* The currency symbol is absolutely positioned at left:10px, so the left padding
        clears it. Matching that padding on the right keeps the number optically centred
        in the box rather than centred in what's left over after the symbol. */
     padding: 12px 32px 12px 32px;
