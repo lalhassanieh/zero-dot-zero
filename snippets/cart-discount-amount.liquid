@@ -1,11 +1,11 @@
 {%- comment -%}
-    Renders one cart-level discount, e.g. "NEW15 (<riyal> -16.50)".
+    Renders one cart-level discount, e.g. "NEW15 (<riyal> - 16.50)".
 
     Accepts: discount - one entry from cart.cart_level_discount_applications.
 
     The money filter wraps the currency symbol in markup, so a minus written in front of
-    the whole string reads "- SAR 16.50". The sign belongs on the digits instead, giving
-    "SAR -16.50".
+    the whole string lands before the symbol, reading "- SAR 16.50". The sign belongs
+    after the symbol and on the digits instead, reading "SAR - 16.50".
 
     Rather than pattern-match the symbol's markup, find the bare number inside the money
     string and sign that. money_without_currency formats the same amount with no symbol,
@@ -24,13 +24,13 @@
     assign signed = false
 
     if bare_amount != blank and discount_amount contains bare_amount
-        assign negative_amount = bare_amount | prepend: '-'
+        assign negative_amount = bare_amount | prepend: '- '
         assign discount_amount = discount_amount | replace_first: bare_amount, negative_amount
         assign signed = true
     endif
 
     unless signed
-        assign discount_amount = discount_amount | prepend: '-'
+        assign discount_amount = discount_amount | prepend: '- '
     endunless
 -%}
 {%- render 'icon-discount' -%}
