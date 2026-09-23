@@ -725,7 +725,7 @@
         "section_block_id": "home-sc-banner-02",
         "id_section": "",
         "container": "fullwidth",
-        "padding_full_width": 0,
+        "padding_full_width": 100,
         "display_type": "slide",
         "enable_arrows": false,
         "arrows_position": "",
