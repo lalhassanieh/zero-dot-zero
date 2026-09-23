@@ -1021,6 +1021,50 @@
     });
   }
 
+  /* ── Required field highlighting (addresses page) ── */
+  /* The browser's own required check fires an `invalid` event per empty field before
+     submit, so we hook that to paint the red border and clear it once the field is filled.
+     Phone is left to the phone picker, which already manages its own error state. */
+  function initAddressRequiredFields() {
+    if (!document.querySelector('.addresses-page')) return;
+
+    document.querySelectorAll('.addresses-page form').forEach(function(form) {
+      function mark(field, show) {
+        var wrap = field.closest('.form-field');
+        if (wrap) wrap.classList.toggle('form-field--error', show);
+      }
+
+      form.addEventListener('invalid', function(e) {
+        mark(e.target, true);
+      }, true);
+
+      function clearIfValid(e) {
+        var field = e.target;
+        if (!field.required || field.classList.contains('phone-number-input')) return;
+        if (field.checkValidity()) mark(field, false);
+      }
+      form.addEventListener('input', clearIfValid);
+      form.addEventListener('change', clearIfValid);
+
+      /* Province only counts when the country actually has provinces - a hidden, empty
+         required select would block the form with nothing the customer can fix. */
+      var province = form.querySelector('select[name="address[province]"]');
+      if (province) {
+        form.addEventListener('click', function(e) {
+          if (!e.target.closest('button:not([type="button"]):not([type="reset"])')) return;
+          var container = province.closest('.form-field');
+          province.required = !!(container && container.style.display !== 'none' && province.options.length);
+        }, true);
+      }
+
+      form.addEventListener('reset', function() {
+        form.querySelectorAll('.form-field--error').forEach(function(wrap) {
+          wrap.classList.remove('form-field--error');
+        });
+      });
+    });
+  }
+
   /* ── Confirm password validation ── */
   function initConfirmPassword() {
     var form = document.querySelector('.create-customer-form');
@@ -1222,6 +1266,7 @@
   domReady(initConfirmPassword);
   domReady(initAddressPhonePickers);
   domReady(initZipValidation);
+  domReady(initAddressRequiredFields);
   domReady(initMenuHoverDelay);
   domReady(initScrollTargets);
 

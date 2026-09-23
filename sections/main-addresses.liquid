@@ -54,12 +54,12 @@
                                         {%- form 'customer_address', customer.new_address, aria-labelledBy: 'AddressNewHeading' -%}
                                             <div class="address-form--wrapper">
                                                 <div class="form-field">
-                                                    <label class="form-label" for="AddressFirstNameNew">{{ 'customer.addresses.first_name' | t }}</label>
-                                                    <input class="form-input form-input-placeholder" type="text" id="AddressFirstNameNew" name="address[first_name]" value="{{ form.first_name }}" autocomplete="given-name" placeholder="{{ 'customer.addresses.first_name' | t }}">
+                                                    <label class="form-label" for="AddressFirstNameNew">{{ 'customer.addresses.first_name' | t }} <em>*</em></label>
+                                                    <input class="form-input form-input-placeholder" type="text" id="AddressFirstNameNew" name="address[first_name]" value="{{ form.first_name }}" autocomplete="given-name" required aria-required="true" placeholder="{{ 'customer.addresses.first_name' | t }}">
                                                 </div>
                                                 <div class="form-field">
-                                                    <label class="form-label" for="AddressLastNameNew">{{ 'customer.addresses.last_name' | t }}</label>
-                                                    <input class="form-input form-input-placeholder" type="text" id="AddressLastNameNew" name="address[last_name]" value="{{ form.last_name }}" autocomplete="family-name" placeholder="{{ 'customer.addresses.last_name' | t }}">
+                                                    <label class="form-label" for="AddressLastNameNew">{{ 'customer.addresses.last_name' | t }} <em>*</em></label>
+                                                    <input class="form-input form-input-placeholder" type="text" id="AddressLastNameNew" name="address[last_name]" value="{{ form.last_name }}" autocomplete="family-name" required aria-required="true" placeholder="{{ 'customer.addresses.last_name' | t }}">
                                                 </div>
                                                 <div class="form-field">
                                                     <label class="form-label" for="AddressAddress1New">{{ 'customer.addresses.address1' | t }} <em>*</em></label>
@@ -87,7 +87,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-field">
-                                                    <label class="form-label" for="AddressCountryNew">{{ 'customer.addresses.country' | t }}</label>
+                                                    <label class="form-label" for="AddressCountryNew">{{ 'customer.addresses.country' | t }} <em>*</em></label>
                                                     <div class="form__select select country-locked">
                                                         <select
                                                             class="select__select"
@@ -105,7 +105,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-field" id="AddressProvinceContainerNew" style="display: none">
-                                                    <label  class="form-label" for="AddressProvinceNew">{{ 'customer.addresses.province' | t }}</label>
+                                                    <label  class="form-label" for="AddressProvinceNew">{{ 'customer.addresses.province' | t }} <em>*</em></label>
                                                     <div class="form__select select">
                                                         <select
                                                             class="select__select"
@@ -227,14 +227,16 @@
                                             <div class="form-field">
                                                 <label class="form-label" for="AddressFirstName_{{ form.id }}">
                                                     {{ 'customer.addresses.first_name' | t }}
+                                                    <em>*</em>
                                                 </label>
-                                                <input class="form-input form-input-placeholder" type="text" id="AddressFirstName_{{ form.id }}" name="address[first_name]" value="{{ form.first_name }}" autocomplete="given-name" placeholder="{{ 'customer.addresses.first_name' | t }}">
+                                                <input class="form-input form-input-placeholder" type="text" id="AddressFirstName_{{ form.id }}" name="address[first_name]" value="{{ form.first_name }}" autocomplete="given-name" required aria-required="true" placeholder="{{ 'customer.addresses.first_name' | t }}">
                                             </div>
                                             <div class="form-field">
                                                 <label class="form-label" for="AddressLastName_{{ form.id }}">
                                                     {{ 'customer.addresses.last_name' | t }}
+                                                    <em>*</em>
                                                 </label>
-                                                <input class="form-input form-input-placeholder" type="text" id="AddressLastName_{{ form.id }}" name="address[last_name]" value="{{ form.last_name }}" autocomplete="family-name" placeholder="{{ 'customer.addresses.last_name' | t }}">
+                                                <input class="form-input form-input-placeholder" type="text" id="AddressLastName_{{ form.id }}" name="address[last_name]" value="{{ form.last_name }}" autocomplete="family-name" required aria-required="true" placeholder="{{ 'customer.addresses.last_name' | t }}">
                                             </div>
                                             <div class="form-field">
                                                 <label class="form-label" for="AddressAddress1_{{ form.id }}">
@@ -269,6 +271,7 @@
                                             <div class="form-field">
                                                 <label class="form-label" for="AddressCountry_{{ form.id }}">
                                                   {{ 'customer.addresses.country' | t }}
+                                                  <em>*</em>
                                                 </label>
                                                 <div class="form__select select country-locked">
                                                     <select
@@ -291,6 +294,7 @@
                                             <div class="form-field" id="AddressProvinceContainer_{{ form.id }}" style="display:none;">
                                                 <label class="form-label" for="AddressProvince_{{ form.id }}">
                                                     {{ 'customer.addresses.province' | t }}
+                                                    <em>*</em>
                                                 </label>
                                                 <div class="form__select select">
                                                     <select

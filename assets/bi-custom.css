@@ -1634,6 +1634,16 @@ input[type="checkbox"][required] {
 }
 .field-error-msg[hidden] { display: none; }
 
+/* Required address fields – red border while invalid (phone border lives on its wrap) */
+.addresses-page .form-field--error .form-input,
+.addresses-page .form-field--error .phone-field-wrap {
+    border-color: #e22120;
+}
+/* Selects draw their outline with box-shadow, not a border */
+.addresses-page .form-field--error .select__select {
+    box-shadow: 0 0 0 .1rem #e22120;
+}
+
 
 .halo-productBadges .badge.new-badge p {
   text-align: center;
