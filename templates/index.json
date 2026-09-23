@@ -719,6 +719,7 @@
       "block_order": [
         "small_img_Aap7Dc"
       ],
+      "custom_css": [],
       "name": "t:sections.image-banner.presets.name",
       "settings": {
         "use_metaobject_background": true,
@@ -749,9 +750,9 @@
         "mg_top_desktop": 50,
         "mg_top_tablet": 50,
         "mg_top_mobile": 50,
-        "mg_bottom_desktop": 50,
-        "mg_bottom_tablet": 50,
-        "mg_bottom_mobile": 50
+        "mg_bottom_desktop": 20,
+        "mg_bottom_tablet": 20,
+        "mg_bottom_mobile": 20
       }
     },
     "rich_text_Ar6Fqp": {
