@@ -1,0 +1,322 @@
+{%- comment -%}
+  ============================================================================
+  APP DOWNLOAD POPUP - mobile only, once per browser session
+  ----------------------------------------------------------------------------
+  Rendered from layout/theme.liquid. Same look as the app download page
+  (app-redirect.liquid): logo, colours, button styles and store links all
+  come from Theme settings > App download page. None of the redirect logic
+  is used here - the buttons are plain links to the stores.
+
+  - Only opens below 768px (the theme's mobile breakpoint, max-width: 767px).
+  - sessionStorage "app-download-popup" = "1" once it has been shown, so it
+    stays closed for the rest of the session. A new session shows it again.
+  - Not rendered on the app download pages themselves, or without store links.
+  - Classes are "adp"-prefixed; the button markup reuses the ar-* class
+    names from app-redirect.liquid, scoped under .adp so neither file's CSS
+    affects the other.
+  ============================================================================
+{%- endcomment -%}
+
+{%- assign ios_url     = settings.app_ios_url -%}
+{%- assign android_url = settings.app_android_url -%}
+
+{%- assign on_app_page = false -%}
+{%- if template.suffix contains 'app-redirect' -%}{%- assign on_app_page = true -%}{%- endif -%}
+
+{%- if settings.app_popup_enable and on_app_page == false -%}
+{%- if ios_url != blank or android_url != blank -%}
+
+{%- assign popup_delay = settings.app_popup_delay | default: 1.5 | times: 1000 | round -%}
+
+{%- assign text_color       = settings.app_text_color           | default: '#005339' -%}
+{%- assign btn_bg           = settings.app_button_bg_full       | default: '#005339' -%}
+{%- assign btn_bg_hover     = settings.app_button_bg_hover_full | default: '#00341f' -%}
+{%- assign btn_fg           = settings.app_button_text          | default: '#ffffff' -%}
+{%- assign btn_fg_hover     = settings.app_button_text_hover    | default: '#ffffff' -%}
+{%- assign btn_border       = settings.app_button_border        | default: '#005339' -%}
+{%- assign btn_border_hover = settings.app_button_border_hover  | default: '#00341f' -%}
+{%- assign btn_border_width = settings.app_button_border_width  | default: 1 -%}
+{%- assign btn_radius       = settings.app_button_radius        | default: 45 -%}
+{%- assign icon_size        = settings.app_button_icon_size     | default: 26 -%}
+{%- assign label_size       = settings.app_button_label_size    | default: 13 -%}
+{%- assign title_size       = settings.app_button_title_size    | default: 20 -%}
+{%- assign btn_layout       = settings.app_button_layout        | default: 'auto' -%}
+{%- assign logo_width       = settings.app_logo_width           | default: 140 -%}
+
+{%- assign logo_url = '' -%}
+{%- unless settings.app_show_logo == false -%}
+  {%- if settings.app_logo != blank -%}
+    {%- assign logo_url = settings.app_logo | image_url: width: 480 -%}
+  {%- elsif shop.brand.logo != blank -%}
+    {%- assign logo_url = shop.brand.logo | image_url: width: 480 -%}
+  {%- endif -%}
+{%- endunless -%}
+
+{%- assign lang = request.locale.iso_code | slice: 0, 2 -%}
+{%- if lang == 'ar' -%}
+  {%- assign t_title = 'حمّل تطبيقنا' -%}
+  {%- assign t_text  = 'تسوّق بشكل أسرع عبر تطبيقنا. اختر متجرك لتنزيل التطبيق.' -%}
+  {%- assign t_close = 'إغلاق' -%}
+  {%- assign t_ios_1 = 'حمّله من' -%}
+  {%- assign t_and_1 = 'احصل عليه من' -%}
+{%- else -%}
+  {%- assign t_title = 'Download our app' -%}
+  {%- assign t_text  = 'Shop faster with our app. Choose your store to download.' -%}
+  {%- assign t_close = 'Close' -%}
+  {%- assign t_ios_1 = 'Download on the' -%}
+  {%- assign t_and_1 = 'Get it on' -%}
+{%- endif -%}
+{%- if settings.app_popup_title != blank -%}{%- assign t_title = settings.app_popup_title -%}{%- endif -%}
+{%- if settings.app_popup_text != blank -%}{%- assign t_text = settings.app_popup_text -%}{%- endif -%}
+
+<style>
+  .adp {
+    --ar-fg: {{ text_color }};
+    --ar-btn-bg: {{ btn_bg }};
+    --ar-btn-fg: {{ btn_fg }};
+    --ar-btn-border: {{ btn_border }};
+    --ar-btn-bg-hover: {{ btn_bg_hover }};
+    --ar-btn-fg-hover: {{ btn_fg_hover }};
+    --ar-btn-border-hover: {{ btn_border_hover }};
+    --ar-btn-border-width: {{ btn_border_width }}px;
+    --ar-btn-radius: {{ btn_radius }}px;
+    --ar-icon-size: {{ icon_size }}px;
+    --ar-label-size: {{ label_size }}px;
+    --ar-title-size: {{ title_size }}px;
+    --ar-muted: rgba(16, 20, 19, .58);
+
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 16px calc(16px + env(safe-area-inset-bottom));
+    background: rgba(0, 0, 0, .5);
+    opacity: 0;
+    transition: opacity .25s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  @supports (color: color-mix(in srgb, red 50%, blue)) {
+    .adp { --ar-muted: color-mix(in srgb, var(--ar-fg) 62%, #fff); }
+  }
+  .adp[hidden] { display: none; }
+  .adp.is-open { opacity: 1; }
+  /* never on tablet / desktop, whatever the script does */
+  @media (min-width: 768px) { .adp { display: none !important; } }
+
+  .adp, .adp * { box-sizing: border-box; }
+  .adp .adp__card {
+    position: relative;
+    width: 100%;
+    max-width: 380px;
+    max-height: 100%;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 36px 20px 24px;
+    border-radius: 16px;
+    background: #fff;
+    color: var(--ar-fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, .2);
+    transform: translateY(16px);
+    transition: transform .25s ease;
+  }
+  .adp.is-open .adp__card { transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .adp, .adp .adp__card { transition: none; }
+  }
+
+  .adp .adp__close {
+    position: absolute;
+    top: 8px;
+    inset-inline-end: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    min-width: 0;
+    margin: 0;
+    padding: 11px;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--ar-fg);
+    cursor: pointer;
+  }
+  .adp .adp__close svg { width: 18px; height: 18px; fill: currentColor; }
+  .adp .adp__close:focus-visible { outline: 2px solid var(--ar-btn-bg); outline-offset: 2px; }
+
+  .adp .adp__logo {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: min({{ logo_width }}px, 60%);
+    max-height: 80px;
+    margin: 0 auto 18px;
+  }
+  .adp .adp__title {
+    margin: 0 0 8px;
+    font-size: 22px;
+    line-height: 1.25;
+    font-weight: 700;
+    letter-spacing: -.01em;
+    text-transform: none;
+    color: var(--ar-fg);
+  }
+  .adp .adp__text {
+    margin: 0 0 22px;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--ar-muted);
+  }
+
+  /* ---------- store buttons (same design as app-redirect.liquid) ---------- */
+  .adp .ar-stores {
+    display: flex; flex-wrap: wrap; align-items: stretch; justify-content: center; gap: 12px;
+  }
+  .adp .ar-stores.ar-layout-stacked { flex-direction: column; align-items: center; }
+  .adp .ar-btn {
+    flex: 1 1 205px;
+    max-width: 260px;
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+    padding: 14px 18px;
+    border: var(--ar-btn-border-width) solid var(--ar-btn-border);
+    border-radius: var(--ar-btn-radius);
+    background: var(--ar-btn-bg);
+    color: var(--ar-btn-fg);
+    text-decoration: none;
+    transition: opacity .12s ease, background-color .18s ease, color .18s ease, border-color .18s ease;
+  }
+  .adp .ar-stores.ar-layout-stacked .ar-btn { flex: 0 0 auto; width: 100%; max-width: 320px; }
+  .adp .ar-btn:hover {
+    background: var(--ar-btn-bg-hover);
+    color: var(--ar-btn-fg-hover);
+    border-color: var(--ar-btn-border-hover);
+  }
+  .adp .ar-btn:active { opacity: .92; }
+  .adp .ar-btn:focus-visible { outline: 2px solid var(--ar-btn-bg); outline-offset: 3px; }
+  .adp .ar-btn svg {
+    width: var(--ar-icon-size); height: var(--ar-icon-size); flex: 0 0 var(--ar-icon-size);
+  }
+  .adp .ar-label { text-align: start; line-height: 1.2; }
+  .adp .ar-label small {
+    display: block; font-size: var(--ar-label-size); letter-spacing: .06em;
+    text-transform: uppercase; opacity: .85;
+  }
+  .adp .ar-label strong {
+    display: block; font-size: var(--ar-title-size); font-weight: 600; letter-spacing: -.01em;
+  }
+  /* Arabic is cursive - no letter-spacing / uppercase in RTL */
+  [dir="rtl"] .adp .adp__title { letter-spacing: normal; }
+  [dir="rtl"] .adp .ar-label { text-align: right; }
+  [dir="rtl"] .adp .ar-label small { letter-spacing: normal; text-transform: none; }
+  [dir="rtl"] .adp .ar-label strong { letter-spacing: normal; }
+
+  html.adp-lock { overflow: hidden; }
+</style>
+
+<div class="adp" id="app-download-popup" data-delay="{{ popup_delay }}" role="dialog" aria-modal="true" aria-labelledby="app-download-popup-title" hidden>
+  <div class="adp__card">
+    <button type="button" class="adp__close" data-adp-close aria-label="{{ t_close }}">{% render 'icon-close' %}</button>
+
+    {%- if logo_url != blank %}
+      <img class="adp__logo" src="{{ logo_url }}" alt="{{ shop.name | escape }}" width="140" height="90" loading="lazy">
+    {%- endif %}
+
+    <h2 class="adp__title" id="app-download-popup-title">{{ t_title | escape }}</h2>
+    <p class="adp__text">{{ t_text | escape }}</p>
+
+    <div class="ar-stores ar-layout-{{ btn_layout }}" id="adp-stores">
+      {%- if ios_url != blank %}
+      <a class="ar-btn" id="adp-btn-ios" href="{{ ios_url }}" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.53 4.08zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+        <span class="ar-label"><small>{{ t_ios_1 }}</small><strong>App Store</strong></span>
+      </a>
+      {%- endif %}
+
+      {%- if android_url != blank %}
+      <a class="ar-btn" id="adp-btn-android" href="{{ android_url }}" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="#00D2FF" d="M3.66 1.75a1.5 1.5 0 0 0-.41 1.05v18.4c0 .4.15.76.41 1.03l.06.06 10.3-10.23v-.12L3.72 1.7z"/>
+          <path fill="#FFCE00" d="M17.42 15.52l-3.4-3.46v-.12l3.4-3.44.08.04 4.07 2.31c1.16.66 1.16 1.74 0 2.4l-4.07 2.32z"/>
+          <path fill="#FF3A44" d="M17.5 15.48L14.02 12 3.66 22.23a1.21 1.21 0 0 0 1.53.05z"/>
+          <path fill="#00C853" d="M17.5 8.52L5.19 1.72a1.21 1.21 0 0 0-1.53.03L14.02 12z"/>
+        </svg>
+        <span class="ar-label"><small>{{ t_and_1 }}</small><strong>Google Play</strong></span>
+      </a>
+      {%- endif %}
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var popup = document.getElementById('app-download-popup');
+    if (!popup || !window.matchMedia) return;
+
+    var KEY = 'app-download-popup';
+    var mobile = window.matchMedia('(max-width: 767px)');
+    var delay = parseInt(popup.getAttribute('data-delay'), 10) || 1500;
+    var root = document.documentElement;
+
+    /* storage can throw (blocked cookies, some private modes) - treat that as
+       "already seen" so the popup never ends up showing on every page */
+    function seen() {
+      try { return sessionStorage.getItem(KEY) === '1'; } catch (e) { return true; }
+    }
+    function remember() {
+      try { sessionStorage.setItem(KEY, '1'); } catch (e) {}
+    }
+
+    function onKey(e) {
+      if (e.key === 'Escape' || e.key === 'Esc') close();
+    }
+
+    function open() {
+      if (seen() || !mobile.matches) return;
+      remember();
+      popup.hidden = false;
+      root.classList.add('adp-lock');
+      document.addEventListener('keydown', onKey);
+      /* two frames, so the fade-in runs from the hidden state */
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          popup.classList.add('is-open');
+          var btn = popup.querySelector('[data-adp-close]');
+          if (btn) btn.focus({ preventScroll: true });
+        });
+      });
+    }
+
+    function close() {
+      remember();
+      popup.classList.remove('is-open');
+      root.classList.remove('adp-lock');
+      document.removeEventListener('keydown', onKey);
+      setTimeout(function () { popup.hidden = true; }, 250);
+    }
+
+    popup.addEventListener('click', function (e) {
+      /* the X, or a tap on the dim backdrop outside the card */
+      if (e.target === popup || e.target.closest('[data-adp-close]')) close();
+    });
+
+    /* rotated / resized past the breakpoint while open */
+    function onChange() {
+      if (!mobile.matches && !popup.hidden) close();
+    }
+    if (mobile.addEventListener) mobile.addEventListener('change', onChange);
+    else if (mobile.addListener) mobile.addListener(onChange);
+
+    if (seen()) return;
+    function schedule() { setTimeout(open, delay); }
+    if (document.readyState === 'complete') schedule();
+    else window.addEventListener('load', schedule);
+  })();
+</script>
+
+{%- endif -%}
+{%- endif -%}

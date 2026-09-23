@@ -9284,6 +9284,42 @@
           }
         ],
         "default": "auto"
+      },
+      {
+        "type": "header",
+        "content": "Mobile popup"
+      },
+      {
+        "type": "paragraph",
+        "content": "A \"Download our app\" popup shown once per browser session, on mobile only (under 768px). It uses the store links, logo and button colours above (the app-redirect-full colours)."
+      },
+      {
+        "type": "checkbox",
+        "id": "app_popup_enable",
+        "label": "Show app popup on mobile",
+        "default": true
+      },
+      {
+        "type": "range",
+        "id": "app_popup_delay",
+        "label": "Delay after page load",
+        "min": 0.5,
+        "max": 5,
+        "step": 0.5,
+        "unit": "s",
+        "default": 1.5
+      },
+      {
+        "type": "text",
+        "id": "app_popup_title",
+        "label": "Popup title",
+        "info": "Leave empty for the built-in English / Arabic title."
+      },
+      {
+        "type": "textarea",
+        "id": "app_popup_text",
+        "label": "Popup text",
+        "info": "Leave empty for the built-in English / Arabic text."
       }
     ]
   }
