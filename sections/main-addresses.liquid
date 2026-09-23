@@ -62,17 +62,17 @@
                                                     <input class="form-input form-input-placeholder" type="text" id="AddressLastNameNew" name="address[last_name]" value="{{ form.last_name }}" autocomplete="family-name" placeholder="{{ 'customer.addresses.last_name' | t }}">
                                                 </div>
                                                 <div class="form-field">
-                                                    <label class="form-label" for="AddressAddress1New">{{ 'customer.addresses.address1' | t }}</label>
-                                                    <input class="form-input form-input-placeholder" type="text" id="AddressAddress1New" name="address[address1]" value="{{ form.address1 }}" autocomplete="address-line1" placeholder="{{ 'customer.addresses.address1' | t }}">
+                                                    <label class="form-label" for="AddressAddress1New">{{ 'customer.addresses.address1' | t }} <em>*</em></label>
+                                                    <input class="form-input form-input-placeholder" type="text" id="AddressAddress1New" name="address[address1]" value="{{ form.address1 }}" autocomplete="address-line1" required aria-required="true" placeholder="{{ 'customer.addresses.address1' | t }}">
                                                 </div>
                                                 <div class="form-field">
                                                     <label class="form-label" for="AddressAddress2New">{{ 'customer.addresses.address2' | t }}</label>
                                                     <input class="form-input form-input-placeholder" type="text" id="AddressAddress2New" name="address[address2]" value="{{ form.address2 }}" autocomplete="address-line2" placeholder="{{ 'customer.addresses.address2' | t }}">
                                                 </div>
                                                 <div class="form-field">
-                                                    <label class="form-label" for="AddressCityNew">{{ 'customer.addresses.city' | t }}</label>
+                                                    <label class="form-label" for="AddressCityNew">{{ 'customer.addresses.city' | t }} <em>*</em></label>
                                                     <div class="form__select select">
-                                                        <select class="select__select" id="AddressCityNew" name="address[city]" autocomplete="address-level2">
+                                                        <select class="select__select" id="AddressCityNew" name="address[city]" autocomplete="address-level2" required aria-required="true">
                                                             <option value="" disabled {% unless form.city != blank %}selected{% endunless %}>{{ 'customer.addresses.city' | t }}</option>
                                                             {%- if request.locale.iso_code == 'ar' -%}
                                                             <option value="Jeddah" {% if form.city == 'Jeddah' %}selected{% endif %}>جدة</option>
@@ -124,7 +124,7 @@
                                                     <span class="field-error-msg" id="AddressZipNew-error" hidden>{{ 'customer.addresses.zip_error' | t }}</span>
                                                 </div>
                                                 <div class="form-field">
-                                                    <label class="form-label" for="AddressPhoneNew">{{ 'customer.addresses.phone' | t }}</label>
+                                                    <label class="form-label" for="AddressPhoneNew">{{ 'customer.addresses.phone' | t }} <em>*</em></label>
                                                     <div class="phone-field-wrap">
                                                         <div class="phone-select-wrap">
                                                             <button type="button" class="phone-country-btn" aria-haspopup="listbox">
@@ -134,7 +134,7 @@
                                                             </button>
                                                             <ul class="phone-country-list" role="listbox" hidden></ul>
                                                         </div>
-                                                        <input type="tel" class="form-input phone-number-input" id="AddressPhoneNew" autocomplete="tel-national" inputmode="numeric" placeholder="">
+                                                        <input type="tel" class="form-input phone-number-input" id="AddressPhoneNew" autocomplete="tel-national" required aria-required="true" inputmode="numeric" placeholder="">
                                                     </div>
                                                     <input type="hidden" name="address[phone]" value="{{ form.phone }}">
                                                     <span class="field-error-msg" data-message="{{ 'customer.register.phone_error' | t | escape }}" hidden></span>
@@ -239,8 +239,9 @@
                                             <div class="form-field">
                                                 <label class="form-label" for="AddressAddress1_{{ form.id }}">
                                                     {{ 'customer.addresses.address1' | t }}
+                                                    <em>*</em>
                                                 </label>
-                                                <input class="form-input form-input-placeholder" type="text" id="AddressAddress1_{{ form.id }}" name="address[address1]" value="{{ form.address1 }}" autocomplete="address-line1" placeholder="{{ 'customer.addresses.address1' | t }}">
+                                                <input class="form-input form-input-placeholder" type="text" id="AddressAddress1_{{ form.id }}" name="address[address1]" value="{{ form.address1 }}" autocomplete="address-line1" required aria-required="true" placeholder="{{ 'customer.addresses.address1' | t }}">
                                             </div>
                                             <div class="form-field">
                                                 <label class="form-label" for="AddressAddress2_{{ form.id }}">
@@ -249,9 +250,9 @@
                                                 <input class="form-input form-input-placeholder" type="text" id="AddressAddress2_{{ form.id }}" name="address[address2]" value="{{ form.address2 }}" autocomplete="address-line2" placeholder="{{ 'customer.addresses.address2' | t }}">
                                             </div>
                                             <div class="form-field">
-                                                <label class="form-label" for="AddressCity_{{ form.id }}">{{ 'customer.addresses.city' | t }}</label>
+                                                <label class="form-label" for="AddressCity_{{ form.id }}">{{ 'customer.addresses.city' | t }} <em>*</em></label>
                                                 <div class="form__select select">
-                                                    <select class="select__select" id="AddressCity_{{ form.id }}" name="address[city]" autocomplete="address-level2">
+                                                    <select class="select__select" id="AddressCity_{{ form.id }}" name="address[city]" autocomplete="address-level2" required aria-required="true">
                                                         <option value="" disabled {% unless form.city != blank %}selected{% endunless %}>{{ 'customer.addresses.city' | t }}</option>
                                                         {%- if request.locale.iso_code == 'ar' -%}
                                                         <option value="Jeddah" {% if form.city == 'Jeddah' %}selected{% endif %}>جدة</option>
@@ -313,6 +314,7 @@
                                             <div class="form-field">
                                                 <label class="form-label" for="AddressPhone_{{ form.id }}">
                                                     {{ 'customer.addresses.phone' | t }}
+                                                    <em>*</em>
                                                 </label>
                                                 <div class="phone-field-wrap">
                                                     <div class="phone-select-wrap">
@@ -323,7 +325,7 @@
                                                         </button>
                                                         <ul class="phone-country-list" role="listbox" hidden></ul>
                                                     </div>
-                                                    <input type="tel" class="form-input phone-number-input" id="AddressPhone_{{ form.id }}" autocomplete="tel-national" inputmode="numeric" placeholder="">
+                                                    <input type="tel" class="form-input phone-number-input" id="AddressPhone_{{ form.id }}" autocomplete="tel-national" required aria-required="true" inputmode="numeric" placeholder="">
                                                 </div>
                                                 <input type="hidden" name="address[phone]" value="{{ form.phone }}">
                                                 <span class="field-error-msg" data-message="{{ 'customer.register.phone_error' | t | escape }}" hidden></span>
