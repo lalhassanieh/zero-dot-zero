@@ -347,7 +347,8 @@ toolbar-item.toolbar {
 /* The icon is masked rather than used as a background-image, so its colour comes
    from background-color and can be driven by a variable. background-image cannot be
    recoloured at all, which is why the hover state used to force white with a filter.
-   --btn-icon-color is set per slide from the metaobject; blank falls back to brand green. */
+   --btn-icon-color / --btn-icon-color-hover are set per slide from the block settings
+   or the metaobject; blank falls back to brand green / white. */
 .slide-button::after,
 .banner-button::after,
 .productView-groupTop .product-form__submit::after {
