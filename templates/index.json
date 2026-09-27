@@ -699,7 +699,7 @@
             "button_style": "style_1",
             "btn_text": "Discover The Collection",
             "link": "shopify://collections/mineral-water",
-            "button_1_width": 285,
+            "button_1_width": 290,
             "enable_button_custom_border": false,
             "button_color": "#005339",
             "button_border": "#005339",
