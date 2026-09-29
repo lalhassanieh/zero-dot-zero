@@ -485,6 +485,9 @@
     },
     "product-recently-viewed": {
       "type": "product-recently-viewed",
+      "custom_css": [
+        "@media (min-width: 1025px) {.container-1770 {max-width: 1800px; padding-left: 50px; padding-right: 50px; margin-left: auto; margin-right: auto; }}"
+      ],
       "settings": {
         "display_product_recently_viewed": true,
         "product_recently_viewed_container": "1770",
