@@ -46,7 +46,8 @@ h5,
 .menu-lv-item a,
 .banner-sub-title,
 .banner-text,
-.copyright__content p {
+.copyright__content p,
+.cart--totals-title {
     font-family: 'Gilroy Extra Bold' !important;
 }
 
@@ -515,6 +516,9 @@ toolbar-item.toolbar {
     top: 0;
     width: 715px;
     height: 778px;
+    /* Decorative only - without this it sits over the right half of the banner and
+       swallows clicks/hover on any button underneath. */
+    pointer-events: none;
 }
 
 .productView-image-wrapper .bundle-badge {

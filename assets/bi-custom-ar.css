@@ -50,7 +50,8 @@ h5,
 .menu-lv-item a,
 .banner-sub-title,
 .banner-text,
-.copyright__content p {
+.copyright__content p,
+.cart--totals-title {
     font-family: "Avenir Arabic", sans-serif !important;
     direction: rtl;
 }
