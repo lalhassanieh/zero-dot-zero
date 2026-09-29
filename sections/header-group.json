@@ -80,7 +80,6 @@
         "550fbd21-75fb-4051-9dee-77d91b5239f0": {
           "type": "logo",
           "settings": {
-            "logo_mobile": "shopify://shop_images/Layer_1_4.svg",
             "logo_width_mobile": 65,
             "logo_text": "",
             "logo_font_size": 20,
@@ -175,7 +174,7 @@
           "type": "logo",
           "settings": {
             "logo_position": "always",
-            "logo": "shopify://shop_images/Layer_1_4.svg",
+            "logo": "shopify://shop_images/Logo_en.png",
             "logo_width": 100,
             "logo_width_fixed": 100,
             "logo_text": "",
@@ -220,7 +219,6 @@
             "menu_text_left": "shop-menu",
             "menu_text_left_sale": "",
             "show_banner_1": false,
-            "banner_1": "shopify://shop_images/41004a990b4d257faa761a00af6b591e3dc0a86a_1.png",
             "banner_url_1": "",
             "show_banner_2": false,
             "banner_url_2": "",
