@@ -602,6 +602,19 @@
                                     {%- if block.settings.text_transform_heading_mb != blank and block.settings.text_transform_heading_mb != 'inherit' -%}
                                         .slide-block-{{ block.id }} .slide-content .slide-heading, .slide-block-{{ block.id }} .slide-content .slide-heading span {text-transform: {{ block.settings.text_transform_heading_mb }} !important}
                                     {%- endif -%}
+                                    {%- comment -%} Soft dark edge around light text; the colour's alpha is reduced so black reads as an outline, not a smudge. {%- endcomment -%}
+                                    {%- assign shadow_heading_mb = block.settings.text_shadow_heading_mb -%}
+                                    {%- if shadow_heading_mb != blank and shadow_heading_mb.alpha != 0 -%}
+                                        .slide-block-{{ block.id }} .slide-content .slide-heading, .slide-block-{{ block.id }} .slide-content .slide-heading span {text-shadow: 0 0 2px {{ shadow_heading_mb | color_modify: 'alpha', 0.6 }}, 0 1px 3px {{ shadow_heading_mb | color_modify: 'alpha', 0.4 }} !important}
+                                    {%- endif -%}
+                                    {%- assign shadow_sub_heading_mb = block.settings.text_shadow_sub_heading_mb -%}
+                                    {%- if shadow_sub_heading_mb != blank and shadow_sub_heading_mb.alpha != 0 -%}
+                                        .slide-block-{{ block.id }} .slide-content .slide-sub {text-shadow: 0 0 2px {{ shadow_sub_heading_mb | color_modify: 'alpha', 0.6 }}, 0 1px 3px {{ shadow_sub_heading_mb | color_modify: 'alpha', 0.4 }} !important}
+                                    {%- endif -%}
+                                    {%- assign shadow_des_mb = block.settings.text_shadow_des_mb -%}
+                                    {%- if shadow_des_mb != blank and shadow_des_mb.alpha != 0 -%}
+                                        .slide-block-{{ block.id }} .slide-content .slide-text {text-shadow: 0 0 2px {{ shadow_des_mb | color_modify: 'alpha', 0.6 }}, 0 1px 3px {{ shadow_des_mb | color_modify: 'alpha', 0.4 }} !important}
+                                    {%- endif -%}
                                     {%- if block.settings.text_transform_sub_heading_mb != blank and block.settings.text_transform_sub_heading_mb != 'inherit' -%}
                                         .slide-block-{{ block.id }} .slide-content .slide-sub {text-transform: {{ block.settings.text_transform_sub_heading_mb }} !important}
                                     {%- endif -%}
@@ -2272,6 +2285,12 @@
                         ]
                     },
                     {
+                        "type": "color",
+                        "id": "text_shadow_sub_heading_mb",
+                        "label": "Mobile sub heading shadow color",
+                        "info": "Adds a soft outline around the letters so light text stays readable on light images. Leave empty for no shadow."
+                    },
+                    {
                         "type" : "textarea",
                         "id" : "heading_mb",
                         "label" : "t:sections.image-banner.blocks.image.settings.content.label__19",
@@ -2361,6 +2380,12 @@
                         ]
                     },
                     {
+                        "type": "color",
+                        "id": "text_shadow_heading_mb",
+                        "label": "Mobile heading shadow color",
+                        "info": "Adds a soft outline around the letters so light text stays readable on light images. Leave empty for no shadow."
+                    },
+                    {
                         "type" : "textarea",
                         "id" : "slide-des-mb",
                         "label" : "t:sections.image-banner.blocks.image.settings.content.label__2",
@@ -2419,6 +2444,12 @@
                             { "value": "uppercase", "label": "Uppercase" },
                             { "value": "lowercase", "label": "Lowercase" }
                         ]
+                    },
+                    {
+                        "type": "color",
+                        "id": "text_shadow_des_mb",
+                        "label": "Mobile description shadow color",
+                        "info": "Adds a soft outline around the letters so light text stays readable on light images. Leave empty for no shadow."
                     },
                     {
                         "type": "header",
