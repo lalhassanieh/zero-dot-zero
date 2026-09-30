@@ -18,11 +18,11 @@
                 (shop.metafields.custom.homepage_content), so the mobile app gets it with the rest of
                 the homepage. It is a shop metafield, so the bar shows on every page, not only home.
                 The {riyal} token is swapped for the riyal icon. Falls back to the block setting if
-                there is no entry.
+                there is no entry, or when "Use metaobject content" is off.
               {%- endcomment -%}
               {%- assign meta_announcement = blank -%}
               {%- assign homepage_content = shop.metafields.custom.homepage_content.value -%}
-              {%- if homepage_content != blank and homepage_content.blocks != blank -%}
+              {%- if block.settings.use_metaobject_content and homepage_content != blank and homepage_content.blocks != blank -%}
                 {%- for block_item in homepage_content.blocks.value -%}
                   {%- if block_item.system.type == 'announcement_bar' -%}
                     {%- assign meta_announcement = block_item -%}
@@ -264,6 +264,13 @@
         {
           "type": "paragraph",
           "content": "To translate this text into Arabic, use the Translate & Adapt app in the Shopify admin."
+        },
+        {
+          "type": "checkbox",
+          "id": "use_metaobject_content",
+          "label": "Use metaobject content",
+          "default": false,
+          "info": "Enable to show the text of the Announcement bar entry (type: announcement_bar) from the homepage content list instead of the text below."
         },
         {
           "type": "html",
