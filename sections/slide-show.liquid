@@ -595,6 +595,31 @@
                                     .slide-block-{{ block.id }} .slide-content .slide-sub {color: {{ block.settings.color_sub_heading_mb }} !important;font-size: {{ block.settings.font_size_sub_heading_mb | append: 'px' }} !important}
                                     .slide-block-{{ block.id }} .slide-content .slide-heading .line {background-color: {{ block.settings.color_heading_mb }} !important}
                                     .slide-block-{{ block.id }} .slide-content .slide-text {color: {{ block.settings.color_des_mb }} !important;font-size: {{ block.settings.font_size_des_mb | append: 'px' }} !important}
+                                    {%- comment -%} Mobile weight / text transform. 'inherit' (the default) or blank outputs nothing, so the existing look stays. {%- endcomment -%}
+                                    {%- if block.settings.font_weight_heading_mb != blank and block.settings.font_weight_heading_mb != 'inherit' -%}
+                                        .slide-block-{{ block.id }} .slide-content .slide-heading {font-weight: {{ block.settings.font_weight_heading_mb }} !important}
+                                    {%- endif -%}
+                                    {%- if block.settings.text_transform_heading_mb != blank and block.settings.text_transform_heading_mb != 'inherit' -%}
+                                        .slide-block-{{ block.id }} .slide-content .slide-heading, .slide-block-{{ block.id }} .slide-content .slide-heading span {text-transform: {{ block.settings.text_transform_heading_mb }} !important}
+                                    {%- endif -%}
+                                    {%- if block.settings.text_transform_sub_heading_mb != blank and block.settings.text_transform_sub_heading_mb != 'inherit' -%}
+                                        .slide-block-{{ block.id }} .slide-content .slide-sub {text-transform: {{ block.settings.text_transform_sub_heading_mb }} !important}
+                                    {%- endif -%}
+                                    {%- if block.settings.font_weight_des_mb != blank and block.settings.font_weight_des_mb != 'inherit' -%}
+                                        .slide-block-{{ block.id }} .slide-content .slide-text {font-weight: {{ block.settings.font_weight_des_mb }} !important}
+                                    {%- endif -%}
+                                    {%- if block.settings.text_transform_des_mb != blank and block.settings.text_transform_des_mb != 'inherit' -%}
+                                        .slide-block-{{ block.id }} .slide-content .slide-text {text-transform: {{ block.settings.text_transform_des_mb }} !important}
+                                    {%- endif -%}
+                                    {%- if block.settings.font_size_button_mb != blank -%}
+                                        .slide-block-{{ block.id }} .slide-content .slide-button {font-size: {{ block.settings.font_size_button_mb }}px !important}
+                                    {%- endif -%}
+                                    {%- if block.settings.font_weight_button_mb != blank and block.settings.font_weight_button_mb != 'inherit' -%}
+                                        .slide-block-{{ block.id }} .slide-content .slide-button {font-weight: {{ block.settings.font_weight_button_mb }} !important}
+                                    {%- endif -%}
+                                    {%- if block.settings.text_transform_button_mb != blank and block.settings.text_transform_button_mb != 'inherit' -%}
+                                        .slide-block-{{ block.id }} .slide-content .slide-button {text-transform: {{ block.settings.text_transform_button_mb }} !important}
+                                    {%- endif -%}
                                     .slide-block-{{ block.id }} .slide-content__person .profile-name-and-title .profile-name {font-size: {{ block.settings.profile_name_fs_mb | append: "px" }}}
                                     .slide-block-{{ block.id }} .slide-content__person .profile-name-and-title .profile-title {font-size: {{ block.settings.profile_title_fs_mb | append: "px" }}}
                                     .section-block-{{ section.id }} .slideshow:not([data-dot-with-image="true"]) .slick-dots {--spacing-sides: 20px;gap: 10px;left: 50%;transform: translateX(-50%);bottom: 7%;flex-direction: row}
@@ -2234,6 +2259,19 @@
                         "default" : "#fff"
                     },
                     {
+                        "type": "select",
+                        "id": "text_transform_sub_heading_mb",
+                        "label": "Mobile sub heading text transform",
+                        "default": "inherit",
+                        "options": [
+                            { "value": "inherit", "label": "Inherit" },
+                            { "value": "none", "label": "None" },
+                            { "value": "capitalize", "label": "Capitalize" },
+                            { "value": "uppercase", "label": "Uppercase" },
+                            { "value": "lowercase", "label": "Lowercase" }
+                        ]
+                    },
+                    {
                         "type" : "textarea",
                         "id" : "heading_mb",
                         "label" : "t:sections.image-banner.blocks.image.settings.content.label__19",
@@ -2295,6 +2333,34 @@
                         "default" : "#fff"
                     },
                     {
+                        "type": "select",
+                        "id": "font_weight_heading_mb",
+                        "label": "Mobile heading font weight",
+                        "default": "inherit",
+                        "options": [
+                            { "value": "inherit", "label": "Inherit" },
+                            { "value": "400", "label": "400" },
+                            { "value": "500", "label": "500" },
+                            { "value": "600", "label": "600" },
+                            { "value": "700", "label": "700" },
+                            { "value": "800", "label": "800" },
+                            { "value": "900", "label": "900" }
+                        ]
+                    },
+                    {
+                        "type": "select",
+                        "id": "text_transform_heading_mb",
+                        "label": "Mobile heading text transform",
+                        "default": "inherit",
+                        "options": [
+                            { "value": "inherit", "label": "Inherit" },
+                            { "value": "none", "label": "None" },
+                            { "value": "capitalize", "label": "Capitalize" },
+                            { "value": "uppercase", "label": "Uppercase" },
+                            { "value": "lowercase", "label": "Lowercase" }
+                        ]
+                    },
+                    {
                         "type" : "textarea",
                         "id" : "slide-des-mb",
                         "label" : "t:sections.image-banner.blocks.image.settings.content.label__2",
@@ -2327,8 +2393,73 @@
                         "default" : "#fff"
                     },
                     {
+                        "type": "select",
+                        "id": "font_weight_des_mb",
+                        "label": "Mobile description font weight",
+                        "default": "inherit",
+                        "options": [
+                            { "value": "inherit", "label": "Inherit" },
+                            { "value": "400", "label": "400" },
+                            { "value": "500", "label": "500" },
+                            { "value": "600", "label": "600" },
+                            { "value": "700", "label": "700" },
+                            { "value": "800", "label": "800" },
+                            { "value": "900", "label": "900" }
+                        ]
+                    },
+                    {
+                        "type": "select",
+                        "id": "text_transform_des_mb",
+                        "label": "Mobile description text transform",
+                        "default": "inherit",
+                        "options": [
+                            { "value": "inherit", "label": "Inherit" },
+                            { "value": "none", "label": "None" },
+                            { "value": "capitalize", "label": "Capitalize" },
+                            { "value": "uppercase", "label": "Uppercase" },
+                            { "value": "lowercase", "label": "Lowercase" }
+                        ]
+                    },
+                    {
                         "type": "header",
                         "content": "t:sections.slide-show.blocks.image.slider_content.button_slide"
+                    },
+                    {
+                        "type": "paragraph",
+                        "content": "Mobile button text. Leave empty / Inherit to keep the global button style."
+                    },
+                    {
+                        "type": "number",
+                        "id": "font_size_button_mb",
+                        "label": "Mobile button font size (px)"
+                    },
+                    {
+                        "type": "select",
+                        "id": "font_weight_button_mb",
+                        "label": "Mobile button font weight",
+                        "default": "inherit",
+                        "options": [
+                            { "value": "inherit", "label": "Inherit" },
+                            { "value": "400", "label": "400" },
+                            { "value": "500", "label": "500" },
+                            { "value": "600", "label": "600" },
+                            { "value": "700", "label": "700" },
+                            { "value": "800", "label": "800" },
+                            { "value": "900", "label": "900" }
+                        ]
+                    },
+                    {
+                        "type": "select",
+                        "id": "text_transform_button_mb",
+                        "label": "Mobile button text transform",
+                        "default": "inherit",
+                        "options": [
+                            { "value": "inherit", "label": "Inherit" },
+                            { "value": "none", "label": "None" },
+                            { "value": "capitalize", "label": "Capitalize" },
+                            { "value": "uppercase", "label": "Uppercase" },
+                            { "value": "lowercase", "label": "Lowercase" }
+                        ]
                     },
                     {
                         "type": "checkbox",
