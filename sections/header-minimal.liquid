@@ -13,9 +13,34 @@
                 {% render 'halo-social-media-icons' %}
               </div>
             {%- when 'group_3' -%}
-              <div class="announcement-text" style="color: {{ block.settings.announcement_text_color  }}">
-                {{ block.settings.announcement_text }}
-              </div>
+              {%- comment -%}
+                Text comes from the first "announcement_bar" entry in the homepage content list
+                (shop.metafields.custom.homepage_content), so the mobile app gets it with the rest of
+                the homepage. It is a shop metafield, so the bar shows on every page, not only home.
+                The {riyal} token is swapped for the riyal icon. Falls back to the block setting if
+                there is no entry.
+              {%- endcomment -%}
+              {%- assign meta_announcement = blank -%}
+              {%- assign homepage_content = shop.metafields.custom.homepage_content.value -%}
+              {%- if homepage_content != blank and homepage_content.blocks != blank -%}
+                {%- for block_item in homepage_content.blocks.value -%}
+                  {%- if block_item.system.type == 'announcement_bar' -%}
+                    {%- assign meta_announcement = block_item -%}
+                    {%- break -%}
+                  {%- endif -%}
+                {%- endfor -%}
+              {%- endif -%}
+              {%- if meta_announcement != blank and meta_announcement.text != blank -%}
+                {%- capture riyal_icon -%}<span class="price-item price-item--regular"><span class="riyal-font riyal-font--header"></span></span>{%- endcapture -%}
+                {%- assign announcement_html = meta_announcement.text | metafield_tag | replace: '<p>', '' | replace: '</p>', ' ' | replace: '{riyal}', riyal_icon -%}
+              {%- else -%}
+                {%- assign announcement_html = block.settings.announcement_text -%}
+              {%- endif -%}
+              {%- unless meta_announcement.enabled.value == false -%}
+                <div class="announcement-text" style="color: {{ block.settings.announcement_text_color }}">
+                  {{ announcement_html }}
+                </div>
+              {%- endunless -%}
             {%- when 'group_2' -%}
               <div
                 class="header__icons text-right clearfix"
