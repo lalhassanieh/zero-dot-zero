@@ -360,6 +360,11 @@ font-weight: 600;
     padding-left: 0 !important;
     text-align: right;
 }
+/* Bold like English (which gets it from Gilroy Extra Bold). `body` lifts this over
+   component-filter.css's normal weight on the same selector, which loads after this file. */
+body .facets__item input[type=checkbox]+.form-label--checkbox {
+    font-weight: 700;
+}
 input[type=checkbox]+.form-label--checkbox:before {
     left: auto;
     right: 0;
@@ -395,7 +400,7 @@ input[type=checkbox]+.form-label--checkbox:after {
     right: auto!important;
 }
 .facets__price--slide::after {
-        left: auto;
+        left: auto!important;
     right: 0!important;
 }
 .page-sidebar {
@@ -768,6 +773,12 @@ input[type="checkbox"][required] {
         margin-right: 0;
         margin-left: 15px;
     }
+}
+
+/* English gets its heavy look from Gilroy Extra Bold, Arabic has to ask for it -
+   Avenir Arabic only ships 300/400/500/900, so 700 resolves to Black. */
+toolbar-item.toolbar .toolbar-label {
+    font-weight: 700;
 }
 
 /* Narrow-desktop band uses the tighter 8px gap. */
