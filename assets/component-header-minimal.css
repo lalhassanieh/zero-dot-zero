@@ -343,3 +343,95 @@
 		max-width: 40%;
 	}
 }
+/* Announcement slider (header-minimal "Announcement Text" block).
+   All slides share one grid cell, so the bar is as tall as the longest message and
+   nothing is clipped when a message wraps. Messages slide up, like a ticker. */
+.announcement-slider {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	min-width: 0;
+}
+
+.announcement-slider__arrows {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	flex-shrink: 0;
+}
+
+.announcement-slider__arrow {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 20px;
+	height: 20px;
+	padding: 0;
+	border: 0;
+	background: none;
+	color: inherit;
+	cursor: pointer;
+	opacity: .85;
+	transition: opacity .2s ease;
+}
+
+.announcement-slider__arrow:hover,
+.announcement-slider__arrow:focus-visible {
+	opacity: 1;
+}
+
+/* Chevrons point the way the row reads; the script sets is-rtl from the computed direction. */
+.announcement-slider.is-rtl .announcement-slider__arrow svg {
+	transform: scaleX(-1);
+}
+
+.announcement-slider__viewport {
+	display: grid;
+	overflow: hidden;
+	min-width: 0;
+}
+
+.announcement-slider__slide {
+	grid-area: 1 / 1;
+	align-self: center;
+}
+
+.announcement-slider--multiple .announcement-slider__slide {
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(100%);
+	transition: transform .5s ease, opacity .5s ease, visibility 0s linear .5s;
+}
+
+.announcement-slider--multiple .announcement-slider__slide.is-active {
+	opacity: 1;
+	visibility: visible;
+	transform: translateY(0);
+	transition: transform .5s ease, opacity .5s ease, visibility 0s;
+}
+
+.announcement-slider--multiple .announcement-slider__slide.is-leaving {
+	transform: translateY(-100%);
+}
+
+/* Going backwards, slides come in from the top and leave downwards. */
+.announcement-slider--multiple.is-reverse .announcement-slider__slide:not(.is-active):not(.is-leaving) {
+	transform: translateY(-100%);
+}
+
+.announcement-slider--multiple.is-reverse .announcement-slider__slide.is-leaving {
+	transform: translateY(100%);
+}
+
+/* Before the script runs, show only the first message. */
+announcement-slider:not(:defined) .announcement-slider__slide:first-child {
+	opacity: 1;
+	visibility: visible;
+	transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.announcement-slider--multiple .announcement-slider__slide {
+		transition: none !important;
+	}
+}
