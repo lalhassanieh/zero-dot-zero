@@ -380,6 +380,13 @@
 	opacity: 1;
 }
 
+/* Theme's icon-chevron-left/right snippets: polygons with no fill of their own. */
+.announcement-slider__arrow .icon {
+	width: 11px;
+	height: 11px;
+	fill: currentColor;
+}
+
 /* Chevrons point the way the row reads; the script sets is-rtl from the computed direction. */
 .announcement-slider.is-rtl .announcement-slider__arrow svg {
 	transform: scaleX(-1);
