@@ -65,12 +65,22 @@
                   {% if block.settings.autoplay and announcement_count > 1 %}data-autoplay="{{ block.settings.autoplay_speed | times: 1000 }}"{% endif %}
                 >
                   {%- if announcement_count > 1 -%}
+                    {%- liquid
+                      # Same RTL check as layout/theme.liquid. In RTL the row is mirrored, so prev sits on the right and points right.
+                      assign announcement_rtl = false
+                      if settings.enable_layout_rtl and settings.list_iso_rtl != blank
+                        assign arr_list_rtl = settings.list_iso_rtl | remove: ' ' | split: ','
+                        if arr_list_rtl contains request.locale.iso_code
+                          assign announcement_rtl = true
+                        endif
+                      endif
+                    -%}
                     <div class="announcement-slider__arrows">
                       <button type="button" class="announcement-slider__arrow" data-announcement-prev aria-label="{{ 'accessibility.previous_slide' | t }}">
-                        {% render 'icon-chevron-left' %}
+                        {%- if announcement_rtl -%}{% render 'icon-chevron-right' %}{%- else -%}{% render 'icon-chevron-left' %}{%- endif -%}
                       </button>
                       <button type="button" class="announcement-slider__arrow" data-announcement-next aria-label="{{ 'accessibility.next_slide' | t }}">
-                        {% render 'icon-chevron-right' %}
+                        {%- if announcement_rtl -%}{% render 'icon-chevron-left' %}{%- else -%}{% render 'icon-chevron-right' %}{%- endif -%}
                       </button>
                     </div>
                   {%- endif -%}
