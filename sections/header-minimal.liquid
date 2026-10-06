@@ -136,7 +136,6 @@
     customElements.define('announcement-slider', class AnnouncementSlider extends HTMLElement {
       connectedCallback() {
         this.slides = Array.from(this.querySelectorAll('.announcement-slider__slide'));
-        if (getComputedStyle(this).direction === 'rtl') this.classList.add('is-rtl');
         if (this.slides.length < 2) return;
 
         this.index = 0;

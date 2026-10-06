@@ -387,8 +387,10 @@
 	fill: currentColor;
 }
 
-/* Chevrons point the way the row reads; the script sets is-rtl from the computed direction. */
-.announcement-slider.is-rtl .announcement-slider__arrow svg {
+/* Chevrons point the way the row reads. Keyed on the theme's RTL markers rather than a JS
+   direction check, which can run before layout_rtl.css applies. */
+[dir="rtl"] .announcement-slider__arrow svg,
+body.layout_rtl .announcement-slider__arrow svg {
 	transform: scaleX(-1);
 }
 
