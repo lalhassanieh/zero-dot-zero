@@ -387,6 +387,17 @@
 	fill: currentColor;
 }
 
+/* "Show truck icon" off: drop the truck that bi-custom.css adds to .announcement-text::before,
+   and the room it reserves (left in English, right in bi-custom-ar.css). */
+.announcement-slider--no-icon .announcement-text {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.announcement-slider--no-icon .announcement-text::before {
+	content: none;
+}
+
 .announcement-slider__viewport {
 	display: grid;
 	overflow: hidden;

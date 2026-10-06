@@ -60,7 +60,7 @@
               {%- assign announcement_count = announcement_slides | split: 'announcement-slider__slide' | size | minus: 1 -%}
               {%- if announcement_count > 0 -%}
                 <announcement-slider
-                  class="announcement-slider{% if announcement_count > 1 %} announcement-slider--multiple{% endif %}"
+                  class="announcement-slider{% if announcement_count > 1 %} announcement-slider--multiple{% endif %}{% unless block.settings.show_icon %} announcement-slider--no-icon{% endunless %}"
                   style="color: {{ block.settings.announcement_text_color }}"
                   {% if block.settings.autoplay and announcement_count > 1 %}data-autoplay="{{ block.settings.autoplay_speed | times: 1000 }}"{% endif %}
                 >
@@ -412,6 +412,13 @@
           "label": "Show each line as its own message",
           "default": true,
           "info": "Each line break in the text becomes a separate slide."
+        },
+        {
+          "type": "checkbox",
+          "id": "show_icon",
+          "label": "Show truck icon",
+          "default": true,
+          "info": "Shows the delivery truck icon before each message."
         },
         {
           "type": "checkbox",
