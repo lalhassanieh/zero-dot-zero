@@ -25,7 +25,13 @@
           "settings": {
             "use_metaobject_content": true,
             "announcement_text": "Free Delivery for Orders Above <span class=\"price-item price-item--regular\"><span class=\"riyal-font riyal-font--header\"></span> 100</span> Delivery within 24-48 hours 📍📦 Currently delivering to <strong>Jeddah</strong>, <strong>Riyadh</strong> &amp; <strong>Dammam</strong>. More cities coming soon.",
-            "announcement_text_color": "#ffffff"
+            "announcement_text_2": "",
+            "announcement_text_3": "",
+            "announcement_text_color": "#ffffff",
+            "split_lines": true,
+            "show_icon": false,
+            "autoplay": true,
+            "autoplay_speed": 5
           }
         },
         "group_2_Aw4RU8": {
