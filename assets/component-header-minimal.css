@@ -407,6 +407,10 @@
 .announcement-slider__slide {
 	grid-area: 1 / 1;
 	align-self: center;
+	/* The cell is as wide as the longest message; centre the shorter ones in it. Shrinking
+	   to the text keeps the truck (::before) next to the words. */
+	justify-self: center;
+	text-align: center;
 }
 
 .announcement-slider--multiple .announcement-slider__slide {
