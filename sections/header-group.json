@@ -30,6 +30,7 @@
             "announcement_text_color": "#ffffff",
             "split_lines": true,
             "show_icon": false,
+            "show_arrows": false,
             "autoplay": true,
             "autoplay_speed": 5
           }
