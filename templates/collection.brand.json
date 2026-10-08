@@ -30,11 +30,12 @@
         "default_button_target": "products",
         "button_text_color": "#ffffff",
         "button_bg_color": "#005339",
+        "button_text_color_hover": "#ffffff",
         "button_bg_color_hover": "#00312d",
         "container": "container",
         "use_fixed_height": true,
-        "height_desktop": 710,
-        "height_mobile": 520,
+        "height_desktop": 510,
+        "height_mobile": 380,
         "content_shift_up": 60,
         "content_shift_up_mobile": 0
       }
@@ -76,6 +77,7 @@
         "title_color": "#ffffff",
         "button_text_color": "#ffffff",
         "button_bg_color": "#005339",
+        "button_text_color_hover": "#ffffff",
         "button_bg_color_hover": "#00312d",
         "padding_top": 60,
         "padding_bottom": 60
@@ -157,6 +159,10 @@
         "3978fd59-b580-49e1-9893-38d762f48f10",
         "2f7f02ac-4072-40ea-844f-59943e256971"
       ],
+      "custom_css": [
+        ".collection-default {padding-left: 100px; padding-right: 100px;}",
+        "@media only screen and (max-width: 1025px) {.collection-default {padding-left: 15px; padding-right: 15px; }}"
+      ],
       "settings": {
         "container": "fullwidth",
         "padding_full_width": 0,
@@ -208,11 +214,7 @@
         "mg_bottom_desktop": 40,
         "mg_bottom_tablet": 0,
         "mg_bottom_mobile": 0
-      },
-      "custom_css": [
-        ".collection-default {padding-left: 100px; padding-right: 100px;}",
-        "@media only screen and (max-width: 1025px) {.collection-default {padding-left: 15px; padding-right: 15px; }}"
-      ]
+      }
     },
     "product-recently-viewed": {
       "type": "product-recently-viewed",
