@@ -244,6 +244,7 @@
         },
         "image_w3wQGn": {
           "type": "image",
+          "disabled": true,
           "settings": {
             "use_metaobject_slide": true,
             "slide_id": "main-slide-show-1",
