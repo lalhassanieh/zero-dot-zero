@@ -247,6 +247,7 @@
           "settings": {
             "use_metaobject_slide": true,
             "slide_id": "main-slide-show-8",
+            "image_slide_mb": "shopify://shop_images/18-10-2026_-_Zero.Zero_Fresh_Start_Offer_Mobile_Banner_15_OFF_-_430_x_430_-_Template.jpg",
             "alignment": "left",
             "enable_custom_position": false,
             "custom_horizontal": "",
@@ -358,6 +359,7 @@
         },
         "image_VyWRme": {
           "type": "image",
+          "disabled": true,
           "settings": {
             "use_metaobject_slide": true,
             "slide_id": "main-slide-show-7",
