@@ -500,6 +500,10 @@
                                 {%- if block.settings.heading_top_max_width != blank -%}
                                     .slide-block-{{ block.id }} .slide-content .slide-heading.slide-pc .top {max-width: {{ block.settings.heading_top_max_width | append: 'px' }}}
                                 {%- endif -%}
+                                {%- assign shadow_heading_bottom = block.settings.text_shadow_heading_bottom -%}
+                                {%- if shadow_heading_bottom != blank and shadow_heading_bottom.alpha != 0 -%}
+                                    .slide-block-{{ block.id }} .slide-content .slide-heading.slide-pc > span:not(.line) {text-shadow: 0 0 2px {{ shadow_heading_bottom | color_modify: 'alpha', 0.6 }}, 0 1px 3px {{ shadow_heading_bottom | color_modify: 'alpha', 0.4 }} !important}
+                                {%- endif -%}
                                 {%- if block.settings.heading_bottom_max_width != blank -%}
                                     .slide-block-{{ block.id }} .slide-content .slide-heading.slide-pc > span:not(.line) {display: inline-block;max-width: {{ block.settings.heading_bottom_max_width | append: 'px' }}}
                                 {%- endif -%}
@@ -2169,6 +2173,12 @@
                         "id" : "color_heading",
                         "label" : "t:sections.slide-show.blocks.image.slider_content.color_heading",
                         "default" : "#232323"
+                    },
+                    {
+                        "type": "color",
+                        "id": "text_shadow_heading_bottom",
+                        "label": "Heading bottom shadow color (desktop)",
+                        "info": "Adds a soft outline around the heading bottom letters so light text stays readable on light images. Leave empty for no shadow."
                     },
                     {
                         "type" : "textarea",
