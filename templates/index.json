@@ -365,7 +365,7 @@
             "alignment": "left",
             "enable_custom_position": true,
             "custom_horizontal": "10",
-            "custom_vertical": "75",
+            "custom_vertical": "50",
             "enable_position_outside_image": false,
             "enable_border_line": false,
             "padding_vertical": 75,
