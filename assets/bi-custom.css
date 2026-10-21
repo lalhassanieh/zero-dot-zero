@@ -98,6 +98,11 @@ h5,
     font-size: 18px !important;
 }
 
+/* Slideshow {riyal} token - glyph scales with the heading/text it sits in. */
+.riyal-font--slide::after {
+    font-size: 0.9em !important;
+}
+
 .product-customInformation .price-item {
   font-size: 14px;
 }
