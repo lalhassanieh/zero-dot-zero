@@ -101,6 +101,9 @@ h5,
 /* Slideshow {riyal} token - glyph scales with the heading/text it sits in. */
 .riyal-font--slide::after {
     font-size: 0.9em !important;
+    /* MHE-Riyal-Sign only ships a Regular weight, so it looks thin beside the heavy
+       heading font - a same-colour stroke thickens the glyph to match. */
+    -webkit-text-stroke: 0.06em currentColor;
 }
 
 /* ".slide-content .slide-heading span" paints the bottom heading line cream - keep the
