@@ -584,7 +584,9 @@
             "lb_product_3": "",
             "horizontal_pos_3": 0,
             "vertical_pos_3": 0,
-            "lookbook_pos_3": "right"
+            "lookbook_pos_3": "right",
+            "heading_top_max_width": 400,
+            "heading_bottom_max_width": 400
           }
         }
       },
