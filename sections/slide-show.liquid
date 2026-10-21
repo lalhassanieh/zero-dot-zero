@@ -494,7 +494,19 @@
                                     .slide-block-{{block.id}} .slide-content .slide-heading {letter-spacing: {{ block.settings.letter_spacing_heading }}}
                                 {%- endif -%}
                                 {%- if block.settings.heading_top_max_width != blank -%}
-                                    .slide-block-{{ block.id }} .slide-content .slide-heading .top {max-width: {{ block.settings.heading_top_max_width | append: 'px' }}}
+                                    .slide-block-{{ block.id }} .slide-content .slide-heading.slide-pc .top {max-width: {{ block.settings.heading_top_max_width | append: 'px' }}}
+                                {%- endif -%}
+                                {%- if block.settings.heading_bottom_max_width != blank -%}
+                                    .slide-block-{{ block.id }} .slide-content .slide-heading.slide-pc > span:not(.line) {display: inline-block;max-width: {{ block.settings.heading_bottom_max_width | append: 'px' }}}
+                                {%- endif -%}
+                                {%- if block.settings.sub_heading_max_width != blank -%}
+                                    .slide-block-{{ block.id }} .slide-content .slide-sub.slide-pc > span {display: inline-block;max-width: {{ block.settings.sub_heading_max_width | append: 'px' }}}
+                                {%- endif -%}
+                                {%- if block.settings.heading_max_width_mb != blank -%}
+                                    .slide-block-{{ block.id }} .slide-content .slide-heading.slide-mobile {max-width: {{ block.settings.heading_max_width_mb | append: 'px' }};margin-left: auto;margin-right: auto}
+                                {%- endif -%}
+                                {%- if block.settings.sub_heading_max_width_mb != blank -%}
+                                    .slide-block-{{ block.id }} .slide-content .slide-sub.slide-mobile > span {display: inline-block;max-width: {{ block.settings.sub_heading_max_width_mb | append: 'px' }}}
                                 {%- endif -%}
                                 {% assign math = block.settings.min_width_banner_button | times: 2 | plus: 10 %}
                                 {%- if math > block.settings.content_width -%}
@@ -2094,16 +2106,6 @@
                         "label": "t:sections.slide-show.blocks.image.slider_content.heading_letter_spacing"
                     },
                     {
-                        "type": "range",
-                        "id": "heading_top_max_width",
-                        "label": "Heading top text max width",
-                        "min": 100,
-                        "max": 1000,
-                        "step": 10,
-                        "unit": "px",
-                        "default": 200
-                    },
-                    {
                         "type": "checkbox",
                         "id": "enable_border_heading",
                         "label": "t:sections.slide-show.blocks.image.slider_content.enable_border_heading",
@@ -2813,6 +2815,39 @@
                                 "label": "t:sections.collection_lookbook.blocks.lookbook.settings.option_4"
                             }
                         ]
+                    },
+                    {
+                        "type": "header",
+                        "content": "Text max width"
+                    },
+                    {
+                        "type": "paragraph",
+                        "content": "Values in px. Leave empty for no limit (heading top defaults to 200px)."
+                    },
+                    {
+                        "type": "number",
+                        "id": "heading_top_max_width",
+                        "label": "Heading top max width (desktop)"
+                    },
+                    {
+                        "type": "number",
+                        "id": "heading_bottom_max_width",
+                        "label": "Heading bottom max width (desktop)"
+                    },
+                    {
+                        "type": "number",
+                        "id": "sub_heading_max_width",
+                        "label": "Sub heading max width (desktop)"
+                    },
+                    {
+                        "type": "number",
+                        "id": "heading_max_width_mb",
+                        "label": "Heading max width (mobile)"
+                    },
+                    {
+                        "type": "number",
+                        "id": "sub_heading_max_width_mb",
+                        "label": "Sub heading max width (mobile)"
                     }
                 ]
             },
