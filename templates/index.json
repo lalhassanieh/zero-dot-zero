@@ -361,8 +361,6 @@
           "settings": {
             "use_metaobject_slide": true,
             "slide_id": "main-slide-show-7",
-            "image_slide": "shopify://shop_images/18-10-2026_-_ZeroZero_Free_Delivery_Desktop_Banner_-_1370_x_477_-_Template.jpg",
-            "image_slide_mb": "shopify://shop_images/18-10-2026_-_ZeroZero_Free_Delivery_Mobile_Banner_-_430_x_430_-_Template.jpg",
             "alignment": "left",
             "enable_custom_position": false,
             "custom_horizontal": "",
