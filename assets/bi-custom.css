@@ -103,6 +103,14 @@ h5,
     font-size: 0.9em !important;
 }
 
+/* ".slide-content .slide-heading span" paints the bottom heading line cream - keep the
+   riyal icon the colour of the text it sits in instead. */
+.slide-content .slide-heading .riyal-font--slide,
+.slide-content .slide-sub .riyal-font--slide {
+    color: inherit !important;
+    text-transform: none !important;
+}
+
 .product-customInformation .price-item {
   font-size: 14px;
 }
