@@ -244,7 +244,6 @@
         },
         "image_bbPhnr": {
           "type": "image",
-          "disabled": true,
           "settings": {
             "use_metaobject_slide": true,
             "slide_id": "main-slide-show-8",
@@ -359,7 +358,6 @@
         },
         "image_VyWRme": {
           "type": "image",
-          "disabled": true,
           "settings": {
             "use_metaobject_slide": true,
             "slide_id": "main-slide-show-7",
