@@ -249,7 +249,7 @@
           "settings": {
             "use_metaobject_slide": true,
             "slide_id": "main-slide-show-3",
-            "alignment": "left",
+            "alignment": "center",
             "enable_custom_position": true,
             "custom_horizontal": "10",
             "custom_vertical": "50",
