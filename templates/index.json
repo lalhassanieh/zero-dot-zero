@@ -279,7 +279,7 @@
             "sub_heading_spacing_bottom": 20,
             "sub_heading_font": "font_2",
             "font_weight_sub_heading": "400",
-            "border_sub_heading": "none",
+            "border_sub_heading": "solid",
             "sub_title_position": "sub_title_above",
             "color_sub_heading": "#285886",
             "heading": "<div class=\"top\">\nDirect from Nature  \n</div>  <span> Naturally pure water sourced from the heart of the mountains  </span>",
