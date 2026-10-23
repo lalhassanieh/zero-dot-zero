@@ -60,6 +60,7 @@
             "line_height_heading": 45,
             "heading_spacing_bottom": 20,
             "color_heading": "#005339",
+            "text_shadow_heading_bottom": "",
             "slide-des": " <span> Starts at Zero.Zero </span>",
             "font_size_des": 40,
             "line_height_des": 20,
@@ -175,6 +176,7 @@
             "line_height_heading": 45,
             "heading_spacing_bottom": 20,
             "color_heading": "#005339",
+            "text_shadow_heading_bottom": "",
             "slide-des": " <span> Starts at Zero.Zero </span>",
             "font_size_des": 40,
             "line_height_des": 20,
@@ -262,7 +264,7 @@
             "bg_color_content": "",
             "profile_spacing_bottom": 50,
             "profile_name": "",
-            "profile_name_color": "#ffffff",
+            "profile_name_color": "#2E6293",
             "profile_name_fs": 20,
             "profile_name_fs_mb": 20,
             "profile_name_fw": "normal",
@@ -279,7 +281,7 @@
             "font_weight_sub_heading": "400",
             "border_sub_heading": "none",
             "sub_title_position": "sub_title_above",
-            "color_sub_heading": "#ffffff",
+            "color_sub_heading": "#285886",
             "heading": "<div class=\"top\">\nDirect from Nature  \n</div>  <span> Naturally pure water sourced from the heart of the mountains  </span>",
             "heading_top": "",
             "heading_bottom": "Naturally pure water sourced from the heart of the mountains",
@@ -290,6 +292,7 @@
             "line_height_heading": 45,
             "heading_spacing_bottom": 20,
             "color_heading": "#3e4578",
+            "text_shadow_heading_bottom": "",
             "slide-des": "Naturally pure water sourced from the heart of the mountains",
             "font_size_des": 40,
             "line_height_des": 20,
@@ -304,7 +307,7 @@
             "text_transform_sub_heading_mb": "uppercase",
             "text_shadow_sub_heading_mb": "",
             "heading_mb": "Cosmopolis",
-            "font_style_heading_mb": "normal",
+            "font_style_heading_mb": "oblique",
             "font_size_heading_mb": 20,
             "line_height_heading_mb": 24,
             "heading_spacing_bottom_mb": 8,
@@ -315,7 +318,7 @@
             "slide-des-mb": "Quisquemos sodales suscipit tortor ditaemcos condimentum de cosmo lacus meleifend menean diverra loremous.",
             "font_size_des_mb": 12,
             "des_spacing_bottom_mb": 35,
-            "color_des_mb": "#ffffff",
+            "color_des_mb": "#F6F6F7",
             "font_weight_des_mb": "inherit",
             "text_transform_des_mb": "inherit",
             "text_shadow_des_mb": "",
@@ -405,6 +408,7 @@
             "line_height_heading": 45,
             "heading_spacing_bottom": 20,
             "color_heading": "#005339",
+            "text_shadow_heading_bottom": "",
             "slide-des": " <span> Starts at Zero.Zero </span>",
             "font_size_des": 40,
             "line_height_des": 20,
@@ -521,6 +525,7 @@
             "line_height_heading": 45,
             "heading_spacing_bottom": 20,
             "color_heading": "#005339",
+            "text_shadow_heading_bottom": "",
             "slide-des": " <span> Starts at Zero.Zero </span>",
             "font_size_des": 40,
             "line_height_des": 20,
